@@ -1,0 +1,138 @@
+---
+title: "Obsidian Note Auto-Tagging"
+description: "Automatically analyze your Obsidian notes and add relevant tags based on content."
+category: "note-management"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://reddit.com/r/ObsidianMD"
+tags: ["obsidian", "notes", "tagging", "productivity"]
+createdAt: "2026-01-09"
+---
+
+## What This Does
+
+This playbook analyzes your Obsidian markdown notes and automatically adds relevant tags based on their content. It helps you organize your vault without manually tagging every note.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- An Obsidian vault with markdown (.md) files
+- Notes that need tagging
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your Obsidian vault root:
+
+```markdown
+# Obsidian Auto-Tagger
+
+## Goal
+Analyze markdown notes and add relevant YAML frontmatter tags.
+
+## Tag Categories
+- Topics: #project, #idea, #meeting, #daily, #weekly, #reference
+- Status: #todo, #in-progress, #done, #archived
+- Priority: #urgent, #important, #someday
+- Areas: #work, #personal, #health, #finance, #learning
+
+## Rules
+1. Read each .md file in the vault
+2. Analyze the content for themes and topics
+3. Add a YAML frontmatter block if missing
+4. Add 2-5 relevant tags based on content
+5. Don't remove existing tags
+6. Don't modify the note content, only frontmatter
+
+## Frontmatter Format
+---
+tags:
+  - tag1
+  - tag2
+---
+
+## Skip
+- Files in .obsidian/ folder
+- Files that already have 3+ tags
+- Template files in Templates/
+```
+
+## Step-by-Step Setup
+
+### Step 1: Navigate to your Obsidian vault
+
+```bash
+cd ~/Documents/ObsidianVault  # or your vault location
+```
+
+### Step 2: Create the CLAUDE.md file
+
+Create a new file called `CLAUDE.md` and paste the template above.
+
+### Step 3: Test on a single note first
+
+Run Claude Code and ask it to tag just one note:
+
+```bash
+claude "Tag the note at notes/my-note.md according to the CLAUDE.md rules"
+```
+
+### Step 4: Tag all notes (batch)
+
+Once you're happy with the results:
+
+```bash
+claude "Tag all untagged notes in this vault according to the CLAUDE.md rules"
+```
+
+## Example
+
+**Before (notes/meeting-notes.md):**
+```markdown
+# Team Standup - January 9
+
+Discussed the new feature rollout. John will handle backend,
+Sarah takes frontend. Need to finish by Friday.
+
+Action items:
+- Review PR #123
+- Update documentation
+- Schedule demo with stakeholders
+```
+
+**After:**
+```markdown
+---
+tags:
+  - meeting
+  - work
+  - project
+  - todo
+---
+
+# Team Standup - January 9
+
+Discussed the new feature rollout. John will handle backend,
+Sarah takes frontend. Need to finish by Friday.
+
+Action items:
+- Review PR #123
+- Update documentation
+- Schedule demo with stakeholders
+```
+
+## Tips & Variations
+
+- **Custom tag vocabulary**: Modify the tag categories to match your existing tagging system
+- **Hierarchical tags**: Use nested tags like `#work/meetings` or `#project/alpha`
+- **Add more metadata**: Extend the frontmatter to include `created`, `modified`, or custom fields
+
+## Troubleshooting
+
+**Problem**: Tags don't appear in Obsidian
+
+**Solution**: Make sure the YAML frontmatter is at the very top of the file with no blank lines above it.
+
+**Problem**: Getting irrelevant tags
+
+**Solution**: Refine your tag categories in the CLAUDE.md to be more specific, or add examples of what each tag means.

@@ -1,0 +1,134 @@
+---
+title: "Disk Space Analyzer"
+description: "Find exactly what's eating your disk space with categorized breakdown and prioritized cleanup recommendations."
+category: "file-organization"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://www.masteringai.io/guides/50-non-coding-uses-claude-code"
+tags: ["disk-space", "storage", "cleanup", "analysis", "system"]
+createdAt: "2026-01-17"
+---
+
+## What This Does
+
+Answer "why is my disk full?" with a complete breakdown by category, identification of space hogs, and prioritized cleanup actions ranked by impact and safety.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Place in Home Folder
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/
+```
+
+### Step 3: Run Claude Code
+
+```bash
+cd ~
+claude
+```
+
+### Step 4: Analyze
+
+Say: **"Why is my disk full?"**
+
+---
+
+## What Gets Analyzed
+
+| Category | What's Checked |
+|----------|----------------|
+| **Apps** | Application sizes, unused apps |
+| **Documents** | By type and age |
+| **Media** | Photos, music, videos |
+| **Developer** | node_modules, Docker, caches |
+| **System** | Caches, logs, backups |
+| **Hidden** | Time Machine, swap, Trash |
+
+---
+
+## Example Output
+
+```markdown
+## Overview
+- Total: 500 GB
+- Used: 420 GB (84%)
+- Free: 80 GB
+- Purgeable: ~45 GB
+
+## Top Space Consumers
+| Path | Size |
+|------|------|
+| iOS Backup (old phone) | 28 GB |
+| node_modules (various) | 15 GB |
+| Docker images | 12 GB |
+
+## Cleanup Priorities
+| Action | Savings | Risk |
+|--------|---------|------|
+| Empty Trash | 5.2 GB | None |
+| Old iOS backup | 28 GB | Low |
+| Clear npm cache | 8 GB | None |
+```
+
+---
+
+## Quick Wins
+
+These are almost always safe:
+- Empty Trash
+- Clear browser caches
+- Remove old iOS/Android backups
+- Clean package manager caches (npm, pip)
+
+---
+
+## Developer-Specific
+
+| Item | Typical Size | Safe to Clear? |
+|------|--------------|----------------|
+| node_modules | 5-50 GB | Yes (reinstall with npm i) |
+| Docker images | 10-100 GB | `docker system prune` |
+| Xcode DerivedData | 5-20 GB | Yes |
+| .gradle cache | 2-10 GB | Yes |
+
+---
+
+## Tips
+
+- **Check old backups**: iOS backups from old phones are huge
+- **node_modules adds up**: Delete from old projects
+- **Docker grows silently**: Prune regularly
+- **Mail attachments**: Can be gigabytes
+
+---
+
+## Commands
+
+```
+"Why is my disk full?"
+"What's using space in Documents?"
+"Find files over 1GB"
+"How much can I free up safely?"
+"Analyze my developer folders"
+```
+
+---
+
+## Troubleshooting
+
+**"System" taking lots of space**
+Often Time Machine snapshots - Claude can help identify
+
+**Can't find the space hog**
+Try: "Show hidden files and folders by size"
+
+**Disk full but nothing obvious**
+Check: Trash, Time Machine local snapshots, Mail downloads

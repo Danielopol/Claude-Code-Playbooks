@@ -1,0 +1,74 @@
+---
+title: "Competitor Feature Comparison Matrix"
+description: "Build detailed feature comparison matrices by analyzing competitor websites, documentation, and marketing materials."
+category: "market-research"
+difficulty: "intermediate"
+featured: false
+---
+
+## What This Does
+
+Creates comprehensive side-by-side feature comparisons by crawling competitor sites, extracting feature lists, and organizing them into actionable matrices. Perfect for product positioning and gap analysis.
+
+## Prerequisites
+
+- Claude Code installed
+- Web access for fetching competitor pages
+- Spreadsheet tool or markdown viewer for results
+
+## Setup Instructions
+
+### Step 1: Download the Template
+
+Download the CLAUDE.md template below and save it to your project folder.
+
+### Step 2: Define Your Competitors
+
+Create a `competitors.md` file listing the competitors you want to analyze:
+
+```markdown
+# Competitors to Analyze
+
+## Direct Competitors
+- competitor1.com - Main rival
+- competitor2.com - Budget alternative
+- competitor3.com - Enterprise focused
+
+## Indirect Competitors
+- alternative1.com - Different approach
+- alternative2.com - Adjacent market
+```
+
+### Step 3: Run the Analysis
+
+Start Claude Code and ask it to analyze your competitors:
+
+```
+Analyze the competitors listed in competitors.md and create a feature comparison matrix
+```
+
+## Example Usage
+
+```
+"Compare pricing pages across all competitors"
+"What features does Competitor A have that we don't?"
+"Create a matrix of integration capabilities"
+"Find gaps in competitor offerings we could exploit"
+```
+
+## Best Practices
+
+1. **Update regularly** - Competitor features change frequently
+2. **Verify claims** - Marketing may not match reality
+3. **Include pricing** - Often the deciding factor
+4. **Note positioning** - How they describe themselves matters
+
+## Output Example
+
+The template generates structured matrices like:
+
+| Feature | Us | Comp A | Comp B | Comp C |
+|---------|-----|--------|--------|--------|
+| SSO | ✅ | ✅ | ❌ | ✅ |
+| API | ✅ | ✅ | ✅ | ❌ |
+| Mobile | ❌ | ✅ | ✅ | ✅ |

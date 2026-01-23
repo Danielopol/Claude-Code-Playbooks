@@ -1,0 +1,117 @@
+---
+title: "Auto-Organize Downloads Folder"
+description: "Automatically sort and organize files in your Downloads folder by type, date, or custom rules."
+category: "file-organization"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://reddit.com/r/ClaudeAI"
+tags: ["files", "organization", "automation", "downloads"]
+createdAt: "2026-01-09"
+---
+
+## What This Does
+
+This playbook helps you automatically organize your messy Downloads folder. Claude Code will sort files into subfolders based on file type (images, documents, videos, etc.) and optionally by date.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- A Downloads folder with files to organize
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your Downloads folder:
+
+```markdown
+# Downloads Organizer
+
+## Goal
+Organize files in this folder into subfolders by type.
+
+## Rules
+- Images (.jpg, .png, .gif, .webp, .svg) → Images/
+- Documents (.pdf, .doc, .docx, .txt, .md) → Documents/
+- Videos (.mp4, .mov, .avi, .mkv) → Videos/
+- Audio (.mp3, .wav, .flac, .m4a) → Audio/
+- Archives (.zip, .rar, .7z, .tar.gz) → Archives/
+- Code (.js, .ts, .py, .html, .css) → Code/
+- Everything else → Other/
+
+## Instructions
+1. Create the subfolders if they don't exist
+2. Move each file to the appropriate folder
+3. Don't move folders, only files
+4. Preserve original filenames
+5. Report what was moved when done
+```
+
+## Step-by-Step Setup
+
+### Step 1: Navigate to your Downloads folder
+
+Open your terminal and navigate to your Downloads folder:
+
+```bash
+cd ~/Downloads
+```
+
+### Step 2: Create the CLAUDE.md file
+
+Create a new file called `CLAUDE.md` and paste the template above.
+
+### Step 3: Run Claude Code
+
+In your terminal, run:
+
+```bash
+claude
+```
+
+Then type: "Organize my downloads according to the CLAUDE.md rules"
+
+## Example
+
+**Before:**
+```
+Downloads/
+├── vacation-photo.jpg
+├── report.pdf
+├── song.mp3
+├── archive.zip
+├── script.py
+└── random-file.xyz
+```
+
+**After:**
+```
+Downloads/
+├── Images/
+│   └── vacation-photo.jpg
+├── Documents/
+│   └── report.pdf
+├── Audio/
+│   └── song.mp3
+├── Archives/
+│   └── archive.zip
+├── Code/
+│   └── script.py
+└── Other/
+    └── random-file.xyz
+```
+
+## Tips & Variations
+
+- **Add date organization**: Modify the rules to include year/month subfolders like `Images/2026/01/`
+- **Custom categories**: Add your own file types and folders based on your workflow
+- **Dry run first**: Ask Claude to "show me what would be moved without actually moving anything" first
+
+## Troubleshooting
+
+**Problem**: Files aren't being moved
+
+**Solution**: Make sure Claude Code has file system permissions. Check that you're running it from the correct directory.
+
+**Problem**: Some files go to "Other" unexpectedly
+
+**Solution**: Add the file extension to the appropriate category in the CLAUDE.md rules.

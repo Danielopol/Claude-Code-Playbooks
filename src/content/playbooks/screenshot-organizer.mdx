@@ -1,0 +1,155 @@
+---
+title: "Screenshot Organizer"
+description: "Organize thousands of screenshots by analyzing their visual content. Claude reads text in images to create meaningful names and categories."
+category: "file-organization"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://wonderingabout.ai"
+tags: ["screenshots", "images", "organization", "cleanup", "photos", "productivity"]
+createdAt: "2026-01-17"
+---
+
+## What This Does
+
+Screenshots pile up with useless names like "Screenshot 2024-01-15 at 3.42.17 PM.png". Claude analyzes the **visual content** of each image - reading text, identifying apps - and renames them meaningfully.
+
+> "Organized 1,400 screenshots. Fair warning: batch renaming images was surprisingly slow (20+ seconds for 8-10 images). But still faster than doing it manually." — Wondering About AI
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Place in Screenshots Folder
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Pictures/Screenshots/
+```
+
+### Step 3: Run Claude Code
+
+```bash
+cd ~/Pictures/Screenshots
+claude
+```
+
+### Step 4: Start Organizing
+
+Say: **"Organize my screenshots folder"**
+
+For large folders, add the count: **"Organize my screenshots folder (1,400 files)"**
+
+---
+
+## Naming Convention
+
+**Before:**
+```
+Screenshot 2024-01-15 at 3.42.17 PM.png
+IMG_4521.png
+Screen Shot 2024-01-12.png
+```
+
+**After:**
+```
+2025-01-15 - Work - Slack conversation Q1 planning.png
+2025-01-15 - Receipts - Amazon $127.43 office supplies.png
+2025-01-12 - Reference - VS Code keyboard shortcuts.png
+```
+
+---
+
+## Category Folders
+
+| Folder | What Goes Here |
+|--------|---------------|
+| Work/ | Slack, email, documents, meetings |
+| Receipts/ | Invoices, orders, payment confirmations |
+| Social Media/ | Twitter, LinkedIn, Reddit posts |
+| Reference/ | Tutorials, docs, how-tos, code snippets |
+| Personal/ | Personal messages, non-work items |
+| Other/ | Anything that doesn't fit |
+
+---
+
+## Index File
+
+Claude creates a searchable `screenshots-index.md`:
+
+```markdown
+# Screenshot Index
+
+## Work (47 files)
+- 2025-01-15 - Slack Q1 planning discussion
+- 2025-01-14 - Figma dashboard mockup v2
+
+## Receipts (23 files)
+- 2025-01-15 - Amazon $127.43 office supplies
+- 2025-01-12 - Uber $24.50 airport trip
+```
+
+Now you can search with `grep` or your editor!
+
+---
+
+## Performance Tips
+
+| File Count | Expected Time | Recommendation |
+|------------|---------------|----------------|
+| < 100 | 5-10 minutes | Run anytime |
+| 100-500 | 20-45 minutes | Take a break |
+| 500-1000 | 1-2 hours | Run during lunch |
+| 1000+ | 2+ hours | Run overnight |
+
+**Why slow?** Claude analyzes each image's visual content, which takes ~2-3 seconds per file.
+
+---
+
+## Tips
+
+- **Process in batches**: Claude handles 50 files at a time to manage memory
+- **Run overnight**: For 1000+ screenshots, start before bed
+- **Check the index**: Use `screenshots-index.md` to search later
+- **Receipt extraction**: Claude pulls vendor names and amounts automatically
+
+---
+
+## Special Handling
+
+### Receipts & Invoices
+Claude extracts vendor and amount:
+```
+2025-01-15 - Receipts - Amazon $127.43 office supplies.png
+```
+
+### Code Screenshots
+Notes the language and topic:
+```
+2025-01-13 - Reference - React useEffect cleanup pattern.png
+```
+
+### Error Messages
+Captures the error type:
+```
+2025-01-14 - Reference - Python TypeError list index.png
+```
+
+---
+
+## Troubleshooting
+
+**Too slow**
+Process smaller batches: "Organize just the screenshots from January"
+
+**Some files not analyzed**
+Low-quality or very small images may not be readable. Claude reports these.
+
+**Wrong category assigned**
+Say: "Move [filename] to [correct category]"
+
+**Want different categories**
+Edit the CLAUDE.md template to add your own folder structure

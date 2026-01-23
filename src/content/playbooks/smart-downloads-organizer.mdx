@@ -1,0 +1,112 @@
+---
+title: "Smart Downloads Organizer"
+description: "Intelligently organize your Downloads folder by analyzing file content, not just extensions. Claude reads files to categorize them meaningfully."
+category: "file-organization"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://www.masteringai.io/guides/50-non-coding-uses-claude-code"
+tags: ["files", "organization", "downloads", "cleanup", "productivity"]
+createdAt: "2026-01-16"
+---
+
+## What This Does
+
+Unlike basic file organizers that only look at extensions, this playbook analyzes file **contents** to organize intelligently. A PDF recipe goes to `Recipes/`, while a PDF invoice goes to `Finance/`.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click the **Download** button above to get the `CLAUDE.md` file.
+
+### Step 2: Place in Downloads
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Downloads/
+```
+
+### Step 3: Run Claude Code
+
+```bash
+cd ~/Downloads
+claude
+```
+
+Then say: **"Analyze my downloads and show me how you'd organize them"**
+
+### Step 4: Review & Approve
+
+Claude will show you a table of proposed moves. Review it, then say **"Go ahead"** to execute.
+
+---
+
+## Example Output
+
+```
+| File                | Destination      | Reason                          |
+|---------------------|------------------|----------------------------------|
+| IMG_2847.jpg        | Images/Photos/   | Family photo with EXIF metadata |
+| amazon-order.pdf    | Finance/         | Amazon invoice detected         |
+| recipe-pasta.pdf    | Recipes/         | Contains ingredients list       |
+| screenshot-2026.png | Images/Screenshots/ | App interface screenshot      |
+| quarterly.xlsx      | Work/            | Financial data and charts       |
+```
+
+---
+
+## Default Categories
+
+The template organizes into these folders:
+
+| Category | What Goes Here |
+|----------|---------------|
+| Finance/ | Invoices, receipts, bank statements |
+| Work/ | Reports, presentations, work docs |
+| Recipes/ | Food recipes, cooking guides |
+| Reading/ | Articles, ebooks, PDFs to read |
+| Images/Photos/ | Personal photos |
+| Images/Screenshots/ | App screenshots, UI captures |
+| Reference/ | Manuals, guides, documentation |
+| Archives/ | .zip, .rar files |
+| Installers/ | .dmg, .exe, .pkg files |
+
+---
+
+## Tips
+
+- **Always preview first**: Start with "show me what you'd do" before moving anything
+- **Customize categories**: Edit the CLAUDE.md to match your workflow
+- **Run weekly**: Make it a Sunday habit to keep Downloads clean
+- **Skip in-use files**: Claude won't touch files that are currently open
+
+---
+
+## Customization Ideas
+
+### Add Project Detection
+```markdown
+## Project Detection
+Group related files (same name pattern, similar dates) into Projects/[Name]/
+```
+
+### Add Date-Based Sorting
+```markdown
+## Date Sorting
+For photos, create year/month subfolders: Images/2026/01/
+```
+
+---
+
+## Troubleshooting
+
+**Too many files in Unsorted/**
+Add more specific categories to CLAUDE.md for your common file types
+
+**Claude wants to move a file I'm using**
+Say "Skip [filename], I'm using it"
+
+**Slow on large folders**
+Process in batches: "Organize files from the last 7 days"

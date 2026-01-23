@@ -1,0 +1,125 @@
+---
+title: "Meeting Notes to Action Items"
+description: "Transform meeting transcripts into structured notes with action items, decisions, and follow-ups automatically extracted."
+category: "task-management"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["meetings", "productivity", "action-items", "notes", "transcripts"]
+createdAt: "2026-01-16"
+---
+
+## What This Does
+
+Transform raw meeting transcripts (from Otter, Granola, Zoom, or any tool) into structured notes with action items, decisions, and follow-ups - all assigned to the right people.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Meetings Folder
+
+```bash
+mkdir -p ~/Documents/Meetings
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Meetings/
+```
+
+### Step 3: Add a Transcript
+
+Either save your transcript as `transcript.txt` or paste it directly.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/Meetings
+claude
+```
+
+Then: **"Process the meeting transcript"** or paste the transcript directly.
+
+---
+
+## Example
+
+**Input (raw transcript):**
+```
+[00:00] Sarah: Let's get started. John, how's the Q1 report?
+[00:15] John: Almost done. I'll have it by Friday.
+[00:22] Sarah: Great. Maria, the client presentation?
+[00:30] Maria: I need the updated figures from John first.
+[00:35] John: I'll send those over today.
+[00:50] Sarah: We decided to go with Option B for pricing.
+```
+
+**Output (structured note):**
+
+| Owner | Task | Due | Priority |
+|-------|------|-----|----------|
+| @John | Complete Q1 report | Friday | High |
+| @John | Send figures to Maria | Today | High |
+| @Maria | Schedule dry run meeting | Monday | Med |
+
+**Key Decision:** Go with Option B for pricing
+
+---
+
+## What Gets Extracted
+
+| Pattern | Example | Result |
+|---------|---------|--------|
+| "I'll do X" | "I'll send the report" | Action for speaker |
+| "[Name] will X" | "John will review" | Action for John |
+| "We decided to..." | "We decided to go with A" | Decision logged |
+| "Let's X by [date]" | "Let's meet by Friday" | Action with deadline |
+| "TODO:" | "TODO: update docs" | Explicit action item |
+
+---
+
+## Integrations
+
+### For Obsidian Users
+Add to CLAUDE.md:
+```markdown
+- Save to: ~/Obsidian/Meetings/
+- Add [[backlinks]] to attendee notes
+- Tag with #meeting
+```
+
+### For Notion Users
+```markdown
+Format action items as CSV for Notion database import
+```
+
+### Auto-Email Follow-ups
+```markdown
+Draft brief follow-up emails (2-3 sentences) to each person with their action items
+```
+
+---
+
+## Tips
+
+- **Every action needs an owner**: Claude flags items with "ASSIGN:" if unclear
+- **Handles any format**: Timestamped, speaker labels, or plain text
+- **Priority assignment**: High = blocking/urgent, Medium = important, Low = nice-to-have
+- **Works with any transcript tool**: Otter, Zoom, Google Meet, manual notes
+
+---
+
+## Troubleshooting
+
+**Speaker names not detected**
+Tell Claude: "Speakers are formatted as '[Name]:' at the start of each line"
+
+**Too many action items**
+Add: "Only extract explicit commitments, not suggestions"
+
+**Missing context for decisions**
+Ask: "Add more context around why we decided [X]"

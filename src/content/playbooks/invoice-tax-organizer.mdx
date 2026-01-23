@@ -1,0 +1,119 @@
+---
+title: "Invoice & Tax Document Organizer"
+description: "Automatically sort, rename, and organize invoices, receipts, and tax documents with consistent naming for easy tax preparation."
+category: "finance-accounting"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://www.lennysnewsletter.com/p/everyone-should-be-using-claude-code"
+tags: ["taxes", "invoices", "receipts", "finance", "organization", "accounting"]
+createdAt: "2026-01-16"
+---
+
+## What This Does
+
+Transform a messy folder of tax documents into a perfectly organized archive. Claude reads each file, extracts date and vendor, renames it consistently, and sorts it into the right folder.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Tax Folder
+
+```bash
+mkdir -p ~/Documents/Tax-2025
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move to your tax folder:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Tax-2025/
+```
+
+### Step 3: Add Your Documents
+
+Drop all your tax documents (PDFs, images, scans) into the folder.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/Tax-2025
+claude
+```
+
+Then say: **"Organize all my tax documents"**
+
+---
+
+## Naming Convention
+
+All files get renamed to: `YYYY-MM-DD_Vendor_Type_Description.ext`
+
+| Before | After |
+|--------|-------|
+| IMG_4521.jpg | 2025-03-15_Staples_Receipt_Office-Supplies.jpg |
+| amazon (3).pdf | 2025-02-14_Amazon_Invoice_Electronics.pdf |
+| scan0042.pdf | 2025-01-31_Acme-Corp_1099-NEC_Freelance.pdf |
+
+---
+
+## Folder Structure
+
+```
+Tax-2025/
+├── Income/
+│   ├── W2/           # Employment income
+│   ├── 1099/         # Contractor income
+│   └── Other/        # Investment income
+├── Expenses/
+│   ├── Business/     # Deductible expenses
+│   ├── Medical/      # Medical expenses
+│   └── Charitable/   # Donations
+├── Receipts/
+│   └── By-Month/     # Monthly subfolders
+├── Banking/
+│   └── Statements/   # Bank statements
+└── _SUMMARY.md       # Generated summary
+```
+
+---
+
+## Tax Season Workflow
+
+### Quarterly Cleanup
+```
+"Organize any new documents added since last time"
+```
+
+### Pre-Filing Checklist
+```
+"Check my documents against a standard tax checklist. What am I missing?"
+```
+
+### Year-End Summary
+```
+"Create a summary of all documents organized by category with totals"
+```
+
+---
+
+## Tips
+
+- **Never deletes files**: Claude only renames and moves
+- **Handles photos**: Can read receipt images and scanned documents
+- **Multi-year support**: Automatically detects and separates tax years
+- **Tracks totals**: Can generate expense summaries with amounts
+
+---
+
+## Troubleshooting
+
+**Wrong date extracted**
+Say: "The date for [filename] should be [correct date]"
+
+**Can't read scanned PDF**
+Ensure the PDF has OCR text. If it's just an image, Claude can still often read it.
+
+**Documents from different year**
+Claude flags these automatically. Say: "Move all 2024 docs to Tax-2024/"

@@ -1,0 +1,537 @@
+{
+  "metadata": {
+    "source": "https://www.masteringai.io/guides/50-non-coding-uses-claude-code",
+    "totalExtracted": 55,
+    "alreadyCreated": 6,
+    "toCreate": 49,
+    "generatedAt": "2026-01-17"
+  },
+  "alreadyCreated": [
+    { "id": 39, "title": "Organizing 1,400 Screenshots", "ourPlaybook": "screenshot-organizer" },
+    { "id": 41, "title": "Downloads Folder Chaos to Order", "ourPlaybook": "smart-downloads-organizer" },
+    { "id": 46, "title": "Invoice Sorting & Automatic Renaming", "ourPlaybook": "invoice-tax-organizer" },
+    { "id": 26, "title": "Obsidian Vault Analysis & Organization", "ourPlaybook": "obsidian-vault-assistant" },
+    { "id": 9, "title": "Sales Call Analysis & Action Items", "ourPlaybook": "meeting-notes-to-actions" },
+    { "id": 45, "title": "Tax Filing Preparation", "ourPlaybook": "invoice-tax-organizer" }
+  ],
+  "playbooks": [
+    {
+      "id": 1,
+      "title": "Non-Technical Founder MVP Builder",
+      "slug": "founder-mvp-builder",
+      "description": "Build MVPs and pitch decks without technical cofounders. Market analysis, competitor research, prototype demos.",
+      "category": "marketing-content",
+      "difficulty": "intermediate",
+      "priority": "medium",
+      "create": true
+    },
+    {
+      "id": 2,
+      "title": "Autonomous Startup Creator",
+      "slug": "startup-creator",
+      "description": "Claude independently builds complete startups - landing pages, product catalogs, deployment to production.",
+      "category": "marketing-content",
+      "difficulty": "advanced",
+      "priority": "low",
+      "create": false,
+      "reason": "Too coding-focused"
+    },
+    {
+      "id": 3,
+      "title": "MVP Planning Accelerator",
+      "slug": "mvp-planner",
+      "description": "Compress 3-6 week planning cycles into 48-72 hours with competitive research, feature prioritization, user stories.",
+      "category": "research-writing",
+      "difficulty": "intermediate",
+      "priority": "high",
+      "create": true
+    },
+    {
+      "id": 4,
+      "title": "Rapid Prototype Generator",
+      "slug": "prototype-generator",
+      "description": "Test multiple product variations with different value propositions, deploy each to unique URLs for feedback.",
+      "category": "marketing-content",
+      "difficulty": "advanced",
+      "priority": "low",
+      "create": false,
+      "reason": "Too coding-focused"
+    },
+    {
+      "id": 5,
+      "title": "Business Plan Generator",
+      "slug": "business-plan-generator",
+      "description": "Generate investor-ready business plans with market analysis, financials, and go-to-market strategy in 7 days.",
+      "category": "research-writing",
+      "difficulty": "intermediate",
+      "priority": "high",
+      "create": true
+    },
+    {
+      "id": 6,
+      "title": "Personal CRM from Transcripts",
+      "slug": "personal-crm-transcripts",
+      "description": "Build searchable knowledge base of customer interactions from call transcripts with context-aware deal tracking.",
+      "category": "task-management",
+      "difficulty": "intermediate",
+      "priority": "high",
+      "create": true
+    },
+    {
+      "id": 7,
+      "title": "Custom Proposal Generator",
+      "slug": "proposal-generator",
+      "description": "Analyze prospect history (calls, emails, objections) to generate tailored proposals addressing specific concerns.",
+      "category": "marketing-content",
+      "difficulty": "intermediate",
+      "priority": "high",
+      "create": true
+    },
+    {
+      "id": 8,
+      "title": "Cold Email Personalizer",
+      "slug": "cold-email-personalizer",
+      "description": "Generate hundreds of personalized emails by analyzing prospect companies while maintaining your voice.",
+      "category": "marketing-content",
+      "difficulty": "beginner",
+      "priority": "high",
+      "create": true
+    },
+    {
+      "id": 10,
+      "title": "Lead Research & LinkedIn Outreach",
+      "slug": "lead-research-linkedin",
+      "description": "Identify ICP matches, research decision-makers, find company news hooks, draft personalized LinkedIn outreach.",
+      "category": "marketing-content",
+      "difficulty": "intermediate",
+      "priority": "medium",
+      "create": true
+    },
+    {
+      "id": 11,
+      "title": "Competitor Ad Library Analyzer",
+      "slug": "competitor-ad-analyzer",
+      "description": "Browse Meta Ad Library and Google Ads to categorize competitor ads, identify patterns, extract proven hooks.",
+      "category": "marketing-content",
+      "difficulty": "intermediate",
+      "priority": "high",
+      "create": true
+    },
+    {
+      "id": 12,
+      "title": "SEO Content Auditor",
+      "slug": "seo-content-auditor",
+      "description": "Automate crawling, content quality analysis, meta tag checking, keyword cannibalization detection.",
+      "category": "marketing-content",
+      "difficulty": "intermediate",
+      "priority": "high",
+      "create": true
+    },
+    {
+      "id": 13,
+      "title": "Ad Copy Variation Generator",
+      "slug": "ad-copy-generator",
+      "description": "Analyze historical ad performance to identify patterns and generate hundreds of new variations from winners.",
+      "category": "marketing-content",
+      "difficulty": "beginner",
+      "priority": "medium",
+      "create": true
+    },
+    {
+      "id": 14,
+      "title": "Competitor Comparison Matrix",
+      "slug": "competitor-comparison",
+      "description": "Comprehensive analysis across positioning, messaging, content, social, advertising, pricing, and reviews.",
+      "category": "research-writing",
+      "difficulty": "intermediate",
+      "priority": "high",
+      "create": true
+    },
+    {
+      "id": 15,
+      "title": "Bulk Contract Analyzer",
+      "slug": "bulk-contract-analyzer",
+      "description": "Analyze massive contract volumes for M&A due diligence, extracting key provisions into searchable database.",
+      "category": "legal-compliance",
+      "difficulty": "advanced",
+      "priority": "medium",
+      "create": true
+    },
+    {
+      "id": 16,
+      "title": "Contract Redliner",
+      "slug": "contract-redliner",
+      "description": "Compare document versions, identify changes, categorize by risk level, draft pushback responses.",
+      "category": "legal-compliance",
+      "difficulty": "intermediate",
+      "priority": "high",
+      "create": true
+    },
+    {
+      "id": 17,
+      "title": "Due Diligence Automator",
+      "slug": "due-diligence-automator",
+      "description": "Review data room documents across contracts, litigation, IP, compliance, employment with risk flagging.",
+      "category": "legal-compliance",
+      "difficulty": "advanced",
+      "priority": "medium",
+      "create": true
+    },
+    {
+      "id": 18,
+      "title": "Novel Writing Assistant",
+      "slug": "novel-writing-assistant",
+      "description": "Maintain story consistency across chapters by referencing character profiles, world rules, and timelines.",
+      "category": "creative-design",
+      "difficulty": "intermediate",
+      "priority": "high",
+      "create": true
+    },
+    {
+      "id": 19,
+      "title": "World-Building & Character Profiles",
+      "slug": "world-building-assistant",
+      "description": "Build comprehensive story documentation with character templates, location wikis, magic systems, timelines.",
+      "category": "creative-design",
+      "difficulty": "intermediate",
+      "priority": "medium",
+      "create": true
+    },
+    {
+      "id": 20,
+      "title": "Changelog Generator",
+      "slug": "changelog-generator",
+      "description": "Scan git commits, group changes, translate technical jargon to user language in 10-15 minutes.",
+      "category": "research-writing",
+      "difficulty": "beginner",
+      "priority": "medium",
+      "create": true
+    },
+    {
+      "id": 21,
+      "title": "HTML Presentation Builder",
+      "slug": "presentation-builder",
+      "description": "Generate clean HTML presentation slides with speaker notes that can be imported to PowerPoint.",
+      "category": "creative-design",
+      "difficulty": "beginner",
+      "priority": "medium",
+      "create": true
+    },
+    {
+      "id": 22,
+      "title": "Personal Dashboard Builder",
+      "slug": "personal-dashboard",
+      "description": "Aggregate daily info (calendar, tasks, weather, news, goals) into personalized single-view dashboard.",
+      "category": "task-management",
+      "difficulty": "intermediate",
+      "priority": "medium",
+      "create": true
+    },
+    {
+      "id": 23,
+      "title": "Communication App for Speech Difficulties",
+      "slug": "speech-communication-app",
+      "description": "Build predictive text app with speech-to-text, quick response buttons, and voice output.",
+      "category": "creative-design",
+      "difficulty": "advanced",
+      "priority": "low",
+      "create": false,
+      "reason": "Too specialized/coding-focused"
+    },
+    {
+      "id": 24,
+      "title": "Speech Therapy Practice App",
+      "slug": "speech-therapy-app",
+      "description": "Custom speech practice apps for specific therapy goals with recognition and progress tracking.",
+      "category": "creative-design",
+      "difficulty": "advanced",
+      "priority": "low",
+      "create": false,
+      "reason": "Too specialized/coding-focused"
+    },
+    {
+      "id": 25,
+      "title": "Custom Assistive Tools",
+      "slug": "assistive-tools",
+      "description": "Build personalized assistive technology for unique needs (visual schedules, memory aids, reminders).",
+      "category": "creative-design",
+      "difficulty": "advanced",
+      "priority": "low",
+      "create": false,
+      "reason": "Too specialized/coding-focused"
+    },
+    {
+      "id": 27,
+      "title": "AI-Powered Second Brain",
+      "slug": "ai-second-brain",
+      "description": "Transform markdown notes into queryable knowledge base that synthesizes information across vault.",
+      "category": "note-management",
+      "difficulty": "intermediate",
+      "priority": "high",
+      "create": true
+    },
+    {
+      "id": 28,
+      "title": "24/7 Note Server",
+      "slug": "note-server",
+      "description": "Run Claude Code on remote server with continuous vault access for background processing and queries.",
+      "category": "note-management",
+      "difficulty": "advanced",
+      "priority": "low",
+      "create": false,
+      "reason": "Too technical/server setup"
+    },
+    {
+      "id": 29,
+      "title": "Background Research Processor",
+      "slug": "background-research",
+      "description": "Spawn research agents while writing to compile findings in background without interrupting flow.",
+      "category": "research-writing",
+      "difficulty": "intermediate",
+      "priority": "medium",
+      "create": true
+    },
+    {
+      "id": 30,
+      "title": "Event Ticket Booking Assistant",
+      "slug": "event-booking-assistant",
+      "description": "Review calendars, browse venue availability, compare prices, recommend optimal dates.",
+      "category": "task-management",
+      "difficulty": "beginner",
+      "priority": "medium",
+      "create": true
+    },
+    {
+      "id": 31,
+      "title": "ADHD-Friendly Task Manager",
+      "slug": "adhd-task-manager",
+      "description": "Break tasks into dopamine-friendly chunks, schedule based on energy patterns, identify daily priorities.",
+      "category": "task-management",
+      "difficulty": "beginner",
+      "priority": "high",
+      "create": true
+    },
+    {
+      "id": 32,
+      "title": "Mental Health Journal Assistant",
+      "slug": "mental-health-journal",
+      "description": "Reflective journaling templates, probing questions, pattern identification, growth insights.",
+      "category": "note-management",
+      "difficulty": "beginner",
+      "priority": "high",
+      "create": true
+    },
+    {
+      "id": 33,
+      "title": "Natural Language Home Automation",
+      "slug": "home-automation-assistant",
+      "description": "Translate natural language intentions into working automation code for Home Assistant, HomeKit, SmartThings.",
+      "category": "file-organization",
+      "difficulty": "intermediate",
+      "priority": "medium",
+      "create": true
+    },
+    {
+      "id": 34,
+      "title": "Gmail-to-Slack Summary Bot",
+      "slug": "gmail-slack-summary",
+      "description": "Automatically summarize incoming emails and DM important ones to Slack with priority flagging.",
+      "category": "task-management",
+      "difficulty": "intermediate",
+      "priority": "medium",
+      "create": true
+    },
+    {
+      "id": 35,
+      "title": "Inbox Zero Manager",
+      "slug": "inbox-zero-manager",
+      "description": "Bulk-process 500+ unread emails with categorization, response drafting, priority flagging.",
+      "category": "task-management",
+      "difficulty": "beginner",
+      "priority": "high",
+      "create": true
+    },
+    {
+      "id": 36,
+      "title": "Email Thread Data Extractor",
+      "slug": "email-data-extractor",
+      "description": "Extract structured data from email threads (dates, action items, decisions) into calendar, tasks, logs.",
+      "category": "task-management",
+      "difficulty": "intermediate",
+      "priority": "medium",
+      "create": true
+    },
+    {
+      "id": 37,
+      "title": "Claude in Slack",
+      "slug": "claude-in-slack",
+      "description": "Delegate research and analysis tasks from Slack; Claude works in background and notifies completion.",
+      "category": "task-management",
+      "difficulty": "advanced",
+      "priority": "low",
+      "create": false,
+      "reason": "Requires MCP/integration setup"
+    },
+    {
+      "id": 38,
+      "title": "Photo Organization by Event",
+      "slug": "photo-organizer-event",
+      "description": "Read EXIF metadata, analyze image content, organize into Year > Month > Event structure.",
+      "category": "file-organization",
+      "difficulty": "beginner",
+      "priority": "high",
+      "create": true
+    },
+    {
+      "id": 40,
+      "title": "Duplicate File Detector",
+      "slug": "duplicate-file-detector",
+      "description": "Identify exact duplicates, near-duplicates, version variants with recommendations (no auto-deletion).",
+      "category": "file-organization",
+      "difficulty": "beginner",
+      "priority": "high",
+      "create": true
+    },
+    {
+      "id": 42,
+      "title": "Project Inventory & Documentation",
+      "slug": "project-inventory",
+      "description": "Analyze /projects folder, understand what each does, create documented inventory with tech stacks.",
+      "category": "file-organization",
+      "difficulty": "intermediate",
+      "priority": "medium",
+      "create": true
+    },
+    {
+      "id": 43,
+      "title": "Old File Cleanup Assistant",
+      "slug": "old-file-cleanup",
+      "description": "Identify safely deletable old files with intelligent recommendations considering age and type.",
+      "category": "file-organization",
+      "difficulty": "beginner",
+      "priority": "high",
+      "create": true
+    },
+    {
+      "id": 44,
+      "title": "7-Minute Digital Declutter",
+      "slug": "digital-declutter",
+      "description": "Complete digital cleanup (photos, documents, projects) in 7 minutes vs 3 hours manually.",
+      "category": "file-organization",
+      "difficulty": "beginner",
+      "priority": "medium",
+      "create": true
+    },
+    {
+      "id": 47,
+      "title": "Professional Tax Agent",
+      "slug": "tax-knowledge-agent",
+      "description": "Create knowledge base from tax documents for reference when answering questions with citations.",
+      "category": "finance-accounting",
+      "difficulty": "advanced",
+      "priority": "medium",
+      "create": true
+    },
+    {
+      "id": 48,
+      "title": "Contract & Invoice Cross-Reference",
+      "slug": "contract-invoice-matcher",
+      "description": "Verify invoices match contract terms, identify missed billing, flag discrepancies, total by client.",
+      "category": "finance-accounting",
+      "difficulty": "intermediate",
+      "priority": "high",
+      "create": true
+    },
+    {
+      "id": 49,
+      "title": "Multi-Card Expense Tracker",
+      "slug": "multi-card-expense-tracker",
+      "description": "Combine multiple credit card/bank statements, categorize, match receipts, generate expense reports.",
+      "category": "finance-accounting",
+      "difficulty": "intermediate",
+      "priority": "high",
+      "create": true
+    },
+    {
+      "id": 50,
+      "title": "Mac Performance Diagnostics",
+      "slug": "mac-performance-diagnostics",
+      "description": "Run diagnostic commands, analyze results, explain findings in plain English, provide resolution steps.",
+      "category": "file-organization",
+      "difficulty": "beginner",
+      "priority": "medium",
+      "create": true
+    },
+    {
+      "id": 51,
+      "title": "Error Message Explainer",
+      "slug": "error-message-explainer",
+      "description": "Explain error messages, diagnose causes, walk through solutions with risk assessment.",
+      "category": "file-organization",
+      "difficulty": "beginner",
+      "priority": "medium",
+      "create": true
+    },
+    {
+      "id": 52,
+      "title": "Disk Space Analyzer",
+      "slug": "disk-space-analyzer",
+      "description": "Identify what's consuming disk space (old backups, duplicates, caches), prioritize cleanup by impact.",
+      "category": "file-organization",
+      "difficulty": "beginner",
+      "priority": "high",
+      "create": true
+    },
+    {
+      "id": 53,
+      "title": "Corrupted File Data Extractor",
+      "slug": "corrupted-file-extractor",
+      "description": "Analyze binary structures, identify intact sections, extract salvageable content from corrupted files.",
+      "category": "file-organization",
+      "difficulty": "advanced",
+      "priority": "low",
+      "create": false,
+      "reason": "Too technical/specialized"
+    },
+    {
+      "id": 54,
+      "title": "Session History Recovery",
+      "slug": "session-history-recovery",
+      "description": "Search Claude Code session history to recover code, files, or solutions from previous sessions.",
+      "category": "file-organization",
+      "difficulty": "beginner",
+      "priority": "medium",
+      "create": true
+    },
+    {
+      "id": 55,
+      "title": "Legacy File Format Converter",
+      "slug": "legacy-format-converter",
+      "description": "Analyze obsolete file formats (WordPerfect, Lotus 1-2-3), extract content into modern formats.",
+      "category": "file-organization",
+      "difficulty": "intermediate",
+      "priority": "low",
+      "create": false,
+      "reason": "Too specialized"
+    }
+  ],
+  "summary": {
+    "byCategory": {
+      "file-organization": 12,
+      "task-management": 9,
+      "marketing-content": 9,
+      "research-writing": 5,
+      "finance-accounting": 3,
+      "note-management": 2,
+      "legal-compliance": 3,
+      "creative-design": 3
+    },
+    "byPriority": {
+      "high": 22,
+      "medium": 16,
+      "low": 11
+    },
+    "toCreate": 42,
+    "skipped": 7
+  }
+}

@@ -1,0 +1,73 @@
+---
+title: "Bulk Contract Analyzer"
+description: "Analyze large volumes of contracts for due diligence, extracting key provisions with risk flagging."
+category: "legal-compliance"
+difficulty: "advanced"
+featured: false
+---
+
+## What This Does
+
+Reviews many contracts at once to extract key provisions (termination, liability, IP), identify risks, and create a searchable database. Ideal for M&A due diligence or contract portfolio review.
+
+## Important Disclaimer
+
+**This is an organizational tool, not legal advice.** All findings require review by qualified legal counsel.
+
+## Prerequisites
+
+- Claude Code installed
+- Contracts in text-readable format (PDF with text, DOCX)
+- Understanding of what provisions matter to you
+
+## Setup Instructions
+
+### Step 1: Download the Template
+
+Download the CLAUDE.md template below and save it to your contracts folder.
+
+### Step 2: Organize Your Contracts
+
+```
+contracts/
+├── CLAUDE.md
+├── source/
+│   ├── customers/
+│   ├── vendors/
+│   └── employment/
+└── analysis/
+```
+
+### Step 3: Start Analysis
+
+Begin the bulk review:
+
+```
+Analyze contracts in the source folder and extract key provisions
+```
+
+## Example Usage
+
+```
+"What are the riskiest clauses across all contracts?"
+"Find all change of control provisions"
+"List contracts expiring in next 6 months"
+"Summarize obligations across all vendors"
+"Generate due diligence summary"
+```
+
+## What Gets Extracted
+
+- Termination provisions
+- Liability caps and indemnification
+- IP ownership and licensing
+- Payment terms
+- Renewal and expiration dates
+- Non-compete/exclusivity
+
+## Best Practices
+
+1. **Prioritize by value** - Focus on material contracts first
+2. **Document gaps** - Note what's missing
+3. **Flag for counsel** - Mark items needing legal review
+4. **Verify critical terms** - Double-check high-risk items

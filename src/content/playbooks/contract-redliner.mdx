@@ -1,0 +1,91 @@
+---
+title: "Contract Redlining Assistant"
+description: "Review contracts against your standard terms, flag risky clauses, and suggest alternative language."
+category: "legal-compliance"
+difficulty: "advanced"
+featured: false
+---
+
+## What This Does
+
+Analyzes contracts against your approved templates and policies, identifies deviations, flags concerning clauses, and suggests redlines. Speeds up contract review while maintaining your standards.
+
+## Prerequisites
+
+- Claude Code installed
+- Your standard contract templates
+- Knowledge of your acceptable terms
+- **Note**: Not a substitute for legal counsel
+
+## Setup Instructions
+
+### Step 1: Download the Template
+
+Download the CLAUDE.md template below and save it to your contracts folder.
+
+### Step 2: Create Your Standards Library
+
+Set up your reference documents:
+
+```
+contracts/
+├── CLAUDE.md
+├── standards/
+│   ├── acceptable-terms.md
+│   ├── red-flags.md
+│   └── templates/
+│       ├── nda-template.docx
+│       └── msa-template.docx
+├── incoming/
+│   └── vendor-contract.docx
+└── reviewed/
+```
+
+### Step 3: Define Your Risk Tolerance
+
+Create an `acceptable-terms.md` file:
+
+```markdown
+# Acceptable Terms
+
+## Liability
+- Maximum: 12 months fees
+- Unacceptable: Unlimited liability
+
+## Indemnification
+- Mutual: Acceptable
+- One-sided: Flag for review
+
+## Termination
+- Minimum notice: 30 days
+- Unacceptable: No termination rights
+```
+
+### Step 4: Review a Contract
+
+Start Claude Code and analyze a contract:
+
+```
+Review the vendor contract in incoming/ against our standards
+```
+
+## Example Usage
+
+```
+"Flag all liability clauses in this contract"
+"Compare this NDA to our standard template"
+"What are the most concerning clauses?"
+"Suggest redlines for the indemnification section"
+"Create a summary for legal review"
+```
+
+## Best Practices
+
+1. **Always have legal review** - AI assists, doesn't replace lawyers
+2. **Update standards regularly** - Keep your policies current
+3. **Document decisions** - Why you accepted non-standard terms
+4. **Track patterns** - Which vendors push back on what
+
+## Important Disclaimer
+
+This tool assists with preliminary contract review. All contracts should be reviewed by qualified legal counsel before signing. This is not legal advice.

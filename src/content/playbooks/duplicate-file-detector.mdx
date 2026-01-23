@@ -1,0 +1,109 @@
+---
+title: "Duplicate File Detector"
+description: "Find exact duplicates, near-duplicates, and version variants across your files with smart recommendations - never auto-deletes."
+category: "file-organization"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://www.masteringai.io/guides/50-non-coding-uses-claude-code"
+tags: ["duplicates", "cleanup", "storage", "organization", "files"]
+createdAt: "2026-01-17"
+---
+
+## What This Does
+
+Find duplicate files eating your storage - exact copies, near-duplicates (same photo, different size), and version variants. Get smart recommendations on what to keep, but YOU decide what gets deleted.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Place in Target Folder
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/
+```
+
+### Step 3: Run Claude Code
+
+```bash
+cd ~/Documents
+claude
+```
+
+### Step 4: Scan for Duplicates
+
+Say: **"Find duplicate files in this folder"**
+
+---
+
+## What Gets Detected
+
+| Type | Description | Example |
+|------|-------------|---------|
+| **Exact duplicates** | Identical content, different names | `report.pdf` and `report (1).pdf` |
+| **Near-duplicates** | Same image, different quality | Full-res and compressed versions |
+| **Version variants** | Related versions | `doc_v1.docx`, `doc_v2.docx`, `doc_final.docx` |
+
+---
+
+## Example Output
+
+```markdown
+## Exact Duplicates Found: 234 files (1.2 GB)
+
+### Group 1: vacation-photo.jpg
+| Location | Recommendation |
+|----------|----------------|
+| /Photos/vacation-photo.jpg | ✅ KEEP |
+| /Downloads/vacation-photo.jpg | ❌ Remove |
+| /Desktop/vacation-photo (1).jpg | ❌ Remove |
+
+Potential savings: 8.4 MB
+```
+
+---
+
+## Smart Recommendations
+
+Claude recommends keeping the file that is:
+- In the most logical location (Photos > Downloads)
+- Highest quality (resolution, bitrate)
+- Has the most descriptive filename
+
+---
+
+## Tips
+
+- **Never auto-deletes**: All deletions require your approval
+- **Move to Trash first**: Recommended over permanent delete
+- **Check Downloads**: Most duplicates live there
+- **Large files first**: Focus on biggest space savings
+
+---
+
+## Commands
+
+```
+"Find duplicates in my Documents folder"
+"How much space can I recover?"
+"Show me duplicate photos only"
+"Compare these two folders for duplicates"
+```
+
+---
+
+## Troubleshooting
+
+**Too many results**
+Focus on one folder: "Just check Downloads for duplicates"
+
+**Want to keep both**
+Say: "Skip this group, I want to keep both"
+
+**Uncertain about a file**
+Claude flags uncertain cases for manual review

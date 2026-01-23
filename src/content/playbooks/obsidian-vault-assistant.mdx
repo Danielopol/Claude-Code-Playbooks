@@ -1,0 +1,122 @@
+---
+title: "Obsidian Vault Assistant"
+description: "Automate backlinking, find related notes, maintain frontmatter consistency, and get summaries of your knowledge base with Claude Code."
+category: "note-management"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://github.com/heyitsnoah/claudesidian"
+tags: ["obsidian", "notes", "knowledge-base", "backlinking", "productivity", "pkm"]
+createdAt: "2026-01-16"
+---
+
+## What This Does
+
+Turn Claude Code into your Obsidian vault assistant. It automatically adds backlinks to daily notes, finds related notes you might have missed, summarizes folders, and keeps frontmatter consistent.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click the **Download** button above to get the `CLAUDE.md` file.
+
+### Step 2: Place in Your Vault
+
+Move the file to your Obsidian vault root folder:
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Obsidian/YourVault/
+```
+
+### Step 3: Customize the Template
+
+Open `CLAUDE.md` and update:
+- **Vault Structure** - Match your actual folder names
+- **Frontmatter Standard** - Match your preferred format
+- **Backlinking Rules** - Add your conventions
+
+### Step 4: Start Using
+
+```bash
+cd ~/Documents/Obsidian/YourVault
+claude
+```
+
+Then try: **"Process today's daily note and add backlinks"**
+
+---
+
+## Example Commands
+
+| Command | What It Does |
+|---------|--------------|
+| "Process today's note" | Adds backlinks to existing notes mentioned |
+| "Find related to [[Project X]]" | Finds notes that should link to Project X |
+| "Audit frontmatter in Projects/" | Checks for missing/inconsistent fields |
+| "Weekly review" | Summarizes this week's notes and changes |
+| "Find orphan notes" | Lists notes with no links in or out |
+
+---
+
+## Before & After
+
+**Before (raw daily note):**
+```markdown
+# 2026-01-16
+
+Had a meeting with Sarah about the Q1 roadmap.
+Started reading Atomic Habits again.
+Need to update the budget proposal.
+```
+
+**After (enhanced):**
+```markdown
+# 2026-01-16
+
+Had a meeting with [[Sarah Chen]] about the [[Q1 Roadmap]].
+Started reading [[Atomic Habits]] again.
+Need to update the [[Budget Proposal 2026]].
+```
+
+---
+
+## Tips
+
+- **Start small**: Run on one daily note first to verify it works correctly
+- **Review before applying**: Always say "show me what you'd change" before bulk operations
+- **Customize patterns**: Add your own linking rules (people, projects, books)
+- **Schedule it**: Run the weekly review every Sunday to stay organized
+
+---
+
+## Variations
+
+### For Zettelkasten Users
+Add to your CLAUDE.md:
+```markdown
+## Zettelkasten Rules
+- Each note = one main idea
+- Use unique IDs in filenames
+- Create hub notes for clusters
+```
+
+### For PARA Method
+Add folder-specific rules for Projects, Areas, Resources, Archive.
+
+### For Daily Notes Power Users
+Add rules to auto-link mentions of people, books, and meetings.
+
+---
+
+## Troubleshooting
+
+**Claude creates phantom links**
+Add to CLAUDE.md: "Verify each link target exists before creating"
+
+**Too many suggestions**
+Add: "Only link when the connection is meaningful and non-obvious"
+
+**Wrong frontmatter format**
+Update the Frontmatter Standard section to match your actual format

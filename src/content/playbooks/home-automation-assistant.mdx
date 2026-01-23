@@ -1,0 +1,75 @@
+---
+title: "Natural Language Home Automation"
+description: "Translate natural language into home automation configs for Home Assistant, HomeKit, and SmartThings."
+category: "file-organization"
+difficulty: "intermediate"
+featured: false
+---
+
+## What This Does
+
+Converts your descriptions of how you want your smart home to behave ("turn on lights when I get home") into actual automation configurations for Home Assistant, HomeKit, or SmartThings.
+
+## Prerequisites
+
+- Claude Code installed
+- Smart home platform (Home Assistant, HomeKit, etc.)
+- Basic understanding of your devices
+
+## Setup Instructions
+
+### Step 1: Download the Template
+
+Download the CLAUDE.md template below and save it to your home automation folder.
+
+### Step 2: List Your Devices
+
+Create a device inventory:
+
+```markdown
+# My Smart Home
+
+## Lights
+- Living room lights (Hue)
+- Bedroom lights (Hue)
+
+## Sensors
+- Front door motion sensor
+- Hallway motion sensor
+
+## Other
+- Thermostat (Nest)
+- Door locks (August)
+```
+
+### Step 3: Create Automations
+
+Describe what you want:
+
+```
+Create an automation to turn on hallway lights when motion is detected at night
+```
+
+## Example Usage
+
+```
+"Turn everything off when everyone leaves"
+"Cozy mode at sunset"
+"Wake up routine at 7am weekdays"
+"Alert me if door opens when I'm away"
+"Translate this to Home Assistant YAML"
+```
+
+## Supported Platforms
+
+- Home Assistant (YAML)
+- Apple HomeKit (Shortcuts)
+- SmartThings
+- Google Home (routines)
+
+## Best Practices
+
+1. **Start simple** - One automation at a time
+2. **Test thoroughly** - Verify triggers work
+3. **Add delays** - Prevent rapid toggling
+4. **Document** - Note what each automation does

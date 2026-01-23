@@ -1,0 +1,113 @@
+---
+title: "Old File Cleanup Assistant"
+description: "Identify safely deletable old files with intelligent recommendations based on age, type, and usage patterns."
+category: "file-organization"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://www.masteringai.io/guides/50-non-coding-uses-claude-code"
+tags: ["cleanup", "storage", "old-files", "organization", "declutter"]
+createdAt: "2026-01-17"
+---
+
+## What This Does
+
+Find old files you can safely delete - temp files, old downloads, unused installers, and more. Smart recommendations consider file age, type, and whether backups exist. Never deletes without your approval.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Place in Home Folder
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/
+```
+
+### Step 3: Run Claude Code
+
+```bash
+cd ~
+claude
+```
+
+### Step 4: Start Cleanup
+
+Say: **"What old files can I safely delete?"**
+
+---
+
+## Safety Tiers
+
+| Tier | Risk Level | Examples |
+|------|------------|----------|
+| **Safe to delete** | None | .tmp, cache, .DS_Store |
+| **Review first** | Low | Downloads 90+ days old |
+| **Caution** | Medium | Old documents, projects |
+| **Protected** | N/A | Tax docs, active projects |
+
+---
+
+## Example Output
+
+```markdown
+## Quick Wins (Safe to Delete)
+| Type | Count | Size |
+|------|-------|------|
+| Temp files | 234 | 1.2 GB |
+| Old installers | 12 | 4.5 GB |
+| Cache files | 1,420 | 3.2 GB |
+| **Total** | **1,666** | **8.9 GB** |
+
+## Review These
+| File | Age | Size |
+|------|-----|------|
+| old-project.zip | 2 years | 500 MB |
+| report-2022.pdf | 3 years | 2 MB |
+```
+
+---
+
+## What Gets Protected
+
+- Files in git repositories
+- Tax and financial documents
+- Recently accessed files (even if old)
+- Unique files with no backups
+
+---
+
+## Tips
+
+- **Start with Downloads**: Biggest quick wins
+- **Check installers**: .dmg/.exe files after installation
+- **Empty Trash**: Often forgotten, can be huge
+- **Review before delete**: Always preview what's going
+
+---
+
+## Commands
+
+```
+"What can I safely delete in Downloads?"
+"Find files I haven't touched in a year"
+"How much space can I free up?"
+"Show me large old files"
+```
+
+---
+
+## Troubleshooting
+
+**Want to keep an old file**
+Say: "Keep [filename], it's important"
+
+**Not finding enough**
+Extend timeframe: "Find files older than 6 months"
+
+**Worried about deleting wrong thing**
+Claude recommends Trash over permanent delete - you can recover

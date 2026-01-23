@@ -1,0 +1,75 @@
+---
+title: "Expense Report Auditor"
+description: "Review expense reports for policy compliance, flag issues, and ensure audit-readiness."
+category: "finance"
+difficulty: "intermediate"
+featured: false
+---
+
+## What This Does
+
+Reviews expense reports against company policy, flags potential issues like missing receipts or over-limit charges, categorizes expenses accurately, and helps maintain audit-ready documentation.
+
+## Prerequisites
+
+- Claude Code installed
+- Your company's expense policy
+- Expense reports to review (CSV or manual entry)
+
+## Setup Instructions
+
+### Step 1: Download the Template
+
+Download the CLAUDE.md template below and save it to your finance folder.
+
+### Step 2: Configure Your Policy
+
+Create a policy file or use the defaults:
+
+```markdown
+# Expense Policy
+
+## Meal Limits
+- Breakfast: $20
+- Lunch: $30
+- Dinner: $50
+
+## Approval Thresholds
+- <$100: Self-approve
+- $100-500: Manager
+- $500+: Director
+```
+
+### Step 3: Start Reviewing
+
+Run the auditor:
+
+```
+Review this expense report against our policy
+```
+
+## Example Usage
+
+```
+"Audit this month's expense reports"
+"What documentation is missing?"
+"Flag expenses over policy limits"
+"Categorize these transactions"
+"Generate an audit summary report"
+"What approval level is needed for $750?"
+```
+
+## What Gets Checked
+
+- **Policy compliance**: Limits, categories, approvals
+- **Documentation**: Receipts, business purpose, attendees
+- **Patterns**: Duplicates, split transactions, unusual timing
+- **Categorization**: Correct expense types
+
+## Best Practices
+
+1. **Review promptly** - Catch issues while memory is fresh
+2. **Be consistent** - Same rules for everyone
+3. **Document exceptions** - When you approve over-limit
+4. **Track patterns** - Identify training opportunities
+5. **Update policy** - Keep it current and clear

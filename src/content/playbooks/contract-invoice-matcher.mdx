@@ -1,0 +1,68 @@
+---
+title: "Contract & Invoice Cross-Reference"
+description: "Verify invoices against contract terms, identify discrepancies, and find missed billing opportunities."
+category: "finance"
+difficulty: "intermediate"
+featured: false
+---
+
+## What This Does
+
+Matches invoices to contract terms to verify accuracy. Finds underbilling (missed revenue), overbilling (errors), and tracks outstanding amounts by client.
+
+## Prerequisites
+
+- Claude Code installed
+- Contract information
+- Invoice records
+
+## Setup Instructions
+
+### Step 1: Download the Template
+
+Download the CLAUDE.md template below and save it to your finance folder.
+
+### Step 2: Create Contract Registry
+
+Document active contracts:
+
+```markdown
+# Active Contracts
+
+| Client | Value | Terms | Rates |
+|--------|-------|-------|-------|
+| Client A | $60K/yr | Monthly | $200/hr |
+```
+
+### Step 3: Start Matching
+
+Verify an invoice:
+
+```
+Verify this invoice against Client A's contract
+```
+
+## Example Usage
+
+```
+"What should [client] be billed this month?"
+"Find all billing discrepancies"
+"Am I missing any billings?"
+"Generate client billing summary"
+"What's outstanding?"
+```
+
+## What Gets Checked
+
+- Rates match contract
+- Hours/units accurate
+- All billable items included
+- Payment terms correct
+- No duplicates
+
+## Best Practices
+
+1. **Verify before sending** - Catch errors early
+2. **Track variances** - Investigate patterns
+3. **Regular reconciliation** - Monthly minimum
+4. **Update contracts** - When terms change

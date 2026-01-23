@@ -1,0 +1,90 @@
+---
+title: "Personal CRM from Meeting Transcripts"
+description: "Transform meeting recordings and notes into a searchable relationship database with contact insights and follow-up reminders."
+category: "productivity"
+difficulty: "intermediate"
+featured: false
+---
+
+## What This Does
+
+Extracts people, companies, commitments, and relationship insights from meeting transcripts to build a lightweight personal CRM. Never forget a conversation or miss a follow-up again.
+
+## Prerequisites
+
+- Claude Code installed
+- Meeting transcripts (from Otter.ai, Zoom, etc.)
+- A folder for your CRM data
+
+## Setup Instructions
+
+### Step 1: Download the Template
+
+Download the CLAUDE.md template below and save it to your CRM folder.
+
+### Step 2: Organize Your Transcripts
+
+Create a structure for your meeting files:
+
+```
+crm/
+├── CLAUDE.md
+├── transcripts/
+│   ├── 2025-01-15-call-with-sarah.txt
+│   └── 2025-01-16-team-standup.txt
+├── contacts/
+│   └── (auto-generated)
+└── insights/
+    └── (auto-generated)
+```
+
+### Step 3: Process Your First Transcript
+
+Start Claude Code and process a meeting:
+
+```
+Process the transcript from my call with Sarah and update my CRM
+```
+
+## Example Usage
+
+```
+"What did John promise in our last meeting?"
+"When did I last talk to the Acme team?"
+"Show me all pending follow-ups"
+"What topics come up most with [person]?"
+"Create a prep brief for my meeting with [person]"
+```
+
+## Best Practices
+
+1. **Process promptly** - Details fade from memory quickly
+2. **Add context** - Include your own notes alongside transcripts
+3. **Review weekly** - Check pending follow-ups
+4. **Tag relationships** - Client, prospect, colleague, etc.
+
+## Output Example
+
+For each contact, the system builds profiles like:
+
+```markdown
+# Sarah Chen - VP Product @ TechCorp
+
+## Relationship
+Type: Prospect
+Met: 2024-12-01
+Last contact: 2025-01-15
+
+## Key Topics
+- Looking for automation solutions
+- Pain point: manual reporting
+- Budget cycle: Q2
+
+## Commitments
+- [ ] Send case study (by Jan 20)
+- [x] Intro to our PM team (done Jan 10)
+
+## Notes
+- Prefers morning meetings
+- Has 2 kids, mentioned soccer games
+```

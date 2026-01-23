@@ -1,0 +1,79 @@
+---
+title: "Gmail-to-Slack Summary Bot"
+description: "Summarize important emails and post to Slack with priority flagging and action item extraction."
+category: "productivity"
+difficulty: "intermediate"
+featured: false
+---
+
+## What This Does
+
+Takes important emails from Gmail, summarizes them, extracts action items, assigns priority, and posts to appropriate Slack channels. Keeps you informed without drowning in email.
+
+## Prerequisites
+
+- Claude Code installed
+- Gmail account
+- Slack workspace
+- Integration tool (Zapier, Make, or native)
+
+## Setup Instructions
+
+### Step 1: Download the Template
+
+Download the CLAUDE.md template below and save it to your workflow folder.
+
+### Step 2: Define Priority Rules
+
+Create priority classifications:
+
+```markdown
+# Email Priority Rules
+
+## P1 - Immediate
+From: [VIP senders]
+Contains: URGENT, deadline today
+
+## P2 - High
+From: [Team, key vendors]
+Contains: Action required
+
+## P3 - Normal
+Standard business emails
+```
+
+### Step 3: Configure Channels
+
+Set up Slack channels:
+
+```
+#email-urgent - P1 only
+#email-team - P2 and P3
+#email-digest - Daily summary
+```
+
+## Example Usage
+
+```
+"Summarize this email for Slack"
+"What priority should this be?"
+"Create a daily digest"
+"Add [sender] to VIP list"
+"Skip all emails from [source]"
+```
+
+## Summary Format
+
+Each email summary includes:
+- Priority badge
+- Sender and subject
+- 2-3 sentence summary
+- Action items extracted
+- Link to full email
+
+## Best Practices
+
+1. **Start with P1 only** - Avoid notification fatigue
+2. **Tune over time** - Adjust rules based on experience
+3. **Keep summaries short** - Respect readers' time
+4. **Include daily digest** - Catch what you missed

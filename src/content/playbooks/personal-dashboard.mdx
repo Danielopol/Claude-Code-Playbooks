@@ -1,0 +1,106 @@
+---
+title: "Personal Dashboard Builder"
+description: "Create a personalized daily dashboard aggregating calendar, tasks, weather, and goals in one view."
+category: "productivity"
+difficulty: "intermediate"
+featured: false
+---
+
+## What This Does
+
+Generates a customized morning dashboard that pulls together your schedule, priorities, weather, and key metrics. Start each day with a clear picture of what's ahead.
+
+## Prerequisites
+
+- Claude Code installed
+- Access to your calendar data (export or API)
+- Task list in a text format
+- Location for weather
+
+## Setup Instructions
+
+### Step 1: Download the Template
+
+Download the CLAUDE.md template below and save it to your dashboard folder.
+
+### Step 2: Configure Your Data Sources
+
+Create a `config.md` file:
+
+```markdown
+# Dashboard Config
+
+## Calendar
+Source: Google Calendar
+File: calendar-export.ics
+
+## Tasks
+Source: Todoist export
+File: tasks.json
+
+## Weather
+Location: San Francisco, CA
+
+## Goals
+File: weekly-goals.md
+```
+
+### Step 3: Set Up Your Goals
+
+Create `weekly-goals.md`:
+
+```markdown
+# Weekly Goals
+
+## Work
+- Complete Q1 proposal: 60%
+- Ship feature X: 40%
+
+## Personal
+- 4 workouts: 2/4
+- Read 1 hour/day: 3/5 days
+```
+
+### Step 4: Generate Dashboard
+
+Start your morning with:
+
+```
+Generate my morning dashboard
+```
+
+## Example Usage
+
+```
+"What's on my schedule today?"
+"Show me tomorrow's preview"
+"Create a weekly overview"
+"What are my top 3 priorities?"
+"How am I tracking on my goals?"
+```
+
+## Dashboard Sections
+
+- Date & greeting
+- Weather forecast
+- Today's schedule
+- Priority tasks
+- Key metrics
+- Weekly goals progress
+- Habits checklist
+
+## Best Practices
+
+1. **Make it routine** - Same time each morning
+2. **Keep it brief** - 2-3 minute review max
+3. **Update goals weekly** - Keep them current
+4. **Customize sections** - Remove what you don't use
+5. **Set THE ONE THING** - Your must-do for the day
+
+## Customization Options
+
+| Layout | Best For |
+|--------|----------|
+| Minimal | Quick overview |
+| Standard | Full daily view |
+| Executive | Metrics-focused |

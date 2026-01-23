@@ -1,0 +1,97 @@
+---
+title: "Changelog Generator"
+description: "Transform git commits into user-friendly changelogs by grouping changes and translating technical jargon."
+category: "developer-tools"
+difficulty: "beginner"
+featured: false
+---
+
+## What This Does
+
+Converts raw git commit history into polished, user-friendly release notes. Groups related changes, translates technical language for different audiences, and formats for various platforms.
+
+## Prerequisites
+
+- Claude Code installed
+- Git repository with commits
+- Access to commit history
+
+## Setup Instructions
+
+### Step 1: Download the Template
+
+Download the CLAUDE.md template below and save it to your project folder.
+
+### Step 2: Run in Your Repository
+
+Start Claude Code in your git repository:
+
+```bash
+cd your-project
+claude
+```
+
+### Step 3: Generate Changelog
+
+Ask Claude to create your changelog:
+
+```
+Generate a changelog for all commits since v1.2.0
+```
+
+## Example Usage
+
+```
+"Create release notes for commits since last week"
+"Write a user-friendly changelog for v2.0"
+"Summarize changes for stakeholder email"
+"What features shipped this sprint?"
+"Generate changelog from these commit hashes"
+```
+
+## Output Formats
+
+### Standard Changelog
+
+```markdown
+## [1.3.0] - 2025-01-15
+
+### Added
+- New dashboard with real-time metrics
+- Export functionality for reports
+
+### Fixed
+- Resolved timezone display issues
+```
+
+### User-Friendly Notes
+
+```markdown
+# What's New in Version 1.3
+
+## New Features
+### Real-Time Dashboard
+See your metrics update live without refreshing!
+
+## Bug Fixes
+- Timezones now display correctly everywhere
+```
+
+## Best Practices
+
+1. **Use conventional commits** - Makes categorization automatic
+2. **Specify your audience** - Users vs developers vs stakeholders
+3. **Group related changes** - Don't list 20 tiny commits
+4. **Highlight breaking changes** - Always call these out
+5. **Include migration notes** - When behavior changes
+
+## Commit Type Mapping
+
+| Commit Pattern | Changelog Category |
+|----------------|-------------------|
+| feat: | Added |
+| fix: | Fixed |
+| improve: | Changed |
+| remove: | Removed |
+| docs: | Documentation |
+| refactor: | (Usually skip) |

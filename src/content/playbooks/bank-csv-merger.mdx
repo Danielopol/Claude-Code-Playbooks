@@ -1,0 +1,117 @@
+---
+title: "Bank Statement CSV Merger"
+description: "Combine multiple bank statement CSV files into one unified spreadsheet with consistent formatting."
+category: "finance-accounting"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://reddit.com/r/personalfinance"
+tags: ["finance", "csv", "banking", "budgeting"]
+createdAt: "2026-01-09"
+---
+
+## What This Does
+
+This playbook merges CSV exports from multiple bank accounts into a single, consistently formatted spreadsheet. Perfect for tracking all your transactions in one place or preparing data for budgeting apps.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- CSV exports from your bank accounts
+- All CSVs in one folder
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your bank statements folder:
+
+```markdown
+# Bank CSV Merger
+
+## Goal
+Merge all bank CSV files into one unified CSV with consistent columns.
+
+## Output Format
+Date,Description,Amount,Category,Account,Original_File
+
+## Column Mapping Rules
+- Date: Look for columns named "Date", "Transaction Date", "Posted Date"
+- Description: Look for "Description", "Memo", "Transaction", "Payee"
+- Amount: Look for "Amount", "Debit", "Credit" (combine debit/credit into signed amount)
+- For debit/credit: debits are negative, credits are positive
+
+## Processing Rules
+1. Read all .csv files in this folder
+2. Detect the bank format based on column headers
+3. Map columns to the standard output format
+4. Add "Account" column with the source filename
+5. Add "Original_File" for reference
+6. Leave "Category" blank (for manual categorization later)
+7. Sort by date (oldest first)
+8. Output to "merged_transactions.csv"
+
+## Skip
+- Files starting with "merged_"
+- Non-CSV files
+```
+
+## Step-by-Step Setup
+
+### Step 1: Export your bank statements
+
+Download CSV exports from each of your bank accounts. Most banks offer this in their transaction history.
+
+### Step 2: Create a folder for statements
+
+```bash
+mkdir ~/Documents/BankStatements
+```
+
+Move all your CSV files into this folder.
+
+### Step 3: Add the CLAUDE.md file
+
+Create `CLAUDE.md` in the same folder with the template above.
+
+### Step 4: Run the merger
+
+```bash
+cd ~/Documents/BankStatements
+claude "Merge all bank CSVs according to the CLAUDE.md rules"
+```
+
+## Example
+
+**Input files:**
+- `chase_checking_jan.csv`
+- `bofa_savings_jan.csv`
+- `amex_credit_jan.csv`
+
+**Output (merged_transactions.csv):**
+```csv
+Date,Description,Amount,Category,Account,Original_File
+2026-01-02,AMAZON.COM,-45.99,,Chase Checking,chase_checking_jan.csv
+2026-01-03,PAYROLL DEPOSIT,2500.00,,Chase Checking,chase_checking_jan.csv
+2026-01-03,TRANSFER TO SAVINGS,-500.00,,Chase Checking,chase_checking_jan.csv
+2026-01-03,TRANSFER FROM CHECKING,500.00,,BofA Savings,bofa_savings_jan.csv
+2026-01-05,WHOLE FOODS,-87.32,,Amex Credit,amex_credit_jan.csv
+```
+
+## Tips & Variations
+
+- **Add auto-categorization**: Extend the rules to automatically categorize transactions (e.g., "AMAZON" → "Shopping")
+- **Monthly folders**: Create a folder structure like `2026/01/` and process by month
+- **Different output formats**: Modify to output Excel (.xlsx) or for specific apps like YNAB or Mint
+
+## Troubleshooting
+
+**Problem**: Dates are in wrong format
+
+**Solution**: Add specific date format rules to CLAUDE.md for each bank (e.g., "Chase uses MM/DD/YYYY")
+
+**Problem**: Amounts are all positive
+
+**Solution**: Check if your bank uses separate Debit/Credit columns and update the mapping rules.
+
+**Problem**: Missing transactions
+
+**Solution**: Make sure all CSV files are properly downloaded and not truncated. Some banks limit export rows.

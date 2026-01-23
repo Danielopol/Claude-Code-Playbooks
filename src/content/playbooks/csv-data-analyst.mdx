@@ -1,0 +1,141 @@
+---
+title: "CSV & Excel Data Analyst"
+description: "Ask questions about your spreadsheets in plain English. Get insights, summaries, and visualizations without knowing formulas or pivot tables."
+category: "file-organization"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://claudecodefornoncoders.substack.com/p/week-3-make-claude-code-your-secret"
+tags: ["csv", "excel", "data-analysis", "spreadsheets", "business-intelligence", "reports"]
+createdAt: "2026-01-16"
+---
+
+## What This Does
+
+Ask questions about your spreadsheets in plain English. No formulas, no pivot tables, no VLOOKUP needed. Get summaries, insights, and visualizations just by asking.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Data Folder
+
+```bash
+mkdir -p ~/Documents/DataAnalysis
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/DataAnalysis/
+```
+
+### Step 3: Add Your Data
+
+Copy your CSV or Excel files into the folder.
+
+### Step 4: Start Asking Questions
+
+```bash
+cd ~/Documents/DataAnalysis
+claude
+```
+
+Then just ask: **"What were total sales last month?"**
+
+---
+
+## Example Questions
+
+### Basic Analysis
+- "What are the total sales in Q1?"
+- "Show me the top 10 customers by revenue"
+- "What's the average order value by month?"
+
+### Comparisons
+- "How do this year's sales compare to last year?"
+- "Which product category grew the most?"
+- "Compare performance across regions"
+
+### Finding Patterns
+- "Are there any unusual spikes or drops?"
+- "What day of the week has the most orders?"
+- "Is there a correlation between marketing spend and sales?"
+
+### Leadership Summaries
+- "Give me a 3-bullet executive summary"
+- "What's the one thing I should tell my boss?"
+- "Prepare a monthly report for leadership"
+
+---
+
+## Example Output
+
+**You:** "What were total sales by category last month?"
+
+**Claude:**
+```
+## Sales by Category - January 2025
+
+| Category    | Revenue  | Orders | Avg Order |
+|-------------|----------|--------|-----------|
+| Electronics | $45,200  | 234    | $193.16   |
+| Home        | $28,400  | 412    | $68.93    |
+| Office      | $15,800  | 156    | $101.28   |
+| **Total**   | **$89,400** | **802** | **$111.47** |
+
+💡 Electronics leads in revenue but Home has most orders.
+```
+
+---
+
+## Supported Formats
+
+| Format | Extension | Notes |
+|--------|-----------|-------|
+| CSV | .csv | Best supported |
+| Excel | .xlsx | Export to CSV for best results |
+| TSV | .tsv | Tab-separated values |
+
+---
+
+## Tips
+
+- **Start with "describe the data"**: Claude will explain columns and data types
+- **Ask for methodology**: Say "show your work" to verify calculations
+- **Combine files**: "Compare sales.csv with marketing.csv and show ROI"
+- **Handle large files**: "Analyze the first 1000 rows and find patterns"
+
+---
+
+## Customization
+
+### For Financial Data
+```markdown
+## Financial Analysis
+- Always show variance from budget
+- Include YoY comparisons
+- Flag items over $10,000
+```
+
+### For Sales Data
+```markdown
+## Sales Analysis
+- Track pipeline velocity
+- Win/loss ratios by rep
+- Lead source effectiveness
+```
+
+---
+
+## Troubleshooting
+
+**Can't read Excel file**
+Export to CSV first. Complex Excel formatting may need simplification.
+
+**Analysis seems wrong**
+Ask Claude to "show your work" and verify with a spot sample.
+
+**File too large**
+Ask for sample analysis first: "Look at the first 1000 rows"

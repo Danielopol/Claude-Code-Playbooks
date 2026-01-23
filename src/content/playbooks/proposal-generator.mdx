@@ -1,0 +1,136 @@
+---
+title: "Custom Proposal Generator"
+description: "Generate tailored proposals by analyzing prospect calls, emails, and objections to address their specific concerns."
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://www.masteringai.io/guides/50-non-coding-uses-claude-code"
+tags: ["proposals", "sales", "deals", "customization", "closing"]
+createdAt: "2026-01-17"
+---
+
+## What This Does
+
+Generate proposals that feel custom-written for each prospect by analyzing all your interactions - call notes, emails, objections raised - and addressing their specific situation.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Gather Prospect Info
+
+Collect: call notes, email threads, company research.
+
+### Step 3: Generate Proposal
+
+```bash
+claude
+```
+
+Say: **"Generate a proposal for [Company] based on these notes"**
+
+---
+
+## What Claude Analyzes
+
+| Source | Extracts |
+|--------|----------|
+| **Call notes** | Pain points, goals, objections |
+| **Emails** | Questions, concerns, stakeholders |
+| **Research** | Company news, industry challenges |
+
+---
+
+## Proposal Structure
+
+```markdown
+## Understanding Your Situation
+[Their problems in THEIR words]
+
+## Addressing Your Concerns
+| You Asked | Our Answer |
+|-----------|------------|
+| "What about X?" | [Direct response] |
+
+## Proposed Solution
+[Matched to their specific needs]
+
+## Why Us
+[Relevant case study, not generic]
+
+## Investment Options
+[Tiered pricing based on their budget signals]
+```
+
+---
+
+## Personalization Elements
+
+| Element | How It's Customized |
+|---------|---------------------|
+| **Problem statement** | Uses their exact words from calls |
+| **Solution** | Mapped to their specific goals |
+| **Case studies** | Most similar to their situation |
+| **Pricing** | Options based on budget signals |
+| **Objection handling** | Pre-addresses concerns they raised |
+
+---
+
+## Example Output
+
+```markdown
+## Understanding Your Situation
+
+Based on our conversations, [Company] is facing:
+
+1. "We're hiring 5 SDRs but ramp time is
+   killing us" (from Jan 15 call)
+
+2. Pipeline quality dropping as team scales
+   (mentioned in follow-up email)
+
+## Addressing Your Concerns
+
+You asked: "What if it doesn't work for us?"
+
+Our answer: 90-day pilot with full refund
+if you don't see 30% ramp improvement...
+```
+
+---
+
+## Tips
+
+- **Quote their words**: Shows you listened
+- **Address objections proactively**: Don't wait for pushback
+- **Tiered options**: Let them choose their commitment level
+- **Relevant proof**: Case studies in their industry/size
+
+---
+
+## Commands
+
+```
+"Generate proposal based on these call notes"
+"Add objection handling for [concern]"
+"Create 3 pricing tiers for [scope]"
+"Find a relevant case study for [industry]"
+```
+
+---
+
+## Troubleshooting
+
+**Proposal feels generic**
+Add more call notes: "Here's what they said about..."
+
+**Missing key concerns**
+Say: "They also worried about [X], address that"
+
+**Wrong tone**
+Specify: "Make it more formal" or "Keep it conversational"

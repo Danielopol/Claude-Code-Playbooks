@@ -17,28 +17,19 @@ function getPlaybooks(): Playbook[] {
   }
 
   const playbooks: Playbook[] = [];
-  const categories = fs.readdirSync(playbooksDirectory);
+  const files = fs.readdirSync(playbooksDirectory);
 
-  categories.forEach((category) => {
-    const categoryPath = path.join(playbooksDirectory, category);
-    const stats = fs.statSync(categoryPath);
+  files.forEach((file) => {
+    if (file.endsWith('.mdx')) {
+      const filePath = path.join(playbooksDirectory, file);
+      const fileContent = fs.readFileSync(filePath, 'utf8');
+      const { data } = matter(fileContent);
+      const fileStats = fs.statSync(filePath);
 
-    if (stats.isDirectory()) {
-      const files = fs.readdirSync(categoryPath);
-
-      files.forEach((file) => {
-        if (file.endsWith('.mdx')) {
-          const filePath = path.join(categoryPath, file);
-          const fileContent = fs.readFileSync(filePath, 'utf8');
-          const { data } = matter(fileContent);
-          const fileStats = fs.statSync(filePath);
-
-          playbooks.push({
-            slug: file.replace('.mdx', ''),
-            category: category,
-            lastModified: fileStats.mtime,
-          });
-        }
+      playbooks.push({
+        slug: file.replace('.mdx', ''),
+        category: data.category || 'uncategorized',
+        lastModified: fileStats.mtime,
       });
     }
   });

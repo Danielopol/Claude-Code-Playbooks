@@ -1,0 +1,186 @@
+---
+title: "GitHub Lead Research"
+description: "Identify companies using specific technologies by analyzing GitHub repositories and contributor patterns."
+category: "market-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://www.lennysnewsletter.com/p/everyone-should-be-using-claude-code"
+tags: ["github", "leads", "sales", "developer-tools", "research", "prospecting"]
+createdAt: "2026-01-24"
+---
+
+## What This Does
+
+Find potential customers by researching GitHub repositories. Identify companies using specific technologies, frameworks, or patterns that indicate they might need your product.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Research Folder
+
+```bash
+mkdir -p ~/Documents/GitHub-Research
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/GitHub-Research/
+```
+
+### Step 3: Define Your Search
+
+Create `search-criteria.txt` with technologies or patterns to find.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/GitHub-Research
+claude
+```
+
+Say: **"Find companies using [technology/pattern]"**
+
+---
+
+## Example
+
+**Input:**
+```
+Find companies that:
+- Use Kubernetes in production
+- Have large Node.js codebases
+- Show signs of scaling challenges
+```
+
+**Output:**
+
+| Company | Repos | Tech Stack | Signals | Fit Score |
+|---------|-------|------------|---------|-----------|
+| TechCorp | 45 | K8s, Node, TS | Recent scaling commits | 90% |
+| DataFlow Inc | 32 | K8s, Go, Node | Hiring DevOps | 85% |
+| CloudStart | 28 | K8s, Python | New to K8s | 80% |
+
+---
+
+## Search Strategies
+
+### By Technology
+Find repos using specific frameworks:
+- Kubernetes configs
+- Terraform modules
+- Specific database drivers
+
+### By Pattern
+Find repos with certain characteristics:
+- Microservices architecture
+- CI/CD complexity
+- Security scanning gaps
+
+### By Activity
+Analyze commit patterns:
+- Active development
+- Scaling indicators
+- Pain point signals
+
+---
+
+## What Gets Extracted
+
+| Data Point | Source | Use |
+|------------|--------|-----|
+| **Company Name** | Org profile | Lead identification |
+| **Tech Stack** | Repo analysis | Product fit |
+| **Team Size** | Contributors | Company size |
+| **Activity** | Commits | Current investment |
+| **Pain Points** | Issues, PRs | Sales angles |
+
+---
+
+## GitHub Search Queries
+
+```
+# Find Kubernetes users
+language:yaml path:k8s OR path:kubernetes
+
+# Find Node.js scaling issues
+org:[company] "scaling" OR "performance" in:issues
+
+# Find security gaps
+org:[company] path:dockerfile NOT COPY --chown
+
+# Find migration patterns
+"migrating from" OR "moving to" in:readme
+```
+
+---
+
+## Output Format
+
+```markdown
+## GitHub Research: [Technology]
+
+### Summary
+- Companies analyzed: 50
+- High-fit prospects: 12
+- Best leads: [top 3]
+
+### Top Prospects
+
+#### 1. TechCorp (90% fit)
+- **GitHub:** github.com/techcorp
+- **Repos:** 45 public, active development
+- **Tech Stack:** Kubernetes, Node.js, TypeScript
+- **Team:** ~20 contributors active
+- **Signals:**
+  - Recent scaling-related commits
+  - Performance issues in backlog
+  - Hiring for DevOps roles
+- **Approach:** Reference their K8s challenges
+
+### Outreach Data
+| Company | Contact Method | Best Angle |
+|---------|---------------|------------|
+| TechCorp | engineering@ | Scaling challenges |
+| DataFlow | CTO LinkedIn | DevOps automation |
+```
+
+---
+
+## Tips
+
+- **Look at issues**: Pain points are often public
+- **Check commit messages**: "fixing scaling" = opportunity
+- **Review dependencies**: package.json tells a story
+- **Watch for migrations**: Companies switching tools need help
+- **Note team growth**: New contributors = growing company
+
+---
+
+## Commands
+
+```
+"Find companies using [technology]"
+"Analyze [org name] repositories"
+"What pain points does [company] have?"
+"Find companies migrating from [tech A] to [tech B]"
+"Export leads to CSV"
+"Who are the decision makers at [company]?"
+```
+
+---
+
+## Troubleshooting
+
+**Not enough public repos**
+Try: "Look at dependencies and contributor profiles"
+
+**Can't identify company**
+Ask: "Find company info from contributor emails"
+
+**Need more context**
+Ask: "Analyze issues and discussions for [company]"
+

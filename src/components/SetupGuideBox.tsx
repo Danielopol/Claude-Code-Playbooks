@@ -56,13 +56,13 @@ export function SetupGuideBox({
   return (
     <div className="rounded-lg border border-[#30363d] bg-[#0d1117] overflow-hidden mb-8">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 bg-[#161b22] border-b border-[#30363d]">
-        <div className="flex items-center gap-2">
-          <FileText className="h-4 w-4 text-[#22d3ee]" />
-          <span className="font-mono text-sm text-foreground">{filename}</span>
+      <div className="flex items-center justify-between px-4 py-3 bg-[#161b22] border-b border-[#30363d] gap-2">
+        <div className="flex items-center gap-2 min-w-0 flex-shrink">
+          <FileText className="h-4 w-4 text-[#22d3ee] flex-shrink-0" />
+          <span className="font-mono text-sm text-foreground truncate">{filename}</span>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-shrink-0">
           {/* Collapse Button */}
           <button
             onClick={() => setIsExpanded(!isExpanded)}
@@ -71,16 +71,17 @@ export function SetupGuideBox({
               'bg-[#21262d] text-muted-foreground border-[#30363d]',
               'hover:border-[#22d3ee] hover:text-[#22d3ee]'
             )}
+            aria-label={isExpanded ? 'Collapse' : 'Expand'}
           >
             {isExpanded ? (
               <>
                 <ChevronUp className="h-4 w-4" />
-                Collapse
+                <span className="hidden sm:inline">Collapse</span>
               </>
             ) : (
               <>
                 <ChevronDown className="h-4 w-4" />
-                Expand
+                <span className="hidden sm:inline">Expand</span>
               </>
             )}
           </button>
@@ -94,16 +95,17 @@ export function SetupGuideBox({
                 ? 'bg-[#22c55e]/20 text-[#22c55e] border-[#22c55e]/50'
                 : 'bg-[#21262d] text-muted-foreground border-[#30363d] hover:border-[#22d3ee] hover:text-[#22d3ee]'
             )}
+            aria-label={copied ? 'Copied' : 'Copy'}
           >
             {copied ? (
               <>
                 <Check className="h-4 w-4" />
-                Copied!
+                <span className="hidden sm:inline">Copied!</span>
               </>
             ) : (
               <>
                 <Copy className="h-4 w-4" />
-                Copy
+                <span className="hidden sm:inline">Copy</span>
               </>
             )}
           </button>
@@ -116,9 +118,10 @@ export function SetupGuideBox({
               'bg-[#21262d] text-muted-foreground border-[#30363d]',
               'hover:border-[#22c55e] hover:text-[#22c55e]'
             )}
+            aria-label="Download"
           >
             <Download className="h-4 w-4" />
-            Download
+            <span className="hidden sm:inline">Download</span>
           </button>
         </div>
       </div>

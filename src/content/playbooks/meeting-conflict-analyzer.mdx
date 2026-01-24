@@ -1,0 +1,175 @@
+---
+title: "Meeting Conflict Analyzer"
+description: "Process call transcripts to identify instances of conflict avoidance, unspoken concerns, and communication patterns."
+category: "task-management"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://www.lennysnewsletter.com/p/everyone-should-be-using-claude-code"
+tags: ["meetings", "communication", "leadership", "analysis", "transcripts", "coaching"]
+createdAt: "2026-01-24"
+---
+
+## What This Does
+
+Analyze meeting transcripts to identify communication patterns like conflict avoidance, hedging language, unaddressed concerns, and team dynamics. Perfect for managers, coaches, or anyone wanting to improve team communication.
+
+---
+
+## Quick Start
+
+### Step 1: Create an Analysis Folder
+
+```bash
+mkdir -p ~/Documents/Meeting-Analysis
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Meeting-Analysis/
+```
+
+### Step 3: Add Your Transcript
+
+Save your meeting transcript as `transcript.txt` or paste directly.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/Meeting-Analysis
+claude
+```
+
+Say: **"Analyze this meeting for conflict patterns"**
+
+---
+
+## Example
+
+**Input (transcript excerpt):**
+```
+Sarah: So about the deadline...
+John: Yeah, I think... maybe we could... I mean, it's probably fine.
+Maria: [silence]
+Sarah: Great, so we're all good then?
+John: Sure, I guess.
+```
+
+**Output:**
+
+| Pattern | Speaker | Quote | Concern Level |
+|---------|---------|-------|---------------|
+| Hedging | John | "maybe we could... I mean" | Medium |
+| Silence | Maria | [no response to deadline] | High |
+| Premature closure | Sarah | "so we're all good then?" | Medium |
+| Passive agreement | John | "Sure, I guess" | High |
+
+---
+
+## Patterns Detected
+
+### Conflict Avoidance
+| Signal | Example | What It Means |
+|--------|---------|---------------|
+| **Hedging** | "I think maybe..." | Uncertainty or disagreement |
+| **Silence** | [no response] | Discomfort or disagreement |
+| **Quick agreement** | "Sure, fine" | Avoiding confrontation |
+| **Topic change** | Sudden pivot | Escaping difficult topic |
+
+### Power Dynamics
+| Signal | Example | What It Means |
+|--------|---------|---------------|
+| **Interruptions** | Cut off mid-sentence | Dominance or urgency |
+| **Deference** | "Whatever you think" | Power imbalance |
+| **Credit taking** | "My idea..." vs "We..." | Attribution patterns |
+
+### Engagement Issues
+| Signal | Example | What It Means |
+|--------|---------|---------------|
+| **Brief responses** | One-word answers | Disengagement |
+| **Distracted language** | Off-topic comments | Not present |
+| **Repeated questions** | "Wait, what?" | Not tracking |
+
+---
+
+## Output Format
+
+```markdown
+## Meeting Analysis Report
+
+### Overview
+- Meeting: [title/date]
+- Participants: [names]
+- Duration: [length]
+- Overall Health: [score/10]
+
+### Key Findings
+
+#### Conflict Avoidance Instances
+1. **[Timestamp]** - [Speaker]
+   - Quote: "[exact quote]"
+   - Pattern: [type of avoidance]
+   - Context: [what was being discussed]
+   - Suggestion: [how to address]
+
+### Communication Patterns
+| Participant | Talk Time | Questions | Agreements | Concerns |
+|-------------|-----------|-----------|------------|----------|
+| Sarah | 45% | 8 | 3 | 1 |
+| John | 35% | 2 | 6 | 0 |
+| Maria | 20% | 1 | 4 | 0 |
+
+### Recommendations
+1. Follow up with [person] about [topic]
+2. Create space for [person] to voice concerns
+3. Revisit [decision] with explicit check-in
+```
+
+---
+
+## Use Cases
+
+- **Managers**: Understand team dynamics
+- **Coaches**: Identify communication patterns
+- **Facilitators**: Improve meeting effectiveness
+- **Self-improvement**: Analyze your own patterns
+- **Retrospectives**: Team communication health
+
+---
+
+## Tips
+
+- **Transcription quality matters**: Better transcripts = better analysis
+- **Include timestamps**: Helps locate specific moments
+- **Note non-verbal cues**: Add [laughs], [silence], [sighs] if you can
+- **Compare over time**: Track patterns across multiple meetings
+- **Be constructive**: Use insights for improvement, not blame
+
+---
+
+## Commands
+
+```
+"Analyze this meeting for conflict patterns"
+"Who dominated the conversation?"
+"Find instances of hedging language"
+"What concerns went unaddressed?"
+"Compare communication styles of participants"
+"Create a summary for team discussion"
+```
+
+---
+
+## Troubleshooting
+
+**Transcript too short**
+Longer meetings (15+ min) show clearer patterns
+
+**Can't identify speakers**
+Format as "[Name]: [speech]" for better analysis
+
+**Results seem off**
+Provide context: "This was a tense project review meeting"
+

@@ -1,0 +1,181 @@
+---
+title: "Voice Note to Article Converter"
+description: "Transform rambling voice recordings and brainstorms into coherent article outlines and polished drafts."
+category: "research-writing"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://www.lennysnewsletter.com/p/everyone-should-be-using-claude-code"
+tags: ["voice-notes", "writing", "transcription", "articles", "content-creation"]
+createdAt: "2026-01-24"
+---
+
+## What This Does
+
+Turn messy voice notes, brainstorms, and rambling recordings into structured article outlines and polished drafts. Perfect for capturing ideas on the go and turning them into content.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Writing Folder
+
+```bash
+mkdir -p ~/Documents/Writing
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Writing/
+```
+
+### Step 3: Add Your Voice Note
+
+Either:
+- Save transcription as `voice-note.txt`
+- Use a transcription service (Otter, Whisper)
+- Paste the text directly
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/Writing
+claude
+```
+
+Say: **"Turn my voice note into an article outline"**
+
+---
+
+## Example
+
+**Input (messy voice note):**
+```
+Okay so I've been thinking about, um, productivity apps
+and like why most of them fail? It's because... they add
+too many features. Nobody needs that. What people actually
+want is just... you know, simplicity. Like the best apps
+do one thing well. Oh and another thing - they try to
+change your behavior instead of fitting into how you
+already work. That's backwards. Anyway, might write
+something about this...
+```
+
+**Output:**
+
+```markdown
+## Article Outline: Why Productivity Apps Fail
+
+### Main Thesis
+Most productivity apps fail because they prioritize features
+over simplicity and try to change user behavior rather than
+adapting to existing workflows.
+
+### Section 1: The Feature Bloat Problem
+- Apps keep adding features nobody asked for
+- Complexity creates friction
+- Users want tools that "just work"
+
+### Section 2: The Behavior Change Trap
+- Apps try to impose new habits
+- Successful apps adapt to existing workflows
+- Meet users where they are
+
+### Section 3: What Great Apps Do Differently
+- Focus on doing one thing well
+- Minimize learning curve
+- Enhance existing behaviors
+
+### Suggested Title Options
+1. "Why Most Productivity Apps Miss the Point"
+2. "The Two Mistakes Every Productivity App Makes"
+3. "Less Is More: A Manifesto for Simple Tools"
+```
+
+---
+
+## Processing Levels
+
+| Level | Output | Best For |
+|-------|--------|----------|
+| **Outline** | Structured bullet points | Planning, quick capture |
+| **Draft** | Full paragraphs, rough | First pass, review |
+| **Polished** | Publication-ready | Final output |
+
+---
+
+## What Gets Extracted
+
+| Element | How It's Identified |
+|---------|---------------------|
+| **Main idea** | Repeated themes, emphasis |
+| **Key points** | Distinct arguments, examples |
+| **Structure** | Natural groupings, flow |
+| **Tone** | Casual, professional, passionate |
+| **Missing pieces** | Gaps, underdeveloped areas |
+
+---
+
+## Output Options
+
+### Article Outline
+- Thesis statement
+- Section headers
+- Key points per section
+- Suggested examples
+
+### Full Draft
+- Introduction with hook
+- Body sections
+- Transitions
+- Conclusion
+
+### Thread Format
+- Twitter/X thread version
+- Key points as individual tweets
+- Hook for first tweet
+
+### Newsletter Format
+- Subject line options
+- Preview text
+- Formatted for email
+
+---
+
+## Tips
+
+- **Don't edit while recording**: Let ideas flow freely
+- **Repeat key points**: Helps identify what matters
+- **Name your topic**: Say "This is about X" somewhere
+- **Include examples**: They translate well to writing
+- **Note your audience**: Mention who you're writing for
+
+---
+
+## Commands
+
+```
+"Turn this voice note into an outline"
+"Create a full draft from my notes"
+"What are the main points in this recording?"
+"Organize my thoughts into sections"
+"Make this into a Twitter thread"
+"What's missing from my argument?"
+"Suggest a title and intro"
+```
+
+---
+
+## Troubleshooting
+
+**Outline seems scattered**
+Your note may have multiple topics. Ask: "What are the distinct topics here?"
+
+**Missing your main point**
+Say: "The main point I'm making is [X], restructure around that"
+
+**Too formal/casual**
+Specify: "Match the tone of [publication/style]"
+

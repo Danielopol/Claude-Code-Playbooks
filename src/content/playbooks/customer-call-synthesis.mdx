@@ -1,0 +1,191 @@
+---
+title: "Customer Call Synthesis"
+description: "Compile customer call transcripts to validate product assumptions, identify patterns, and generate actionable insights."
+category: "market-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://www.lennysnewsletter.com/p/everyone-should-be-using-claude-code"
+tags: ["customer-research", "product", "user-interviews", "insights", "validation"]
+createdAt: "2026-01-24"
+---
+
+## What This Does
+
+Analyze multiple customer call transcripts to identify patterns, validate product hypotheses, and generate actionable insights. Transform hours of interviews into a clear research summary.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Research Folder
+
+```bash
+mkdir -p ~/Documents/Customer-Research
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Customer-Research/
+```
+
+### Step 3: Add Your Transcripts
+
+Save call transcripts as individual files or one combined document.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/Customer-Research
+claude
+```
+
+Say: **"Analyze these customer calls for patterns"**
+
+---
+
+## Example
+
+**Input:**
+```
+5 customer interview transcripts about a task management app
+Hypothesis: Users want better integrations with other tools
+```
+
+**Output:**
+
+```markdown
+## Research Summary: Task Management Interviews
+
+### Hypothesis Validation
+**"Users want better integrations"** - PARTIALLY VALIDATED
+
+**Evidence:**
+- 4/5 mentioned calendar integration
+- 3/5 frustrated with email-to-task workflow
+- Only 1/5 mentioned Slack integration
+
+**Unexpected Finding:**
+3/5 users actually want FEWER features, not more integrations
+
+### Top Pain Points
+
+| Pain Point | Frequency | Verbatim Quote |
+|------------|-----------|----------------|
+| Too many apps | 4/5 | "I'm drowning in tools" |
+| Context switching | 3/5 | "I lose focus constantly" |
+| Mobile experience | 3/5 | "It's unusable on phone" |
+
+### Key Insight
+Users don't want more integrations - they want one app
+that replaces their other tools.
+```
+
+---
+
+## Analysis Types
+
+| Analysis | What It Answers |
+|----------|-----------------|
+| **Pattern Detection** | What themes appear across calls? |
+| **Hypothesis Testing** | Does evidence support our assumption? |
+| **Sentiment Analysis** | How do users feel about [topic]? |
+| **Feature Prioritization** | What do users want most? |
+| **Competitive Insights** | What do they say about alternatives? |
+
+---
+
+## Output Format
+
+```markdown
+## Customer Research Synthesis
+
+### Overview
+- Calls analyzed: X
+- Total duration: X hours
+- Date range: [dates]
+- User segments: [segments]
+
+### Hypotheses Tested
+
+#### Hypothesis 1: [Statement]
+**Status:** Validated / Partially Validated / Invalidated
+
+**Supporting Evidence:**
+- [Quote or observation] (User A)
+- [Quote or observation] (User C)
+
+**Counter Evidence:**
+- [Quote or observation] (User B)
+
+**Confidence:** High / Medium / Low
+
+### Emergent Themes
+
+#### Theme 1: [Name]
+**Frequency:** X/Y users
+**Sentiment:** Positive / Negative / Mixed
+
+**Key Quotes:**
+> "[Verbatim quote]" - User A
+
+**Implications:** [What this means for product]
+
+### Recommendations
+
+| Priority | Action | Based On | Expected Impact |
+|----------|--------|----------|-----------------|
+| 1 | [Action] | [Evidence] | [Impact] |
+```
+
+---
+
+## Research Questions
+
+Claude can help answer:
+- What problems are users trying to solve?
+- How do they currently solve this problem?
+- What's their emotional response to pain points?
+- What features do they actually use vs. ignore?
+- What would make them switch from current solution?
+- How do they describe the ideal solution?
+
+---
+
+## Tips
+
+- **Include context**: User type, company size, use case
+- **Note non-verbals**: Hesitation, enthusiasm, frustration
+- **Quality transcripts**: Better transcripts = better insights
+- **Compare segments**: Different user types may have different needs
+- **Track over time**: Run analysis across research rounds
+
+---
+
+## Commands
+
+```
+"Analyze these calls for patterns"
+"Test this hypothesis: [hypothesis]"
+"What are the top pain points?"
+"How do users feel about [feature]?"
+"Compare responses between [segment A] and [segment B]"
+"Generate a research summary for stakeholders"
+"What feature requests came up most?"
+```
+
+---
+
+## Troubleshooting
+
+**Patterns seem weak**
+You may need more interviews for statistical significance
+
+**Conflicting insights**
+Ask: "Segment users by [criteria] and compare"
+
+**Missing context**
+Add metadata: user type, date, interviewer notes
+

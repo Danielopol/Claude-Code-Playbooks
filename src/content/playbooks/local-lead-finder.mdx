@@ -1,0 +1,161 @@
+---
+title: "Local Business Lead Finder"
+description: "Analyze local business directories to find pilot customers matching your ideal customer profile."
+category: "market-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://www.lennysnewsletter.com/p/everyone-should-be-using-claude-code"
+tags: ["leads", "sales", "local-business", "prospecting", "research"]
+createdAt: "2026-01-24"
+---
+
+## What This Does
+
+Find potential pilot customers by analyzing local business directories. Claude helps identify businesses matching your criteria, extracts contact information, and prioritizes leads based on fit.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Leads Folder
+
+```bash
+mkdir -p ~/Documents/Lead-Research
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Lead-Research/
+```
+
+### Step 3: Define Your Criteria
+
+Create a file `criteria.txt` with your ideal customer profile.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/Lead-Research
+claude
+```
+
+Say: **"Find local businesses matching my criteria"**
+
+---
+
+## Example
+
+**Input (criteria.txt):**
+```
+Looking for pilot customers for my appointment scheduling software.
+
+Ideal customer:
+- Local service businesses (salons, spas, clinics)
+- 2-10 employees
+- Currently using paper or basic booking
+- Located in Austin, TX
+```
+
+**Output:**
+
+| Business | Type | Size | Contact | Score |
+|----------|------|------|---------|-------|
+| Glow Salon | Hair Salon | ~5 emp | (512) 555-1234 | 95% |
+| Zen Spa | Day Spa | ~8 emp | (512) 555-5678 | 90% |
+| Pet Care Plus | Grooming | ~3 emp | (512) 555-9012 | 85% |
+
+---
+
+## Research Sources
+
+| Source | What You Get |
+|--------|--------------|
+| **Google Maps** | Business info, reviews, hours |
+| **Yelp** | Reviews, photos, categories |
+| **LinkedIn** | Company size, employees |
+| **Local Directories** | Contact info, specialties |
+| **Business Filings** | Age, structure |
+
+---
+
+## Lead Scoring
+
+Claude evaluates each lead on:
+
+| Factor | Weight | Criteria |
+|--------|--------|----------|
+| **Industry Fit** | 30% | Matches target vertical |
+| **Size Match** | 25% | Within employee range |
+| **Tech Readiness** | 20% | Online presence, reviews |
+| **Accessibility** | 15% | Contact info available |
+| **Location** | 10% | Within target area |
+
+---
+
+## Output Format
+
+```markdown
+## Lead Research: [Your Product]
+
+### Top 10 Leads
+
+| Rank | Business | Score | Why |
+|------|----------|-------|-----|
+| 1 | Glow Salon | 95% | Perfect fit, active online |
+| 2 | Zen Spa | 90% | Right size, good reviews |
+
+### Detailed Profiles
+
+#### 1. Glow Salon (95% fit)
+- **Type:** Hair Salon
+- **Location:** 123 Main St, Austin TX
+- **Phone:** (512) 555-1234
+- **Website:** glowsalon.com
+- **Reviews:** 4.5 stars (120 reviews)
+- **Notes:** Currently has "call to book" - perfect for scheduling software
+
+### Outreach Suggestions
+- Mention local presence
+- Reference their review volume
+- Offer pilot program discount
+```
+
+---
+
+## Tips
+
+- **Be specific**: Detailed criteria = better matches
+- **Start local**: Pilot with nearby businesses first
+- **Check reviews**: Active review responders = engaged owners
+- **Note tech stack**: Website quality indicates tech readiness
+- **Track everything**: Export to spreadsheet for CRM import
+
+---
+
+## Commands
+
+```
+"Find [business type] in [location]"
+"Score these businesses: [list]"
+"Export leads to CSV"
+"Find contact info for [business name]"
+"Which leads should I contact first?"
+"Add notes for [business] about [observation]"
+```
+
+---
+
+## Troubleshooting
+
+**Not enough leads**
+Expand your criteria: wider location, adjacent industries
+
+**Low quality matches**
+Add more qualifying criteria to your profile
+
+**Missing contact info**
+Ask: "Find alternative contact methods for [business]"
+

@@ -1,0 +1,248 @@
+---
+title: "Personal Feedback Analyzer"
+description: "Analyze journal entries, code commits, and work patterns to identify behavioral insights and improvement opportunities."
+category: "personal-development"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://www.lennysnewsletter.com/p/everyone-should-be-using-claude-code"
+tags: ["self-improvement", "journaling", "patterns", "productivity", "reflection"]
+createdAt: "2026-01-24"
+---
+
+## What This Does
+
+Analyze your journal entries, git commits, calendar, or work logs to identify patterns in your behavior, productivity, and mood. Get data-driven insights for self-improvement.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Reflection Folder
+
+```bash
+mkdir -p ~/Documents/Self-Analysis
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Self-Analysis/
+```
+
+### Step 3: Gather Your Data
+
+- Export journal entries
+- Pull git commit history
+- Export calendar data
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/Self-Analysis
+claude
+```
+
+Say: **"Analyze my patterns from the last month"**
+
+---
+
+## Data Sources
+
+| Source | What It Reveals |
+|--------|-----------------|
+| **Journal entries** | Mood patterns, recurring concerns |
+| **Git commits** | Work patterns, productive times |
+| **Calendar** | Meeting load, time allocation |
+| **Task completions** | Productivity cycles |
+| **Habit tracker** | Consistency, triggers |
+
+---
+
+## Example Analysis
+
+**From 30 days of journal entries + git commits:**
+
+```markdown
+## Personal Pattern Analysis
+
+### Key Findings
+
+**Productivity Patterns:**
+- Peak coding hours: 9-11 AM and 2-4 PM
+- Most commits on Tuesday/Wednesday
+- Friday productivity drops 40%
+
+**Mood Correlations:**
+- Sleep < 7 hours → negative journal tone next day
+- Exercise days → more positive entries
+- Back-to-back meetings → lower output
+
+**Recurring Themes:**
+1. Impostor syndrome (mentioned 8x)
+2. Work-life balance concerns (6x)
+3. Project deadline stress (5x)
+
+### Recommendations
+1. Protect morning focus time (9-11 AM)
+2. Move difficult tasks away from Fridays
+3. Build buffer between meeting days
+```
+
+---
+
+## Analysis Types
+
+### Temporal Patterns
+- Best/worst days of week
+- Time of day productivity
+- Seasonal variations
+- Monthly cycles
+
+### Correlations
+- What happens before good/bad days
+- Activity → outcome relationships
+- External factors (weather, sleep)
+- Social patterns
+
+### Content Analysis
+- Recurring topics/concerns
+- Sentiment trends
+- Language patterns
+- Goal progress
+
+---
+
+## Getting Your Data
+
+### Journal Entries
+```bash
+# Day One export
+# App Settings > Export > JSON
+
+# Obsidian daily notes
+cat ~/Obsidian/Daily/*.md > all_journals.txt
+
+# Apple Notes (via script)
+# Various export tools available
+```
+
+### Git Commit History
+```bash
+# Your commits from last 90 days
+git log --author="Your Name" --since="90 days ago" \
+  --format="%ad | %s" --date=short > commits.txt
+
+# With statistics
+git log --author="Your Name" --since="90 days ago" \
+  --format="%ad %H %s" --date=iso --stat > commits_detailed.txt
+```
+
+### Calendar Data
+```bash
+# Google Calendar: Settings > Import & Export > Export
+# Apple Calendar: File > Export
+
+# Or use CLI tools
+gcalcli agenda --nocolor > calendar.txt
+```
+
+---
+
+## Output Format
+
+```markdown
+## Personal Analytics Report
+
+### Period Analyzed
+- Date range: [start] to [end]
+- Data sources: [list]
+- Total entries: [count]
+
+### Executive Summary
+[2-3 key insights]
+
+### Temporal Patterns
+
+#### Best Performance Times
+| Day | Time | Evidence |
+|-----|------|----------|
+| [day] | [time] | [data point] |
+
+#### Trends Over Time
+[Description of any trajectory]
+
+### Correlations Identified
+
+#### Strong Correlations (likely causal)
+| Factor A | Factor B | Relationship |
+|----------|----------|--------------|
+| [factor] | [outcome] | [positive/negative] |
+
+#### Moderate Correlations (worth noting)
+[...]
+
+### Content Themes
+
+#### Top Concerns
+1. [Theme] - mentioned [X] times
+2. [Theme] - mentioned [X] times
+
+#### Positive Patterns
+1. [Pattern]
+2. [Pattern]
+
+### Actionable Recommendations
+
+#### Quick Wins (implement this week)
+1. [Specific action]
+2. [Specific action]
+
+#### Experiments to Try
+1. [Hypothesis + test]
+2. [Hypothesis + test]
+
+### Questions for Reflection
+- [Thought-provoking question]
+- [Thought-provoking question]
+```
+
+---
+
+## Tips
+
+- **Consistency matters**: More data = better patterns
+- **Be honest**: Authentic entries give real insights
+- **Context helps**: Note external factors (sleep, events)
+- **Revisit regularly**: Patterns change over time
+- **Act on insights**: Analysis without action is useless
+
+---
+
+## Commands
+
+```
+"Analyze my journal entries for patterns"
+"What are my most productive times?"
+"Find correlations in my data"
+"Compare this month to last month"
+"What themes keep coming up?"
+"When do I write most positively?"
+"Generate weekly reflection prompts"
+"What should I do differently?"
+```
+
+---
+
+## Troubleshooting
+
+**Not enough data**
+Start with a week of consistent tracking, build from there
+
+**Patterns seem random**
+Add more context to entries (sleep, exercise, events)
+
+**Analysis feels off**
+Provide more context about your life/work for better interpretation
+

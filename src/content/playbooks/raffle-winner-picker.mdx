@@ -1,0 +1,217 @@
+---
+title: "Raffle Winner Picker"
+description: "Randomly select winners from Google Sheets, CSVs, or lists for giveaways with transparent, verifiable selection."
+category: "productivity"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://www.lennysnewsletter.com/p/everyone-should-be-using-claude-code"
+tags: ["raffle", "giveaway", "random", "selection", "google-sheets"]
+createdAt: "2026-01-24"
+---
+
+## What This Does
+
+Randomly select winners from a list of entries - whether from Google Sheets, a CSV file, or pasted text. Transparent selection with optional verification and backup winners.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Raffles Folder
+
+```bash
+mkdir -p ~/Documents/Raffles
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Raffles/
+```
+
+### Step 3: Prepare Your Entries
+
+Export from Google Sheets as CSV, or create `entries.csv`:
+```csv
+name,email,entries
+John Doe,john@email.com,1
+Jane Smith,jane@email.com,3
+Bob Wilson,bob@email.com,1
+```
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/Raffles
+claude
+```
+
+Say: **"Pick 3 winners from my raffle entries"**
+
+---
+
+## Example
+
+**Input (entries.csv):**
+```csv
+name,email,entries
+Alice Johnson,alice@email.com,1
+Bob Smith,bob@email.com,2
+Carol White,carol@email.com,1
+David Brown,david@email.com,1
+Eva Green,eva@email.com,3
+```
+
+**Output:**
+
+```markdown
+## Raffle Results
+
+**Drawing Date:** 2026-01-24 14:32:15 UTC
+**Total Entries:** 8 (5 unique participants)
+**Winners Drawn:** 3
+
+### Winners
+
+| Place | Name | Email |
+|-------|------|-------|
+| 1st | Eva Green | eva@email.com |
+| 2nd | Bob Smith | bob@email.com |
+| 3rd | Alice Johnson | alice@email.com |
+
+### Backup Winners
+| Place | Name | Email |
+|-------|------|-------|
+| Backup 1 | David Brown | david@email.com |
+| Backup 2 | Carol White | carol@email.com |
+
+### Verification
+- Random seed: 7829341
+- Method: Cryptographically secure random
+```
+
+---
+
+## Entry Formats
+
+### Simple List
+```
+john@email.com
+jane@email.com
+bob@email.com
+```
+
+### CSV with Names
+```csv
+name,email
+John Doe,john@email.com
+Jane Smith,jane@email.com
+```
+
+### Weighted Entries
+```csv
+name,email,entries
+John Doe,john@email.com,1
+Jane Smith,jane@email.com,5
+```
+(Jane has 5x the chance of winning)
+
+---
+
+## Features
+
+| Feature | Description |
+|---------|-------------|
+| **Weighted entries** | Multiple entries per person |
+| **Backup winners** | Alternates if winner can't claim |
+| **Deduplication** | Option to remove duplicates |
+| **Verification** | Timestamp and random seed |
+| **Export** | Results as CSV or markdown |
+
+---
+
+## Selection Methods
+
+### Equal Chance
+Everyone has the same probability:
+```
+"Pick 3 winners with equal chances"
+```
+
+### Weighted by Entries
+More entries = higher probability:
+```
+"Pick winners weighted by entry count"
+```
+
+### No Repeat Winners
+Each person can only win once:
+```
+"Pick 3 different winners (no duplicates)"
+```
+
+---
+
+## Output Format
+
+```markdown
+## Raffle: [Event Name]
+
+### Drawing Information
+- **Date/Time:** [timestamp]
+- **Total Entries:** [number]
+- **Unique Participants:** [number]
+- **Winners Selected:** [number]
+
+### Winners
+[Ordered list with contact info]
+
+### Backup Winners
+[Additional selections in order]
+
+### Verification Hash
+[For transparency/auditing]
+
+### Method
+[Description of random selection process]
+```
+
+---
+
+## Tips
+
+- **Save the seed**: For reproducible results if questioned
+- **Draw backups**: Always have alternates ready
+- **Document everything**: Timestamp, method, results
+- **Announce publicly**: Builds trust in the process
+- **Check eligibility**: Verify winners before announcing
+
+---
+
+## Commands
+
+```
+"Pick 3 winners from entries.csv"
+"Draw a winner with weighted entries"
+"Select 5 winners plus 3 backups"
+"Pick from this list: [paste names]"
+"Generate verification report"
+"Re-draw using the same seed"
+"Export results as CSV"
+```
+
+---
+
+## Troubleshooting
+
+**Duplicate entries**
+Ask: "Remove duplicate emails before drawing"
+
+**Need proof of randomness**
+Say: "Include cryptographic verification"
+
+**Winner is ineligible**
+Ask: "Move to backup winner #1"
+

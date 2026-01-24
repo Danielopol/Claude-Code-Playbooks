@@ -1,0 +1,204 @@
+---
+title: "Image Enhancement & Upscaler"
+description: "Improve screenshot quality, upscale low-resolution images, and batch process images using ImageMagick and modern tools."
+category: "productivity"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://www.lennysnewsletter.com/p/everyone-should-be-using-claude-code"
+tags: ["images", "upscaling", "enhancement", "screenshots", "batch-processing"]
+createdAt: "2026-01-24"
+---
+
+## What This Does
+
+Improve image quality, upscale low-resolution images, enhance screenshots, and batch process images. Claude generates ImageMagick commands and recommends AI upscaling tools when appropriate.
+
+---
+
+## Quick Start
+
+### Step 1: Install ImageMagick
+
+```bash
+# macOS
+brew install imagemagick
+
+# Ubuntu/Debian
+sudo apt install imagemagick
+
+# Windows (with Chocolatey)
+choco install imagemagick
+```
+
+### Step 2: Create an Images Folder
+
+```bash
+mkdir -p ~/Documents/Image-Processing
+```
+
+### Step 3: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Image-Processing/
+```
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/Image-Processing
+claude
+```
+
+Say: **"Help me improve these images"**
+
+---
+
+## Common Tasks
+
+### Basic Enhancement
+| Task | What It Does |
+|------|--------------|
+| **Sharpen** | Increase edge definition |
+| **Denoise** | Reduce grain/artifacts |
+| **Contrast** | Improve tonal range |
+| **Brightness** | Adjust light levels |
+| **Resize** | Change dimensions |
+
+### Upscaling Methods
+| Method | Best For | Quality |
+|--------|----------|---------|
+| **Lanczos** | General purpose | Good |
+| **Mitchell** | Smooth images | Good |
+| **AI Upscaling** | Photos, art | Excellent |
+
+---
+
+## Example Commands
+
+### Basic Improvements
+```bash
+# Sharpen an image
+convert input.jpg -sharpen 0x1.0 output.jpg
+
+# Enhance contrast
+convert input.jpg -contrast-stretch 2%x1% output.jpg
+
+# Auto-enhance (levels + contrast)
+convert input.jpg -auto-level -normalize output.jpg
+
+# Reduce noise
+convert input.jpg -enhance -enhance output.jpg
+```
+
+### Upscaling
+```bash
+# 2x upscale with Lanczos
+convert input.jpg -filter Lanczos -resize 200% output.jpg
+
+# Upscale to specific dimensions
+convert input.jpg -filter Lanczos -resize 1920x1080^ output.jpg
+
+# Upscale maintaining aspect ratio
+convert input.jpg -filter Lanczos -resize 1920x1080 output.jpg
+```
+
+### Screenshot Enhancement
+```bash
+# Sharpen screenshot for clarity
+convert screenshot.png -sharpen 0x0.5 -quality 95 enhanced.png
+
+# Remove compression artifacts
+convert screenshot.jpg -enhance -quality 95 cleaned.png
+
+# Increase DPI for printing
+convert screenshot.png -density 300 -units PixelsPerInch print-ready.png
+```
+
+### Batch Processing
+```bash
+# Enhance all JPGs in folder
+for f in *.jpg; do
+  convert "$f" -auto-level -sharpen 0x0.5 "enhanced_$f"
+done
+
+# Resize all images to 50%
+mogrify -resize 50% *.jpg
+
+# Convert PNG to JPG with quality
+mogrify -format jpg -quality 90 *.png
+```
+
+---
+
+## Quality Settings
+
+### JPEG Quality
+| Quality | File Size | Use Case |
+|---------|-----------|----------|
+| 95-100 | Large | Archival |
+| 85-94 | Medium | Web high-quality |
+| 70-84 | Small | Web standard |
+| < 70 | Tiny | Thumbnails |
+
+### PNG Optimization
+```bash
+# Optimize PNG without quality loss
+convert input.png -strip -quality 95 output.png
+
+# Reduce colors for smaller size
+convert input.png -colors 256 output.png
+```
+
+---
+
+## AI Upscaling Tools
+
+For best quality upscaling, consider:
+
+| Tool | Platform | Best For |
+|------|----------|----------|
+| **Real-ESRGAN** | CLI | Photos, general |
+| **Waifu2x** | CLI/Web | Anime, illustrations |
+| **Topaz Gigapixel** | Desktop | Professional |
+| **Upscayl** | Desktop | Free, user-friendly |
+
+---
+
+## Tips
+
+- **Start with source quality**: Enhancement can't create detail that doesn't exist
+- **Preserve originals**: Keep untouched copies
+- **Match the use case**: Web needs smaller files, print needs higher DPI
+- **Don't over-sharpen**: Halos around edges = too much
+- **Use PNG for screenshots**: Better quality than JPG for text/UI
+
+---
+
+## Commands
+
+```
+"Sharpen this image"
+"Upscale to 2x resolution"
+"Enhance this screenshot"
+"Convert to print quality (300 DPI)"
+"Batch resize all images to 1080p"
+"Remove noise from this photo"
+"Optimize images for web"
+"What's the best way to upscale [image]?"
+```
+
+---
+
+## Troubleshooting
+
+**Image looks worse after enhancement**
+Try lighter settings: "Use subtle sharpening"
+
+**File size too large**
+Reduce quality: "Optimize for web while keeping decent quality"
+
+**Upscaled image looks blurry**
+Try AI upscaling: "This needs AI upscaling for better results"
+

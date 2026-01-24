@@ -1,0 +1,202 @@
+---
+title: "Bulk Image Extractor"
+description: "Extract all images from Google Docs, PDFs, websites, and other documents in high resolution."
+category: "file-organization"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://www.lennysnewsletter.com/p/everyone-should-be-using-claude-code"
+tags: ["images", "extraction", "google-docs", "pdf", "batch-download"]
+createdAt: "2026-01-24"
+---
+
+## What This Does
+
+Extract all embedded images from Google Docs, PDFs, Word documents, PowerPoints, and web pages. Get high-resolution versions organized in a folder.
+
+---
+
+## Quick Start
+
+### Step 1: Create an Extraction Folder
+
+```bash
+mkdir -p ~/Documents/Extracted-Images
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Extracted-Images/
+```
+
+### Step 3: Run Claude Code
+
+```bash
+cd ~/Documents/Extracted-Images
+claude
+```
+
+### Step 4: Request Extraction
+
+Say: **"Extract all images from [document/URL]"**
+
+---
+
+## Sources Supported
+
+| Source | Method | Notes |
+|--------|--------|-------|
+| **Google Docs** | Export as .docx, extract | Preserves original quality |
+| **PDF** | pdfimages or poppler | Gets embedded images |
+| **Word (.docx)** | Unzip, find images | Images in word/media/ |
+| **PowerPoint** | Unzip, find images | Images in ppt/media/ |
+| **Web Pages** | wget/curl | Downloads linked images |
+| **ZIP Archives** | Extract, filter | Find images recursively |
+
+---
+
+## Extraction Methods
+
+### From Google Docs
+
+1. File > Download > Microsoft Word (.docx)
+2. Then extract from .docx:
+
+```bash
+# Unzip the docx (it's a ZIP file)
+unzip document.docx -d extracted/
+
+# Images are in word/media/
+ls extracted/word/media/
+```
+
+### From PDF
+
+```bash
+# Using pdfimages (from poppler)
+pdfimages -all document.pdf output_prefix
+
+# Using pdftoppm for full pages
+pdftoppm -png document.pdf page
+
+# Install poppler
+# macOS: brew install poppler
+# Ubuntu: sudo apt install poppler-utils
+```
+
+### From Word/PowerPoint
+
+```bash
+# DOCX files
+unzip document.docx -d doc_extracted/
+cp doc_extracted/word/media/* ./images/
+
+# PPTX files
+unzip presentation.pptx -d ppt_extracted/
+cp ppt_extracted/ppt/media/* ./images/
+```
+
+### From Web Pages
+
+```bash
+# Download all images from URL
+wget -r -l1 -A jpg,jpeg,png,gif -P images/ "https://example.com/page"
+
+# Or using curl
+curl -O "https://example.com/image[1-10].jpg"
+```
+
+---
+
+## Example Output
+
+```
+Extracted-Images/
+├── google-doc-export/
+│   ├── image1.png (1920x1080)
+│   ├── image2.jpg (2400x1600)
+│   └── image3.png (800x600)
+├── pdf-images/
+│   ├── page-001.png
+│   └── page-002.png
+└── _extraction_log.txt
+```
+
+---
+
+## Batch Extraction
+
+```bash
+# All PDFs in folder
+for pdf in *.pdf; do
+  mkdir -p "${pdf%.pdf}_images"
+  pdfimages -all "$pdf" "${pdf%.pdf}_images/img"
+done
+
+# All DOCX files
+for doc in *.docx; do
+  mkdir -p "${doc%.docx}_images"
+  unzip -j "$doc" "word/media/*" -d "${doc%.docx}_images/"
+done
+```
+
+---
+
+## Image Quality
+
+| Source | Quality | Notes |
+|--------|---------|-------|
+| Google Docs | High | Use .docx export, not PDF |
+| Word | Original | Embedded at full resolution |
+| PDF | Varies | Depends on how PDF was created |
+| Web | Varies | May be compressed |
+
+### Getting Best Quality
+
+- **Google Docs**: Download as .docx, not PDF
+- **PDFs**: Use pdfimages with -all flag
+- **Web**: Look for original/full-size links
+- **Presentations**: Export slides as images if needed
+
+---
+
+## Tips
+
+- **Rename systematically**: Add prefixes for organization
+- **Check dimensions**: Verify you got full resolution
+- **Keep metadata**: Some tools preserve EXIF data
+- **Deduplicate**: Remove identical images after extraction
+- **Convert formats**: Standardize to PNG or JPG
+
+---
+
+## Commands
+
+```
+"Extract images from this Google Doc"
+"Get all images from this PDF"
+"Download images from [URL]"
+"Extract media from this PowerPoint"
+"Batch extract from all documents in folder"
+"What's the best quality I can get?"
+"Organize extracted images by size"
+```
+
+---
+
+## Troubleshooting
+
+**Images are low quality**
+Try different export method, or source may not have better quality
+
+**PDF extraction fails**
+Install poppler: `brew install poppler` or `apt install poppler-utils`
+
+**Can't unzip Office doc**
+Rename to .zip first, then extract
+
+**Missing images**
+Some may be referenced (links) not embedded - need different approach
+

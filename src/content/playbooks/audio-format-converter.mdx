@@ -1,0 +1,179 @@
+---
+title: "Audio Format Converter"
+description: "Convert audio formats, adjust sample rates, normalize levels, and process batch audio files with ffmpeg commands."
+category: "productivity"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://www.lennysnewsletter.com/p/everyone-should-be-using-claude-code"
+tags: ["audio", "conversion", "ffmpeg", "podcasts", "music", "batch-processing"]
+createdAt: "2026-01-24"
+---
+
+## What This Does
+
+Convert audio between formats, adjust sample rates, normalize volume levels, and batch process multiple files. Claude generates the right ffmpeg commands for your needs.
+
+---
+
+## Quick Start
+
+### Step 1: Ensure ffmpeg is Installed
+
+```bash
+# macOS
+brew install ffmpeg
+
+# Ubuntu/Debian
+sudo apt install ffmpeg
+
+# Windows (with Chocolatey)
+choco install ffmpeg
+```
+
+### Step 2: Create an Audio Folder
+
+```bash
+mkdir -p ~/Documents/Audio-Processing
+```
+
+### Step 3: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Audio-Processing/
+```
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/Audio-Processing
+claude
+```
+
+Say: **"Convert my audio files to [format]"**
+
+---
+
+## Common Tasks
+
+### Format Conversion
+
+| From | To | Use Case |
+|------|-----|----------|
+| WAV | MP3 | Reduce file size |
+| MP3 | WAV | Lossless editing |
+| M4A | MP3 | Compatibility |
+| FLAC | MP3 | Streaming |
+| OGG | MP3 | Universal playback |
+
+### Quality Settings
+
+| Quality | MP3 Bitrate | File Size | Best For |
+|---------|-------------|-----------|----------|
+| Low | 128 kbps | Small | Voice/podcasts |
+| Medium | 192 kbps | Medium | General music |
+| High | 320 kbps | Large | Quality music |
+| Lossless | N/A | Very large | Archival |
+
+---
+
+## Example Commands
+
+### Single File Conversion
+```bash
+# WAV to MP3 (high quality)
+ffmpeg -i input.wav -b:a 320k output.mp3
+
+# MP3 to WAV
+ffmpeg -i input.mp3 output.wav
+
+# M4A to MP3
+ffmpeg -i input.m4a -c:a libmp3lame -b:a 256k output.mp3
+```
+
+### Batch Conversion
+```bash
+# All WAV files to MP3
+for f in *.wav; do ffmpeg -i "$f" -b:a 320k "${f%.wav}.mp3"; done
+
+# All files in folder
+find . -name "*.flac" -exec ffmpeg -i {} -b:a 320k {}.mp3 \;
+```
+
+### Audio Adjustments
+```bash
+# Change sample rate to 44.1kHz
+ffmpeg -i input.wav -ar 44100 output.wav
+
+# Normalize volume
+ffmpeg -i input.mp3 -filter:a loudnorm output.mp3
+
+# Trim audio (start at 10s, duration 30s)
+ffmpeg -i input.mp3 -ss 10 -t 30 output.mp3
+```
+
+---
+
+## Sample Rate Guide
+
+| Sample Rate | Use Case |
+|-------------|----------|
+| 8000 Hz | Telephone quality |
+| 22050 Hz | AM radio quality |
+| 44100 Hz | CD quality (standard) |
+| 48000 Hz | DVD/video standard |
+| 96000 Hz | High-resolution audio |
+
+---
+
+## Output Organization
+
+```
+Audio-Processing/
+├── originals/          # Source files (untouched)
+├── converted/          # Processed files
+├── normalized/         # Volume-adjusted
+└── _log.txt           # Processing log
+```
+
+---
+
+## Tips
+
+- **Keep originals**: Always preserve source files
+- **Match sample rates**: Use 44.1kHz for music, 48kHz for video
+- **Normalize carefully**: Loudness normalization preserves dynamics
+- **Check before batch**: Test on one file first
+- **Name systematically**: Include format in filename
+
+---
+
+## Commands
+
+```
+"Convert [file] to MP3"
+"Batch convert all WAV files to MP3 at 320kbps"
+"Change sample rate to 44.1kHz"
+"Normalize the volume of these files"
+"Extract audio from video"
+"Trim this audio from [start] to [end]"
+"Compress this podcast for smaller file size"
+```
+
+---
+
+## Troubleshooting
+
+**ffmpeg not found**
+Install it first (see Quick Start)
+
+**Quality sounds bad**
+Increase bitrate: "Use 320kbps instead"
+
+**Files too large**
+Ask: "Compress while maintaining decent quality"
+
+**Batch command fails**
+Check for spaces in filenames, use quotes
+

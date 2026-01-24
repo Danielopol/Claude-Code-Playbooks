@@ -1,0 +1,174 @@
+---
+title: "System Performance Diagnostics"
+description: "Run comprehensive performance checks to diagnose why your computer is running slow and get prioritized fixes."
+category: "productivity"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://www.lennysnewsletter.com/p/everyone-should-be-using-claude-code"
+tags: ["performance", "diagnostics", "system", "optimization", "troubleshooting"]
+createdAt: "2026-01-24"
+---
+
+## What This Does
+
+Diagnose why your computer is running slow. Claude runs performance checks, identifies bottlenecks, and provides prioritized fixes ranked by impact and ease of implementation.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above, then place in your home folder:
+```bash
+mv ~/Downloads/CLAUDE.md ~/
+```
+
+### Step 2: Run Claude Code
+
+```bash
+cd ~
+claude
+```
+
+### Step 3: Ask
+
+Say: **"Why is my computer running slow?"**
+
+---
+
+## What Gets Checked
+
+| Category | Checks |
+|----------|--------|
+| **CPU** | Usage, runaway processes, thermal throttling |
+| **Memory** | RAM usage, swap pressure, memory leaks |
+| **Disk** | Space, I/O bottlenecks, fragmentation |
+| **Network** | Bandwidth usage, DNS issues, connections |
+| **Startup** | Login items, launch agents, services |
+| **Background** | Hidden processes, scheduled tasks |
+
+---
+
+## Example Output
+
+```markdown
+## Performance Report
+
+### System Status
+- CPU: 85% (HIGH - browser using 60%)
+- Memory: 14.2/16 GB (HIGH)
+- Disk: 92% full (CRITICAL)
+- Uptime: 34 days (recommend restart)
+
+### Top Issues
+
+| Priority | Issue | Impact | Fix |
+|----------|-------|--------|-----|
+| 1 | Chrome using 8GB RAM | High | Close unused tabs |
+| 2 | Disk nearly full | High | Clear 50GB |
+| 3 | 45 startup items | Med | Disable 30 |
+
+### Quick Fixes (Do Now)
+1. Restart computer (34 day uptime)
+2. Close Chrome tabs (87 open)
+3. Empty Trash (12 GB)
+```
+
+---
+
+## Common Causes
+
+### High CPU
+- Browser tabs (especially video)
+- Runaway processes
+- Indexing services
+- Malware/cryptominers
+
+### High Memory
+- Too many apps open
+- Browser memory leaks
+- Memory-hungry apps
+- Insufficient RAM
+
+### Slow Disk
+- Nearly full (< 10% free)
+- Old spinning drive
+- Too many small files
+- Fragmentation (Windows)
+
+### General Slowness
+- Too long since restart
+- Outdated OS
+- Too many startup items
+- Background updates
+
+---
+
+## Platform-Specific Checks
+
+### macOS
+```
+Activity Monitor processes
+Spotlight indexing status
+Time Machine operations
+Login items
+LaunchAgents/LaunchDaemons
+```
+
+### Windows
+```
+Task Manager processes
+Windows Update status
+Startup programs
+Services
+Disk defragmentation needs
+```
+
+### Linux
+```
+top/htop processes
+systemd services
+swap usage
+journalctl logs
+cron jobs
+```
+
+---
+
+## Tips
+
+- **Regular restarts**: Weekly at minimum
+- **Keep 15%+ free**: Disk space affects performance
+- **Audit startup items**: Most aren't needed
+- **Browser hygiene**: Extensions and tabs matter
+- **Update regularly**: Performance fixes in updates
+
+---
+
+## Commands
+
+```
+"Why is my computer slow?"
+"Check CPU usage"
+"What's using all my memory?"
+"Find resource-heavy processes"
+"What's running at startup?"
+"How can I speed up my computer?"
+"Run a full system diagnostic"
+```
+
+---
+
+## Troubleshooting
+
+**Can't find the issue**
+Ask: "Run a comprehensive diagnostic and compare to baseline"
+
+**Fixes didn't help**
+Say: "The quick fixes didn't work, dig deeper"
+
+**Problem is intermittent**
+Ask: "Monitor system for the next hour and report anomalies"
+

@@ -61,3 +61,30 @@ Content with the CLAUDE.md template in a markdown code block.
 ```
 
 The first markdown code block in the content is automatically extracted as the copyable CLAUDE.md template.
+
+## Adding a Blog Post from URL
+
+When the user provides a blog post URL:
+
+1. Fetch the URL using `WebFetch` and extract these fields from the page content:
+   - **title**: The article title
+   - **description**: A concise summary of the article (1-2 sentences)
+   - **category**: One of `agent | mcp | tutorial | guide | news`
+   - **difficulty**: One of `basic | intermediate | advanced`
+   - **readingTime**: Estimated reading time as a number (e.g. `10`)
+   - **tags**: Relevant keywords, semicolon-separated (e.g. `"plan mode; assistant; workflow"`)
+   - **thumbnailType**: One of `agent | mcp | template | skill | default`
+   - **thumbnailTitle**: Short 2-3 word label for the thumbnail
+   - **featured**: `true` or `false`
+   - **url**: The original URL provided by the user
+   - **createdAt**: Today's date in `YYYY-MM-DD` format
+   - Note: `id` is auto-derived from the title by the script (slugified, max 50 chars)
+
+2. Run the add script with the extracted JSON (on Windows, use double quotes and escape inner quotes):
+   ```bash
+   npm run blog:add -- "{\"title\":\"...\",\"description\":\"...\",\"category\":\"...\",\"difficulty\":\"...\",\"readingTime\":\"10\",\"url\":\"...\",\"featured\":false,\"thumbnailType\":\"...\",\"thumbnailTitle\":\"...\",\"tags\":\"tag1; tag2\",\"createdAt\":\"YYYY-MM-DD\"}"
+   ```
+
+3. This updates both `src/Blog.xlsx` and regenerates `src/lib/blog.ts`.
+
+To regenerate `blog.ts` from Excel without adding a new post: `npm run blog:sync`

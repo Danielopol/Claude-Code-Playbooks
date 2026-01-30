@@ -1,7 +1,7 @@
 import { BlogPost } from '@/types/blog';
 
 // Blog posts are managed via Excel file at src/Blog.xlsx
-// To update: Edit the Excel file and ask Claude to regenerate this file
+// To update: Edit the Excel file and run "npm run blog:sync"
 export const blogPosts: BlogPost[] = [
   {
     id: 'how-to-turn-claude-code-into-your-personal-ai-assi',
@@ -16,6 +16,20 @@ export const blogPosts: BlogPost[] = [
     thumbnailTitle: 'work assistant',
     tags: ['plan mode', 'assistant', 'workflow', 'commands'],
     createdAt: '2026-01-21',
+  },
+  {
+    id: 'everyone-should-be-using-claude-code-more',
+    title: 'Everyone should be using Claude Code more',
+    description: 'A practical guide exploring Claude Code as an underutilized AI tool for non-technical users, with installation instructions and 50 real-world applications ranging from file organization to business automation.',
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '12 min read',
+    url: 'https://www.lennysnewsletter.com/p/everyone-should-be-using-claude-code',
+    featured: false,
+    thumbnailType: 'default',
+    thumbnailTitle: 'getting started',
+    tags: ['claude code', 'productivity', 'automation', 'non-technical', 'file management', 'business'],
+    createdAt: '2026-01-29',
   },
 ];
 

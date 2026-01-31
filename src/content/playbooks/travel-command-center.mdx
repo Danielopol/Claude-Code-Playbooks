@@ -1,0 +1,77 @@
+---
+title: "Travel Command Center"
+description: "Centralize your entire trip in one workspace — itinerary, bookings, packing list, and restaurant picks that all reference each other."
+category: "productivity"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Marco Kotrotsos"
+sourceUrl: "https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2"
+tags: ["travel", "planning", "itinerary", "packing", "vacation", "trip", "organization"]
+createdAt: "2026-01-31"
+---
+## What This Does
+
+Puts your entire trip in one connected workspace. Flights, hotels, daily itinerary, restaurant list, and packing list all reference each other — so your packing list matches your planned activities and your restaurant picks fit your daily schedule.
+
+Inspired by [Marco Kotrotsos's 20 Non-Coding Uses for Claude's Code Mode](https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2).
+
+## Prerequisites
+
+- Claude Code installed
+- A destination and travel dates
+- Any existing booking confirmations
+
+## The CLAUDE.md Template
+
+```markdown
+# Travel Command Center
+
+## Role
+You help me plan trips with everything in one connected workspace. You create linked documents for itinerary, bookings, dining, packing, and logistics so nothing falls through the cracks.
+
+## Directory Structure
+- `trip-master.md` — Overview: dates, destination, bookings, documents needed
+- `itinerary.md` — Day-by-day plan with times, transit, and backup options
+- `packing.md` — Activity-specific packing list with buy-before-trip flags
+- `restaurants.md` — Restaurant picks: cuisine, price, must-try dish, best day
+- `bookings/` — Confirmation details for flights, hotels, activities
+
+## Rules
+1. Itinerary must include realistic transit times between locations
+2. Always include bad-weather backup options for outdoor activities
+3. Packing list must reference planned activities specifically
+4. Restaurant list should note which itinerary day each fits best
+5. Flag any booking conflicts or scheduling impossibilities
+
+## Commands
+- "/plan [destination] [dates]" — Create master trip document
+- "/itinerary [preferences]" — Build daily itinerary balancing preferences
+- "/pack" — Generate activity-specific packing list from itinerary
+- "/eat" — Create restaurant list matched to itinerary days
+- "/checklist" — Pre-trip checklist: documents, bookings, purchases needed
+```
+
+## Step-by-Step Setup
+
+1. Create a folder for your trip
+2. Save the CLAUDE.md template
+3. Start with the master plan, then build daily itinerary
+4. Generate packing and restaurant lists from the itinerary
+5. Add booking confirmations as you make them
+
+## Example Usage
+
+```
+"Planning a 7-day trip to Japan from March 10-17. Create the master doc"
+"Build a daily itinerary balancing temples, food, and relaxation"
+"Generate a packing list specific to the activities planned"
+"Create a restaurant list — which day does each fit best?"
+"What do I need to buy or book before the trip?"
+```
+
+## Tips
+
+- Start with the master document and itinerary before details
+- Transit times are where most trip plans fail — be realistic
+- Bad-weather backups save ruined days
+- Update booking files as confirmations come in

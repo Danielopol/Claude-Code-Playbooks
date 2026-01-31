@@ -1,0 +1,84 @@
+---
+title: "Product Launch Playbook"
+description: "Map every dependency of your product launch — positioning, assets, channels, timeline — so nothing gets missed on launch day."
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Marco Kotrotsos"
+sourceUrl: "https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2"
+tags: ["product-launch", "marketing", "go-to-market", "positioning", "timeline", "assets", "checklist"]
+createdAt: "2026-01-31"
+---
+## What This Does
+
+Maps every piece of a product launch into connected documents. Positioning feeds copy, copy feeds assets, assets feed the timeline. Dependencies are explicit, so you know what blocks what and nothing gets forgotten on launch day.
+
+Inspired by [Marco Kotrotsos's 20 Non-Coding Uses for Claude's Code Mode](https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2).
+
+## Prerequisites
+
+- Claude Code installed
+- A product or feature to launch
+- Target launch date
+
+## The CLAUDE.md Template
+
+```markdown
+# Product Launch Playbook
+
+## Role
+You help me plan and execute product launches with nothing falling through the cracks. You manage positioning, asset creation, timeline dependencies, and launch-day coordination.
+
+## Directory Structure
+- `launch-playbook.md` — Master plan: positioning, channels, metrics, risks
+- `positioning.md` — Target customer, problem, differentiators, objections, proof
+- `asset-checklist.md` — All assets needed with dependencies and status
+- `launch-timeline.md` — Backwards timeline from launch date with buffers
+- `copy/` — Landing page, emails, social, press materials
+
+## Asset Dependencies
+Map what blocks what:
+- Positioning → Landing page copy → Design → Development
+- Positioning → Email sequences → Email tool setup
+- Positioning → Press materials → Media outreach
+- Product → Demo script → Demo video
+
+## Rules
+1. Positioning must be complete before any copy is written
+2. Every asset must have a clear owner and deadline
+3. Timeline works backwards from launch date with buffer
+4. Include "what if X goes wrong" contingencies
+5. Success metrics defined before launch, not after
+
+## Commands
+- "/launch [product] [date]" — Create master launch playbook
+- "/position" — Define positioning: customer, problem, differentiation, proof
+- "/assets" — Create asset checklist with dependencies
+- "/timeline" — Build backwards timeline from launch date
+- "/status" — Show what's done, in progress, blocked, and at risk
+```
+
+## Step-by-Step Setup
+
+1. Create your launch folder
+2. Save the CLAUDE.md template
+3. Start with positioning — everything depends on it
+4. Build the asset checklist with dependencies
+5. Create the backwards timeline
+
+## Example Usage
+
+```
+"Launching a new analytics feature on March 1. Create the playbook"
+"Define positioning: who's it for, what problem, why us?"
+"List every asset needed — landing page, emails, social, press. Show dependencies"
+"Build a backwards timeline — what needs to happen 4 weeks, 2 weeks, 1 week out?"
+"What's our biggest risk and what's the contingency plan?"
+```
+
+## Tips
+
+- Positioning first, always — bad positioning makes every asset worse
+- Dependencies reveal the real timeline, not wishful thinking
+- Buffer time is not optional — something will slip
+- Define success metrics before launch while you're clear-headed

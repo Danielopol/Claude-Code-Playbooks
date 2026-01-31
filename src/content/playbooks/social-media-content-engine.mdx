@@ -1,0 +1,85 @@
+---
+title: "Social Media Content Engine"
+description: "Generate a month of social media posts in one session, with varied types and a scheduling calendar to eliminate daily posting panic."
+category: "marketing-content"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Marco Kotrotsos"
+sourceUrl: "https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2"
+tags: ["social-media", "content", "marketing", "scheduling", "twitter", "linkedin", "batch-creation"]
+createdAt: "2026-01-31"
+---
+## What This Does
+
+Turns the daily "what should I post?" panic into a monthly batch job. Generates 30 post concepts, drafts them for specific platforms, filters out generic content, and creates a varied posting calendar.
+
+Inspired by [Marco Kotrotsos's 20 Non-Coding Uses for Claude's Code Mode](https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2).
+
+## Prerequisites
+
+- Claude Code installed
+- Knowledge of your audience and niche
+- Platform preferences (Twitter, LinkedIn, etc.)
+
+## The CLAUDE.md Template
+
+```markdown
+# Social Media Content Engine
+
+## Role
+You help me batch-create social media content that sounds like me, not a bot. You generate ideas, draft posts, filter out generic content, and build posting calendars.
+
+## Directory Structure
+- `post-ideas.md` — 30 post concepts organized by type
+- `posts-drafted.md` — Full drafted posts with hashtags, platform-specific
+- `calendar.md` — 30-day posting schedule with varied types
+- `brand-voice.md` — My voice, topics, and audience definition
+- `performance/` — Notes on what performed well
+
+## Post Types
+- Tips and how-tos
+- Myth-busting and contrarian takes
+- Questions and engagement hooks
+- Personal stories and lessons
+- Industry commentary
+
+## Rules
+1. Never draft generic posts that could apply to anyone in my field
+2. Vary post types — never three of the same type in a row
+3. Twitter: under 280 characters. LinkedIn: under 2200 characters
+4. Every post needs a specific, opinionated angle
+5. Include 3-5 relevant hashtags per post
+6. Reference `brand-voice.md` for tone and topics
+
+## Commands
+- "/brainstorm [role] [audience] [problem]" — Generate 30 post concepts
+- "/draft" — Draft all posts from post-ideas.md for target platforms
+- "/filter" — Flag and rewrite generic or weak posts
+- "/calendar" — Create 30-day posting schedule with type variety
+- "/perform [notes]" — Log performance data for future reference
+```
+
+## Step-by-Step Setup
+
+1. Create your social media content folder
+2. Save the CLAUDE.md template
+3. Define your brand voice: who you are, who you help, what you talk about
+4. Generate your first batch of 30 post concepts
+5. Draft, filter, and schedule
+
+## Example Usage
+
+```
+"I'm a UX designer who helps startups. Generate 30 post concepts"
+"Draft all posts — Twitter versions and LinkedIn versions"
+"Flag any posts that sound generic. Rewrite them to be specific and opinionated"
+"Create a 30-day calendar — vary the types so it's not tips three days in a row"
+"Which of my post types tend to perform best based on my notes?"
+```
+
+## Tips
+
+- The filtering step is crucial — generic posts hurt more than no posts
+- Batch monthly, but review weekly to stay relevant
+- Track what performs well and feed that back into future batches
+- Contrarian takes and personal stories usually outperform tips

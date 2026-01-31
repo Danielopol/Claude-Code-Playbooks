@@ -1,0 +1,153 @@
+---
+title: "Source Code Deep Learner"
+description: "Clone open-source libraries and have Claude Code teach you how complex systems work by reading the actual source code — from distributed databases to web frameworks."
+category: "education"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://www.reddit.com/r/ClaudeAI/comments/1py5icg/whats_your_best_claude_code_noncoding_use_case/"
+tags: ["education", "learning", "source-code", "open-source", "distributed-systems", "deep-learning", "architecture"]
+createdAt: "2026-01-30"
+---
+
+## What This Does
+
+This playbook turns Claude Code into a private tutor that teaches you how real-world software works by reading actual source code. Instead of relying on documentation or blog posts, you clone the repository of a system you want to understand, and Claude explains it directly from the implementation. When Claude gets stuck or gives a vague answer, pointing it to the actual source code produces "instant enlightenment."
+
+## Prerequisites
+
+- Claude Code installed and configured
+- Git installed for cloning repositories
+- A system or library you want to learn about
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your learning project folder:
+
+```markdown
+# Source Code Learner
+
+## Goal
+Teach me how this software system works by reading its actual source code. Explain concepts clearly, trace execution paths, and connect implementation details to higher-level design principles.
+
+## Teaching Rules
+1. Always reference specific files and line numbers when explaining concepts
+2. Start with the big picture (architecture overview) before diving into details
+3. Use analogies to explain complex patterns
+4. When I ask "how does X work?", trace the actual code path, don't just describe it abstractly
+5. If you're unsure about something, say so and read more source files before answering
+6. Create learning notes in `notes/` to track what we've covered
+7. Use diagrams (ASCII or Mermaid) to illustrate architecture and data flow
+
+## Learning Session Format
+When starting a new topic:
+1. **Overview**: What is this component and why does it exist?
+2. **Entry Point**: Where does execution begin for this feature?
+3. **Code Walk**: Step through the key code paths
+4. **Design Patterns**: What patterns are used and why?
+5. **Trade-offs**: What design trade-offs were made?
+6. **Summary**: Save a note to `notes/` with key takeaways
+
+## Directory Structure
+- `src/` or `repo/` — The cloned source code (read-only)
+- `notes/` — Learning notes generated during sessions
+- `diagrams/` — Architecture and flow diagrams
+- `questions/` — Questions to explore in future sessions
+
+## Commands
+- "Give me an architecture overview" — High-level system design
+- "How does [feature] work?" — Deep dive into a specific feature
+- "Trace [function/request]" — Follow execution from entry to exit
+- "Compare [component A] vs [component B]" — Comparative analysis
+- "Quiz me on [topic]" — Test understanding of what we've covered
+- "What should I learn next?" — Suggest the next logical topic based on what we've covered
+```
+
+## Step-by-Step Setup
+
+### Step 1: Create a learning project folder
+
+```bash
+mkdir -p ~/learn-rabbitmq/{notes,diagrams,questions}
+cd ~/learn-rabbitmq
+```
+
+### Step 2: Clone the source code
+
+```bash
+git clone https://github.com/rabbitmq/rabbitmq-server.git repo
+```
+
+Replace with whatever system you want to learn:
+- **RabbitMQ**: `https://github.com/rabbitmq/rabbitmq-server`
+- **Redis**: `https://github.com/redis/redis`
+- **PostgreSQL**: `https://github.com/postgres/postgres`
+- **Node.js**: `https://github.com/nodejs/node`
+- **React**: `https://github.com/facebook/react`
+- **Linux Kernel**: `https://github.com/torvalds/linux`
+
+### Step 3: Save the CLAUDE.md and launch
+
+Copy the template above into `CLAUDE.md`, then:
+
+```bash
+cd ~/learn-rabbitmq
+claude
+```
+
+Try: "Give me an architecture overview of RabbitMQ. What are the main components and how do they interact?"
+
+## Example Usage
+
+**Start with the big picture:**
+> "Read the repository structure and give me a high-level architecture overview. What are the main modules and how do they relate to each other?"
+
+**Deep dive into a feature:**
+> "How does RabbitMQ handle message acknowledgment? Trace the code path from when a consumer sends an ack to when the message is removed from the queue."
+
+**Understand a design pattern:**
+> "I see this project uses the actor model. Show me where actors are defined in the code and how message passing works between them."
+
+**Compare implementations:**
+> "How does this project's consensus algorithm compare to Raft? Show me the actual implementation."
+
+**When Claude gets stuck:**
+> "You seem unsure about how the storage engine works. Read the files in src/storage/ and then explain it to me."
+
+**Generate study notes:**
+> "Create a summary note of everything we've covered about the message routing system. Save it to notes/message-routing.md."
+
+## Suggested Learning Projects
+
+| System | What You'll Learn |
+|--------|------------------|
+| Redis | Data structures, event loops, persistence strategies |
+| PostgreSQL | Query planning, MVCC, WAL, indexing |
+| RabbitMQ | Message queuing, AMQP protocol, clustering |
+| Kafka | Distributed logs, partitioning, consumer groups |
+| React | Virtual DOM, reconciliation, hooks |
+| Express.js | Middleware patterns, routing, HTTP handling |
+| SQLite | Database internals in a single file |
+| Git | Content-addressable storage, DAGs, merge strategies |
+
+## Tips
+
+- **Read the source when Claude fumbles**: If Claude gives a vague or incorrect answer, tell it to read the specific source files. Going from abstract knowledge to actual code produces dramatically better explanations.
+- **Start with smaller projects**: SQLite or Express.js are easier to learn from than the Linux kernel. Start small and work up.
+- **Use the notes folder**: Having Claude generate notes creates a persistent study guide you can review later and across sessions.
+- **Ask "why" not just "how"**: The most valuable learning comes from understanding design trade-offs, not just what the code does.
+- **Clone a specific version**: Use `git checkout v3.12.0` to study a stable release rather than a moving main branch.
+
+## Troubleshooting
+
+**Problem**: Claude gives generic explanations instead of referencing code
+
+**Solution**: Be specific — "Show me the actual code in [filename] that handles this" rather than "How does this work?" Force Claude to cite file paths and line numbers.
+
+**Problem**: Repository is too large for Claude to navigate
+
+**Solution**: Start by asking Claude to identify the key directories, then focus on one subsystem at a time. You don't need to read the entire codebase — just the parts relevant to what you're learning.
+
+**Problem**: Claude's explanation doesn't match what I see in the code
+
+**Solution**: Claude's training data may be from an older version. Always verify by asking Claude to read the current file: "Read src/queue/manager.rs and tell me what it actually does."

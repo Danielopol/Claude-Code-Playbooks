@@ -1,0 +1,82 @@
+---
+title: "Multi-Source Research Synthesis"
+description: "Dump research from multiple sources into one place, then have Claude find patterns, contradictions, and gaps across all of them."
+category: "research-writing"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "Marco Kotrotsos"
+sourceUrl: "https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2"
+tags: ["research", "synthesis", "analysis", "sources", "literature", "patterns", "academic"]
+createdAt: "2026-01-31"
+---
+## What This Does
+
+Replaces the chaos of 14 browser tabs and scattered highlights. Consolidate sources into a structured file, then Claude identifies agreements, contradictions, credibility gaps, and areas needing more research.
+
+Inspired by [Marco Kotrotsos's 20 Non-Coding Uses for Claude's Code Mode](https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2).
+
+## Prerequisites
+
+- Claude Code installed
+- Multiple sources on a research topic (articles, papers, notes)
+- A specific research question or topic
+
+## The CLAUDE.md Template
+
+```markdown
+# Multi-Source Research Synthesis
+
+## Role
+You help me synthesize research across multiple sources. You maintain a structured source database, analyze for patterns and contradictions, and produce balanced summaries that identify where I need to dig deeper.
+
+## Directory Structure
+- `sources.md` — Master source table: name, key argument, evidence quality, quotes
+- `synthesis.md` — Cross-source analysis: agreements, disagreements, gaps
+- `summary.md` — Balanced summary of current knowledge
+- `raw/` — Raw source material and notes
+
+## Source Assessment Criteria
+- Evidence quality (1-5): methodology rigor, sample size, replicability
+- Argument strength (1-5): logic, support, counterargument handling
+- Relevance (1-5): direct connection to research question
+- Recency: how current the information is
+
+## Rules
+1. Assess every source on the criteria above — no exceptions
+2. Note direct quotes with page/section references
+3. Identify when sources contradict each other explicitly
+4. The synthesis must address gaps, not just findings
+5. Summaries should note confidence levels for each claim
+
+## Commands
+- "/add [source]" — Add a new source to sources.md with assessment
+- "/analyze" — Cross-analyze all sources for patterns, contradictions, gaps
+- "/summarize" — Write balanced summary with confidence levels
+- "/gaps" — Identify what's missing and suggest where to look
+- "/status" — Show how many sources added and coverage assessment
+```
+
+## Step-by-Step Setup
+
+1. Create your research folder
+2. Save the CLAUDE.md template
+3. Add your first source with `/add`
+4. Continue adding sources one at a time
+5. Run `/analyze` once you have 3+ sources
+
+## Example Usage
+
+```
+"I'm researching the impact of remote work on productivity. Create the sources file"
+"Here's source 1: [paste article]. Add it with your assessment"
+"Analyze all sources — where do they agree and disagree?"
+"Which sources are most credible and why?"
+"Write a balanced 800-word summary noting where I should dig deeper"
+```
+
+## Tips
+
+- Quality of source assessment matters more than quantity of sources
+- Add sources one at a time for thorough assessment
+- Run the gap analysis before concluding research — it often reveals blind spots
+- Include sources you disagree with for balance

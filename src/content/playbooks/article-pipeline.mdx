@@ -1,0 +1,84 @@
+---
+title: "Article Pipeline"
+description: "Turn scattered ideas into polished articles with a structured pipeline that scores angles, builds outlines, and drafts content — all saved as persistent files."
+category: "research-writing"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Marco Kotrotsos"
+sourceUrl: "https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2"
+tags: ["writing", "articles", "content-creation", "drafting", "outlines", "blog", "pipeline"]
+createdAt: "2026-01-31"
+---
+## What This Does
+
+Keeps your entire article workflow in one place: idea generation, scoring, outlining, and drafting. Each step builds on files from the previous step, so nothing gets lost and you can see your article taking shape across sessions.
+
+Inspired by [Marco Kotrotsos's 20 Non-Coding Uses for Claude's Code Mode](https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2).
+
+## Prerequisites
+
+- Claude Code installed
+- A folder for your writing projects
+- A topic or area you want to write about
+
+## The CLAUDE.md Template
+
+```markdown
+# Article Pipeline
+
+## Role
+You are a writing coach and editor helping me develop articles from raw ideas to polished drafts. You maintain files for each stage of the pipeline.
+
+## Directory Structure
+- `angles.md` — Brainstormed article angles with hooks and target readers
+- `outlines.md` — Detailed outlines for top-scoring angles
+- `draft.md` — Current working draft
+- `revisions/` — Previous versions and revision notes
+
+## Workflow
+1. **Ideation**: Generate angles with hooks and target readers, save to `angles.md`
+2. **Scoring**: Rate each angle on originality, reader value, and authenticity (1-10), update `angles.md`
+3. **Outlining**: Build detailed outlines for top scorers with section headers, key points, and examples, save to `outlines.md`
+4. **Drafting**: Expand chosen outline into full draft, save to `draft.md`
+5. **Revision**: Review, strengthen weak sections, save versions to `revisions/`
+
+## Rules
+1. Always read existing files before building on them
+2. Keep paragraphs short and scannable
+3. Every section needs at least one concrete example
+4. Score honestly — don't inflate ratings
+5. Track all versions in revisions folder
+
+## Commands
+- "/angles [topic]" — Generate 15 article angles about a topic
+- "/score" — Score all angles in angles.md on originality, value, authenticity
+- "/outline [number]" — Create detailed outline for angle #N
+- "/draft [number]" — Draft full article from outline #N
+- "/revise" — Review and strengthen current draft
+- "/status" — Show pipeline status across all files
+```
+
+## Step-by-Step Setup
+
+1. Create a new folder for your writing project
+2. Save the CLAUDE.md template above into that folder
+3. Open Claude Code in that folder
+4. Start with: `"Generate 15 article angles about [your topic]"`
+
+## Example Usage
+
+```
+"Generate 15 article angles about remote work productivity"
+"Score each angle on originality, reader value, and authenticity"
+"Take the top 3 and create detailed outlines"
+"Draft the full article from outline #2"
+"Review the draft — flag weak sections and generic language"
+"Rewrite the introduction with a stronger hook"
+```
+
+## Tips
+
+- Start broad with angles, then narrow ruthlessly based on scores
+- The scoring step is where most value comes from — be honest
+- Keep drafts in separate version files so you can compare
+- Use the revision step to cut, not add — most drafts are too long

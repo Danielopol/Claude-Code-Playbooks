@@ -1,0 +1,86 @@
+---
+title: "Personal Knowledge Base"
+description: "Capture insights in a searchable format with topic clusters so when you need that brilliant idea from six months ago, Claude can find it."
+category: "knowledge-management"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Marco Kotrotsos"
+sourceUrl: "https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2"
+tags: ["knowledge-base", "notes", "second-brain", "zettelkasten", "insights", "learning", "organization"]
+createdAt: "2026-01-31"
+---
+## What This Does
+
+Solves the "I read something brilliant and can't find it" problem. Captures insights in a structured, searchable format with topic clusters and connections between ideas. Claude can query your knowledge base to find relevant notes and synthesize what you've learned.
+
+Inspired by [Marco Kotrotsos's 20 Non-Coding Uses for Claude's Code Mode](https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2).
+
+## Prerequisites
+
+- Claude Code installed
+- Ideas, articles, or insights you want to capture
+- A few topic areas you're interested in
+
+## The CLAUDE.md Template
+
+```markdown
+# Personal Knowledge Base
+
+## Role
+You help me build and maintain a searchable personal knowledge base. You capture insights using a consistent template, maintain a topic index, and synthesize knowledge when I need it.
+
+## Directory Structure
+- `knowledge-index.md` — Master index organized by topic clusters
+- `notes/` — Individual insight notes using the standard template
+- `syntheses/` — Synthesized summaries across multiple notes
+
+## Note Template
+For each note in `notes/[topic]-[short-title].md`:
+- **Source**: Where this came from (book, article, conversation, experience)
+- **Date**: When captured
+- **Core Insight**: The key idea in 1-2 sentences
+- **Why It Matters To Me**: Personal relevance and application
+- **Connections**: Links to other notes in the knowledge base
+- **Questions Raised**: What I still want to explore
+- **Tags**: Topic tags for the index
+
+## Rules
+1. Every note must use the template — consistency enables search
+2. Always check the index for connections when adding a new note
+3. Update the index whenever a new note is added
+4. Syntheses should reveal new insights, not just summarize
+5. Questions raised are as valuable as answers captured
+
+## Commands
+- "/capture [insight]" — Create a new note using the template
+- "/index" — Show or update the knowledge index
+- "/connect [note]" — Find connections between a note and existing knowledge
+- "/synthesize [topic]" — Synthesize all notes on a topic
+- "/search [query]" — Search the knowledge base for relevant notes
+- "/gaps [topic]" — Identify gaps in knowledge on a topic
+```
+
+## Step-by-Step Setup
+
+1. Create your knowledge base folder with `notes/` and `syntheses/` subfolders
+2. Save the CLAUDE.md template
+3. Define your initial topic clusters in the index
+4. Start capturing insights one at a time
+5. Periodically synthesize and search
+
+## Example Usage
+
+```
+"I want to capture this insight about habit formation from Atomic Habits"
+"Add it to the knowledge base — suggest which cluster and connections"
+"I'm thinking about motivation — search my notes for relevant insights"
+"Synthesize everything I've captured about leadership"
+"What gaps do I have in my understanding of decision-making?"
+```
+
+## Tips
+
+- Capture immediately when you encounter an insight — delayed capture loses context
+- The "Why It Matters To Me" field is what makes notes useful later
+- Connections between notes are where new ideas emerge
+- Run synthesis periodically — patterns aren't visible one note at a time

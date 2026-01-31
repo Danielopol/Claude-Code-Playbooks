@@ -1,0 +1,172 @@
+---
+title: "Bulk Document Synthesizer"
+description: "Convert large collections of PDFs and documents into markdown, analyze them against a relevance matrix, and synthesize findings into a cohesive narrative report with citations."
+category: "research-writing"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://www.reddit.com/r/ClaudeAI/comments/1py5icg/whats_your_best_claude_code_noncoding_use_case/"
+tags: ["pdf", "documents", "synthesis", "reports", "research", "analysis", "citations", "bulk-processing"]
+createdAt: "2026-01-30"
+---
+
+## What This Does
+
+This playbook processes large collections of documents (PDFs, Word files, text files) into a synthesized report with proper citations. It converts documents to markdown, generates per-document summaries scored against a relevance matrix, then synthesizes everything into a cohesive narrative. Inspired by a Reddit user who processed 51 policy documents into a coherent 8-page vision document with footnotes — a task that would have taken weeks by hand — in 2-3 hours.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- Documents to analyze (PDFs, DOCX, or text files)
+- A clear synthesis goal or research question
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your document synthesis project folder:
+
+```markdown
+# Document Synthesizer
+
+## Goal
+Process a collection of documents into a synthesized report. Convert source documents to markdown, analyze each against a relevance framework, and produce a final synthesis with citations that trace every claim back to its source.
+
+## Directory Structure
+- `source/` — Original documents (PDF, DOCX, TXT)
+- `markdown/` — Converted plain-text versions of each document
+- `summaries/` — Per-document summary and relevance analysis
+- `framework/` — Relevance matrix and synthesis criteria
+- `output/` — Final synthesized report(s)
+
+## Processing Pipeline
+
+### Phase 1: Convert
+Convert all documents in `source/` to markdown in `markdown/`.
+- Preserve structure (headings, lists, tables)
+- Name files: `01-original-filename.md`, `02-original-filename.md` (numbered)
+- Log any conversion issues to `output/conversion-log.md`
+
+### Phase 2: Analyze
+For each converted document, generate a summary in `summaries/`:
+- 2-3 paragraph summary of key content
+- Relevance score (1-5) against each criterion in the framework
+- Key quotes or data points worth citing
+- Cross-references to other documents covering similar topics
+
+### Phase 3: Synthesize
+Produce the final report in `output/`:
+- Cohesive narrative that ties all documents together
+- Organized by theme, not by source document
+- Every factual claim includes a footnote citing the source document
+- Executive summary at the top
+- Appendix with full document list and relevance scores
+
+## Relevance Framework Format (framework/criteria.md)
+```
+| Criterion | Weight | Description |
+|-----------|--------|-------------|
+| Strategic alignment | High | Does it support the stated goals? |
+| Data quality | Medium | Are claims backed by evidence? |
+| Recency | Medium | How current is the information? |
+| Actionability | High | Does it suggest concrete next steps? |
+```
+
+## Rules
+1. Every claim in the synthesis must cite a source document by number
+2. Use footnotes in the format: [^1], [^2], etc. with references at the bottom
+3. Do not invent information — only synthesize what's in the documents
+4. Flag contradictions between documents explicitly
+5. Process documents in batches of 5-10 to manage context
+6. The final report should be self-contained — readable without the source docs
+
+## Commands
+- "/convert" — Run Phase 1: convert all source documents to markdown
+- "/analyze" — Run Phase 2: generate summaries and relevance scores
+- "/synthesize" — Run Phase 3: produce the final report
+- "/status" — Show processing progress across all phases
+- "/search [query]" — Search across all converted documents for a term
+- "/contradictions" — List all identified contradictions between documents
+```
+
+## Step-by-Step Setup
+
+### Step 1: Create the project structure
+
+```bash
+mkdir -p ~/doc-synthesis/{source,markdown,summaries,framework,output}
+cd ~/doc-synthesis
+```
+
+### Step 2: Add your source documents
+
+Copy all your PDFs, Word docs, or text files into the `source/` folder.
+
+### Step 3: Define your relevance framework
+
+Create `framework/criteria.md` tailored to your synthesis goal:
+
+```
+# Relevance Framework
+
+## Synthesis Goal
+Create a unified strategic vision from departmental policy documents.
+
+## Criteria
+| Criterion | Weight | Description |
+|-----------|--------|-------------|
+| Strategic alignment | High | Supports stated organizational goals |
+| Evidence quality | Medium | Claims backed by data or case studies |
+| Implementation feasibility | High | Practical and actionable recommendations |
+| Stakeholder impact | Medium | Affects key stakeholder groups |
+| Recency | Low | Published within last 3 years |
+```
+
+### Step 4: Save CLAUDE.md and start processing
+
+```bash
+cd ~/doc-synthesis
+claude
+```
+
+Try: "/convert" to start Phase 1.
+
+## Example Usage
+
+**Process a collection of policy documents:**
+> "/convert — Convert all 30 PDFs in the source folder to markdown. Number them sequentially and log any conversion issues."
+
+**Analyze against your framework:**
+> "/analyze — Generate a summary and relevance score for each document. Score against the criteria in framework/criteria.md."
+
+**Produce the final synthesis:**
+> "/synthesize — Write an 8-page synthesis report organized by theme. Include footnotes for every claim, an executive summary, and an appendix with the full document list."
+
+**Search for specific topics:**
+> "/search budget allocation — Show me every mention of budget allocation across all documents with context."
+
+**Find contradictions:**
+> "/contradictions — Compare documents on overlapping topics and flag any conflicting claims or recommendations."
+
+**Export to Word:**
+> "Convert the final synthesis report to a Word document with working hyperlinks in the footnotes."
+
+## Tips
+
+- **Batch processing**: For large collections (50+ documents), process in batches of 5-10 to avoid context limits. Claude can track where it left off.
+- **Design the approach first**: The Reddit user who processed 51 documents spent most of their time designing the approach and writing prompts. The actual processing was mostly waiting and spot-checking.
+- **Relevance matrix from context**: If your documents relate to a specific initiative, have Claude distill the relevance criteria from meeting minutes, mission statements, or project briefs.
+- **Footnotes are essential**: The synthesis is only useful if every claim can be traced back to a source. Insist on footnotes with document numbers.
+- **Iterative refinement**: Run the synthesis once, review the output, then ask Claude to improve specific sections. The first pass gives you structure; subsequent passes add polish.
+
+## Troubleshooting
+
+**Problem**: PDF conversion loses formatting or content
+
+**Solution**: Some PDFs (especially scanned documents) may not convert well. For scanned PDFs, you may need OCR preprocessing. For well-structured PDFs, Claude can usually extract text directly.
+
+**Problem**: The synthesis is too long or unfocused
+
+**Solution**: Tighten your relevance framework. Add a word count target to the synthesis prompt: "Write a 3,000-word synthesis" rather than leaving it open-ended.
+
+**Problem**: Context window is too small for all documents
+
+**Solution**: The pipeline is designed for batch processing. The summaries act as compressed representations. In Phase 3, Claude reads the summaries (not full documents) to write the synthesis, keeping context manageable.

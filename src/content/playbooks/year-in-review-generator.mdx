@@ -1,0 +1,177 @@
+---
+title: "Year-in-Review Generator"
+description: "Automatically compile your yearly accomplishments from Jira tickets, git history, emails, and documents into a polished summary for performance reviews or personal reflection."
+category: "productivity"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://www.reddit.com/r/ClaudeAI/comments/1py5icg/whats_your_best_claude_code_noncoding_use_case/"
+tags: ["year-review", "accomplishments", "performance-review", "jira", "git", "career", "reflection"]
+createdAt: "2026-01-30"
+---
+
+## What This Does
+
+This playbook generates a comprehensive year-in-review document by pulling data from your git history, project management tools (Jira, Linear, GitHub Issues), and any local notes or documents. It compiles your accomplishments into a polished narrative perfect for performance reviews, personal reflection, or sharing with your manager. Inspired by a Reddit user who used Claude Code with the Jira MCP server and git history to create their "year wrapped" and saved it to Obsidian.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- Git repositories you contributed to
+- Optional: Jira/Linear MCP server or exported data
+- Optional: Local notes, meeting docs, or email summaries
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your review project folder:
+
+```markdown
+# Year-in-Review Generator
+
+## Goal
+Compile my professional accomplishments from the past year into a structured, polished document. Pull data from git history, project management tools, and local notes.
+
+## Data Sources
+- `repos/` — List of git repositories to scan (paths or clone URLs)
+- `exports/` — Exported data from Jira, Linear, or other tools (CSV/JSON)
+- `notes/` — Meeting notes, project summaries, and other context
+- `output/` — Generated review documents
+
+## Review Document Structure
+
+### 1. Executive Summary
+- 2-3 sentence overview of the year's key accomplishments
+- Quantified impact where possible (features shipped, bugs fixed, users impacted)
+
+### 2. Key Projects
+For each major project:
+- **Project name and goal**
+- **My role and contributions**
+- **Key outcomes and impact**
+- **Technologies and skills used**
+- **Challenges overcome**
+
+### 3. By the Numbers
+- Commits made across all repositories
+- PRs opened and reviewed
+- Issues/tickets resolved
+- Lines of code added/removed (if meaningful)
+- Projects contributed to
+
+### 4. Skills & Growth
+- New technologies learned
+- Leadership or mentorship activities
+- Process improvements introduced
+- Certifications or courses completed
+
+### 5. Collaboration & Impact
+- Cross-team projects
+- Code reviews and mentorship
+- Documentation and knowledge sharing
+- Team wins I contributed to
+
+### 6. Looking Forward
+- Goals for next year
+- Areas for growth
+- Projects I want to tackle
+
+## Rules
+1. Focus on impact, not just activity (features shipped > commits made)
+2. Use specific numbers and dates where available
+3. Group accomplishments by project or theme, not chronologically
+4. Highlight leadership and collaboration, not just individual work
+5. Write in first person, professional tone
+6. Include specific examples and outcomes for each accomplishment
+
+## Commands
+- "/scan repos" — Analyze git history across listed repositories
+- "/scan exports" — Process Jira/Linear export data
+- "/generate" — Create the full year-in-review document
+- "/highlight [project]" — Deep dive into a specific project's contributions
+- "/stats" — Generate the "by the numbers" section
+- "/draft review" — Create a performance review self-assessment draft
+```
+
+## Step-by-Step Setup
+
+### Step 1: Create the project structure
+
+```bash
+mkdir -p ~/year-review/{repos,exports,notes,output}
+cd ~/year-review
+```
+
+### Step 2: List your repositories
+
+Create `repos/repositories.md`:
+```
+# Repositories to Scan
+
+- /path/to/work/repo-1
+- /path/to/work/repo-2
+- /path/to/personal/side-project
+
+Git author email: your.email@company.com
+Date range: 2025-01-01 to 2025-12-31
+```
+
+### Step 3: Export project management data (optional)
+
+If you use Jira, export your completed issues as CSV. For Linear, export from Settings → Data Export. Place files in `exports/`.
+
+Alternatively, if you have the Jira MCP server installed, Claude can query it directly.
+
+### Step 4: Add any notes or context
+
+Place meeting notes, project briefs, or personal notes in `notes/`. The more context Claude has, the richer the review.
+
+### Step 5: Save CLAUDE.md and generate
+
+```bash
+cd ~/year-review
+claude
+```
+
+Try: "/scan repos" then "/generate"
+
+## Example Usage
+
+**Scan your git contributions:**
+> "/scan repos — Analyze my git history across all listed repositories for 2025. Show me commits by month, PRs, and key files touched."
+
+**Process Jira data:**
+> "/scan exports — Read the Jira CSV export and categorize my completed tickets by project, priority, and type (feature, bug, task)."
+
+**Generate the full review:**
+> "/generate — Create a comprehensive year-in-review document. Use data from git history, Jira exports, and my notes folder. Focus on impact and outcomes."
+
+**Deep dive into a project:**
+> "/highlight API Migration — Pull all my contributions to the API migration project. Include commits, PRs, issues resolved, and any notes about it."
+
+**Quick stats:**
+> "/stats — Generate a by-the-numbers summary: total commits, PRs, issues closed, repos contributed to, and any other quantifiable metrics."
+
+**Performance review draft:**
+> "/draft review — Using the year-in-review data, draft a performance review self-assessment. Organize by company competencies: technical excellence, collaboration, leadership, and impact."
+
+## Tips
+
+- **Do this quarterly, not just annually**: Run a mini-review each quarter so you have fresh accomplishments documented. Annual reviews are easier when you've been tracking all year.
+- **Git history tells a story**: Claude can identify your biggest contributions, busiest periods, and collaboration patterns from git logs alone.
+- **Quantify impact**: "Shipped feature X" is good. "Shipped feature X, reducing page load time by 40% for 10K daily users" is much better. Add impact context in your notes folder.
+- **Save to Obsidian**: The generated document works perfectly as a markdown note in Obsidian, where you can link it to project notes and meeting summaries.
+- **Include soft contributions**: Code reviews, mentorship, documentation, and process improvements are often the most valued accomplishments. Add notes about these.
+
+## Troubleshooting
+
+**Problem**: Git log shows too many commits to process
+
+**Solution**: Filter by author email and date range. Claude can run `git log --author="your@email.com" --since="2025-01-01" --until="2025-12-31" --oneline` to get a focused list.
+
+**Problem**: Jira export is too large
+
+**Solution**: Filter the CSV to only your assigned issues before importing. Most Jira exports include filters — use "assignee = currentUser() AND resolved >= 2025-01-01".
+
+**Problem**: Review feels like a list of tasks, not accomplishments
+
+**Solution**: For each item, ask Claude to rewrite it focusing on impact: "What problem did this solve? Who benefited? What was the outcome?" Transform activity into achievement.

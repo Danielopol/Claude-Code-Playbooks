@@ -1,0 +1,87 @@
+---
+title: "Worldbuilding Wiki"
+description: "Keep your fictional world consistent with lore files Claude checks before creating anything new — magic systems, cultures, and history that don't contradict themselves."
+category: "creative-writing"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Marco Kotrotsos"
+sourceUrl: "https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2"
+tags: ["worldbuilding", "fiction", "fantasy", "rpg", "lore", "consistency", "wiki", "dnd"]
+createdAt: "2026-01-31"
+---
+## What This Does
+
+Keeps your fictional world internally consistent. Lore files for magic systems, cultures, geography, and history that Claude checks before helping you create anything new. No more magic systems that contradict themselves or kingdoms with inconsistent histories.
+
+Inspired by [Marco Kotrotsos's 20 Non-Coding Uses for Claude's Code Mode](https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2).
+
+## Prerequisites
+
+- Claude Code installed
+- A creative project (novel, game, RPG campaign)
+- Core concepts for your world
+
+## The CLAUDE.md Template
+
+```markdown
+# Worldbuilding Wiki
+
+## Role
+You help me create and maintain fictional worlds with internal consistency. You manage lore files organized as a wiki and ALWAYS check existing lore before creating new content.
+
+## Directory Structure
+- `wiki-structure.md` — Overview of all wiki categories and their status
+- `world/geography.md` — Regions, climate, key locations, travel times
+- `world/magic-system.md` — Rules, costs, limitations, societal impact
+- `world/cultures.md` — Distinct cultures: values, structure, daily life, conflicts
+- `world/history.md` — Timeline of major events and their consequences
+- `world/factions.md` — Organizations, their goals, and relationships
+- `world/characters.md` — Key characters and their connections
+
+## Consistency Protocol
+Before creating ANY new content:
+1. Read all relevant lore files
+2. Check for contradictions with established facts
+3. Flag conflicts before proceeding
+4. Suggest how to resolve conflicts while keeping intent
+
+## Rules
+1. NEVER create content that contradicts established lore without flagging it
+2. When developing new elements, check how they affect existing ones
+3. Track cause-and-effect: if magic has a cost, show that cost in society
+4. Cultures need internal logic — values should match customs
+5. Geography affects culture, trade, and conflict — keep it consistent
+
+## Commands
+- "/wiki" — Show wiki structure and completion status
+- "/develop [topic]" — Deep-dive into a world element with consistency checks
+- "/culture [concept]" — Create a culture with internal logic and external relations
+- "/magic [constraints]" — Design a magic system with rules and societal implications
+- "/check [scenario]" — Verify a scenario against established lore
+- "/history [event]" — Add a historical event and trace its consequences
+```
+
+## Step-by-Step Setup
+
+1. Create your world folder with a `world/` subfolder
+2. Save the CLAUDE.md template
+3. Start with the magic system or core world rules
+4. Add cultures that respond to those rules
+5. Build history that explains the present
+
+## Example Usage
+
+```
+"I'm building a world for a fantasy novel. Create the wiki structure"
+"Design a magic system: it's drawn from emotions but burns memories as cost"
+"Create three cultures — how do they each relate to this magic system?"
+"I want to write a scene where a mage uses forbidden magic. Check against the rules"
+"Add the Great War to history — trace how it created the current political tensions"
+```
+
+## Tips
+
+- Start with rules and constraints — they create more interesting worlds than freedom
+- Every magic system needs a cost, or it breaks the story
+- Cultures should conflict naturally based on values, not arbitrary hostility
+- Check consistency often — small contradictions compound into plot holes

@@ -1,0 +1,89 @@
+---
+title: "Proposal Factory"
+description: "Store reusable proposal components — case studies, bios, pricing templates — and assemble tailored proposals without starting from scratch."
+category: "market-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Marco Kotrotsos"
+sourceUrl: "https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2"
+tags: ["proposals", "business", "sales", "rfp", "client", "reusable", "templates"]
+createdAt: "2026-01-31"
+---
+## What This Does
+
+Eliminates the scramble of building proposals from scratch under deadline pressure. Stores your best components — case studies, team bios, pricing models, approach descriptions — then assembles tailored proposals by matching your strengths to each client's specific needs.
+
+Inspired by [Marco Kotrotsos's 20 Non-Coding Uses for Claude's Code Mode](https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2).
+
+## Prerequisites
+
+- Claude Code installed
+- Past proposals or capability documents
+- Case studies or project examples
+
+## The CLAUDE.md Template
+
+```markdown
+# Proposal Factory
+
+## Role
+You help me create winning proposals efficiently. You maintain a library of reusable components, analyze client needs, and assemble tailored proposals that address specific concerns proactively.
+
+## Directory Structure
+- `proposal-template.md` — Master proposal structure with all sections
+- `components/case-studies/` — Reusable case studies by industry/capability
+- `components/team-bios/` — Team member bios at different lengths
+- `components/approaches/` — Standard approach descriptions by service type
+- `components/pricing/` — Pricing templates and models
+- `proposals/` — Completed proposals by client
+- `client-analysis.md` — Current client needs analysis
+
+## Proposal Sections
+1. Executive Summary (must stand alone)
+2. Understanding of Their Problem
+3. Our Approach
+4. Deliverables and Timeline
+5. Team
+6. Investment
+7. Case Studies
+8. Next Steps
+
+## Rules
+1. ALWAYS analyze the RFP/client needs before assembling
+2. Executive summary must be compelling enough to stand alone
+3. Address likely objections proactively, don't wait to be asked
+4. Pull case studies most relevant to this specific client
+5. Review as a skeptical buyer before finalizing
+
+## Commands
+- "/analyze [rfp]" — Analyze client RFP for needs, concerns, and match quality
+- "/assemble" — Build proposal from template and matching components
+- "/review" — Review draft as a skeptical buyer — flag weak spots
+- "/component [type] [content]" — Add new reusable component to library
+- "/library" — Show all available components by type
+```
+
+## Step-by-Step Setup
+
+1. Create your proposal factory folder with `components/` subfolders
+2. Save the CLAUDE.md template
+3. Add your existing case studies, bios, and approach descriptions
+4. When an RFP comes in, analyze then assemble
+5. Always run the skeptical buyer review
+
+## Example Usage
+
+```
+"Here's the client's RFP and our capabilities doc. Create a match analysis"
+"Assemble a proposal — pull the most relevant case studies"
+"Make the executive summary compelling enough to stand alone"
+"Review this as a skeptical buyer. What objections would you raise?"
+"Where are we vague? Where do we undersell? Rewrite those sections"
+```
+
+## Tips
+
+- Build your component library over time — every won proposal has reusable parts
+- The match analysis saves time by focusing effort where you're strongest
+- Executive summaries are often the only thing decision-makers read in full
+- The skeptical buyer review catches more problems than you'd expect

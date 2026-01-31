@@ -1,10 +1,12 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
 import { categories } from '@/lib/categories';
 import { getAllPlaybooks } from '@/lib/playbooks';
 import { PlaybookCard } from '@/components/PlaybookCard';
 import { HomePagination } from '@/components/HomePagination';
 import { HomeSearch } from '@/components/HomeSearch';
+import { CategoryPills } from '@/components/CategoryPills';
 import { ContributePlaybookModal } from '@/components/ContributePlaybookModal';
 import {
   Terminal,
@@ -69,6 +71,12 @@ export default async function HomePage({ searchParams }: HomePageProps) {
 
   const allPlaybooks = getAllPlaybooks();
   const totalPlaybooks = allPlaybooks.length;
+
+  // Count playbooks per category
+  const categoryCounts: Record<string, number> = {};
+  for (const p of allPlaybooks) {
+    categoryCounts[p.category] = (categoryCounts[p.category] || 0) + 1;
+  }
   const totalPages = Math.ceil(totalPlaybooks / ITEMS_PER_PAGE);
   const currentPage = Math.min(Math.max(1, page), totalPages || 1);
 
@@ -111,7 +119,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
               Docs
             </Link>
             <Link
-              href="https://github.com"
+              href="https://github.com/Danielopol/Claude-Code-Playbooks"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#30363d] bg-[#161b22] text-sm text-muted-foreground hover:text-foreground hover:border-[#22d3ee] transition-all"
@@ -166,32 +174,15 @@ export default async function HomePage({ searchParams }: HomePageProps) {
 
       {/* Category Pills */}
       <section className="container pb-8">
-        <div className="flex items-center justify-center gap-2 flex-wrap">
-          <span className="text-sm text-muted-foreground mr-2">categories:</span>
-          {categories.slice(0, 6).map((cat) => (
-            <Link
-              key={cat.id}
-              href={`/playbooks?category=${cat.id}`}
-              className="text-sm px-3 py-1 rounded-full bg-[#161b22] border border-[#30363d] text-muted-foreground hover:border-[#22d3ee] hover:text-[#22d3ee] transition-colors"
-            >
-              {cat.name}
-            </Link>
-          ))}
-          <Link
-            href="/playbooks"
-            className="text-sm px-3 py-1 rounded-full bg-[#22d3ee]/10 border border-[#22d3ee]/30 text-[#22d3ee] hover:bg-[#22d3ee]/20 transition-colors"
-          >
-            View all →
-          </Link>
-        </div>
+        <CategoryPills categories={categories} counts={categoryCounts} />
       </section>
 
       {/* Playbooks Grid */}
       <section className="container pb-16">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-col items-start gap-4 mb-6">
+          <img src="/logo.png" alt="Claude Code Playbooks" className="h-10" />
           <h2 className="text-lg font-semibold flex items-center gap-2">
-            <span className="text-[#22d3ee]">$</span>
-            <span>ls playbooks/</span>
+            <span>Playbooks</span>
             <span className="text-muted-foreground text-sm font-normal">({totalPlaybooks} total)</span>
           </h2>
         </div>

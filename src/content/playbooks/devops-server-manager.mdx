@@ -1,0 +1,156 @@
+---
+title: "DevOps Server Manager"
+description: "Manage servers, Docker containers, VMs, and network infrastructure through Claude Code via SSH. Keep your entire infrastructure documented in markdown files."
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://www.reddit.com/r/ClaudeAI/comments/1py5icg/whats_your_best_claude_code_noncoding_use_case/"
+tags: ["devops", "servers", "docker", "ssh", "infrastructure", "homelab", "proxmox", "networking"]
+createdAt: "2026-01-30"
+---
+
+## What This Does
+
+This playbook turns Claude Code into a DevOps assistant that can SSH into your servers, manage Docker containers, spin up VMs, debug network misconfigurations, and maintain your entire infrastructure as markdown documentation. Inspired by users managing 25+ servers entirely through Claude Code and `.md` files.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- SSH key-based access to your servers (password auth works but keys are recommended)
+- A dedicated project folder with no source code or `CLAUDE.md` files (this helps avoid SSH refusal issues)
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your infrastructure project folder:
+
+```markdown
+# Infrastructure Manager
+
+## Goal
+Manage and maintain server infrastructure via SSH. Document all configurations, changes, and procedures in markdown files.
+
+## Server Inventory
+Maintain a `servers/` directory with one markdown file per server:
+- `servers/{hostname}.md` — OS, IP, services, access details, notes
+- `servers/network-topology.md` — Network diagram and routing info
+- `docker/` — Docker compose files and container documentation
+- `templates/` — VM templates and provisioning scripts
+- `runbooks/` — Step-by-step procedures for common operations
+
+## Rules
+1. Always document changes before and after making them
+2. Before modifying any server, read its corresponding .md file for context
+3. When SSH-ing into servers, use key-based authentication
+4. After completing any infrastructure change, update the relevant .md documentation
+5. Never store secrets or passwords in markdown files — reference them by vault/env name only
+6. For destructive operations, describe what will happen and ask for confirmation first
+7. When debugging, log findings to `runbooks/troubleshooting-log.md`
+
+## Common Tasks
+- "Check status of all Docker containers on [server]"
+- "Set up a new Docker service for [app] on [server]"
+- "Spin up a new VM from the [template] on Proxmox"
+- "Debug why [service] isn't responding on [server]"
+- "Update the server inventory documentation"
+- "Run a security audit on [server]"
+- "Set up monitoring for [service]"
+- "Show me the network topology"
+
+## SSH Access Pattern
+Connect to servers using: ssh user@hostname
+After connecting, run commands directly. If a server needs specific context, read its .md file first.
+
+## Documentation Format
+When documenting a server, use this structure:
+### [Hostname]
+- **OS**: Ubuntu 24.04 / Debian 12 / etc.
+- **IP**: x.x.x.x
+- **Role**: Production DB / Web Server / etc.
+- **Services**: nginx, postgres, redis, etc.
+- **Access**: ssh user@hostname
+- **Notes**: Any special configuration or quirks
+```
+
+## Step-by-Step Setup
+
+### Step 1: Create a dedicated infrastructure folder
+
+```bash
+mkdir ~/infrastructure
+cd ~/infrastructure
+```
+
+Important: Keep this folder free of source code projects and existing `CLAUDE.md` files. A clean folder with only `.md` files helps Claude Code work with SSH without refusal issues.
+
+### Step 2: Create the folder structure
+
+```bash
+mkdir -p servers docker templates runbooks
+```
+
+### Step 3: Document your first server
+
+Create `servers/my-server.md` with your server's details:
+
+```
+# my-server
+
+- **OS**: Ubuntu 24.04
+- **IP**: 192.168.1.100
+- **Role**: Docker host
+- **Services**: Docker, Traefik, Portainer
+- **Access**: ssh admin@192.168.1.100
+```
+
+### Step 4: Save the CLAUDE.md template
+
+Copy the template above into `CLAUDE.md` in the infrastructure folder.
+
+### Step 5: Launch Claude Code
+
+```bash
+cd ~/infrastructure
+claude
+```
+
+Then try: "SSH into my-server and check what Docker containers are running"
+
+## Example Usage
+
+**Check all services across servers:**
+> "Connect to each server in my inventory and report which services are running and their status"
+
+**Set up a new Docker service:**
+> "Set up a Traefik reverse proxy on my-server using Docker Compose, then document the setup"
+
+**Spin up a VM on Proxmox:**
+> "SSH into my Proxmox server and create a new Ubuntu VM from the base template, then document it in the servers folder"
+
+**Debug a networking issue:**
+> "The web app on server-2 can't reach the database on server-1. SSH into both and help me figure out why"
+
+**Run a security audit:**
+> "SSH into my-server and check for open ports, outdated packages, and any security concerns. Write findings to runbooks/security-audit.md"
+
+## Tips
+
+- **Start with documentation**: Before having Claude manage anything, document your existing infrastructure in `.md` files. Claude works much better with context.
+- **Use Proxmox templates**: If using Proxmox, maintain VM templates with QEMU guest agent or cloud-init pre-installed so Claude can access VMs after creation.
+- **Dangerous mode**: Some users report needing to enable dangerous mode in settings for SSH to work consistently. The setting just enables the option — you still have to explicitly enter the mode.
+- **No MCP needed**: Claude Code can SSH directly via bash — no MCP server required for basic server management.
+- **Incremental trust**: Start with read-only commands (status checks, log reading) before moving to write operations (service restarts, config changes).
+
+## Troubleshooting
+
+**Problem**: Claude refuses to SSH, saying it's "unsafe" or "cannot assist"
+
+**Solution**: Make sure your project folder contains only `.md` files — no source code, no existing `CLAUDE.md` with coding instructions. Start a fresh project dedicated to infrastructure management.
+
+**Problem**: SSH connection times out
+
+**Solution**: Verify you can SSH manually first. Ensure your SSH keys are in `~/.ssh/` and the server is reachable. Claude uses the same SSH config as your terminal.
+
+**Problem**: Claude loses context about server configurations
+
+**Solution**: Always point Claude to the relevant server `.md` file before giving commands. The documentation acts as persistent memory across sessions.

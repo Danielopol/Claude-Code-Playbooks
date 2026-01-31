@@ -1,0 +1,2005 @@
+What's your best Claude Code non-coding use case?
+Question
+I see alot of people using Claude Code to set up their personal OS with simple md text files and sometimes Obsidian. But I'm pretty skeptical of using Claude Code and these tools to do things like manage your to do list (I mean you could just write it on the whiteboard lol).
+
+What's your favorite non-coding use case for Claude Code? Is doing this set up actually worth it?
+
+
+Upvote
+118
+
+Downvote
+
+132
+Go to comments
+
+
+Share
+u/KernoDev avatar
+KernoDev
+•
+Promoted
+
+Shift Testing Left. 10x AI code gen
+Sign Up
+kerno.io
+Thumbnail image: Shift Testing Left. 10x AI code gen
+Join the conversation
+Sort by:
+
+Best
+
+Search Comments
+Expand comment search
+Comments Section
+u/ClaudeAI-mod-bot avatar
+ClaudeAI-mod-bot
+MOD
+•
+1mo ago
+•
+Stickied comment
+•
+Edited 1mo ago
+Mod
+Profile Badge for the Achievement Top 1% Commenter Top 1% Commenter
+TL;DR generated automatically after 100 comments.
+
+Sorry OP, but the consensus in this thread is a resounding yes, it's absolutely worth it. The community is all-in on using Claude Code for a huge range of non-coding tasks.
+
+The main advantage over the regular web UI is its direct access to your local filesystem and deep customization. This lets you:
+
+Build a persistent, long-term knowledge base using simple markdown (.md) files that Claude can read, write, and organize.
+
+Create custom "agents" or "personalities" using Output Styles for highly specific tasks (e.g., a financial planner, a media server manager, a writing editor).
+
+Have Claude reason across many local files at once without needing to constantly upload them.
+
+Popular non-coding uses are all over the map. The top-voted use is "meta education"—creating a personalized, on-demand library of AI-generated editorials and summaries on topics you're interested in. Others are using it for complex financial planning, managing homelabs and server DevOps, and even building the exact "personal life assistant" you were skeptical about, using markdown files to track life patterns and maintain accountability.
+
+That said, a few users questioned why you wouldn't just use the regular Claude interface for simpler tasks, and one person raised a valid point: watch out for fatigue from the generic "AI writing style" if you're generating a ton of content for yourself.
+
+
+Upvote
+Vote
+Downvote
+
+Reply
+
+Award
+
+Share
+
+ShelZuuz
+•
+1mo ago
+Devops. It is great in setting up servers, docker images, monitors, spinning up VMs, figuring out obscure router misconfigurations. I stopped using pretty much any GUI based tool like Portainer and my entire network config is now in .md files. I can rebuild my 25 servers within in hour if I had to. This would have taken weeks before.
+
+
+
+Upvote
+59
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+mattob2
+•
+1mo ago
+If I need to create 20 VMs in Xen Orchestra, either with identical or different specifications, is that possible? Learning as I go!!
+
+
+Upvote
+3
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+wolverin0
+•
+1mo ago
+This is exactly what I do. Mikrotik router securizartion, optimization, automátion, monitoring, manage Oracle servers, monitoring vercel build. Debugging Windows problems, scrapping competitors apps with specifics, so much can be done
+
+
+Upvote
+4
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/Ellipsoider avatar
+Ellipsoider
+•
+1mo ago
+What do you have 25 servers for?
+
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+ShelZuuz
+•
+1mo ago
+Got tired of paying 5 figures per month to AWS, so now I rent a handful of servers at bare metal colos throughout the world and I have an additional 4 racks of hardware split across 2 office locations near me that emulates the AWS Multi-AZ part.
+
+Works out cheaper... well works out the same, but now I can build out from here without additional expenses.
+
+
+Upvote
+4
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+
+2 more replies
+u/neekey2 avatar
+neekey2
+•
+1mo ago
+Wait, shouldn’t you use tools like terraform?
+
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+thelamesquare
+•
+1mo ago
+Yeah I also feel like there is something I'm missing here. I imagine claude is good at writing IaC so why is everything in md files?
+
+
+Upvote
+3
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+
+1 more reply
+ShelZuuz
+•
+1mo ago
+Why bother trying to get a (very) buggy platform working and keeping it up to date when Claude can respond to every server as needed?
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+
+1 more reply
+CodeWolfy
+•
+1mo ago
+How do you get it to spin up a VM? Does it direct how to do so or do you have an MCP/command structure which it follows to run commands to spin you up one?
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+ShelZuuz
+•
+1mo ago
+It just SSH over directly to my proxmox server, no MCP. Pretty sure it can do it with the aws cli as well if I wanted an EC2 VM on AWS, but I haven’t tried.
+
+The proxmox contains various templates so it just use one of those - but strictly not even needed, it can build a new one. Most important is that the QEMU tools need to be part of the image or cloudinit so it can access the VM afterwards to continue config.
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+
+6 more replies
+Best_Recover3367
+•
+1mo ago
+I clone the lib/software source code locally for Claude Code to read. Sometimes I tell it to teach me about like how distributed systems like Rabbimq, YugabyteDB, or Cassandra work underneath. Sometimes when Claude can't figure out the answer and keep fumbling in the dark, I tell it to read the src code directly => instant enlightenment.
+
+
+Upvote
+15
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/UndetectableBrowser avatar
+u/UndetectableBrowser
+•
+Promoted
+
+The "Missing Link" in your growth stack: Unlimited browser environments for mass automation. Tired of SaaS limits? Undetectable gives you the infrastructure to run LinkedIn, FB, and Google automation at scale. Unlimited local profiles, real fingerprints, and Playwright/Puppeteer support.
+Learn More
+undetectable.io
+Thumbnail image: The "Missing Link" in your growth stack: Unlimited browser environments for mass automation. Tired of SaaS limits? Undetectable gives you the infrastructure to run LinkedIn, FB, and Google automation at scale. Unlimited local profiles, real fingerprints, and Playwright/Puppeteer support.
+Sammyc64
+•
+1mo ago
+I do this all the time! By setting up Output Styles, you can “modify” Claude Code’s system prompt to not generate code and instead do something completely different (think “Claude Anything”!  keep-coding-instructions: false).
+
+I have several “personalities” for Claude, with special agents, skills and commands per project too. This way, if I open one project, the default output style changes (per project output style setting for these). I have one for managing my media server (“Media Server Manager”), that can use skills to use APIs (less token bloat than using MCPs for the same actions!), agents for specific tasks I do with the server when they need their own context windows, and commands for tasks I do regularly. I have another for my writing, another for my Obsidian notes, and then of course some for code too! So many opportunities!! Honestly, using Claude Code this way feels like being able to use Claude on steroids. Since it has filesystem access, it can reason across many files at once without having to upload them and just create new markdowns with more knowledge it can pull from too.
+
+
+
+Upvote
+14
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+m1nkeh
+•
+1mo ago
+Interesting this is the first time I have seen output styles.. why is this specific to Claude code and not just Claude
+
+
+
+Upvote
+3
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/Kincar avatar
+Kincar
+•
+1mo ago
+You can use it on regular claude too
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/Thin_Beat_9072 avatar
+Thin_Beat_9072
+•
+1mo ago
+meta education. i've never read so much until i started generating my own ai generated editorials that i like to read about and find interesting in a format that i like. its my cheap asf on demand ebook library on interesting things i didn't know about. If theres a real book I like, i can ask it to extend or make a sequel for it which is kinda cool too lol idc its mostly curated to my taste and I'm the only user.
+
+this might be cause i had many private tutors growing up and most of my lessons i remember are in relational memories. who said what is more easier to remember than what is said. the tutors and I don't really solve the homework, but we always talk about the bigger picture, and through these banters, i actually learn way more than at school.
+
+tldr: learning new things in an interesting and bespoke way using concept relationship.
+
+
+
+Upvote
+44
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+-whis
+•
+1mo ago
+Genuine question - do you not get tired of the AI writing style? I generate a lot of AI documents for marketing and internal workplace use cases. That said, it makes me hate a formal emdash and I often find myself prejudice against writing that is obviously AI generated no matter the topic or level of depth.
+
+More or less just wondering if you ever feel fatigued by your "editorials" being fully AI generated; maybe the writing style doesn't matter you at all - just wondering, thanks!
+
+
+
+Upvote
+8
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/Thin_Beat_9072 avatar
+Thin_Beat_9072
+•
+1mo ago
+for me it's like a shuffle button on a radio. some songs you'll find out you like, and you can develop your taste in a way. structurally i have lots of atomic notes that can be shuffled into a persona config for interpretations. the persona configs are based on historical research so they are quite grounded and diverse. I would love it if you can explore some of what i have generated and see if the perspective makes it more natural and not AI generated: https://ruixen-fe.vercel.app/editorials to me these feel very genuine.
+
+
+
+Upvote
+13
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+Nonomomomo2
+•
+1mo ago
+These are amazing. Would you mind walking us through your workflow on how you got these? Also does it automatically assign subject tags? Incredible, thanks for sharing.
+
+
+Upvote
+4
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+Nonomomomo2
+•
+1mo ago
+So these editorials are what exactly? Responses to questions you posed? Summaries of text or topics you give it?
+
+Sorry for the basic questions. As with all things hyper personalised, it’s hard to make sense of from the outside without more context.
+
+Thanks again for sharing.
+
+
+
+Upvote
+4
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/Thin_Beat_9072 avatar
+Thin_Beat_9072
+•
+1mo ago
+•
+Edited 1mo ago
+for sure thanks for the question and interest! :D the curation process are youtube videos from various channels that i like, these are broken down into atomic notes with tags assigned. https://ruixen-fe.vercel.app/notes the second part of the pipeline is to find notes between different videos and channels with similar tags and try to converge them into an editorial that are constraint to the persona configs. the editorials creates new sets of tags that the persona can respond to other editorials as the next layer.
+
+I don't give it anything specific to generate, just what it can come up with the notes i curate, i then bookmark the one i like based on persona type which might maybe show a pattern i can use to refine the system with? it no longer loads well on a web browser lol but the https://ruixen-fe.vercel.app/starlit graph used to be amazing to see the structure of my library. kinda like a celestial map lol.
+
+the notes to me are kinda like a force of gravity, each time loaded in, it creates a 4d structure that bends the manifold, the result is a tangent that creates unique pattern, to me that feels like emergence. but i don't think people are ready for that yet lol 😆 side note for now.
+
+
+
+Upvote
+8
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+Nonomomomo2
+•
+1mo ago
+I’m ready for that!
+
+I spent years doing this by hand with Roam, based mostly on a modified Zettlekasten system I personalised. But it got so tedious I spent more time maintaining it than thinking with it, so it was abandoned.
+
+Friends have been rebooting similar workflows with Obsidian but I’ve been dreaming about something exactly like you describe. I send it a source article, link, PDF or quote I like and it tags it, sorts it, and automatically clusters and back links it.
+
+There’s probably a useful man in the middle step where you annotate what you find interesting about that source and why, then it includes that as meta data for the snippet or input but still does the rest on its own.
+
+Ideally I’d love a browser plugin for this too, but honestly understanding your workflow and system better would be an amazing start.
+
+Is there anywhere I can dig deeper into your approach and/or tutorials which would help me build my own?
+
+Thanks again!
+
+
+Upvote
+3
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+
+10 more replies
+Nonomomomo2
+•
+1mo ago
+Also I just reread your part about the personas. So you created these various personas for historic figures who write the editorials for you based on their character and interests.
+
+So like personal tutors basically right? Have you considered turning them into little advisors you could chat with to explore those ideas?
+
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/Thin_Beat_9072 avatar
+Thin_Beat_9072
+•
+1mo ago
+Yes! it's the librarian in way https://ruixen-fe.vercel.app/terminal
+I only have 5 programs loaded in, you can "@turing" "@curie" question and it kinda does that in away through prompting. Theres actually an overhead cost to maintain a database with rag agent but that's something i can do so the agent replying actually have full context of the notes and editorials.
+
+
+
+Upvote
+4
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+Nonomomomo2
+•
+1mo ago
+Which rag system do you use if I might ask?
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+
+1 more reply
+Putrid-Pair-6194
+•
+1mo ago
+Extremely cool. Love the look.
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+Critical-Pattern9654
+•
+1mo ago
+•
+Edited 1mo ago
+Looks like a neat project! I wonder what would happen if you had a section where you “stirred the pot” and had it randomly select two or three editorials and tried to find the common thread between them. Might generate some unique insights!
+
+Or, instead of a unified voice for each editorial, set it up as a debate between two avatars, each taking a steel man or straw man perspective and you can be the arbiter to see whose critique reigns supreme - could strengthen your critical thinking acumen.
+
+Even more interesting: have a panel / round table discussion of chosen “voices” from varying fields all weighing in on the selected piece. Analyze each argument the original author makes and hear from each person their thoughts (based on how the real life personal may respond)
+
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/Thin_Beat_9072 avatar
+Thin_Beat_9072
+•
+1mo ago
+THANK YOU! i have been experimenting with these but have no way of judging them myself. They seem to be pretty good with directions but it's hard to judge my own work.
+
+this is a meta personality reviewing editorials
+https://ruixen-fe.vercel.app/editorials/2025-12-08_ruixen_meta_pattern_recognition
+
+borges wrote this editorial
+https://ruixen-fe.vercel.app/editorials/2025-11-22_borges_labyrinth-of-recursion
+a neanderthal responded to it
+https://ruixen-fe.vercel.app/editorials/2025-12-09_neanderthal_responds_borges
+then borges responded back to the neanderthal
+https://ruixen-fe.vercel.app/editorials/2025-12-09_borges_responds_neanderthal
+
+poincare examining his 4 previous editorial
+https://ruixen-fe.vercel.app/editorials/2025-12-26_poincare_responds_reference_frames_cluster
+
+einstein responds to curie, shannon, hypatia, and zero editorials
+https://ruixen-fe.vercel.app/editorials/2025-12-26_einstein_responds_entropy_time_cluster
+
+The round table and discussions would be great! but i don't think rag or prompting will be best for that use case. ideally i would like to distill these editorials into fine tuning datasets, fine tune a model with these weights and let them do round tables or dialogues. The structure for real time reasoning I feel like requires a different engine than static editorials imo. Let me know though which one resonates best! your opinions really help me.
+
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+Critical-Pattern9654
+•
+1mo ago
+a neanderthal responded to it
+
+You mean a Redditor? 😀
+
+But my brain is too tired to wrap my head around these. The only other things I can think of right now is devising some quantifiable metric for each editorial - maybe based on criteria like originality/thoughtfulness/uniqueness/depth/closeness to original person’s ideas and opinions, etc.
+
+Also, ending each editorial with a few questions for thought, meditation or deeper research topics may be beneficial for your exploratory research!
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+
+1 more reply
+Plinian
+•
+1mo ago
+How do you use Claude code for this? I see people talking about using Claude code for writing but I don't know why you would prefer Claude Code over Claude Desktop.
+
+Is there a particular workflow that you follow?
+
+
+
+Upvote
+3
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/Thin_Beat_9072 avatar
+Thin_Beat_9072
+•
+1mo ago
+•
+Edited 1mo ago
+you can personalize it more, a static site uses markdown and yaml header which is what i would use to take notes in an ide. I started taking notes in obsidian md then when AI became more available i switched to taking notes on an ide, and then I just asked claude to teach me how to convert/compile my notes into a html website, wrap it in a nice css to personalize. the learning process was natural for me. I did start off using claude desktop but noticed the artifact it generated could be downloaded as markdown... so like it just felt very natural for me to make a website for my notebook which has markdown content and yaml header. a website is a digital notebook in a way.
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+mraza007
+•
+1mo ago
+Same I would love to hear your workflows as well when it comes to writing with Claude so it does not sound like sloppy or AI Slop
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/A_Stoic_Epicurean avatar
+A_Stoic_Epicurean
+•
+1mo ago
+Can you walk through what you mean here? How does it work? How does it differ from using Claude Desktop alone? What kind of prompting are you using? 
+
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/Thin_Beat_9072 avatar
+Thin_Beat_9072
+•
+1mo ago
+•
+Edited 1mo ago
+you can have much more flexibility and customization by building out full pipelines with claude code imo. in claude desktop, you build with prompting and using the context window on claude frontend. It's a simplified user experience designed (constraint) by anthropic on how they think users should interact with llms. If you use claude code, you get just the engine and can build a custom workflow around it. It's not one single prompt or session, but it's more agentic, a prompt is a by product of another prompt. The tasks are created and encoded in agent's response. There are no secret prompts lol literally its in the structure, "take this and do this". the design comes from curation process at the very beginning of the pipeline, the results are all generative from there.
+
+you are doing exactly this yourself as a human reading this comment (curation), making memories of what you read and find important, then forming an opinion on it based on your life experiences so far (your pretrained dataset in away) lol the system generates its own prompt the same way humans do.
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+geek_fit
+•
+1mo ago
+I used it to do a full financial planning review and retirement planner.
+
+I essentially created a full financial firm with a cash flow budget consultant, a long term retirement planner that took a Bogle philosophy, and a more risky asset manager to be in charge of a small part.of my portfolio. Finally an overall partner to coordinate the different agents and make a review document with quarterly/annual check-ins.
+
+I guess there was a small code part when I set it to be able to pull budget information via an API my budgeting software uses.
+
+
+
+Upvote
+19
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/diablodq avatar
+diablodq
+OP
+•
+1mo ago
+does it ingest google sheets or microsoft excel files?
+
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+geek_fit
+•
+1mo ago
+I just put my assets, liabilities, and other information in an MD document (I already had it in obsidian)
+
+I use YNAB so I uses their API to connect and pull down spending categories and transactions
+
+
+
+Upvote
+4
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/Gelu6713 avatar
+Gelu6713
+•
+1mo ago
+I wonder if I could pull down similarly from Monarch. Seems useful
+
+
+Upvote
+3
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/pocketrob avatar
+pocketrob
+•
+1mo ago
+I use YNAB too, and I'd love to know more about this, if you're willing to share!
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+geek_fit
+•
+1mo ago
+Sure. It's not a project I'm willing to GitHub since I never built it for anything other than my personal needs.
+
+But getting an API from ynab is easy and free. Claude did a great job of the indepth analysis of my spending. It even noticed when I had cancelled subscriptions mid year or that my AI spending had increased.
+
+I built a few different agents that I mentioned. Mostly to argue with each other and come up with a solid plan based on my goals. The project manager agent actually was the key "interviewer"
+
+
+Upvote
+4
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+
+4 more replies
+m1nkeh
+•
+1mo ago
+I read this thread and I don’t understand why we are using Claude code specifically for this.. can’t you achieve the same with just Claude desktop..
+
+Genuine question trying to learn
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+geek_fit
+•
+1mo ago
+For a few reasons...
+
+I can create agents with specific functions and approaches. (This is the biggest reason)
+
+The API connection is code. I don't give my API token to Claude. I have it setup the structure and then I input it into a .json file.
+
+I had it write python scripts to do the transaction summaries. Now I can just use the python script in a repeatable way without using the LLM
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+m1nkeh
+•
+1mo ago
+Nice, they sound excellent reasons where can I read more?
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+
+3 more replies
+u/jtm_sea avatar
+jtm_sea
+•
+1mo ago
+This is fascinating. Can you provide more detail on the agents you have in your “financial firm” ?
+
+Who’s the master agent?
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+geek_fit
+•
+1mo ago
+I basically just described the ideal team I would want advising me. I.e. I'm not interested in someone telling me to diamond hands my way into a meme stock.
+
+The main asset advisor was a Boglehead style advisor who advised in that regard. I had another more "aggressive" investment advisor to be a counter argument to this agent.
+
+I had the budget analyst look at my gross and net income and 2 years of transactions. It served as an advisor on things like subscriptions, why my grocery budget is so high, and how much money I'm actually saving with sinking funds. They could then work with the asset manager on how much I could be investing pre/post tax and how that factors into long term retirement.
+
+I had a development agent that was essentially a coder to write the API interface to YNAB and Python scripts to get data for the other advisors. I do this so the process is repeatable and not at the whim of context loss and can be run again without burning tokens.
+
+The "master" agent was sort of like the lead advisor for my team. Their job was to read my assets, debt, income statements and interview me about my short term and long term goals were and discuss different feasible options. It would dispatch the sub agents to do some of this work and finally generate a multiphase action plan. I also used it to lay out a few retirement scenarios. Such as when, where, lifestyle, and "probability" that I could do those goals.
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+
+1 more reply
+u/StravuKarl avatar
+StravuKarl
+•
+1mo ago
+I use it for pretty much everything. Here are some top use cases:
+
+- Web, YouTube, Reddit research
+- Collaborate on writing emails, blogs, docs, strategy. I write first then have Claude Code edit and fill in. Or I have Claude Code get me started and then I edit and refine. I go back and forth with it several times
+- Presentations. Iterate with Claude Code in markdown on the flow for a presentation then have it generate the presentation
+- Analyzing data. Bring the data down locally and have Claude crunch it and make mermaid diagrams/charts of results.
+- Brainstorming. Iterate with Claude on lists, ideas.
+- Crap work of filling in databases. A lot of knowledge work involves keeping databases up to date CRM, Issue Tracker, etc.. I have Claude Code MCP to these things and create the contact or issue and update them according to my specification. I have / commands for this.
+
+It helps to iterate with Claude Code on docs, data, diagrams visually in Nimbalyst but all these use cases can be done via the command line as well.
+
+
+
+Upvote
+6
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/diablodq avatar
+diablodq
+OP
+•
+1mo ago
+research use case I totally get. collaborate on writing and presentations - you can do that in a regular claude project (attach a google doc) so curious how is claude code better?
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/StravuKarl avatar
+StravuKarl
+•
+1mo ago
+A few reasons: I like working in markdown and Claude likes it better too and I like working locally having Claude Code make the folders, make the files, move the files, put it in the right place.
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+Critical-Pattern9654
+•
+1mo ago
+Markdown is like one of, if not the second easiest file formats for all LLMs to interpret (other than txt files) so not sure how Claude Code is unique here
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/seven1eight avatar
+seven1eight
+•
+1mo ago
+I think an advantage of Claude Code for some work like this is it can easily write files that it can read later, which makes it easier to work iteratively. Let's say you have a "knowledge.md" file with some work in progress. In a regular Claude project you ask it to create a new artifact, but you'll have to add it to the project knowledge yourself (and make sure any old docs are removed). In Claude Code it can update the doc and refer to it in a later session without any work on your part.
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+mraza007
+•
+1mo ago
+What’s your strategy for writing blogs using claude code
+
+I would love to hear your workflows do you fully generate those using AI
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/StravuKarl avatar
+StravuKarl
+•
+1mo ago
+I have 2 workflows:
+
+I have writer's block and so I ask AI to get me started. It gives a draft. Then I edit it a bunch, make it sound like me, rearrange stuff. Then I tell AI to fill in some holes. Then, I edit that more, add details. Then I ask AI to do a final run through. The key to working with AI is to be able to see the changes it makes and accept or reject it, not just let it modify my work. That is why I like Nimbalyst, it lets me do this.
+
+I have a good outline (these are the better blogs) and I want to make sure AI makes my outline as its main points and just fleshes it out. I write my outline, then ask AI to fill it in, then I edit what it filled in. Go back and forth a few times.
+
+I use a /blog custom Claude Code command (which I can share, nothing fancy, main point is to have a consistent file name and folder location and a template for the format of the blogs). I will sometimes dump 10 ideas at a time and have it write 10 blogs at the same time and then I'll go back and edit.
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+
+1 more reply
+u/kiloCode avatar
+u/kiloCode
+•
+Promoted
+
+Try this new model on Kilo Code
+Learn More
+kilo.ai
+Thumbnail image: Try this new model on Kilo Code
+thelamesquare
+•
+1mo ago
+Personal OS is great. I setup up simple scripts to parse through my "daily logs" and help me plan my days and track my data. Essentially, aggregate all of the apps I used to use (fitness tracker, weight tracker, habit tracker) into one managed by Claude and some automated scripts to keep me on track with my long term goals.
+
+It's not perfect but it's easy to iterate on and adjust over time.
+
+
+
+Upvote
+4
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/glinkot avatar
+glinkot
+•
+1mo ago
+Interesting! Would you mind explaining how you do it on more detail? Are the scripts actual scripts created by Cc, or do you mean more like sequences of prompts?
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+thelamesquare
+•
+1mo ago
+Yes, literally python scripts (could be any language) that Claude can invoke.
+All a skill really is a directory of context paired with optional tools that claude can scan and use on demand.
+
+For example, I have a code linting skill that tells Cc how I run linting for different services. In that same directory is a python script that runs linting for all of my python services. Cc reads the context file and then knows how to use the script. With that context, Cc can update the skill as needed. For example, adding a command line flag that allows Cc to invoke linting for only a specific directory.
+
+I like to use skills for writing as well to verify voice, generate images, etc. Highly recommend checking out Anthropic's code base for some examples: https://github.com/anthropics/skills
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/ButterflyEconomist avatar
+ButterflyEconomist
+•
+1mo ago
+I exported my claude chats because I wanted to put them into NotebookLM and get a mind map. However, the chat.json was too massive. I used Claude Code to take the file (I think it's in reverse chronological order) and break it down into smaller overlapping chunks of about 30K words. By overlapping, it's like if the overall file is ABCD, then the chunks will be AB, BC, CD, DE...
+
+I then had Claude Code go back and do a summary of each chunk. Then I had CC append all the summaries together. What I had easily fit as one source in NLM. And it made an accurate mind map.
+
+Special prompts to you if you have it tag which chunk that item came from in case you want to have CC go back and search the actual conversation.
+
+
+Upvote
+4
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/nulseq avatar
+nulseq
+•
+1mo ago
+I’m currently testing an MCP server connected to a Max for Live (music programming) MIDI Tool Generator in Ableton Live which allows Claude CLI to generate musical compositions, notes and patterns directly on the piano roll in Ableton (music production software).
+
+
+Upvote
+4
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+AriyaSavaka
+•
+1mo ago
+Experienced Developer
+Creating docx, pptx, xlsx, pdf
+
+Organizing files and folders based on context, not just metadata
+
+Synthesizing transcripts and counseling
+
+Writing
+
+Research
+
+Lead generation from scrapping and analyzing
+
+Recipe, grocery, all-kind management
+
+Or just talk with the LLM for anything, Claude Code does have Web Search and Web Fetch for accurate and up-to-date information.
+
+
+
+Upvote
+3
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/diablodq avatar
+diablodq
+OP
+•
+1mo ago
+Can you trigger deep research from cc?
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+AriyaSavaka
+•
+1mo ago
+Experienced Developer
+It has search and fetch so yeah it can do research, but the "deep" part is subjective. You can tell it to write down the findings and iterate.
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/foodsimp avatar
+foodsimp
+•
+1mo ago
+why would u use Claude code over regular Claude for these tasks?
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+AriyaSavaka
+•
+1mo ago
+Experienced Developer
+I prefer the working in the terminal.
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/txthojo avatar
+txthojo
+•
+1mo ago
+Research, analysis, and reporting. Claude skill downloads documents, summarizes them , then creates a report from the summarized data
+
+
+Upvote
+3
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/cgaaf avatar
+cgaaf
+•
+1mo ago
+Document naming and organization. Specifically for my case I’ve used it to organize receipts for tax purposes.
+
+I have a directory that I can just dump receipts into. I have some naming and organization rules for Claude to follow and it will automatically determine the appropriate name, expense amount and put it in the proper directory. Each directory has a summary document that summarizes and tallies all of the expenses for a quick overview per tax year.
+
+
+
+Upvote
+3
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/IversusAI avatar
+IversusAI
+•
+1mo ago
+This is so smart.
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+philoserf
+•
+1mo ago
+One of my use cases: Managing my Traveller RPG library. Organizing and cataloging, renaming PDF files, re-encoding those files, adding OCR text layers, finding which volume has the data I am seeking.
+
+
+
+Upvote
+3
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/jtm_sea avatar
+jtm_sea
+•
+1mo ago
+I wonder how well it would do as a dm
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+philoserf
+•
+1mo ago
+Give it a try. I know it does well as a Referee's assistant.
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/_vemm avatar
+_vemm
+•
+1mo ago
+Pretty decently!
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+stratofax
+•
+1mo ago
+The big unlock with Claude Code is that it's agentic, meaning it makes plans and updates your files directly, without constant prodding. And because all its configuration lives in plain .md text files, you can use Claude Code to improve itself.
+
+This means Claude Code effectively learns from experience. You have full control over this process, too. Since everything is human-readable, you can inspect and edit these files yourself, so there's no need to create Skynet.
+
+All of Claude Code's powers were built for coding, but it's incredibly powerful for any knowledge work. I'm building an AI assistant to help run my business. In another folder, I use it to create posts and articles. Since each project lives in its own folder with its own tools, personality, and capabilities, I don't struggle with "one size fits all" tools. Everything is customized for the task at hand. And yet it's easy to share useful tools across projects.
+
+I still use the web interface on my phone, but less every day. Once you watch Claude Code churn for hours on your behalf, it's hard to go back to copy-paste in the browser.
+
+
+
+Upvote
+3
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/diablodq avatar
+diablodq
+OP
+•
+1mo ago
+Thanks so much how do you Claude code to run your business? Can you share the Md file structure ata high level?
+
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+stratofax
+•
+1mo ago
+Glad to share! This is my own idiosyncratic approach, growing organically from my daily workflow—which is exactly what makes Claude Code so useful.
+
+Start with version control. I use GitHub to track every revision. This means I can let Claude loose on my files and revert if needed. Claude works well with git, and I had it create a /git-sync command to keep my repo updated.
+
+The foundation is my daily diary with tasks. I keep a diary/ directory with Markdown files named like 2025-12-29.md. I add timestamps as headers throughout the day, and at the top I maintain a task list:
+
+[ ] Task description
+
+[x] Completed task
+
+This basic Markdown syntax works great in Obsidian (clickable checkboxes) and tells both me and Claude the status of everything.
+
+To manage all these tasks, I created Claude Code commands. Incomplete items move to tasks.md where I can organize, schedule, or defer them. The review process itself helps me prioritize.
+
+Here are the commands in my .claude directory (all created by Claude Code):
+
+├── **commands**
+│   ├── add-task.md
+│   ├── extract-tasks.md
+│   ├── gather-context.md
+│   ├── git-sync.md
+│   ├── hello.md
+│   ├── improve-tasks.md
+│   ├── new-client.md
+│   ├── process-tasks-manager.md
+│   ├── review-tasks.md
+│   └── rn.md
+Beyond this, I have dedicated folders for my clients, with sub-directories for budgets, docs, emails, meetings, proposals, and of course client-specific tasks.
+
+The hello command does everything I want to start the day, and the rn command renames files to follow my conventions.
+
+The new-client command creates the client directory structure and adds placeholder files.
+
+
+
+Upvote
+3
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+mraza007
+•
+1mo ago
+Very interesting use case, Do you use obsidian for viewing the docs
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+
+1 more reply
+u/lugopt avatar
+lugopt
+•
+1mo ago
+I use it to create e-learning courses. First, I created a set of skills to different phases of the planning and creation process. Then I ask Claude to plan, review, write the lessons. Amazing.
+
+
+Upvote
+5
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/External-Violinist41 avatar
+External-Violinist41
+•
+1mo ago
+Claude code is running my fantasy football team this year. I had it do the drafting, manage lineups, brainstorm trade proposals, and make waiver wire adjustments. It did alright- I’m sure if I were better at fantasy football I could prompt it better, but we made the playoffs!
+
+
+
+Upvote
+4
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+ShiHouzi
+•
+1mo ago
+Keep iterating! Go find some strategies to can build around.
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/-Crash_Override- avatar
+-Crash_Override-
+•
+1mo ago
+I use it in my homelab. To do everything from security audits to setting up new services to configuring my AI server.
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/OrdinaryToe9527 avatar
+OrdinaryToe9527
+•
+1mo ago
+I am using to generate portafolio of multiple assets strategies and optimization for algotrading
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+stat30fbliss
+•
+1mo ago
+Working on my PKM system with Obsidian, primarily markdown files with some PDFs mixed in. Project management, task management, daily notes, data contextualization. Total game changer to be using it for both notes and coding, for me.
+
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/IversusAI avatar
+IversusAI
+•
+1mo ago
+Could not agree more. PKM on Steroids
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/A_Stoic_Epicurean avatar
+A_Stoic_Epicurean
+•
+1mo ago
+Can you explain how you use this for personal knowledge management in more detail? What is the process? Are you directing it toward a specific folder? What kinds of prompts are you using? 
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+sren0
+•
+1mo ago
+I had Claude set up my entire ARR server (downloading and installing all the services even) and walk me through the process of locking everything down properly, setting up Plex, media management automation, etc. It was super quick and made that whole process extremely painless.
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+adr74
+•
+1mo ago
+I used CC to get rid of a crypto malware that infected a linux machine.
+
+
+Upvote
+2
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+poundingCode
+•
+1mo ago
+I use it to act as a proof reader and editor
+
+
+
+Upvote
+3
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/diablodq avatar
+diablodq
+OP
+•
+1mo ago
+yeah but you can just use regular claude.ai for that? how's is claude code better?
+
+
+Upvote
+5
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+
+GGO_Sand_wich
+•
+1mo ago
+u/TrebleRebel8788 avatar
+TrebleRebel8788
+•
+1mo ago
+/exit
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+LordBumble
+•
+1mo ago
+Personal assistant and project manager with deep context as to my psychological profile and what makes me work well and tick
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+duh-one
+•
+1mo ago
+I have a nextjs site for an app and the blog posts are generated from md files so I use Claude code as a digital marketer to create articles for SEO
+
+
+Upvote
+0
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+
+dylanj423
+•
+1mo ago
+agentganja666
+•
+1mo ago
+•
+Edited 1mo ago
+Best non-coding use: autonomous experiment execution with verification.
+
+I give Claude Code a research playbook (hypothesis + 2–3 experimental designs + metrics + falsifiers). It implements the harness, runs the battery, and reports where it works / fails with the boundary conditions — including “don’t ship this” warnings when the edge cases look bad.
+
+Worth it when you have real experiments/tests to run. Not worth it for “manage my todo list.
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+rothwerx
+•
+1mo ago
+I’m bad at keeping track of my accomplishments, so I asked Claude to use the Atlassian Jira MCP server and git history to create a document of my year “wrapped”. It put it in Obsidian for me.
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/sjgoalie avatar
+sjgoalie
+•
+1mo ago
+This isnt a use-case I'd use much, but I used it to figure out what movie I was seeing in a shop based on almost no info.
+
+The local lunch place has TVs, and its loud so they are all on closed captioning. There was a movie playing that I didnt recognize but in the few moments of watching I could see 2 of the character names from the CC, and there was a Baltimore police car in the background so I asked the claude phone app what movie had those 2 characters and was set in Baltimore, found it first try. Sadly its been a few weeks and I dont remember the answer for those who are now curious.
+
+It's silly, but I get irritated when I see a movie/TV and can't remember the name, it sticks with me all day.
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/auskadi avatar
+auskadi
+•
+1mo ago
+I'm using it to do research into organised crime and crypto money laundering. It examines data, osint and helps me write reports. It's the best ai I've used for this so far.
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+c_kick
+•
+1mo ago
+A friend got hired by a municipality to develop a “retrospective vision” based on 51 policy documents. Translation: “We’ve been running incoherent policy for years, but now we’re getting audited so we need to retroactively find a red thread and pretend we always had a coherent vision.” Bureaucrats gonna bureaucrat.
+
+So I had Claude Code:
+
+Convert all 51 PDFs to Markdown (plain text)
+
+Generate a summary + relevance analysis for each document, scored against a relevance matrix I had Claude Code distill from council meeting minutes
+
+Write an 8-page synthesis that ties everything together into one coherent narrative
+
+Add footnotes referencing the specific source documents—so every claim in the vision can be fact-checked without wading through all 51 docs
+
+Convert the whole thing to Word with working hyperlinks in the footnotes
+
+104 documents total. Two to three hours of work—most of that was designing the approach and writing three or four chunky prompts. The rest was waiting and spot-checking.
+
+This would’ve taken weeks by hand.
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+
+u/neekey2 avatar
+neekey2
+•
+1mo ago
+Not the best, but yesterday i found out Claude Code in Chrome (the extension) can actually operate on my wordpress page editor (I asked it to build the page based on a raw HTML i got from somewhere else)... like painfully slow since it needs to take a screenshots on every move to know what to click next, but man, it was doing the correct thing and it showed how it understands all the UIUX and how Wordpress works
+
+
+Upvote
+1
+
+Downvote
+
+Reply
+
+Award
+
+Share
+

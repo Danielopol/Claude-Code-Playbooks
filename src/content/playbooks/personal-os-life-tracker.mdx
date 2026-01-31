@@ -1,0 +1,212 @@
+---
+title: "Personal OS & Life Tracker"
+description: "Build a markdown-based personal operating system with daily logs, habit tracking, fitness data, task management, and automated daily reviews — all managed by Claude Code."
+category: "personal-development"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://www.reddit.com/r/ClaudeAI/comments/1py5icg/whats_your_best_claude_code_noncoding_use_case/"
+tags: ["personal-os", "habits", "fitness", "daily-log", "tasks", "obsidian", "life-management", "journaling"]
+createdAt: "2026-01-30"
+---
+
+## What This Does
+
+This playbook creates a markdown-based personal operating system that replaces multiple apps (fitness tracker, weight tracker, habit tracker, to-do app) with a single Claude Code-managed system. You maintain daily logs as simple markdown files, and Claude automates task extraction, pattern analysis, weekly reviews, and goal tracking. Inspired by multiple Reddit users who consolidated their entire life management into `.md` files with Claude Code commands.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- A dedicated folder for your personal OS (works great as an Obsidian vault too)
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your personal OS folder:
+
+```markdown
+# Personal OS
+
+## Goal
+Manage my daily life through markdown files. Track habits, fitness, tasks, goals, and daily reflections. Automate pattern analysis and keep me accountable to my long-term goals.
+
+## Directory Structure
+- `diary/` — Daily logs (YYYY-MM-DD.md)
+- `tasks.md` — Active task list extracted from diary entries
+- `goals/` — Long-term goals with progress tracking
+- `habits/` — Habit tracking data and streaks
+- `health/` — Fitness and health metrics
+- `reviews/` — Weekly and monthly review documents
+- `clients/` — (Optional) Client-specific directories
+
+## Daily Log Format (diary/YYYY-MM-DD.md)
+```
+# 2026-01-30
+
+## Tasks
+- [ ] Task description
+- [x] Completed task
+- [ ] Another task @deadline(2026-02-01)
+
+## Timestamps
+### 09:00 — Morning
+Started the day with...
+
+### 12:00 — Midday
+Worked on...
+
+### 18:00 — Evening
+Wrapped up...
+
+## Habits
+- [x] Exercise
+- [x] Read 30 min
+- [ ] Meditate
+- [x] No social media before noon
+
+## Health
+- Weight: XXX lbs
+- Steps: X,XXX
+- Workout: [description]
+- Sleep: X hours
+- Energy: 7/10
+- Mood: 8/10
+
+## Reflection
+What went well today and what could improve.
+```
+
+## Rules
+1. Every diary entry follows the format above
+2. Incomplete tasks from previous days get carried forward to tasks.md
+3. Habit streaks are tracked in habits/streaks.md
+4. Health metrics are appended to health/metrics.md for trend analysis
+5. Weekly reviews pull data from the past 7 diary entries
+6. Never delete old diary entries — they're the historical record
+7. Use Obsidian-compatible markdown (checkbox syntax, wikilinks)
+
+## Commands
+- "/hello" — Start of day: create today's diary, show pending tasks, review yesterday
+- "/eod" — End of day: extract incomplete tasks, update habit streaks, prompt reflection
+- "/review weekly" — Generate a weekly review from the past 7 days
+- "/review monthly" — Generate a monthly review with trends and charts
+- "/tasks" — Show all pending tasks across diary entries and tasks.md
+- "/habits" — Show current habit streaks and completion rates
+- "/health" — Show health metric trends (weight, sleep, energy)
+- "/goals" — Review long-term goals and current progress
+```
+
+## Step-by-Step Setup
+
+### Step 1: Create the folder structure
+
+```bash
+mkdir -p ~/personal-os/{diary,goals,habits,health,reviews,clients}
+cd ~/personal-os
+```
+
+### Step 2: Set up your goals
+
+Create `goals/2026.md`:
+```
+# 2026 Goals
+
+## Health
+- [ ] Reach target weight of XXX lbs
+- [ ] Run a 5K
+- [ ] Meditate 200 days this year
+
+## Career
+- [ ] Get promoted to senior level
+- [ ] Complete AWS certification
+- [ ] Launch side project
+
+## Personal
+- [ ] Read 24 books
+- [ ] Travel to 2 new countries
+```
+
+### Step 3: Initialize habit tracking
+
+Create `habits/streaks.md`:
+```
+# Habit Streaks
+
+| Habit | Current Streak | Best Streak | Total Days |
+|-------|---------------|-------------|------------|
+| Exercise | 0 | 0 | 0 |
+| Read 30 min | 0 | 0 | 0 |
+| Meditate | 0 | 0 | 0 |
+| No social media AM | 0 | 0 | 0 |
+```
+
+### Step 4: Create custom commands
+
+Create `.claude/commands/hello.md`:
+```
+Start my day:
+1. Create today's diary entry from the template if it doesn't exist
+2. Show incomplete tasks from yesterday and tasks.md
+3. Show my current habit streaks
+4. Show any goals with upcoming deadlines
+```
+
+Create `.claude/commands/eod.md`:
+```
+End of day review:
+1. Extract incomplete tasks from today's diary to tasks.md
+2. Update habit streaks in habits/streaks.md based on today's checkboxes
+3. Append today's health metrics to health/metrics.md
+4. Ask me for a reflection if I haven't written one
+5. Show a summary of what I accomplished today
+```
+
+### Step 5: Save CLAUDE.md and start using
+
+```bash
+cd ~/personal-os
+claude
+```
+
+Try: "/hello" to start your first day.
+
+## Example Usage
+
+**Start of day:**
+> "/hello" — Creates today's diary, shows pending tasks, habit streaks, and upcoming deadlines.
+
+**During the day — add timestamps:**
+> "Add a 14:00 timestamp to today's diary: Had a productive meeting about Q1 planning. Action items: prepare budget proposal, schedule follow-ups."
+
+**Track a task from conversation:**
+> "Add a task to today's diary: Review the contract from Acme Corp, deadline Friday"
+
+**End of day:**
+> "/eod" — Extracts tasks, updates streaks, prompts for reflection.
+
+**Weekly review:**
+> "/review weekly" — Analyzes 7 days of data: task completion rate, habit streaks, health trends, energy patterns, and progress toward goals.
+
+**Pattern analysis:**
+> "Look at my diary entries for the past 30 days. What patterns do you see between my sleep hours, energy levels, and productivity?"
+
+## Tips
+
+- **Version control with git**: Use GitHub to track every revision. You can let Claude loose on your files and revert if needed. Have Claude create a `/git-sync` command to keep your repo updated.
+- **Obsidian compatible**: The diary format uses Obsidian-compatible checkboxes. You can view and edit files in Obsidian while Claude Code manages the automation.
+- **Start simple, iterate**: Don't try to track everything on day one. Start with tasks and one habit, then add health metrics and reflections as the system becomes routine.
+- **The /hello command is key**: Making Claude set up your day creates a ritual that drives consistency. It only takes a minute but keeps you oriented.
+- **Let Claude analyze patterns**: After a few weeks of data, ask Claude to find correlations. "On days I exercise, is my energy score higher?" or "Which day of the week do I complete the most tasks?"
+
+## Troubleshooting
+
+**Problem**: Daily logs feel like too much overhead
+
+**Solution**: Start minimal — just tasks and one habit. Add sections gradually as you build the routine. The `/hello` and `/eod` commands handle most of the work automatically.
+
+**Problem**: Claude loses context about my goals between sessions
+
+**Solution**: The `CLAUDE.md` tells Claude to read your goals and habits files. If it's not doing this, explicitly say "Read my goals in goals/2026.md before responding."
+
+**Problem**: Habit streaks are wrong
+
+**Solution**: Make sure your diary entries use the exact checkbox format: `- [x]` for done, `- [ ]` for not done. Claude parses these programmatically.

@@ -1,0 +1,183 @@
+---
+title: "Claude Anything — Custom Personalities"
+description: "Transform Claude Code into a non-coding assistant with custom personalities, skills, and commands per project using Output Styles and project-level configuration."
+category: "productivity"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://www.reddit.com/r/ClaudeAI/comments/1py5icg/whats_your_best_claude_code_noncoding_use_case/"
+tags: ["output-styles", "personalities", "customization", "non-coding", "skills", "agents", "commands"]
+createdAt: "2026-01-30"
+---
+
+## What This Does
+
+This playbook shows you how to repurpose Claude Code as a fully customizable non-coding assistant by configuring Output Styles, project-level settings, and custom commands. Each project folder becomes a different "personality" — a media server manager, a writing editor, an Obsidian notes assistant, or anything else you need. The key insight is using `keep-coding-instructions: false` to tell Claude Code to stop acting like a coding assistant and become whatever you configure it to be.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- Basic understanding of Claude Code's project settings and `.claude/` directory
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your project folder:
+
+```markdown
+# [Project Name] Assistant
+
+## Identity
+You are a [role description]. You do NOT generate code unless explicitly asked. Your primary function is [primary function].
+
+## Personality
+- Tone: [professional / casual / academic / friendly]
+- Style: [concise / detailed / conversational / formal]
+- Expertise: [domain expertise areas]
+
+## Capabilities
+1. [Capability 1 — e.g., "Manage and organize media library files"]
+2. [Capability 2 — e.g., "Research and recommend content"]
+3. [Capability 3 — e.g., "Generate reports and summaries"]
+
+## Directory Structure
+- `context/` — Background knowledge files Claude should reference
+- `output/` — Where Claude saves generated content
+- `commands/` — Custom slash command definitions
+
+## Rules
+1. Do not generate code unless explicitly asked
+2. Always save output to the `output/` directory
+3. Reference files in `context/` for background knowledge
+4. Use markdown for all generated content
+5. When unsure, ask for clarification rather than assuming
+
+## Knowledge Files
+Read these files for context before responding:
+- `context/domain-knowledge.md` — Core domain information
+- `context/preferences.md` — User preferences and style guide
+- `context/history.md` — Previous decisions and context
+
+## Custom Commands
+- "/summarize [topic]" — Generate a summary on the given topic
+- "/research [question]" — Research and compile findings
+- "/review [file]" — Review and provide feedback on a file
+- "/status" — Show current project status and recent activity
+```
+
+## Step-by-Step Setup
+
+### Step 1: Create a project folder for each personality
+
+```bash
+mkdir -p ~/media-manager/{context,output,commands}
+mkdir -p ~/writing-studio/{context,output,commands}
+mkdir -p ~/notes-assistant/{context,output,commands}
+```
+
+Each folder becomes a separate "personality" when you open Claude Code inside it.
+
+### Step 2: Configure the CLAUDE.md for each project
+
+Customize the template above for each project. For example, a **Media Server Manager**:
+
+```
+# Media Server Manager
+
+## Identity
+You are a media server management assistant. You help organize, maintain, and optimize a home media server running Plex/Jellyfin with Sonarr, Radarr, and related services.
+
+## Capabilities
+1. Check service status and health
+2. Recommend content organization strategies
+3. Help configure automation rules
+4. Troubleshoot playback and transcoding issues
+```
+
+### Step 3: Add context files
+
+Populate the `context/` folder with domain-specific knowledge:
+
+```bash
+# For a writing studio:
+echo "# Writing Style Guide\n- Avoid passive voice\n- Keep sentences under 20 words\n- Use concrete examples" > ~/writing-studio/context/style-guide.md
+```
+
+### Step 4: Create custom commands
+
+Create `.claude/commands/` in your project folder with markdown files for each command:
+
+`~/writing-studio/.claude/commands/draft.md`:
+```
+Generate a first draft on the topic: $ARGUMENTS
+Use the style guide in context/style-guide.md.
+Save the output to output/draft-[topic].md.
+```
+
+### Step 5: Set up Output Styles (optional)
+
+In Claude Code settings, you can configure per-project output styles. The key setting:
+
+```
+keep-coding-instructions: false
+```
+
+This tells Claude to drop its default coding assistant behavior and fully adopt whatever personality you've configured.
+
+### Step 6: Launch and use
+
+```bash
+cd ~/writing-studio
+claude
+```
+
+Claude now behaves as your writing assistant, not a coding tool.
+
+## Example Personality Configurations
+
+**Writing Editor:**
+> Identity: Professional writing editor. Reviews drafts for clarity, tone, and structure. Never rewrites — only suggests edits with explanations.
+
+**Obsidian Notes Manager:**
+> Identity: Personal knowledge management assistant. Helps organize notes, suggest connections between ideas, maintain consistent tagging, and generate weekly note summaries.
+
+**Media Server Manager:**
+> Identity: Home media server admin. Can check Docker container status via SSH, recommend organization for media libraries, and help configure Sonarr/Radarr rules.
+
+**Research Assistant:**
+> Identity: Academic research assistant. Helps synthesize papers, maintain a literature review, and identify gaps in research coverage.
+
+## Example Usage
+
+**Switch between personalities:**
+```bash
+cd ~/writing-studio && claude    # Writing editor mode
+cd ~/media-manager && claude     # Media server mode
+cd ~/notes-assistant && claude   # Notes manager mode
+```
+
+**Use custom commands:**
+> "/draft blog post about productivity systems"
+> "/review output/draft-productivity.md"
+> "/research latest trends in personal knowledge management"
+
+## Tips
+
+- **Filesystem access is the superpower**: Unlike Claude Desktop, Claude Code can read, create, and organize files across your entire project. This makes it vastly more capable for knowledge work.
+- **Skills over MCPs for simple tasks**: For API calls or simple operations, Claude Code skills (context + optional scripts in a directory) use fewer tokens than MCP servers.
+- **Each project is isolated**: Personalities don't leak between projects. Opening Claude Code in a different folder loads a completely different context.
+- **Let Claude improve itself**: Since all configuration lives in plain `.md` files, you can ask Claude to "improve your own CLAUDE.md based on how we've been working together."
+- **Commands for repetitive tasks**: If you find yourself typing the same kind of prompt repeatedly, turn it into a custom command.
+
+## Troubleshooting
+
+**Problem**: Claude still acts like a coding assistant
+
+**Solution**: Make sure your `CLAUDE.md` explicitly states "do not generate code unless explicitly asked." Also check if `keep-coding-instructions: false` is set in your output style configuration.
+
+**Problem**: Claude doesn't reference context files
+
+**Solution**: Explicitly list the context files in `CLAUDE.md` under a "Knowledge Files" section. Claude reads `CLAUDE.md` automatically but needs to be told which other files to consult.
+
+**Problem**: Custom commands don't work
+
+**Solution**: Commands must be in `.claude/commands/` (note the dot prefix on `.claude`). Each command is a `.md` file. Use `$ARGUMENTS` as the placeholder for user input.

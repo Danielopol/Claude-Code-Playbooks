@@ -103,7 +103,7 @@ export default function BlogPage() {
               Home
             </Link>
             <Link
-              href="https://github.com"
+              href="https://github.com/Danielopol/Claude-Code-Playbooks"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#30363d] bg-[#161b22] text-sm text-muted-foreground hover:text-foreground hover:border-[#22d3ee] transition-all"

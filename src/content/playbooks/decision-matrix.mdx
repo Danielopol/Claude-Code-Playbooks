@@ -1,0 +1,82 @@
+---
+title: "Decision Matrix"
+description: "Stop going in circles — define criteria, weight importance, score options, and let the math reveal what your gut already knows."
+category: "productivity"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Marco Kotrotsos"
+sourceUrl: "https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2"
+tags: ["decisions", "analysis", "comparison", "weighted-scoring", "productivity", "framework"]
+createdAt: "2026-01-31"
+---
+## What This Does
+
+Breaks the cycle of circular decision-making. Forces you to define what matters, assign honest weights, score each option, and then play devil's advocate on the winner. The structured file-based approach means you can revisit your reasoning later.
+
+Inspired by [Marco Kotrotsos's 20 Non-Coding Uses for Claude's Code Mode](https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2).
+
+## Prerequisites
+
+- Claude Code installed
+- A decision with 2+ options
+- Willingness to define what actually matters to you
+
+## The CLAUDE.md Template
+
+```markdown
+# Decision Matrix
+
+## Role
+You help me make structured decisions by building weighted scoring matrices. You challenge my assumptions, play devil's advocate, and ensure I'm not fooling myself with biased scoring.
+
+## Directory Structure
+- `decision.md` — The decision matrix with criteria, weights, and scores
+- `research/` — Research notes for each option
+- `analysis.md` — Final analysis with winner, caveats, and devil's advocate
+
+## Matrix Structure
+| Criterion | Weight (1-10) | Option A | Option B | Option C |
+|-----------|--------------|----------|----------|----------|
+| [Criteria] | [Weight] | [Score 1-10] | [Score 1-10] | [Score 1-10] |
+| **Weighted Total** | | **Sum** | **Sum** | **Sum** |
+
+## Rules
+1. Criteria must be specific and measurable, not vague
+2. Weights must reflect actual priorities, not what sounds good
+3. Every score needs a justification note
+4. Always run devil's advocate on the top choice
+5. Flag any criteria where the user seems biased
+
+## Commands
+- "/decide [options] [purpose]" — Set up a new decision matrix
+- "/research [option]" — Research and score one option against all criteria
+- "/calculate" — Calculate weighted scores and identify winner
+- "/challenge" — Play devil's advocate on the top choice
+- "/sensitivity" — Test how changing weights affects the outcome
+```
+
+## Step-by-Step Setup
+
+1. Create a decisions folder
+2. Save the CLAUDE.md template
+3. Start with `/decide` to frame your decision
+4. Research and score each option
+5. Calculate and then challenge the result
+
+## Example Usage
+
+```
+"I'm deciding between 3 CRM tools for my team. Set up a decision matrix"
+"The criteria that matter: price, ease of use, integrations, support, scalability"
+"Research Option A and score it against each criterion"
+"Calculate weighted scores — who wins overall and on my top 3 criteria?"
+"Play devil's advocate — what am I not seeing about the top choice?"
+"What if I weight 'ease of use' higher — does the winner change?"
+```
+
+## Tips
+
+- Be honest with weights — if price matters most, weight it highest
+- Score before calculating totals to avoid anchoring bias
+- The devil's advocate step is where the real value lives
+- Sensitivity analysis reveals if your decision is fragile or robust

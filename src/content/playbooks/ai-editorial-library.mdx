@@ -1,0 +1,187 @@
+---
+title: "AI Editorial Library with Personas"
+description: "Build a personal knowledge library of AI-generated editorials written by configurable historical personas, synthesized from your curated notes and sources."
+category: "knowledge-management"
+difficulty: "advanced"
+timeToSetup: "20 minutes"
+author: "community"
+sourceUrl: "https://www.reddit.com/r/ClaudeAI/comments/1py5icg/whats_your_best_claude_code_noncoding_use_case/"
+tags: ["knowledge", "editorials", "personas", "education", "notes", "zettelkasten", "writing", "synthesis"]
+createdAt: "2026-01-30"
+---
+
+## What This Does
+
+This playbook creates a personalized editorial library where AI personas (based on historical figures or custom characters) generate essays and editorials by synthesizing your curated atomic notes. It's like having an on-demand team of tutors who write about topics you find interesting, in styles that make learning feel natural. Inspired by a Reddit user who built an entire editorial website with personas like Turing, Curie, Borges, and even a Neanderthal responding to each other's work.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- A dedicated project folder for your knowledge library
+- Source material: notes, bookmarks, YouTube summaries, article highlights, or any content you want to synthesize
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your library project folder:
+
+```markdown
+# Editorial Library
+
+## Goal
+Generate insightful editorials by synthesizing atomic notes through configurable personas. Each editorial should surface unexpected connections between ideas and present them in the persona's unique voice.
+
+## Directory Structure
+- `notes/` — Atomic notes with YAML frontmatter (tags, source, date)
+- `personas/` — Persona configuration files (one .md per persona)
+- `editorials/` — Generated editorials (YYYY-MM-DD_persona_topic-slug.md)
+- `responses/` — Persona responses to other editorials
+- `tags/` — Auto-generated tag index files
+
+## Note Format
+Each note in `notes/` should follow this structure:
+```
+---
+title: "Note Title"
+source: "YouTube video / Article / Book / etc."
+sourceUrl: "https://..."
+tags: ["tag1", "tag2", "tag3"]
+date: "YYYY-MM-DD"
+questions: ["Question this raises?", "What connects to?"]
+---
+
+Key insight or atomic idea from the source. One idea per note.
+```
+
+## Persona Format
+Each persona in `personas/` defines a voice:
+```
+---
+name: "Ada Lovelace"
+era: "Victorian England, 1840s"
+expertise: ["mathematics", "computation", "philosophy"]
+style: "Analytical yet poetic, draws connections between art and science"
+influences: ["Charles Babbage", "Mary Somerville", "Lord Byron"]
+---
+
+Write as Ada Lovelace would — blending mathematical precision with creative imagination.
+Reference the analytical engine and computational thinking where relevant.
+Draw unexpected parallels between mechanical processes and artistic expression.
+```
+
+## Editorial Generation Rules
+1. Select 3-5 notes with overlapping or complementary tags
+2. Choose a persona whose expertise aligns with the note cluster
+3. Generate an editorial that synthesizes the notes into a cohesive narrative
+4. The editorial must reference specific notes (by filename) as sources
+5. End with a concluding perspective, not open-ended questions
+6. Auto-generate new tags from the editorial content
+7. Save to `editorials/` with format: YYYY-MM-DD_persona_topic-slug.md
+
+## Response Generation Rules
+1. Select an existing editorial
+2. Choose a different persona to respond
+3. The response should engage with specific arguments from the original
+4. Maintain the responding persona's authentic voice and perspective
+5. Save to `responses/` with format: YYYY-MM-DD_persona_responds_original-slug.md
+
+## Commands
+- "Create a new note from [source]" — Extract atomic notes from a URL, text, or file
+- "Generate an editorial" — Find related notes and generate a new editorial
+- "Have [persona] respond to [editorial]" — Generate a persona response
+- "Show me note clusters" — Find groups of notes with overlapping tags
+- "Update the tag index" — Rebuild the tag index files
+- "What hasn't been covered?" — Find notes not yet used in any editorial
+```
+
+## Step-by-Step Setup
+
+### Step 1: Create the project structure
+
+```bash
+mkdir -p ~/editorial-library/{notes,personas,editorials,responses,tags}
+cd ~/editorial-library
+```
+
+### Step 2: Create your first personas
+
+Create `personas/turing.md`:
+```
+---
+name: "Alan Turing"
+era: "Mid-20th century England"
+expertise: ["computation", "mathematics", "artificial intelligence", "cryptography"]
+style: "Precise and logical, but with dry wit and thought experiments"
+influences: ["Church", "Godel", "Russell"]
+---
+
+Write as Turing would — with mathematical rigor and a fascination for what machines can and cannot do. Use thought experiments to illustrate points.
+```
+
+Create at least 2-3 personas with different expertise areas for interesting cross-pollination.
+
+### Step 3: Add your first notes
+
+Create notes from content you've consumed. One idea per file:
+
+`notes/distributed-consensus-raft.md`:
+```
+---
+title: "Raft Consensus Algorithm"
+source: "MIT 6.824 Lecture"
+tags: ["distributed-systems", "consensus", "fault-tolerance"]
+date: "2026-01-30"
+questions: ["How does this relate to human decision-making?"]
+---
+
+Raft achieves consensus by electing a leader who manages log replication. If the leader fails, a new election occurs. The key insight is that consensus requires a majority, not unanimity.
+```
+
+### Step 4: Save the CLAUDE.md and launch
+
+Save the template above as `CLAUDE.md`, then:
+
+```bash
+cd ~/editorial-library
+claude
+```
+
+Try: "Generate an editorial from my notes on distributed systems"
+
+## Example Usage
+
+**Create notes from a YouTube video:**
+> "Create atomic notes from this transcript: [paste transcript]. Extract 3-5 key ideas, each as a separate note file with appropriate tags."
+
+**Generate an editorial:**
+> "Look at my notes tagged with 'emergence' and 'complexity'. Have Ada Lovelace write an editorial synthesizing these ideas."
+
+**Create a response chain:**
+> "Have the Neanderthal persona respond to Turing's latest editorial on computation. Focus on embodied knowledge vs abstract reasoning."
+
+**Discover connections:**
+> "Show me note clusters — which groups of notes share the most tags but haven't been combined into an editorial yet?"
+
+**Build a reading session:**
+> "Generate 3 short editorials from my unprocessed notes, each by a different persona. Focus on notes I added this week."
+
+## Tips
+
+- **Curate first, generate second**: The quality of editorials depends entirely on the quality of your notes. Spend time curating good atomic notes before generating.
+- **Diverse personas create better content**: A Neanderthal responding to a mathematician creates more interesting perspectives than two similar personas.
+- **Use tags as gravity**: Tags pull related ideas together. The more consistent your tagging, the better the note clustering.
+- **Let personas respond to each other**: The most interesting content emerges from multi-turn persona dialogues, not standalone editorials.
+- **One idea per note**: Keep notes atomic. A single clear insight is more useful than a long summary.
+
+## Troubleshooting
+
+**Problem**: Editorials feel generic or "AI-like"
+
+**Solution**: Make your persona files more specific. Include writing quirks, preferred metaphors, intellectual blind spots, and strong opinions. The more constrained the persona, the more distinctive the voice.
+
+**Problem**: Notes aren't clustering well
+
+**Solution**: Review your tags for consistency. Use a controlled vocabulary — don't have both "AI" and "artificial-intelligence" as separate tags. Ask Claude to "normalize my tags across all notes."
+
+**Problem**: Editorials don't reference source notes
+
+**Solution**: Remind Claude in your prompt to cite specific note filenames. The CLAUDE.md rules require this, but explicit prompting helps reinforce it.

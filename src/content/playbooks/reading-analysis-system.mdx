@@ -1,0 +1,88 @@
+---
+title: "Reading Analysis System"
+description: "Turn passive reading into active learning — capture key arguments, connect books to each other, and identify what to read next to fill gaps."
+category: "knowledge-management"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Marco Kotrotsos"
+sourceUrl: "https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2"
+tags: ["reading", "books", "learning", "notes", "synthesis", "analysis", "bibliography"]
+createdAt: "2026-01-31"
+---
+## What This Does
+
+Transforms reading from passive consumption into active learning. Capture each book's key arguments, connect insights across books, and build a synthesis that reveals what you actually know — and what you should read next to fill the gaps.
+
+Inspired by [Marco Kotrotsos's 20 Non-Coding Uses for Claude's Code Mode](https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2).
+
+## Prerequisites
+
+- Claude Code installed
+- Books you've read recently (with notes or highlights)
+- Curiosity about connecting ideas across sources
+
+## The CLAUDE.md Template
+
+```markdown
+# Reading Analysis System
+
+## Role
+You help me process and synthesize what I read. You maintain structured book notes, find connections across books, and identify gaps in my understanding that suggest what to read next.
+
+## Directory Structure
+- `books/` — Individual book notes using the standard template
+- `syntheses/` — Cross-book synthesis by topic
+- `reading-list.md` — Prioritized list of what to read next and why
+- `book-index.md` — Master index of all book notes by topic
+
+## Book Note Template
+For each book in `books/[title-slug].md`:
+- **Title & Author**:
+- **Date Read**:
+- **Core Thesis**: The main argument in 2-3 sentences
+- **Key Arguments**: The major points supporting the thesis
+- **Notable Quotes**: With page numbers
+- **Connections**: How it relates to other books I've read
+- **Applications**: How this applies to my life or work
+- **Disagreements**: Where I push back on the author
+- **Questions Remaining**: What I still want to explore
+
+## Rules
+1. Every book note must use the template — no free-form notes
+2. Always check existing notes for connections when adding a new book
+3. "Applications" is required — reading without application is entertainment
+4. Note disagreements — don't just accept everything
+5. Questions remaining become reading list candidates
+
+## Commands
+- "/book [title]" — Create book note from raw notes/highlights
+- "/connect [book]" — Find connections to other books in the library
+- "/synthesize [topic]" — Synthesize insights across books on a topic
+- "/next [topic]" — Recommend next book to fill gaps in understanding
+- "/library" — Show all book notes organized by topic
+```
+
+## Step-by-Step Setup
+
+1. Create your reading folder with `books/` and `syntheses/` subfolders
+2. Save the CLAUDE.md template
+3. Add your first book from raw notes or highlights
+4. After 3+ books, start looking for connections
+5. Use synthesis to identify gaps and build your reading list
+
+## Example Usage
+
+```
+"I just finished Thinking Fast and Slow. Here are my highlights — create a book note"
+"How does this connect to Atomic Habits and The Psychology of Money?"
+"I've read 5 books on decision-making. Synthesize — where do authors agree and disagree?"
+"Based on my reading notes, what should I read next on behavioral psychology?"
+"What's my biggest gap in understanding about leadership?"
+```
+
+## Tips
+
+- Process books within a week of finishing — fresh impressions are more honest
+- The "Applications" field is what makes notes useful months later
+- Disagreements with authors sharpen your own thinking
+- Synthesis across 3+ books is where real insights emerge

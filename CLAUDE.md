@@ -62,6 +62,8 @@ Content with the CLAUDE.md template in a markdown code block.
 
 The first markdown code block in the content is automatically extracted as the copyable CLAUDE.md template.
 
+**Important:** When creating a new playbook MDX file, you must also create a corresponding template file at `public/templates/{slug}.md` where `{slug}` matches the MDX filename (without extension). This template file should contain only the raw content of the first markdown code block from the MDX file (the CLAUDE.md template) — no frontmatter, no surrounding content, just the template text. The build system checks `public/templates/{slug}.md` first before falling back to extracting from the MDX code block.
+
 ## Adding a Blog Post from URL
 
 When the user provides a blog post URL:

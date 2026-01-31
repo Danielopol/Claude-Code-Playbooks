@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Github, FileCode, BookOpen, Rss, Phone, Mail } from 'lucide-react';
+import { Github, Home, BookOpen, Rss, Phone, Mail } from 'lucide-react';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -24,9 +24,9 @@ function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 text-[#22d3ee] hover:text-[#22d3ee]/80 transition-colors">
-          <FileCode className="h-5 w-5" />
-          <span className="font-semibold tracking-tight">claude-code-playbooks</span>
+        <Link href="/" className="flex items-center gap-1.5 text-muted-foreground hover:text-[#22d3ee] transition-colors">
+          <Home className="h-4 w-4" />
+          <span>Home</span>
         </Link>
         <nav className="flex items-center gap-6 text-sm">
           <Link
@@ -44,7 +44,7 @@ function Header() {
             <span>Blog</span>
           </Link>
           <Link
-            href="https://github.com"
+            href="https://github.com/Danielopol/Claude-Code-Playbooks"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-muted-foreground hover:text-[#22d3ee] transition-colors"

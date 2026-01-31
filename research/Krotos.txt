@@ -1,0 +1,382 @@
+Not just for programmers
+The “Code” button in Claude Desktop isn’t just for us programmers. It’s a workspace where Claude can create files, save its work, and actually remember what you’re trying to do from one prompt to the next. It turns Claude from a brilliant but forgetful conversationalist into something closer to a real collaborator.
+
+No scroll-hunting. No context-pasting. No starting over. These files will be available at any time- at any moment, ready to download and reuse anywhere.
+
+Here are 20 ways to use it that have nothing to do with programming, with the exact prompts to get you started.
+
+Here is how to Turn Claude desktop into an AI Factory!
+
+Writing & Content
+1. Article Pipeline
+You have twelve half-finished drafts in different apps and no idea which version has that one good paragraph. This system keeps everything in one place: ideas, outlines, drafts, revisions. Each step builds on the last, nothing gets lost, and you can actually see your article taking shape.
+
+Prompt 1: "Generate 15 article angles about [topic]. For each, write
+a one-sentence hook and identify the target reader. Save to angles.md"
+
+Prompt 2: "Review angles.md. Score each from 1-10 on originality,
+reader value, and my ability to write it authentically. Add scores
+to the file."
+
+Prompt 3: "Take the top 3 scoring angles and create detailed outlines
+for each. Include section headers, key points per section, and one
+concrete example per section. Save to outlines.md"
+
+Prompt 4: "Using outline #2 from outlines.md, draft the full article.
+Keep paragraphs short. Save to draft.md"
+2. Book Bible
+Chapter 47: your protagonist has blue eyes. Chapter 3: they were brown. Your editor will catch this. Or Claude can catch it first, if you give it a reference file to check against. Build a living document of character details, plot points, and timeline events that Claude consults before helping you write anything.
+
+Prompt 1: "Create a character bible template with sections for:
+physical description, personality traits, speech patterns, background,
+relationships, arc. Save as character-template.md"
+
+Prompt 2: "Using the template, create character files for [names].
+Save each as characters/[name].md"
+
+Prompt 3: "Create a timeline of major events in the story so far.
+Include date, event, characters involved, and consequences.
+Save as timeline.md"
+
+Prompt 4: "I'm writing a scene where [character] confronts [character].
+Check their character files and the timeline. Flag any consistency
+issues with what I've established, then help me draft the scene."
+3. Newsletter System
+Every week, same panic: what do I write about? Did I cover this already? What was my intro format again? This system stores your template, tracks what you’ve published, and drafts new issues that match your voice. The structure stays consistent even when your ideas are scattered.
+
+Prompt 1: "Here's my newsletter format: [paste example]. Extract the
+structure into a template with placeholders. Save as template.md"
+
+Prompt 2: "Create an archive file tracking past issues: date, subject
+line, main topic, open rate if known. Save as archive.md"
+
+Prompt 3: "This week's raw material: [paste notes, links, ideas].
+Using template.md and referencing archive.md for tone, draft this
+week's issue. Avoid topics I've covered in the last month."
+4. Social Media Content Engine
+It’s 8am, you need to post something, and your mind is blank. Again. This system generates a month of content in one session, then schedules it so you’re not posting three tips in a row. The daily panic becomes a monthly batch job.
+
+Prompt 1: "I'm a [role] who helps [audience] with [problem]. Generate
+30 post concepts covering: tips, myths, questions, stories, and
+contrarian takes. Save to post-ideas.md"
+
+Prompt 2: "Go through post-ideas.md. For each concept, write the
+actual post (under 280 characters for Twitter, under 2200 for
+LinkedIn). Add 3-5 relevant hashtags. Save to posts-drafted.md"
+
+Prompt 3: "Review posts-drafted.md. Flag any that sound generic or
+could apply to anyone in my field. Rewrite those to be more specific
+and opinionated."
+
+Prompt 4: "Create a 30-day posting calendar. Vary the post types so
+I'm not doing tips three days in a row. Save as calendar.md"
+5. Video/Podcast Script Factory
+You know the episode is in your head somewhere, but getting it out takes hours. This system takes a rough concept and builds it into a full script with hooks, transitions, timestamps, and B-roll notes. By the time you hit record, you know exactly what you’re saying and when.
+
+Prompt 1: "Topic: [idea]. Generate 5 different angles I could take.
+For each, describe the hook, the structure, and why a viewer would
+care. Save to angles.md"
+
+Prompt 2: "Using angle #3, create a detailed outline with: cold open
+hook, main sections, transitions between sections, and a specific
+call-to-action. Save to outline.md"
+
+Prompt 3: "Expand outline.md into a full script. Include [VISUAL]
+cues for b-roll moments. Mark sections that need examples I should
+record myself. Target 10 minutes. Save to script.md"
+
+Prompt 4: "Create a companion document with: timestamps for each
+section, thumbnail ideas, 5 title options, and a description with
+keywords. Save to production-notes.md"
+Research & Analysis
+6. Multi-Source Synthesis
+You’ve got 14 browser tabs open, three PDFs highlighted, and notes scattered across two apps. Somewhere in there is an insight, but you can’t see it. This system lets you dump everything into one place, then asks Claude to find the patterns, contradictions, and gaps you’re missing.
+
+Prompt 1: "I'm researching [topic]. Create a sources file with
+columns: source name, key argument, evidence quality (1-5), and
+notable quotes. Save as sources.md"
+
+Prompt 2: "Here's source 1: [paste or summarize]. Add it to sources.md
+with your assessment."
+[Repeat for each source]
+
+Prompt 3: "Analyze sources.md. Identify: points of agreement, points
+of disagreement, gaps in the research, and which sources are most
+credible. Save analysis to synthesis.md"
+
+Prompt 4: "Based on synthesis.md, write a balanced summary of the
+current state of knowledge on this topic. Note where I should dig
+deeper. 800 words."
+7. Decision Matrix
+You’ve been going in circles for a week. Option A is better on cost, but Option B is better on quality, but Option C has that one feature you can’t stop thinking about. This system forces you to define what actually matters, weight it honestly, and let the math tell you what your gut already knows.
+
+Prompt 1: "I'm deciding between [options] for [purpose]. Create a
+decision matrix with criteria: [list what matters to you]. Weight
+each criterion by importance. Save as decision.md"
+
+Prompt 2: "Research [option 1]. Score it against each criterion in
+decision.md. Add notes explaining each score."
+[Repeat for each option]
+
+Prompt 3: "Calculate weighted scores for all options. Identify which
+wins overall, which wins on my top 3 criteria, and any red flags that
+should override the numbers."
+
+Prompt 4: "Play devil's advocate. What am I not seeing? What could go
+wrong with the top choice? What's the case for the runner-up?"
+8. Competitive Intelligence Brief
+Your boss asks “what’s [competitor] doing?” and you spend three hours Googling, only to produce a vague summary. This system builds persistent profiles on each competitor that you update over time, so when the question comes, the answer is already written.
+
+Prompt 1: "Create competitor profiles for [list competitors]. For
+each: positioning, target customer, key features, pricing, strengths,
+weaknesses. Save as competitors/[name].md for each"
+
+Prompt 2: "Create a master comparison table showing all competitors
+side-by-side on the key dimensions. Save as landscape.md"
+
+Prompt 3: "Based on the competitor files, identify: market gaps
+nobody's addressing, features that are table stakes, and positioning
+white space. Save as opportunities.md"
+
+Prompt 4: "Write a 1-page executive brief on our competitive position.
+Where do we win? Where do we lose? What should we do about it?"
+9. Interview Mastery System
+The interview is in two days and you’re still answering “tell me about yourself” differently every time you practice. This system analyzes the job against your experience, generates the questions they’re likely to ask, and drafts answers that actually use your stories. You walk in knowing your talking points cold.
+
+Prompt 1: "Here's the job description: [paste]. Here's my resume:
+[paste]. Create a match analysis showing where my experience aligns
+and where there are gaps. Save as match-analysis.md"
+
+Prompt 2: "Based on match-analysis.md, generate 20 likely interview
+questions. Include: behavioral, technical, situational, and 'why you'
+questions. Save as questions.md"
+
+Prompt 3: "For each question in questions.md, draft a strong answer
+using the STAR method where appropriate. Pull specific examples from
+my resume. Highlight where I should prepare additional stories."
+
+Prompt 4: "Research [company]. What are they struggling with? What's
+their culture like? Generate 10 questions I should ask them that show
+I understand their situation."
+10. Literature Review Builder
+You have 30 papers to synthesize and a deadline that felt reasonable three weeks ago. This system tracks each source with its methodology, findings, and limitations, then helps you write a review organized by theme instead of just summarizing one paper after another.
+
+Prompt 1: "I'm writing a literature review on [topic]. Create a
+tracking document with: citation, year, methodology, key findings,
+limitations, and how it relates to my research question. Save as
+lit-review-tracker.md"
+
+Prompt 2: "Here's paper 1: [title, abstract, key sections]. Add to
+the tracker with your assessment. Note methodological strengths
+and weaknesses."
+[Repeat for each paper]
+
+Prompt 3: "Analyze the tracker. Group papers by methodology, identify
+trends over time, note conflicting findings, and flag gaps in the
+literature. Save as lit-analysis.md"
+
+Prompt 4: "Draft a literature review narrative organized by theme,
+not by source. Show how the field has evolved and where my research
+fits. Cite sources properly. Save as lit-review-draft.md"
+Planning & Organization
+11. Travel Command Center
+Your flight confirmation is in email, the hotel is in a screenshot, the restaurant list is in Notes, and the packing list is… somewhere. This system puts everything in one workspace where your itinerary, bookings, and logistics actually talk to each other.
+
+Prompt 1: "I'm traveling to [destination] from [dates]. Create a
+master planning document with sections for: flights, accommodation,
+daily itinerary, restaurants, activities, packing, and documents
+needed. Save as trip-master.md"
+
+Prompt 2: "Research the destination. Create a daily itinerary that
+balances [your preferences, e.g., 'culture and relaxation']. Include
+opening hours, transit times between locations, and backup options
+for bad weather. Save as itinerary.md"
+
+Prompt 3: "Based on itinerary.md, generate a packing list specific
+to the activities planned. Organize by category. Flag items I should
+buy before the trip. Save as packing.md"
+
+Prompt 4: "Create a restaurant list with: name, cuisine, price range,
+must-try dish, reservation needed, and which day of the itinerary it
+fits best. Save as restaurants.md"
+12. Event Production Tracker
+Seventy-three people are coming, you’re not sure who’s vegetarian, and someone just asked about parking. Events have a thousand details and they all matter. This system tracks guests, vendors, timelines, and budgets in connected files so nothing falls through the cracks.
+
+Prompt 1: "I'm planning [event type] for [number] people on [date].
+Create linked tracking documents for: guest list, vendor contacts,
+timeline, budget, and task list. Save each as events/[name].md"
+
+Prompt 2: "Here's my guest list: [paste]. Add to the guest file with
+columns for: RSVP status, dietary restrictions, plus-one, and any
+special notes."
+
+Prompt 3: "Based on the guest count and event type, suggest a realistic
+budget breakdown by category. Flag where I'm likely underestimating.
+Save to budget.md"
+
+Prompt 4: "Create a day-of timeline starting from setup through
+cleanup. Include who's responsible for each task and contingencies
+for common problems. Cross-reference the vendor file for contact info."
+13. Annual Life Audit
+January 1st you wrote goals. January 15th you forgot them. December 31st you wonder where the year went. This system creates an honest assessment of where you are, breaks down where you want to be into actual steps, and gives you something to check against all year, not just when you’re feeling reflective.
+
+Prompt 1: "Create a life audit template covering: career, health,
+relationships, finances, learning, and fulfillment. For each area,
+include: current state, wins this year, struggles, and what 'great'
+would look like. Save as audit-template.md"
+
+Prompt 2: "I'll fill in each section. [Do so]. Now analyze for
+patterns. Where am I thriving? Where am I stuck? What's connected
+to what?"
+
+Prompt 3: "Based on the audit, propose 3 focus areas for next year.
+For each, define: the outcome I want, why it matters, obstacles I'll
+face, and first steps. Save as focus-areas.md"
+
+Prompt 4: "Break focus-areas.md into quarterly milestones, then
+monthly actions for Q1. Make the January actions specific enough
+that I could start tomorrow. Save as action-plan.md"
+14. Product Launch Playbook
+Launch day arrives and someone asks “did anyone write the press release?” Launches have dependencies: the landing page needs the copy, the copy needs the positioning, the positioning needs the audience research. This system maps it all and makes sure nothing gets missed.
+
+Prompt 1: "I'm launching [product] on [date]. Create a launch playbook
+with sections for: positioning, assets needed, channels, timeline,
+success metrics, and risk mitigation. Save as launch-playbook.md"
+
+Prompt 2: "For the positioning section, help me define: target customer,
+problem we solve, key differentiators, objections to overcome, and
+proof points. Save as positioning.md"
+
+Prompt 3: "Create an asset checklist with everything needed: landing
+page copy, email sequences, social posts, press materials, demo
+scripts. Note dependencies between assets. Save as asset-checklist.md"
+
+Prompt 4: "Build a backwards timeline from launch date. What needs to
+be done 4 weeks out, 2 weeks, 1 week, day before, day of? Include
+buffer for things going wrong. Save as launch-timeline.md"
+Personal & Creative
+15. Personal Knowledge Base
+You read something brilliant six months ago. You know you saved it somewhere. You spend an hour looking and never find it. This system captures what you learn in a searchable format, so when you need that insight again, Claude can actually find it for you.
+
+Prompt 1: "Create a note-taking template for capturing ideas with:
+source, date, core insight, why it matters to me, connections to other
+ideas, and questions it raises. Save as note-template.md"
+
+Prompt 2: "Create an index file that will track all notes by topic
+cluster. Start with clusters for [your main interests]. Save as
+knowledge-index.md"
+
+Prompt 3: "I want to add this insight: [paste]. Create a note using
+the template, suggest which cluster it belongs to, and note any
+connections to existing notes in the index."
+
+Prompt 4: "I'm thinking about [topic]. Search the knowledge index
+for relevant notes. Synthesize what I've captured about this topic
+and identify gaps in my thinking."
+16. Worldbuilding Wiki
+Your fantasy novel has three magic systems that contradict each other, and your D&D players just asked a question about the kingdom’s history that you definitely made up differently last session. This system keeps your fictional world consistent by giving Claude lore files to check before it helps you create anything new.
+
+Prompt 1: "I'm building a world for [story type]. Create a wiki
+structure with categories for: geography, history, cultures, magic
+system, factions, and key characters. Save as wiki-structure.md"
+
+Prompt 2: "Let's develop the magic system. I want [constraints].
+Create rules, costs, limitations, and how it affects society.
+Save as world/magic-system.md"
+
+Prompt 3: "Create three distinct cultures. For each: values, social
+structure, relationship to magic, conflicts with other cultures, and
+everyday life details. Save as world/cultures.md"
+
+Prompt 4: "I'm writing a scene where [scenario]. Check it against
+the magic system rules and cultural details. Flag any inconsistencies
+and suggest how to fix them while keeping the scene's intent."
+17. Recipe Development Lab
+“I made this last month and it was perfect, what did I change?” You don’t remember. This system tracks every version of a recipe with exact measurements, what you modified, and what you learned. When you finally nail it, you can actually recreate it.
+
+Prompt 1: "Create a master recipe template with: ingredients (with
+weights), equipment needed, steps with timing, technique notes,
+variations tried, and lessons learned. Save as recipe-template.md"
+
+Prompt 2: "Here's a recipe I want to improve: [paste]. Convert it to
+the template format. Note where instructions are vague and suggest
+more precise alternatives."
+
+Prompt 3: "I made this recipe with these changes: [notes]. Update
+the recipe file with version 2 and what I learned. Suggest what to
+test next time."
+
+Prompt 4: "I want to create a [cuisine] meal for [occasion]. Review
+my recipe files and suggest a menu. Flag any dishes that haven't been
+tested enough and might be risky for guests."
+18. Reading Analysis System
+You read 20 books last year and remember maybe three insights total. This system forces you to actually process what you read: capture the key arguments, connect them to other books, and identify what you should do differently. Reading becomes thinking, not just consuming.
+
+Prompt 1: "Create a book notes template with: title, author, date read,
+core thesis, key arguments, notable quotes, how it connects to other
+books I've read, how it applies to my life, and questions I still have.
+Save as book-template.md"
+
+Prompt 2: "I just finished [book]. Here are my raw notes and highlights:
+[paste]. Create a proper book note using the template."
+
+Prompt 3: "I've now read these books on [topic]: [list]. Analyze the
+book notes. Where do authors agree? Disagree? What's the synthesis?
+Save as reading-synthesis-[topic].md"
+
+Prompt 4: "Based on my reading notes, what book should I read next
+to fill gaps in my understanding of [topic]? Explain why."
+Business & Professional
+19. Proposal Factory
+The RFP came in at 4pm, it’s due tomorrow, and you’re digging through old folders trying to find that one proposal that had the good case study. This system stores your best components, reusable sections, case studies, bios, pricing templates, so you can assemble a tailored proposal without starting from scratch every time.
+
+Prompt 1: "Create a proposal template with sections for: executive
+summary, understanding of their problem, our approach, deliverables,
+timeline, team, investment, and next steps. Save as proposal-template.md"
+
+Prompt 2: "Here's the client's RFP: [paste]. Here's our capabilities
+document: [paste]. Create a match analysis showing where we're strong
+and where we need to address concerns. Save as client-analysis.md"
+
+Prompt 3: "Using proposal-template.md and client-analysis.md, draft
+a full proposal. Make the executive summary compelling enough to stand
+alone. Address their concerns proactively. Save as proposal-draft.md"
+
+Prompt 4: "Review proposal-draft.md as a skeptical buyer. What
+objections would you raise? Where are we vague? Where do we undersell?
+Rewrite weak sections."
+20. Meeting Intelligence System
+The meeting ended, everyone said “great discussion,” and now nobody can remember what was actually decided. This system processes your raw notes into clear decisions, action items with owners, and open questions, then drafts a follow-up email so accountability doesn’t evaporate.
+
+Prompt 1: "Create a meeting processing template with sections for:
+attendees, decisions made, action items (with owners and deadlines),
+open questions, and topics deferred. Save as meeting-template.md"
+
+Prompt 2: "Here are the raw notes from today's [meeting type]: [paste].
+Process them using the template. Flag any action items that don't
+have clear owners or deadlines."
+
+Prompt 3: "Based on the processed notes, draft a follow-up email to
+attendees. Lead with decisions and actions, not a recap of discussion.
+Be specific about who owes what by when."
+
+Prompt 4: "We've had 4 meetings on this project: [reference files].
+Create a status document showing: what's been decided, what's still
+open, what's blocked, and what each person is responsible for."
+The Pattern
+Every one of these follows the same structure:
+
+Create a file with structured information
+Reference that file in the next prompt
+Build, analyze, or transform what’s there
+Repeat until you have what you need
+The files are Claude’s memory. Just like Manus uses files for it’s memory and planning.
+
+The prompts are your instructions. You’re not just chatting anymore, you’re building something together, and it doesn’t disappear when you scroll.
+
+Getting Started
+Don’t try to learn all twenty. Pick one that solves a problem you’re actually feeling right now. Copy the first prompt. See what happens.
+
+The “Code” button was never about code. It’s about giving your work a place to live, and giving Claude the memory to help you build it.
+
+Start with one workflow. The rest will follow.

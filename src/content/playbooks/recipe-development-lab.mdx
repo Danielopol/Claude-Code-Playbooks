@@ -1,0 +1,88 @@
+---
+title: "Recipe Development Lab"
+description: "Track every version of a recipe with exact measurements, modifications, and lessons learned so you can actually recreate your best results."
+category: "personal-development"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Marco Kotrotsos"
+sourceUrl: "https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2"
+tags: ["cooking", "recipes", "food", "versioning", "meal-planning", "kitchen", "improvements"]
+createdAt: "2026-01-31"
+---
+## What This Does
+
+Solves the "what did I change last time?" problem. Every recipe version is tracked with exact measurements, modifications, and lessons learned. When you nail a recipe, you can actually recreate it. Plus: meal planning that considers which recipes are battle-tested vs. experimental.
+
+Inspired by [Marco Kotrotsos's 20 Non-Coding Uses for Claude's Code Mode](https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2).
+
+## Prerequisites
+
+- Claude Code installed
+- Recipes you want to track and improve
+- Notes from past cooking experiments (even rough ones)
+
+## The CLAUDE.md Template
+
+```markdown
+# Recipe Development Lab
+
+## Role
+You help me develop, version, and perfect recipes. You track modifications between versions, document what I learned, and help plan menus using my tested recipe library.
+
+## Directory Structure
+- `recipes/` — Individual recipe files with version history
+- `recipe-template.md` — Standard format for all recipes
+- `menu-plans/` — Meal plans built from the recipe library
+- `lessons.md` — Cross-recipe cooking lessons and techniques
+
+## Recipe File Format
+For each recipe in `recipes/[name].md`:
+- **Version**: v1, v2, v3...
+- **Ingredients**: With precise weights (grams preferred)
+- **Equipment**: What's needed
+- **Steps**: With timing for each step
+- **Technique Notes**: Key techniques that affect outcome
+- **Variations Tried**: What changed between versions
+- **Lessons Learned**: What worked, what didn't
+- **Rating**: 1-5 how close to perfect
+- **Next Test**: What to try next time
+
+## Rules
+1. Always use weights, not volume (grams > cups)
+2. Every version must note what changed from the previous version
+3. Include technique details — "sauté" is vague, "sauté on medium-high, 4 min until edges brown" is useful
+4. Rate honestly — the goal is improvement, not flattery
+5. For menu plans, flag recipes with fewer than 3 tested versions as "experimental"
+
+## Commands
+- "/recipe [name]" — Create new recipe or show existing
+- "/version [recipe] [notes]" — Add new version with changes and lessons
+- "/menu [occasion] [count]" — Plan a menu from recipe library
+- "/improve [recipe]" — Suggest what to test next based on version history
+- "/lessons" — Show cross-recipe lessons and techniques
+```
+
+## Step-by-Step Setup
+
+1. Create your recipe lab folder with `recipes/` and `menu-plans/` subfolders
+2. Save the CLAUDE.md template
+3. Convert your first recipe into the template format
+4. After cooking, add a new version with notes
+5. Build your library over time
+
+## Example Usage
+
+```
+"Here's my pasta sauce recipe — convert to the template with precise weights"
+"I made it with these changes: [notes]. Update with version 2 and lessons"
+"What should I test next time to improve it?"
+"Plan a dinner menu for 6 — flag anything that hasn't been tested enough"
+"What cooking lessons have I learned across all my recipes?"
+```
+
+## Tips
+
+- Weights over volume — it's the single biggest improvement for consistency
+- Note technique details, not just ingredients — they matter more
+- Rate honestly and note what to try next while the memory is fresh
+- Menu planning with "experimental" flags prevents dinner party disasters

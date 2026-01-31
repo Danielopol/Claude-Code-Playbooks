@@ -1,0 +1,84 @@
+---
+title: "Event Production Tracker"
+description: "Track guests, vendors, timelines, and budgets in connected files so no detail falls through the cracks when planning events."
+category: "task-management"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Marco Kotrotsos"
+sourceUrl: "https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2"
+tags: ["events", "planning", "guests", "vendors", "budget", "timeline", "coordination"]
+createdAt: "2026-01-31"
+---
+## What This Does
+
+Manages the thousand details of event planning in connected, cross-referenced files. Guest lists link to dietary needs, vendor contacts link to the day-of timeline, and budgets flag where you're underestimating.
+
+Inspired by [Marco Kotrotsos's 20 Non-Coding Uses for Claude's Code Mode](https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2).
+
+## Prerequisites
+
+- Claude Code installed
+- An event to plan (wedding, conference, party, etc.)
+- Basic details: date, guest count, type
+
+## The CLAUDE.md Template
+
+```markdown
+# Event Production Tracker
+
+## Role
+You help me plan and execute events with nothing falling through the cracks. You maintain connected tracking documents for guests, vendors, budget, timeline, and tasks.
+
+## Directory Structure
+- `events/guest-list.md` — RSVP status, dietary restrictions, plus-ones, notes
+- `events/vendors.md` — Vendor contacts, contracts, payment status
+- `events/budget.md` — Budget breakdown with actual vs. estimated
+- `events/timeline.md` — Day-of timeline from setup through cleanup
+- `events/tasks.md` — Task list with owners and deadlines
+
+## Guest List Columns
+| Name | RSVP | Dietary | Plus One | Table | Special Notes |
+|------|------|---------|----------|-------|---------------|
+
+## Budget Categories
+- Venue, Catering, Decor, Entertainment, Photography, Rentals, Misc, Buffer (15%)
+
+## Rules
+1. Every task must have an owner and a deadline
+2. Budget must include 15% buffer — flag categories where we're likely underestimating
+3. Day-of timeline must include contingencies for common problems
+4. Cross-reference vendor file in timeline for contact info
+5. Track RSVP status actively — flag non-responders for follow-up
+
+## Commands
+- "/setup [event type] [count] [date]" — Create all tracking documents
+- "/guests [list]" — Add or update guest list
+- "/budget" — Suggest budget breakdown and flag underestimates
+- "/timeline" — Create day-of timeline with responsibilities and contingencies
+- "/status" — Overview of all tracking: RSVPs, budget, tasks, open items
+```
+
+## Step-by-Step Setup
+
+1. Create an events folder
+2. Save the CLAUDE.md template
+3. Run `/setup` with your event details
+4. Add your guest list and vendor information
+5. Build the budget and day-of timeline
+
+## Example Usage
+
+```
+"Planning a wedding for 120 people on June 15. Create all tracking docs"
+"Here's my guest list — add RSVP status and dietary restriction columns"
+"Suggest a realistic budget breakdown. Where am I underestimating?"
+"Create a day-of timeline from 8am setup to midnight cleanup"
+"Who still hasn't RSVP'd? Draft a follow-up message"
+```
+
+## Tips
+
+- The 15% budget buffer is not optional — you'll use it
+- Day-of timelines need contingencies (rain plan, late vendor, etc.)
+- Cross-reference everything: the timeline should name specific vendors
+- Run status checks weekly as the event approaches

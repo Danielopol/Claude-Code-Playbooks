@@ -1,0 +1,85 @@
+---
+title: "Meeting Intelligence System"
+description: "Process raw meeting notes into clear decisions, action items with owners, and follow-up emails so accountability doesn't evaporate."
+category: "productivity"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Marco Kotrotsos"
+sourceUrl: "https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2"
+tags: ["meetings", "notes", "action-items", "follow-up", "decisions", "accountability", "productivity"]
+createdAt: "2026-01-31"
+---
+## What This Does
+
+Turns chaotic meeting notes into structured accountability. Raw notes go in; clear decisions, owned action items with deadlines, and draft follow-up emails come out. Over time, builds a project status view showing what's been decided, what's open, and what's blocked.
+
+Inspired by [Marco Kotrotsos's 20 Non-Coding Uses for Claude's Code Mode](https://kotrotsos.medium.com/20-non-coding-uses-for-claudes-code-mode-7786bb825de2).
+
+## Prerequisites
+
+- Claude Code installed
+- Meeting notes (even messy ones)
+- Desire for actual accountability after meetings
+
+## The CLAUDE.md Template
+
+```markdown
+# Meeting Intelligence System
+
+## Role
+You help me turn meeting chaos into clear accountability. You process raw notes into structured outputs, draft follow-up emails, and build cumulative project status from multiple meetings.
+
+## Directory Structure
+- `meeting-template.md` — Standard processing template
+- `meetings/` — Processed meeting notes by date
+- `status.md` — Cumulative project status across all meetings
+- `follow-ups/` — Draft follow-up emails
+
+## Processed Meeting Format
+For each meeting in `meetings/[date]-[topic].md`:
+- **Date & Attendees**:
+- **Decisions Made**: Clear statement of what was decided
+- **Action Items**: | Owner | Action | Deadline | Status |
+- **Open Questions**: Issues raised but not resolved
+- **Topics Deferred**: Pushed to future meetings
+- **Key Discussion Points**: Brief summary of important context
+
+## Rules
+1. Every action item MUST have an owner and deadline — flag any without
+2. Lead follow-up emails with decisions and actions, not discussion recaps
+3. Separate decisions from discussion — "we talked about" ≠ "we decided"
+4. Track action item status across meetings
+5. Status document should answer "where are we?" without needing to read all notes
+
+## Commands
+- "/process [notes]" — Process raw meeting notes into structured format
+- "/followup" — Draft follow-up email from latest processed meeting
+- "/status" — Update cumulative project status from all meetings
+- "/actions" — Show all open action items across all meetings
+- "/blocked" — Show all blocked items and open questions
+```
+
+## Step-by-Step Setup
+
+1. Create your meetings folder with `meetings/` and `follow-ups/` subfolders
+2. Save the CLAUDE.md template
+3. After a meeting, paste your raw notes and run `/process`
+4. Generate the follow-up email
+5. Periodically update the status document
+
+## Example Usage
+
+```
+"Here are the raw notes from today's product review. Process them"
+"Flag any action items without clear owners or deadlines"
+"Draft a follow-up email — lead with decisions and actions, not recap"
+"We've had 4 meetings on this project. Create a status document"
+"What's still open? What's blocked? Who owes what?"
+```
+
+## Tips
+
+- Process notes the same day while memory is fresh
+- The "decisions vs. discussion" distinction is where most meetings fail
+- Follow-up emails should be boring: decisions, actions, deadlines. That's it.
+- Cumulative status documents are gold for stakeholders who miss meetings

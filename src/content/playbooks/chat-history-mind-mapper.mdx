@@ -1,0 +1,188 @@
+---
+title: "Chat History Mind Mapper"
+description: "Export your AI chat history, chunk it into manageable pieces, summarize each chunk, and generate a mind map of topics and insights from your conversations."
+category: "knowledge-management"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://www.reddit.com/r/ClaudeAI/comments/1py5icg/whats_your_best_claude_code_noncoding_use_case/"
+tags: ["chat-history", "mind-map", "summarization", "notebooklm", "knowledge", "export", "conversations"]
+createdAt: "2026-01-30"
+---
+
+## What This Does
+
+This playbook takes your exported AI chat history (Claude, ChatGPT, or any other), breaks it into overlapping chunks, summarizes each chunk, and compiles everything into a structured mind map. The output works as a standalone knowledge document or as input for tools like NotebookLM. Inspired by a Reddit user who needed to import massive chat histories into NotebookLM but the JSON was too large — so they chunked, summarized, and created a mind map that fit perfectly.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- Exported chat history (JSON, TXT, or any text format)
+- Optional: NotebookLM or Obsidian for viewing the mind map
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your chat processing folder:
+
+```markdown
+# Chat History Mind Mapper
+
+## Goal
+Process exported AI chat histories into structured summaries and mind maps. Break large files into overlapping chunks, summarize each, then compile into a navigable knowledge map.
+
+## Directory Structure
+- `exports/` — Raw exported chat files (JSON, TXT)
+- `chunks/` — Split conversation chunks with overlap
+- `summaries/` — Per-chunk summaries with topic tags
+- `output/` — Final mind map and compiled summary
+
+## Processing Pipeline
+
+### Phase 1: Chunk
+Split the exported chat file into overlapping chunks:
+- Target size: ~30,000 words per chunk
+- Overlap: Each chunk shares ~5,000 words with the next
+- Pattern: If the file is ABCD, chunks are AB, BC, CD
+- Name chunks sequentially: chunk-01.md, chunk-02.md, etc.
+- Preserve conversation structure (don't split mid-message)
+
+### Phase 2: Summarize
+For each chunk, generate a summary:
+- 500-1,000 word summary of key topics discussed
+- List of specific topics, questions asked, and insights gained
+- Tag which chunk number the topic came from (for back-reference)
+- Identify recurring themes across chunks
+
+### Phase 3: Compile
+Merge all summaries into a single document:
+- Group topics by theme (not by chunk order)
+- Create a hierarchical mind map structure
+- Include chunk references so topics can be traced to original conversations
+- Add a "Key Insights" section with the most valuable discoveries
+- Generate a topic index for quick navigation
+
+## Chunking Rules
+1. Never split in the middle of a conversation turn
+2. Overlap ensures no context is lost at chunk boundaries
+3. Chunks should be roughly equal in size
+4. For JSON exports, flatten to plain text before chunking
+
+## Summary Format
+For each chunk summary:
+```
+# Chunk [N] Summary
+Source: chunk-[N].md (words X,XXX - X,XXX of original)
+
+## Topics Covered
+- Topic 1: Brief description [chunk-N]
+- Topic 2: Brief description [chunk-N]
+
+## Key Questions Asked
+- Question 1?
+- Question 2?
+
+## Insights
+- Insight 1
+- Insight 2
+
+## Recurring Themes
+- Theme that appears in multiple chunks
+```
+
+## Mind Map Format (output/mind-map.md)
+```
+# Chat History Mind Map
+
+## Theme 1: [Theme Name]
+- Sub-topic A [chunk-2, chunk-5]
+  - Key insight
+  - Related questions explored
+- Sub-topic B [chunk-3]
+  - Key insight
+
+## Theme 2: [Theme Name]
+...
+
+## Key Insights
+1. Most important discovery [source chunks]
+2. Second insight [source chunks]
+
+## Topic Index
+| Topic | Chunks | Summary |
+|-------|--------|---------|
+| Topic A | 1, 3, 7 | Brief description |
+```
+
+## Commands
+- "/process [filename]" — Run the full pipeline on an export file
+- "/chunk [filename]" — Run Phase 1 only
+- "/summarize" — Run Phase 2 on existing chunks
+- "/compile" — Run Phase 3: generate mind map from summaries
+- "/search [topic]" — Find all mentions of a topic across chunks
+- "/themes" — Show recurring themes across all conversations
+```
+
+## Step-by-Step Setup
+
+### Step 1: Create the project structure
+
+```bash
+mkdir -p ~/chat-mapper/{exports,chunks,summaries,output}
+cd ~/chat-mapper
+```
+
+### Step 2: Export your chat history
+
+**Claude:** Go to Settings → Export Data. You'll receive a JSON file.
+
+**ChatGPT:** Go to Settings → Data Controls → Export Data.
+
+Place the exported file in the `exports/` folder.
+
+### Step 3: Save CLAUDE.md and process
+
+```bash
+cd ~/chat-mapper
+claude
+```
+
+Try: "/process exports/conversations.json"
+
+## Example Usage
+
+**Process a full export:**
+> "/process exports/claude-chats.json — Break this into overlapping chunks of ~30K words, summarize each, and create a mind map of all topics I've discussed with Claude."
+
+**Just chunk a large file:**
+> "/chunk exports/chatgpt-export.json — Split this into overlapping chunks. The file is in reverse chronological order."
+
+**Search for a specific topic:**
+> "/search machine learning — Find every conversation where I discussed machine learning and show me the key questions I asked and insights I gained."
+
+**Find patterns in your conversations:**
+> "/themes — What topics do I keep coming back to? What questions do I ask repeatedly? What themes connect my different conversations?"
+
+**Prepare for NotebookLM:**
+> "/compile — Generate a single compiled summary document under 50,000 words that I can upload as a source to NotebookLM."
+
+## Tips
+
+- **Overlapping chunks prevent information loss**: The overlap pattern (AB, BC, CD) ensures that topics spanning chunk boundaries are captured in at least one complete chunk.
+- **Tag chunk numbers in summaries**: When the mind map says "discussed in chunk-3 and chunk-7," you can go back to those specific chunks to read the full conversation. This traceability is the most valuable feature.
+- **Use NotebookLM for the final output**: The compiled summary fits well as a NotebookLM source. You can then ask NotebookLM questions about your entire chat history.
+- **Process periodically**: Export and process your chats quarterly. This builds a personal knowledge archive of everything you've discussed with AI.
+- **Multiple AI histories**: You can process exports from Claude, ChatGPT, and other tools into the same mind map for a unified view.
+
+## Troubleshooting
+
+**Problem**: JSON export is too complex to parse
+
+**Solution**: Ask Claude to flatten the JSON into plain text first: "Read exports/conversations.json and convert it to a plain text file with each message on its own line, preserving the role (user/assistant) and timestamp."
+
+**Problem**: Summaries miss important details
+
+**Solution**: Reduce chunk size (from 30K to 15K words) for more detailed summaries. Smaller chunks mean more granular analysis.
+
+**Problem**: Mind map is too large or unfocused
+
+**Solution**: Add a focus filter: "Only include topics related to [your interest area] in the mind map." This filters out casual conversations.

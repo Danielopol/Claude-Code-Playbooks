@@ -31,6 +31,20 @@ export const blogPosts: BlogPost[] = [
     tags: ['claude code', 'productivity', 'automation', 'non-technical', 'file management', 'business'],
     createdAt: '2026-01-29',
   },
+  {
+    id: 'the-complete-wait-i-can-use-claude-code-guide',
+    title: 'The Complete Wait, I Can Use Claude Code Guide',
+    description: 'A comprehensive guide arguing that Claude Code is a productivity tool for non-developers, featuring browser automation, Slack integration, and workflow capabilities with practical frameworks for iterative AI collaboration.',
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '15 min read',
+    url: 'https://natesnewsletter.substack.com/p/the-complete-wait-i-can-use-claude',
+    featured: false,
+    thumbnailType: 'default',
+    thumbnailTitle: 'getting started',
+    tags: ['claude code', 'productivity', 'non-technical', 'automation', 'browser automation', 'workflow'],
+    createdAt: '2025-12-22',
+  },
 ];
 
 export function getAllBlogPosts(): BlogPost[] {

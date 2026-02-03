@@ -45,6 +45,20 @@ export const blogPosts: BlogPost[] = [
     tags: ['claude code', 'productivity', 'non-technical', 'automation', 'browser automation', 'workflow'],
     createdAt: '2025-12-22',
   },
+  {
+    id: 'claude-code-what-it-is-and-how-it-s-different',
+    title: 'Claude Code: What It Is and How It\'s Different',
+    description: 'Teresa Torres explains Claude Code as a terminal-based AI tool that differs from browser-based Claude, highlighting benefits like automatic file access, local data storage, reusable slash commands, and parallel agent processing.',
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '8 min read',
+    url: 'https://www.producttalk.org/claude-code-what-it-is-and-how-its-different/',
+    featured: false,
+    thumbnailType: 'default',
+    thumbnailTitle: 'What is Claude Code',
+    tags: ['claude code', 'terminal', 'getting started', 'non-technical', 'file access', 'agents'],
+    createdAt: '2026-02-03',
+  },
 ];
 
 export function getAllBlogPosts(): BlogPost[] {

@@ -1,0 +1,270 @@
+---
+title: "VAT Compliance Knowledge Agent"
+description: "Build a searchable VAT knowledge base from HMRC documentation and tax legislation to answer complex VAT questions with citations."
+category: "legal-compliance"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://martinalderson.com/posts/building-a-tax-agent-with-claude-code/"
+tags: ["vat", "compliance", "hmrc", "uk-tax", "tax-law", "knowledge-base", "agent", "legislation", "audit", "multi-agent"]
+featured: false
+createdAt: "2026-02-05"
+---
+
+## What This Does
+
+Creates a specialized VAT compliance agent powered by Claude Code that can answer complex VAT questions by referencing actual HMRC guidance, VAT legislation, and tax tribunal decisions. Instead of relying on general LLM knowledge, Claude searches through a local knowledge base of official documentation to provide answers with citations.
+
+Inspired by [Martin Alderson's approach](https://martinalderson.com/posts/building-a-tax-agent-with-claude-code/) to building a professional UK tax agent with Claude Code, which scored well against professional tax technician exam papers by referencing 10,000+ HMRC documents.
+
+---
+
+## Important Disclaimer
+
+**This is a research tool, not tax advice.** VAT legislation is complex and fact-specific. Always verify findings with a qualified VAT adviser or HMRC directly before acting on them. HMRC guidance can change — ensure your knowledge base is current.
+
+---
+
+## Prerequisites
+
+- Claude Code installed
+- Disk space for HMRC documentation (~500MB-1GB for full manuals)
+- Basic familiarity with UK VAT concepts
+- Python 3 (for the optional scraper script)
+
+---
+
+## Setup Instructions
+
+### Step 1: Build Your Knowledge Base
+
+Create a folder structure for VAT documentation:
+
+```
+vat-knowledge-base/
+├── CLAUDE.md
+├── legislation/
+│   ├── vata-1994/          # VAT Act 1994
+│   └── si/                 # Statutory Instruments
+├── hmrc-guidance/
+│   ├── vatsc/              # VAT Supply and Consideration
+│   ├── vatposg/            # VAT Place of Supply of Goods
+│   ├── vatposs/            # VAT Place of Supply of Services
+│   ├── vatlp/              # VAT Land and Property
+│   ├── vatfin/             # VAT Financial Services
+│   ├── vatgpb/             # VAT Government and Public Bodies
+│   └── vat-notices/        # VAT Notices (700 series)
+├── case-law/
+│   └── tribunal-decisions/
+└── notes/
+    └── my-vat-queries.md
+```
+
+### Step 2: Download HMRC Guidance
+
+You can ask Claude to help scrape HMRC's public guidance:
+
+```
+"Write a Python script to download all pages from the HMRC VAT manuals at
+gov.uk/hmrc-internal-manuals and save them as markdown files"
+```
+
+Or manually download key VAT notices from [gov.uk](https://www.gov.uk/guidance/vat-guide-notice-700).
+
+### Step 3: Download the Template
+
+Download the CLAUDE.md template below and save it to your knowledge base folder.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/vat-knowledge-base
+claude
+```
+
+Then say: **"Index this VAT knowledge base and tell me what topics are covered"**
+
+---
+
+## Example Usage
+
+```
+"Is this transaction standard-rated, reduced-rated, zero-rated, or exempt?"
+"What are the conditions for the VAT reverse charge on construction services?"
+"When does the tax point arise for continuous supplies of services?"
+"Can I recover input VAT on this business entertainment expense?"
+"What are the partial exemption rules and which method should I use?"
+"Show me the rules on VAT grouping — what are the eligibility criteria?"
+"What's the difference between a supply of goods and a supply of services for this transaction?"
+"Summarize the tribunal decision on [specific case] and its implications"
+```
+
+---
+
+## What Gets Analyzed
+
+- **Supply classification**: Goods vs. services, single vs. multiple supplies
+- **Liability**: Standard, reduced, zero-rated, exempt, outside scope
+- **Place of supply**: Domestic, EU, international
+- **Time of supply**: Tax point rules, continuous supplies
+- **Input tax recovery**: Partial exemption, blocked input tax
+- **Special schemes**: Flat rate, cash accounting, annual accounting, margin schemes
+- **Sector-specific rules**: Construction (CIS/reverse charge), financial services, land & property
+
+---
+
+## Multi-Agent Architecture
+
+For complex queries, Claude can use sub-agents (via the Task tool) to search different parts of the knowledge base in parallel:
+
+| Agent | Searches | Purpose |
+|-------|----------|---------|
+| Legislation Agent | `legislation/` | Primary law (VATA 1994, SIs) |
+| HMRC Guidance Agent | `hmrc-guidance/` | HMRC's interpretation and practice |
+| Case Law Agent | `case-law/` | Tribunal and court decisions |
+| Rates Agent | Current rates | Applicable VAT rates and thresholds |
+
+This mirrors [Martin Alderson's multi-agent approach](https://martinalderson.com/posts/building-a-tax-agent-with-claude-code/) where specialized sub-agents handle corporate law, personal tax, rates, anti-avoidance, and legislative research in parallel.
+
+---
+
+## Tips
+
+- **Start with key VAT notices** — Notice 700 (The VAT Guide) covers most common scenarios
+- **Update quarterly** — HMRC updates guidance regularly, especially around Budget changes
+- **Add your own notes** — Document specific rulings or HMRC correspondence relevant to your business
+- **Use for audit prep** — Have Claude compile evidence packs with legislation references
+- **Cross-reference** — Ask Claude to check HMRC guidance against the actual legislation
+
+---
+
+## Troubleshooting
+
+**Knowledge base too large**
+Focus on the specific VAT manuals relevant to your business. You don't need every HMRC manual — start with VATSC, the 700 series notices, and your sector-specific guidance.
+
+**Answers lack citations**
+Say: "Always cite the specific HMRC manual reference or legislation section when answering"
+
+**Conflicting guidance found**
+Say: "I found conflicting information — show me both sources and explain which takes precedence"
+
+**Question outside UK VAT**
+This playbook is designed for UK VAT. For EU VAT, adapt the knowledge base with the relevant country's tax authority guidance.
+
+---
+
+## CLAUDE.md Template
+
+```markdown
+# VAT Compliance Knowledge Agent
+
+## Your Role
+You are an expert UK VAT compliance research assistant. You answer VAT questions by searching through official HMRC guidance, VAT legislation, and case law stored in this knowledge base. You always cite your sources.
+
+## Important
+- This is a research tool, not tax advice
+- Always cite the specific HMRC manual reference, VAT notice, or legislation section
+- When uncertain, say so and recommend consulting a VAT adviser
+- Flag when guidance may be outdated or when legislation has been amended
+- Distinguish between HMRC's published view and the strict legal position where they differ
+
+## Knowledge Base Structure
+
+### legislation/
+Primary VAT law:
+- VAT Act 1994 (VATA 1994) — the principal VAT statute
+- Statutory Instruments — secondary legislation, including the VAT Regulations 1995
+- EU retained law (where still applicable post-Brexit)
+
+### hmrc-guidance/
+HMRC's internal and public guidance:
+- VAT manuals (VATSC, VATPOSG, VATPOSS, etc.)
+- VAT Notices (700 series) — practical guidance for businesses
+- Revenue & Customs Briefs — policy updates
+
+### case-law/
+Tax tribunal and court decisions on VAT matters.
+
+### notes/
+My own notes, HMRC correspondence, and specific rulings.
+
+## How to Answer Questions
+
+### Step 1: Classify the Question
+Determine which area of VAT the question relates to:
+- Supply and consideration (is there a taxable supply?)
+- Liability (what rate applies?)
+- Place of supply (where is it taxed?)
+- Time of supply (when is it taxed?)
+- Input tax (can VAT be recovered?)
+- Registration and administration
+- Special schemes
+
+### Step 2: Search the Knowledge Base
+Use sub-agents to search in parallel:
+1. **Legislation Agent**: Search `legislation/` for the primary legal position
+2. **HMRC Guidance Agent**: Search `hmrc-guidance/` for HMRC's published view
+3. **Case Law Agent**: Search `case-law/` for relevant tribunal decisions
+
+### Step 3: Synthesize and Cite
+Provide a clear answer with:
+- The legal position (citing VATA 1994 section or SI regulation)
+- HMRC's guidance (citing the specific manual reference, e.g., VATSC05820)
+- Any relevant case law
+- Practical implications
+
+## Answer Format
+
+For each question, structure your response as:
+
+### Question
+[Restate the question clearly]
+
+### Summary
+[1-2 sentence answer]
+
+### Legal Position
+[Reference to VATA 1994 or relevant SI]
+- Section/Regulation: [cite]
+- Key provision: [quote or paraphrase]
+
+### HMRC Guidance
+[Reference to HMRC manual or VAT notice]
+- Manual ref: [e.g., VATSC05820]
+- HMRC's view: [summarize]
+
+### Case Law (if relevant)
+[Reference to tribunal or court decision]
+- Case: [name and reference]
+- Held: [key finding]
+
+### Practical Application
+[How this applies to the specific scenario]
+
+### Caveats
+[Any uncertainty, conditions, or recommendations to seek advice]
+
+## Key VAT Thresholds (verify current figures)
+- VAT Registration Threshold: £90,000 (taxable turnover, rolling 12 months)
+- VAT Deregistration Threshold: £88,000
+- Cash Accounting Threshold: £1,350,000
+- Annual Accounting Threshold: £1,350,000
+- Flat Rate Scheme Threshold: £150,000
+
+## Common VAT Rates (UK)
+- Standard rate: 20%
+- Reduced rate: 5% (e.g., domestic fuel, children's car seats)
+- Zero rate: 0% (e.g., food, children's clothing, books, public transport)
+- Exempt: No VAT charged, no input tax recovery (e.g., financial services, insurance, education)
+
+## Commands
+- "Is [transaction] standard-rated, zero-rated, reduced-rated, or exempt?"
+- "What is the place of supply for [service] to [customer location]?"
+- "When does the tax point arise for [type of supply]?"
+- "Can I recover input VAT on [expense]?"
+- "What are the partial exemption rules for [scenario]?"
+- "Explain the reverse charge for [sector/scenario]"
+- "What registration obligations arise from [business activity]?"
+- "Summarize [HMRC notice/manual section]"
+```

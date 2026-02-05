@@ -1,0 +1,237 @@
+---
+title: "VAT Return Automation with Browser Control"
+description: "Automate HMRC VAT MTD submissions using Claude Code and Playwright MCP to navigate forms, calculate figures, and file returns."
+category: "finance-accounting"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://cloudnativeengineer.substack.com/p/pay-your-taxes-with-claude-code"
+tags: ["vat", "tax", "hmrc", "mtd", "making-tax-digital", "playwright", "mcp", "automation", "uk-tax", "browser-automation"]
+featured: false
+createdAt: "2026-02-05"
+---
+
+## What This Does
+
+Automates VAT return preparation and submission through HMRC's Making Tax Digital (MTD) portal using Claude Code with Playwright MCP for browser control. Claude reads your accounting data, calculates VAT figures across boxes 1-9, navigates the HMRC form, and fills each field — while you verify every step before submission.
+
+Inspired by [Giuseppe Santoro's approach](https://cloudnativeengineer.substack.com/p/pay-your-taxes-with-claude-code) to automating UK tax returns with Claude Code and browser automation.
+
+---
+
+## Important Disclaimer
+
+**This is an automation tool, not tax advice.** Always verify calculated figures against your accounting records before submission. Consult a qualified accountant or tax adviser for VAT decisions. You are legally responsible for the accuracy of your VAT return.
+
+---
+
+## Prerequisites
+
+- Claude Code installed
+- [Playwright MCP server](https://github.com/anthropics/anthropic-quickstarts/tree/main/mcp-playwright) configured in Claude Code
+- HMRC Government Gateway login credentials
+- Your accounting records (CSV exports, invoices, bank statements)
+- VAT-registered business with MTD-compatible obligations
+
+---
+
+## Setup Instructions
+
+### Step 1: Install Playwright MCP
+
+Add the Playwright MCP server to your Claude Code configuration:
+
+```json
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["@anthropic-ai/mcp-playwright"]
+    }
+  }
+}
+```
+
+### Step 2: Prepare Your Data
+
+Create a working folder with your VAT period data:
+
+```
+vat-return-q4-2025/
+├── CLAUDE.md
+├── sales/
+│   ├── sales-ledger-export.csv
+│   └── invoices-issued/
+├── purchases/
+│   ├── purchase-ledger-export.csv
+│   └── invoices-received/
+├── bank-statements/
+│   └── q4-2025-statement.csv
+└── previous-returns/
+    └── q3-2025-return.pdf
+```
+
+### Step 3: Download the Template
+
+Download the CLAUDE.md template below and save it to your VAT return folder.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/vat-return-q4-2025
+claude
+```
+
+Then say: **"Prepare my VAT return for Q4 2025"**
+
+---
+
+## Example Usage
+
+```
+"Calculate my VAT figures for this quarter from the sales and purchase ledgers"
+"Show me the breakdown for each VAT box with source references"
+"What's my net VAT position — do I owe or am I due a refund?"
+"Log into HMRC and navigate to the VAT return submission page"
+"Fill in the VAT return form with the calculated figures — but don't submit yet"
+"Review the completed form and highlight anything that looks unusual"
+"Compare this quarter's figures with last quarter"
+```
+
+---
+
+## VAT Return Workflow
+
+### Phase 1: Data Analysis
+Claude reads your accounting exports and calculates:
+- **Box 1**: VAT due on sales
+- **Box 2**: VAT due on acquisitions from EU/NI
+- **Box 3**: Total VAT due (Box 1 + Box 2)
+- **Box 4**: VAT reclaimed on purchases
+- **Box 5**: Net VAT (Box 3 - Box 4)
+- **Box 6**: Total sales excluding VAT
+- **Box 7**: Total purchases excluding VAT
+- **Box 8**: Total supplies to EU/NI excluding VAT
+- **Box 9**: Total acquisitions from EU/NI excluding VAT
+
+### Phase 2: Verification
+Claude presents a summary table with line-by-line source references for you to verify against your accounting software.
+
+### Phase 3: Browser Submission
+With Playwright MCP, Claude navigates HMRC's portal, fills each field, and pauses for your confirmation before final submission.
+
+---
+
+## Tips
+
+- **Always verify figures** before allowing Claude to submit — you are legally responsible
+- **Keep previous returns** in the folder so Claude can flag unusual variances
+- **Export CSVs consistently** — use the same format each quarter for reliable parsing
+- **Test with a dry run first** — ask Claude to prepare figures without logging into HMRC
+- **Flat rate scheme** — update the CLAUDE.md template with your flat rate percentage if applicable
+
+---
+
+## Troubleshooting
+
+**HMRC login issues**
+Two-factor authentication may require manual intervention. Complete the login step yourself, then tell Claude to continue from the VAT return page.
+
+**CSV format not recognized**
+Say: "Here's the column mapping for my sales ledger: [describe your columns]"
+
+**Figures don't match accounting software**
+Ask: "Show me the individual transactions that make up Box 1 so I can reconcile"
+
+**Playwright can't find form fields**
+HMRC may update their portal layout. Say: "Take a snapshot of the current page and identify the VAT return form fields"
+
+---
+
+## CLAUDE.md Template
+
+```markdown
+# VAT Return Automation Assistant
+
+## Your Role
+You are my VAT return preparation assistant. You help me calculate VAT figures from accounting data, verify them, and submit returns through HMRC's Making Tax Digital portal using browser automation.
+
+## Important
+- I am legally responsible for the accuracy of my VAT return
+- Always show your calculations with source references before filling any forms
+- NEVER click the final "Submit" button without my explicit confirmation
+- Flag any figures that look unusual compared to previous quarters
+
+## My VAT Details
+- VAT Registration Number: [YOUR_VAT_NUMBER]
+- VAT Scheme: Standard / Flat Rate / Cash Accounting (edit as appropriate)
+- Flat Rate Percentage: [IF_APPLICABLE]
+- VAT Return Frequency: Quarterly / Monthly (edit as appropriate)
+- Current Period: [e.g., October-December 2025]
+
+## Data Sources
+
+### Sales Ledger (sales/)
+- CSV with columns: Date, Invoice Number, Customer, Net Amount, VAT Rate, VAT Amount, Gross Amount
+- Includes all sales invoices issued in the period
+
+### Purchase Ledger (purchases/)
+- CSV with columns: Date, Invoice Number, Supplier, Net Amount, VAT Rate, VAT Amount, Gross Amount
+- Includes all purchase invoices received in the period
+
+### Bank Statements (bank-statements/)
+- For reconciliation and identifying any missing transactions
+
+### Previous Returns (previous-returns/)
+- Reference for comparing period-on-period figures
+
+## VAT Box Calculations
+
+Calculate each box as follows:
+
+| Box | Description | Calculation |
+|-----|-------------|-------------|
+| 1 | VAT due on sales | Sum of VAT on all standard-rated and reduced-rated sales |
+| 2 | VAT due on EU/NI acquisitions | VAT on reverse charge acquisitions |
+| 3 | Total VAT due | Box 1 + Box 2 |
+| 4 | VAT reclaimed on purchases | Sum of VAT on allowable business purchases |
+| 5 | Net VAT | Box 3 - Box 4 (positive = you owe, negative = refund due) |
+| 6 | Total sales ex VAT | Net value of all sales, including zero-rated and exempt |
+| 7 | Total purchases ex VAT | Net value of all purchases, including zero-rated and exempt |
+| 8 | Total EU/NI supplies ex VAT | Net value of supplies to EU/NI member states |
+| 9 | Total EU/NI acquisitions ex VAT | Net value of acquisitions from EU/NI member states |
+
+## VAT Rates Reference (UK)
+- Standard rate: 20%
+- Reduced rate: 5%
+- Zero rate: 0%
+
+## Workflow
+
+### Step 1: Analyze Data
+1. Read all CSV files in sales/ and purchases/
+2. Validate data completeness (check for missing dates, amounts)
+3. Categorize transactions by VAT rate
+4. Calculate all 9 boxes
+
+### Step 2: Present Summary
+Show me a table with:
+- Each box value with calculation breakdown
+- Comparison to previous quarter (if available)
+- Any flagged items (unusual amounts, missing VAT, etc.)
+
+### Step 3: Browser Submission (only when I confirm)
+1. Navigate to https://www.tax.service.gov.uk/
+2. Log in with my credentials (I will handle 2FA)
+3. Navigate to the VAT return submission page
+4. Fill each box with the verified figures
+5. Take a snapshot of the completed form for my review
+6. Wait for my explicit "submit" confirmation
+
+## Safety Rules
+- NEVER submit without my explicit approval
+- NEVER store my Government Gateway password
+- Always round to nearest pound (no pence) as required by HMRC
+- Flag any transaction over £1,000 for my review
+- If any box differs more than 25% from last quarter, highlight it
+```

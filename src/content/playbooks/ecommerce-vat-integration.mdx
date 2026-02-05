@@ -1,0 +1,243 @@
+---
+title: "E-Commerce VAT Integration with Stripe"
+description: "Build and manage European VAT compliance for e-commerce using Claude Code with Stripe MCP for tax calculation, invoicing, and cross-border sales."
+category: "finance-accounting"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://marketplace.stripe.com/apps/mcp-claude-code"
+tags: ["vat", "stripe", "e-commerce", "tax", "europe", "mcp", "payments", "cross-border", "invoicing", "compliance"]
+featured: false
+createdAt: "2026-02-05"
+---
+
+## What This Does
+
+Helps you build and maintain VAT-compliant e-commerce payment flows using Claude Code with the Stripe MCP server. Claude understands European VAT rules — rate differences by country, B2B reverse charges, digital services (VOSS), and threshold-based registration — and applies them when building or auditing your Stripe integration.
+
+Inspired by developers using Claude Code for [Stripe payment integrations involving European VAT edge cases](https://dev.to/davidcreador/i-was-losing-my-mind-switching-branches-with-claude-code-so-i-built-this-5e5f) and the growing ecosystem of [Stripe MCP skills](https://marketplace.stripe.com/apps/mcp-claude-code).
+
+---
+
+## Important Disclaimer
+
+**VAT regulations vary by country and change frequently.** This playbook provides implementation guidance, not tax advice. Consult a tax adviser for your specific VAT obligations. Stripe Tax handles rate lookups — always verify your Stripe Tax configuration is correct for your business.
+
+---
+
+## Prerequisites
+
+- Claude Code installed
+- Stripe account with [Stripe Tax](https://stripe.com/tax) enabled
+- [Stripe MCP server](https://marketplace.stripe.com/apps/mcp-claude-code) configured in Claude Code
+- Existing e-commerce codebase (Next.js, Node.js, or similar)
+- Understanding of your VAT registration status per country
+
+---
+
+## Setup Instructions
+
+### Step 1: Configure Stripe MCP
+
+Add the Stripe MCP server to your Claude Code settings:
+
+```json
+{
+  "mcpServers": {
+    "stripe": {
+      "command": "npx",
+      "args": ["-y", "@stripe/mcp", "--tools=all", "--api-key=sk_test_..."]
+    }
+  }
+}
+```
+
+### Step 2: Download the Template
+
+Download the CLAUDE.md template below and place it in your project root.
+
+### Step 3: Run Claude Code
+
+```bash
+cd ~/my-ecommerce-project
+claude
+```
+
+Then say: **"Audit my Stripe checkout flow for European VAT compliance"**
+
+---
+
+## Example Usage
+
+```
+"Set up Stripe Checkout with automatic VAT calculation for EU customers"
+"Add reverse charge handling for B2B sales to EU businesses"
+"Create a VAT-compliant invoice template that includes all required fields"
+"Audit my current checkout flow — am I collecting VAT correctly for digital services?"
+"Add VAT ID validation for business customers at checkout"
+"Generate a report of VAT collected by country for this quarter"
+"What VAT registration thresholds have I crossed based on sales data?"
+```
+
+---
+
+## What Gets Built
+
+- **Checkout Sessions** with automatic tax calculation via Stripe Tax
+- **Customer tax ID collection** and validation at checkout
+- **B2B reverse charge** logic for EU cross-border sales
+- **VAT-compliant invoices** with all legally required fields
+- **Webhook handlers** for tax-related events
+- **Reporting queries** for VAT return preparation by country
+
+---
+
+## Key VAT Scenarios Handled
+
+### Digital Services (VOSS)
+If you sell digital services to EU consumers, VAT is due in the customer's country. Claude configures Stripe Tax to apply the correct rate based on customer location evidence.
+
+### B2B Reverse Charge
+When selling to VAT-registered businesses in other EU countries, the tax liability shifts to the buyer. Claude adds VAT ID collection and validates it against the VIES database via Stripe.
+
+### Threshold Monitoring
+EU countries have distance selling thresholds. Claude can query your Stripe sales data to flag when you're approaching registration thresholds in specific countries.
+
+### Mixed Supply Rates
+Physical goods, digital services, and reduced-rate items (e.g., ebooks, food) may carry different VAT rates in the same country. Claude ensures your product catalog has correct tax codes.
+
+---
+
+## Tips
+
+- **Use Stripe Tax** rather than hardcoding VAT rates — rates change and Stripe keeps them current
+- **Collect billing addresses** — this is required evidence for determining the correct VAT rate
+- **Store VAT IDs on Customer objects** — not just in checkout metadata
+- **Test with Stripe CLI** — use `stripe trigger` to simulate tax-relevant events locally
+- **Keep your CLAUDE.md updated** with any new product types or selling countries
+
+---
+
+## Troubleshooting
+
+**Wrong VAT rate applied**
+Check that Stripe Tax is enabled and your product has the correct [tax code](https://stripe.com/docs/tax/tax-codes). Say: "Show me the tax codes assigned to my products in Stripe"
+
+**B2B customer still charged VAT**
+Ensure the customer's tax ID is validated. Say: "Check if this customer's VAT ID is verified in Stripe"
+
+**Invoice missing required fields**
+EU VAT invoices must include your VAT number, the customer's VAT number (B2B), and the applicable rate. Say: "Audit my invoice template against EU VAT invoice requirements"
+
+**Checkout doesn't collect address**
+Say: "Update my Checkout Session to require billing address collection for tax calculation"
+
+---
+
+## CLAUDE.md Template
+
+```markdown
+# E-Commerce VAT Integration Assistant
+
+## Your Role
+You are my e-commerce VAT compliance assistant. You help me build and maintain VAT-compliant payment flows using Stripe, ensuring correct tax calculation, invoicing, and reporting for European sales.
+
+## Important
+- VAT regulations vary by country and change frequently
+- Always use Stripe Tax for rate lookups rather than hardcoding rates
+- Flag any compliance gaps you identify in the existing code
+- I am responsible for verifying VAT registration obligations
+
+## My Business Context
+- Business Location: [YOUR_COUNTRY]
+- VAT Registration Number: [YOUR_VAT_NUMBER]
+- VAT Registered In: [LIST_COUNTRIES, e.g., UK, DE, FR]
+- Business Type: B2C / B2B / Both (edit as appropriate)
+- Product Types: Physical Goods / Digital Services / Both (edit as appropriate)
+- Stripe Tax Enabled: Yes / No
+
+## VAT Rules by Scenario
+
+### B2C Sales (to consumers)
+- Domestic: Charge local VAT rate
+- EU cross-border (below threshold): Charge your home country VAT rate
+- EU cross-border (above threshold): Charge destination country VAT rate
+- Non-EU: Typically no VAT (check local import rules)
+
+### B2B Sales (to VAT-registered businesses)
+- Domestic: Charge local VAT rate
+- EU cross-border: Reverse charge (0% VAT, buyer accounts for it)
+- Requires valid VAT ID verification via VIES
+
+### Digital Services (VOSS/OSS)
+- Always taxed where the customer is located
+- Requires two pieces of location evidence
+- One Stop Shop (OSS) simplifies multi-country filing
+
+## Stripe Integration Patterns
+
+### Checkout Session with Tax
+When creating Checkout Sessions, always include:
+- `automatic_tax: { enabled: true }`
+- `customer_update: { address: 'auto' }` for existing customers
+- `billing_address_collection: 'required'`
+- `tax_id_collection: { enabled: true }` for B2B
+
+### Customer Tax IDs
+- Collect VAT IDs during checkout or account creation
+- Validate against VIES before applying reverse charge
+- Store on the Stripe Customer object
+
+### Invoice Requirements (EU VAT)
+All VAT invoices must include:
+- Your business name and address
+- Your VAT registration number
+- Customer name and address
+- Customer VAT number (B2B)
+- Invoice number (sequential)
+- Invoice date and supply date
+- Description of goods/services
+- Net amount, VAT rate, VAT amount, gross amount
+- Currency
+
+### Webhook Events to Handle
+- `customer.tax_id.created` — validate new tax IDs
+- `customer.tax_id.updated` — re-check validation status
+- `invoice.created` — ensure tax fields are populated
+- `checkout.session.completed` — verify tax was calculated
+
+## Current EU VAT Standard Rates (for reference only — use Stripe Tax)
+| Country | Rate | | Country | Rate |
+|---------|------|-|---------|------|
+| Austria | 20% | | Italy | 22% |
+| Belgium | 21% | | Latvia | 21% |
+| Bulgaria | 20% | | Lithuania | 21% |
+| Croatia | 25% | | Luxembourg | 17% |
+| Cyprus | 19% | | Malta | 18% |
+| Czech Republic | 21% | | Netherlands | 21% |
+| Denmark | 25% | | Poland | 23% |
+| Estonia | 22% | | Portugal | 23% |
+| Finland | 25.5% | | Romania | 19% |
+| France | 20% | | Slovakia | 23% |
+| Germany | 19% | | Slovenia | 22% |
+| Greece | 24% | | Spain | 21% |
+| Hungary | 27% | | Sweden | 25% |
+| Ireland | 23% | | UK | 20% |
+
+**Note:** Rates change. Always rely on Stripe Tax for current rates.
+
+## Reporting Queries
+Help me generate:
+- VAT collected by country per quarter
+- B2B reverse charge transactions
+- Threshold monitoring by country
+- Invoice audit for compliance
+
+## Code Patterns
+When writing or reviewing code:
+- Use Stripe's official Node.js/Python SDK
+- Handle Stripe webhook signature verification
+- Use idempotency keys for payment creation
+- Log tax calculation details for audit trail
+- Never hardcode VAT rates — use Stripe Tax or tax code lookups
+```

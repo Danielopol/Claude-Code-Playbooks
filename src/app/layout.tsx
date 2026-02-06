@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     title: 'Claude Code Playbooks',
     description: 'Ready-to-use configurations for your Claude Code projects',
     type: 'website',
-    images: [{ url: 'https://www.claudecodehq.com/favicon.png' }],
+    images: [{ url: 'https://www.claudecodehq.com/og-image.png', width: 1200, height: 630 }],
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: 'Claude Code Playbooks',
     description: 'Ready-to-use configurations for your Claude Code projects',
-    images: ['https://www.claudecodehq.com/favicon.png'],
+    images: ['https://www.claudecodehq.com/og-image.png'],
   },
 };
 

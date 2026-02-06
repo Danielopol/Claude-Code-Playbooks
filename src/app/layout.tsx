@@ -4,6 +4,7 @@ import { Github, Home, BookOpen, Rss, Phone, Mail } from 'lucide-react';
 import './globals.css';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.claudecodehq.com'),
   title: 'Claude Code Playbooks',
   description: 'Ready-to-use configurations for your Claude Code projects',
   keywords: ['Claude Code', 'AI workflows', 'productivity', 'automation', 'templates'],
@@ -17,13 +18,13 @@ export const metadata: Metadata = {
     title: 'Claude Code Playbooks',
     description: 'Ready-to-use configurations for your Claude Code projects',
     type: 'website',
-    images: [{ url: 'https://www.claudecodehq.com/og-image.png', width: 1200, height: 630 }],
+    images: [{ url: 'https://www.claudecodehq.com/og-image.jpg', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Claude Code Playbooks',
     description: 'Ready-to-use configurations for your Claude Code projects',
-    images: ['https://www.claudecodehq.com/og-image.png'],
+    images: ['https://www.claudecodehq.com/og-image.jpg'],
   },
 };
 

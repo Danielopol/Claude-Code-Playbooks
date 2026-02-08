@@ -1,0 +1,122 @@
+---
+title: "Tech Debt Analyzer"
+description: "Identify, analyze, document, and track technical debt in JavaScript/TypeScript codebases with automated detection and prioritized remediation plans."
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "AI Labs"
+sourceUrl: "https://github.com/ailabs-393/ai-labs-claude-skills/tree/main/packages/skills/tech-debt-analyzer"
+tags: ["tech-debt", "code-quality", "refactoring", "javascript", "typescript", "maintenance"]
+createdAt: "2026-02-08"
+---
+
+## What This Does
+
+Systematically identify and track technical debt in JavaScript/TypeScript projects. Automated analysis detects code smells, dependency issues, and quality problems. Get prioritized remediation plans and documentation templates.
+
+---
+
+## Quick Start
+
+### Step 1: Navigate to Your Project
+
+```bash
+cd ~/your-js-project
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Analyze Your Codebase
+
+```bash
+claude
+```
+
+Then ask: **"Analyze this codebase for technical debt"**
+
+---
+
+## What Gets Detected
+
+### Automated Analysis
+
+| Category | Indicators |
+|----------|------------|
+| Code Quality | Large files (>500 lines), complex functions |
+| Debt Markers | TODO, FIXME, HACK comments |
+| Bad Practices | Console statements, weak typing |
+| Complexity | Deep nesting (>4 levels), long params |
+
+### Manual Review Areas
+
+| Category | Focus |
+|----------|-------|
+| Architecture | Design patterns, coupling |
+| Testing | Coverage gaps, flaky tests |
+| Documentation | Outdated docs, missing examples |
+| Dependencies | Outdated packages, vulnerabilities |
+
+---
+
+## Severity Levels
+
+| Level | Action | Examples |
+|-------|--------|----------|
+| Critical | Fix immediately | Security issues, broken builds |
+| High | Current/next sprint | Major blockers |
+| Medium | Plan quarterly | Refactoring needs |
+| Low | Opportunistic | Nice-to-haves |
+
+---
+
+## Example Prompts
+
+- "Scan for technical debt in this project"
+- "Find all TODO and FIXME comments"
+- "Analyze dependency health"
+- "Create a tech debt remediation plan"
+- "Generate a tech debt register"
+
+---
+
+## Nine Debt Categories
+
+1. **Code Quality**: Complexity, readability
+2. **Architectural**: Design issues, coupling
+3. **Test Debt**: Coverage, reliability
+4. **Documentation**: Outdated, missing
+5. **Dependency**: Outdated, vulnerable
+6. **Performance**: Slow code paths
+7. **Security**: Vulnerabilities
+8. **Infrastructure**: CI/CD, deployment
+9. **Design**: API, interface issues
+
+---
+
+## Recommended Capacity
+
+**20% of sprint capacity** for tech debt maintenance.
+
+---
+
+## Maintenance Schedule
+
+| Frequency | Activity |
+|-----------|----------|
+| Weekly | Review TODO/FIXME comments |
+| Monthly | Dependency updates |
+| Quarterly | Full codebase analysis |
+
+---
+
+## Tips
+
+- **Track everything**: Use a debt register
+- **Prioritize ruthlessly**: Not all debt needs fixing
+- **Automate detection**: Integrate into CI/CD
+- **Document decisions**: Use ADRs for context

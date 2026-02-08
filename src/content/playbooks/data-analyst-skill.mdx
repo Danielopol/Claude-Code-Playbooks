@@ -1,0 +1,108 @@
+---
+title: "Data Analyst Toolkit"
+description: "Comprehensive data analysis with missing value detection, intelligent imputation, and interactive Plotly dashboards for exploratory data analysis."
+category: "file-organization"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "AI Labs"
+sourceUrl: "https://github.com/ailabs-393/ai-labs-claude-skills/tree/main/packages/skills/data-analyst"
+tags: ["data-analysis", "missing-values", "imputation", "dashboards", "plotly", "pandas"]
+createdAt: "2026-02-08"
+---
+
+## What This Does
+
+Perform comprehensive exploratory data analysis with automatic missing value detection, intelligent imputation strategies, and interactive dashboard generation. Perfect for cleaning and understanding datasets.
+
+---
+
+## Quick Start
+
+### Step 1: Create an Analysis Folder
+
+```bash
+mkdir -p ~/Documents/DataAnalysis
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/DataAnalysis/
+```
+
+### Step 3: Add Your Data
+
+Copy your CSV files to the folder.
+
+### Step 4: Start Analyzing
+
+```bash
+cd ~/Documents/DataAnalysis
+claude
+```
+
+Then ask: **"Analyze this dataset and fix missing values"**
+
+---
+
+## Core Capabilities
+
+### Missing Value Analysis
+Automatically detect patterns in missing data:
+- Identify columns with missing values
+- Analyze missing patterns (random vs. systematic)
+- Suggest optimal imputation strategies
+
+### Intelligent Imputation
+Apply appropriate methods based on data characteristics:
+
+| Data Type | Method | When Used |
+|-----------|--------|-----------|
+| Numeric (normal) | Mean | Symmetric distributions |
+| Numeric (skewed) | Median | Outliers present |
+| Categorical | Mode | Discrete values |
+| Correlated | KNN | Strong correlations exist |
+| Time Series | Forward Fill | Sequential data |
+
+### Interactive Dashboards
+Generate Plotly Dash visualizations:
+- Summary statistics tables
+- Correlation heatmaps
+- Time series plots
+- Distribution analyses
+
+---
+
+## Example Prompts
+
+### Data Quality
+- "Check this dataset for missing values"
+- "What's the best way to handle these missing values?"
+- "Clean this dataset and explain your choices"
+
+### Analysis
+- "Create an interactive dashboard for this data"
+- "Show me the correlations between variables"
+- "Generate summary statistics"
+
+---
+
+## Automatic Handling Rules
+
+| Condition | Action |
+|-----------|--------|
+| Column > 70% missing | Drop column |
+| ID column missing | Drop row |
+| Numeric + correlated | KNN imputation |
+| Time series gaps | Forward fill |
+| Categorical | Mode imputation |
+
+---
+
+## Tips
+
+- **Start with data quality**: Run missing value analysis first
+- **Understand patterns**: Random vs. systematic missing data need different approaches
+- **Validate results**: Compare before/after statistics
+- **Keep original data**: Work on copies when imputing

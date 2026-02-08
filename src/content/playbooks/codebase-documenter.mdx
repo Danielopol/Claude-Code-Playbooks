@@ -1,0 +1,108 @@
+---
+title: "Codebase Documenter"
+description: "Create comprehensive, beginner-friendly documentation for codebases including READMEs, architecture guides, API docs, and code comments."
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "AI Labs"
+sourceUrl: "https://github.com/ailabs-393/ai-labs-claude-skills/tree/main/packages/skills/codebase-documenter"
+tags: ["documentation", "readme", "architecture", "api-docs", "developer-experience"]
+createdAt: "2026-02-08"
+---
+
+## What This Does
+
+Create comprehensive documentation for any codebase. Generate READMEs, architecture guides, API documentation, and inline code comments that are beginner-friendly and follow best practices.
+
+---
+
+## Quick Start
+
+### Step 1: Navigate to Your Project
+
+```bash
+cd ~/your-project
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Generate Documentation
+
+```bash
+claude
+```
+
+Then ask: **"Create comprehensive documentation for this project"**
+
+---
+
+## Documentation Types
+
+### README Documentation
+For project roots and major modules:
+- What This Does
+- Quick Start
+- Project Structure
+- Key Concepts
+- Common Tasks
+- Troubleshooting
+
+### Architecture Documentation
+For complex projects:
+- System Design
+- Directory Structure
+- Data Flow
+- Design Decisions
+- Module Dependencies
+- Extension Points
+
+### API Documentation
+For HTTP endpoints and public interfaces:
+- Endpoint descriptions
+- Authentication
+- Request/Response formats
+- Example usage
+- Error handling
+
+### Code Comments
+For complex logic:
+- Function documentation
+- Business logic explanations
+- Edge case handling
+
+---
+
+## Example Prompts
+
+- "Create a README for this project"
+- "Document the architecture of this codebase"
+- "Generate API documentation for the /api folder"
+- "Add comments to explain the complex functions"
+
+---
+
+## Core Principles
+
+| Principle | Description |
+|-----------|-------------|
+| Start with "Why" | Explain purpose before implementation |
+| Progressive Disclosure | Simple → complex information layers |
+| Provide Context | Explain why code exists, not just what it does |
+| Include Examples | Concrete usage for every concept |
+| Assume No Prior Knowledge | Define terms, avoid jargon |
+| Visual Aids | Diagrams, flowcharts, file trees |
+| Quick Wins | Help users succeed within 5 minutes |
+
+---
+
+## Tips
+
+- **Run analysis first**: Ask Claude to explore the codebase before documenting
+- **Prioritize entry points**: Start with main files and work outward
+- **Use consistent formatting**: Helps readers navigate documentation
+- **Include working examples**: Test code snippets before documenting

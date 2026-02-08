@@ -1,0 +1,116 @@
+---
+title: "CI/CD Pipeline Generator"
+description: "Create production-ready CI/CD pipeline configurations for GitHub Actions, GitLab CI, CircleCI, and Jenkins with deployment to Vercel, Netlify, or AWS."
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "AI Labs"
+sourceUrl: "https://github.com/ailabs-393/ai-labs-claude-skills/tree/main/packages/skills/cicd-pipeline-generator"
+tags: ["cicd", "github-actions", "gitlab", "jenkins", "devops", "automation", "deployment"]
+createdAt: "2026-02-08"
+---
+
+## What This Does
+
+Generate production-ready CI/CD pipeline configurations for multiple platforms. Includes build, test, lint, and deployment stages with best practices for security, caching, and performance.
+
+---
+
+## Quick Start
+
+### Step 1: Navigate to Your Project
+
+```bash
+cd ~/your-project
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Generate Your Pipeline
+
+```bash
+claude
+```
+
+Then ask: **"Create a GitHub Actions pipeline for my Next.js app deploying to Vercel"**
+
+---
+
+## Supported Platforms
+
+| Platform | Best For |
+|----------|----------|
+| GitHub Actions | GitHub-hosted projects |
+| GitLab CI/CD | Complex pipelines on GitLab |
+| CircleCI | Docker workflows with optimized build times |
+| Jenkins | Self-hosted, highly customizable |
+
+---
+
+## Deployment Targets
+
+| Target | Configuration |
+|--------|---------------|
+| Vercel | Uses `amondnet/vercel-action` |
+| Netlify | Uses `netlify-cli` |
+| AWS S3 + CloudFront | Uses AWS Actions |
+
+---
+
+## Standard Pipeline Architecture
+
+```
+Install Dependencies → Lint → Test → Build → Deploy
+```
+
+### Stage Details
+
+1. **Install**: Code checkout, runtime setup, dependency caching
+2. **Lint**: ESLint, TypeScript type checking
+3. **Test**: Unit/integration tests with coverage
+4. **Build**: Production build, artifact storage
+5. **Deploy**: Environment-specific deployments
+
+---
+
+## Example Prompts
+
+- "Create a GitHub Actions pipeline for a React app"
+- "Set up GitLab CI with staging and production deployments"
+- "Generate a CircleCI config with parallel test jobs"
+- "Create a Jenkins pipeline with Docker builds"
+
+---
+
+## Best Practices Included
+
+### Security
+- Secret management via environment variables
+- Least-privilege tokens
+- No hardcoded credentials
+
+### Performance
+- Aggressive dependency caching
+- Job parallelization
+- Matrix testing
+- Fail-fast execution
+
+### Reliability
+- Pinned Node.js versions
+- Committed lockfiles
+- Retry logic
+- Timeout configuration
+
+---
+
+## Advanced Features
+
+- **Monorepo Support**: Path-based triggers
+- **Scheduled Runs**: Cron expressions
+- **Notifications**: Slack/Discord/Email alerts
+- **Security Scanning**: npm audit, Snyk integration

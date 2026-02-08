@@ -1,0 +1,123 @@
+---
+title: "Docker Containerization"
+description: "Containerize applications with production-ready Dockerfiles, Docker Compose configurations, and deployment scripts for Next.js, React, and Node.js projects."
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "AI Labs"
+sourceUrl: "https://github.com/ailabs-393/ai-labs-claude-skills/tree/main/packages/skills/docker-containerization"
+tags: ["docker", "containers", "devops", "kubernetes", "deployment", "nextjs", "nodejs"]
+createdAt: "2026-02-08"
+---
+
+## What This Does
+
+Containerize your applications with production-ready Docker configurations. Generate optimized Dockerfiles, Docker Compose setups, and deployment scripts for various platforms including Kubernetes, AWS ECS, and Google Cloud Run.
+
+---
+
+## Quick Start
+
+### Step 1: Navigate to Your Project
+
+```bash
+cd ~/your-project
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Generate Docker Configuration
+
+```bash
+claude
+```
+
+Then ask: **"Containerize this Next.js app for production"**
+
+---
+
+## Supported Configurations
+
+### Dockerfile Types
+| Type | Use Case |
+|------|----------|
+| Production | Optimized, multi-stage builds |
+| Development | Hot reload, debugging support |
+| Nginx Static | Static file serving |
+
+### Deployment Platforms
+- Kubernetes
+- AWS ECS Fargate
+- Google Cloud Run
+- Azure Container Apps
+- Digital Ocean App Platform
+
+---
+
+## Example Prompts
+
+- "Create a production Dockerfile for my Next.js app"
+- "Set up Docker Compose for local development"
+- "Generate Kubernetes manifests for deployment"
+- "Create deployment scripts for AWS ECS"
+
+---
+
+## Best Practices Included
+
+### Security
+- Non-root user execution
+- Vulnerability scanning setup
+- No hardcoded secrets
+- Minimal base images
+
+### Performance
+- Multi-stage builds
+- Layer caching optimization
+- Alpine-based images
+- .dockerignore configuration
+
+### Maintainability
+- Version-controlled configs
+- Documented build args
+- DRY principles
+- Clear naming conventions
+
+---
+
+## Sample Dockerfile
+
+```dockerfile
+# Build stage
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+
+# Production stage
+FROM node:20-alpine AS runner
+WORKDIR /app
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
+COPY --from=builder /app/node_modules ./node_modules
+COPY --chown=nextjs:nodejs . .
+USER nextjs
+EXPOSE 3000
+CMD ["npm", "start"]
+```
+
+---
+
+## Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| Image too large | Use multi-stage builds, Alpine base |
+| Slow builds | Optimize layer caching order |
+| Container exits immediately | Check CMD and ENTRYPOINT |
+| Changes not reflecting | Rebuild without cache |

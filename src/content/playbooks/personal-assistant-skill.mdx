@@ -1,0 +1,128 @@
+---
+title: "Personal Assistant"
+description: "Transform Claude into a context-aware productivity tool with persistent memory for schedule management, task tracking, reminders, and habit monitoring."
+category: "productivity"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "AI Labs"
+sourceUrl: "https://github.com/ailabs-393/ai-labs-claude-skills/tree/main/packages/skills/personal-assistant"
+tags: ["productivity", "tasks", "schedule", "reminders", "habits", "personal-assistant"]
+createdAt: "2026-02-08"
+---
+
+## What This Does
+
+Transform Claude into your personal productivity assistant with persistent memory. Track tasks, manage schedules, set reminders, monitor habits, and get personalized productivity advice that remembers your preferences and context.
+
+---
+
+## Quick Start
+
+### Step 1: Create an Assistant Folder
+
+```bash
+mkdir -p ~/Documents/Assistant
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Assistant/
+```
+
+### Step 3: Set Up Your Profile
+
+```bash
+cd ~/Documents/Assistant
+claude
+```
+
+Then say: **"Help me set up my personal assistant profile"**
+
+---
+
+## What Gets Stored
+
+### Personal Profile
+- Name and timezone
+- Work schedule (hours, days)
+- Personal goals
+- Habits you're tracking
+- Communication preferences
+- Regular commitments
+- Tool integrations
+
+### Task Database
+- Active tasks with priorities
+- Due dates and deadlines
+- Task completion history
+- Recurring tasks
+
+### Schedule Data
+- Calendar events
+- Recurring commitments
+- Time blocks
+- Conflict detection
+
+### Context History
+- Important conversation notes
+- Preferences learned over time
+- High-importance reminders
+
+---
+
+## Example Prompts
+
+### Task Management
+- "Add a task: finish the report by Friday"
+- "What's on my plate today?"
+- "Mark the budget task as complete"
+- "Show my overdue tasks"
+
+### Schedule Management
+- "What do I have tomorrow?"
+- "Block 2 hours for deep work on Wednesday"
+- "Remind me about the meeting prep"
+
+### Productivity Advice
+- "How should I prioritize my day?"
+- "I'm feeling overwhelmed - help me focus"
+- "What habits should I work on?"
+
+---
+
+## Features
+
+### Personalized Recommendations
+Based on your working style, goals, and available time.
+
+### Conflict Detection
+Automatically warns about scheduling conflicts.
+
+### Context Retention
+Remembers important details across conversations.
+
+### Smart Prioritization
+Suggests task order based on deadlines and importance.
+
+---
+
+## Data Retention
+
+| Data Type | Retention |
+|-----------|-----------|
+| User profile | Never deleted |
+| Pending tasks | Until completed |
+| Recurring events | Until cancelled |
+| High-importance notes | Never deleted |
+| Context history | Auto-cleaned after relevance expires |
+
+---
+
+## Tips
+
+- **Set up your profile thoroughly**: Better context = better assistance
+- **Use consistently**: Regular use improves personalization
+- **Mark tasks complete**: Keeps the system accurate
+- **Update when things change**: Work schedule, goals, etc.

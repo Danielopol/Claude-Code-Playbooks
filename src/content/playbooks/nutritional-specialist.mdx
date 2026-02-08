@@ -1,0 +1,113 @@
+---
+title: "Nutritional Specialist"
+description: "Get personalized nutrition advice with a persistent database that remembers your food preferences, allergies, dietary goals, and restrictions."
+category: "personal-development"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "AI Labs"
+sourceUrl: "https://github.com/ailabs-393/ai-labs-claude-skills/tree/main/packages/skills/nutritional-specialist"
+tags: ["nutrition", "diet", "health", "meal-planning", "allergies", "wellness"]
+createdAt: "2026-02-08"
+---
+
+## What This Does
+
+Get personalized nutritional advice that remembers your preferences. Claude maintains a database of your food preferences, allergies, dietary goals, and restrictions, applying them to all food-related conversations.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Nutrition Folder
+
+```bash
+mkdir -p ~/Documents/Nutrition
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Nutrition/
+```
+
+### Step 3: Set Up Your Profile
+
+```bash
+cd ~/Documents/Nutrition
+claude
+```
+
+Then say: **"Help me set up my nutritional preferences"**
+
+---
+
+## What Gets Stored
+
+### Essential Information
+- **Dietary goals**: Weight loss, muscle gain, maintenance
+- **Allergies**: Must-avoid foods (nut allergy, shellfish, etc.)
+- **Restrictions**: Vegetarian, vegan, keto, etc.
+- **Dislikes**: Foods you prefer to avoid
+- **Preferences**: Cuisines and foods you enjoy
+
+### Optional Information
+- Health conditions affecting diet
+- Cuisine preferences
+- Meal timing habits
+- Cooking skill level
+- Budget considerations
+
+---
+
+## Example Prompts
+
+### Initial Setup
+- "Set up my dietary preferences"
+- "I'm vegetarian with a nut allergy"
+- "My goal is to lose weight while building muscle"
+
+### Daily Use
+- "What should I have for dinner?"
+- "Give me a healthy snack idea"
+- "Create a meal plan for this week"
+
+### Updates
+- "I'm now trying to reduce sugar"
+- "Add gluten to my restrictions"
+- "I've developed a preference for Mediterranean food"
+
+---
+
+## How Preferences Apply
+
+Every recommendation will:
+- **Respect allergies absolutely** (never suggest allergens)
+- Align with dietary restrictions
+- Support your stated goals
+- Avoid disliked foods
+- Incorporate preferred options
+- Adjust for health conditions
+
+---
+
+## Example Interaction
+
+**First Time:**
+> "I'm lactose intolerant, trying to build muscle, and I love Asian cuisine."
+
+Claude saves these preferences and applies them going forward.
+
+**Later:**
+> "What's a good post-workout meal?"
+
+Claude suggests: "Try a tofu stir-fry with brown rice - high protein, dairy-free, and fits your Asian cuisine preference."
+
+---
+
+## Tips
+
+- **Be thorough during setup**: The more details, the better recommendations
+- **Update as things change**: Preferences evolve over time
+- **Mention specific allergies**: Safety is the top priority
+- **Include health context**: Conditions like diabetes affect recommendations

@@ -1,0 +1,141 @@
+---
+title: "Test Specialist"
+description: "Comprehensive JavaScript/TypeScript testing guidance with test writing, bug analysis, coverage analysis, and proactive issue detection."
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "AI Labs"
+sourceUrl: "https://github.com/ailabs-393/ai-labs-claude-skills/tree/main/packages/skills/test-specialist"
+tags: ["testing", "jest", "playwright", "tdd", "code-quality", "javascript", "typescript"]
+createdAt: "2026-02-08"
+---
+
+## What This Does
+
+Complete testing guidance for JavaScript/TypeScript projects. Write unit, integration, and E2E tests. Analyze bugs systematically. Identify coverage gaps. Detect potential issues proactively.
+
+---
+
+## Quick Start
+
+### Step 1: Navigate to Your Project
+
+```bash
+cd ~/your-js-project
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Start Testing
+
+```bash
+claude
+```
+
+Then ask: **"Help me write tests for the user authentication module"**
+
+---
+
+## Testing Approach
+
+### Arrange-Act-Assert Pattern
+
+```typescript
+describe('UserService', () => {
+  it('should create a new user', async () => {
+    // Arrange
+    const userData = { email: 'test@example.com', name: 'Test' };
+
+    // Act
+    const user = await userService.create(userData);
+
+    // Assert
+    expect(user.email).toBe('test@example.com');
+  });
+});
+```
+
+---
+
+## Testing Types
+
+| Type | Purpose | Tools |
+|------|---------|-------|
+| Unit | Individual functions/components | Jest, Vitest |
+| Integration | Module interactions | Jest, Supertest |
+| E2E | Full user flows | Playwright, Cypress |
+
+---
+
+## Example Prompts
+
+### Test Writing
+- "Write unit tests for this function"
+- "Create integration tests for the API endpoints"
+- "Generate E2E tests for the checkout flow"
+
+### Bug Analysis
+- "Help me debug this failing test"
+- "Find the root cause of this bug"
+- "This test is flaky - help me fix it"
+
+### Coverage
+- "Find untested code in this project"
+- "Which files need more test coverage?"
+- "Prioritize what to test next"
+
+---
+
+## Bug Analysis Process
+
+1. **Reproduce**: Confirm the issue exists
+2. **Isolate**: Find the minimal reproduction case
+3. **Root Cause**: Identify why it happens
+4. **Fix**: Implement the solution
+5. **Validate**: Add tests to prevent regression
+
+---
+
+## Common Bug Patterns
+
+| Pattern | Symptom | Solution |
+|---------|---------|----------|
+| Race Condition | Intermittent failures | Add proper async handling |
+| Null/Undefined | TypeError crashes | Add null checks |
+| Off-by-One | Wrong counts/indices | Review loop boundaries |
+| State Mutation | Unexpected side effects | Use immutable patterns |
+
+---
+
+## Test Coverage Strategy
+
+**Priority Order:**
+1. Critical business logic
+2. Edge cases and error handling
+3. Happy path flows
+4. Integration points
+5. UI components
+
+---
+
+## Security Testing
+
+Include tests for:
+- SQL injection prevention
+- XSS sanitization
+- Authentication bypasses
+- Authorization checks
+
+---
+
+## Tips
+
+- **One behavior per test**: Keep tests focused
+- **Test the interface**: Not the implementation
+- **Independent tests**: No order dependencies
+- **Clear naming**: Test name should explain what and why

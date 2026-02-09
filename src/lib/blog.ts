@@ -87,6 +87,20 @@ export const blogPosts: BlogPost[] = [
     tags: ['agentic coding', 'Go', 'Python', 'tooling', 'observability', 'refactoring', 'workflow'],
     createdAt: '2026-02-07',
   },
+  {
+    id: 'claude-code-best-practices-for-agentic-coding',
+    title: 'Claude Code: Best Practices for Agentic Coding',
+    description: 'Simon Willison breaks down Anthropic\'s best practices for Claude Code, revealing how \'think\' trigger words map to different token budgets for extended reasoning.',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '5 min read',
+    url: 'https://simonwillison.net/2025/Apr/19/claude-code-best-practices/',
+    featured: false,
+    thumbnailType: 'agent',
+    thumbnailTitle: 'Best Practices',
+    tags: ['best practices', 'extended thinking', 'agentic coding', 'Simon Willison'],
+    createdAt: '2026-02-09',
+  },
 ];
 
 export function getAllBlogPosts(): BlogPost[] {

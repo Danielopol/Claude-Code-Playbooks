@@ -101,6 +101,20 @@ export const blogPosts: BlogPost[] = [
     tags: ['best practices', 'extended thinking', 'agentic coding', 'Simon Willison'],
     createdAt: '2026-02-09',
   },
+  {
+    id: 'inside-the-development-workflow-of-claude-code-s-c',
+    title: 'Inside the Development Workflow of Claude Code\'s Creator',
+    description: 'Boris Cherny shares his 8-step Claude Code workflow including parallel sessions, plan-then-execute methodology, Opus 4.5 usage, slash commands, and verification loops that improve results 2-3x.',
+    category: 'guide',
+    difficulty: 'advanced',
+    readingTime: '8 min read',
+    url: 'https://www.infoq.com/news/2026/01/claude-code-creator-workflow/',
+    featured: true,
+    thumbnailType: 'agent',
+    thumbnailTitle: 'Creator Workflow',
+    tags: ['Boris Cherny', 'parallel sessions', 'plan mode', 'Opus 4.5', 'slash commands', 'CLAUDE.md'],
+    createdAt: '2026-02-10',
+  },
 ];
 
 export function getAllBlogPosts(): BlogPost[] {

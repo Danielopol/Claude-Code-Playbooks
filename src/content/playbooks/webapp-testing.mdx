@@ -1,0 +1,137 @@
+---
+title: "Web App Testing"
+description: "Test local web applications with Playwright automation for frontend verification, UI debugging, and screenshot capture."
+category: "testing-qa"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "Composio"
+sourceUrl: "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/webapp-testing"
+tags: ["testing", "playwright", "automation", "frontend", "ui", "debugging"]
+createdAt: "2026-02-10"
+---
+
+## What This Does
+
+Test local web applications using Playwright automation scripts. Verify frontend functionality, debug UI issues, capture screenshots, and inspect browser logs with a reconnaissance-then-action approach.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Testing Project
+
+```bash
+mkdir -p ~/Projects/webapp-testing
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Projects/webapp-testing/
+```
+
+### Step 3: Start Testing
+
+```bash
+cd ~/Projects/webapp-testing
+claude
+```
+
+Then say: **"Test my web app running at localhost:3000"**
+
+---
+
+## Testing Approaches
+
+| Scenario | Approach |
+|----------|----------|
+| Static HTML | Read file, extract selectors, automate |
+| Dynamic (server not running) | Use helper script to manage server |
+| Dynamic (server running) | Reconnaissance first, then actions |
+
+---
+
+## Reconnaissance-Then-Action Pattern
+
+### Step 1: Navigate
+```javascript
+await page.goto('http://localhost:3000');
+```
+
+### Step 2: Wait for Load
+```javascript
+await page.wait_for_load_state('networkidle');
+```
+
+### Step 3: Capture State
+- Take screenshots
+- Inspect DOM structure
+- Discover selectors
+
+### Step 4: Execute Actions
+- Click, type, submit
+- Verify results
+- Capture final state
+
+---
+
+## Key Capabilities
+
+- **Frontend Verification**: Test UI components work correctly
+- **Visual Debugging**: Screenshot capture at any point
+- **Log Inspection**: Access browser console logs
+- **Automation**: Script complex user flows
+- **Server Management**: Handle server lifecycle
+
+---
+
+## Example Prompts
+
+- "Take a screenshot of my app at localhost:3000"
+- "Test the login flow on my local server"
+- "Verify the form submission works correctly"
+- "Check for JavaScript errors in the console"
+- "Automate clicking through the onboarding"
+
+---
+
+## Helper Script
+
+```bash
+# Manage server lifecycle for testing
+python scripts/with_server.py
+```
+
+Run with `--help` first to see usage options.
+
+---
+
+## Common Testing Tasks
+
+| Task | Action |
+|------|--------|
+| Screenshot | Capture current state |
+| Click | Interact with elements |
+| Type | Fill form fields |
+| Submit | Send forms |
+| Assert | Verify content |
+| Wait | Handle async operations |
+
+---
+
+## Critical Tips
+
+- **Wait for networkidle**: Dynamic apps need JavaScript to execute
+- **Check --help first**: Don't read script source until you try running
+- **Discover selectors**: Inspect rendered state, not source HTML
+- **Handle async**: Web apps often have delayed content
+
+---
+
+## Tips
+
+- Always wait for network idle on dynamic sites
+- Screenshot before and after actions
+- Check console for JavaScript errors
+- Use stable selectors (data-testid, roles)

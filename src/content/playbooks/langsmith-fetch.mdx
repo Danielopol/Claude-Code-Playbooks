@@ -1,0 +1,121 @@
+---
+title: "LangSmith Fetch"
+description: "Debug LangChain and LangGraph agents by fetching execution traces from LangSmith Studio for error analysis and performance optimization."
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Composio"
+sourceUrl: "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/langsmith-fetch"
+tags: ["langsmith", "langchain", "langgraph", "debugging", "traces", "agents"]
+createdAt: "2026-02-10"
+---
+
+## What This Does
+
+Debug LangChain and LangGraph agents by fetching execution traces from LangSmith Studio. Investigate agent behavior, errors, tool calls, memory operations, and performance metrics through terminal commands.
+
+---
+
+## Quick Start
+
+### Step 1: Install
+
+```bash
+pip install langsmith-fetch
+```
+
+### Step 2: Configure
+
+```bash
+export LANGSMITH_API_KEY="your_key"
+export LANGSMITH_PROJECT="your_project"
+```
+
+### Step 3: Debug
+
+```bash
+claude
+```
+
+Then say: **"Debug my agent's recent activity"**
+
+---
+
+## Four Debug Workflows
+
+| Workflow | Purpose |
+|----------|---------|
+| Quick Debug | Last 5 minutes of activity |
+| Deep Dive | Analyze specific trace ID |
+| Export Session | Save traces for sharing |
+| Error Detection | Find and categorize errors |
+
+---
+
+## Activation Triggers
+
+Claude activates this skill when you mention:
+- "Debug my agent"
+- "Show recent traces"
+- "Check for errors"
+- "Review agent performance"
+
+---
+
+## Quick Debug Report
+
+Get a summary of recent activity:
+- Success/failure counts
+- Tools used
+- Execution times
+- Token consumption
+- Error summary
+
+---
+
+## Deep Dive Analysis
+
+For specific trace investigation:
+- Complete execution flow
+- Step-by-step breakdown
+- Root cause analysis
+- Suggested fixes
+
+---
+
+## Output Formats
+
+| Format | Best For |
+|--------|----------|
+| pretty | Visual inspection |
+| json | Detailed analysis |
+| raw | Piping to other commands |
+
+---
+
+## Example Prompts
+
+- "Why is my agent not responding?"
+- "Show traces with errors from the last hour"
+- "Analyze trace abc123 for issues"
+- "Export today's debug session"
+- "What tools is my agent using most?"
+
+---
+
+## Common Issues Detected
+
+- Unresponsive agents
+- Incorrect tool selection
+- Memory operation failures
+- Performance bottlenecks
+- Token limit issues
+
+---
+
+## Tips
+
+- **Check recent first**: Start with quick debug
+- **Use trace IDs**: Deep dive specific issues
+- **Export for team**: Share debug sessions
+- **Track patterns**: Look for recurring errors

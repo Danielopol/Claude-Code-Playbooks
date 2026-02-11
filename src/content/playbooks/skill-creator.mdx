@@ -1,0 +1,137 @@
+---
+title: "Skill Creator"
+description: "Create modular skills that extend Claude's capabilities with specialized knowledge, workflows, and tool integrations."
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "20 minutes"
+author: "Composio"
+sourceUrl: "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/skill-creator"
+tags: ["skills", "claude", "extension", "workflow", "tools", "development"]
+createdAt: "2026-02-10"
+---
+
+## What This Does
+
+Create modular, self-contained skills that extend Claude's capabilities. Skills provide specialized knowledge, domain-specific workflows, and tool integrations that activate based on context.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Skills Development Folder
+
+```bash
+mkdir -p ~/Projects/my-skills
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Projects/my-skills/
+```
+
+### Step 3: Start Creating
+
+```bash
+cd ~/Projects/my-skills
+claude
+```
+
+Then say: **"Help me create a skill for [use case]"**
+
+---
+
+## What Skills Provide
+
+| Component | Purpose |
+|-----------|---------|
+| Specialized Workflows | Domain-specific procedures |
+| Tool Integrations | File formats and APIs |
+| Domain Expertise | Company-specific knowledge |
+| Bundled Resources | Scripts, references, assets |
+
+---
+
+## Skill Structure
+
+```
+my-skill/
+├── SKILL.md          # Required: Core skill definition
+├── scripts/          # Optional: Executable code
+├── references/       # Optional: Context documentation
+└── assets/           # Optional: Templates, outputs
+```
+
+---
+
+## Six-Step Creation Process
+
+| Step | Action |
+|------|--------|
+| 1. Understand | Gather concrete examples and use cases |
+| 2. Plan | Identify necessary scripts and resources |
+| 3. Initialize | Generate template structure |
+| 4. Edit | Develop SKILL.md with imperative style |
+| 5. Package | Validate and create distributable zip |
+| 6. Iterate | Refine based on real-world testing |
+
+---
+
+## SKILL.md Format
+
+```markdown
+---
+name: "My Skill Name"
+description: "What this skill does"
+triggers: ["keyword1", "keyword2"]
+---
+
+## Purpose
+Brief explanation of skill functionality
+
+## Workflow
+Step-by-step procedures
+
+## Commands
+Available actions and syntax
+```
+
+---
+
+## Key Principles
+
+### Progressive Disclosure
+- Load metadata first
+- Then SKILL.md body
+- Resources loaded as needed
+- Preserves context efficiency
+
+### Avoid Duplication
+- Core procedures in SKILL.md
+- Detailed info in references
+- No redundancy between files
+
+### Imperative Writing
+- Use command form: "Do X"
+- Clear, actionable instructions
+- Direct procedural steps
+
+---
+
+## Example Prompts
+
+- "Create a skill for code review workflows"
+- "Build a skill for managing Docker deployments"
+- "Design a skill for API documentation"
+- "Develop a skill for database migrations"
+
+---
+
+## Tips
+
+- **Start with examples**: Concrete use cases guide design
+- **Keep SKILL.md focused**: Move details to references
+- **Use imperative voice**: Clear commands work best
+- **Test iteratively**: Real usage reveals improvements
+- **Package properly**: Validate before distribution

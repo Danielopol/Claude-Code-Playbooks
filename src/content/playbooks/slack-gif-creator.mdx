@@ -1,0 +1,136 @@
+---
+title: "Slack GIF Creator"
+description: "Create animated GIFs optimized for Slack's technical requirements with composable animation primitives and size validators."
+category: "creative-content"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Composio"
+sourceUrl: "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/slack-gif-creator"
+tags: ["gif", "slack", "animation", "emoji", "creative", "messaging"]
+createdAt: "2026-02-10"
+---
+
+## What This Does
+
+Create animated GIFs optimized for Slack's specific technical requirements. Build message GIFs or custom emoji with composable animation primitives while staying within file size limits.
+
+---
+
+## Quick Start
+
+### Step 1: Install Dependencies
+
+```bash
+pip install Pillow imageio numpy
+```
+
+### Step 2: Create a GIF Project
+
+```bash
+mkdir -p ~/Projects/slack-gifs
+```
+
+### Step 3: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Projects/slack-gifs/
+```
+
+### Step 4: Start Creating
+
+```bash
+cd ~/Projects/slack-gifs
+claude
+```
+
+Then say: **"Create a celebration GIF for Slack"**
+
+---
+
+## Two GIF Types
+
+| Type | Max Size | Dimensions | FPS | Duration |
+|------|----------|------------|-----|----------|
+| Message | ~2MB | 480x480 | 15-20 | 2-5 sec |
+| Emoji | 64KB | 128x128 | 10-12 | 1-2 sec |
+
+---
+
+## Animation Primitives
+
+| Animation | Effect |
+|-----------|--------|
+| shake | Vibration effect |
+| bounce | Up-down motion |
+| spin | Rotation |
+| pulse | Size oscillation |
+| fade | Opacity change |
+| zoom | Scale in/out |
+| wiggle | Side-to-side |
+| slide | Directional movement |
+| flip | Mirror transform |
+| explode | Burst outward |
+
+---
+
+## Tool Categories
+
+| Category | Purpose |
+|----------|---------|
+| Validators | Check Slack constraints |
+| Primitives | Composable animations |
+| Helpers | Text, color, effects |
+
+---
+
+## Example Prompts
+
+- "Create a thumbs-up emoji that bounces"
+- "Make a celebration GIF with confetti"
+- "Build a loading spinner for Slack"
+- "Create a pulsing heart emoji"
+- "Make a shake animation for error alerts"
+
+---
+
+## Optimization Tips
+
+If your GIF is too large:
+
+1. Reduce frame count
+2. Shrink color palette
+3. Decrease dimensions
+4. Simplify the design
+
+Emoji GIFs (64KB limit) need aggressive optimization.
+
+---
+
+## Validation
+
+The toolkit automatically warns when:
+- File exceeds size limits
+- Dimensions are wrong
+- Frame rate is too high
+- Colors exceed palette limit
+
+---
+
+## Philosophy
+
+This toolkit provides **building blocks, not rigid recipes**:
+- Understand your vision
+- Design in phases
+- Apply primitives flexibly
+- Validate constraints
+- Iterate as needed
+
+---
+
+## Tips
+
+- **Start simple**: Basic animations first
+- **Check size early**: Validate before finalizing
+- **Emoji is hard**: 64KB requires creativity
+- **Combine primitives**: Layer effects for richness

@@ -1,0 +1,106 @@
+---
+title: "Connect Apps"
+description: "Enable Claude to integrate with 1,000+ external applications to perform real actions like sending emails, creating issues, and posting messages."
+category: "automation-productivity"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Composio"
+sourceUrl: "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/connect-apps"
+tags: ["integrations", "apps", "automation", "gmail", "slack", "github", "actions"]
+createdAt: "2026-02-10"
+---
+
+## What This Does
+
+Enable Claude to perform real actions in 1,000+ external applications. Send actual emails, create GitHub issues, post to Slack, and update Notion—instead of just generating text about it.
+
+---
+
+## Quick Start
+
+### Step 1: Install the Plugin
+
+```bash
+/plugin install composio-toolrouter
+```
+
+### Step 2: Configure
+
+```bash
+/composio-toolrouter:setup
+```
+
+Get your free API key from platform.composio.dev
+
+### Step 3: Start Using
+
+Say: **"Send an email to john@example.com about the project update"**
+
+---
+
+## What You Can Do
+
+| Action | Platforms |
+|--------|-----------|
+| Send emails | Gmail, Outlook, SendGrid |
+| Post messages | Slack, Discord, Teams, Telegram |
+| Create issues | GitHub, GitLab, Jira, Linear |
+| Update docs | Notion, Google Docs, Confluence |
+
+---
+
+## How It Works
+
+1. You make a request (e.g., "Send an email to...")
+2. Composio Tool Router finds the right tool
+3. First-time use requires OAuth authorization (one-time)
+4. Action is executed in the actual application
+
+---
+
+## Example Prompts
+
+### Email
+- "Send an email to sarah@company.com with the meeting notes"
+- "Reply to the latest email from the client"
+
+### Development
+- "Create a GitHub issue for the login bug with priority high"
+- "Add a comment to Linear issue FE-123"
+
+### Communication
+- "Post to #general that the deploy is complete"
+- "Send a Discord message about the new feature"
+
+### Documentation
+- "Add these notes to my Notion page"
+- "Update the Google Doc with the new requirements"
+
+---
+
+## First-Time Authorization
+
+Each app requires one-time OAuth setup:
+1. Claude prompts for authorization
+2. You click the auth link
+3. Approve access in the app
+4. Done—future requests work automatically
+
+---
+
+## Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| Plugin won't install | Check Claude Code version |
+| Authorization fails | Try fresh OAuth flow |
+| Action denied | Check app permissions |
+
+---
+
+## Tips
+
+- **Authorize once**: Each app only needs setup once
+- **Be specific**: Include all details in your request
+- **Check permissions**: Some actions need admin access
+- **Use real values**: Provide actual emails, usernames, etc.

@@ -1,0 +1,116 @@
+---
+title: "Composio SDK"
+description: "Build AI agents and applications with access to 200+ external tools including Gmail, Slack, GitHub, and more."
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "Composio"
+sourceUrl: "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/composio-sdk"
+tags: ["composio", "sdk", "ai-agents", "integrations", "tools", "api"]
+createdAt: "2026-02-10"
+---
+
+## What This Does
+
+Build AI agents and applications with access to 200+ external tools like Gmail, Slack, GitHub, and more. Choose between Tool Router for agent development or Direct Execution for traditional applications.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Composio Project
+
+```bash
+mkdir -p ~/Projects/composio-agent
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Projects/composio-agent/
+```
+
+### Step 3: Start Building
+
+```bash
+cd ~/Projects/composio-agent
+claude
+```
+
+Then say: **"Help me build an AI agent that can send emails and create GitHub issues"**
+
+---
+
+## Two Approaches
+
+| Approach | Best For | Features |
+|----------|----------|----------|
+| Tool Router | AI Agents | Session isolation, auto-auth, MCP-compatible |
+| Direct Execution | Traditional Apps | Manual control, CRUD operations, webhooks |
+
+---
+
+## Tool Router (Agent Development)
+
+For chat-based or autonomous agents:
+- Session-based user isolation
+- Dynamic toolkit configuration
+- Automatic authentication management
+- MCP-compatible server URLs
+- Real-time event handling with triggers
+
+---
+
+## Direct Execution (App Development)
+
+For traditional applications:
+- Manual tool execution control
+- CRUD operations for accounts
+- Custom tool creation
+- Pre/post-execution hooks
+- Event-driven workflows
+
+---
+
+## Supported Integrations
+
+| Category | Examples |
+|----------|----------|
+| Communication | Gmail, Slack, Discord, Teams |
+| Development | GitHub, GitLab, Jira, Linear |
+| Productivity | Notion, Google Docs, Confluence |
+| CRM | Salesforce, HubSpot, Pipedrive |
+| Storage | Google Drive, Dropbox, OneDrive |
+
+---
+
+## Example Prompts
+
+- "Create an agent that monitors GitHub PRs and posts to Slack"
+- "Build a workflow that syncs Notion with Google Sheets"
+- "Set up an agent to auto-respond to Gmail inquiries"
+- "Create a multi-tool agent with calendar and email access"
+
+---
+
+## Key Concepts
+
+### User Sessions
+- Isolate tool access per user
+- Manage authentication flows
+- Handle multi-tenant scenarios
+
+### Triggers
+- React to external events
+- Webhook-based notifications
+- Real-time event handling
+
+---
+
+## Tips
+
+- **Start with Tool Router**: Easier for agent development
+- **Handle auth flows**: First-time users need OAuth
+- **Use session isolation**: Keep user data separate
+- **Check rate limits**: External APIs have constraints

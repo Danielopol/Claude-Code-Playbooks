@@ -1,0 +1,102 @@
+---
+title: "Video Downloader"
+description: "Download YouTube videos with customizable quality and format settings, including audio extraction to MP3."
+category: "productivity"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Composio"
+sourceUrl: "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/video-downloader"
+tags: ["youtube", "video", "download", "mp3", "audio", "media"]
+createdAt: "2026-02-10"
+---
+
+## What This Does
+
+Download YouTube videos with customizable quality and format settings. Choose resolution (1080p, 720p, etc.), format (MP4, WebM), or extract audio only as MP3.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above and place in any folder:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/
+```
+
+### Step 2: Start Claude
+
+```bash
+cd ~/Documents
+claude
+```
+
+### Step 3: Download a Video
+
+**"Download this YouTube video: [URL]"**
+
+---
+
+## Quality Options
+
+| Quality | Resolution | Best For |
+|---------|------------|----------|
+| best | Highest available | Archiving |
+| 1080p | Full HD | Most uses |
+| 720p | HD | Good balance |
+| 480p | SD | Smaller files |
+| 360p | Low | Minimal storage |
+
+---
+
+## Format Options
+
+| Format | Extension | Notes |
+|--------|-----------|-------|
+| MP4 | .mp4 | Most compatible |
+| WebM | .webm | Web-optimized |
+| MKV | .mkv | High quality container |
+| MP3 | .mp3 | Audio only |
+
+---
+
+## Example Commands
+
+### Download in Best Quality
+```
+Download this YouTube video in best quality: [URL]
+```
+
+### Specific Resolution
+```
+Download this video in 720p: [URL]
+```
+
+### Audio Only
+```
+Extract the audio from this video as MP3: [URL]
+```
+
+### Custom Location
+```
+Download this video to my Videos folder: [URL]
+```
+
+---
+
+## Notes
+
+- **Auto-installs dependencies**: yt-dlp installs automatically if needed
+- **Stream merging**: Handled automatically for best quality
+- **File naming**: Uses video title automatically
+- **Higher resolution = longer download**: 1080p takes more time and space
+
+---
+
+## Tips
+
+- **Check available quality**: Not all videos have 1080p
+- **Use MP3 for podcasts**: Smaller files, audio only
+- **Batch downloads**: Multiple URLs work sequentially
+- **Storage space**: 1080p videos can be 1-2GB+

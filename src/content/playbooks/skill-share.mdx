@@ -1,0 +1,123 @@
+---
+title: "Skill Share"
+description: "Create new Claude skills with proper structure and automatically distribute them to team Slack channels via Rube integration."
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "Composio"
+sourceUrl: "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/skill-share"
+tags: ["skills", "slack", "team", "distribution", "automation", "rube"]
+createdAt: "2026-02-10"
+---
+
+## What This Does
+
+Create new Claude skills with standardized structure and metadata, then automatically distribute them to team Slack channels. Streamlines the skill development pipeline from creation to team notification.
+
+---
+
+## Quick Start
+
+### Step 1: Set Up Workspace
+
+```bash
+mkdir -p ~/Projects/team-skills
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Projects/team-skills/
+```
+
+### Step 3: Create and Share
+
+```bash
+cd ~/Projects/team-skills
+claude
+```
+
+Then say: **"Create a skill for [use case] and share it with the team"**
+
+---
+
+## Requirements
+
+| Requirement | Purpose |
+|-------------|---------|
+| Slack workspace | Team notifications |
+| Rube integration | Slack messaging |
+| Python 3.7+ | Skill creation |
+| Write permissions | Directory access |
+
+---
+
+## Five-Stage Pipeline
+
+| Stage | Action |
+|-------|--------|
+| 1. Initialize | Provide skill details |
+| 2. Create | Build directory structure |
+| 3. Validate | Check metadata completeness |
+| 4. Package | Prepare for distribution |
+| 5. Notify | Post to Slack channel |
+
+---
+
+## What Gets Created
+
+```
+my-skill/
+├── SKILL.md          # Core skill definition
+├── scripts/          # Executable code
+├── references/       # Documentation
+└── assets/           # Templates and outputs
+```
+
+---
+
+## Quality Assurance
+
+Before distribution, the tool validates:
+- SKILL.md format compliance
+- Required metadata fields
+- Hyphenated naming convention
+- Directory structure
+
+---
+
+## Slack Notification
+
+When shared, the team receives:
+- Skill name and description
+- Metadata summary
+- Direct file links
+- Usage instructions
+
+---
+
+## Example Prompts
+
+- "Create a skill for code review and share to #engineering"
+- "Build a deployment skill and notify the team"
+- "Package and distribute my new testing skill"
+- "Create and share a documentation skill"
+
+---
+
+## Use Cases
+
+- Internal tool development
+- Collaborative skill building
+- Team capability sharing
+- Automated skill pipelines
+
+---
+
+## Tips
+
+- **Use hyphenated names**: `my-skill-name` not `mySkillName`
+- **Complete metadata**: All fields required for distribution
+- **Test before sharing**: Validate locally first
+- **Configure Slack channel**: Set destination before sharing

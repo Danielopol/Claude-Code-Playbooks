@@ -1,0 +1,121 @@
+---
+title: "MCP Server Builder"
+description: "Guide for creating high-quality Model Context Protocol (MCP) servers that enable LLMs to interact with external services and APIs."
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "30 minutes"
+author: "Composio"
+sourceUrl: "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/mcp-builder"
+tags: ["mcp", "api", "integration", "llm", "tools", "python", "typescript"]
+createdAt: "2026-02-10"
+---
+
+## What This Does
+
+Build high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services and APIs. Follow best practices for Python (FastMCP) or Node/TypeScript implementations.
+
+---
+
+## Quick Start
+
+### Step 1: Create an MCP Project
+
+```bash
+mkdir -p ~/Projects/my-mcp-server
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Projects/my-mcp-server/
+```
+
+### Step 3: Start Building
+
+```bash
+cd ~/Projects/my-mcp-server
+claude
+```
+
+Then say: **"Help me build an MCP server for [service/API]"**
+
+---
+
+## Development Phases
+
+| Phase | Activities |
+|-------|------------|
+| 1. Research | API docs, protocol specs, tool design |
+| 2. Implementation | Core infrastructure, tools, validation |
+| 3. Review | Code quality, testing, documentation |
+| 4. Evaluation | Create test scenarios, verify functionality |
+
+---
+
+## Key Design Principles
+
+### Build for Workflows
+- Don't just wrap API endpoints
+- Create tools that enable complete tasks
+- Consolidate related operations
+
+### Optimize for Context
+- LLMs have limited context windows
+- Return high-signal information only
+- Provide concise vs detailed options
+
+### Actionable Errors
+- Guide agents toward correct usage
+- Suggest specific next steps
+- Make errors educational
+
+---
+
+## Language Options
+
+| Language | SDK | Best For |
+|----------|-----|----------|
+| Python | FastMCP | Quick prototyping, data science |
+| TypeScript | MCP SDK | Type safety, Node ecosystem |
+
+---
+
+## Example Prompts
+
+- "Create an MCP server for the GitHub API"
+- "Build tools to integrate with Slack"
+- "Design an MCP server for database queries"
+
+---
+
+## Tool Annotations
+
+```python
+@mcp.tool(
+    readOnlyHint=True,      # Read-only operations
+    destructiveHint=False,   # Non-destructive
+    idempotentHint=True,     # Same result on repeat
+    openWorldHint=True       # External systems
+)
+```
+
+---
+
+## Quality Checklist
+
+- [ ] Pydantic/Zod input validation
+- [ ] Comprehensive docstrings
+- [ ] Error handling for all external calls
+- [ ] Async/await for I/O operations
+- [ ] Character limits and truncation
+- [ ] Multiple response formats
+
+---
+
+## Tips
+
+- **Research thoroughly**: Study all API documentation first
+- **Design for agents**: Think about what workflows LLMs need
+- **Test with evaluation**: Create realistic test scenarios
+- **Iterate based on feedback**: Let agent performance guide improvements

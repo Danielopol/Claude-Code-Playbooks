@@ -115,6 +115,20 @@ export const blogPosts: BlogPost[] = [
     tags: ['Boris Cherny', 'parallel sessions', 'plan mode', 'Opus 4.5', 'slash commands', 'CLAUDE.md'],
     createdAt: '2026-02-10',
   },
+  {
+    id: '6-weeks-of-claude-code',
+    title: '6 Weeks of Claude Code',
+    description: 'Puzzmo\'s engineering lead shares an honest 6-week experience report — completing years of tech debt as side projects, dual clone workflows, monorepo advantages, and why Claude Code works best as a pairing tool for experienced engineers.',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '15 min read',
+    url: 'https://blog.puzzmo.com/posts/2025/07/30/six-weeks-of-claude-code/',
+    featured: false,
+    thumbnailType: 'agent',
+    thumbnailTitle: '6 Week Review',
+    tags: ['experience report', 'tech debt', 'monorepo', 'parallel workflows', 'game dev', 'Puzzmo'],
+    createdAt: '2026-02-11',
+  },
 ];
 
 export function getAllBlogPosts(): BlogPost[] {

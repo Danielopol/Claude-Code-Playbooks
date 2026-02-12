@@ -129,6 +129,20 @@ export const blogPosts: BlogPost[] = [
     tags: ['experience report', 'tech debt', 'monorepo', 'parallel workflows', 'game dev', 'Puzzmo'],
     createdAt: '2026-02-11',
   },
+  {
+    id: 'claude-code-in-production-40-productivity-increase',
+    title: 'Claude Code in Production: 40% Productivity Increase',
+    description: 'A solo developer maintaining 350k+ LOC documents a 40% productivity boost over 4 months with Claude Code — covering CLAUDE.md hierarchies, subagent code reviews, fast vs. full workflows, and feature-based project organization.',
+    category: 'tutorial',
+    difficulty: 'advanced',
+    readingTime: '12 min read',
+    url: 'https://dev.to/dzianiskarviha/integrating-claude-code-into-production-workflows-lbn',
+    featured: true,
+    thumbnailType: 'agent',
+    thumbnailTitle: 'Production Use',
+    tags: ['production workflows', 'CLAUDE.md', 'subagents', 'MCP', 'skills', 'code review', 'monorepo', 'productivity metrics'],
+    createdAt: '2026-02-12',
+  },
 ];
 
 export function getAllBlogPosts(): BlogPost[] {

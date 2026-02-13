@@ -1,0 +1,236 @@
+---
+title: "Replication-First Coding"
+description: "When working with existing code or papers, match the original exactly before extending. Verify against gold standard numbers to catch silent bugs."
+category: "academic-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://psantanna.com/claude-code-my-workflow/workflow-guide.html"
+tags: ["replication", "verification", "research", "debugging", "accuracy", "validation"]
+createdAt: "2026-02-12"
+---
+
+## What This Does
+
+When translating, refactoring, or extending existing code, this playbook enforces a replication-first approach: match the original output exactly before making any changes. This catches silent bugs that produce wrong results without obvious errors — the most dangerous kind of bug.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- Original code/implementation to replicate
+- Known "gold standard" outputs to verify against
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your project:
+
+```markdown
+# Replication-First Protocol
+
+## The Danger of Silent Bugs
+
+The worst bugs aren't crashes — they're wrong answers that look plausible.
+
+**Example**: Translating a statistical analysis from Stata to Python. The code runs, produces numbers, no errors. But a subtle indexing difference means the results are systematically wrong. Students learn incorrect findings. Papers get published with errors.
+
+## The Protocol
+
+### Phase 1: Inventory Original
+Before touching code:
+1. Identify "gold standard" numbers from original source
+2. Document them explicitly:
+   ```
+   ## Gold Standard Values
+   - Table 3, Column 2: 0.847 (SE: 0.023)
+   - Figure 2 data point at x=5: 12.3
+   - Sum of coefficients: -0.156
+   ```
+3. Note data sources, versions, random seeds
+4. Screenshot or copy exact original output
+
+### Phase 2: Replicate Exactly
+Implement the translation/refactor:
+1. Match original specification EXACTLY
+   - Same variables, same order
+   - Same methodology, same parameters
+   - Same random seed if applicable
+2. Generate output in same format
+3. Do NOT optimize or "improve" yet
+
+### Phase 3: Verify Match
+Compare every target value:
+```
+| Target | Original | Ours | Match? |
+|--------|----------|------|--------|
+| Table 3, Col 2 | 0.847 | 0.847 | ✓ |
+| Table 3, Col 3 | 0.156 | 0.158 | ✗ |
+```
+
+**Tolerance thresholds**:
+- Estimates: < 0.01 difference
+- Standard errors: < 0.05 difference
+- Counts: exact match
+
+**If mismatch**: STOP. Investigate before proceeding.
+
+### Phase 4: Only Then Extend
+After replication is verified:
+1. Document that replication is complete
+2. Now you can add extensions, optimizations, new features
+3. Each extension gets its own verification
+
+## Verification Commands
+
+Before reporting "done", always run:
+```
+Compare output to gold standard:
+- [List each target value]
+- [Show differences]
+```
+
+## Red Flags
+
+**Stop and investigate if**:
+- Any value differs by more than tolerance
+- Counts don't match exactly
+- Signs are different (positive vs negative)
+- Order of magnitude is off
+
+**Common causes**:
+- Different default parameters (e.g., intercept included vs excluded)
+- Different handling of missing values
+- 0-indexed vs 1-indexed
+- Different random number generators
+
+## Documentation
+
+After successful replication:
+```markdown
+## Replication Verified
+
+**Original source**: [paper/repo/code]
+**Replication date**: YYYY-MM-DD
+
+### Values matched:
+- [Value 1]: ✓
+- [Value 2]: ✓
+
+### Methodology notes:
+- [Any gotchas discovered]
+
+### Now safe to extend.
+```
+```
+
+## Step-by-Step Setup
+
+### Step 1: Add to your CLAUDE.md
+
+Add the replication-first protocol to your project's CLAUDE.md.
+
+### Step 2: Document gold standards
+
+Before any translation/refactoring, create a gold standard document:
+
+```markdown
+# Gold Standard: [Original Name]
+
+## Source
+- Paper: [citation]
+- Code: [repo link]
+- Data: [data source]
+
+## Target Values
+- Main result: X.XXX
+- Secondary result: Y.YYY
+- Control values: [list]
+
+## Methodology Notes
+- Uses clustered standard errors
+- Includes year fixed effects
+- Sample size: N = 1,234
+```
+
+### Step 3: Test the protocol
+
+```
+I'm translating this Python script to TypeScript. Here are the gold standard outputs it produces: [values]. Replicate exactly, then verify match before any changes.
+```
+
+## Example Usage
+
+**User:**
+> "Translate this R script to Python. The original produces these outputs: coefficient = 0.234, SE = 0.045, R-squared = 0.678"
+
+**Claude:**
+> ## Replication-First: R to Python Translation
+>
+> ### Phase 1: Gold Standards Documented
+> - Coefficient: 0.234
+> - Standard Error: 0.045
+> - R-squared: 0.678
+>
+> ### Phase 2: Implementing Python Version
+> [Creates Python code matching R methodology exactly]
+>
+> ### Phase 3: Verification
+> ```
+> | Target | R Original | Python | Match? |
+> |--------|-----------|--------|--------|
+> | Coefficient | 0.234 | 0.234 | ✓ |
+> | Std Error | 0.045 | 0.045 | ✓ |
+> | R-squared | 0.678 | 0.678 | ✓ |
+> ```
+>
+> **All values match within tolerance.**
+>
+> ### Phase 4: Replication Complete
+> Python implementation verified. Safe to extend.
+>
+> Want me to proceed with any optimizations or enhancements?
+
+**Example with mismatch:**
+
+**Claude:**
+> ### Phase 3: Verification
+> ```
+> | Target | R Original | Python | Match? |
+> |--------|-----------|--------|--------|
+> | Coefficient | 0.234 | 0.234 | ✓ |
+> | Std Error | 0.045 | 0.051 | ✗ |
+> | R-squared | 0.678 | 0.678 | ✓ |
+> ```
+>
+> **MISMATCH DETECTED**: Standard error differs by 0.006
+>
+> **Investigating**...
+>
+> Found the issue: R uses heteroskedasticity-robust standard errors by default in this package. Python's statsmodels uses non-robust by default.
+>
+> **Fix**: Adding `cov_type='HC3'` to Python regression.
+>
+> **Re-verification**:
+> | Std Error | 0.045 | 0.045 | ✓ |
+>
+> Now all values match. Proceeding.
+
+## Tips
+
+- **No shortcuts**: "It's probably fine" is not verification. Check every value.
+- **Document the gotchas**: What caused mismatches? Future-you will hit the same issues.
+- **Random seeds matter**: Different RNGs produce different results. Document seeds explicitly.
+- **Version lock**: Package versions can change defaults. Document exact versions used.
+
+## Troubleshooting
+
+**Problem**: Values don't match but code looks correct
+
+**Solution**: Check defaults. Different languages/packages have different defaults for missing value handling, standard error calculation, intercepts, etc.
+
+**Problem**: Can't get exact match, always 0.001 off
+
+**Solution**: May be floating point precision. If differences are < 0.0001 and consistent, this is acceptable. Document the precision caveat.
+
+**Problem**: Original code doesn't have clear outputs
+
+**Solution**: Create your own gold standard first. Run the original, document exact outputs, then replicate.

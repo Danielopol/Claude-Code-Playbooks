@@ -1,0 +1,274 @@
+---
+title: "Multi-Agent Parallel Review"
+description: "Run multiple specialized review agents in parallel — proofreader, code reviewer, security auditor, etc. Each agent focuses on one dimension with full attention."
+category: "academic-research"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://psantanna.com/claude-code-my-workflow/workflow-guide.html"
+tags: ["multi-agent", "review", "parallel", "specialized-agents", "code-review", "quality"]
+createdAt: "2026-02-12"
+---
+
+## What This Does
+
+Instead of asking Claude to review code for "everything" (and missing things), this playbook runs multiple specialized agents in parallel. Each agent examines the same files but focuses on one specific dimension: security, performance, style, etc. The results are synthesized into a prioritized action list.
+
+**Why specialized agents beat generalist review**: When you ask for a review of "grammar, layout, math, code quality, and flow" in one pass, Claude skims everything and catches some issues. Specialized agents give full attention to each dimension and catch more.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- Code or documents to review
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your project:
+
+```markdown
+# Multi-Agent Review System
+
+## Available Review Agents
+
+### Code Quality Agent
+**Focus**: Clean code, patterns, maintainability
+**Checks**:
+- Function length and complexity
+- Naming conventions
+- DRY violations
+- Code organization
+- Error handling patterns
+- Test coverage gaps
+
+### Security Agent
+**Focus**: Vulnerabilities and security risks
+**Checks**:
+- Input validation
+- SQL injection risks
+- XSS vulnerabilities
+- Authentication/authorization gaps
+- Secrets in code
+- Dependency vulnerabilities
+
+### Performance Agent
+**Focus**: Speed and resource usage
+**Checks**:
+- N+1 queries
+- Unnecessary re-renders
+- Memory leaks
+- Large bundle imports
+- Missing caching opportunities
+- Inefficient algorithms
+
+### Accessibility Agent
+**Focus**: a11y compliance
+**Checks**:
+- ARIA labels
+- Keyboard navigation
+- Color contrast
+- Screen reader compatibility
+- Focus management
+- Semantic HTML
+
+### Style Agent
+**Focus**: Code formatting and conventions
+**Checks**:
+- Consistent formatting
+- Import organization
+- Comment quality
+- Naming consistency
+- File structure
+
+### Documentation Agent
+**Focus**: Docs and comments
+**Checks**:
+- Missing JSDoc/docstrings
+- Outdated comments
+- README accuracy
+- API documentation
+- Inline explanations for complex logic
+
+## Running Reviews
+
+### Single Agent
+```
+Run the security agent on src/auth/
+```
+
+### Parallel Multi-Agent
+```
+Run parallel review: security, performance, accessibility on src/components/
+```
+
+### Full Review Suite
+```
+Run all review agents on the checkout module
+```
+
+## Agent Selection by File Type
+
+| File Type | Recommended Agents |
+|-----------|-------------------|
+| `.ts/.js` (API) | Security, Performance, Code Quality |
+| `.tsx/.jsx` (UI) | Accessibility, Performance, Style |
+| `.py` (Backend) | Security, Performance, Code Quality |
+| `.sql` | Security, Performance |
+| `.md` | Documentation, Style |
+| Config files | Security, Code Quality |
+
+## Parallel Execution Rules
+
+1. Independent agents run simultaneously
+2. Each agent produces its own report
+3. Orchestrator synthesizes into unified priority list
+4. Critical issues from ANY agent block approval
+
+## Report Synthesis Format
+
+After all agents complete:
+
+```
+## Multi-Agent Review Summary
+
+### Critical (fix immediately)
+- [Security] SQL injection in users.ts:45
+- [Performance] N+1 query in orders.ts:78
+
+### High Priority
+- [Accessibility] Missing ARIA labels in Modal.tsx
+- [Security] Rate limiting missing on /api/login
+
+### Medium Priority
+- [Code Quality] Function exceeds 50 lines in utils.ts:120
+- [Style] Inconsistent naming convention
+
+### Low Priority
+- [Documentation] Missing JSDoc on helper functions
+- [Style] Import order not alphabetized
+
+**Combined Score**: 76/100
+**Blocking Issues**: 2 Critical, 2 High
+**Recommendation**: Fix Critical and High before merge
+```
+
+## Custom Agents
+
+Add domain-specific agents:
+
+### Example: React Best Practices Agent
+**Focus**: React-specific patterns
+**Checks**:
+- Proper hook usage
+- Unnecessary state
+- Missing memoization
+- Effect dependencies
+- Component composition
+- Prop drilling
+
+### Example: API Design Agent
+**Focus**: REST/GraphQL best practices
+**Checks**:
+- Consistent naming
+- Proper HTTP methods
+- Error response format
+- Pagination patterns
+- Versioning
+- Rate limiting
+```
+
+## Step-by-Step Setup
+
+### Step 1: Add to your CLAUDE.md
+
+Add the multi-agent review system to your project's CLAUDE.md.
+
+### Step 2: Customize agents for your stack
+
+Remove agents that don't apply (e.g., Accessibility for backend-only projects) and add domain-specific ones.
+
+### Step 3: Test with a single agent
+
+```
+Run the security agent on src/routes/
+```
+
+### Step 4: Run parallel review
+
+```
+Run parallel review: security, performance, code-quality on src/
+```
+
+## Example Usage
+
+**User:**
+> "Run parallel review: security, performance, accessibility on the payment form component"
+
+**Claude:**
+> ## Multi-Agent Review: PaymentForm.tsx
+>
+> Running 3 agents in parallel...
+>
+> ---
+>
+> ### Security Agent Report
+> **Score**: 85/100
+> - (-10) Credit card field doesn't mask input
+> - (-5) Form doesn't prevent double submission
+>
+> ---
+>
+> ### Performance Agent Report
+> **Score**: 90/100
+> - (-5) useEffect triggers on every render (missing deps)
+> - (-5) Large Stripe library loaded synchronously
+>
+> ---
+>
+> ### Accessibility Agent Report
+> **Score**: 78/100
+> - (-10) Error messages not announced to screen readers
+> - (-7) Tab order skips expiry date field
+> - (-5) Submit button lacks loading state announcement
+>
+> ---
+>
+> ## Synthesis
+>
+> ### Critical
+> - [Accessibility] Error messages not accessible (WCAG 4.1.3)
+>
+> ### High Priority
+> - [Security] Mask credit card input
+> - [Accessibility] Fix tab order for expiry field
+>
+> ### Medium Priority
+> - [Security] Prevent double submission
+> - [Performance] Lazy load Stripe
+> - [Performance] Fix useEffect dependencies
+>
+> ### Low Priority
+> - [Accessibility] Announce loading state
+>
+> **Combined Score**: 82/100
+> **Verdict**: Fix Critical and High before merge
+
+## Tips
+
+- **Run agents in parallel**: Explicitly ask for parallel execution to save time. "Run security AND performance agents" triggers sequential; "Run parallel review: security, performance" triggers concurrent.
+- **Start with 2-3 agents**: Don't run all agents on every change. Pick the most relevant for the code you're reviewing.
+- **Critical from any agent blocks**: A security critical issue blocks even if performance is perfect.
+- **Add custom agents for your domain**: A React project benefits from a React-specific agent. A payment system needs a PCI compliance agent.
+
+## Troubleshooting
+
+**Problem**: Agents find conflicting issues
+
+**Solution**: That's expected. One agent might suggest caching, another might flag cached data as stale risk. The synthesis prioritizes by severity, and you make the final call.
+
+**Problem**: Too many low-priority issues
+
+**Solution**: Filter by severity: "Run parallel review, only report Critical and High priority issues."
+
+**Problem**: Reviews take too long
+
+**Solution**: Run agents on smaller scope: specific files or functions rather than entire directories.

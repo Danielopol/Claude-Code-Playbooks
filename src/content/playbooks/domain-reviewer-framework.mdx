@@ -1,0 +1,260 @@
+---
+title: "Domain Reviewer Framework"
+description: "Build a custom reviewer for your specific domain using the 5-Lens Framework: terminology, methodology, precedent, limitations, and impact."
+category: "academic-research"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://psantanna.com/claude-code-my-workflow/workflow-guide.html"
+tags: ["review", "domain-specific", "framework", "customization", "quality"]
+createdAt: "2026-02-12"
+---
+
+## What This Does
+
+Generic reviewers catch generic issues. This playbook helps you build a domain-specific reviewer that catches issues unique to your field — whether that's economics, medicine, software architecture, legal documents, or any specialized domain.
+
+The 5-Lens Framework provides a structure that adapts to any domain while ensuring comprehensive coverage.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- Understanding of your domain's standards and common issues
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your project and customize for your domain:
+
+```markdown
+# Domain Reviewer: [Your Domain]
+
+## The 5-Lens Framework
+
+Every domain review should examine these five dimensions:
+
+### Lens 1: Terminology & Notation
+**What to check**: Is language precise and consistent?
+
+| Check | What It Catches |
+|-------|-----------------|
+| Term consistency | Same concept called different names |
+| Notation accuracy | Symbols used correctly per conventions |
+| Jargon appropriateness | Technical terms used where needed |
+| Definition clarity | Key terms properly introduced |
+
+**Domain-specific checks**:
+- [Add your domain's terminology standards]
+- [Common notation mistakes in your field]
+
+### Lens 2: Methodology & Rigor
+**What to check**: Is the approach sound?
+
+| Check | What It Catches |
+|-------|-----------------|
+| Method validity | Appropriate technique for the problem |
+| Assumption transparency | Hidden assumptions made explicit |
+| Step completeness | No missing steps in reasoning |
+| Error handling | Edge cases considered |
+
+**Domain-specific checks**:
+- [Standard methodologies in your field]
+- [Common methodological errors]
+
+### Lens 3: Precedent & Citations
+**What to check**: Is this grounded in existing work?
+
+| Check | What It Catches |
+|-------|-----------------|
+| Attribution | Ideas properly credited |
+| Relevance | Cited work actually supports claims |
+| Recency | Up-to-date references where needed |
+| Completeness | Key prior work not omitted |
+
+**Domain-specific checks**:
+- [Key papers/sources that should be referenced]
+- [Citation format standards]
+
+### Lens 4: Limitations & Caveats
+**What to check**: Are boundaries honest?
+
+| Check | What It Catches |
+|-------|-----------------|
+| Scope clarity | What this does and doesn't address |
+| Generalizability | How broadly claims can apply |
+| Uncertainty | Appropriate hedging language |
+| Known issues | Acknowledged limitations |
+
+**Domain-specific checks**:
+- [Standard caveats for your domain]
+- [Overclaiming red flags]
+
+### Lens 5: Impact & Applications
+**What to check**: Is the "so what" clear?
+
+| Check | What It Catches |
+|-------|-----------------|
+| Practical relevance | Why this matters |
+| Actionability | What to do with findings |
+| Audience fit | Right level for intended readers |
+| Implications | Consequences properly explored |
+
+**Domain-specific checks**:
+- [How work in your field is typically applied]
+- [Common impact overstatements]
+
+## Running a Domain Review
+
+Invoke with:
+```
+Run domain review on [file/section]
+```
+
+Output format:
+```
+## Domain Review: [Target]
+
+### Lens 1: Terminology
+- [Issue or ✓]
+
+### Lens 2: Methodology
+- [Issue or ✓]
+
+### Lens 3: Precedent
+- [Issue or ✓]
+
+### Lens 4: Limitations
+- [Issue or ✓]
+
+### Lens 5: Impact
+- [Issue or ✓]
+
+**Domain Score**: X/100
+**Critical Issues**: [list]
+**Recommended Actions**: [prioritized list]
+```
+
+## Domain-Specific Anti-Patterns
+
+Common mistakes in [Your Domain]:
+1. [Anti-pattern 1 and how to fix]
+2. [Anti-pattern 2 and how to fix]
+3. [Anti-pattern 3 and how to fix]
+
+## Quality Standards
+
+What "good" looks like in [Your Domain]:
+- [Standard 1]
+- [Standard 2]
+- [Standard 3]
+```
+
+## Step-by-Step Setup
+
+### Step 1: Copy the template
+
+Add the template above to your project's CLAUDE.md.
+
+### Step 2: Customize Lens 1 (Terminology)
+
+Add your domain's specific terminology checks:
+
+**Example (Economics)**:
+```markdown
+**Domain-specific checks**:
+- Treatment and control must be clearly defined
+- Causal language only with causal identification
+- Standard notation: β for coefficients, ε for errors
+- "Significant" requires statistical support
+```
+
+**Example (Medicine)**:
+```markdown
+**Domain-specific checks**:
+- Drug names use generic nomenclature
+- Dosages include units and frequency
+- Outcomes use validated measures
+- Patient populations clearly specified
+```
+
+**Example (Software Architecture)**:
+```markdown
+**Domain-specific checks**:
+- Components have clear single responsibility
+- Interfaces defined before implementation
+- Error states explicitly handled
+- Dependencies are intentional, not accidental
+```
+
+### Step 3: Customize the remaining lenses
+
+Work through each lens adding checks specific to your field.
+
+### Step 4: Add anti-patterns
+
+Document the most common mistakes in your domain.
+
+### Step 5: Test the reviewer
+
+```
+Run domain review on [a piece of your work]
+```
+
+## Example: Fully Customized Domain Reviewer
+
+**For Software Security Reviews:**
+
+```markdown
+# Domain Reviewer: Security
+
+### Lens 1: Terminology
+- [ ] Threats vs vulnerabilities vs risks properly distinguished
+- [ ] Attack vectors named using standard taxonomy (MITRE ATT&CK)
+- [ ] Severity ratings use CVSS or equivalent
+
+### Lens 2: Methodology
+- [ ] Threat model defined before mitigations
+- [ ] Defense in depth (not single point of failure)
+- [ ] Principle of least privilege applied
+- [ ] Input validation at trust boundaries
+
+### Lens 3: Precedent
+- [ ] References to CVEs for known issues
+- [ ] OWASP guidelines considered
+- [ ] Industry standards cited (NIST, SOC2, etc.)
+
+### Lens 4: Limitations
+- [ ] Security assumptions explicit
+- [ ] Threat actors considered in scope
+- [ ] Known residual risks documented
+
+### Lens 5: Impact
+- [ ] Business impact of vulnerabilities assessed
+- [ ] Remediation priorities justified
+- [ ] Compliance implications noted
+
+## Anti-Patterns
+1. Security through obscurity → Always assume attacker knows the system
+2. Trusting client input → Validate everything server-side
+3. Rolling your own crypto → Use established libraries
+```
+
+## Tips
+
+- **Start with one lens**: Don't try to customize all 5 at once. Start with Terminology (Lens 1) and expand.
+- **Add examples**: For each check, add examples of good vs bad. "Use 'statistically significant' not 'significant'" is clearer than "Be precise."
+- **Evolve over time**: Add new checks when you catch new types of mistakes.
+- **Domain expertise required**: This playbook helps structure review, but you need domain knowledge to customize it well.
+
+## Troubleshooting
+
+**Problem**: Review is too generic
+
+**Solution**: Your domain-specific checks aren't specific enough. Add exact examples, standard references, and concrete anti-patterns.
+
+**Problem**: Too many false positives
+
+**Solution**: Calibrate severity. Not every terminology inconsistency is critical. Add severity levels to checks.
+
+**Problem**: Missing issues that matter
+
+**Solution**: Retrospectively add checks. When you miss something important, add a check for it to the framework.

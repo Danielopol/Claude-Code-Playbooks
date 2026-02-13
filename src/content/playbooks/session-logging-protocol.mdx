@@ -1,0 +1,268 @@
+---
+title: "Session Logging Protocol"
+description: "Automatically log design decisions, progress, and context at key moments. Create a searchable history of why things were done, not just what changed."
+category: "academic-research"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://psantanna.com/claude-code-my-workflow/workflow-guide.html"
+tags: ["logging", "documentation", "decisions", "history", "context"]
+createdAt: "2026-02-12"
+---
+
+## What This Does
+
+This playbook creates structured session logs that capture not just what changed, but why. Unlike git commits (which record changes) or READMEs (which describe current state), session logs document the journey — decisions made, alternatives considered, problems solved.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- A project where you want decision history
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your project:
+
+```markdown
+# Session Logging Protocol
+
+## Purpose
+
+Session logs answer: "Why did we do it this way?" six months later when no one remembers. They capture reasoning, not just output.
+
+## Logging Triggers
+
+Create a log entry when:
+1. **Design decision** — Chose approach A over B
+2. **Problem solved** — Fixed non-obvious bug or issue
+3. **Session end** — Summary of work done
+4. **Context switch** — Before moving to different task
+
+## Log File Structure
+
+```
+logs/
+├── YYYY-MM-DD-session-N.md    # Daily session logs
+├── decisions/
+│   └── ADR-NNN-[title].md     # Architecture Decision Records
+└── index.md                   # Log index/table of contents
+```
+
+## Session Log Format
+
+```markdown
+# Session Log: YYYY-MM-DD Session N
+
+## Context
+[What were we working on? What state were we starting from?]
+
+## Goals
+- [ ] Goal 1
+- [ ] Goal 2
+
+## Work Done
+
+### [Time/Phase 1]
+[What was done]
+[Why we did it this way]
+[Alternatives considered]
+
+### [Time/Phase 2]
+...
+
+## Decisions Made
+- **Decision**: [What we chose]
+  - **Why**: [Reasoning]
+  - **Alternatives**: [What we didn't choose and why]
+
+## Problems Encountered
+- **Problem**: [Issue]
+  - **Cause**: [Root cause]
+  - **Fix**: [How we solved it]
+  - **Learning**: [What to remember]
+
+## Open Questions
+- [Question 1]
+- [Question 2]
+
+## Next Session
+- [What to do next]
+- [What to remember]
+```
+
+## Decision Record Format
+
+For significant architectural decisions:
+
+```markdown
+# ADR-NNN: [Title]
+
+## Status
+[Proposed | Accepted | Deprecated | Superseded]
+
+## Context
+[What is the situation that requires a decision?]
+
+## Decision
+[What is the decision that was made?]
+
+## Consequences
+[What are the positive and negative consequences?]
+
+## Alternatives Considered
+- [Alternative 1]: [Why rejected]
+- [Alternative 2]: [Why rejected]
+```
+
+## When to Log (Rules)
+
+**Always log:**
+- Anything that took more than 30 minutes to figure out
+- Choices between multiple valid approaches
+- Non-obvious fixes (root cause wasn't immediately clear)
+- Session endings (even if brief)
+
+**Don't log:**
+- Trivial changes
+- Obvious fixes
+- Routine work with no decisions
+
+## Commands
+
+- "Log this session" — Create session log for current work
+- "Create decision record for [topic]" — Create ADR
+- "Summarize today's work" — End-of-day summary
+
+## Log Quality Standards
+
+Good log entries:
+- Explain **why**, not just **what**
+- Are searchable (include relevant keywords)
+- Can be understood by future-you who forgot everything
+- Include alternatives considered, not just choice made
+```
+
+## Step-by-Step Setup
+
+### Step 1: Create log structure
+
+```bash
+mkdir -p logs/decisions
+touch logs/index.md
+```
+
+### Step 2: Add to your CLAUDE.md
+
+Add the session logging protocol above to your CLAUDE.md.
+
+### Step 3: Create your first log
+
+At the end of your next work session:
+
+```
+Log this session. Include decisions made and problems solved.
+```
+
+## Example Usage
+
+**User (end of session):**
+> "Log this session"
+
+**Claude:**
+> # Session Log: 2024-01-15 Session 2
+>
+> ## Context
+> Continuing work on the payment integration. Previous session identified Stripe as payment provider.
+>
+> ## Goals
+> - [x] Implement checkout flow
+> - [x] Handle payment failures
+> - [ ] Add subscription support (deferred)
+>
+> ## Work Done
+>
+> ### Checkout Flow Implementation
+> Implemented `/api/checkout` endpoint with Stripe Checkout Sessions.
+>
+> **Decision: Server-side vs Client-side Checkout**
+> - Chose server-side Checkout Sessions over client-side Elements
+> - Why: Simpler PCI compliance (no card data touches our servers)
+> - Alternative: Elements would give more UI control but require PCI SAQ A-EP
+>
+> ### Payment Failure Handling
+> Added webhook handler for `payment_intent.payment_failed` events.
+>
+> **Problem Solved: Webhook Signature Verification Failing**
+> - Issue: All webhooks returning 400
+> - Root cause: Using wrong signing secret (test vs live mode)
+> - Fix: Added `STRIPE_WEBHOOK_SECRET` to `.env.local`
+> - Learning: Stripe uses different webhook secrets for test vs live
+>
+> ## Decisions Made
+> - **Webhook endpoint path**: `/api/webhooks/stripe`
+>   - Why: Keeps all webhook handlers in consistent location
+>   - Alternatives: `/api/stripe/webhook` (rejected: inconsistent with other webhooks)
+>
+> ## Open Questions
+> - How to handle subscription upgrades mid-cycle? Need to research proration.
+>
+> ## Next Session
+> - Implement subscription creation flow
+> - Add customer portal for self-service subscription management
+
+**User (design decision):**
+> "Create a decision record for choosing PostgreSQL over MongoDB"
+
+**Claude:**
+> # ADR-001: PostgreSQL for Primary Database
+>
+> ## Status
+> Accepted
+>
+> ## Context
+> We need a primary database for the application. The data model includes users, orders, products, and reviews with clear relationships. We expect moderate scale (thousands of users) with complex queries (sales reports, user analytics).
+>
+> ## Decision
+> Use PostgreSQL as the primary database.
+>
+> ## Consequences
+>
+> **Positive:**
+> - Strong relational model for our data
+> - ACID compliance for order transactions
+> - Excellent query optimizer for complex analytics
+> - Wide ecosystem (ORMs, hosting, tooling)
+>
+> **Negative:**
+> - Requires schema migrations for changes
+> - Less flexible for unstructured data
+> - Horizontal scaling more complex than MongoDB
+>
+> ## Alternatives Considered
+>
+> - **MongoDB**: Rejected because our data is clearly relational. Would require denormalization and lose transaction guarantees across documents.
+>
+> - **MySQL**: Viable alternative. Chose Postgres for better JSON support (we have some semi-structured data) and superior analytics query performance.
+>
+> - **SQLite**: Too limited for production multi-user access.
+
+## Tips
+
+- **Log decisions when fresh**: Do it immediately after deciding, not at end of day when you've forgotten the reasoning.
+- **Include the "alternatives considered"**: This is the most valuable part. Future-you will wonder "why didn't we do X?" having the answer documented is gold.
+- **Make logs searchable**: Include relevant keywords even if slightly redundant.
+- **Review logs periodically**: Old logs surface patterns ("we keep hitting this problem").
+
+## Troubleshooting
+
+**Problem**: Logs are too detailed/too brief
+
+**Solution**: Follow the 3-minute rule. If it takes more than 3 minutes to write, you're over-documenting. If it takes less than 30 seconds, you're probably missing the "why."
+
+**Problem**: Nobody reads the logs
+
+**Solution**: Make them useful. When someone asks "why did we do X?", point them to the log. Build the habit of checking logs before making related decisions.
+
+**Problem**: Logging feels like overhead
+
+**Solution**: Log at natural breakpoints (end of session, after major decisions). Don't log during flow state. 2-3 minutes at session end is sufficient.

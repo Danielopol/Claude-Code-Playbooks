@@ -1,0 +1,181 @@
+---
+title: "Plan-First Workflow"
+description: "Get Claude to plan before executing complex tasks. Prevents wasted effort by getting user approval on approach before writing code or making changes."
+category: "academic-research"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://psantanna.com/claude-code-my-workflow/workflow-guide.html"
+tags: ["workflow", "planning", "approval", "context-preservation", "best-practices"]
+createdAt: "2026-02-12"
+---
+
+## What This Does
+
+This playbook establishes a plan-first workflow where Claude proposes a plan before executing any non-trivial task. You review and approve the plan, then Claude executes autonomously. This prevents the common failure of Claude diving into implementation without understanding requirements, only to redo work when the approach was wrong.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- A project directory where you want this workflow
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your project:
+
+```markdown
+# Plan-First Workflow
+
+## Core Protocol
+
+For any non-trivial task:
+
+1. **PLAN PHASE** (before any implementation)
+   - Analyze the request and identify ambiguities
+   - Propose a numbered plan with specific steps
+   - List files that will be created/modified
+   - Identify potential risks or decision points
+   - Wait for explicit approval before proceeding
+
+2. **EXECUTE PHASE** (after approval)
+   - Implement the approved plan step by step
+   - Report progress as you complete each step
+   - Pause and ask if you encounter unexpected issues
+   - Never deviate from approved plan without checking
+
+## What Counts as Non-Trivial
+
+ALWAYS plan first for:
+- Any task requiring 3+ file changes
+- New feature implementation
+- Refactoring existing code
+- Architectural decisions
+- Anything with multiple valid approaches
+
+SKIP planning for:
+- Single-line fixes (typos, obvious bugs)
+- Direct questions about code
+- Reading/exploring files
+- Tasks with explicit step-by-step instructions already provided
+
+## Plan Format
+
+When planning, use this structure:
+
+### Plan for: [Task Name]
+
+**Understanding**: [1-2 sentences summarizing what you'll do]
+
+**Approach**:
+1. [Step 1]
+2. [Step 2]
+3. [Step 3]
+...
+
+**Files to modify**:
+- `path/to/file1.ts` — [what changes]
+- `path/to/file2.ts` — [what changes]
+
+**Questions/Decisions needed**: [any ambiguities to resolve]
+
+**Ready to proceed?** [Wait for approval]
+
+## Context Preservation
+
+Before starting any plan:
+- Read relevant existing code first
+- Note patterns and conventions already in use
+- Reference existing implementations when proposing approach
+
+After plan approval:
+- Execute without re-reading files unnecessarily
+- Maintain context from planning phase
+- Reference plan step numbers as you work
+
+## Approval Keywords
+
+- "Approved" / "LGTM" / "Go ahead" → Execute the plan
+- "With changes: [...]" → Update plan, then execute
+- "Hold" / "Wait" → Pause, don't execute
+- "Just do it" → Execute without final approval pause (still run quality checks)
+```
+
+## Step-by-Step Setup
+
+### Step 1: Add to your project
+
+```bash
+cd ~/your-project
+# Add the template above to your CLAUDE.md file
+```
+
+### Step 2: Test the workflow
+
+Start Claude Code and give it a non-trivial task:
+
+```
+Add user authentication to the app
+```
+
+Claude should respond with a plan, not immediately start coding.
+
+### Step 3: Practice the approval flow
+
+Try these responses:
+- "Approved, proceed"
+- "Approved with changes: use JWT instead of sessions"
+- "Hold - let me think about this"
+- "Just do it" (for trusted tasks)
+
+## Example Usage
+
+**User prompt:**
+> "Add a dark mode toggle to the settings page"
+
+**Claude's plan response:**
+> ### Plan for: Dark Mode Toggle
+>
+> **Understanding**: Add a toggle in settings that switches between light and dark themes, persisting the preference.
+>
+> **Approach**:
+> 1. Create a theme context/provider for state management
+> 2. Add CSS variables for light/dark color schemes
+> 3. Create the toggle component in Settings
+> 4. Wire up localStorage persistence
+> 5. Update App wrapper with ThemeProvider
+>
+> **Files to modify**:
+> - `src/contexts/ThemeContext.tsx` — new file, theme state
+> - `src/styles/theme.css` — color variables
+> - `src/pages/Settings.tsx` — add toggle UI
+> - `src/App.tsx` — wrap with provider
+>
+> **Questions**: Should the toggle also respect system preference as default?
+>
+> **Ready to proceed?**
+
+**User approves:**
+> "Yes, respect system preference. Approved."
+
+**Claude executes** the plan step by step, reporting progress.
+
+## Tips
+
+- **Be specific in approvals**: "Approved" is fine, but "Approved, and use the existing Button component for the toggle" gives better results.
+- **Plans aren't overhead**: The 30 seconds spent reviewing a plan saves the 10 minutes of redoing wrong work.
+- **"Just do it" mode**: For tasks you trust completely, say "just do it" and Claude will execute without the approval pause (but still maintains quality).
+- **Context compounds**: After a few plan-approve-execute cycles, Claude understands your preferences and makes better plans.
+
+## Troubleshooting
+
+**Problem**: Claude skips planning and starts coding immediately
+
+**Solution**: Add explicit instruction at the start of your request: "Plan this first, don't start implementation yet."
+
+**Problem**: Plans are too detailed/too vague
+
+**Solution**: Adjust the CLAUDE.md to specify your preferred level of detail. Add examples of good plans for your codebase.
+
+**Problem**: Claude asks too many questions before planning
+
+**Solution**: Add "Make reasonable assumptions for minor decisions, only ask about architectural choices" to the template.

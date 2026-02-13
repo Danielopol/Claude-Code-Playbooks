@@ -26,6 +26,7 @@ const categoryColors: Record<Category, string> = {
   'creative-design': 'bg-[#f97316]/15 text-[#f97316] border-[#f97316]/30',
   'creative-writing': 'bg-[#d946ef]/15 text-[#d946ef] border-[#d946ef]/30',
   'developer-tools': 'bg-[#64748b]/15 text-[#64748b] border-[#64748b]/30',
+  'academic-research': 'bg-[#7c3aed]/15 text-[#7c3aed] border-[#7c3aed]/30',
 };
 
 export function CategoryBadge({ category, className }: CategoryBadgeProps) {

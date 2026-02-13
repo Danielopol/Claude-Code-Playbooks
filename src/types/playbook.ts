@@ -18,7 +18,8 @@ export type Category =
   | 'hr-recruiting'
   | 'creative-design'
   | 'creative-writing'
-  | 'developer-tools';
+  | 'developer-tools'
+  | 'academic-research';
 
 export interface Playbook {
   slug: string;

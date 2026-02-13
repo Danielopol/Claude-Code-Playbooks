@@ -1,0 +1,255 @@
+---
+title: "Research Exploration Sandbox"
+description: "Create a structured explorations/ folder for experimental work. Fast-track experiments without full rigor, then graduate successful ones to production code."
+category: "academic-research"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://psantanna.com/claude-code-my-workflow/workflow-guide.html"
+tags: ["research", "exploration", "experiments", "sandbox", "prototyping", "workflow"]
+createdAt: "2026-02-12"
+---
+
+## What This Does
+
+This playbook creates a structured sandbox for experimental work. Instead of scattering test scripts and experiments across your codebase, all exploratory work goes into `explorations/` first. You can work fast without full rigor, then graduate successful experiments to production or archive failures with documentation.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- A project where you do experimental/research work
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your project:
+
+```markdown
+# Exploration Protocol
+
+## The Problem
+
+Without structure, experimental code scatters across the repository:
+- Test scripts in `scripts/`
+- One-off files in root
+- "Temporary" code that lives forever
+- No one knows which version was the good one
+
+## The Solution: Exploration Folder
+
+All experimental work goes into `explorations/` first:
+
+```
+explorations/
+├── [active-project]/
+│   ├── README.md          # Goal, hypothesis, status
+│   ├── code/              # Iterations (_v1, _v2, _v3)
+│   ├── data/              # Test data, inputs
+│   └── output/            # Results, generated files
+└── ARCHIVE/
+    ├── completed_[name]/  # Graduated to production
+    └── abandoned_[name]/  # Documented why stopped
+```
+
+## Starting an Exploration
+
+Before coding, create the structure:
+
+```
+mkdir -p explorations/[project-name]/{code,data,output}
+```
+
+Create `explorations/[project-name]/README.md`:
+```markdown
+# Exploration: [Name]
+
+## Goal
+[What are you trying to learn or build?]
+
+## Hypothesis
+[What do you expect to happen?]
+
+## Status
+[ ] In progress / [x] Completed / [ ] Abandoned
+
+## Notes
+[Running notes as you work]
+
+## Outcome
+[What did you learn? Did hypothesis hold?]
+```
+
+## Fast-Track vs Plan-First
+
+| Question | Answer | Workflow |
+|----------|--------|----------|
+| "Will this ship?" | YES | Plan-First (80/100 quality) |
+| "Am I testing an idea?" | YES | Fast-Track (60/100 quality) |
+| "Does this improve the project?" | NO | Don't build it |
+
+### Fast-Track Rules (for explorations only)
+- Skip formal planning
+- 60/100 quality threshold (vs 80 for production)
+- No PR required
+- Document as you go, not after
+- Can abandon anytime with brief note
+
+## Research Value Check (2 minutes)
+
+Before starting ANY exploration:
+
+1. "Does this improve the paper/product/analysis?"
+   - **Yes** → Explore
+   - **Maybe** → Explore (quick test)
+   - **No** → Skip
+
+2. "Is this the smallest experiment that could validate the idea?"
+   - If no, scope down first
+
+## Lifecycle
+
+```
+Research value check (2 min)
+        ↓
+Create explorations/[project]/ (5 min)
+        ↓
+Code without overhead (60/100 quality)
+        ↓
+Decision point (1-2 hours):
+├── Graduate → Move to src/, upgrade to 80/100
+├── Keep exploring → Stay in explorations/
+└── Abandon → Move to ARCHIVE/ with explanation
+```
+
+## Graduation Process
+
+When exploration succeeds:
+1. Document what worked in the README
+2. Refactor code to production standards (80/100)
+3. Move to appropriate production location
+4. Update imports, tests, documentation
+5. Move exploration folder to `ARCHIVE/completed_[name]/`
+
+## Abandonment Process
+
+When exploration fails or isn't worth continuing:
+1. Document WHY in the README (so future-you doesn't retry)
+2. Note any partial learnings
+3. Move to `ARCHIVE/abandoned_[name]/`
+4. No shame — failed experiments are valuable data
+
+## Kill Switch
+
+At any point, you can stop:
+- Archive with one-paragraph explanation
+- No sunk cost guilt
+- Move on to next idea
+```
+
+## Step-by-Step Setup
+
+### Step 1: Create the explorations structure
+
+```bash
+mkdir -p explorations/ARCHIVE
+```
+
+### Step 2: Add to your CLAUDE.md
+
+Add the exploration protocol to your project's CLAUDE.md.
+
+### Step 3: Start your first exploration
+
+```bash
+mkdir -p explorations/test-new-api/{code,data,output}
+```
+
+Create the README:
+```markdown
+# Exploration: Test New API
+
+## Goal
+Evaluate whether the new Stripe API v3 simplifies our checkout flow
+
+## Hypothesis
+v3 should reduce checkout code by 30% and eliminate the webhook complexity
+
+## Status
+[ ] In progress
+
+## Notes
+- Starting exploration 2024-01-15
+```
+
+## Example Usage
+
+**User:**
+> "I want to experiment with using DuckDB instead of SQLite for analytics queries"
+
+**Claude:**
+> Starting exploration for DuckDB evaluation.
+>
+> Created structure:
+> ```
+> explorations/duckdb-analytics/
+> ├── README.md
+> ├── code/
+> ├── data/
+> └── output/
+> ```
+>
+> **README.md:**
+> ```markdown
+> # Exploration: DuckDB for Analytics
+>
+> ## Goal
+> Evaluate if DuckDB improves analytics query performance over SQLite
+>
+> ## Hypothesis
+> DuckDB's columnar storage should make aggregate queries 5-10x faster
+>
+> ## Status
+> [ ] In progress
+>
+> ## Test Plan
+> 1. Import sample data (1M rows)
+> 2. Run benchmark queries in both DBs
+> 3. Compare query times
+> 4. Assess integration complexity
+> ```
+>
+> Ready to start coding. Should I begin with the data import script?
+
+**Later - Graduation:**
+> "The exploration succeeded. DuckDB is 8x faster. Graduate to production."
+
+**Claude:**
+> Graduating DuckDB exploration:
+>
+> 1. Refactoring `explorations/duckdb-analytics/code/queries.py` to production standards
+> 2. Moving to `src/analytics/duckdb_queries.py`
+> 3. Adding tests in `tests/analytics/`
+> 4. Updating README with integration notes
+> 5. Moving exploration to `explorations/ARCHIVE/completed_duckdb-analytics/`
+>
+> Done. DuckDB is now production-ready in `src/analytics/`.
+
+## Tips
+
+- **Default to explorations/**: When unsure if something will ship, start in explorations. Easier to graduate than to extract.
+- **Version your iterations**: Use `_v1`, `_v2`, `_v3` suffixes. Don't delete old versions until exploration completes.
+- **Document as you go**: "I'll document later" means never. Quick notes now > detailed docs never.
+- **Abandon freely**: Knowing what doesn't work is valuable. Archive with notes and move on.
+
+## Troubleshooting
+
+**Problem**: Explorations never get graduated
+
+**Solution**: Set time limits. "If not graduated in 2 weeks, either complete or archive."
+
+**Problem**: explorations/ folder is cluttered
+
+**Solution**: Archive aggressively. Anything older than a month should be graduated or archived.
+
+**Problem**: Exploration code quality is too low even for experiments
+
+**Solution**: Even fast-track code should run. 60/100 means "works but not polished," not "broken."

@@ -1,0 +1,265 @@
+---
+title: "Data Analysis Pipeline"
+description: "End-to-end data analysis workflow from exploration to publication-ready output. Explore, regress, visualize, and produce polished results."
+category: "academic-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://psantanna.com/claude-code-my-workflow/workflow-guide.html"
+tags: ["data-analysis", "research", "statistics", "visualization", "R", "Python"]
+createdAt: "2026-02-12"
+---
+
+## What This Does
+
+This playbook provides a structured pipeline for data analysis projects. From initial data exploration through regression analysis to publication-ready outputs, Claude guides you through each phase with best practices built in.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- Data files (CSV, Excel, etc.)
+- R or Python environment set up
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your analysis folder:
+
+```markdown
+# Data Analysis Pipeline
+
+## Command
+`/data-analysis [data file]` — Start end-to-end analysis
+
+## Pipeline Phases
+
+### Phase 1: Data Exploration
+**Goals**: Understand the data before modeling
+
+Steps:
+1. Load and inspect structure (rows, columns, types)
+2. Check for missing values, duplicates, outliers
+3. Generate summary statistics (mean, sd, range)
+4. Visualize distributions (histograms, box plots)
+5. Document data quality issues
+
+Output: `output/01-exploration-report.md`
+
+### Phase 2: Data Cleaning
+**Goals**: Prepare analysis-ready dataset
+
+Steps:
+1. Handle missing values (drop, impute, flag)
+2. Address outliers (winsorize, remove, keep with flag)
+3. Create derived variables
+4. Ensure correct data types
+5. Document all transformations
+
+Output: `data/clean/[dataset]-clean.csv` + `output/02-cleaning-log.md`
+
+### Phase 3: Descriptive Analysis
+**Goals**: Summarize key patterns
+
+Steps:
+1. Create summary tables by key groups
+2. Generate correlation matrix
+3. Produce visualizations (scatter, bar, line)
+4. Test for group differences (t-tests, ANOVA)
+5. Document notable patterns
+
+Output: `output/03-descriptive-analysis.md`
+
+### Phase 4: Regression Analysis
+**Goals**: Test hypotheses with models
+
+Steps:
+1. Define model specifications
+2. Run baseline model
+3. Add controls progressively
+4. Test robustness (different specs, samples)
+5. Check assumptions (residuals, heteroskedasticity)
+
+Output: `output/04-regression-results.md` + tables
+
+### Phase 5: Publication Outputs
+**Goals**: Create polished, publication-ready outputs
+
+Steps:
+1. Format tables (APA, journal style)
+2. Create high-quality figures (300 DPI)
+3. Export to required formats (PNG, PDF, LaTeX)
+4. Generate reproducible scripts
+
+Output: `output/figures/` + `output/tables/`
+
+## Analysis Standards
+
+### Missing Data
+- Document % missing per variable
+- If >5% missing, investigate mechanism (MCAR/MAR/MNAR)
+- Always report how missing data was handled
+
+### Variable Naming
+- Use lowercase_with_underscores
+- Be descriptive: `age_years` not `age`, `income_annual_usd` not `inc`
+- Binary variables: `is_[condition]` or `has_[feature]`
+
+### Reproducibility Requirements
+- Set random seed at script start
+- Save intermediate datasets
+- Version control all scripts
+- Document package versions
+
+### Output Naming
+```
+output/
+├── figures/
+│   ├── fig01-[description].png
+│   ├── fig02-[description].png
+│   └── ...
+├── tables/
+│   ├── tab01-[description].csv
+│   └── ...
+└── reports/
+    ├── 01-exploration.md
+    └── ...
+```
+
+## Code Templates
+
+### R Starter
+```r
+# Setup
+library(tidyverse)
+library(fixest)      # Fast fixed effects
+library(modelsummary) # Publication tables
+
+set.seed(42)
+
+# Load data
+df <- read_csv("data/raw/[file].csv")
+
+# Quick look
+glimpse(df)
+summary(df)
+```
+
+### Python Starter
+```python
+import pandas as pd
+import numpy as np
+import statsmodels.formula.api as smf
+import matplotlib.pyplot as plt
+
+np.random.seed(42)
+
+# Load data
+df = pd.read_csv("data/raw/[file].csv")
+
+# Quick look
+print(df.info())
+print(df.describe())
+```
+
+## Quality Checks
+
+Before reporting results:
+- [ ] Sample sizes match across tables
+- [ ] Summary stats are plausible
+- [ ] Coefficients have expected signs
+- [ ] Standard errors reasonable (not 0 or huge)
+- [ ] R² in reasonable range
+- [ ] Robustness checks don't flip main results
+```
+
+## Step-by-Step Setup
+
+### Step 1: Create project structure
+
+```bash
+mkdir -p analysis/{data/{raw,clean},scripts,output/{figures,tables,reports}}
+```
+
+### Step 2: Add the CLAUDE.md template
+
+Save the template above to `analysis/CLAUDE.md`.
+
+### Step 3: Add your data
+
+Place raw data files in `analysis/data/raw/`.
+
+### Step 4: Start analysis
+
+```
+/data-analysis data/raw/mydata.csv
+```
+
+## Example Usage
+
+**User:**
+> "/data-analysis data/raw/employee_survey.csv"
+
+**Claude:**
+> ## Data Analysis: employee_survey.csv
+>
+> ### Phase 1: Exploration
+>
+> **Structure:**
+> - 2,340 rows × 15 columns
+> - Variables: employee_id, age, tenure, department, salary, satisfaction_score, etc.
+>
+> **Missing Values:**
+> | Variable | Missing | % |
+> |----------|---------|---|
+> | salary | 45 | 1.9% |
+> | satisfaction_score | 12 | 0.5% |
+>
+> **Key Observations:**
+> - Salary range: $32,000 - $185,000 (mean $67,500)
+> - Satisfaction: 1-10 scale, mean 6.8
+> - Departments: Engineering (40%), Sales (25%), Marketing (20%), Other (15%)
+>
+> **Potential Issues:**
+> - 3 extreme salary outliers (>$150k) — verify these are real
+> - Tenure has negative values (data error?) — flag 2 rows
+>
+> Shall I proceed to Phase 2: Cleaning?
+
+**User:**
+> "Yes, proceed with cleaning"
+
+**Claude:**
+> ### Phase 2: Data Cleaning
+>
+> **Transformations Applied:**
+> 1. Removed 2 rows with negative tenure (data entry errors)
+> 2. Salary outliers: Verified real, kept with flag `is_executive`
+> 3. Missing satisfaction: Imputed median by department (12 rows)
+> 4. Created: `tenure_years` = tenure_months / 12
+> 5. Created: `age_group` = binned age (25-34, 35-44, etc.)
+>
+> **Clean Dataset:**
+> - 2,338 rows × 18 columns
+> - Saved to `data/clean/employee_survey-clean.csv`
+>
+> Proceed to descriptive analysis?
+
+## Tips
+
+- **Always start with exploration**: Resist the urge to jump to regression. Understanding data first prevents errors.
+- **Save intermediate outputs**: Each phase produces files. This lets you restart from any point.
+- **Document assumptions**: Every decision (handling missing data, dealing with outliers) should be documented.
+- **Version your scripts**: Keep dated versions of analysis scripts.
+
+## Troubleshooting
+
+**Problem**: Results don't reproduce
+
+**Solution**: Check random seed, package versions, and data file versions. All should be documented.
+
+**Problem**: Analysis takes too long
+
+**Solution**: Work on a sample first. Run full analysis only when confident in the approach.
+
+**Problem**: Don't know which model to run
+
+**Solution**: Start with the simplest model (OLS, bivariate). Add complexity only when justified.

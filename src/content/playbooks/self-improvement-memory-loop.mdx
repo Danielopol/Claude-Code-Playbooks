@@ -1,0 +1,247 @@
+---
+title: "Self-Improvement Memory Loop"
+description: "Create a persistent MEMORY.md that captures corrections and learnings with [LEARN] tags. Claude checks memory before making similar mistakes across sessions."
+category: "academic-research"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://psantanna.com/claude-code-my-workflow/workflow-guide.html"
+tags: ["memory", "learning", "corrections", "persistence", "context", "improvement"]
+createdAt: "2026-02-12"
+---
+
+## What This Does
+
+This playbook creates a memory system where every correction you make to Claude gets tagged and persisted in a MEMORY.md file. Before Claude makes decisions, it checks this memory. This prevents repeating the same mistakes across sessions and lets Claude "learn" your preferences over time.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- A project directory
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your project:
+
+```markdown
+# Memory System
+
+## Memory File
+
+Maintain a `MEMORY.md` file in the project root. This file persists learnings across sessions.
+
+## Recording Learnings
+
+When the user corrects you or you discover something important, add an entry:
+
+```
+## Corrections Log
+
+- [LEARN:category] What was wrong → What is correct
+```
+
+### Categories
+
+- `[LEARN:notation]` — Naming, terminology, conventions
+- `[LEARN:code]` — Code patterns, libraries, syntax
+- `[LEARN:workflow]` — Process, approach, methodology
+- `[LEARN:preference]` — User preferences, style choices
+- `[LEARN:domain]` — Domain-specific knowledge
+- `[LEARN:error]` — Common mistakes to avoid
+- `[LEARN:tool]` — Tool usage, commands, configuration
+
+### Entry Format
+
+Each entry should be:
+- Searchable (include keywords)
+- Specific (not vague generalizations)
+- Actionable (clear what to do differently)
+
+Good:
+```
+- [LEARN:code] React: Use useCallback for event handlers passed to child components, not inline functions
+```
+
+Bad:
+```
+- [LEARN:code] Be careful with React performance
+```
+
+## Checking Memory
+
+Before any task:
+1. Read MEMORY.md
+2. Check if any entries apply to current task
+3. Apply learnings proactively
+
+Before code generation:
+1. Check [LEARN:code] entries for relevant patterns
+2. Check [LEARN:preference] entries for style
+3. Apply without being asked
+
+## Memory Triggers
+
+**Add to memory when:**
+- User says "Always do X" or "Never do Y"
+- User corrects a mistake
+- A bug is found that could recur
+- User expresses a preference
+- A non-obvious solution is discovered
+
+**Don't add:**
+- One-time instructions
+- Task-specific details
+- Temporary workarounds
+
+## Memory File Structure
+
+```markdown
+# Project Memory
+
+## Project Context
+[Key facts about this project that inform all decisions]
+
+## Corrections Log
+[Timestamped learning entries]
+
+## Preferences
+[User style and approach preferences]
+
+## Patterns
+[Code patterns, conventions, approaches that work well here]
+
+## Anti-patterns
+[Things that don't work, mistakes to avoid]
+```
+
+## Updating Memory
+
+- Add new entries at the top (most recent first)
+- Consolidate related entries periodically
+- Remove obsolete entries when things change
+- User can edit MEMORY.md directly to add/remove entries
+```
+
+## Step-by-Step Setup
+
+### Step 1: Create MEMORY.md
+
+```bash
+cd ~/your-project
+touch MEMORY.md
+```
+
+### Step 2: Add initial structure
+
+```markdown
+# Project Memory
+
+## Project Context
+- [Add key facts about your project]
+
+## Corrections Log
+- [Learnings will be added here]
+
+## Preferences
+- [Your style preferences]
+
+## Patterns
+- [Good patterns for this codebase]
+
+## Anti-patterns
+- [Things to avoid]
+```
+
+### Step 3: Add the memory system to CLAUDE.md
+
+Add the template above to your CLAUDE.md.
+
+### Step 4: Seed with existing knowledge
+
+Add any preferences or patterns you already know:
+
+```markdown
+## Preferences
+- Use TypeScript strict mode
+- Prefer functional components over classes
+- Always include error handling for API calls
+
+## Patterns
+- API responses follow { data, error, loading } pattern
+- Use Zod for runtime validation
+- Components go in src/components/{ComponentName}/index.tsx
+```
+
+## Example Usage
+
+**Session 1 - Correction happens:**
+
+> **User**: "The database uses snake_case for columns, not camelCase"
+>
+> **Claude**: Understood. Adding to memory:
+> ```
+> - [LEARN:code] Database columns use snake_case, JS/TS uses camelCase. Always convert at the ORM layer.
+> ```
+
+**Session 2 - Memory applied:**
+
+> **User**: "Add a created_at field to the users table"
+>
+> **Claude** *(checks MEMORY.md first)*: I'll add the `created_at` column to the users table. Based on our memory, I'll:
+> - Use `snake_case` in the database schema
+> - Ensure the TypeScript type uses `createdAt`
+> - Add conversion in the ORM mapper
+
+## Example MEMORY.md
+
+```markdown
+# Project Memory
+
+## Project Context
+- E-commerce platform, Next.js 14 + Prisma + PostgreSQL
+- Stripe for payments, uses webhooks
+- Multi-tenant (each org has isolated data)
+
+## Corrections Log
+- [LEARN:code] 2024-01-15: Prisma: Always use transactions for multi-table updates
+- [LEARN:workflow] 2024-01-14: Run `prisma generate` after schema changes before testing
+- [LEARN:preference] 2024-01-12: User prefers explicit error messages over generic "Something went wrong"
+- [LEARN:domain] 2024-01-10: "Subscription" means Stripe subscription, not email newsletter
+- [LEARN:error] 2024-01-08: Don't use `delete` in Prisma for orders — soft delete with `deletedAt` instead
+
+## Preferences
+- Verbose commit messages with "why" not just "what"
+- Tests in __tests__ folder, not co-located
+- Console.log removed before commit
+
+## Patterns
+- Error handling: try/catch at route level, throw AppError in business logic
+- Auth: Always check orgId matches user's org before data access
+- Dates: Store as UTC, display in user's timezone
+
+## Anti-patterns
+- Never cascade delete — always soft delete
+- Don't inline SQL — use Prisma client
+- Avoid optimistic updates for payment-related UI
+```
+
+## Tips
+
+- **Be specific**: "Use X instead of Y in situation Z" beats "Remember X"
+- **Include context**: Future-you won't remember why. Add the reason.
+- **Review periodically**: Some learnings become obsolete. Clean up monthly.
+- **Categories help search**: The [LEARN:code] prefix lets Claude quickly filter relevant entries.
+
+## Troubleshooting
+
+**Problem**: Claude isn't checking MEMORY.md
+
+**Solution**: Add explicit instruction to CLAUDE.md: "Before any task, read MEMORY.md and apply relevant learnings."
+
+**Problem**: MEMORY.md is getting too long
+
+**Solution**: Consolidate related entries. Move stable patterns to a "Permanent" section. Archive old corrections that are now habit.
+
+**Problem**: Claude adds too much to memory
+
+**Solution**: Clarify the threshold: "Only add to memory for things that should persist across sessions and apply to future work."

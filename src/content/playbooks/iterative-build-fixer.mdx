@@ -1,0 +1,314 @@
+---
+title: "Iterative Build & Fix Loop"
+description: "Run builds in a loop that automatically detects errors, fixes them, and re-runs until the build succeeds. Works with any build system: npm, cargo, go, make, gradle, and more."
+category: "academic-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://psantanna.com/claude-code-my-workflow/workflow-guide.html"
+tags: ["build", "compile", "errors", "fix", "loop", "automation"]
+createdAt: "2026-02-13"
+---
+
+## What This Does
+
+This playbook creates an automated build-fix loop that:
+1. Runs your build command
+2. Parses errors from output
+3. Fixes the errors
+4. Re-runs the build
+5. Repeats until success or max attempts
+
+**Why this works**: Build errors often cascade — fixing one reveals the next. This loop handles the tedious cycle of build → read error → fix → build → read error → fix automatically.
+
+## Prerequisites
+
+- Claude Code installed
+- A project with a build system (npm, cargo, go, make, etc.)
+- Understanding of your build command
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your project:
+
+```markdown
+# Iterative Build & Fix Protocol
+
+## Activation
+
+When I say "/build", "fix build", or "build until it passes", activate this protocol.
+
+## Build Configuration
+
+```yaml
+# Customize for your project
+build_command: "npm run build"
+max_attempts: 5
+timeout_seconds: 120
+```
+
+## The Build-Fix Loop
+
+```
+┌─────────────────┐
+│   Run Build     │
+└────────┬────────┘
+         │
+    ┌────▼────┐
+    │ Success? │
+    └────┬────┘
+        / \
+      YES   NO
+       │     │
+    ┌──▼──┐ ┌▼─────────────┐
+    │Done │ │ Parse Errors │
+    └─────┘ └──────┬───────┘
+                   │
+           ┌───────▼───────┐
+           │  Fix Errors   │
+           └───────┬───────┘
+                   │
+           ┌───────▼───────┐
+           │  Round < Max? │
+           └───────┬───────┘
+                  / \
+                YES   NO
+                 │     │
+         [Loop] ─┘     └─▶ Escalate to user
+```
+
+## Error Parsing Rules
+
+### TypeScript/JavaScript (npm, tsc, webpack)
+```
+Pattern: "error TS\d+:" or "Error:" with file path
+Extract: file path, line number, error message
+```
+
+### Rust (cargo)
+```
+Pattern: "error[E\d+]:"
+Extract: file path, line/column, error message
+```
+
+### Go (go build)
+```
+Pattern: "file.go:line:col: message"
+Extract: file path, line, column, error message
+```
+
+### Python (pytest, mypy)
+```
+Pattern: "file.py:line:" or "E\d+:"
+Extract: file path, line, error type, message
+```
+
+### Generic Fallback
+```
+Pattern: Any line containing "error" + file path
+Extract: file path (if identifiable), full message
+```
+
+## Fix Strategy
+
+For each error:
+
+1. **Read the file** at the error location
+2. **Understand context** (surrounding 10 lines)
+3. **Apply minimal fix** — only change what's necessary
+4. **Don't refactor** — fix the error, nothing more
+5. **Log the fix** — track what changed for the report
+
+### Fix Priorities
+
+| Error Type | Action |
+|------------|--------|
+| Missing import | Add the import |
+| Type mismatch | Fix the type annotation or cast |
+| Undefined variable | Check for typo or add declaration |
+| Syntax error | Fix the syntax |
+| Missing dependency | Note for user (may need npm install) |
+
+## Build Report Format
+
+After each build attempt:
+
+```
+## Build Attempt [N/max]
+
+**Command**: npm run build
+**Status**: FAILED | SUCCESS
+**Duration**: X seconds
+
+### Errors Found (X total)
+1. [file:line] Error message
+2. [file:line] Error message
+
+### Fixes Applied
+1. [file:line] Added missing import for 'useState'
+2. [file:line] Changed type from 'string' to 'number'
+
+### Remaining Issues
+- [file:line] Cannot auto-fix: [reason]
+
+---
+[Re-running build...]
+```
+
+## Final Report Format
+
+```
+## Build Loop Complete
+
+**Total Attempts**: X
+**Final Status**: SUCCESS | FAILED
+
+### Summary
+- Errors fixed: Y
+- Files modified: Z
+
+### Changes Made
+1. [file:line] Description of fix
+2. [file:line] Description of fix
+
+### Manual Attention Needed (if any)
+- [file:line] Issue that requires user decision
+```
+
+## Build-Fix Rules
+
+1. **Max 5 attempts** — If still failing after 5 rounds, stop and report
+2. **One error type at a time** — Fix all instances of error X before moving to Y
+3. **Don't introduce new errors** — If fix causes new error, revert and flag
+4. **Track all changes** — User should see exactly what was modified
+5. **Preserve formatting** — Match existing code style
+
+## Common Auto-Fixes
+
+### TypeScript
+- Missing imports → Add import statement
+- 'X' is not assignable to 'Y' → Fix type or add assertion
+- Property 'X' does not exist → Check for typo or add property
+- Cannot find module → Check path or note for npm install
+
+### React
+- Missing key prop → Add key={...}
+- Hook called conditionally → Move to top level
+- Missing dependency in useEffect → Add to dependency array
+
+### Rust
+- Missing trait → Add use statement
+- Borrow checker errors → Apply suggested fix from compiler
+- Missing lifetime → Add lifetime annotation
+
+### Go
+- Undefined variable → Check scope or declare
+- Import not used → Remove import
+- Missing return → Add return statement
+
+## What NOT to Auto-Fix
+
+Flag these for user attention:
+- Ambiguous type choices (could be A or B)
+- Logic errors (code compiles but is wrong)
+- Missing dependencies (needs package manager)
+- Breaking changes to public APIs
+- Test failures (intentional vs bug)
+
+## Invoking the Build Loop
+
+```
+/build
+fix build errors
+build until it passes
+run build loop with max 3 attempts
+```
+```
+
+## Step-by-Step Setup
+
+### Step 1: Add to CLAUDE.md
+
+Add the build-fix protocol to your project's CLAUDE.md file.
+
+### Step 2: Configure your build command
+
+Update the `build_command` in the template to match your project:
+- `npm run build` for JavaScript/TypeScript
+- `cargo build` for Rust
+- `go build ./...` for Go
+- `make` for Makefiles
+- `./gradlew build` for Gradle
+
+### Step 3: Test the loop
+
+Introduce a deliberate error (typo in import), then run:
+
+```
+/build
+```
+
+Claude should detect the error, fix it, and verify the build succeeds.
+
+## Example Usage
+
+**User:**
+> "/build"
+
+**Claude:**
+> ## Build Attempt 1/5
+>
+> **Command**: npm run build
+> **Status**: FAILED
+> **Duration**: 4.2 seconds
+>
+> ### Errors Found (3 total)
+> 1. [src/components/Button.tsx:5] Cannot find module './styles.css'
+> 2. [src/utils/format.ts:12] Type 'string' is not assignable to type 'number'
+> 3. [src/hooks/useAuth.ts:8] 'user' is possibly undefined
+>
+> ### Fixes Applied
+> 1. [Button.tsx:5] Updated import path to './Button.module.css'
+> 2. [format.ts:12] Changed return type to 'string'
+> 3. [useAuth.ts:8] Added optional chaining 'user?.id'
+>
+> ---
+> Re-running build...
+>
+> ## Build Attempt 2/5
+>
+> **Command**: npm run build
+> **Status**: SUCCESS
+> **Duration**: 3.8 seconds
+>
+> ## Build Loop Complete
+>
+> **Total Attempts**: 2
+> **Final Status**: ✓ SUCCESS
+>
+> ### Summary
+> - Errors fixed: 3
+> - Files modified: 3
+>
+> Build is now passing.
+
+## Tips
+
+- **Start small**: Test on a known-broken build before relying on it for complex issues.
+- **Review changes**: Claude tracks all modifications — review them before committing.
+- **Set appropriate limits**: If your build typically fails with 1-2 errors, 3 attempts is enough. For major refactors, allow 5.
+- **Combine with tests**: Run `/build` then `/test` to ensure fixes didn't break behavior.
+
+## Troubleshooting
+
+**Problem**: Claude keeps making the same fix that doesn't work
+
+**Solution**: Add to the rules: "If a fix was attempted in a previous round and the same error persists, flag for user attention."
+
+**Problem**: Build times out
+
+**Solution**: Increase `timeout_seconds` in config, or split into smaller build targets.
+
+**Problem**: Fixes introduce new errors
+
+**Solution**: Add rule: "After each fix, verify the specific file compiles before proceeding."

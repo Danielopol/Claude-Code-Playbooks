@@ -1,0 +1,200 @@
+---
+title: "Quality Gates System"
+description: "Implement a scoring system (0-100) that blocks commits below threshold. 80+ to commit, 90+ for PR, 95+ for excellence. Prevents shipping subpar work."
+category: "academic-research"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://psantanna.com/claude-code-my-workflow/workflow-guide.html"
+tags: ["quality", "scoring", "gates", "thresholds", "code-review", "standards"]
+createdAt: "2026-02-12"
+---
+
+## What This Does
+
+This playbook establishes a quality scoring system where every piece of work gets a 0-100 score. Scores below 80 block commits. Scores 90+ are deployment-ready. This creates a clear, objective standard for "done" and prevents the gradual drift toward shipping unfinished work.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- A project where you want quality standards enforced
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your project:
+
+```markdown
+# Quality Gates
+
+## Scoring Thresholds
+
+| Score | Threshold | Meaning | Action Allowed |
+|-------|-----------|---------|----------------|
+| 95+   | Excellence | Exceptional quality | Deploy to production |
+| 90+   | PR Ready  | Ready for review/deployment | Create PR, merge |
+| 80+   | Commit    | Safe to save progress | Git commit allowed |
+| 60-79 | Needs Work | Has issues | Must fix before committing |
+| <60   | Blocked   | Critical problems | Stop and address |
+
+## Scoring Calculation
+
+Start at 100, deduct points for issues:
+
+### Critical Issues (-20 points each)
+- Broken functionality (code doesn't run)
+- Security vulnerabilities
+- Data corruption risks
+- Unhandled exceptions in critical paths
+- Missing required functionality
+
+### Major Issues (-10 points each)
+- Logic errors (code runs but wrong output)
+- Missing error handling
+- Performance problems (N+1 queries, memory leaks)
+- Accessibility violations
+- Missing tests for critical paths
+- Type errors or lint failures
+
+### Minor Issues (-5 points each)
+- Code style inconsistencies
+- Missing optional error handling
+- Suboptimal but working patterns
+- Missing non-critical tests
+- Documentation gaps
+
+### Nits (-2 points each)
+- Typos in non-user-facing text
+- Extra whitespace
+- Overly long lines
+- Missing comments (where helpful)
+
+## Quality Gate Rules
+
+1. **Never commit below 80**: If score < 80, must fix before committing
+2. **Never PR below 90**: If score < 90, fix or document why waived
+3. **Always score before "done"**: No task is complete without a score
+4. **Re-score after fixes**: Apply fixes, then re-calculate
+
+## Mandatory Verification
+
+Before assigning a score, MUST verify:
+- [ ] Code compiles/builds successfully
+- [ ] Tests pass (if applicable)
+- [ ] Linter passes (if applicable)
+- [ ] The feature actually works (manual check)
+
+**Never score without verification.** A score of 95 with a broken build is wrong.
+
+## Score Report Format
+
+```
+## Quality Score: XX/100
+
+### Deductions:
+- (-10) Missing error handling in submitForm()
+- (-5) Inconsistent naming: userId vs user_id
+- (-2) Typo in comment line 45
+
+### Verification:
+- [x] Build: Passed
+- [x] Tests: 47/47 passed
+- [x] Lint: No errors
+- [x] Manual test: Form submits correctly
+
+### Verdict: [COMMIT OK | FIX REQUIRED | BLOCKED]
+```
+
+## Waiver Process
+
+For scores between 60-79, user can waive with explicit approval:
+1. Claude presents the issues
+2. User says "Waive and commit with known issues"
+3. Claude commits with a note documenting waived issues
+4. Issues must be addressed in follow-up PR
+
+## Project-Specific Deductions
+
+Add your own scoring rules here:
+- (-15) API endpoint without authentication
+- (-10) Database query without parameterization
+- (-10) Hardcoded secrets or credentials
+- (-5) Console.log left in production code
+```
+
+## Step-by-Step Setup
+
+### Step 1: Add to your CLAUDE.md
+
+Add the quality gates section to your project's CLAUDE.md.
+
+### Step 2: Customize deductions
+
+Add project-specific deductions for issues that matter in your codebase:
+- Frontend: Accessibility, responsive design, bundle size
+- Backend: SQL injection, auth checks, rate limiting
+- Data: Schema validation, null handling, precision
+
+### Step 3: Test the system
+
+Ask Claude to score existing code:
+
+```
+Score the authentication module against our quality gates
+```
+
+## Example Usage
+
+**User:**
+> "Add password reset functionality. Let me know the quality score when done."
+
+**Claude (after implementation):**
+> ## Quality Score: 87/100
+>
+> ### Deductions:
+> - (-10) Missing rate limiting on reset endpoint
+> - (-3) No logging of reset attempts
+>
+> ### Verification:
+> - [x] Build: Passed
+> - [x] Tests: 12/12 passed
+> - [x] Lint: No errors
+> - [x] Manual test: Reset email received, link works
+>
+> ### Verdict: COMMIT OK
+>
+> Score of 87 allows commit. For PR readiness (90+), recommend adding rate limiting.
+
+**User:**
+> "Add rate limiting, then re-score"
+
+**Claude (after fix):**
+> ## Quality Score: 94/100
+>
+> ### Deductions:
+> - (-3) No logging of reset attempts
+> - (-3) Reset email template could use branding
+>
+> ### Verdict: PR READY
+>
+> Score of 94 is excellent. Ready to create PR.
+
+## Tips
+
+- **Start strict, relax later**: Easier to lower standards than raise them. Start with strict deductions.
+- **Document waivers**: When you waive issues, track them. They're tech debt now.
+- **Team calibration**: If working with others, align on what constitutes -10 vs -5 issues.
+- **Celebrate excellence**: A 95+ score is genuinely excellent. Don't score inflate.
+
+## Troubleshooting
+
+**Problem**: Scores feel arbitrary
+
+**Solution**: Add more specific deduction rules to your CLAUDE.md. The more concrete, the more consistent.
+
+**Problem**: Too many things blocking at 80
+
+**Solution**: Review your deductions. Maybe some -10 issues should be -5. Or fix the underlying quality issues in your codebase.
+
+**Problem**: Always scoring exactly 85 or 90
+
+**Solution**: Claude might be anchoring to "safe" scores. Ask for detailed deduction breakdown and verify each item.

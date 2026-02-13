@@ -1,0 +1,208 @@
+---
+title: "Orchestrator Contractor Mode"
+description: "Let Claude autonomously coordinate multi-step tasks like a contractor — planning, implementing, reviewing, fixing, and verifying without constant supervision."
+category: "academic-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://psantanna.com/claude-code-my-workflow/workflow-guide.html"
+tags: ["workflow", "automation", "orchestration", "autonomous", "multi-agent", "contractor"]
+createdAt: "2026-02-12"
+---
+
+## What This Does
+
+This playbook enables "contractor mode" where Claude acts as a general contractor managing a project. After you approve a plan, Claude autonomously: implements the work, verifies outputs, runs reviewers, fixes issues, re-verifies, and only comes back to you when done or blocked. Like hiring a contractor who manages the entire job.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- Familiarity with the Plan-First Workflow (recommended to use together)
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your project:
+
+```markdown
+# Orchestrator Protocol
+
+## Activation
+
+This protocol activates automatically after any plan is approved. When the user says "Approved", "Go ahead", "LGTM", or "Just do it", enter contractor mode.
+
+## The Orchestrator Loop
+
+After plan approval, execute this loop:
+
+### Step 1: IMPLEMENT
+- Execute the approved plan step by step
+- Create/modify files as specified
+- Run any necessary build commands
+- Track which steps are complete
+
+### Step 2: VERIFY
+- Compile, build, or render all outputs
+- Run tests if applicable
+- Check for syntax errors, type errors, lint issues
+- **Never report "done" without verification**
+
+### Step 3: REVIEW (if applicable)
+- For code: check for bugs, security issues, best practices
+- For documents: check for errors, consistency, completeness
+- For multi-format: check cross-format parity
+- Run specialized reviewers based on file types
+
+### Step 4: FIX
+- Address all issues found in review
+- Apply fixes surgically (don't rewrite entire files)
+- Log each fix applied
+
+### Step 5: RE-VERIFY
+- Run verification again after fixes
+- If new issues found, return to Step 4
+- Maximum 5 fix-verify cycles
+
+### Step 6: SCORE
+- Assess quality on 0-100 scale
+- 80+ = safe to commit
+- 90+ = ready for PR/deployment
+- <80 = must fix before proceeding
+
+### Step 7: REPORT
+- Present summary to user:
+  - What was implemented
+  - What was verified
+  - Issues found and fixed
+  - Final quality score
+  - Any remaining concerns
+
+## File Type → Review Mapping
+
+| Files Modified | Review Actions |
+|----------------|----------------|
+| `.js/.ts/.py` code | Syntax check, lint, type check, test run |
+| `.md/.mdx` docs | Spell check, link validation, formatting |
+| `.css/.scss` styles | Build check, visual consistency |
+| Config files | Validation, schema check |
+| Multiple formats | Cross-format parity check |
+
+## Autonomous Boundaries
+
+**Claude CAN do without asking:**
+- Fix obvious bugs found during review
+- Apply consistent code style
+- Add missing imports/dependencies
+- Fix type errors
+- Retry failed builds (up to 3 times)
+
+**Claude MUST ask before:**
+- Changing architecture from approved plan
+- Deleting files not in the plan
+- Installing new dependencies
+- Making breaking API changes
+- Any security-sensitive changes
+
+## "Just Do It" Mode
+
+When user says "Just do it":
+- Skip final approval pause
+- Auto-commit if score ≥ 80
+- Still run full verify-review-fix loop
+- Still present summary at the end
+
+## Quality Thresholds
+
+```
+Score 95+: Exceptional — exceeds requirements
+Score 90+: Ready — safe for deployment
+Score 80+: Acceptable — safe to commit, minor issues
+Score 60-79: Needs work — fix before committing
+Score <60: Blocked — significant issues, ask user
+```
+
+## Progress Indicators
+
+While working, report:
+- "Step 2/7: Implementing auth middleware..."
+- "Verification: Build passed ✓"
+- "Review: Found 2 issues, fixing..."
+- "Re-verify: All issues resolved ✓"
+- "Score: 87/100 — ready to commit"
+```
+
+## Step-by-Step Setup
+
+### Step 1: Add to your CLAUDE.md
+
+Append the orchestrator protocol to your existing CLAUDE.md, or create a new one.
+
+### Step 2: Test with a real task
+
+```
+Add form validation to the signup page. After I approve the plan, handle everything autonomously.
+```
+
+### Step 3: Approve and observe
+
+After approving the plan, Claude should:
+1. Implement the validation
+2. Run the build to verify
+3. Review the code for issues
+4. Fix any problems found
+5. Re-verify
+6. Report back with summary and score
+
+## Example Usage
+
+**User:**
+> "Add a logout button to the navbar. Just do it."
+
+**Claude (working autonomously):**
+> ### Implementing: Logout Button
+>
+> **Step 1/5: IMPLEMENT**
+> - Added LogoutButton component to `src/components/LogoutButton.tsx`
+> - Updated Navbar in `src/components/Navbar.tsx`
+> - Wired up auth context logout handler
+>
+> **Step 2/5: VERIFY**
+> - TypeScript: ✓ No errors
+> - Build: ✓ Successful
+> - Lint: ✓ Passed
+>
+> **Step 3/5: REVIEW**
+> - Code quality: Good
+> - Security: Logout clears tokens ✓
+> - Found: Missing loading state during logout
+>
+> **Step 4/5: FIX**
+> - Added loading spinner during logout API call
+>
+> **Step 5/5: RE-VERIFY**
+> - Build: ✓ Successful
+> - All checks passed
+>
+> **Score: 92/100** — Ready for deployment
+>
+> **Summary**: Added logout button to navbar with proper loading state. Auto-committed to branch `feature/logout-button`.
+
+## Tips
+
+- **Trust the loop**: The verify-review-fix cycle catches most issues. Let it run.
+- **Use "Just do it" for trusted tasks**: Skips the final approval pause, saves time.
+- **Check the score**: 90+ means Claude is confident. Below 80 means review carefully.
+- **Combine with Plan-First**: Plan-First for the design, Orchestrator for the execution.
+
+## Troubleshooting
+
+**Problem**: Claude stops and asks too many questions during execution
+
+**Solution**: Expand the "Claude CAN do without asking" section with more permissions specific to your project.
+
+**Problem**: Build verification fails repeatedly
+
+**Solution**: Add build commands to CLAUDE.md so Claude knows the right commands: `npm run build`, `pytest`, etc.
+
+**Problem**: Score seems arbitrary
+
+**Solution**: Add specific scoring criteria to your CLAUDE.md: "Deduct 10 points for missing tests, 5 for lint warnings, etc."

@@ -1,0 +1,241 @@
+---
+title: "Adversarial QA Loop"
+description: "Use a Critic + Fixer pattern where one agent finds issues (read-only) and another fixes them, with re-audits until quality passes. Prevents Claude from approving its own work."
+category: "academic-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://psantanna.com/claude-code-my-workflow/workflow-guide.html"
+tags: ["quality-assurance", "review", "multi-agent", "critic", "fixer", "adversarial"]
+createdAt: "2026-02-12"
+---
+
+## What This Does
+
+This playbook implements an adversarial QA pattern where separate "Critic" and "Fixer" roles audit and fix work independently. The Critic can only read and report issues (no editing). The Fixer applies fixes. Then the Critic re-audits. This loop continues until the Critic approves or max rounds are reached.
+
+**Why it works**: The Critic has no incentive to downplay issues since it can't fix them. The Fixer can't approve its own work since the Critic re-audits. This prevents the common failure of Claude saying "looks good" about its own output.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- Understanding of the task you want to QA (code, documents, translations, etc.)
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your project:
+
+```markdown
+# Adversarial QA Protocol
+
+## The Pattern
+
+```
++------------------+
+|     CRITIC       |  "I found 12 issues. 3 Critical."
+|   (READ-ONLY)    |
++--------+---------+
+         |
+    +----v----+
+    | Verdict |
+    +----+----+
+        / \
+   APPROVED  NEEDS WORK
+       |         |
+     Done    +---v-----------+
+             |    FIXER      |  "Fixed 12/12 issues."
+             |  (READ-WRITE) |
+             +-------+-------+
+                     |
+             +-------v-------+
+             |    CRITIC     |  "Re-audit: 2 remaining."
+             |   (Round 2)   |
+             +-------+-------+
+                     |
+                ... (up to 5 rounds)
+```
+
+## Critic Role
+
+When acting as CRITIC:
+- **READ-ONLY**: Never modify files, only analyze and report
+- **Be thorough**: Check every detail, assume nothing is correct
+- **Categorize issues**: Critical, Major, Minor
+- **Be specific**: Include file paths, line numbers, exact problems
+- **No fixing**: Only identify and document, never suggest fixes inline
+
+### Critic Report Format
+
+```
+## QA Audit Report
+
+**Files Reviewed**: [list]
+**Verdict**: APPROVED | NEEDS WORK
+
+### Critical Issues (blocks approval)
+1. [file:line] Description of critical issue
+
+### Major Issues (should fix)
+1. [file:line] Description of major issue
+
+### Minor Issues (nice to fix)
+1. [file:line] Description of minor issue
+
+**Total**: X Critical, Y Major, Z Minor
+```
+
+## Fixer Role
+
+When acting as FIXER:
+- **READ-WRITE**: Can modify files to address issues
+- **Surgical fixes**: Only change what's necessary, don't refactor
+- **Track fixes**: Log each fix applied
+- **Don't self-approve**: After fixing, Critic must re-audit
+
+### Fixer Report Format
+
+```
+## Fixes Applied
+
+1. [file:line] Fixed: [description]
+2. [file:line] Fixed: [description]
+...
+
+**Summary**: Fixed X/Y issues. Ready for re-audit.
+```
+
+## QA Loop Rules
+
+1. Maximum 5 rounds of Critic → Fixer → Re-audit
+2. APPROVED requires zero Critical issues
+3. Major issues can be waived with explicit user approval
+4. Minor issues are logged but don't block
+5. If round 5 reached with Critical issues, escalate to user
+
+## Invoking the QA Loop
+
+To run adversarial QA, say:
+- "Run QA on [file/folder]" — Full Critic → Fixer loop
+- "Critic mode: audit [file]" — Only audit, no fixes
+- "Fix these issues: [list]" — Only fix, then request re-audit
+
+## Issue Categories
+
+### Critical (Score: -20 each)
+- Broken functionality
+- Security vulnerabilities
+- Data loss risks
+- Syntax/compile errors
+- Wrong outputs
+
+### Major (Score: -10 each)
+- Logic errors
+- Missing error handling
+- Performance issues
+- Accessibility violations
+- Inconsistent behavior
+
+### Minor (Score: -3 each)
+- Style inconsistencies
+- Suboptimal patterns
+- Missing comments (where needed)
+- Minor UX issues
+- Typos in non-user-facing text
+```
+
+## Step-by-Step Setup
+
+### Step 1: Add to your CLAUDE.md
+
+Add the adversarial QA protocol to your project's CLAUDE.md file.
+
+### Step 2: Test the Critic role
+
+Ask Claude to audit existing work:
+
+```
+Critic mode: Audit the authentication module in src/auth/
+```
+
+Claude should produce a detailed report without making any changes.
+
+### Step 3: Test the Fixer role
+
+Give Claude the issues to fix:
+
+```
+Fix these issues from the audit:
+1. [src/auth/login.ts:45] Missing password validation
+2. [src/auth/session.ts:12] Session timeout not enforced
+```
+
+### Step 4: Run the full loop
+
+```
+Run QA on the checkout flow. Use the Critic → Fixer loop until approved.
+```
+
+## Example Usage
+
+**User:**
+> "Run QA on the API endpoints in src/routes/"
+
+**Claude (as Critic, Round 1):**
+> ## QA Audit Report
+>
+> **Files Reviewed**: src/routes/users.ts, src/routes/orders.ts, src/routes/products.ts
+> **Verdict**: NEEDS WORK
+>
+> ### Critical Issues
+> 1. [users.ts:34] SQL injection vulnerability in search query
+> 2. [orders.ts:78] No authentication check on delete endpoint
+>
+> ### Major Issues
+> 1. [products.ts:56] Missing rate limiting on bulk import
+> 2. [users.ts:89] Password returned in API response
+>
+> ### Minor Issues
+> 1. [orders.ts:12] Inconsistent error message format
+>
+> **Total**: 2 Critical, 2 Major, 1 Minor
+
+**Claude (as Fixer):**
+> ## Fixes Applied
+>
+> 1. [users.ts:34] Fixed: Parameterized query for search
+> 2. [orders.ts:78] Fixed: Added requireAuth middleware
+> 3. [products.ts:56] Fixed: Added rate limiter (100/min)
+> 4. [users.ts:89] Fixed: Excluded password from response DTO
+> 5. [orders.ts:12] Fixed: Standardized error format
+>
+> **Summary**: Fixed 5/5 issues. Ready for re-audit.
+
+**Claude (as Critic, Round 2):**
+> ## QA Audit Report (Re-audit)
+>
+> **Verdict**: APPROVED
+>
+> All critical and major issues resolved. No new issues found.
+>
+> **Quality Score**: 94/100
+
+## Tips
+
+- **Critic should be harsh**: Better to catch issues now than in production. Encourage thorough auditing.
+- **Fixer should be minimal**: Only fix the identified issues, don't refactor or "improve" other code.
+- **Trust the loop**: 2-3 rounds is normal. If it takes 5 rounds, the original work had significant issues.
+- **Customize issue categories**: Add domain-specific categories (e.g., "Accessibility" for web apps, "Type Safety" for TypeScript).
+
+## Troubleshooting
+
+**Problem**: Critic keeps finding new issues on re-audit
+
+**Solution**: Fixer may be introducing new problems. Add rule: "When fixing, only modify code directly related to the issue."
+
+**Problem**: Critic approves too easily
+
+**Solution**: Add more specific audit criteria to your CLAUDE.md: "Always check for X, Y, Z."
+
+**Problem**: Too many rounds, never converges
+
+**Solution**: Some issues may need user input. Add rule: "After round 3, summarize remaining blockers and ask user for direction."

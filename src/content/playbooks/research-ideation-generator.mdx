@@ -1,0 +1,231 @@
+---
+title: "Research Ideation Generator"
+description: "Generate research questions, hypotheses, and empirical strategies. Brainstorm ideas systematically with structured prompts that push beyond obvious approaches."
+category: "academic-research"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://psantanna.com/claude-code-my-workflow/workflow-guide.html"
+tags: ["research", "brainstorming", "ideation", "hypotheses", "creativity"]
+createdAt: "2026-02-12"
+---
+
+## What This Does
+
+This playbook helps generate research ideas systematically. Instead of staring at a blank page, use structured prompts to generate research questions, hypotheses, and empirical strategies. Claude pushes beyond obvious approaches to surface non-obvious ideas.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- A research area or topic to explore
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your research folder:
+
+```markdown
+# Research Ideation System
+
+## Command
+`/research-ideation [topic]` — Generate research ideas for a topic
+
+## Ideation Framework
+
+### Phase 1: Problem Space Exploration
+Before generating ideas, understand the space:
+1. What is the core phenomenon?
+2. Why does it matter?
+3. What's the current state of knowledge?
+4. What are the key debates/tensions?
+
+### Phase 2: Research Question Generation
+Generate questions across dimensions:
+
+**Descriptive Questions** (What is?)
+- What is the prevalence/distribution of X?
+- How does X vary across contexts?
+- What are the components/dimensions of X?
+
+**Causal Questions** (What causes?)
+- Does X cause Y?
+- What mediates the X→Y relationship?
+- What moderates the X→Y relationship?
+
+**Mechanism Questions** (How?)
+- How does X produce Y?
+- What is the process by which X operates?
+- Why does X work in some contexts but not others?
+
+**Normative Questions** (What should?)
+- What is the optimal level of X?
+- How should we design X?
+- What interventions would improve X?
+
+### Phase 3: Hypothesis Generation
+For each research question, generate:
+1. **Conventional hypothesis**: What most people would predict
+2. **Contrarian hypothesis**: Opposite of conventional
+3. **Contingent hypothesis**: "It depends on Z"
+4. **Novel hypothesis**: Non-obvious prediction
+
+### Phase 4: Empirical Strategy Brainstorm
+For promising hypotheses:
+- What data would test this?
+- What's the ideal research design?
+- What's a feasible alternative design?
+- What are the main identification threats?
+
+## Ideation Techniques
+
+### Inversion
+What if the opposite of conventional wisdom is true?
+
+### Analogy Transfer
+What works in field Y that hasn't been applied to field X?
+
+### Boundary Exploration
+What happens at the extremes? What's the smallest unit of analysis?
+
+### Mechanism Deep Dive
+Pick any relationship and ask "but how, exactly?"
+
+### Counterfactual Thinking
+What would the world look like if X didn't exist?
+
+### Combination
+What happens when A and B interact?
+
+## Output Format
+
+```
+## Research Ideation: [Topic]
+
+### Problem Space
+[Brief characterization]
+
+### Research Questions
+1. [Question 1] — [Type: Descriptive/Causal/Mechanism/Normative]
+2. [Question 2] — [Type]
+3. [Question 3] — [Type]
+...
+
+### Most Promising Hypotheses
+**Hypothesis 1**: [Statement]
+- Rationale: [Why this might be true]
+- Test: [How to test it]
+
+**Hypothesis 2**: [Statement]
+- Rationale: [Why]
+- Test: [How]
+
+### Non-Obvious Ideas
+- [Idea that isn't immediately obvious]
+- [Contrarian take]
+- [Cross-domain insight]
+
+### Gaps Identified
+- [What hasn't been studied]
+- [What's understudied]
+```
+
+## Quality Checks
+
+Good research ideas should be:
+- [ ] **Interesting**: Would people care about the answer?
+- [ ] **Novel**: Not already answered definitively
+- [ ] **Testable**: Can be empirically investigated
+- [ ] **Meaningful**: Results would change how we think or act
+```
+
+## Step-by-Step Setup
+
+### Step 1: Add to your research CLAUDE.md
+
+Add the template above to your research folder's CLAUDE.md.
+
+### Step 2: Test with a topic
+
+```
+/research-ideation [your research area]
+```
+
+Or simply:
+
+```
+Generate research ideas about [topic]. Use the ideation framework.
+```
+
+## Example Usage
+
+**User:**
+> "/research-ideation AI adoption in healthcare"
+
+**Claude:**
+> ## Research Ideation: AI Adoption in Healthcare
+>
+> ### Problem Space
+> AI tools (diagnostic, administrative, clinical decision support) are becoming available in healthcare, but adoption is uneven. Key tensions: accuracy vs explainability, efficiency vs job displacement, innovation vs regulation.
+>
+> ### Research Questions
+>
+> **Descriptive**
+> 1. What predicts which hospitals adopt AI early vs late? — Descriptive
+> 2. How do clinicians' mental models of AI accuracy compare to actual accuracy? — Descriptive
+>
+> **Causal**
+> 3. Does AI diagnostic assistance improve or harm physician decision-making? — Causal
+> 4. Does exposure to AI errors affect future trust calibration? — Causal
+>
+> **Mechanism**
+> 5. How do clinicians integrate AI recommendations with their own judgment? — Mechanism
+> 6. Why do some physicians override AI more than others? — Mechanism
+>
+> **Normative**
+> 7. What level of AI explanation is optimal for different clinical decisions? — Normative
+> 8. How should liability be allocated when AI contributes to errors? — Normative
+>
+> ### Most Promising Hypotheses
+>
+> **Hypothesis 1**: AI assistance helps average physicians more than experts
+> - Rationale: Experts have strong priors; AI provides less marginal information
+> - Test: Compare diagnostic accuracy improvement across experience levels
+>
+> **Hypothesis 2**: AI explanation length has an inverse-U relationship with trust
+> - Rationale: Too little = black box distrust; too much = cognitive overload
+> - Test: Experiment varying explanation detail, measuring adoption
+>
+> **Hypothesis 3**: AI adoption is higher for "defensive" diagnoses (ruling out) than "offensive" (ruling in)
+> - Rationale: Liability asymmetry — missing a diagnosis is worse than over-testing
+> - Test: Compare adoption rates by diagnosis type
+>
+> ### Non-Obvious Ideas
+>
+> - **Automation complacency as hidden cost**: Physicians may stop developing skills they delegate to AI, creating fragility
+> - **AI as scapegoat**: Physicians might adopt AI not for accuracy but for blame-shifting ("the AI suggested it")
+> - **Inverse selection**: Hospitals that most need AI (under-resourced, overworked) may be least able to implement it
+>
+> ### Gaps Identified
+> - Long-term effects on physician skill development
+> - Patient preferences for AI involvement in their care
+> - How AI errors affect downstream patient trust in medicine broadly
+
+## Tips
+
+- **Push for contrarian ideas**: Explicitly ask "What if the opposite were true?"
+- **Cross-domain insights**: Ask "What does [other field] know about this that healthcare hasn't applied?"
+- **Quantity first**: Generate 10-15 questions before evaluating. Don't self-censor early.
+- **Test feasibility later**: Ideation phase is about possibility, not practicality.
+
+## Troubleshooting
+
+**Problem**: Ideas feel generic/obvious
+
+**Solution**: Go deeper. For any idea, ask "Yes, but specifically how?" or "What's the second-order effect?"
+
+**Problem**: Can't generate contrarian ideas
+
+**Solution**: List the assumptions behind conventional wisdom. What if each assumption were wrong?
+
+**Problem**: Ideas aren't testable
+
+**Solution**: Add "How would you test this?" as a required component for each hypothesis. Untestable ideas get cut.

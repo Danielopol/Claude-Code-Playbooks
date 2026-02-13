@@ -1,0 +1,224 @@
+---
+title: "Knowledge Base Builder"
+description: "Build a structured knowledge base for your domain with notation registries, application databases, design principles, and anti-patterns."
+category: "academic-research"
+difficulty: "intermediate"
+timeToSetup: "20 minutes"
+author: "community"
+sourceUrl: "https://psantanna.com/claude-code-my-workflow/workflow-guide.html"
+tags: ["knowledge-base", "documentation", "notation", "patterns", "domain-knowledge"]
+createdAt: "2026-02-12"
+---
+
+## What This Does
+
+This playbook helps you build a structured knowledge base for your project or domain. It includes registries for notation/terminology, databases of examples/applications, validated design principles, and documented anti-patterns. Claude can then reference this knowledge base for consistent, informed assistance.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- A domain or project you want to document
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your project:
+
+```markdown
+# Knowledge Base
+
+## Notation Registry
+
+Track terminology, symbols, and naming conventions:
+
+| Term/Symbol | Meaning | First Introduced | Anti-Pattern |
+|-------------|---------|------------------|--------------|
+| [term] | [definition] | [where] | [what NOT to do] |
+
+### Example (Software Project):
+| Term | Meaning | Introduced | Anti-Pattern |
+|------|---------|------------|--------------|
+| `User` | Authenticated account holder | models/user.ts | Don't conflate with `Visitor` (unauthenticated) |
+| `Order` | A completed purchase | models/order.ts | Don't use for shopping carts (use `Cart`) |
+| `userId` | Primary key reference | Throughout | Never use `user_id` (consistency) |
+
+### Example (Academic):
+| Symbol | Meaning | Introduced | Anti-Pattern |
+|--------|---------|------------|--------------|
+| β | Regression coefficient | Lecture 1 | Don't use `b` (reserved for intercept) |
+| X | Treatment indicator | Lecture 2 | Don't use `T` (reserved for time) |
+
+## Applications Database
+
+Track real-world examples, use cases, or implementations:
+
+| Application | Source | Dataset/Context | Tools Used | Notes |
+|------------|--------|-----------------|------------|-------|
+| [name] | [paper/project] | [data] | [tools] | [notes] |
+
+### Example:
+| Application | Source | Context | Tools | Notes |
+|-------------|--------|---------|-------|-------|
+| User Auth | Auth0 docs | OAuth 2.0 | JWT, bcrypt | Reference implementation |
+| Payment Flow | Stripe guide | E-commerce | Stripe API | Follow their patterns |
+
+## Design Principles
+
+Track validated design approaches:
+
+| Principle | Evidence/Rationale | Applied Where |
+|-----------|-------------------|---------------|
+| [principle] | [why it works] | [where used] |
+
+### Example:
+| Principle | Evidence | Applied |
+|-----------|----------|---------|
+| Single Responsibility | Easier testing, clearer code | All components |
+| Fail Fast | Catch errors early | Validation layer |
+| Convention over Configuration | Less boilerplate | Routing, naming |
+
+## Anti-Patterns
+
+Document what NOT to do:
+
+| Anti-Pattern | Why It's Bad | Better Alternative |
+|--------------|--------------|-------------------|
+| [pattern] | [problems] | [solution] |
+
+### Example:
+| Anti-Pattern | Why Bad | Alternative |
+|--------------|---------|-------------|
+| God Component | Unmaintainable | Split by responsibility |
+| Magic Numbers | Unclear intent | Named constants |
+| Deep Nesting | Hard to follow | Early returns, extraction |
+
+## Project State
+
+Track current status and decisions:
+
+| Aspect | Current State | Last Updated |
+|--------|---------------|--------------|
+| [aspect] | [state] | [date] |
+
+### Example:
+| Aspect | State | Updated |
+|--------|-------|---------|
+| Auth System | Auth0 integrated | 2024-01-15 |
+| Database | PostgreSQL 15 | 2024-01-10 |
+| Frontend Framework | Next.js 14 | 2024-01-08 |
+
+## Common Pitfalls
+
+Project-specific issues to watch for:
+
+1. **[Pitfall]**: [Description and how to avoid]
+2. **[Pitfall]**: [Description and how to avoid]
+
+### Example:
+1. **Session Timeout**: Our sessions expire after 30 min. Don't cache user state beyond this.
+2. **Timezone Handling**: All dates stored UTC. Always convert for display.
+3. **API Rate Limits**: Stripe limits to 100 req/sec. Batch operations.
+```
+
+## Step-by-Step Setup
+
+### Step 1: Create knowledge base file
+
+```bash
+touch KNOWLEDGE_BASE.md
+```
+
+### Step 2: Start with notation registry
+
+Document your most important terminology:
+
+```markdown
+# Knowledge Base
+
+## Notation Registry
+
+| Term | Meaning | Context | Anti-Pattern |
+|------|---------|---------|--------------|
+| `User` | Authenticated account | models/ | Not same as Visitor |
+| `Product` | Purchasable item | catalog/ | Not a cart item |
+| `Order` | Completed purchase | orders/ | Not a pending cart |
+```
+
+### Step 3: Add as you learn
+
+Update the knowledge base when you:
+- Introduce new terminology
+- Make design decisions
+- Discover anti-patterns
+- Validate principles
+
+### Step 4: Reference from CLAUDE.md
+
+Add to your CLAUDE.md:
+
+```markdown
+## Knowledge Base
+
+Read KNOWLEDGE_BASE.md before any task involving domain concepts.
+Use terminology consistently with the notation registry.
+Avoid documented anti-patterns.
+```
+
+## Example Usage
+
+**User:**
+> "Create a new data model for handling subscriptions"
+
+**Claude (referencing knowledge base):**
+> Before creating the subscription model, I've reviewed our knowledge base:
+>
+> **Terminology alignment:**
+> - Will use `Subscription` (not `Plan` or `Membership` — different meanings in our registry)
+> - User reference uses `userId` (not `user_id` — per convention)
+>
+> **Anti-patterns to avoid:**
+> - Won't couple subscription status with auth (listed as anti-pattern)
+> - Won't store derived data (principle: compute don't store)
+>
+> Here's the proposed model:
+>
+> ```typescript
+> interface Subscription {
+>   id: string;
+>   userId: string;          // References User model
+>   plan: PlanType;          // Defined in types
+>   status: SubscriptionStatus;
+>   startedAt: Date;         // UTC per our convention
+>   renewsAt: Date;          // UTC
+> }
+> ```
+
+**User:**
+> "Add 'PlanType' to the knowledge base"
+
+**Claude:**
+> Added to Notation Registry:
+>
+> | Term | Meaning | Context | Anti-Pattern |
+> |------|---------|---------|--------------|
+> | `PlanType` | Subscription tier enum | subscriptions/ | Don't use 'Plan' alone (ambiguous with future pricing plans) |
+
+## Tips
+
+- **Start small**: Begin with 5-10 entries. Add more as you encounter them.
+- **Update proactively**: When you make a decision, document it immediately.
+- **Review periodically**: Some entries become outdated. Clean up quarterly.
+- **Make it specific**: "Use consistent naming" is useless. "Use camelCase for JS, snake_case for DB" is useful.
+
+## Troubleshooting
+
+**Problem**: Claude doesn't reference the knowledge base
+
+**Solution**: Add explicit instruction: "Check the knowledge base before starting any task."
+
+**Problem**: Knowledge base is too large
+
+**Solution**: Split into sections (core/advanced) or by domain area. Only load relevant sections.
+
+**Problem**: Entries conflict
+
+**Solution**: Review conflicts are valuable — they surface inconsistencies in your actual design. Resolve the conflict, then update the entry.

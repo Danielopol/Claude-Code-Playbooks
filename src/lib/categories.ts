@@ -144,6 +144,14 @@ export const categories: CategoryInfo[] = [
     icon: 'Code',
     vertical: 'Developer Tools',
   },
+  // Academic Research
+  {
+    id: 'academic-research',
+    name: 'Academic Research',
+    description: 'Research workflows, literature review, manuscript review, and academic writing',
+    icon: 'GraduationCap',
+    vertical: 'Academic Research',
+  },
 ];
 
 export function getCategoryById(id: Category): CategoryInfo | undefined {
@@ -164,4 +172,5 @@ export const verticals = [
   'HR & Recruiting',
   'Creative & Design',
   'Developer Tools',
+  'Academic Research',
 ];

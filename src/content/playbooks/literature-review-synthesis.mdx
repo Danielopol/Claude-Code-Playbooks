@@ -1,0 +1,270 @@
+---
+title: "Literature Review Synthesis"
+description: "Systematically search, analyze, and synthesize research literature. Extract key findings, identify gaps, and produce structured literature reviews."
+category: "academic-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://psantanna.com/claude-code-my-workflow/workflow-guide.html"
+tags: ["research", "literature-review", "synthesis", "academic", "papers"]
+createdAt: "2026-02-12"
+---
+
+## What This Does
+
+This playbook provides a structured workflow for conducting literature reviews. Claude helps you search for relevant papers, extract key information from each, identify themes and gaps, and produce a synthesized review document.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- Access to papers (PDFs, URLs, or databases)
+- A research topic or question
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your research folder:
+
+```markdown
+# Literature Review System
+
+## Workflow Phases
+
+### Phase 1: Define Scope
+Before searching:
+1. State the research question clearly
+2. Define inclusion/exclusion criteria
+3. Identify key terms and synonyms
+4. Specify date range and source types
+
+### Phase 2: Search & Collect
+Search strategy:
+1. Generate search queries from key terms
+2. Search multiple databases if available
+3. Track sources in a structured format
+4. Apply inclusion/exclusion criteria
+
+### Phase 3: Extract & Analyze
+For each paper, extract:
+- **Citation**: Full reference
+- **Research Question**: What are they investigating?
+- **Methodology**: How did they study it?
+- **Key Findings**: What did they find?
+- **Limitations**: What are the caveats?
+- **Relevance**: How does this connect to our question?
+
+### Phase 4: Synthesize
+Combine extractions into:
+- Thematic groupings
+- Points of agreement/disagreement
+- Evolution of the field
+- Identified gaps
+- Future directions
+
+## Paper Analysis Template
+
+```markdown
+## Paper: [Short Title]
+
+**Citation**: [Full citation]
+**Year**: [Year]
+**Type**: [Empirical/Theoretical/Review/etc.]
+
+### Research Question
+[What question does this paper address?]
+
+### Methodology
+[How did they study it? Sample, methods, analysis]
+
+### Key Findings
+1. [Finding 1]
+2. [Finding 2]
+3. [Finding 3]
+
+### Limitations
+- [Limitation 1]
+- [Limitation 2]
+
+### Relevance to Our Review
+[How does this connect to our research question?]
+
+### Key Quotes
+> "[Direct quote if particularly relevant]" (p. X)
+```
+
+## Synthesis Matrix
+
+Track themes across papers:
+
+| Paper | Theme A | Theme B | Theme C | Methods | Findings |
+|-------|---------|---------|---------|---------|----------|
+| Smith 2020 | ✓ | - | ✓ | Survey | X > Y |
+| Jones 2021 | ✓ | ✓ | - | Experiment | X = Y |
+| Lee 2022 | - | ✓ | ✓ | Interview | X < Y |
+
+## Commands
+
+- `/lit-review [topic]` — Start a new literature review
+- "Analyze this paper: [citation/pdf]" — Extract from single paper
+- "Synthesize papers on [theme]" — Combine extractions
+- "Find gaps in the literature" — Identify what's missing
+- "Write the introduction section" — Draft based on synthesis
+
+## Output Formats
+
+### Annotated Bibliography
+```
+1. Smith (2020): [2-3 sentence summary focusing on contribution and relevance]
+
+2. Jones (2021): [2-3 sentence summary...]
+```
+
+### Thematic Review
+```
+## Theme 1: [Name]
+[Paragraph synthesizing what multiple papers say about this theme]
+
+## Theme 2: [Name]
+[Paragraph synthesizing...]
+```
+
+### Gap Analysis
+```
+## What We Know
+[Summary of established findings]
+
+## What We Don't Know
+[Identified gaps and unanswered questions]
+
+## Why It Matters
+[Significance of the gaps]
+```
+```
+
+## Step-by-Step Setup
+
+### Step 1: Create the research folder
+
+```bash
+mkdir -p ~/research/{papers,extractions,synthesis}
+```
+
+### Step 2: Add the CLAUDE.md template
+
+Save the template above to `~/research/CLAUDE.md`.
+
+### Step 3: Start a review
+
+```
+I'm conducting a literature review on [your topic]. Help me:
+1. Define the search scope
+2. Generate search queries
+3. Create an extraction template specific to this topic
+```
+
+## Example Usage
+
+**User:**
+> "Start a literature review on remote work productivity"
+
+**Claude:**
+> ## Literature Review: Remote Work Productivity
+>
+> ### Phase 1: Scope Definition
+>
+> **Research Question**: How does remote work affect employee productivity compared to in-office work?
+>
+> **Inclusion Criteria**:
+> - Published 2019-2024 (post-COVID relevant)
+> - Empirical studies with productivity measures
+> - Knowledge workers / office-type roles
+>
+> **Exclusion Criteria**:
+> - Opinion pieces without data
+> - Non-comparable job types (manufacturing, retail)
+> - Studies without clear productivity metrics
+>
+> **Search Terms**:
+> - "remote work" AND "productivity"
+> - "work from home" AND "performance"
+> - "telework" AND "output"
+>
+> Ready for Phase 2: Search & Collect. Do you have papers to analyze, or should we discuss search strategies?
+
+**Later - Analyzing a paper:**
+
+> **User**: "Analyze this paper: Bloom et al. (2015) 'Does Working from Home Work?'"
+>
+> **Claude:**
+> ## Paper: Bloom 2015 - WFH Experiment
+>
+> **Citation**: Bloom, N., Liang, J., Roberts, J., & Ying, Z. J. (2015). Does working from home work? Evidence from a Chinese experiment. *Quarterly Journal of Economics*.
+>
+> **Type**: Randomized experiment
+>
+> ### Research Question
+> Does working from home improve or harm worker productivity?
+>
+> ### Methodology
+> - 9-month RCT at Chinese call center (Ctrip)
+> - 249 employees randomized to WFH vs office
+> - Productivity = calls handled per minute
+>
+> ### Key Findings
+> 1. WFH increased productivity by 13%
+> 2. 9% from working more minutes (fewer breaks, less sick leave)
+> 3. 4% from more calls per minute (quieter environment)
+> 4. WFH workers reported higher satisfaction
+>
+> ### Limitations
+> - Single company in China
+> - Call center work (measurable output)
+> - Pre-COVID (voluntary WFH, not forced)
+>
+> ### Relevance
+> Foundational experimental evidence for productivity gains, but limited to specific work type and context.
+
+**Later - Synthesis:**
+
+> **User**: "I've analyzed 8 papers. Synthesize findings on productivity measurement."
+>
+> **Claude:**
+> ## Synthesis: Productivity Measurement Approaches
+>
+> The literature uses diverse productivity measures:
+>
+> **Objective Measures** (4 papers):
+> - Bloom 2015: Calls per minute
+> - Emanuel 2023: Lines of code, commits
+> - Gibbs 2023: Tasks completed per hour
+>
+> **Self-Reported Measures** (3 papers):
+> - Barrero 2021: Perceived productivity scale
+> - Aksoy 2022: Compared to office baseline
+>
+> **Manager Assessments** (2 papers):
+> - Butler 2021: Performance reviews
+>
+> **Key Insight**: Papers using objective measures show larger productivity gains (avg +8-13%) than self-reported (+5-8%). This may reflect measurement bias or different constructs.
+>
+> **Gap Identified**: No papers combine multiple measurement types to validate findings.
+
+## Tips
+
+- **Use parallel analysis**: If you have 5 papers, ask Claude to analyze all 5, then synthesize. Don't do one at a time.
+- **Create a synthesis matrix**: Track themes across papers visually. This reveals patterns.
+- **Quote sparingly but strategically**: A few key quotes > many quotes.
+- **Watch for publication bias**: Studies showing effects are more likely published. Note null findings.
+
+## Troubleshooting
+
+**Problem**: Claude's summaries are too generic
+
+**Solution**: Provide the full paper or detailed excerpts. Abstracts don't have enough detail for good extraction.
+
+**Problem**: Papers seem contradictory
+
+**Solution**: Look for differences in methodology, sample, context. Create a table comparing these factors.
+
+**Problem**: Can't find enough papers
+
+**Solution**: Broaden search terms, extend date range, include related fields. Use citation chaining (papers that cite key papers).

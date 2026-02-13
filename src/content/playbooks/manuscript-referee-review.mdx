@@ -1,0 +1,246 @@
+---
+title: "Manuscript Referee Review"
+description: "Get a thorough pre-submission review with referee-style objections. Identify weaknesses before reviewers do, and strengthen your paper proactively."
+category: "academic-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://psantanna.com/claude-code-my-workflow/workflow-guide.html"
+tags: ["research", "writing", "review", "manuscript", "academic", "referee"]
+createdAt: "2026-02-12"
+---
+
+## What This Does
+
+Before submitting a paper, run Claude as a critical referee. It will identify weaknesses, raise objections, and suggest improvements — helping you fix issues before actual reviewers see them.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- A draft manuscript (PDF, Word, or text)
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your research folder:
+
+```markdown
+# Manuscript Review System
+
+## Command
+`/review-paper [file]` — Full referee-style review of a manuscript
+
+## Review Protocol
+
+### Role
+Claude acts as a thorough, critical academic referee. The goal is NOT to be nice — it's to identify every potential weakness before real reviewers do.
+
+### Review Dimensions
+
+**1. Contribution Assessment**
+- Is the contribution clear?
+- Is it significant enough?
+- How does it advance beyond prior work?
+
+**2. Framing & Positioning**
+- Is the research question well-motivated?
+- Is the literature review adequate?
+- Are claims appropriately scoped?
+
+**3. Methodology**
+- Is the method appropriate for the question?
+- Are there identification concerns?
+- Is there internal validity?
+- Is there external validity / generalizability?
+
+**4. Results Interpretation**
+- Are conclusions supported by evidence?
+- Are alternative explanations considered?
+- Is statistical inference appropriate?
+
+**5. Presentation**
+- Is the writing clear?
+- Is the structure logical?
+- Are tables/figures effective?
+
+**6. Technical Issues**
+- Any errors in equations/analysis?
+- Are robustness checks adequate?
+- Is replication possible from the description?
+
+### Referee Report Format
+
+```
+## Referee Report: [Paper Title]
+
+### Summary
+[2-3 sentence summary of the paper]
+
+### Overall Assessment
+**Recommendation**: [Accept / Minor Revision / Major Revision / Reject]
+**Main strengths**: [2-3 bullets]
+**Main weaknesses**: [2-3 bullets]
+
+### Major Comments
+(Issues that must be addressed)
+
+1. [Comment 1]
+   - Concern: [What's wrong]
+   - Suggestion: [How to fix]
+
+2. [Comment 2]
+   ...
+
+### Minor Comments
+(Issues that would improve the paper)
+
+1. [Comment]
+2. [Comment]
+...
+
+### Typos / Small Errors
+- Page X, line Y: [correction]
+...
+
+### Questions for Authors
+1. [Question]
+2. [Question]
+```
+
+### Severity Calibration
+
+**Major Comment (must address)**:
+- Threatens validity of main conclusions
+- Missing critical information
+- Methodological flaw
+- Unsupported claims
+
+**Minor Comment (should address)**:
+- Presentation issues
+- Missing robustness check
+- Unclear explanation
+- Missing citation
+
+**Typo/Small (nice to fix)**:
+- Grammar
+- Formatting
+- Number discrepancies
+
+### Common Objections by Type
+
+**Empirical Papers:**
+- Selection bias: "How do you account for non-random selection into treatment?"
+- Omitted variable: "Have you considered that Z might explain both X and Y?"
+- Measurement: "How valid is your proxy for construct X?"
+- External validity: "Would this hold in context Y?"
+
+**Theoretical Papers:**
+- Assumption scrutiny: "Why is assumption X reasonable?"
+- Boundary conditions: "When does the theory not apply?"
+- Empirical implications: "What would falsify this theory?"
+
+**Review Papers:**
+- Scope: "Why these papers and not others?"
+- Synthesis: "What's the contribution beyond summarizing?"
+- Gaps: "What's missing from the literature?"
+```
+
+## Step-by-Step Setup
+
+### Step 1: Add to your CLAUDE.md
+
+Add the manuscript review template to your research folder's CLAUDE.md.
+
+### Step 2: Prepare your manuscript
+
+Save your paper as a PDF, Word doc, or plain text file that Claude can read.
+
+### Step 3: Run the review
+
+```
+/review-paper paper-draft.pdf
+```
+
+Or:
+
+```
+Review my paper manuscript at [file path]. Act as a critical referee. Don't be nice — I need to find the weaknesses.
+```
+
+## Example Usage
+
+**User:**
+> "/review-paper working-paper-v3.pdf"
+
+**Claude:**
+> ## Referee Report: "Remote Work and Innovation: Evidence from Patent Data"
+>
+> ### Summary
+> The paper examines whether firms' adoption of remote work policies affects their innovation output, measured by patents. Using a diff-in-diff design around COVID-19, the authors find a 12% increase in patents for firms that went remote, driven by increased inventor collaboration across geographies.
+>
+> ### Overall Assessment
+> **Recommendation**: Major Revision
+>
+> **Strengths**:
+> - Important, timely question
+> - Creative use of patent data
+> - Compelling mechanism story (geographic collaboration)
+>
+> **Weaknesses**:
+> - Identification concerns with COVID timing
+> - Patent quality not addressed
+> - Selection into remote work not random
+>
+> ### Major Comments
+>
+> **1. COVID Confounds**
+> - Concern: COVID affected innovation through many channels beyond remote work: government R&D funding surged, demand shifted, supply chains disrupted. Any of these could explain patent changes.
+> - Suggestion: Identify pure remote work variation (e.g., firms that went remote before COVID vs during). Or, include controls for COVID-affected industries and test for pre-trends.
+>
+> **2. Patent Quantity vs Quality**
+> - Concern: The 12% increase is in patent counts. If remote work enables filing more incremental patents while reducing breakthrough innovations, the net effect on innovation is ambiguous.
+> - Suggestion: Examine patent quality (forward citations, claims breadth, or technology class novelty). Show the effect isn't driven by low-quality patents.
+>
+> **3. Selection into Remote Work**
+> - Concern: Firms that adopted remote work may be systematically different (more tech-savvy, more flexible culture). These traits might independently predict higher innovation.
+> - Suggestion: Use instrumental variable (e.g., pre-pandemic office lease expiration) or show balance on observables between remote and non-remote firms.
+>
+> ### Minor Comments
+>
+> 1. The literature review omits Atkin et al. (2022) on remote work and productivity — directly relevant.
+>
+> 2. Table 3 shows results for all firms together. Consider breaking out by industry — the effect may be concentrated in software.
+>
+> 3. The mechanism analysis (geographic collaboration) is compelling but could use visualization. A figure showing collaboration network changes would strengthen this.
+>
+> 4. Abstract claims "causal effect" but the identification isn't bulletproof. Soften to "relationship" or address endogeneity more thoroughly.
+>
+> ### Typos
+> - Page 7, line 14: "effet" → "effect"
+> - Table 2: Column headers misaligned
+> - Page 15: Citation format inconsistent (APA vs Chicago)
+>
+> ### Questions for Authors
+> 1. Can you show pre-trends in patent activity for treatment vs control groups?
+> 2. What percentage of your sample had explicit remote work policies before COVID?
+> 3. Do results hold if you exclude Big Tech firms (which may drive the average)?
+
+## Tips
+
+- **Ask for specific focus**: "Review the methodology section with particular attention to identification" gets more targeted feedback.
+- **Request multiple passes**: "First review for big-picture issues, then a second pass for presentation" ensures comprehensive coverage.
+- **Ask for devil's advocate**: "What's the strongest objection a hostile reviewer could make?"
+- **Compare to standards**: "How does this compare to recently published papers in [target journal]?"
+
+## Troubleshooting
+
+**Problem**: Review is too gentle
+
+**Solution**: Explicitly request critical review: "Be harsh. Pretend you're a reviewer looking for reasons to reject."
+
+**Problem**: Review misses domain-specific issues
+
+**Solution**: Tell Claude the field: "Review this as an economics paper. Watch for identification issues, econometric concerns, and policy relevance."
+
+**Problem**: Review catches things but not the real weaknesses
+
+**Solution**: Add context: "The weakness I'm most worried about is X. Is it really a problem? What else might I be missing?"

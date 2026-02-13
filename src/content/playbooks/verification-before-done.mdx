@@ -1,0 +1,201 @@
+---
+title: "Verification Before Done"
+description: "Never report a task as complete without actually verifying it works. Compile, render, test, or check every output before saying 'done'."
+category: "academic-research"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://psantanna.com/claude-code-my-workflow/workflow-guide.html"
+tags: ["verification", "testing", "quality", "workflow", "best-practices"]
+createdAt: "2026-02-12"
+---
+
+## What This Does
+
+This playbook establishes a simple but critical rule: never say "done" without verification. Claude must compile, render, test, or otherwise verify every output before reporting completion. This catches the embarrassing failures where code "looks right" but doesn't actually work.
+
+## Prerequisites
+
+- Claude Code installed and configured
+- Build/test commands for your project
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your project:
+
+```markdown
+# Verification Protocol
+
+## The Rule
+
+**Never report a task as complete without verification.**
+
+Before saying "done," "complete," "finished," or similar:
+1. Actually run/compile/render the output
+2. Confirm it works as expected
+3. Document the verification in your response
+
+## Verification by Output Type
+
+| Output Type | Verification Method |
+|-------------|---------------------|
+| TypeScript/JavaScript | `npm run build` or `tsc` passes |
+| Python | `python -m py_compile [file]` passes |
+| React components | `npm run build` + manual render check |
+| API endpoints | `curl` test request returns expected response |
+| SQL migrations | `migration up` succeeds |
+| Markdown/docs | Renders correctly, links work |
+| Configuration | Application starts with new config |
+| Tests | Tests actually run and pass |
+| Shell scripts | `bash -n [script]` syntax check |
+
+## Verification Report
+
+Always include verification status:
+
+```
+## Verification
+- [x] Build: `npm run build` passed
+- [x] Tests: 47/47 passing
+- [x] Lint: No errors
+- [x] Manual: Feature works as expected
+
+Done.
+```
+
+## Verification Failures
+
+If verification fails:
+1. Report the failure immediately
+2. Diagnose the root cause
+3. Fix the issue
+4. Re-verify
+5. Only then report completion
+
+Do NOT report "done, but the build is failing."
+
+## Common Verification Commands
+
+**JavaScript/TypeScript:**
+```bash
+npm run build           # Build check
+npm run lint            # Lint check
+npm test                # Test check
+npm run typecheck       # Type check (if separate)
+```
+
+**Python:**
+```bash
+python -m py_compile file.py  # Syntax check
+pytest                         # Tests
+mypy file.py                  # Type check
+```
+
+**General:**
+```bash
+[app] --help            # Application starts
+curl localhost:PORT     # Server responds
+```
+
+## Unverifiable Outputs
+
+For outputs that can't be easily verified:
+- Document WHY verification is limited
+- Describe what manual check was done
+- Note any risks
+
+```
+## Verification
+- [x] Code compiles
+- [ ] Full integration test (requires staging environment)
+- [x] Manual: Logic reviewed, unit tests pass
+
+Note: Full integration requires deployment to staging. Verified as much as possible locally.
+```
+
+## Never Skip Verification
+
+Even for "trivial" changes:
+- Typo fixes → Verify file saves correctly
+- Comment changes → Verify no syntax errors introduced
+- Config changes → Verify application still starts
+
+The "trivial" changes are often where bugs hide.
+```
+
+## Step-by-Step Setup
+
+### Step 1: Document your verification commands
+
+Add your project's specific build/test commands to the CLAUDE.md:
+
+```markdown
+## Verification Commands for This Project
+
+```bash
+npm run build       # Build frontend and backend
+npm run lint        # ESLint check
+npm test            # Jest tests
+npm run e2e         # Cypress e2e tests (optional)
+npm run typecheck   # TypeScript strict check
+```
+```
+
+### Step 2: Add to your CLAUDE.md
+
+Add the verification protocol above, customized with your commands.
+
+### Step 3: Test compliance
+
+Ask Claude to make a code change and verify it reports verification:
+
+```
+Add a utility function to format dates. Show me the verification.
+```
+
+## Example Usage
+
+**User:**
+> "Add a function to validate email addresses"
+
+**Claude:**
+> Added `validateEmail()` to `src/utils/validation.ts`:
+>
+> ```typescript
+> export function validateEmail(email: string): boolean {
+>   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+>   return emailRegex.test(email);
+> }
+> ```
+>
+> ## Verification
+> - [x] TypeScript: `npm run typecheck` passed
+> - [x] Build: `npm run build` completed successfully
+> - [x] Tests: Added test, `npm test` 48/48 passing
+> - [x] Lint: No ESLint errors
+>
+> Done. The function is ready to use.
+
+**Bad example (what to avoid):**
+> "Added `validateEmail()` to validation.ts. It should work. Let me know if you have issues."
+
+## Tips
+
+- **Build before test**: A failing build makes tests meaningless. Check compilation first.
+- **Don't trust "it looks right"**: Code that looks correct can have subtle bugs. Run it.
+- **Verification is fast**: Usually takes seconds. Never worth skipping.
+- **Make verification automatic**: If you find yourself skipping, add verification to your project's pre-commit hooks.
+
+## Troubleshooting
+
+**Problem**: Claude reports "done" without verification
+
+**Solution**: Add explicit instruction at task start: "Make sure to verify the build passes before saying done."
+
+**Problem**: Verification takes too long
+
+**Solution**: Use faster checks for quick iterations (syntax check, typecheck) and full verification for completion.
+
+**Problem**: Some things can't be verified locally
+
+**Solution**: Document the limitation. Verify what you can. Note what requires deployment to fully test.

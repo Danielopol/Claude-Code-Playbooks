@@ -1,0 +1,218 @@
+---
+title: "Testimonial Collector"
+description: "Instantly save ad comments and social proof as organized testimonials - screenshot, name, and file automatically."
+category: "marketing-content"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Laura Roeder"
+sourceUrl: "https://x.com/lkr"
+tags: ["testimonials", "social-proof", "screenshots", "ads", "marketing", "organization"]
+createdAt: "2026-02-14"
+---
+
+## What This Does
+
+When you spot a great comment on your ads or social media, take a screenshot. Say "/testimonial" and Claude renames the file with the person's name and moves it to your organized testimonials folder in Google Drive (or anywhere you sync).
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Create Your Testimonials Folder
+
+Create a folder in Google Drive (or your preferred cloud storage) and sync it to your desktop.
+
+### Step 3: Configure the Paths
+
+Update the template with your screenshot source and testimonial destination folders.
+
+### Step 4: Start Collecting
+
+```bash
+claude
+```
+
+See a great comment? Screenshot it, then say: **"/testimonial"**
+
+---
+
+## How It Works
+
+| Step | What Happens |
+|------|--------------|
+| **1. Screenshot** | You take a screenshot of the testimonial |
+| **2. Command** | You say "/testimonial" |
+| **3. Analysis** | Claude reads the screenshot |
+| **4. Rename** | Claude extracts the person's name |
+| **5. Move** | File goes to your testimonials folder |
+
+---
+
+## The CLAUDE.md Template
+
+```markdown
+# Testimonial Collector
+
+## Role
+You help me collect and organize customer testimonials from screenshots. When I invoke /testimonial, you rename the screenshot with the person's name and move it to my testimonials folder.
+
+## Paths Configuration
+Screenshot source: ~/Desktop/ or ~/Screenshots/
+Testimonials folder: ~/Google Drive/Marketing/Testimonials/
+(Adjust these paths to match your setup)
+
+## /testimonial Command
+
+When I invoke /testimonial:
+
+1. **Find the screenshot**
+   - Look in the screenshots folder
+   - Get the most recent screenshot file
+   - Verify it looks like a testimonial
+
+2. **Extract the name**
+   - Read the image
+   - Find the person's name or username
+   - Handle edge cases (no name visible, partial name)
+
+3. **Rename the file**
+   - Format: YYYY-MM-DD_FirstName_LastName.png
+   - If only username: YYYY-MM-DD_@username.png
+   - If no name found: YYYY-MM-DD_testimonial_NNN.png
+
+4. **Move to folder**
+   - Move to testimonials destination folder
+   - Create subfolders if needed (by source: ads, social, reviews)
+   - Confirm success
+
+## Optional Arguments
+- "/testimonial ads" — Save to Ads subfolder
+- "/testimonial social" — Save to Social subfolder
+- "/testimonial reviews" — Save to Reviews subfolder
+- "/testimonial [name]" — Override the detected name
+
+## Subfolder Structure
+```
+Testimonials/
+├── Ads/           # Ad comments
+├── Social/        # Twitter, LinkedIn, etc.
+├── Reviews/       # G2, Capterra, etc.
+├── Video/         # Video testimonial screenshots
+└── Unsorted/      # When source unclear
+```
+
+## Output
+After processing, report:
+- Original filename
+- New filename
+- Destination path
+- Person's name (if extracted)
+
+## Rules
+1. Always confirm the move was successful
+2. Never overwrite existing files (add suffix if needed)
+3. Handle missing names gracefully
+4. Work with common image formats (png, jpg, jpeg)
+```
+
+---
+
+## Example Usage
+
+```
+[You screenshot a comment on your Facebook ad saying:
+"This product changed my business! Best decision ever." - Sarah Mitchell]
+
+You: /testimonial ads
+
+Claude: Processing your screenshot...
+
+Screenshot: Screenshot 2024-01-15 at 2.34.12 PM.png
+Person detected: Sarah Mitchell
+New filename: 2024-01-15_Sarah_Mitchell.png
+Destination: ~/Google Drive/Marketing/Testimonials/Ads/
+
+✓ Testimonial saved successfully!
+```
+
+---
+
+## Workflow in Action
+
+When working through ads:
+1. Browse your ad comments
+2. See a great testimonial → Screenshot it
+3. Say "/testimonial ads"
+4. Continue browsing
+5. Repeat
+
+Later:
+- All testimonials organized by date and name
+- Easy to find specific people
+- Ready to use in marketing materials
+
+---
+
+## Folder Setup Options
+
+### Google Drive (Recommended)
+```
+Google Drive/
+└── Marketing/
+    └── Testimonials/
+        ├── Ads/
+        ├── Social/
+        └── Reviews/
+```
+
+### Dropbox
+```
+Dropbox/
+└── Testimonials/
+    ├── ...
+```
+
+### Local with Sync
+Any folder that syncs to cloud storage works.
+
+---
+
+## Tips
+
+- **Screenshot consistently**: Same format each time helps recognition
+- **Get the name visible**: Include the commenter's name in the screenshot
+- **Tag by source**: Use subfolders for easy retrieval later
+- **Batch process**: Review ads, screenshot all good ones, then run /testimonial repeatedly
+- **Cloud sync**: Use a synced folder so testimonials are backed up
+
+---
+
+## Commands
+
+```
+"/testimonial"                    # Save to root testimonials folder
+"/testimonial ads"                # Save to Ads subfolder
+"/testimonial social"             # Save to Social subfolder
+"/testimonial John Smith"         # Override the detected name
+"/testimonial ads video"          # Save to Ads/Video subfolder
+```
+
+---
+
+## Troubleshooting
+
+**Can't find screenshot**
+Make sure your screenshot folder path is correct in the template
+
+**Wrong name detected**
+Use "/testimonial [correct name]" to override
+
+**File not moving**
+Check that the destination folder exists and you have write permissions
+
+**Google Drive not syncing**
+Ensure the Drive desktop app is running and synced

@@ -1,0 +1,236 @@
+---
+title: "Remotion Video Creator"
+description: "Create motion videos with Claude Code + Remotion + browser automation. Describe what you want, see live previews, iterate in real-time."
+category: "creative-design"
+difficulty: "advanced"
+timeToSetup: "20 minutes"
+author: "elvis (@omarsar0)"
+sourceUrl: "https://x.com/omarsar0"
+tags: ["remotion", "video", "animation", "motion-graphics", "browser-automation", "react"]
+createdAt: "2026-02-14"
+---
+
+## What This Does
+
+Create professional motion videos without touching code. Claude Code writes Remotion components, opens the studio via browser automation, sees the actual rendered output, and iterates based on your feedback in real-time. When you're happy, it renders the final video.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Install Prerequisites
+
+```bash
+npm create video@latest  # Creates new Remotion project
+```
+
+Also install the Claude browser extension for visual feedback.
+
+### Step 3: Start Creating
+
+```bash
+claude
+```
+
+Say: **"Create a video showing our product features with animated text"**
+
+---
+
+## How the Workflow Works
+
+| Step | What Happens |
+|------|--------------|
+| **1. Describe** | You describe what you want in natural language |
+| **2. Generate** | Claude writes the Remotion React components |
+| **3. Preview** | Claude opens Remotion Studio in browser, sees the output |
+| **4. Iterate** | You give feedback, Claude sees and adjusts in real-time |
+| **5. Render** | When satisfied, Claude renders the final video |
+
+---
+
+## The CLAUDE.md Template
+
+```markdown
+# Remotion Video Creator
+
+## Role
+You help me create motion videos using Remotion. You write React components for animations, use browser automation to preview results, and iterate based on my feedback until the video is perfect.
+
+## Workflow
+
+### 1. Project Setup
+- Remotion project at: [PROJECT_PATH]
+- Output folder: out/
+- Preview URL: http://localhost:3000
+
+### 2. Creating Videos
+1. Write/modify composition in src/
+2. Start Remotion Studio: `npx remotion studio`
+3. Open browser to preview at localhost:3000
+4. View the rendered output
+5. Iterate based on feedback
+6. Render final: `npx remotion render`
+
+### 3. Component Structure
+```tsx
+// src/Composition.tsx
+export const MyVideo: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps, durationInFrames, width, height } = useVideoConfig();
+
+  return (
+    <AbsoluteFill style={{ backgroundColor: 'white' }}>
+      {/* Animation content */}
+    </AbsoluteFill>
+  );
+};
+```
+
+## Animation Patterns
+
+### Text Animations
+- Fade in/out with `interpolate()`
+- Slide from direction
+- Typewriter effect
+- Scale and rotate
+
+### Transitions
+- Cross-fade between scenes
+- Slide transitions
+- Zoom transitions
+- Custom spring animations
+
+### Visual Elements
+- Animated shapes
+- Progress bars
+- Counters and numbers
+- Image sequences
+
+## Commands
+- "/video [description]" — Create new video from description
+- "/scene [description]" — Add a new scene
+- "/preview" — Open Remotion Studio for preview
+- "/iterate [feedback]" — Adjust based on feedback
+- "/render" — Render final video
+- "/music [style]" — Add background music
+
+## Iteration Protocol
+When I give feedback like:
+- "Move the text to center" → Adjust positioning
+- "Make it faster" → Reduce duration/frame count
+- "Change colors" → Update style properties
+- "Add more bounce" → Adjust spring config
+
+Always preview after changes so I can see the result.
+
+## Output Settings
+- Resolution: 1920x1080 (default)
+- FPS: 30 (default)
+- Format: MP4
+- Codec: H.264
+
+## Rules
+1. Always preview changes before asking for more feedback
+2. Keep compositions modular and reusable
+3. Use Remotion's interpolate() for smooth animations
+4. Handle edge cases (start/end of video)
+5. Optimize for render performance
+```
+
+---
+
+## Example Session
+
+```
+You: Create a 10-second product demo video with animated features
+
+Claude: I'll create a Remotion composition for your product demo.
+[Writes ProductDemo.tsx with animated text and icons]
+[Opens Remotion Studio at localhost:3000]
+[Views the preview]
+
+The video shows your 3 features sliding in from the left with
+fade effects. I see the timing could be tighter. Should I:
+1. Speed up the transitions?
+2. Add more visual elements?
+3. Change the color scheme?
+
+You: The arrows should point to the center of the bubbles, not the edge
+
+Claude: [Modifies the arrow positioning in the component]
+[Refreshes preview]
+[Views updated output]
+
+Done - the arrows now point to the center of each bubble.
+The visual hierarchy is clearer now. Anything else to adjust?
+
+You: Perfect! Render the final video
+
+Claude: [Runs npx remotion render]
+Video rendered to out/ProductDemo.mp4
+Duration: 10 seconds, 1920x1080, 30fps
+```
+
+---
+
+## Why This Works
+
+The magic is combining:
+1. **Remotion knowledge** — How to write React video components
+2. **Browser automation** — Actually seeing the rendered output
+3. **Visual iteration** — No copy-pasting screenshots back and forth
+
+Claude sees the preview, adjusts the code, re-renders. You just describe what you want.
+
+---
+
+## Prerequisites
+
+- Node.js 18+
+- Claude browser extension installed
+- Basic Remotion project set up
+- FFmpeg (for video rendering)
+
+---
+
+## Tips
+
+- **Start simple**: Begin with basic text animations, then add complexity
+- **Use springs**: `spring()` creates more natural motion than linear
+- **Modular scenes**: Create separate compositions for each scene
+- **Preview often**: The visual feedback loop is the superpower
+- **Add audio last**: Get visuals right first, then layer in music
+
+---
+
+## Commands
+
+```
+"Create a video introducing our company with logo animation"
+"Make a social media video with animated statistics"
+"Build a product demo showing 5 features"
+"Create an explainer video with step-by-step visuals"
+"Make the animation more energetic and faster"
+"Add a transition between scenes"
+"Render in vertical format for Instagram Stories"
+```
+
+---
+
+## Troubleshooting
+
+**Remotion Studio won't open**
+Make sure you're in the project directory and run `npx remotion studio`
+
+**Browser extension not seeing preview**
+Verify the extension is installed and page is at localhost:3000
+
+**Render is slow**
+Reduce resolution for drafts: `--width 960 --height 540`
+
+**Animation is choppy**
+Increase FPS or simplify complex animations

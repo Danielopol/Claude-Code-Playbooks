@@ -1,0 +1,178 @@
+---
+title: "Google Ads Conversion Audit"
+description: "Audit and fix Google Ads conversion tracking issues using Claude Code with browser automation - find misconfigurations that experts miss."
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "Laura Roeder"
+sourceUrl: "https://x.com/lkr"
+tags: ["google-ads", "conversion-tracking", "ppc", "marketing", "audit", "browser-automation"]
+createdAt: "2026-02-14"
+---
+
+## What This Does
+
+Systematically audits your Google Ads conversion tracking setup, identifies misconfigurations, and guides you through fixes. Uses browser automation to actually inspect your Google Ads account directly.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Browser Extension
+
+Install the Claude browser extension (Claude-in-Chrome) for direct account access.
+
+### Step 3: Run Audit
+
+```bash
+claude
+```
+
+Say: **"Audit my Google Ads conversion tracking"**
+
+---
+
+## What Gets Audited
+
+| Area | What's Checked |
+|------|----------------|
+| **Conversion Actions** | Duplicate tags, inactive conversions, attribution windows |
+| **Tag Implementation** | Firing rules, event parameters, data layer setup |
+| **Value Tracking** | Static vs dynamic values, currency settings |
+| **Attribution** | Model settings, cross-device tracking, view-through |
+| **Integration** | GA4 connection, offline conversions, enhanced conversions |
+
+---
+
+## The CLAUDE.md Template
+
+```markdown
+# Google Ads Conversion Audit
+
+## Role
+You help me audit and fix Google Ads conversion tracking issues. You systematically review my account setup, identify misconfigurations, and guide me through fixes.
+
+## Audit Checklist
+
+### 1. Conversion Actions Review
+- [ ] List all active conversion actions
+- [ ] Identify duplicate or redundant conversions
+- [ ] Check attribution models (data-driven vs last-click)
+- [ ] Review conversion windows (click-through and view-through)
+- [ ] Verify conversion values (static vs dynamic)
+
+### 2. Tag Implementation
+- [ ] Check Google Ads tag installation
+- [ ] Review conversion linker tag
+- [ ] Verify event snippets on conversion pages
+- [ ] Check for tag manager conflicts
+- [ ] Review auto-tagging settings
+
+### 3. Common Issues to Find
+- Multiple conversion tags firing on same action
+- Incorrect event parameters
+- Missing conversion values
+- Attribution window mismatches
+- Cross-domain tracking gaps
+- Phone call tracking issues
+- Form submission double-counting
+
+### 4. Integration Checks
+- [ ] GA4 to Google Ads linking
+- [ ] Offline conversion import setup
+- [ ] Enhanced conversions configuration
+- [ ] Customer match data quality
+
+## Commands
+- "Audit my conversion tracking" — Full systematic review
+- "Find duplicate conversions" — Identify redundant tracking
+- "Check attribution settings" — Review attribution models
+- "Verify tag implementation" — Inspect tag firing
+- "Create fix priority list" — Prioritize issues by impact
+
+## Output Format
+For each issue found:
+1. **Issue**: What's wrong
+2. **Impact**: Why it matters (over/under counting)
+3. **Fix**: Step-by-step resolution
+4. **Verification**: How to confirm it's fixed
+```
+
+---
+
+## Example Output
+
+```markdown
+## Conversion Audit Summary
+- Conversions audited: 12
+- Critical issues: 3
+- Warnings: 5
+- Over-counting estimate: 40%
+
+## Critical Issues
+
+### 1. Duplicate Purchase Tracking
+**Issue**: "Purchase" and "Transaction" both fire on checkout
+**Impact**: Revenue over-reported by ~$15,000/month
+**Fix**:
+1. Go to Tools > Conversions
+2. Pause "Transaction" action
+3. Verify "Purchase" captures all parameters
+
+### 2. Missing Conversion Values
+**Issue**: Lead form using static $1 value
+**Impact**: Cannot optimize for lead quality
+**Fix**: Implement dynamic value passing via data layer
+
+### 3. Attribution Window Mismatch
+**Issue**: 90-day click window on quick-purchase product
+**Impact**: Attribution to wrong campaigns
+**Fix**: Reduce to 7-day window for impulse purchases
+```
+
+---
+
+## Why This Works
+
+Laura Roeder spent thousands with an "expert" who made no progress on conversion tracking issues. Claude found major setup problems by systematically auditing the account configuration.
+
+The key insight: **throw Claude at everything you've given up on.**
+
+---
+
+## Tips
+
+- **Log into Google Ads first** before asking Claude to audit
+- **Export conversion data** for reference during the audit
+- **Check Tag Manager** if you use GTM for implementation
+- **Test after fixes** using Google Tag Assistant
+- **Document changes** for future reference
+
+---
+
+## Commands
+
+```
+"Audit all my conversion actions"
+"Why might my conversions be over-counting?"
+"Check if my tags are firing correctly"
+"Compare my conversion data to analytics"
+"Create a conversion tracking cleanup plan"
+```
+
+---
+
+## Troubleshooting
+
+**Claude can't see my account**
+Make sure the browser extension is installed and you're logged in
+
+**Too many conversion actions**
+Start with: "Which conversions are actually being used for optimization?"
+
+**Not sure what's wrong**
+Ask: "Compare my Google Ads conversions to my actual sales data"

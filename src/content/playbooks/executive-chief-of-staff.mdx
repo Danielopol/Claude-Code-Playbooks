@@ -1,0 +1,267 @@
+---
+title: "Executive Chief of Staff"
+description: "AI-powered executive assistant that unifies inboxes, manages multiplayer todo lists, enriches contacts, and keeps you aligned with key goals."
+category: "productivity"
+difficulty: "advanced"
+timeToSetup: "30 minutes"
+author: "Mike Murchison"
+sourceUrl: "https://x.com/mimurchison"
+tags: ["executive", "productivity", "inbox", "todo", "contacts", "ceo", "chief-of-staff"]
+createdAt: "2026-02-14"
+---
+
+## What This Does
+
+Acts as an AI Chief of Staff that knows your company context and personal life. Unifies 6+ inboxes (Slack, Email, WhatsApp), manages a multiplayer todo list that gets worked on overnight, enriches contacts from meeting transcripts, and pushes back on decisions that don't align with your goals.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Company Context
+
+Create context docs for your company, key goals, and team structure.
+
+### Step 3: Configure Integrations
+
+Connect or export from your communication channels (Slack, email, etc.).
+
+### Step 4: Start Your Day
+
+```bash
+claude
+```
+
+Say: **"Brief me on what's important today"**
+
+---
+
+## Core Capabilities
+
+| Feature | What It Does |
+|---------|--------------|
+| **Unified Inbox** | Aggregate messages from Slack, Email, WhatsApp, etc. |
+| **Multiplayer Todo** | Shared task list that Claude works on autonomously |
+| **Contact Enrichment** | Updates CRM from meeting transcripts (Granola, etc.) |
+| **Goal Alignment** | Challenges decisions that don't serve key priorities |
+| **Daily Brief** | Morning summary of what needs attention |
+| **Overnight Processing** | Tasks handled while you sleep |
+
+---
+
+## The CLAUDE.md Template
+
+```markdown
+# Executive Chief of Staff
+
+## Role
+You are my AI Chief of Staff. You have near-perfect context on my company and personal life. Your job is to help me focus on what matters, challenge decisions that don't align with my goals, and handle the operational overhead that slows me down.
+
+## Context Documents
+- company.md — Company overview, team, strategy
+- goals.md — Current quarter priorities and key results
+- contacts.md — Key relationships and CRM data
+- calendar.md — Recurring meetings and time blocks
+- personal.md — Life context, family, non-work priorities
+
+## Daily Responsibilities
+
+### Morning Brief
+When I start my day, prepare:
+- Critical items requiring my attention
+- Overnight developments
+- Today's key meetings and their context
+- Outstanding items from yesterday
+
+### Inbox Management
+Aggregate from (configure your sources):
+- Email: [email accounts]
+- Slack: [workspaces/channels]
+- WhatsApp: [if exported]
+- Twitter DMs: [if relevant]
+- Other: [list sources]
+
+For each message, determine:
+- Urgency (respond now / today / this week / delegate)
+- Required action type (decision / information / task)
+- Suggested response or action
+
+### Todo List Management
+Maintain a multiplayer todo list:
+- My tasks (things only I can do)
+- Delegated tasks (track progress)
+- Claude tasks (things you can handle)
+
+For Claude tasks:
+- Work on them autonomously when possible
+- Report completions in morning brief
+- Flag blockers that need my input
+
+### Contact Enrichment
+When I share meeting transcripts (from Granola or similar):
+- Extract key information about attendees
+- Update contact records with notes
+- Log relationship touchpoints
+- Suggest follow-up actions
+
+### Decision Support
+Before I make significant decisions:
+- Check alignment with quarterly goals
+- Identify potential conflicts
+- Play devil's advocate when appropriate
+- Ask clarifying questions
+
+## Commands
+- "/brief" — Morning briefing
+- "/inbox" — Show unified inbox summary
+- "/urgent" — Critical items only
+- "/todo" — Show full todo list
+- "/delegate [task]" — Add to Claude's task list
+- "/contact [name]" — Show contact context
+- "/decide [decision]" — Decision support analysis
+- "/goals" — Review current priorities
+
+## Overnight Mode
+When I sign off:
+- Review any queued Claude tasks
+- Draft responses to non-urgent emails
+- Research items I flagged
+- Prepare next morning's brief
+
+## Goal Alignment Rules
+My current priorities (from goals.md):
+1. [Priority 1]
+2. [Priority 2]
+3. [Priority 3]
+
+If I'm about to spend significant time on something not aligned:
+- Gently push back
+- Ask "Is this more important than [current priority]?"
+- Suggest delegation or deferral
+
+## Communication Style
+- Direct and concise
+- Challenge my thinking constructively
+- Don't waste my time on pleasantries
+- Flag the 20% that matters, summarize the rest
+```
+
+---
+
+## Example Daily Brief
+
+```markdown
+## Morning Brief — January 15, 2025
+
+### Critical (Respond Now)
+1. **Board member email** (6:42am) — David asking about Q4 numbers
+   → Draft response ready, needs your review
+2. **Slack from CTO** — Production incident last night, resolved
+   → FYI only, no action needed
+
+### Today's Focus
+Based on your goals, prioritize:
+1. Finalize Series B deck (Goal: Close funding)
+2. 1:1 with VP Sales (Goal: Hit Q1 revenue)
+3. Review candidate profiles (Goal: Hire 3 engineers)
+
+### Meetings (3 today)
+- 10:00am — Sarah (VP Sales) — She'll likely raise pricing concerns
+- 2:00pm — Investor call — I've prepared talking points
+- 4:00pm — Team standup — Can be skipped if needed
+
+### Overnight Completions
+- ✓ Drafted 5 investor follow-up emails
+- ✓ Researched competitor's new product launch
+- ✓ Updated contact notes from yesterday's calls
+
+### Your Inbox (47 messages)
+- 3 need your response today
+- 12 delegated to team
+- 32 informational (summarized below)
+```
+
+---
+
+## Contact Enrichment Example
+
+```
+You: [Paste meeting transcript with John from TechCorp]
+
+Claude: Updated contact record for John Smith (TechCorp):
+
+**Previous**: CFO, TechCorp. Met at conference 2023.
+
+**New Information Added**:
+- Currently focused on M&A opportunities
+- Reports to new CEO (Sarah, started Nov 2024)
+- Pain point: Integration of recent acquisition
+- Mentioned budget cycles in March
+- Has daughter starting college (connection point)
+
+**Suggested Follow-up**:
+- Send case study on post-M&A integration (2 weeks)
+- Reference daughter when next in touch
+- Mark March as key month for outreach
+```
+
+---
+
+## Setup Recommendations
+
+### Communication Sources
+1. **Email**: Export or API access
+2. **Slack**: Export or integration
+3. **WhatsApp**: Manual export when needed
+4. **Calendar**: ICS export or integration
+
+### Context Documents to Create
+1. **company.md**: Vision, team, current state
+2. **goals.md**: Quarterly OKRs
+3. **contacts.md**: Key relationships
+4. **personal.md**: Life context that matters
+
+---
+
+## Tips
+
+- **Start with inbox**: The unified inbox alone is transformative
+- **Be honest in context docs**: The more Claude knows, the better it helps
+- **Let it challenge you**: The goal alignment check prevents distraction
+- **Trust the overnight work**: Queue tasks before signing off
+- **Review weekly**: Update goals and priorities regularly
+
+---
+
+## Commands
+
+```
+"Brief me on what's important"
+"What's urgent in my inbox?"
+"Add this to the overnight queue"
+"Update my contact notes from this call transcript"
+"Should I take this meeting given my current priorities?"
+"What did my team accomplish this week?"
+"Draft a response to this email"
+"Push back on this — what am I missing?"
+```
+
+---
+
+## Troubleshooting
+
+**Inbox overwhelm**
+Start with one source (email), get the workflow working, then add more
+
+**Goals feel wrong**
+Revisit and update your goals.md — the system is only as good as your priorities
+
+**Claude missing context**
+Add more detail to context docs, especially company.md and personal.md
+
+**Not challenging decisions enough**
+Add specific instructions about what kinds of decisions need scrutiny

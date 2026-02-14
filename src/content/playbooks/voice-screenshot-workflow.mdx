@@ -1,0 +1,239 @@
+---
+title: "Voice & Screenshot Workflow"
+description: "Control Claude Code with voice dictation and automatic screenshot review - almost no typing required."
+category: "productivity"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "Allie K. Miller"
+sourceUrl: "https://x.com/alliekmiller"
+tags: ["voice", "screenshots", "wispr-flow", "productivity", "hands-free", "skills"]
+createdAt: "2026-02-14"
+---
+
+## What This Does
+
+Set up a hands-free Claude Code workflow using voice dictation for prompts and automatic screenshot review for visual context. Almost no typing required - speak your instructions and show Claude what you see.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file, which includes the screenshot review skill.
+
+### Step 2: Set Up Voice Dictation
+
+Install Wispr Flow (or similar voice tool):
+- Set Fn hold key as shortcut
+- Allow across all displays
+- Consider a dedicated mic for noisy environments
+- Pro account recommended
+
+### Step 3: Configure Screenshot Folder
+
+Set your system to save screenshots to a specific folder (e.g., `~/Screenshots/`).
+
+### Step 4: Start Talking
+
+```bash
+claude
+```
+
+Hold Fn, speak: **"Review my last screenshot and tell me what's wrong"**
+
+---
+
+## The Setup
+
+| Component | Purpose |
+|-----------|---------|
+| **Wispr Flow** | Voice-to-text dictation |
+| **Screenshot Folder** | Centralized screenshot storage |
+| **Screenshot Skill** | Reviews recent screenshots on demand |
+| **Keyboard Shortcuts** | Quick agent management |
+
+---
+
+## The CLAUDE.md Template
+
+```markdown
+# Voice & Screenshot Workflow
+
+## Role
+You help me work efficiently with minimal typing. I'll speak my commands and show you screenshots for visual context.
+
+## Screenshot Review Skill
+
+### Setup
+Screenshots folder: ~/Screenshots/
+(Adjust path to your system's screenshot location)
+
+### Commands
+- "/ss" or "/screenshots" — Review the most recent screenshot
+- "/ss [N]" — Review the last N screenshots (e.g., "/ss 5")
+
+### Skill Implementation
+When I invoke /ss or /screenshots:
+1. Look at the screenshot folder at the path above
+2. Sort by modification time (most recent first)
+3. Read and analyze the specified number of images
+4. Respond based on what you see
+
+### Common Use Cases
+- Design review: "Does this look right?"
+- Code errors: "What's wrong here?"
+- Tool help: "How do I use this feature?"
+- Bug reports: "Why isn't this working?"
+
+## Voice Prompting Tips
+
+### Speak Naturally
+Voice works best with natural phrasing:
+- "Take a look at my last screenshot"
+- "What do you think of this design?"
+- "Fix the error showing in my terminal"
+
+### Be Specific When Needed
+- "Look at the last 3 screenshots showing my workflow"
+- "The screenshot shows a form - help me fill it out"
+- "Review my code editor screenshot and spot issues"
+
+## Useful Keyboard Shortcuts
+
+### Background Agents
+- `Ctrl+B` — Send current task to background
+- `/tasks` — View all running tasks
+- `/agents` — Review agent status
+
+### Parallel Work
+Run multiple agents simultaneously:
+- Start task, Ctrl+B to background
+- Start another task
+- Check progress with /tasks
+
+## Multi-Screenshot Workflows
+
+### Collecting Context
+When gathering information from multiple sources:
+1. Screenshot each relevant screen
+2. Call "/ss 10" (or however many)
+3. Claude reviews all context together
+
+### Example: Tweet Curation
+- Scroll through feed, screenshot 10 interesting tweets
+- "/ss 10 - summarize these for my AI recap"
+- Claude processes all screenshots together
+
+## Rules
+1. Screenshot folder must exist and be accessible
+2. Images should be readable (not too small/blurry)
+3. For sensitive info, review what's in screenshots
+4. Clear old screenshots periodically
+```
+
+---
+
+## Wispr Flow Setup
+
+1. **Download Wispr Flow** from wispr.com
+2. **Set shortcut**: Fn key hold works well
+3. **Enable everywhere**: Allow across all applications
+4. **Pro account**: Required for best accuracy
+5. **Optional**: Dedicated USB mic for clarity
+
+### Alternative Voice Tools
+- macOS Dictation (built-in)
+- Windows Voice Typing (Win+H)
+- Talon Voice (for power users)
+
+---
+
+## Screenshot Folder Setup
+
+### macOS
+```bash
+# Change default screenshot location
+defaults write com.apple.screencapture location ~/Screenshots
+killall SystemUIServer
+```
+
+### Windows
+Screenshots → Settings → Change where screenshots are saved
+
+### Linux
+Configure your screenshot tool to save to `~/Screenshots/`
+
+---
+
+## Example Workflows
+
+### Design Review
+```
+[Take screenshot of design]
+Voice: "Review my screenshot and rate this design out of 10"
+
+Claude: Looking at your screenshot, I see a login form with...
+Rating: 7/10
+Suggestions:
+- Increase contrast on submit button
+- Add more spacing between fields
+- Consider adding password visibility toggle
+```
+
+### Debug Session
+```
+[Screenshot error message]
+Voice: "Look at my last screenshot - what's causing this error?"
+
+Claude: I can see a TypeError in the console. The issue is...
+```
+
+### Multi-Screen Context
+```
+[Screenshot 5 different screens showing a workflow]
+Voice: "/ss 5 - Document this workflow for the team wiki"
+
+Claude: Based on your 5 screenshots, here's the workflow documentation:
+1. Start in the Dashboard...
+2. Navigate to Settings...
+[etc.]
+```
+
+---
+
+## Tips
+
+- **Speak clearly** but naturally - no need for robotic speech
+- **Name screenshots** if you want to reference specific ones
+- **Clear regularly** to avoid confusion with old screenshots
+- **Combine with context docs** for even more power (see Context Library playbook)
+- **Use background agents** for long tasks while you continue working
+
+---
+
+## Keyboard Shortcuts Reference
+
+| Shortcut | Action |
+|----------|--------|
+| `Fn` (hold) | Voice dictation (Wispr Flow) |
+| `Ctrl+B` | Send task to background |
+| `/tasks` | View running tasks |
+| `/ss` | Review latest screenshot |
+| `/ss N` | Review last N screenshots |
+
+---
+
+## Troubleshooting
+
+**Voice not working**
+Check Wispr Flow permissions and that your mic is selected
+
+**Screenshots not found**
+Verify the folder path in the skill matches your actual screenshot location
+
+**Images not readable**
+Take higher-resolution screenshots or zoom in before capturing
+
+**Too many old screenshots**
+Clear your screenshot folder periodically or adjust the skill to filter by date

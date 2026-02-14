@@ -1,0 +1,281 @@
+---
+title: "Personal Context Library"
+description: "Build a persistent knowledge base of context docs that Claude can access across all conversations - your business, career, goals, and more."
+category: "knowledge-management"
+difficulty: "intermediate"
+timeToSetup: "20 minutes"
+author: "Allie K. Miller"
+sourceUrl: "https://x.com/alliekmiller"
+tags: ["context", "knowledge-base", "personalization", "productivity", "memory"]
+createdAt: "2026-02-14"
+---
+
+## What This Does
+
+Creates a personal knowledge base of markdown files containing context about your business, career, personal life, and goals. A skill accesses these across all Claude Code conversations, enabling personalized assistance without re-explaining yourself.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Create Your Context Docs Folder
+
+```bash
+mkdir -p ~/Documents/ContextDocs
+```
+
+### Step 3: Add Your First Context Doc
+
+Create files like `business.md`, `career.md`, `goals-2025.md`.
+
+### Step 4: Use Across Conversations
+
+```bash
+claude
+```
+
+Say: **"Review my clients context doc and suggest ways to respond faster"**
+
+---
+
+## Context Doc Structure
+
+| File | Contents |
+|------|----------|
+| **business.md** | Company info, products, team, clients |
+| **career.md** | Skills, experience, aspirations |
+| **personal.md** | Communication style, preferences |
+| **goals.md** | Current year objectives |
+| **clients.md** | Client details, communication history |
+| **projects.md** | Active projects and status |
+| **tech-stack.md** | Tools and technologies you use |
+
+---
+
+## The CLAUDE.md Template
+
+```markdown
+# Personal Context Library
+
+## Role
+You have access to my personal knowledge base of context documents. Use these to personalize your assistance without me having to re-explain my situation, preferences, or goals.
+
+## Context Library Location
+Path: ~/Documents/ContextDocs/
+(Adjust to your actual folder path)
+
+## Available Context Docs
+
+### Business Context (business.md)
+- Company name and description
+- Products/services offered
+- Team structure
+- Key clients and partners
+- Business model
+
+### Career Context (career.md)
+- Current role and responsibilities
+- Professional background
+- Key skills and expertise
+- Career aspirations
+- Professional network notes
+
+### Personal Context (personal.md)
+- Communication preferences
+- Working style
+- Time zone and availability
+- Personal values
+- Decision-making preferences
+
+### Goals Context (goals.md)
+- Annual objectives
+- Quarterly priorities
+- Key results to achieve
+- Areas of focus
+- Things to avoid or de-prioritize
+
+### Clients Context (clients.md)
+- Client profiles
+- Communication cadence
+- Pain points and needs
+- Relationship notes
+- Response templates
+
+### Projects Context (projects.md)
+- Active projects
+- Status and deadlines
+- Blockers and dependencies
+- Team members involved
+
+## Commands
+- "/context" — List available context docs
+- "/context [doc]" — Load specific context doc
+- "/context all" — Load all context docs
+- "/update [doc]" — Add to a context doc
+
+## Usage Examples
+
+When I say:
+- "Based on my business..." → Load business.md
+- "Given my goals..." → Load goals.md
+- "Help me respond to [client]..." → Load clients.md
+- "Personalize this for me..." → Load personal.md
+
+When I reference:
+- "my clients" → clients.md
+- "my team" → business.md (team section)
+- "my career goals" → career.md + goals.md
+- "my 2025 objectives" → goals.md
+
+## Keeping Context Updated
+Periodically remind me to update context docs when:
+- New clients added
+- Goals completed or changed
+- Major business changes
+- Project milestones reached
+
+## Rules
+1. Context docs are persistent - don't modify without asking
+2. Reference which doc you're using when relevant
+3. Cross-reference multiple docs for richer context
+4. Suggest updates when information seems outdated
+5. Keep context confidential within our conversations
+```
+
+---
+
+## Example Context Docs
+
+### business.md
+```markdown
+# Business Context
+
+## Company
+**Name**: Acme Consulting
+**Founded**: 2022
+**Type**: B2B SaaS Consulting
+
+## Services
+- Product strategy consulting
+- Technical architecture reviews
+- Team scaling advisory
+
+## Team
+- Me (Founder/Principal)
+- 2 part-time contractors
+- Network of specialists on call
+
+## Key Clients
+- TechCorp (enterprise, $5k/mo retainer)
+- StartupX (growth stage, project basis)
+- Agency Y (referral partner)
+
+## Revenue Model
+- 60% retainers
+- 30% project work
+- 10% workshops/training
+```
+
+### goals.md
+```markdown
+# 2025 Goals
+
+## Q1 Priorities
+1. Launch productized service offering
+2. Hire first full-time employee
+3. Hit $30k MRR
+
+## Key Results
+- [ ] 3 new retainer clients
+- [ ] Productized service generating $5k/mo
+- [ ] Speaking at 2 industry events
+
+## Focus Areas
+- Thought leadership content
+- Building referral partnerships
+- Systematizing delivery
+
+## Avoid
+- Custom one-off projects under $10k
+- Clients outside core expertise
+- Scope creep on existing engagements
+```
+
+---
+
+## Example Usage
+
+```
+You: I feel like I'm too slow in replying to clients.
+     Review my clients context doc and build something that helps me.
+
+Claude: [Reads clients.md]
+
+Based on your client profiles, I see you have 3 active clients
+with different communication cadences:
+
+- TechCorp: Weekly check-ins, formal tone
+- StartupX: Ad-hoc, casual tone, quick responses expected
+- Agency Y: Monthly updates, professional tone
+
+I'll create a response template system for each...
+
+[Builds templates and quick-reply skill]
+```
+
+```
+You: Here's a cool repo I found. Fork it and customize for my 2025 goals.
+
+Claude: [Reads goals.md and repo]
+
+Looking at your 2025 goals around thought leadership and
+systematizing delivery, I'll customize this repo to:
+
+1. Add content calendar features (thought leadership goal)
+2. Create delivery checklists (systematization goal)
+3. Track key results progress (Q1 targets)
+...
+```
+
+---
+
+## Tips
+
+- **Start small**: Begin with 2-3 core context docs
+- **Update regularly**: Set a monthly reminder to refresh
+- **Be specific**: The more detail, the better Claude can help
+- **Cross-reference**: Link between docs when relevant
+- **Evolve the structure**: Add new docs as your needs grow
+
+---
+
+## Commands
+
+```
+"Load my business context and help me write this proposal"
+"Based on my career goals, should I take this opportunity?"
+"Review my client list - who should I follow up with?"
+"Given my 2025 goals, prioritize these tasks for me"
+"Update my projects context with the new status"
+"Customize this for my business and communication style"
+```
+
+---
+
+## Troubleshooting
+
+**Claude doesn't find the docs**
+Check the path in the template matches your actual folder location
+
+**Context feels outdated**
+Set calendar reminders to review and update docs monthly
+
+**Too much context loaded**
+Be specific about which doc to reference, don't load all at once
+
+**Missing important context**
+Add new context docs as you discover gaps

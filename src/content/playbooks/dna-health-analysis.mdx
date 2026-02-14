@@ -1,0 +1,253 @@
+---
+title: "DNA Health Analysis"
+description: "Analyze raw DNA data from ancestry tests to identify health-related genetic variants you should discuss with your doctor."
+category: "personal-development"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "Pietro Schirano"
+sourceUrl: "https://x.com/skirano"
+tags: ["dna", "health", "genetics", "ancestry", "23andme", "personal-health"]
+createdAt: "2026-02-14"
+---
+
+## What This Does
+
+Takes your raw DNA data file from ancestry services (23andMe, AncestryDNA, etc.) and searches for health-related genetic variants. Claude's ability to search through massive files makes it possible to find specific SNPs associated with health conditions.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Export Your Raw DNA Data
+
+Download your raw data from your ancestry service:
+- **23andMe**: Settings → 23andMe Data → Download Raw Data
+- **AncestryDNA**: Settings → DNA Settings → Download Raw DNA Data
+
+### Step 3: Run Analysis
+
+```bash
+claude
+```
+
+Say: **"Analyze my DNA file for health-related variants"**
+
+---
+
+## Important Disclaimer
+
+**This is NOT medical advice.** The analysis identifies genetic variants that have been studied in scientific literature. Results should be:
+- Discussed with a healthcare provider
+- Interpreted alongside family history and other tests
+- Considered as one data point, not a diagnosis
+
+---
+
+## What Gets Analyzed
+
+| Category | Examples |
+|----------|----------|
+| **Cardiovascular** | APOE (heart/Alzheimer's), MTHFR, Factor V |
+| **Metabolism** | Caffeine metabolism, lactose tolerance |
+| **Drug Response** | Warfarin sensitivity, statin response |
+| **Nutrient Processing** | B12, folate, vitamin D metabolism |
+| **Disease Risk** | BRCA (with limitations), celiac markers |
+
+---
+
+## The CLAUDE.md Template
+
+```markdown
+# DNA Health Analysis
+
+## Role
+You help me analyze my raw DNA data to identify health-related genetic variants. You search through my genotype file, find relevant SNPs, and explain their potential significance.
+
+## File Format
+Raw DNA files typically contain:
+- rsID (variant identifier, e.g., rs429358)
+- Chromosome and position
+- Genotype (your alleles, e.g., AG, CC)
+
+## Analysis Approach
+
+### 1. Search for Specific SNPs
+Search the DNA file for known health-related variants:
+
+**Cardiovascular/Metabolism**
+- rs429358, rs7412 (APOE - Alzheimer's, heart disease)
+- rs1801133 (MTHFR C677T - folate metabolism)
+- rs6025 (Factor V Leiden - clotting)
+- rs1799963 (Prothrombin - clotting)
+
+**Drug Metabolism**
+- rs762551 (CYP1A2 - caffeine metabolism)
+- rs4244285 (CYP2C19 - drug metabolism)
+- rs9923231 (VKORC1 - warfarin sensitivity)
+
+**Nutrient/Food**
+- rs4988235 (LCT - lactose tolerance)
+- rs1801394 (MTRR - B12 metabolism)
+- rs2282679 (GC - vitamin D levels)
+- rs602662 (FUT2 - B12 absorption)
+
+**Other Health Markers**
+- rs1800497 (DRD2 - dopamine, addiction risk)
+- rs6265 (BDNF - neuroplasticity)
+- rs53576 (OXTR - social behavior)
+
+### 2. Interpret Results
+For each variant found:
+- State the genotype found
+- Explain what the literature says
+- Note population frequency
+- Suggest follow-up if warranted
+
+### 3. Important Limitations
+- Single SNPs rarely determine outcomes
+- Environmental factors often dominate
+- Results are probabilistic, not deterministic
+- Some conditions require clinical genetic testing
+
+## Output Format
+For each significant finding:
+```
+## [Gene/Variant Name]
+**SNP**: rs#######
+**Your Genotype**: XX
+**What This Means**: [Explanation]
+**Population Frequency**: X% carry this variant
+**Actionable**: [Yes/No - what to discuss with doctor]
+**Confidence**: [High/Medium/Low based on research]
+```
+
+## Commands
+- "/full-analysis" — Search all known health variants
+- "/cardiovascular" — Focus on heart/blood related
+- "/metabolism" — Drug and nutrient metabolism
+- "/search [rs#]" — Find specific SNP
+- "/explain [variant]" — Deep dive on one result
+
+## Safety Rules
+1. Always emphasize this is NOT medical advice
+2. Recommend healthcare provider consultation
+3. Note limitations of consumer DNA tests
+4. Distinguish well-established vs preliminary research
+5. Never diagnose - only report variant presence
+```
+
+---
+
+## Example Output
+
+```markdown
+## DNA Health Variant Analysis
+
+⚠️ **Disclaimer**: This is informational only, not medical advice.
+Discuss any concerns with a healthcare provider.
+
+---
+
+### APOE Gene (Alzheimer's/Cardiovascular)
+
+**SNPs Checked**: rs429358, rs7412
+**Your Genotype**: ε3/ε4
+
+**What This Means**:
+You carry one copy of the ε4 allele. This variant is associated
+with moderately increased risk for:
+- Late-onset Alzheimer's disease
+- Cardiovascular disease
+
+**Context**: ~25% of people carry at least one ε4 copy.
+Most ε4 carriers never develop Alzheimer's.
+
+**Actionable**: Yes - discuss with doctor. Consider:
+- Cardiovascular health monitoring
+- Lifestyle factors (exercise, diet, sleep)
+
+**Confidence**: High (well-studied variant)
+
+---
+
+### MTHFR C677T
+
+**SNP**: rs1801133
+**Your Genotype**: CT (heterozygous)
+
+**What This Means**:
+One copy of the T allele. Associated with ~35% reduced enzyme
+activity for folate metabolism.
+
+**Context**: Very common - 30-40% of population is CT.
+
+**Actionable**: Maybe - ensure adequate folate intake.
+Active folate (methylfolate) may be better absorbed.
+
+**Confidence**: High (well-studied)
+
+---
+
+### Caffeine Metabolism
+
+**SNP**: rs762551 (CYP1A2)
+**Your Genotype**: AA (fast metabolizer)
+
+**What This Means**:
+You metabolize caffeine quickly. Coffee's cardiovascular
+benefits may apply more to fast metabolizers.
+
+**Actionable**: Informational. Enjoy your coffee.
+
+**Confidence**: High
+```
+
+---
+
+## Why This Works
+
+Raw DNA files are massive (hundreds of thousands of variants), but Claude Code can search through them efficiently. Instead of paying for separate health reports, you can query your own data for specific variants of interest.
+
+---
+
+## Tips
+
+- **Start with well-studied variants** (APOE, MTHFR, CYP genes)
+- **Cross-reference results** with multiple sources
+- **Consider family history** alongside genetic results
+- **Don't panic** - most variants have small effects
+- **Get clinical testing** for serious concerns (BRCA, etc.)
+
+---
+
+## Commands
+
+```
+"Find my APOE genotype and explain what it means"
+"Search for all cardiovascular-related variants"
+"Do I have the MTHFR mutation?"
+"What's my caffeine metabolism genotype?"
+"Find any variants related to drug metabolism"
+"Search for rs429358 in my DNA file"
+"What health variants should I discuss with my doctor?"
+```
+
+---
+
+## Troubleshooting
+
+**File is too large**
+Raw DNA files can be 10MB+. Claude Code handles this - just be patient
+
+**Can't find a variant**
+Not all ancestry services test all SNPs. Some variants may not be in your file.
+
+**Results seem contradictory**
+Genetics is complex. Multiple variants can have opposing effects.
+
+**Scared by a result**
+Remember: one variant rarely determines outcomes. Discuss with a healthcare provider.

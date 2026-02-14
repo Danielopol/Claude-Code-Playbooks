@@ -1,0 +1,253 @@
+---
+title: "Browser-Assisted Tax Filing"
+description: "Use Claude Cowork with browser automation to prepare and file taxes - organize documents, fill forms, and submit filings."
+category: "finance-accounting"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "Andrew Jefferson"
+sourceUrl: "https://x.com/EastlondonDev"
+tags: ["taxes", "tax-filing", "browser-automation", "cowork", "finance", "accounting"]
+createdAt: "2026-02-14"
+---
+
+## What This Does
+
+Uses Claude Cowork with browser automation to handle tax filing. Upload your invoices and receipts as PDFs, Claude prepares the accounts, then navigates tax portals to fill out and submit forms automatically.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Claude Cowork
+
+Use Claude's Cowork feature with a project folder containing your tax documents.
+
+### Step 3: Install Browser Extension
+
+Install Claude browser extension for tax portal navigation.
+
+### Step 4: Start Filing
+
+```bash
+claude
+```
+
+Say: **"Prepare my Q4 accounts from the invoices folder, then file my VAT return"**
+
+---
+
+## How It Works
+
+| Phase | What Happens |
+|-------|--------------|
+| **1. Document Prep** | Upload PDFs of invoices and receipts to project folder |
+| **2. Account Preparation** | Claude categorizes and summarizes financials |
+| **3. Portal Login** | You log into tax portal (Claude watches) |
+| **4. Form Filling** | Claude navigates and fills relevant forms |
+| **5. Submission** | Claude submits with your confirmation |
+
+---
+
+## The CLAUDE.md Template
+
+```markdown
+# Browser-Assisted Tax Filing
+
+## Role
+You help me prepare and file taxes using my financial documents and browser automation. You organize documents, prepare accounts, and navigate tax portals to complete filings.
+
+## Document Organization
+
+### Input Folder Structure
+```
+tax-documents/
+├── invoices/
+│   ├── 2024-Q1/
+│   ├── 2024-Q2/
+│   ├── 2024-Q3/
+│   └── 2024-Q4/
+├── receipts/
+│   └── [expense receipts]
+├── bank-statements/
+│   └── [monthly statements]
+└── previous-filings/
+    └── [past returns for reference]
+```
+
+### Document Processing
+For each invoice/receipt:
+- Extract: Date, amount, vendor/client, category
+- Categorize: Income vs expense, tax-deductible items
+- Flag: Missing information, unusual amounts
+
+## Account Preparation
+
+### Income Summary
+- Total revenue by quarter
+- Revenue by client/source
+- Outstanding invoices
+
+### Expense Summary
+- Total expenses by category
+- Tax-deductible expenses
+- Business vs personal split
+
+### Tax Calculations
+- Taxable income
+- Estimated tax liability
+- Quarterly payment amounts
+
+## Browser Automation Protocol
+
+### Before Portal Navigation
+1. Confirm all calculations with user
+2. Prepare all values to be entered
+3. Wait for user to log in
+4. Get explicit permission before filling
+
+### During Form Filling
+1. Announce each field being filled
+2. Show the value being entered
+3. Pause for verification on large amounts
+4. Screenshot before submission
+
+### Submission
+1. Show complete form summary
+2. Get explicit "submit" confirmation
+3. Save confirmation/receipt number
+4. Screenshot final confirmation
+
+## Supported Tax Types
+- VAT/Sales tax returns
+- Quarterly estimated taxes
+- Annual income tax
+- Self-employment tax
+- Business expense reports
+
+## Commands
+- "/prepare [quarter]" — Summarize accounts for period
+- "/review" — Show all documents and categorization
+- "/calculate" — Compute tax liability
+- "/fill [form-type]" — Navigate portal and fill form
+- "/submit" — Submit with confirmation
+
+## Safety Rules
+1. NEVER submit without explicit user confirmation
+2. ALWAYS show values before entering
+3. PAUSE on amounts over threshold for verification
+4. SAVE all confirmation numbers and screenshots
+5. User must be logged in - never handle credentials
+```
+
+---
+
+## Example Workflow
+
+```markdown
+You: Prepare my Q3 VAT accounts from the invoices folder
+
+Claude: I'll analyze your Q3 documents.
+
+## Q3 2024 Summary
+
+### Income
+| Client | Amount | VAT |
+|--------|--------|-----|
+| Acme Corp | €5,000 | €950 |
+| Globex | €3,200 | €608 |
+| Initech | €2,800 | €532 |
+| **Total** | **€11,000** | **€2,090** |
+
+### Expenses (VAT Deductible)
+| Category | Amount | VAT Reclaimable |
+|----------|--------|-----------------|
+| Software | €500 | €95 |
+| Office | €300 | €57 |
+| **Total** | **€800** | **€152** |
+
+### VAT Calculation
+- Output VAT (collected): €2,090
+- Input VAT (paid): €152
+- **VAT Payable**: €1,938
+
+Ready to file? Log into the tax portal and tell me when ready.
+
+---
+
+You: I'm logged in to Elster
+
+Claude: I can see the portal. I'll navigate to the VAT return form.
+[Navigates to Umsatzsteuervoranmeldung]
+
+Filling Q3 2024 return:
+- Line 81 (Taxable sales): €11,000 ✓
+- Line 66 (Output VAT): €2,090 ✓
+- Line 67 (Input VAT): €152 ✓
+- Line 83 (Amount payable): €1,938 ✓
+
+All fields filled. Screenshot saved.
+
+Please review and type "submit" to file, or tell me what to change.
+```
+
+---
+
+## Safety Notes
+
+- **Never share login credentials** - Log in yourself, then let Claude navigate
+- **Review all amounts** before submission
+- **Keep receipts** - Claude organizes but you need originals
+- **Screenshot everything** - Claude saves confirmations automatically
+- **Double-check critical fields** - Tax amounts, account numbers
+
+---
+
+## Prerequisites
+
+- Claude browser extension installed
+- Access to your tax portal
+- PDF invoices and receipts organized
+- Basic understanding of your tax obligations
+
+---
+
+## Tips
+
+- **Organize by quarter** before starting
+- **Name files clearly** (date-vendor-amount.pdf)
+- **Keep bank statements** for cross-reference
+- **Start with a test run** on a non-binding form
+- **Review the summary** before any portal navigation
+
+---
+
+## Commands
+
+```
+"Summarize all my Q4 invoices"
+"Calculate my VAT liability for last quarter"
+"What expenses am I missing receipts for?"
+"Navigate to the quarterly tax form"
+"Fill out the VAT return with my prepared numbers"
+"Save a screenshot before submitting"
+```
+
+---
+
+## Troubleshooting
+
+**Claude can't see the portal**
+Make sure browser extension is active and page is fully loaded
+
+**Numbers don't match**
+Ask Claude to show the source documents for each line item
+
+**Form fields are different**
+Tax forms change - tell Claude what fields you see
+
+**Need to amend a filing**
+Claude can help navigate amendment forms too

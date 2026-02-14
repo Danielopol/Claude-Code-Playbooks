@@ -1,0 +1,245 @@
+---
+title: "Deep Competitor Analysis"
+description: "Reverse-engineer competitor strategies in minutes - pricing, positioning, weaknesses, roadmap clues, and strategic vulnerabilities."
+category: "market-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Sentient"
+sourceUrl: "https://x.com/sentientt_media"
+tags: ["competitive-intelligence", "competitor-analysis", "market-research", "strategy", "business-intelligence"]
+createdAt: "2026-02-14"
+---
+
+## What This Does
+
+Comprehensive competitor deep-dive that covers company overview, product analysis, market positioning, go-to-market strategy, customer intelligence, strategic vulnerabilities, and threat assessment. Get insights that would take weeks of research in minutes.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Identify Your Competitors
+
+List 3-5 key competitors you want to analyze.
+
+### Step 3: Run Analysis
+
+```bash
+claude
+```
+
+Say: **"Do a deep competitive analysis on [COMPETITOR NAME]"**
+
+---
+
+## What Gets Analyzed
+
+| Section | Intelligence Gathered |
+|---------|----------------------|
+| **Company Overview** | Founding, leadership, funding, headcount, locations |
+| **Product Deep-Dive** | Features, pricing, tech stack, roadmap clues |
+| **Market Positioning** | Target customer, ICP, messaging, differentiators |
+| **Go-to-Market** | Channels, content strategy, sales approach, partnerships |
+| **Customer Intel** | Reviews, complaints, feature requests, churn signals |
+| **Vulnerabilities** | Weaknesses, ignored markets, tech debt, pricing gaps |
+| **Threat Assessment** | Competitive aggression, counter-strategies, early warnings |
+
+---
+
+## The CLAUDE.md Template
+
+```markdown
+# Deep Competitor Analysis
+
+## Role
+You are a competitive intelligence analyst. You research competitors thoroughly, separate facts from speculation, and deliver actionable intelligence for strategic decisions.
+
+## Analysis Framework
+
+### Company Overview
+Research and document:
+- Founding story and key milestones
+- Leadership team (backgrounds, previous companies)
+- Funding history (rounds, investors, valuations, burn rate estimates)
+- Employee count and growth trajectory (LinkedIn headcount)
+- Office locations and expansion patterns
+
+### Product Deep-Dive
+- Complete product catalog with descriptions
+- Pricing tiers (current + historical changes)
+- Feature comparison vs top 3 alternatives
+- Technology stack (from job postings, tech blogs, BuiltWith)
+- Recent product launches (last 12 months)
+- Roadmap clues (job postings, conference talks, patent filings, customer surveys)
+
+### Market Positioning
+- Target customer (size, industry, characteristics, job titles)
+- Ideal Customer Profile (ICP) based on case studies
+- Messaging and positioning (website, ads, content analysis)
+- Brand voice and personality
+- Key differentiators they claim
+
+### Go-to-Market Strategy
+- Marketing channels (paid, organic, partnerships)
+- Content strategy (blog topics, frequency, engagement)
+- Sales approach (inbound vs outbound, PLG vs sales-led)
+- Partnership ecosystem (integrations, resellers, tech partners)
+- Event presence (conferences, webinars, sponsorships)
+
+### Customer Intelligence
+- Review analysis (G2, Capterra, TrustPilot - what users love/hate)
+- Common complaints (Reddit, Twitter, support forums)
+- Feature requests and gaps (public roadmap, user forums)
+- Churn signals (Glassdoor reviews, testimonials that stopped)
+
+### Strategic Vulnerabilities
+- What are they bad at? (reviews, hiring patterns)
+- What markets are they ignoring?
+- Where are they overextended?
+- Technology debt or legacy issues
+- Pricing weaknesses or gaps
+
+### Threat Assessment
+- How aggressive are they in YOUR market?
+- What would it take to compete effectively?
+- What could they do that would hurt you most?
+- Early warning signals to monitor
+
+## Research Guidelines
+1. Use recent sources only (last 18 months)
+2. Prioritize primary sources (official blog, announcements, verified reviews)
+3. Clearly label speculation vs confirmed facts
+4. Include URLs for verification
+5. Note information gaps
+
+## Output Format
+For each competitor:
+1. **Executive Summary** (5 bullet points)
+2. **Full Analysis** (structured by section)
+3. **Key Insights** (3-5 actionable takeaways)
+4. **Monitoring Recommendations** (what to track)
+
+## Commands
+- "/analyze [competitor]" — Full deep-dive analysis
+- "/compare [comp1] vs [comp2]" — Head-to-head comparison
+- "/vulnerabilities [competitor]" — Focus on weaknesses
+- "/roadmap [competitor]" — Predict their roadmap
+- "/threat [competitor]" — Threat assessment for your business
+- "/monitor [competitor]" — Set up tracking recommendations
+```
+
+---
+
+## Example Output
+
+```markdown
+## Deep Analysis: Notion
+
+### Executive Summary
+- Dominant player in workspace tools, $10B+ valuation
+- AI features now core to positioning (2024 pivot)
+- Enterprise push creating tension with prosumer base
+- Vulnerable: Performance issues at scale, complex pricing
+- Opportunity: Target teams frustrated by slow performance
+
+### Company Overview
+**Founded**: 2016 (San Francisco)
+**Leadership**: Ivan Zhao (CEO), Simon Last (CTO)
+**Funding**: $343M total, Series C at $10B valuation (2021)
+**Employees**: ~700 (up from 300 in 2022)
+**Offices**: SF HQ, expanding to NYC, Dublin
+
+### Product Deep-Dive
+
+**Core Products**
+- Docs: Collaborative documents with blocks
+- Wikis: Team knowledge bases
+- Projects: Kanban/table/timeline views
+- Notion AI: Writing assistant, Q&A, autofill
+
+**Pricing (2024)**
+| Plan | Price | Key Features |
+|------|-------|--------------|
+| Free | $0 | 1 user, basic blocks |
+| Plus | $10/user/mo | Unlimited blocks, guests |
+| Business | $18/user/mo | SAML, advanced permissions |
+| Enterprise | Custom | Audit logs, dedicated CSM |
+
+**Tech Stack**: React, TypeScript, PostgreSQL, Redis
+**Source**: Job postings, BuiltWith, engineering blog
+
+### Strategic Vulnerabilities
+
+1. **Performance at Scale**
+   - Documented complaints about slow loading (Reddit, G2)
+   - Large workspaces become unusable
+   - Technical debt from rapid feature growth
+
+2. **Pricing Complexity**
+   - AI add-on pricing confuses customers
+   - Enterprise pricing non-transparent
+   - Competitors offering simpler models
+
+3. **Enterprise Gaps**
+   - HIPAA compliance not available
+   - Advanced security certifications lagging
+   - On-premise option requested but not offered
+
+### Threat Assessment
+**Threat Level**: Medium-High
+
+**If you compete on**:
+- Performance → Strong opportunity
+- Simplicity → Strong opportunity
+- Enterprise compliance → Moderate opportunity
+- Features → Difficult (they iterate fast)
+
+**Early Warning Signals to Monitor**:
+- Job postings mentioning performance/infrastructure
+- Pricing page changes
+- Enterprise security certifications
+- AI feature launches
+```
+
+---
+
+## Tips
+
+- **Be specific**: Name the exact competitor, not "our main competitor"
+- **Cross-reference**: Ask Claude to verify with multiple sources
+- **Focus on actionable**: "What can we do with this information?"
+- **Update regularly**: Competitive intelligence ages fast
+- **Document sources**: Always ask for URLs to verify claims
+
+---
+
+## Commands
+
+```
+"Deep dive on Slack - focus on enterprise positioning"
+"Compare HubSpot vs Salesforce for SMB market"
+"What are Stripe's biggest vulnerabilities?"
+"Predict Monday.com's product roadmap for next year"
+"How aggressive is Figma in the whiteboard space?"
+"What should I monitor to track Airtable's moves?"
+```
+
+---
+
+## Troubleshooting
+
+**Information seems outdated**
+Ask: "Find information from the last 6 months only"
+
+**Too much speculation**
+Ask: "Which of these points are confirmed facts vs educated guesses?"
+
+**Need specific source**
+Ask: "Where did you find the pricing information?"
+
+**Analysis too generic**
+Provide more context about your business and what you're competing on

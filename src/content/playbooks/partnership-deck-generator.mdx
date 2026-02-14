@@ -1,0 +1,263 @@
+---
+title: "Partnership Deck Generator"
+description: "Build compelling partnership proposals in minutes by feeding Claude meeting transcripts, previous proposals, and your partnership vision."
+category: "market-research"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "Alex Lieberman"
+sourceUrl: "https://x.com/businessbarista"
+tags: ["partnerships", "proposals", "sales", "decks", "business-development", "presentations"]
+createdAt: "2026-02-14"
+---
+
+## What This Does
+
+Creates polished partnership proposals in minutes instead of hours. Feed Claude your meeting transcripts, previous proposal formats, partnership notes, and strategic context. Get a deck that speaks directly to the partner's goals and positions your win-win value proposition.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Gather Your Input Files
+
+Prepare:
+- Meeting transcript from previous conversation with partner
+- Previous partnership proposal (for format/structure)
+- Your notes on the partnership opportunity
+- Any relevant strategy docs
+
+### Step 3: Generate Proposal
+
+```bash
+claude
+```
+
+Say: **"Create a partnership proposal for [PARTNER] using the files in my partnerships folder"**
+
+---
+
+## Input Files Needed
+
+| File Type | Purpose |
+|-----------|---------|
+| **Meeting Transcript** | Anchors proposal in partner's stated goals |
+| **Previous Proposal** | Template for format and sections |
+| **Partnership Notes** | Your vision for the win-win |
+| **Strategy Docs** | Context on how partner fits |
+
+---
+
+## The CLAUDE.md Template
+
+```markdown
+# Partnership Deck Generator
+
+## Role
+You help me create compelling partnership proposals. You analyze meeting context, understand both parties' goals, and generate decks that position win-win opportunities clearly.
+
+## Input Structure
+Partnership files location: [YOUR_FOLDER_PATH]
+
+Expected inputs:
+- transcript.txt/pdf — Meeting notes or transcript with partner
+- format.md/pdf — Previous proposal for structure reference
+- notes.md — My thoughts on partnership value
+- strategy.pdf — Broader context on media/business strategy
+
+## Proposal Structure
+
+### 1. Opening Hook
+- Reference specific points from the meeting
+- Show you understand their priorities
+- State the opportunity clearly
+
+### 2. Context Setting
+- Brief on your company/offering
+- Why this partnership makes sense now
+- Market opportunity or timing
+
+### 3. Win-Win Framework
+```
+What They Get        What We Get
+─────────────        ──────────
+[Their benefit 1]    [Our benefit 1]
+[Their benefit 2]    [Our benefit 2]
+[Their benefit 3]    [Our benefit 3]
+```
+
+### 4. Partnership Details
+- Specific collaboration opportunities
+- Resource requirements from each side
+- Timeline and milestones
+- Success metrics
+
+### 5. Social Proof
+- Similar partnerships that worked
+- Relevant case studies
+- Testimonials if available
+
+### 6. Next Steps
+- Clear call to action
+- Timeline for decision
+- Who needs to be involved
+
+## Slide-by-Slide Outline (17 slides)
+
+1. Title slide (both logos, meeting date context)
+2. Opening: "Following our conversation about..."
+3. The Opportunity (market context)
+4. About [Your Company]
+5. About [Partner] — show you understand them
+6. Why Now (timing/catalyst)
+7. Partnership Vision
+8. What [Partner] Gets (benefit 1)
+9. What [Partner] Gets (benefit 2)
+10. What [Partner] Gets (benefit 3)
+11. What We Get (transparent win-win)
+12. How It Works (mechanics)
+13. Timeline
+14. Success Metrics
+15. Case Study / Social Proof
+16. Investment / Resources Required
+17. Next Steps
+
+## Commands
+- "/proposal [partner]" — Generate full proposal
+- "/outline" — Show structure before writing
+- "/slides" — Generate slide-by-slide content
+- "/refine" — Polish design and language
+- "/one-pager" — Condensed version
+
+## Process
+
+### Step 1: Analyze Inputs
+Read all provided files and identify:
+- Partner's stated goals and pain points
+- Key discussion points from meeting
+- Your proposed value exchange
+- Any constraints or requirements
+
+### Step 2: Draft Proposal
+Generate content anchored in meeting context:
+- Use their language and priorities
+- Address specific points they raised
+- Make the win-win crystal clear
+
+### Step 3: Refine Design
+After content approval:
+- Format for visual appeal
+- Add structure and hierarchy
+- Make it presentable
+
+### Step 4: Clarifying Questions
+Before finalizing, I may ask:
+- What's the primary goal they stated?
+- What's your must-have from this deal?
+- Any competitors in the picture?
+- Timeline sensitivity?
+```
+
+---
+
+## Example Output
+
+```markdown
+## Partnership Proposal: [Your Company] x [Partner Corp]
+
+### Slide 1: Title
+"Strategic Partnership Proposal"
+[Your Logo] × [Partner Logo]
+Following our conversation on January 10, 2024
+
+### Slide 2: Opening
+"When we met last week, you mentioned three key priorities:
+1. Reaching technical decision-makers
+2. Building thought leadership in AI space
+3. Diversifying beyond paid channels
+
+This proposal addresses all three."
+
+### Slide 3: The Opportunity
+- Market for B2B tech content: $X billion
+- Technical audience attention shifting to [trends]
+- Perfect timing for [specific opportunity]
+
+### Slide 4: About Us
+- Who we are (brief)
+- Our audience (relevant to them)
+- Why we're credible partners
+
+[Continues through all 17 slides...]
+
+### Slide 17: Next Steps
+1. Review this proposal (this week)
+2. Align internally on priorities
+3. Schedule working session (next week)
+4. Finalize terms (by [date])
+5. Launch partnership (target: [date])
+```
+
+---
+
+## The Process That Works
+
+Alex Lieberman's workflow:
+
+1. **Fed Claude 4 files**:
+   - Call transcript (anchored the deck in partner's goals)
+   - Previous proposal (format/sections)
+   - Markdown with partnership thoughts (win-win vision)
+   - PDF of media strategy (how partner fits)
+
+2. **Initial prompt**:
+   > "I'm meeting with [partner] today as a follow-up. They're expecting a clear, actionable proposal. Use the files to create a proposal showing what a win-win partnership could look like. Ask me clarifying questions as you build."
+
+3. **Claude asked clarifying questions** — answered them
+
+4. **Nearly one-shot the proposal** — then refined:
+   > "Play the role of world-class product designer. Score the design of this proposal and suggest specific tweaks."
+
+5. **Result**: 17-slide deck in <10 minutes
+
+---
+
+## Tips
+
+- **Start with the transcript**: The meeting context is gold
+- **Be transparent**: Show both sides of the win-win
+- **Use their language**: Mirror how they described their goals
+- **Ask for questions**: Claude's clarifying questions improve output
+- **Design pass last**: Get content right, then polish
+
+---
+
+## Commands
+
+```
+"Create a partnership proposal for Acme Corp using my meeting notes"
+"Outline the structure before writing the full deck"
+"Score this proposal design and suggest improvements"
+"Create a one-pager executive summary version"
+"What clarifying questions should I answer before we proceed?"
+"Refine the win-win section to be more compelling"
+```
+
+---
+
+## Troubleshooting
+
+**Proposal feels generic**
+Add more from the meeting transcript — specific quotes and concerns
+
+**Missing their perspective**
+Include more context on what the partner wants (from transcript or notes)
+
+**Too long**
+Ask for the one-pager version, then expand sections as needed
+
+**Design needs work**
+Prompt: "Act as a presentation designer and improve the visual structure"

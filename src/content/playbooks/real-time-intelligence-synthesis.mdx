@@ -1,0 +1,153 @@
+---
+title: "Real-Time Intelligence Synthesis"
+description: "Analyze multiple live data streams—news, social feeds, reports, documents—and synthesize them into actionable intelligence briefs with risk assessments."
+category: "research-writing"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "community"
+tags: ["intelligence", "synthesis", "real-time", "analysis", "monitoring", "briefing", "risk-assessment", "multi-source"]
+createdAt: "2026-02-15"
+---
+
+## What This Does
+
+Transform chaotic, multi-source data streams into structured intelligence. Whether you're tracking competitors, monitoring a crisis, following market movements, or synthesizing breaking news—this playbook helps you process incoming information in real-time, identify patterns and risks, and produce actionable briefs.
+
+Based on enterprise intelligence workflows adapted for Claude Code.
+
+## Prerequisites
+
+- Claude Code installed
+- Multiple data sources to monitor (news feeds, social media exports, documents, reports)
+- A clear intelligence question or monitoring objective
+- (Optional) MCP tools for live data fetching
+
+## The CLAUDE.md Template
+
+```markdown
+# Real-Time Intelligence Synthesis
+
+## Role
+You are my intelligence analyst. You process multiple incoming data streams, identify patterns and anomalies, assess risks, and produce actionable briefs. You maintain structured logs and can iterate rapidly as new information arrives.
+
+## Directory Structure
+- `intel-log.md` — Chronological log of all processed intel with timestamps
+- `sources/` — Raw source material (documents, exports, screenshots)
+- `briefs/` — Synthesized intelligence briefs
+- `assessments/` — Risk and probability assessments
+- `entities.md` — Key entities tracker (people, organizations, events)
+
+## Intelligence Processing Framework
+
+### Source Assessment (apply to every input)
+- Credibility (1-5): Source reliability, track record, potential bias
+- Corroboration: Cross-reference with other sources
+- Timeliness: How current is this information?
+- Relevance: Direct connection to intelligence question
+
+### Analysis Types
+- **Pattern Analysis**: Identify recurring themes, behaviors, connections
+- **Anomaly Detection**: Flag unexpected changes or outliers
+- **Gap Analysis**: What's missing? What should we see but don't?
+- **Trend Projection**: Where is this heading based on current trajectory?
+
+### Risk Assessment Matrix
+| Likelihood | Impact | Priority |
+|------------|--------|----------|
+| High/High  | CRITICAL — immediate brief required |
+| High/Med   | HIGH — include in next brief |
+| Med/Med    | MODERATE — track and log |
+| Low/Any    | LOW — log only |
+
+## Rules
+1. Timestamp everything — chronology matters
+2. Distinguish facts from assessments from speculation
+3. Note confidence levels (High/Medium/Low) for every conclusion
+4. Track entity relationships and update entities.md
+5. Flag contradictions between sources immediately
+6. When uncertain, state assumptions explicitly
+
+## Commands
+- "/ingest [source]" — Process new source material, assess credibility, log key points
+- "/brief" — Generate intelligence brief from recent inputs
+- "/risk [topic]" — Produce risk assessment with probability estimates
+- "/entities" — Update and display entity relationship map
+- "/timeline" — Generate chronological timeline of events
+- "/gaps" — Identify intelligence gaps and collection priorities
+- "/status" — Show sources processed, confidence levels, open questions
+
+## Brief Format
+Each brief should include:
+1. **Bottom Line Up Front (BLUF)**: Key finding in 1-2 sentences
+2. **Key Developments**: Bulleted list with timestamps
+3. **Assessment**: What this means, with confidence level
+4. **Implications**: Potential consequences and recommended actions
+5. **Collection Gaps**: What we still need to know
+6. **Sources**: List all sources used with credibility ratings
+```
+
+## Step-by-Step Setup
+
+1. Create your intelligence project folder
+2. Save the CLAUDE.md template
+3. Define your intelligence question clearly upfront
+4. Create the directory structure (`sources/`, `briefs/`, `assessments/`)
+5. Start ingesting sources with `/ingest`
+
+## Example Usage
+
+```
+"I'm monitoring the AI chip market for competitive intelligence. Set up the project."
+
+"Ingest this earnings call transcript from NVIDIA — extract key signals about supply constraints"
+
+"I have 5 new news articles about chip export controls. Process them and flag anything significant."
+
+"What patterns are you seeing across all sources about demand trends?"
+
+"Generate a brief on competitive positioning in the AI accelerator market"
+
+"Risk assessment: What's the probability of major supply disruptions in Q2?"
+
+"Show me the timeline of announcements from all major players this month"
+
+"What gaps do we have? What should I be looking for?"
+```
+
+## Advanced Workflows
+
+### Real-Time Monitoring Loop
+```
+1. Ingest new data as it arrives
+2. Cross-reference with existing intel log
+3. Flag significant changes or contradictions
+4. Update entity relationships
+5. Generate brief when threshold of new intel reached
+```
+
+### Multi-Stream Synthesis
+```
+1. Process each stream separately first (news, social, documents)
+2. Run cross-stream pattern analysis
+3. Weight sources by credibility
+4. Identify where streams corroborate or contradict
+5. Synthesize into unified assessment with confidence levels
+```
+
+### Decision Support
+```
+1. Define decision options clearly
+2. Map intel to each option's risks and opportunities
+3. Identify assumptions that would change the recommendation
+4. Present structured decision brief with scenarios
+```
+
+## Tips
+
+- Start with a clear, specific intelligence question—vague objectives produce vague results
+- Quality of source assessment compounds over time—be rigorous early
+- Use the gap analysis regularly to direct collection efforts
+- Track entity relationships—networks often reveal more than individual data points
+- Timestamp obsessively—chronology is often the key to understanding causation
+- When sources contradict, dig deeper rather than averaging
+- Your confidence levels should be honest—low confidence is valuable information

@@ -199,6 +199,20 @@ export const blogPosts: BlogPost[] = [
     tags: ['vibe coding', 'mainstream media', 'Axios', 'cultural moment', 'terminal', 'agentic coding'],
     createdAt: '2026-02-14',
   },
+  {
+    id: 'the-complete-claude-code-tutorial-eyad-khrais',
+    title: 'The Complete Claude Code Tutorial — Eyad Khrais',
+    description: 'A viral 48M-view tutorial from ex-Amazon/Disney engineer Eyad Khrais breaking down Claude Code\'s three power features: Skills for encoding team patterns, Subagents for isolated task execution with fresh 200K context windows, and MCP connectors for eliminating tab-switching across GitHub, Slack, and databases.',
+    category: 'tutorial',
+    difficulty: 'intermediate',
+    readingTime: '10 min read',
+    url: 'https://x.com/eyad_khrais/status/2010076957938188661',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Full Tutorial',
+    tags: ['skills', 'subagents', 'MCP', 'progressive disclosure', 'custom agents', 'tutorial', 'viral thread'],
+    createdAt: '2026-02-15',
+  },
 ];
 
 export function getAllBlogPosts(): BlogPost[] {

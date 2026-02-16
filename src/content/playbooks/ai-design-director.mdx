@@ -1,0 +1,188 @@
+---
+title: "AI Design Director System"
+description: "Replace expensive design agencies with an AI-powered design pipeline that learns your aesthetic preferences and produces premium designs on demand."
+category: "creative-design"
+difficulty: "advanced"
+timeToSetup: "2 hours"
+author: "@kloss_xyz"
+tags: ["design", "figma", "framer", "openclaw", "automation", "design-system"]
+createdAt: "2026-02-16"
+---
+
+## What This Does
+
+Builds a fully automated ideation → design → development pipeline using AI agents. Creates a "Design Director" that understands your aesthetic preferences, extracts design systems from references, and produces premium-quality designs with micro-interactions and animations.
+
+---
+
+## Why This Works
+
+Instead of describing your design taste to an AI (and getting generic results), this system:
+
+- **Learns from examples** — Analyzes 30-50 design references you actually like
+- **Extracts principles** — Documents design systems, themes, and tokens
+- **Self-improves** — Watches tutorials and learns new techniques
+- **Produces at scale** — Creates assets, sites, and apps matching your taste
+
+---
+
+## Cost Breakdown
+
+| Item | Monthly Cost |
+|------|-------------|
+| Figma | ~$15 |
+| Framer | ~$20 |
+| API costs (X + Gemini) | ~$5-10 |
+| **Total** | **$35-50/mo** |
+
+Compare to: Design agency retainer ($3,000-10,000/mo)
+
+---
+
+## Prerequisites
+
+- Claude Code with OpenClaw installed
+- Figma account + access token
+- Framer account
+- Gemini API access
+- X (Twitter) API access (optional, for reference gathering)
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Build Your Reference Library
+
+Gather 30-50 design references:
+- Screenshots of designs you love
+- URLs to sites with your preferred aesthetic
+- Designer accounts on X to study
+
+### Step 3: Run the Pipeline
+
+```bash
+claude
+```
+
+Start with: "Build my design reference library from these examples"
+
+---
+
+## The Pipeline
+
+```
+┌─────────────┐    ┌──────────────┐    ┌─────────────┐
+│  Reference  │ → │   Design     │ → │    Dev      │
+│  Library    │    │   Director   │    │   Output    │
+└─────────────┘    └──────────────┘    └─────────────┘
+     │                    │                   │
+ 30-50 refs          Spawns sub-          Figma →
+ extracted           agents for:          Framer →
+ principles          - Typography         Live site
+                     - Color
+                     - Layout
+                     - Animation
+```
+
+---
+
+## Setup Steps
+
+### 1. Build Reference Library
+
+Tell OpenClaw to:
+- Search X for your favorite designer accounts
+- Find top-performing design content
+- Extract visual references from sites you like
+- Compile 30-50 best references into a folder
+
+### 2. Create Design Director Agent
+
+Request a Design Director agent that spawns sub-agents for:
+- Typography systems
+- Color palettes
+- Layout patterns
+- Animation/micro-interactions
+- Asset creation
+
+### 3. Extract Design Systems
+
+Have it extract from your references:
+- Design principles
+- Systems and patterns
+- Themes
+- Design tokens (colors, spacing, typography scales)
+
+### 4. Feed Tutorial Knowledge
+
+Use Gemini to transcribe YouTube tutorials on:
+- Figma tricks and techniques
+- Framer effects and animations
+- Web design trends
+- Advanced interactions
+
+Document keywords so the agent can self-improve.
+
+### 5. Connect Figma
+
+Provide your Figma access token so the agent can:
+- Read actual design files
+- Create designs in your account
+- Learn the tool over time
+
+### 6. Connect Asset Generation
+
+Use image generation prompting skills for custom assets:
+- Icons
+- Illustrations
+- Background graphics
+- UI elements
+
+---
+
+## Example Commands
+
+```
+"Search X for accounts like @kreativtag and extract their design style"
+"Build a design system from these 20 reference images"
+"Create a landing page in my aesthetic"
+"Generate 10 icon variations for [concept]"
+"Push this Figma design to Framer with animations"
+"What design patterns are trending for SaaS dashboards?"
+```
+
+---
+
+## What Gets Produced
+
+- **Design tokens** — Pixel-perfect systems you can remix
+- **Component libraries** — Reusable UI elements
+- **Full page designs** — Landing pages, dashboards, apps
+- **Micro-interactions** — Hover states, transitions, animations
+- **Production code** — Framer sites ready to publish
+
+---
+
+## Tips for Best Results
+
+1. **Quality references matter** — Garbage in, garbage out
+2. **Be specific about what you like** — "I like the spacing" vs "I like it"
+3. **Iterate on the system** — Update tokens as your taste evolves
+4. **Feed it tutorials regularly** — Keeps the agent learning new techniques
+
+---
+
+## Troubleshooting
+
+**Designs feel generic**
+Add more specific references. 30 diverse examples > 10 similar ones.
+
+**Agent doesn't understand your style**
+Write explicit design principles: "Always use generous whitespace" "Never use gradients"
+
+**Figma integration issues**
+Ensure your access token has read/write permissions for the target files.

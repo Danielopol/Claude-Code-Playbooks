@@ -55,9 +55,9 @@ export function BlogPostListItem({ post }: BlogPostListItemProps) {
       rel="noopener noreferrer"
       className="group block"
     >
-      <div className="flex gap-6 p-4 bg-[#161b22] border border-[#30363d] rounded-lg hover:border-[#f97316] transition-colors">
+      <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 bg-[#161b22] border border-[#30363d] rounded-lg hover:border-[#f97316] transition-colors">
         {/* Thumbnail */}
-        <div className="flex-shrink-0 w-[200px] h-[120px] rounded-lg overflow-hidden border border-[#30363d]">
+        <div className="flex-shrink-0 w-full sm:w-[200px] h-[120px] rounded-lg overflow-hidden border border-[#30363d]">
           <div className="flex h-full">
             {/* Left side - Claude Code Templates */}
             <div className="w-1/2 bg-[#0d1117] p-2 flex flex-col justify-center border-r border-[#30363d]">

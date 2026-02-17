@@ -1,0 +1,177 @@
+---
+title: "CRM Pipeline Cleaner"
+description: "Export your CRM data, let Claude Code find duplicates, flag dead deals, and reveal what your pipeline actually looks like. One prompt during a meeting you're already going to."
+category: "market-research"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "@samwoods"
+tags: ["sales", "CRM", "HubSpot", "pipeline", "duplicates", "forecasting", "RevOps"]
+createdAt: "2026-02-17"
+---
+
+## What This Does
+
+Takes your messy CRM exports and returns a clean picture of reality: merged duplicates, flagged dead deals, recalculated pipeline value, and rep-level insights you didn't even ask for.
+
+---
+
+## The Problem
+
+Every sales team's CRM accumulates garbage over time:
+
+- **Duplicate contacts** from years of imports, form fills, and rep turnover
+- **Dead deals** sitting in active pipeline stages from reps who left long ago
+- **Inflated pipeline numbers** that make every forecast a fiction
+- **Hidden coaching signals** buried under the noise
+
+Nobody trusts the reports. The forecast to leadership is a guess. And hiring a RevOps consultant or CRM admin to clean it up costs thousands and takes weeks.
+
+---
+
+## The Fix
+
+Export your CRM data as CSVs. Give them to Claude Code with one sentence. Go run your meeting.
+
+| What It Finds | Why It Matters |
+|---------------|---------------|
+| **Duplicate contacts** | Merge logic based on most recent activity and most complete data |
+| **Dead deals** | Deals untouched for 6+ months still sitting in active stages |
+| **Real pipeline value** | What your numbers actually look like without the garbage |
+| **Rep-level patterns** | Stuck deals, stage bottlenecks, coaching opportunities |
+
+---
+
+## Quick Start
+
+### Step 1: Export Your CRM Data
+
+From HubSpot (or Salesforce, Pipedrive, etc.), export:
+
+- **Contacts** — All contacts with email, company, last activity date, owner
+- **Companies** — All companies with associated contacts and deal count
+- **Deals** — All deals with stage, amount, last activity date, owner, create date
+
+Save as CSV files.
+
+### Step 2: Run the Analysis
+
+Drop the files into your project directory and prompt Claude Code:
+
+```
+Here are our contacts, companies, and deals exports.
+Find every duplicate. Identify dead deals. Tell me what
+our pipeline actually looks like when you remove the garbage.
+```
+
+That's it. One sentence.
+
+### Step 3: Review the Output
+
+You'll get back:
+
+1. **Duplicate report** — Every duplicate contact with merge recommendations
+2. **Dead deal list** — Deals with no activity past your threshold, still in active stages
+3. **Recalculated pipeline** — Real pipeline value vs. reported value
+4. **Bonus insights** — Rep-level patterns, stage bottleneck analysis
+
+---
+
+## Example Commands
+
+```
+"Find all duplicate contacts. For each pair, recommend which to
+keep based on most recent activity and most complete data fields."
+
+"Which deals haven't been touched in 6+ months but are still
+in active pipeline stages? What's the total value of these dead deals?"
+
+"Recalculate our pipeline removing dead deals. Show me the
+before and after by stage."
+
+"Break down pipeline health by rep. Who has deals stuck in
+the same stage the longest? What's the average stage duration per rep?"
+
+"Find contacts with no associated deals and no activity in 12+ months.
+How many are there?"
+
+"What does our actual win rate look like when we exclude
+dead deals from the denominator?"
+
+"Generate a clean contacts CSV with duplicates merged."
+```
+
+---
+
+## What You'll Discover
+
+Real results from teams who've run this:
+
+| Metric | Before | After |
+|--------|--------|-------|
+| Pipeline value | Inflated | Real (often 40-65% lower) |
+| Duplicate contacts | Thousands undetected | Identified with merge logic |
+| Dead deals in active stages | Hundreds | Flagged and removed |
+| Forecast accuracy | Guesswork | Data-backed |
+| Rep coaching signals | Invisible | Clear bottleneck patterns |
+
+---
+
+## Going Deeper
+
+After the initial cleanup, you can run follow-up analyses:
+
+### Win/Loss Patterns
+```
+"Analyze our closed-won vs closed-lost deals from the past 12 months.
+What patterns differentiate winners from losers? Look at deal size,
+stage duration, number of contacts involved, and time to close."
+```
+
+### Lead Source Quality
+```
+"Which lead sources produce deals that actually close vs. deals
+that die in pipeline? Show conversion rates by source."
+```
+
+### Forecast Model
+```
+"Based on historical stage-to-stage conversion rates (excluding dead deals),
+what's the probability-weighted value of our current pipeline?"
+```
+
+---
+
+## Tips
+
+1. **Export everything** — Don't pre-filter. Let Claude Code find what's relevant in the mess.
+2. **Include date fields** — Last activity date is the most important field for identifying dead deals.
+3. **Run it quarterly** — CRM entropy is constant. Make this a recurring cleanup.
+4. **Share the before/after** — Nothing gets a team to maintain CRM hygiene like seeing "$2.1M pipeline" become "$740K pipeline."
+5. **Start with deals** — If you only have time for one export, deals give you the highest-impact cleanup.
+
+---
+
+## Works With
+
+- HubSpot
+- Salesforce
+- Pipedrive
+- Zoho CRM
+- Close
+- Any CRM that exports to CSV
+
+---
+
+## Troubleshooting
+
+**Claude Code struggles with very large exports**
+Break contacts into batches of 10-20K rows. Run duplicate detection per batch, then cross-batch.
+
+**Merge logic isn't right for your business**
+Add your rules: "When merging duplicates, always keep the record owned by an active rep. Prefer records with phone numbers over email-only."
+
+**Pipeline stages don't match your process**
+Tell it your stage names and which ones are "active" vs. "closed": "Our active stages are: Discovery, Demo, Proposal, Negotiation. Everything else is closed."
+
+**Need the output in a specific format**
+Ask for it: "Generate the cleaned data as a CSV I can re-import to HubSpot" or "Format the findings as a slide deck outline for my leadership meeting."

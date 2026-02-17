@@ -1,0 +1,186 @@
+---
+title: "AI Research Analysis"
+description: "Run trustworthy qualitative analysis on interviews, surveys, and user research. Built-in guardrails prevent hallucinated quotes, generic insights, and unusable signals."
+category: "market-research"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "Inspired by Teresa Torres & Leah Tharin"
+tags: ["user-research", "qualitative-analysis", "interviews", "product-management", "UX-research", "surveys"]
+createdAt: "2026-02-17"
+---
+
+## What This Does
+
+Turns raw qualitative data (interview transcripts, survey responses, support tickets) into trustworthy, decision-ready insights. Built-in verification loops catch the four ways AI analysis typically fails: invented quotes, generic findings, unusable signals, and buried contradictions.
+
+---
+
+## The Problem
+
+Most people paste a transcript into AI and ask "What are the key themes?" and get back:
+
+> "Users want a better experience and find price to be a factor."
+
+That's useless. Worse, the AI often:
+
+- **Invents quotes** — Stitches together things no one actually said
+- **Defaults to generic patterns** — Tells you what's obvious, misses the edge cases that matter
+- **Produces unusable themes** — "Communication" is not a product decision
+- **Hides contradictions** — Users say they want simplicity but use every power feature
+
+---
+
+## The Fix
+
+A three-layer system that forces the AI to ground every claim in real evidence, interpret it through your specific business context, and flag the tensions instead of smoothing them over.
+
+| Layer | What It Does |
+|-------|-------------|
+| **Quote Rules** | Prevents fabricated or Frankenstein quotes |
+| **Context Loading** | Shapes interpretation toward your actual decisions |
+| **Verification Loop** | Catches hallucinations before they reach your stakeholders |
+
+---
+
+## Quick Start
+
+### Step 1: Prepare Your Data
+
+Organize your source material with participant identifiers:
+
+- **Interview transcripts** — Label each with participant ID (P1, P2, etc.)
+- **Survey responses** — Include respondent metadata (segment, tenure, plan type)
+- **Support tickets** — Include ticket context (issue category, resolution status)
+
+### Step 2: Load Business Context
+
+Before any analysis, tell the AI four things:
+
+1. **Project context** — What you're exploring and why it matters now
+2. **Business goal** — The specific decision this research needs to inform
+3. **Product context** — Domain knowledge the AI needs to interpret correctly
+4. **Participant overview** — Who these people are (power users, churned accounts, new signups, etc.)
+
+### Step 3: Run the Analysis
+
+Use the template below. The prompt enforces quote selection rules, requires source citations, and separates high-confidence findings from speculative ones.
+
+### Step 4: Verify
+
+After the initial analysis, run the verification prompt. It checks every quote against the source material and flags any that were paraphrased, combined, or invented.
+
+---
+
+## Quote Selection Rules
+
+These rules are embedded in the template, but here's why they matter:
+
+| Rule | Prevents |
+|------|----------|
+| Include reasoning, not just conclusions | "I like it" → useless. "I like it because I can see my whole week without scrolling" → actionable |
+| Keep hedges and uncertainty | Removing "I guess" or "maybe" changes the confidence level |
+| Never combine statements from different sections | Frankenstein quotes that feel real but never happened |
+| Cite with participant ID and timestamp/line | Makes verification possible |
+| Break quotes longer than 3 sentences | Forces precision over dumping |
+
+---
+
+## The Verification Prompt
+
+After your initial analysis, paste this follow-up:
+
+```
+Review every quote in your analysis against the source transcripts.
+For each quote:
+1. Confirm it is an EXACT verbatim match
+2. If paraphrased, show the actual wording alongside
+3. If the quote cannot be found in the source, mark it as [NOT VERIFIED]
+4. Flag any quotes that combine statements from different parts of the conversation
+```
+
+This single step catches the majority of AI hallucination in research analysis.
+
+---
+
+## Context Loading Examples
+
+**Weak context (generic output):**
+> "Analyze these 12 interview transcripts and find the key themes."
+
+**Strong context (actionable output):**
+> "We're exploring whether to add a calendar view to our project management tool. These 12 interviews are with mid-market PM leads (50-200 employees) who currently use our list view daily. We need to decide: build calendar view, improve list view filtering, or do both. Our list view has 73% daily active usage — we can't break what's working."
+
+Same transcripts. Completely different quality of output.
+
+---
+
+## Example Commands
+
+```
+"Analyze these transcripts using the quote rules. Focus on how participants
+describe their current workflow for [specific task]."
+
+"What are the strongest signals that contradict each other?
+Show me the exact quotes side by side."
+
+"Which findings have only 1-2 supporting quotes vs 5+?
+I need to know what's a pattern vs an anecdote."
+
+"Reanalyze with this added context: participants 1-6 are power users
+on the enterprise plan, participants 7-12 are free tier users who
+churned within 30 days."
+
+"What would we miss if we only looked at the top 3 themes?
+What are the edge-case signals?"
+```
+
+---
+
+## Handling Contradictions
+
+The template explicitly asks the AI to surface contradictions rather than resolve them. This matters because:
+
+- **Stated vs. revealed preferences** — People say they want simplicity but their behavior shows they use every feature
+- **Segment differences** — Power users and new users often want opposite things
+- **Context-dependent needs** — The same person wants speed on Monday and thoroughness on Friday
+
+When you see contradictions, that's signal — not noise.
+
+---
+
+## Output Quality Checklist
+
+Before sharing with stakeholders:
+
+- [ ] Every quote has a participant ID and location reference
+- [ ] Verification prompt has been run — no [NOT VERIFIED] quotes remain
+- [ ] Findings distinguish patterns (5+ participants) from signals (2-3) from anecdotes (1)
+- [ ] Business context is reflected in the interpretation, not just the data
+- [ ] Contradictions are surfaced, not smoothed over
+- [ ] Recommendations tie to the specific decision you need to make
+
+---
+
+## Tips
+
+1. **Run verification every time** — Even the best models hallucinate quotes. A 30-second check prevents bad decisions.
+2. **Add participant context in waves** — First pass without segment info, second pass with it. See what changes.
+3. **Ask for edge cases explicitly** — AI defaults to consensus. The most valuable insight is often what only 2 people said.
+4. **Break large datasets into batches** — 5-8 transcripts per analysis pass, then synthesize across batches.
+5. **Feed contradictions back in** — "You found that users want both X and Y. Dig deeper into when each applies."
+
+---
+
+## Troubleshooting
+
+**Output feels generic / "price is a factor" level insights**
+Your context loading is too thin. Add the specific decision you're making and the product constraints you're working within.
+
+**Quotes don't match the source**
+Run the verification prompt. If multiple quotes fail, restart the analysis with stricter quote rules and smaller transcript batches.
+
+**Themes aren't actionable**
+Ask: "For each theme, what is the specific product or design decision it informs? If it doesn't inform one, remove it."
+
+**Missing minority perspectives**
+Explicitly prompt: "What did only 1-2 participants mention that the others didn't? Which of these could be early signals?"

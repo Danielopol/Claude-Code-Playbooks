@@ -51,7 +51,7 @@ export default async function PlaybookPage({ params }: PlaybookPageProps) {
   const relatedPlaybooks = getRelatedPlaybooks(playbook);
 
   return (
-    <div className="container py-8 max-w-4xl">
+    <div className="container mx-auto py-8 max-w-4xl">
       <Link
         href="/playbooks"
         className="inline-flex items-center text-sm text-muted-foreground hover:text-[#22d3ee] mb-6 transition-colors"

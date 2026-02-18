@@ -134,6 +134,9 @@
     @apply bg-background text-foreground;
     font-family: 'JetBrains Mono', var(--font-geist-mono), monospace;
   }
+  .container {
+    @apply mx-auto;
+  }
 }
 
 /* Pixel font utility */

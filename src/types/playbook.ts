@@ -19,7 +19,11 @@ export type Category =
   | 'creative-design'
   | 'creative-writing'
   | 'developer-tools'
-  | 'academic-research';
+  | 'academic-research'
+  | 'executive-strategy'
+  | 'sales-revenue'
+  | 'project-management'
+  | 'media-production';
 
 export interface Playbook {
   slug: string;

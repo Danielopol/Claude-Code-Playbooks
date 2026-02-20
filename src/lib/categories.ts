@@ -152,6 +152,38 @@ export const categories: CategoryInfo[] = [
     icon: 'GraduationCap',
     vertical: 'Academic Research',
   },
+  // Executive Strategy
+  {
+    id: 'executive-strategy',
+    name: 'Executive Strategy',
+    description: 'CEO advisory, competitive intelligence, startup analysis, and strategic foresight',
+    icon: 'Target',
+    vertical: 'Executive Strategy',
+  },
+  // Sales & Revenue
+  {
+    id: 'sales-revenue',
+    name: 'Sales & Revenue',
+    description: 'Pipeline management, customer success, revenue operations, and sales automation',
+    icon: 'DollarSign',
+    vertical: 'Sales & Revenue',
+  },
+  // Project Management
+  {
+    id: 'project-management',
+    name: 'Project Management',
+    description: 'Agile workflows, sprint planning, scrum ceremonies, and team coordination',
+    icon: 'LayoutGrid',
+    vertical: 'Project Management',
+  },
+  // Media Production
+  {
+    id: 'media-production',
+    name: 'Media Production',
+    description: 'Podcast workflows, video clip creation, content repurposing, and production management',
+    icon: 'Mic',
+    vertical: 'Media Production',
+  },
 ];
 
 export function getCategoryById(id: Category): CategoryInfo | undefined {
@@ -173,4 +205,8 @@ export const verticals = [
   'Creative & Design',
   'Developer Tools',
   'Academic Research',
+  'Executive Strategy',
+  'Sales & Revenue',
+  'Project Management',
+  'Media Production',
 ];

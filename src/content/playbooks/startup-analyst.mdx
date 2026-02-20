@@ -1,0 +1,132 @@
+---
+title: "Startup Analyst"
+description: "Assess early-stage startup viability with TAM/SAM/SOM market sizing, unit economics modeling, competitive moat analysis, and fundraising readiness scoring."
+category: "executive-strategy"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "davila7/claude-code-templates"
+tags: ["startup", "market-sizing", "unit-economics", "fundraising", "competitive-analysis", "TAM"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Turns scattered assumptions about a startup into a structured viability assessment. It sizes the market using both top-down and bottoms-up methods, models unit economics with real numbers, maps competitive moats, and scores fundraising readiness. The output is a single analysis document that founders can use internally or hand to investors.
+
+---
+
+## The Problem
+
+Early-stage founders operate on conviction, but investors operate on evidence. The gaps are predictable:
+
+- **Market sizing is hand-waved** — "It's a $50B market" with no methodology, no segmentation, and no explanation of how you get from TAM to the slice you can actually capture
+- **Unit economics are back-of-napkin** — CAC is "whatever we spend on ads divided by signups," LTV is "revenue times forever," and payback period is not calculated at all
+- **Competitive moats are asserted, not proven** — "We have a data advantage" without explaining what data, how it compounds, and why a funded competitor cannot replicate it in 18 months
+- **Fundraising timing is reactive** — Founders start raising when runway hits 4 months instead of when metrics support a strong narrative
+- **Financial projections are fiction** — A hockey stick with no connection to current growth rates, channel capacity, or sales cycle length
+
+---
+
+## The Fix
+
+A structured analysis system that forces rigor on every claim. Every number has a source or an explicit assumption. Every projection connects to current actuals. Every moat claim maps to a defensibility framework.
+
+| Layer | What It Does |
+|-------|-------------|
+| **Market Sizing** | Runs TAM/SAM/SOM with both top-down (industry reports) and bottoms-up (customer count x ACV) methods, flags when they diverge |
+| **Unit Economics** | Models CAC by channel, LTV by cohort, payback period, contribution margins, and break-even thresholds |
+| **Moat Analysis** | Maps each claimed advantage to a defensibility category and scores durability on a 1-5 scale |
+| **Fundraising Readiness** | Scores across 12 dimensions investors evaluate, identifies gaps before you walk into the room |
+| **Financial Projections** | Builds bottoms-up models tied to channel capacity and conversion rates, not top-down market share assumptions |
+
+---
+
+## Quick Start
+
+### Step 1: Assemble Your Inputs
+
+Gather what you have (even if incomplete):
+
+- Current MRR/ARR or revenue run rate
+- Customer count and growth trajectory
+- Acquisition channels and spend per channel
+- Churn data (even rough estimates)
+- Competitor list with pricing
+- Pitch deck or one-pager (if it exists)
+
+### Step 2: Save the Template
+
+Download the CLAUDE.md template below and save it to your startup analysis folder.
+
+### Step 3: Initialize the Analysis
+
+```
+"Here's my startup: [one paragraph description]. I have [X] customers
+paying [Y]/month. We've been growing at [Z]% month-over-month.
+Run the full viability assessment."
+```
+
+### Step 4: Iterate on Weak Spots
+
+```
+"The unit economics look thin. What CAC would we need to hit
+for a 3:1 LTV/CAC ratio given our current churn?"
+```
+
+---
+
+## Example Commands
+
+```
+"Size the market for [product category]. Use both top-down from
+industry data and bottoms-up from customer segments. Flag any gaps."
+
+"Model our unit economics. Here's what I know: CAC is ~$180 from
+paid search, average contract is $49/mo, and monthly churn is 6%.
+What does the LTV/CAC look like and where does it need to improve?"
+
+"Map our competitive moat. We have 14 months of proprietary
+behavioral data from 8,000 users, integrations with 3 platforms,
+and a 2-person data science team. How defensible is this really?"
+
+"Score our fundraising readiness for a $2M seed round. Here are
+our metrics: [details]. What story do the numbers tell and where
+are the gaps an investor will probe?"
+
+"Build 18-month financial projections. Current MRR is $22K growing
+12% MoM. Our main channels are content ($40 CAC) and paid search
+($210 CAC). Content produces 60% of leads. Model it bottoms-up."
+
+"We're considering pivoting from SMB to mid-market. How does that
+change the market sizing, unit economics, and fundraising narrative?"
+```
+
+---
+
+## Tips
+
+1. **Bottoms-up market sizing wins every time** — Investors discount top-down numbers. Show them "X companies in our ICP x $Y ACV = $Z SAM" and they listen.
+2. **Unit economics by channel, not blended** — Blended CAC hides the truth. Your organic channel at $20 CAC is subsidizing your paid channel at $300 CAC. Know both.
+3. **Moat analysis is about durability, not existence** — Every startup has some advantage. The question is whether it compounds or erodes over 24 months.
+4. **Run the fundraising readiness score before you start fundraising** — Fixing a weak metric takes 3-6 months. You cannot fix it during a raise.
+5. **Projections must connect to your current growth engine** — If you are growing through founder-led sales, do not project enterprise sales team output. Model what you have, then model the transition separately.
+6. **Update monthly** — Startup metrics change fast. A 3-month-old analysis is a fiction.
+
+---
+
+## Troubleshooting
+
+**Market sizing numbers seem unrealistically large**
+You are probably using top-down only and defining the market too broadly. Narrow your SAM to the specific customer segment you can actually reach with your current channels and product. If your SAM is more than 10% of your TAM, your segmentation is likely too loose.
+
+**Unit economics show negative LTV/CAC ratio**
+This is common at early stage. Separate the diagnosis: is the problem high CAC (acquisition is expensive), low ARPU (you are underpricing), or high churn (the product is not retaining)? Each has a different fix. Do not try to solve all three at once.
+
+**Moat score is low across all dimensions**
+Early-stage startups often have weak moats. That is expected. The analysis should focus on which moat you are building toward and what milestones prove it is working. Investors fund moat trajectories, not moat snapshots.
+
+**Financial projections do not match investor expectations**
+Check whether you are modeling linear growth when investors expect exponential, or vice versa. Seed investors expect 3-5x annual growth. If your model shows 50% annual growth, either the model is wrong or this is not a venture-scale business. Both are useful to know.
+
+**Fundraising readiness score is below 60%**
+Prioritize the lowest-scoring dimensions. Common quick fixes: tighten your narrative (positioning), fill a key team gap (even with an advisor), and get 3 referenceable customers (social proof). Some dimensions like "market timing" you cannot control — focus on what you can.

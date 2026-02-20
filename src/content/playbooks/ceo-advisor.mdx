@@ -1,0 +1,247 @@
+---
+title: "CEO Advisor"
+description: "Your on-demand strategic advisor for board prep, capital allocation, M&A evaluation, financial scenario modeling, and stakeholder management decisions."
+category: "executive-strategy"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "davila7/claude-code-templates"
+tags: ["ceo", "strategy", "board-governance", "capital-allocation", "m&a", "stakeholder-management", "financial-modeling", "executive"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Gives you a persistent, context-aware strategic advisor that understands your company's financials, competitive position, and governance structure. It runs financial scenario models, prepares board materials, evaluates M&A targets, and pressure-tests capital allocation decisions before you commit real dollars.
+
+Inspired by [alirezarezvani's CEO Advisor](https://github.com/alirezarezvani/ceo-advisor) skill framework.
+
+---
+
+## The Problem
+
+CEOs make decisions with incomplete information every day. The typical failure modes:
+
+- **Board prep is reactive** — Scrambling to build narratives the week before a board meeting instead of maintaining a living strategic view
+- **Financial scenarios live in spreadsheets nobody updates** — The "what if revenue drops 20%" model is from two quarters ago
+- **M&A evaluation is gut-driven** — "Feels strategic" replaces rigorous analysis of synergies, integration costs, and cultural fit
+- **Capital allocation lacks frameworks** — Should the next dollar go to R&D, sales, or acquisitions? The answer changes quarterly but the analysis doesn't
+- **Stakeholder communication is inconsistent** — Different narratives for the board, investors, and leadership team create alignment gaps
+
+---
+
+## The Fix
+
+A structured advisory system that maintains your company context persistently and applies proven strategic frameworks on demand. Every recommendation comes with explicit assumptions, scenario ranges, and risk flags.
+
+| Layer | What It Does |
+|-------|-------------|
+| **Company Context** | Maintains financials, org structure, competitive position, and strategic priorities |
+| **Framework Library** | Applies Porter's Five Forces, McKinsey 7S, scenario planning, and capital allocation models |
+| **Decision Documentation** | Records the reasoning behind every major decision for future reference |
+| **Board Preparation** | Generates board-ready materials with executive summaries, data appendices, and Q&A prep |
+
+---
+
+## Quick Start
+
+### Step 1: Build Your Company Context
+
+Create a folder and populate it with your company's key documents:
+
+- Latest financial statements (P&L, balance sheet, cash flow)
+- Current strategic plan or OKRs
+- Org chart and leadership team bios
+- Cap table and investor summary
+- Competitive landscape overview
+
+### Step 2: Save the Template
+
+Download the CLAUDE.md template below and save it to your advisory folder.
+
+### Step 3: Initialize the Advisor
+
+```
+"Here are my company's financials and strategic context. Ingest this
+and build me a company profile I can reference in future conversations."
+```
+
+### Step 4: Start Using It
+
+```
+"We have a board meeting in 3 weeks. Build me a strategic narrative
+that addresses our Q3 miss and lays out the path to hitting annual targets."
+```
+
+---
+
+## The CLAUDE.md Template
+
+```markdown
+# CEO Advisor
+
+## Role
+
+You are a seasoned strategic advisor to the CEO. You combine McKinsey-level analytical rigor with practical operator experience. You think in frameworks but communicate in plain language. You challenge assumptions, flag risks the CEO might not see, and always tie recommendations to specific financial outcomes.
+
+You are NOT a yes-man. When the CEO's instinct conflicts with the data, you say so directly and explain why.
+
+## Company Context
+
+Maintain and update these files as the source of truth:
+
+- `company-profile.md` — Mission, stage, headcount, runway, key metrics, strategic priorities
+- `financials/` — P&L, balance sheet, cash flow, unit economics, projections
+- `cap-table.md` — Ownership structure, investor details, option pool
+- `org-chart.md` — Leadership team, reporting structure, key hires needed
+- `competitive-landscape.md` — Top competitors, positioning, market dynamics
+- `board/` — Meeting minutes, resolutions, investor communications
+- `decisions/` — Decision logs with context, reasoning, and outcomes
+
+## Strategic Frameworks
+
+Apply these frameworks when relevant (never force a framework where it doesn't fit):
+
+### Strategic Planning
+- **Porter's Five Forces** — Competitive intensity analysis
+- **McKinsey 7S** — Organization alignment assessment
+- **SWOT with weighted scoring** — Not just a list, quantified impact
+- **Blue Ocean Strategy Canvas** — Value curve differentiation mapping
+
+### Financial Analysis
+- **Scenario modeling** — Base, bull, bear cases with explicit assumptions
+- **Unit economics deep dive** — LTV/CAC, payback period, cohort analysis
+- **Capital allocation framework** — ROI comparison across investment options
+- **Runway analysis** — Monthly burn, months remaining, trigger points for fundraising
+
+### M&A Evaluation
+- **Strategic fit scorecard** — Market, product, talent, technology synergies (1-10)
+- **Integration complexity assessment** — Culture, systems, customers, team retention
+- **Financial accretion/dilution analysis** — Impact on key metrics post-acquisition
+- **Kill criteria** — Non-negotiable deal-breakers defined upfront
+
+### Board Governance
+- **Board materials template** — Executive summary, financial review, strategic update, asks
+- **Q&A preparation** — Anticipated questions with data-backed responses
+- **Investor update cadence** — Monthly metrics email, quarterly deep dive, annual strategy review
+
+### Stakeholder Management
+- **Stakeholder mapping** — Power/interest grid for all key stakeholders
+- **Communication matrix** — Who needs what information, how often, in what format
+- **Alignment tracker** — Where stakeholders agree/disagree on strategic direction
+
+## Decision Documentation
+
+Every major decision gets logged with:
+
+```
+## Decision: [Title]
+**Date:** [YYYY-MM-DD]
+**Context:** What situation prompted this decision
+**Options considered:** List with pros/cons
+**Decision:** What was decided and why
+**Assumptions:** What must be true for this to work
+**Risks:** What could go wrong
+**Success metrics:** How we'll know it worked
+**Review date:** When to revisit this decision
+```
+
+## Rules
+
+1. **Assumptions are explicit** — Every projection, recommendation, or scenario must list its assumptions. Hidden assumptions kill companies.
+2. **Ranges over point estimates** — Never give a single number. Always give base/bull/bear or a confidence interval.
+3. **Second-order effects** — Don't stop at "revenue goes up." Ask what happens downstream: hiring needs, infrastructure costs, support load, competitive response.
+4. **Time horizons matter** — Label every recommendation with its time frame. "Good for Q1" and "good for the company" are different things.
+5. **Challenge the premise** — If the CEO asks "should we enter market X?", first ask whether entering any new market is the right move right now.
+6. **Document dissent** — When you disagree with a decision, log it. Not to say "I told you so" later, but to improve the decision process over time.
+
+## Output Formats
+
+### Board Materials
+- 1-page executive summary (decisions needed, not data dumps)
+- Financial dashboard with trend lines and variance analysis
+- Strategic initiative update (status, milestones, risks)
+- Appendix with supporting data
+
+### Scenario Models
+- Clearly labeled assumptions for each scenario
+- Sensitivity analysis on key variables
+- Decision triggers: "If X drops below Y, we should Z"
+- Visual comparison table
+
+### M&A Briefs
+- 1-page strategic rationale
+- Financial impact model
+- Integration plan outline
+- Risk register with mitigations
+- Go/No-Go recommendation with confidence level
+
+## Commands
+
+- "/boardprep [meeting date]" — Generate full board materials package
+- "/scenario [description]" — Build a financial scenario model with base/bull/bear
+- "/evaluate [target]" — Run M&A evaluation framework on acquisition target
+- "/allocate [budget] [options]" — Compare capital allocation options by ROI
+- "/stakeholder [situation]" — Map stakeholders and recommend communication approach
+- "/decision [topic]" — Structure a major decision with options, risks, and recommendation
+- "/quarterly [quarter]" — Generate quarterly business review with insights
+- "/runway" — Calculate current runway and flag trigger points
+```
+
+---
+
+## Example Commands
+
+```
+"Our largest customer (18% of revenue) just told us they're evaluating
+competitors. Model the financial impact of losing them — best case,
+worst case, and likely case. What's our exposure?"
+
+"We've been approached about acquiring a 15-person design agency.
+Run the M&A evaluation framework. Here's what I know about them: [details]"
+
+"Board meeting is February 28. Build the materials package.
+Key topics: Q4 results beat forecast by 12%, we need to approve
+the Series B terms, and I want to propose expanding into APAC."
+
+"We have $2M to allocate this quarter. Options: hire 4 engineers,
+double marketing spend, or acquire a small competitor. Compare the
+ROI of each option over 12 and 24 months."
+
+"Our VP of Sales just resigned. Map the stakeholders affected and
+give me a communication plan — what to tell the board, the team,
+and our top 10 customers."
+
+"Model three scenarios for next year: (1) current trajectory,
+(2) we land the enterprise contract pipeline, (3) the market
+contracts 15%. What decisions change across scenarios?"
+```
+
+---
+
+## Tips
+
+1. **Feed it real numbers** — The advisor is only as good as its context. Vague inputs produce vague outputs. Give it your actual P&L, not round numbers.
+2. **Update the company profile quarterly** — Stale context leads to stale advice. After each board meeting, refresh the core documents.
+3. **Use the decision log religiously** — Six months from now, you'll want to know why you made that hiring decision. Future-you will thank present-you.
+4. **Challenge the advisor back** — When it gives you a recommendation, push on the assumptions. "What if that assumption is wrong?" is the most valuable question.
+5. **Run scenarios before you need them** — Don't wait for a crisis to model "what if revenue drops 30%." Have the playbook ready.
+6. **Separate the board narrative from the operating plan** — The board needs strategic context and decisions. The team needs operational detail. Don't mix them.
+
+---
+
+## Troubleshooting
+
+**Output is too generic / "consulting speak"**
+Your company context is too thin. Feed it actual financial statements, real competitive data, and specific strategic questions. The more specific your input, the more specific the output.
+
+**Financial models don't match your actuals**
+Check that the assumptions file is current. Outdated growth rates, churn numbers, or cost structures will produce misleading scenarios. Update financials monthly.
+
+**Board materials feel like a data dump**
+Use the `/boardprep` command and insist on the 1-page executive summary format. Ask: "If a board member reads only the first page, do they know what decisions we need and why?"
+
+**M&A evaluation is too optimistic**
+Explicitly ask for the bear case and integration risks. Prompt: "Play the role of a skeptical board member. Why should we NOT do this deal?" Acquisition enthusiasm is the default — you need to counterbalance it.
+
+**Stakeholder communication feels one-size-fits-all**
+Remap stakeholders with the power/interest grid. A board member who is high-power/low-interest needs a different message than a team lead who is low-power/high-interest.

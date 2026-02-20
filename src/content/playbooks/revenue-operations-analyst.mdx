@@ -1,0 +1,170 @@
+---
+title: "Revenue Operations Analyst"
+description: "Analyze pipeline conversions, build forecasting models, plan territories and quotas, model sales capacity, track funnel metrics by segment, and identify sales cycle bottlenecks."
+category: "sales-revenue"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "davila7/claude-code-templates"
+tags: ["RevOps", "pipeline", "forecasting", "territory", "sales-capacity", "funnel"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Turns Claude into a revenue operations analyst that builds pipeline stage conversion models, creates weighted and historical revenue forecasts, designs territory plans with quota allocation, models sales team capacity with ramp curves, analyzes funnel conversion by segment and source, and pinpoints where deals stall in your sales cycle.
+
+---
+
+## The Problem
+
+RevOps teams spend more time pulling data from CRM exports and wrangling spreadsheets than actually analyzing it. Pipeline reviews rely on gut feelings instead of stage conversion math. Forecasts are either sandbagged or wildly optimistic. Territory plans get built once a year and never adjusted. Nobody knows the real ramp time for new reps, and funnel bottlenecks hide in aggregate numbers until quota misses surface them.
+
+---
+
+## The Fix
+
+Give Claude your pipeline exports, historical win/loss data, rep roster, and booking targets. It calculates real stage conversion rates, builds forecasts using multiple methodologies, designs balanced territories, models hiring plans against capacity gaps, and breaks down your funnel by every dimension that matters - segment, source, rep, deal size, and cycle length.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Prepare Your Data
+
+Gather your revenue data exports:
+- Pipeline snapshot (all open deals with stage, amount, close date, owner)
+- Historical closed-won and closed-lost deals (12+ months)
+- Rep roster with hire dates and quota assignments
+- Booking targets by quarter and segment
+- Lead/opportunity source data
+
+### Step 3: Define Your Model Parameters
+
+Tell Claude your revenue structure:
+
+```markdown
+# RevOps Context
+- Sales stages: [List your pipeline stages]
+- Average deal size: [By segment if available]
+- Sales cycle: [Average days to close]
+- Quota period: [Monthly/Quarterly]
+- Segments: [Enterprise/Mid-Market/SMB or your labels]
+- Lead sources: [Inbound/Outbound/Partner/etc.]
+- Current team size: [X AEs, Y SDRs]
+```
+
+### Step 4: Start Analyzing
+
+```bash
+claude
+```
+
+Say: **"Analyze my pipeline stage conversion rates from this deal data"**
+
+---
+
+## Pipeline Analytics
+
+Claude builds conversion matrices:
+
+| Stage | Deals In | Deals Out | Conversion % | Avg Days in Stage | Revenue at Risk |
+|-------|----------|-----------|--------------|-------------------|-----------------|
+| **Qualification** | 150 | 95 | 63% | 8 days | $2.1M |
+| **Discovery** | 95 | 62 | 65% | 14 days | $1.8M |
+| **Demo/Eval** | 62 | 38 | 61% | 21 days | $1.4M |
+| **Proposal** | 38 | 28 | 74% | 11 days | $980K |
+| **Negotiation** | 28 | 22 | 79% | 9 days | $840K |
+| **Closed Won** | 22 | -- | -- | -- | $760K |
+
+**Overall Win Rate:** 14.7% | **Weighted Pipeline:** $2.4M | **Biggest Drop-Off:** Qualification to Discovery
+
+---
+
+## Forecasting Models
+
+Claude generates forecasts using three methodologies:
+
+- **Weighted Pipeline**: Each deal multiplied by stage probability
+- **Historical Conversion**: Based on last 4 quarters of actual conversion rates
+- **Rep Capacity**: Quota attainment patterns by rep tenure and segment
+
+```markdown
+## Q2 2026 Forecast Summary
+
+| Method | Forecast | Confidence |
+|--------|----------|------------|
+| Weighted Pipeline | $2.4M | Medium |
+| Historical Conversion | $2.1M | High |
+| Rep Capacity Model | $1.9M | High |
+| **Blended Forecast** | **$2.1M** | **High** |
+
+Target: $2.5M | Gap: $400K | Coverage Ratio: 3.2x
+```
+
+---
+
+## Territory & Capacity Model
+
+```markdown
+## Territory Summary: West Region
+
+| Rep | Accounts | Pipeline | Quota | Attainment | Capacity |
+|-----|----------|----------|-------|------------|----------|
+| Rep A | 45 | $620K | $500K | 112% (Q1) | At capacity |
+| Rep B | 38 | $410K | $500K | 88% (Q1) | Room to grow |
+| Rep C | 52 | $280K | $500K | 62% (Q1) | Overloaded on accounts, underperforming |
+| Rep D (new) | 20 | $90K | $250K (ramped) | Month 3 of ramp | On track |
+```
+
+---
+
+## Example Commands
+
+```
+"Calculate stage conversion rates from this pipeline export"
+"Build a Q3 forecast using weighted, historical, and capacity methods"
+"Design territory assignments for 8 AEs across these accounts"
+"Model what happens if we hire 3 AEs in March - when do they hit full productivity?"
+"Break down funnel conversion by lead source for the last 6 months"
+"Find the bottleneck stage where deals stall the longest"
+"Calculate pipeline coverage ratio needed to hit $3M target"
+"Compare win rates by deal size bucket: under $50K, $50-150K, over $150K"
+"Analyze sales cycle length trends quarter over quarter"
+"Build a quota allocation model based on territory potential"
+"Identify reps with pipeline quality issues vs pipeline quantity issues"
+"Create a monthly pipeline generation waterfall chart"
+```
+
+---
+
+## Tips
+
+- **Pipeline coverage ratio matters more than pipeline total**: A 3x coverage ratio with healthy conversion rates is better than 5x of stale deals. Claude calculates real coverage based on your actual win rates.
+- **Segment your funnel before averaging**: Overall win rate hides massive differences. Enterprise at 25% and SMB at 8% tells a different story than blended 15%.
+- **Ramp time is longer than you think**: Most companies underestimate by 2-3 months. Claude models actual ramp curves from your historical data.
+- **Forecast with the method that matches your motion**: Transactional sales suit weighted pipeline. Enterprise suits historical conversion. Use the model that fits.
+- **Refresh territory plans quarterly**: Annual planning is stale by Q2. Claude can rebalance based on updated account scoring.
+- **Track leading indicators**: Meetings booked and pipeline created this week predict next quarter's revenue. Lagging metrics just confirm what already happened.
+
+---
+
+## Troubleshooting
+
+**Conversion rates look unrealistic**
+Check for stage-skipping in your data: "Show me deals that jumped from Qualification straight to Proposal - are those real or data entry issues?"
+
+**Forecast always misses**
+Feed actuals alongside predictions: "Here are my last 4 quarterly forecasts vs actuals, identify the systematic bias"
+
+**Territory plan feels unbalanced**
+Add more dimensions: "Weight territories by account revenue potential, not just count. Include whitespace opportunity."
+
+**Capacity model too optimistic**
+Adjust ramp assumptions: "New reps here take 6 months to hit 75% productivity, not the 3 months we planned for"
+
+**Funnel analysis too generic**
+Slice thinner: "Break down conversion by lead source AND deal size AND segment - I need to see where the real drop-off is"

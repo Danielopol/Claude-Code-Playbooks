@@ -1,0 +1,152 @@
+---
+title: "Deep Research Coordinator"
+description: "Orchestrate complex multi-source research projects — from question decomposition to source prioritization to final synthesis and recommendations."
+category: "academic-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "davila7/claude-code-templates"
+tags: ["research", "coordination", "multi-source", "orchestration", "briefs", "reports"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Manages end-to-end research projects by breaking broad questions into sub-questions, prioritizing sources, tracking what has been covered, synthesizing findings across multiple documents, identifying contradictions and gaps, and producing structured research deliverables — from one-page briefs to full reports with citations.
+
+---
+
+## The Problem
+
+Complex research sprawls fast. You end up with dozens of open tabs, scattered notes, contradictory findings, and no systematic way to know what you have covered and what gaps remain. Synthesis is the hardest part, and it usually happens under time pressure at the very end.
+
+---
+
+## The Fix
+
+Claude acts as your research project manager. Give it a research question, and it decomposes it into a structured plan, tracks sources and findings, flags contradictions, identifies gaps, and produces a synthesized deliverable. You focus on reading and thinking; Claude handles the organizational scaffolding.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Define Your Research Question
+
+Write a clear primary research question and any known constraints:
+
+```markdown
+# Research Project
+Question: [Your main research question]
+Audience: [Who will read the output]
+Depth: [Quick brief / Standard report / Deep analysis]
+Deadline: [When you need it]
+```
+
+### Step 3: Start the Research
+
+```bash
+claude
+```
+
+Say: **"Coordinate a deep research project on [your topic]"**
+
+---
+
+## Example Commands
+
+```
+"Decompose this research question into sub-questions"
+"Prioritize which sub-questions to investigate first"
+"Synthesize findings from these 5 documents into a coherent report"
+"Find contradictions across my sources"
+"What gaps remain in my research coverage?"
+"Generate a one-page executive brief from my full research"
+"Create an annotated bibliography of my sources"
+"Compare perspectives: source A says X, source B says Y"
+"Update the research tracker — I just finished reviewing [document]"
+"Write the final report with recommendations"
+```
+
+---
+
+## Research Phases
+
+| Phase | What Happens | Output |
+|-------|-------------|--------|
+| **Scoping** | Decompose question, define sub-questions, set priorities | Research plan |
+| **Source Mapping** | Identify and prioritize sources by relevance and credibility | Source matrix |
+| **Collection** | Track findings per source and sub-question | Evidence log |
+| **Analysis** | Identify patterns, contradictions, and gaps | Analysis notes |
+| **Synthesis** | Merge findings into coherent narrative | Draft report |
+| **Delivery** | Polish and format for target audience | Final deliverable |
+
+---
+
+## Example Output
+
+```markdown
+## Research Plan: [Topic]
+
+### Primary Question
+How does [X] affect [Y] in the context of [Z]?
+
+### Sub-Questions
+1. What is the current state of [X]? (Background)
+2. What mechanisms link [X] to [Y]? (Causation)
+3. What does the evidence show? (Data)
+4. What do experts disagree on? (Debate)
+5. What are the practical implications? (Recommendations)
+
+### Source Priority Matrix
+| Source | Type | Relevance | Credibility | Status |
+|--------|------|-----------|-------------|--------|
+| [Paper A] | Academic | High | Peer-reviewed | Reviewed |
+| [Report B] | Industry | High | Reputable firm | In progress |
+| [Article C] | News | Medium | Major outlet | Queued |
+| [Blog D] | Opinion | Low | Unknown author | Skip |
+
+### Coverage Tracker
+| Sub-Question | Sources Found | Sources Reviewed | Confidence |
+|-------------|---------------|-----------------|------------|
+| Q1: Background | 5 | 3 | High |
+| Q2: Mechanisms | 3 | 1 | Medium |
+| Q3: Evidence | 4 | 0 | Low |
+| Q4: Debates | 2 | 0 | Low |
+| Q5: Implications | 1 | 0 | Low |
+
+### Key Finding So Far
+[2-3 sentence summary of the strongest finding to date]
+
+### Gaps and Next Steps
+- Need more data on [specific sub-question]
+- Conflicting claims between [Source A] and [Source B] — investigate further
+```
+
+---
+
+## Tips
+
+- **Start narrow, expand if needed**: A focused question produces better research than a broad one
+- **Track confidence levels**: Label findings as high, medium, or low confidence based on source quality
+- **Surface contradictions early**: Disagreements between sources are where the most interesting insights live
+- **Separate facts from interpretation**: Keep raw findings separate from your analysis
+- **Use the coverage tracker**: It tells you exactly where your research is thin
+
+---
+
+## Troubleshooting
+
+**Research question is too broad**
+Ask Claude: "Help me narrow this question — what is the most tractable sub-question to start with?"
+
+**Too many sources, no synthesis**
+Say: "Ignore source quality for now — just synthesize the top 5 findings across all sources into a single narrative."
+
+**Contradictory evidence everywhere**
+This is normal. Ask: "Map the key debates on this topic — who argues what, and what evidence supports each side?"
+
+**Running out of time before completing all phases**
+Say: "Skip to synthesis — produce the best report possible with what we have and flag gaps explicitly."

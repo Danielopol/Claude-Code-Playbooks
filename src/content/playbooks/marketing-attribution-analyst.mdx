@@ -1,0 +1,129 @@
+---
+title: "Marketing Attribution Analyst"
+description: "Model multi-touch attribution, analyze campaign ROI, and build MMM frameworks using Bayesian and Markov chain methods."
+category: "marketing-content"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "davila7/claude-code-templates"
+tags: ["attribution", "marketing-mix-modeling", "campaign-roi", "bayesian", "markov-chain", "multi-touch", "analytics"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Turns Claude into a marketing attribution analyst that builds multi-touch attribution models, runs marketing mix modeling (MMM), and calculates true campaign ROI. Instead of defaulting to last-click and hoping for the best, you get Shapley value, Markov chain, and Bayesian approaches that reveal which channels actually drive conversions.
+
+Based on [davila7's marketing-attribution-analyst agent](https://github.com/davila7).
+
+---
+
+## The Problem
+
+Most marketing teams rely on last-click attribution, which massively over-credits bottom-of-funnel channels and under-credits awareness campaigns. Google Analytics says paid search gets all the credit. Facebook says Facebook gets all the credit. Nobody knows what's actually working, so budget allocation is based on vibes, not evidence.
+
+---
+
+## The Fix
+
+A structured attribution workspace where Claude ingests your touchpoint data, builds multiple attribution models side by side, and shows you exactly where each model agrees and disagrees. You get data-backed budget reallocation recommendations instead of platform-biased reporting.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Prepare Your Data
+
+```
+attribution-analysis/
+├── CLAUDE.md
+├── data/
+│   ├── touchpoints.csv          # user_id, channel, timestamp, conversion
+│   ├── campaign_spend.csv       # channel, campaign, date, spend
+│   └── conversions.csv          # user_id, conversion_date, value
+├── models/
+└── reports/
+```
+
+### Step 3: Run Your First Attribution Analysis
+
+```bash
+claude
+```
+
+Say: **"Analyze my touchpoint data and compare attribution models"**
+
+---
+
+## Example Commands
+
+```
+"Build a Markov chain attribution model from my touchpoint data"
+"Compare last-click, linear, time-decay, and Shapley value attribution"
+"Which channels are overvalued by last-click attribution?"
+"Run a marketing mix model using my spend and conversion data"
+"Calculate the incremental ROAS for each channel"
+"What's the optimal budget split across channels for next quarter?"
+"Show me the removal effect for each channel in the conversion path"
+"Build a Bayesian model to estimate true conversion probability by channel"
+```
+
+---
+
+## What Gets Built
+
+| Artifact | What It Contains |
+|----------|-----------------|
+| **Model Comparison** | Side-by-side results from 4+ attribution methodologies |
+| **Channel Scorecard** | True contribution, incremental ROAS, removal effect per channel |
+| **Path Analysis** | Most common conversion paths, avg touchpoints, time to convert |
+| **Budget Optimizer** | Data-backed reallocation recommendations with projected impact |
+| **MMM Report** | Spend elasticity curves, saturation points, diminishing returns |
+| **Incrementality Analysis** | Estimated lift per channel vs. organic baseline |
+
+---
+
+## Attribution Models Supported
+
+| Model | Method | Best For |
+|-------|--------|----------|
+| **Last Click** | 100% credit to final touch | Baseline comparison |
+| **First Click** | 100% credit to first touch | Awareness channel valuation |
+| **Linear** | Equal credit to all touches | Simple multi-touch |
+| **Time Decay** | More credit to recent touches | Short sales cycles |
+| **Position Based** | 40/20/40 first-middle-last | Balanced view |
+| **Markov Chain** | Transition probability removal | Channel dependency analysis |
+| **Shapley Value** | Game theory fair allocation | True incremental contribution |
+| **Bayesian** | Posterior probability estimation | Small data / uncertainty |
+
+---
+
+## Tips
+
+- **Start with model comparison** — run all models on the same data set so you can see where they agree (high confidence) and disagree (investigate further)
+- **Markov chain removal effect** — the most actionable single metric; it shows what happens if you completely remove a channel from the path
+- **Watch for data gaps** — if your CRM doesn't track impressions, your top-of-funnel channels will always look weak
+- **Combine with incrementality tests** — attribution models estimate; holdout tests prove. Use both.
+- **Segment by deal size** — enterprise deals have different paths than self-serve signups. Model them separately.
+
+---
+
+## Troubleshooting
+
+**Not enough touchpoint data**
+You need at minimum a user ID, channel/source, timestamp, and conversion flag. If you only have aggregate data, use MMM instead of multi-touch attribution.
+
+**All models give roughly the same answer**
+Your conversion paths may be short (1-2 touches). Multi-touch attribution matters most when paths are 5+ touchpoints. Check your average path length first.
+
+**Results don't match platform reporting**
+Platform attribution is always self-serving. Google will claim credit for views that were going to convert anyway. Your model uses cross-channel data, which is more accurate.
+
+**Bayesian model is too uncertain**
+Feed in prior distributions from industry benchmarks. Say: "Use a beta prior of (2, 8) for email conversion rate based on industry average of 20%."
+
+**Budget recommendations seem extreme**
+Set constraints: "Reallocate budget but keep each channel within 30% of current spend to avoid disruption."

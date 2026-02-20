@@ -1,0 +1,161 @@
+---
+title: "HR Operations Pro"
+description: "Draft HR policies, build employee handbooks, generate onboarding plans, create performance review frameworks, and analyze compensation benchmarks."
+category: "legal-compliance"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "davila7/claude-code-templates"
+tags: ["HR", "policies", "onboarding", "performance-reviews", "employee-handbook", "compensation"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Turns Claude Code into a full-service HR operations assistant. Draft policies (remote work, PTO, code of conduct, anti-harassment), build and update employee handbooks, generate 30/60/90-day onboarding plans, create performance review templates with calibration frameworks, run compensation benchmarking analysis, identify turnover patterns from exit interview data, and generate inclusive job descriptions.
+
+---
+
+## The Problem
+
+HR teams drown in document creation. Every new policy requires hours of drafting, legal cross-referencing, and formatting. Onboarding plans get copy-pasted and never customized. Performance reviews lack consistency across managers. Compensation conversations happen without data. Exit interviews pile up without anyone spotting trends. Small companies without dedicated HR are even worse off -- founders wing it with templates found online that may not comply with their state or industry requirements.
+
+---
+
+## The Fix
+
+Drop the CLAUDE.md template into a folder with your existing HR documents (or start fresh) and Claude Code becomes your HR operations engine. It drafts policies grounded in current best practices, builds structured onboarding timelines, creates calibrated review rubrics, and analyzes compensation data -- all customized to your company size, industry, and jurisdiction. Every output includes compliance notes and flags items that need legal review.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your HR Workspace
+
+```bash
+mkdir -p ~/Documents/HR-Operations
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/HR-Operations/
+```
+
+### Step 3: Add Existing Documents (Optional)
+
+```
+HR-Operations/
+├── CLAUDE.md
+├── existing-policies/
+│   ├── current-handbook.pdf
+│   └── old-pto-policy.docx
+├── compensation-data/
+│   └── salary-survey.csv
+├── exit-interviews/
+│   └── 2025-interviews.csv
+└── output/
+```
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/HR-Operations
+claude
+```
+
+### Step 5: Start Building
+
+Say: **"Draft a remote work policy for a 50-person tech company in California"**
+
+---
+
+## Example Commands
+
+```
+"Create a complete employee handbook for a Series B startup with 80 employees"
+"Draft an anti-harassment policy that meets California and New York requirements"
+"Build a 30/60/90 day onboarding plan for a senior product manager"
+"Create a performance review template with a 5-point competency scale"
+"Design a calibration framework for our annual review cycle"
+"Analyze these exit interviews and identify turnover patterns"
+"Generate a compensation benchmarking framework for engineering roles"
+"Write an inclusive job description for a data engineer"
+"Draft a PTO policy with unlimited vacation guardrails"
+"Create a code of conduct covering social media and AI usage"
+"Build pay bands for our engineering ladder from IC1 to IC6"
+"Review this job description for biased or exclusionary language"
+```
+
+---
+
+## What You Get
+
+| Document | Contents |
+|----------|----------|
+| **HR Policies** | Remote work, PTO, code of conduct, anti-harassment, expense, social media |
+| **Employee Handbook** | Complete handbook with TOC, policies, acknowledgment forms |
+| **Onboarding Plans** | Role-specific 30/60/90 day plans with milestones and check-ins |
+| **Performance Reviews** | Review templates, competency matrices, calibration guides |
+| **Compensation Analysis** | Pay band frameworks, benchmarking reports, equity guidelines |
+| **Exit Analysis** | Turnover trend reports, pattern identification, retention recommendations |
+| **Job Descriptions** | Inclusive JDs with bias-checked language and structured requirements |
+
+---
+
+## Policy Generation Example
+
+**Input:**
+```
+Draft a remote work policy for a 120-person SaaS company
+headquartered in Texas with employees in 8 states.
+```
+
+**Output includes:**
+- Eligibility criteria and approval process
+- Core hours and availability expectations
+- Equipment and stipend provisions
+- Data security and VPN requirements
+- Tax and nexus implications by state
+- Manager guidelines for hybrid scheduling
+- Compliance notes flagging state-specific requirements
+
+---
+
+## Tips
+
+- **Provide company context**: Size, industry, state(s), and stage dramatically change policy recommendations
+- **Layer complexity gradually**: Start with a basic policy, then ask Claude to add jurisdiction-specific clauses
+- **Feed existing docs**: Drop current policies in the folder so Claude can maintain your voice and format
+- **Ask for compliance flags**: Always request that outputs note where legal review is needed
+- **Use for consistency**: Run all manager-written reviews through the calibration framework
+- **Benchmark realistically**: Provide your actual salary data for meaningful pay band analysis
+- **Iterate on tone**: Ask Claude to adjust from "corporate formal" to "startup friendly" as needed
+
+---
+
+## Troubleshooting
+
+**Policy too generic**
+Add specifics: company size, industry, states of operation, and any existing policies to build on.
+
+**Missing jurisdiction-specific requirements**
+Ask: "Add compliance notes for [state/country] employment law" -- and always flag for attorney review.
+
+**Onboarding plan doesn't fit the role**
+Provide the job description and team context: "This person reports to the VP of Engineering and manages 4 people."
+
+**Compensation data seems off**
+Supply your actual salary data or specify the market: "Benchmark against Series B companies in Austin, TX with 50-150 employees."
+
+**Performance review criteria too vague**
+Ask: "Make the competency definitions more specific with observable behaviors at each level."
+
+**Handbook is too long**
+Ask: "Create a condensed version focused on the top 10 policies, with an appendix for the rest."
+
+---
+
+## Important Disclaimer
+
+**This is an organizational and drafting tool, not legal advice.** All HR policies, handbooks, and compliance-related outputs should be reviewed by qualified employment law counsel before adoption. Employment law varies significantly by jurisdiction.

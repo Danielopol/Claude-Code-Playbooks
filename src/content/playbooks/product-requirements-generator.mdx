@@ -1,0 +1,111 @@
+---
+title: "Product Requirements Generator"
+description: "Create comprehensive PRDs from rough ideas, map user stories, define acceptance criteria, specify technical requirements, and set measurable success metrics."
+category: "market-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "davila7/claude-code-templates"
+tags: ["PRD", "product-requirements", "user-stories", "acceptance-criteria", "technical-specs", "product-management"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Transforms rough product ideas into structured, engineering-ready Product Requirements Documents. It generates complete PRDs with user story maps, detailed acceptance criteria, technical requirements, API contracts, success metrics, and launch criteria. Designed for product managers who need to go from "I have an idea" to "engineering can start building" without the usual weeks of back-and-forth.
+
+---
+
+## The Problem
+
+Product managers spend 40-60% of their time writing and rewriting requirements documents. Ideas start as loose notes, get refined through endless meetings, and often arrive at engineering missing critical details: edge cases nobody thought about, success metrics nobody defined, technical constraints nobody surfaced. The result is scope creep, rework, and shipped features that miss the mark because the requirements were incomplete from the start.
+
+---
+
+## The Fix
+
+Give Claude your rough idea, your target users, and your constraints. It generates a structured PRD that covers the angles you would have discovered during week two of refinement: edge cases, technical dependencies, acceptance criteria, data requirements, and measurable success definitions. You still own the product decisions. Claude handles the structured thinking and documentation so you can focus on strategy and stakeholder alignment.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above, then move the file:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Projects/product-docs/
+```
+
+### Step 2: Set Up Your Workspace
+
+```
+product-docs/
+├── CLAUDE.md
+├── prds/
+│   ├── drafts/
+│   └── approved/
+├── user-stories/
+├── technical-specs/
+└── metrics/
+```
+
+### Step 3: Launch Claude Code
+
+```bash
+cd ~/Projects/product-docs
+claude
+```
+
+Say: **"Create a PRD for a feature that lets users export their dashboard data as a scheduled PDF report"**
+
+---
+
+## Example Commands
+
+```
+"Create a PRD from this idea: [rough description]"
+"Map user stories for the [feature name] epic"
+"Generate acceptance criteria for [user story]"
+"What technical requirements should I consider for [feature]?"
+"Define success metrics for [feature/product]"
+"What edge cases am I missing in this PRD?"
+"Create a user story map for [user journey]"
+"Draft technical requirements for the API layer"
+"What should our launch criteria be?"
+"Review this PRD and identify gaps"
+"Prioritize these requirements using MoSCoW"
+"Write a one-pager summary of this PRD for executives"
+```
+
+---
+
+## Tips
+
+- **Start with the problem, not the solution** - Tell Claude who has the problem and what the pain is. Let the PRD framework surface the right solution structure
+- **Be specific about constraints** - Share your tech stack, timeline, team size, and known limitations upfront. Better constraints produce better requirements
+- **Iterate in layers** - Start with a high-level PRD, then ask Claude to drill into specific sections. Do not try to generate everything perfectly in one pass
+- **Include anti-requirements** - Explicitly state what is NOT in scope. This prevents scope creep better than any process
+- **Define success before building** - If you cannot measure whether the feature worked, you are not ready to build it
+- **Review with engineering early** - Use the generated technical requirements as a conversation starter with your engineering lead, not as the final word
+
+---
+
+## Troubleshooting
+
+**PRD is too generic**
+Provide more context: "Our users are enterprise IT admins managing 500+ devices. They use our web dashboard daily. Our backend is Python/Django with PostgreSQL"
+
+**Technical requirements are off base**
+Specify your stack: "We're a React frontend with Node.js microservices, PostgreSQL, and Redis. We deploy to AWS ECS"
+
+**User stories feel disconnected**
+Ask: "Create a user story map showing the full journey from [trigger] to [outcome], then break each step into stories"
+
+**Success metrics are not measurable**
+Ask: "Make every metric specific with a baseline, target, and measurement method. We use Mixpanel for analytics"
+
+**Missing edge cases**
+Ask: "What happens when [unusual scenario]? Walk through every error state and boundary condition for this feature"
+
+**PRD is too long for stakeholders**
+Ask: "Create a one-page executive summary of this PRD with just the problem, solution, scope, timeline, and success criteria"

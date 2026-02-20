@@ -1,0 +1,125 @@
+---
+title: "SEO Content Planner"
+description: "Build data-driven editorial calendars with keyword clustering, content gap analysis, search intent mapping, and content brief generation."
+category: "marketing-content"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "davila7/claude-code-templates"
+tags: ["SEO", "content-planning", "editorial-calendar", "keyword-research", "content-gap", "topic-clusters"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Turns raw keyword lists and competitor URLs into a structured editorial calendar. Claude clusters keywords by topic, maps search intent, identifies content gaps against competitors, and generates ready-to-assign content briefs complete with outlines, target word counts, and internal linking suggestions.
+
+---
+
+## The Problem
+
+Content teams waste hours in spreadsheets trying to group keywords, guess search intent, and figure out what to write next. Without a system, you end up with overlapping articles, missed opportunities, and no clear publishing roadmap.
+
+---
+
+## The Fix
+
+Hand Claude your keyword export (from Ahrefs, SEMrush, Google Search Console, or even a brainstorm list) and your top competitor URLs. It builds a full editorial plan: clustered topics, intent-mapped keywords, gap analysis, and actionable content briefs you can hand directly to writers.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Prepare Your Data
+
+Gather one or more of these:
+- Keyword CSV export (any SEO tool)
+- List of competitor blog URLs
+- Google Search Console performance export
+- A brainstorm list of topics your audience cares about
+
+### Step 3: Run the Planner
+
+```bash
+claude
+```
+
+Say: **"Build me an editorial calendar from my keyword data"**
+
+---
+
+## Example Commands
+
+```
+"Cluster these keywords by topic and search intent"
+"Find content gaps between my site and [competitor URL]"
+"Create a 3-month editorial calendar for [niche]"
+"Generate a content brief for the keyword cluster around [topic]"
+"Map search intent for all keywords in my export"
+"Prioritize topics by traffic potential and competition"
+"Suggest internal linking opportunities for my planned articles"
+```
+
+---
+
+## What Gets Built
+
+| Deliverable | Description |
+|-------------|-------------|
+| **Keyword Clusters** | Groups of related keywords mapped to single content pieces |
+| **Intent Map** | Each cluster tagged as informational, commercial, navigational, or transactional |
+| **Gap Analysis** | Topics competitors rank for that you do not cover |
+| **Editorial Calendar** | Month-by-month publishing schedule with priorities |
+| **Content Briefs** | Title, outline, target keywords, word count, linking plan per article |
+
+---
+
+## Example Output
+
+```markdown
+## Editorial Calendar — Q2 2026
+
+### Month 1: Foundation Content
+| Priority | Topic Cluster | Primary Keyword | Intent | Volume | Difficulty |
+|----------|---------------|-----------------|--------|--------|------------|
+| High | Remote hiring | "how to hire remote developers" | Informational | 2,400 | 35 |
+| High | Onboarding | "remote onboarding checklist" | Informational | 1,800 | 28 |
+| Medium | Compliance | "remote work tax implications" | Informational | 900 | 42 |
+
+### Content Brief: "How to Hire Remote Developers"
+- Target keywords: hire remote developers, remote hiring process, remote dev team
+- Search intent: Informational — reader wants a step-by-step guide
+- Suggested word count: 2,200-2,800
+- Outline: Intro → Define role requirements → Sourcing channels → Screening process → Interview framework → Offer and onboarding → Checklist
+- Internal links: → Onboarding checklist, → Remote work policy template
+- Competitor benchmark: Top 3 results average 2,500 words, include checklists
+```
+
+---
+
+## Tips
+
+- **Start with one competitor**: Analyzing too many at once creates noise; pick your closest rival first
+- **Volume is not everything**: A 200-volume keyword with commercial intent can outperform a 5,000-volume informational one
+- **Cluster before you plan**: Always group keywords before deciding on articles to avoid cannibalization
+- **Refresh quarterly**: Search trends shift; re-run the gap analysis every 90 days
+- **Include zero-volume terms**: New or niche queries often convert best and face less competition
+
+---
+
+## Troubleshooting
+
+**No keyword data available**
+Give Claude a list of topics and competitor URLs — it can reverse-engineer keyword targets from competitor content structure.
+
+**Too many keyword clusters**
+Say: "Limit to the top 20 clusters by combined search volume" to keep the calendar manageable.
+
+**Not sure which intent category fits**
+Claude defaults to the SERP layout heuristic: if top results are blog posts it is informational, if product pages it is commercial. Ask it to explain its reasoning for any cluster.
+
+**Clusters overlap**
+Ask: "Merge any clusters that could be covered in a single article" — Claude will consolidate and flag potential cannibalization risks.

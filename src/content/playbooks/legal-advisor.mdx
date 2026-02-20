@@ -1,0 +1,167 @@
+---
+title: "Legal Advisor"
+description: "Contract analysis, compliance guidance, legal risk assessment, terms of service review, NDA review, IP protection guidance, and regulatory requirement summaries."
+category: "legal-compliance"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "davila7/claude-code-templates"
+tags: ["legal", "contracts", "compliance", "risk-assessment", "NDA", "IP-protection", "terms-of-service", "regulatory"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Acts as an in-house legal research assistant that analyzes contracts, reviews terms of service, assesses legal risks, evaluates NDAs, provides IP protection guidance, and summarizes regulatory requirements. Delivers structured legal analysis with risk ratings, flagged clauses, and plain-language explanations so you can make informed decisions before engaging outside counsel.
+
+---
+
+## The Problem
+
+Small teams and solo founders face a constant stream of legal documents: vendor contracts, customer agreements, NDAs, privacy policies, terms of service, and regulatory filings. Each one carries hidden risks. Without a legal background, you either:
+
+- **Sign without reading** and hope for the best
+- **Spend hours deciphering** dense legal language yourself
+- **Pay $500+/hour** for an attorney to review every routine document
+- **Miss critical clauses** like auto-renewal traps, IP assignment provisions, or unlimited liability exposure
+
+Most legal issues are preventable with a structured first-pass review, but the volume of documents makes manual review impractical.
+
+---
+
+## The Fix
+
+This playbook gives Claude Code a comprehensive legal analysis framework. It performs structured first-pass review of any legal document, flags risks by severity, explains clauses in plain language, and generates actionable recommendations. It handles contracts, NDAs, ToS agreements, IP matters, and regulatory compliance checks -- all with consistent methodology.
+
+**Important:** This is a research and organization tool. It does not replace qualified legal counsel. Always have an attorney review material decisions.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Legal Workspace
+
+```bash
+mkdir -p ~/Documents/Legal/{contracts,ndas,tos-reviews,ip-matters,regulatory,analysis}
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Legal/
+```
+
+### Step 3: Add Documents for Review
+
+Place any legal documents (PDF, DOCX, TXT) in the appropriate subfolder:
+```
+Legal/
+├── CLAUDE.md
+├── contracts/
+│   ├── vendor-agreement-acme.pdf
+│   └── customer-msa-draft.docx
+├── ndas/
+│   ├── mutual-nda-partner.pdf
+│   └── employee-nda-template.docx
+├── tos-reviews/
+│   └── saas-vendor-tos.pdf
+├── ip-matters/
+│   ├── license-agreement.pdf
+│   └── ip-assignment-contractor.docx
+├── regulatory/
+│   └── state-requirements-summary.md
+└── analysis/
+    └── (generated reports appear here)
+```
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/Legal
+claude
+```
+
+Then ask: **"Review the vendor agreement in contracts/ and flag any concerning clauses"**
+
+---
+
+## Example Commands
+
+### Contract Analysis
+```
+"Review the vendor agreement in contracts/vendor-agreement-acme.pdf"
+"Compare this MSA draft against standard market terms"
+"What are the riskiest clauses in this contract?"
+"Explain the indemnification section in plain language"
+"What obligations does this contract create for us?"
+```
+
+### NDA Review
+```
+"Review this NDA and flag any non-standard provisions"
+"Is this NDA mutual or one-sided? What's missing?"
+"How long does the confidentiality obligation last?"
+"Can I share technical specs with contractors under this NDA?"
+"Compare this NDA to our standard template"
+```
+
+### Terms of Service Review
+```
+"Review this SaaS vendor's ToS for concerning provisions"
+"What data rights does this service claim over our content?"
+"Flag any auto-renewal or price increase clauses"
+"What happens to our data if we cancel?"
+"Summarize the liability limitations in plain language"
+```
+
+### IP Protection
+```
+"Review this contractor agreement for IP ownership issues"
+"Does this license agreement let us sublicense to clients?"
+"What IP rights are we assigning vs licensing?"
+"Check if our open source usage conflicts with this license"
+"Draft an IP ownership clause for our contractor template"
+```
+
+### Regulatory Compliance
+```
+"What are the key requirements of [specific regulation]?"
+"Check this policy against CCPA requirements"
+"Summarize our compliance obligations for [industry]"
+"What disclosures are required for [activity]?"
+"Create a compliance checklist for [regulation]"
+```
+
+---
+
+## Tips
+
+1. **Provide context** -- Tell Claude your role (licensor vs licensee, vendor vs customer) so risk analysis reflects your position
+2. **Include your standards** -- Add an `acceptable-terms.md` file listing your typical terms so Claude can flag deviations
+3. **Review in batches** -- Group similar documents (all NDAs, all vendor contracts) for consistent analysis
+4. **Track decisions** -- When you accept non-standard terms, note why in your analysis folder for future reference
+5. **Update templates regularly** -- As your business evolves, update your standard terms and red-flag lists
+6. **Specify jurisdiction** -- Legal implications vary by state and country; always mention the governing law
+7. **Cross-reference** -- Ask Claude to check if a new contract conflicts with existing agreements in your folder
+
+---
+
+## Troubleshooting
+
+**Analysis too generic**
+Add specific context: your industry, company size, risk tolerance, and which party you represent. The more context Claude has, the more targeted the analysis.
+
+**Missing key clauses**
+Ask Claude to check for specific provisions: "Does this contract contain a change of control clause?" or "Is there a most-favored-nation provision?"
+
+**Can't read PDF**
+Ensure the PDF contains selectable text (not scanned images). If it is a scanned document, run OCR first or convert to a text-based format.
+
+**Conflicting interpretations**
+Legal language is inherently ambiguous. When Claude flags ambiguity, that is the finding -- note it for attorney review.
+
+**Too many findings to act on**
+Ask: "Prioritize the top 5 issues by financial impact" or "Which clauses are deal-breakers vs nice-to-negotiate?"
+
+**Need jurisdiction-specific guidance**
+Always specify the governing law state or country. Say: "Analyze this under California law" or "This contract is governed by English law."

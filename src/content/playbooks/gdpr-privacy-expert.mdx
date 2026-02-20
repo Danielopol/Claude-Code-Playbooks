@@ -1,0 +1,162 @@
+---
+title: "GDPR Privacy Expert"
+description: "Run GDPR compliance assessments, generate DPIAs, map data processing activities, build breach protocols, and create privacy policies with consent frameworks."
+category: "legal-compliance"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "davila7/claude-code-templates"
+tags: ["GDPR", "privacy", "DPIA", "compliance", "data-protection", "consent"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Transforms Claude Code into a GDPR and data privacy operations assistant. Run compliance gap analyses, generate Data Protection Impact Assessments (DPIAs), map and register all data processing activities, build breach notification timelines, design consent management frameworks, draft privacy policies and cookie notices, create data subject rights request workflows, and review third-party data processor agreements.
+
+---
+
+## The Problem
+
+GDPR compliance is a moving target with serious financial consequences. Organizations process personal data across dozens of systems but lack a central view of what data goes where. DPIAs take weeks to produce. Breach notification deadlines (72 hours to supervisory authorities) demand pre-built response plans that most companies do not have. Privacy policies are copied from other websites and fail to reflect actual processing activities. Consent mechanisms are bolted on without a coherent framework. Data subject access requests arrive and teams scramble to figure out where the data lives. Third-party processor agreements sit unsigned or contain non-compliant terms.
+
+---
+
+## The Fix
+
+Drop the CLAUDE.md template into a folder with your existing privacy documentation (or start from scratch) and Claude Code becomes your privacy operations engine. It systematically audits your processing activities against GDPR requirements, generates DPIAs following the Article 35 framework, builds Records of Processing Activities (ROPA) compliant with Article 30, drafts breach response playbooks with precise timelines, and creates data subject request workflows. Every output references specific GDPR articles and flags items needing Data Protection Officer or legal review.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Privacy Workspace
+
+```bash
+mkdir -p ~/Documents/Privacy-Compliance
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Privacy-Compliance/
+```
+
+### Step 3: Add Existing Documents (Optional)
+
+```
+Privacy-Compliance/
+├── CLAUDE.md
+├── existing-docs/
+│   ├── current-privacy-policy.pdf
+│   ├── processor-agreements/
+│   └── consent-records/
+├── data-maps/
+└── output/
+```
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/Privacy-Compliance
+claude
+```
+
+### Step 5: Start Your Assessment
+
+Say: **"Run a GDPR compliance gap analysis for our SaaS platform that processes EU customer data"**
+
+---
+
+## Example Commands
+
+```
+"Run a GDPR compliance gap analysis for our e-commerce platform"
+"Generate a DPIA for our new AI-powered recommendation engine"
+"Map all data processing activities for our CRM system"
+"Create a Record of Processing Activities (ROPA) for our organization"
+"Build a 72-hour breach notification protocol with response templates"
+"Design a consent management framework for our marketing stack"
+"Draft a privacy policy for a B2B SaaS product serving EU customers"
+"Generate a cookie notice compliant with ePrivacy and GDPR requirements"
+"Create a data subject access request (DSAR) workflow"
+"Create templates for right-to-erasure and data portability requests"
+"Review this data processor agreement for GDPR Article 28 compliance"
+"Build a data transfer impact assessment for US-EU data flows"
+```
+
+---
+
+## What You Get
+
+| Document | Contents |
+|----------|----------|
+| **Gap Analysis** | Article-by-article compliance assessment with risk ratings and remediation plan |
+| **DPIA** | Full Data Protection Impact Assessment following Article 35 methodology |
+| **ROPA** | Record of Processing Activities compliant with Article 30 |
+| **Breach Protocol** | 72-hour response playbook with notification templates for authorities and data subjects |
+| **Consent Framework** | Consent collection, storage, withdrawal, and audit mechanisms |
+| **Privacy Policy** | Plain-language policy referencing actual processing activities and legal bases |
+| **Cookie Notice** | Categorized cookie inventory with consent banner requirements |
+| **DSAR Workflows** | Step-by-step processes for access, erasure, portability, and rectification requests |
+| **Processor Reviews** | Article 28 compliance checklist for third-party data processor agreements |
+
+---
+
+## DPIA Example
+
+**Input:**
+```
+Generate a DPIA for our new employee monitoring system
+that tracks screen activity and keyboard usage for remote workers
+across our EU offices in Germany and France.
+```
+
+**Output includes:**
+- Systematic description of processing operations and purposes
+- Assessment of necessity and proportionality (Article 35(7)(b))
+- Risk assessment matrix for data subject rights and freedoms
+- Identified risks: profiling, automated decision-making, employee surveillance
+- Mitigation measures: data minimization, retention limits, transparency controls
+- DPO consultation requirements and supervisory authority notification triggers
+- Country-specific flags for German works council (Betriebsrat) and French CNIL requirements
+
+---
+
+## Tips
+
+- **Start with data mapping**: Before policies, understand what data you actually process and where it flows
+- **Specify your legal bases**: Tell Claude which lawful bases you rely on (consent, legitimate interest, contract) for more accurate outputs
+- **Include your tech stack**: List the tools and vendors you use so data flows can be mapped accurately
+- **Think cross-border**: Specify which EU member states are involved -- requirements vary (e.g., German Bundesdatenschutzgesetz adds requirements beyond base GDPR)
+- **Pair with your DPO**: Use outputs as drafts for your Data Protection Officer to review, not as final documents
+- **Layer in ePrivacy**: For cookie and electronic communication matters, ask Claude to address ePrivacy Directive requirements alongside GDPR
+- **Keep the ROPA alive**: Re-run the processing activity mapping quarterly as systems and vendors change
+
+---
+
+## Troubleshooting
+
+**Output too generic / not specific to our processing**
+Provide details: your specific data categories, processing purposes, systems used, and countries involved. The more context, the more precise the output.
+
+**DPIA does not address our specific risks**
+Describe the technology in detail: "We use facial recognition for access control in our Berlin office" will produce much better risk analysis than "biometric processing."
+
+**Breach protocol does not match our incident response process**
+Share your existing incident response plan or IT escalation procedures and ask Claude to align the breach notification protocol with your current workflows.
+
+**Privacy policy reads like a legal document**
+Ask: "Rewrite this privacy policy in plain language at an 8th-grade reading level while keeping all required GDPR disclosures."
+
+**Consent framework does not cover all our use cases**
+List every purpose you collect consent for: marketing emails, analytics cookies, third-party sharing, profiling. Ask Claude to map each to a granular consent mechanism.
+
+**Processor agreement review misses key clauses**
+Provide the full agreement text and ask: "Review this against every requirement in GDPR Article 28(3) and flag missing or non-compliant clauses."
+
+---
+
+## Important Disclaimer
+
+**This is a compliance drafting and organizational tool, not legal advice.** GDPR compliance involves complex legal judgments that vary by jurisdiction, industry, and specific processing activities. All outputs should be reviewed by a qualified data protection lawyer or your organization's Data Protection Officer before implementation. Fines for non-compliance can reach 4% of annual global turnover or EUR 20 million.

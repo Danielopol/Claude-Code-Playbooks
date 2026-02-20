@@ -1,0 +1,163 @@
+---
+title: "Sales Engineer Toolkit"
+description: "Build technical discovery frameworks, generate RFP responses with win themes, create demo scripts mapped to pain points, plan POCs with success criteria, and handle competitive objections."
+category: "sales-revenue"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "davila7/claude-code-templates"
+tags: ["sales-engineering", "RFP", "demos", "POC", "technical-sales", "solution-design"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Turns Claude into a sales engineering partner that builds technical discovery question frameworks, generates RFP/RFI responses with win themes and differentiators, prepares demo scripts with pain-point-to-feature mapping, plans POCs with measurable success criteria, creates competitive objection handling playbooks, and drafts technical architecture diagrams for proposals.
+
+---
+
+## The Problem
+
+Sales engineers juggle dozens of deals at once. Every RFP demands hours of copy-pasting from outdated response libraries. Demo prep means scrambling to remember which features map to which pain points. POC planning is ad-hoc with vague success criteria that let deals stall. Competitive intel lives in someone's head, not in a structured playbook the whole team can use.
+
+---
+
+## The Fix
+
+Give Claude your product capabilities, competitor landscape, and prospect context. It builds structured discovery question trees, generates tailored RFP responses that highlight your differentiators, creates demo run-of-show documents with talk tracks tied to specific pain points, and produces POC plans with clear milestones and go/no-go criteria.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Prepare Your Inputs
+
+Gather your sales engineering assets:
+- Product capability matrix or feature list
+- Competitor comparison notes
+- Past RFP responses (winning ones preferred)
+- Common prospect pain points by segment
+- Demo environment access details
+
+### Step 3: Define Your Deal Context
+
+Tell Claude about the current opportunity:
+
+```markdown
+# Deal Context
+- Prospect: [Company name]
+- Industry: [Sector]
+- Use case: [Primary need]
+- Decision makers: [Titles and roles]
+- Competitors in deal: [Who you are against]
+- Timeline: [Expected decision date]
+- Pain points heard so far: [List from discovery]
+```
+
+### Step 4: Start Building
+
+```bash
+claude
+```
+
+Say: **"Build a technical discovery framework for this prospect"**
+
+---
+
+## Discovery Question Framework
+
+Claude generates tiered discovery questions:
+
+| Phase | Focus | Example Questions |
+|-------|-------|-------------------|
+| **Level 1: Situation** | Current state | "Walk me through your current workflow for X" |
+| **Level 2: Problem** | Pain identification | "Where does that process break down at scale?" |
+| **Level 3: Implication** | Business impact | "What does that cost you in hours/revenue per quarter?" |
+| **Level 4: Technical** | Architecture fit | "How does your current stack handle Y integration?" |
+| **Level 5: Vision** | Future state | "If you could redesign this from scratch, what would it look like?" |
+
+---
+
+## RFP Response Structure
+
+```markdown
+## Question: [RFP Question Text]
+
+### Direct Answer
+[Concise yes/no or capability statement]
+
+### How We Do It
+[Technical explanation with specifics]
+
+### Win Theme
+[Why our approach is better than alternatives]
+
+### Differentiator
+[What only we can do]
+
+### Proof Point
+[Customer example or metric]
+```
+
+---
+
+## Demo Script Builder
+
+Claude creates demo run-of-show documents:
+
+- **Opening hook**: Pain point restatement in their words
+- **Feature sequence**: Ordered by prospect priority, not product menu
+- **Talk track**: What to say at each transition
+- **Wow moments**: Pre-planned spots that map to their top 3 pain points
+- **Objection traps**: Setups that preempt competitor claims
+- **Close sequence**: Summary tied back to business outcomes
+
+---
+
+## Example Commands
+
+```
+"Build a technical discovery question set for [industry/use case]"
+"Generate RFP responses for these 20 questions with win themes"
+"Create a 30-minute demo script for [prospect] focusing on [pain points]"
+"Plan a 2-week POC with success criteria for [use case]"
+"Build a competitive objection handler for [Competitor] vs us"
+"Draft a technical architecture diagram description for [integration scenario]"
+"Create a mutual evaluation plan for [deal]"
+"Score this RFP for fit - should we respond or no-bid?"
+"Build a champion enablement deck for [internal advocate]"
+"Generate a technical win/loss analysis template"
+```
+
+---
+
+## Tips
+
+- **Lead with their pain, not your features**: Discovery questions should uncover business impact before you demo anything. Claude orders features by prospect priority.
+- **Win themes over feature lists**: Every RFP answer should reinforce 2-3 win themes consistently. Tell Claude your themes upfront.
+- **Demo the delta**: Focus demo time on what differentiates you. Claude flags commodity features to speed through and differentiators to linger on.
+- **POC success criteria must be measurable**: Avoid vague criteria like "easy to use." Claude forces quantifiable metrics like "admin can configure X in under 10 minutes."
+- **Competitive intel decays fast**: Update your competitor notes quarterly. Claude timestamps claims so you know what is stale.
+- **Tailor by persona**: A CTO demo differs from a VP Ops demo. Tell Claude who is in the room.
+
+---
+
+## Troubleshooting
+
+**RFP responses sound generic**
+Add more product specifics: "Here is our actual capability matrix for this area, rewrite using our terminology"
+
+**Demo script does not flow naturally**
+Provide transition context: "The prospect cares most about X, then Y, then Z - reorder the flow"
+
+**POC criteria too easy or too hard**
+Calibrate with past data: "Here is what a successful POC looked like for a similar customer, use comparable metrics"
+
+**Competitive objections feel weak**
+Feed real battle cards: "Here is what [Competitor] actually claims on their site, build counter-arguments"
+
+**Discovery questions too surface-level**
+Add industry context: "These are [industry] buyers - they already know the basics, go deeper on [technical area]"

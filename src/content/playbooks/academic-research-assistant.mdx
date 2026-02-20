@@ -1,0 +1,227 @@
+---
+title: "Academic Research Assistant"
+description: "Automate literature reviews with structured search strategies, abstract screening, citation management, methodology comparison, and research gap identification."
+category: "academic-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "davila7/claude-code-templates"
+tags: ["academic", "literature-review", "citations", "methodology", "research-questions", "abstracts"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Handles the grunt work of academic research: building and executing search strategies, screening abstracts for relevance, managing citations and bibliographies, comparing methodologies across papers, refining research questions, mapping theoretical frameworks, and identifying gaps in existing literature. It transforms weeks of manual literature review work into a structured, repeatable process with consistent quality.
+
+This is not a shortcut for reading papers. It is a system for organizing what you read so that your literature review is rigorous, comprehensive, and well-structured from the start.
+
+## The Problem
+
+Academic literature reviews are brutal. You search databases, skim hundreds of abstracts, read dozens of papers, track citations in a spreadsheet, and try to remember which paper used which methodology. By the time you sit down to write, you have scattered notes, inconsistent assessments, and a nagging feeling you missed something important. Research questions drift. Methodology comparisons are ad hoc. And finding the actual gap in the literature — the thing that justifies your research — requires synthesizing everything at once.
+
+## The Fix
+
+This playbook creates a structured research assistant that maintains a living database of your literature. Every paper gets a standardized assessment: abstract screening score, methodology classification, key findings, limitations, and relevance to your research questions. The system tracks your search strategies so you can demonstrate systematic coverage. It compares methodologies across papers in a structured table. It maps theoretical frameworks to show which lenses have been applied. And it identifies gaps by analyzing what the collective literature does not cover — giving you a defensible foundation for your own research contribution.
+
+## Quick Start
+
+1. Create your research project structure:
+
+```bash
+mkdir -p ~/academic-research/{papers,screening,search-strategies,analysis,bibliography,output}
+cd ~/academic-research
+```
+
+2. Create a `research-questions.md` file in the project root with your initial research questions.
+
+3. Download the CLAUDE.md template below and save it to `~/academic-research/CLAUDE.md`.
+
+4. Launch Claude Code:
+
+```bash
+cd ~/academic-research
+claude
+```
+
+5. Define your search strategy:
+
+```
+/search-strategy — Help me build a systematic search strategy for my research questions
+```
+
+6. Start screening papers:
+
+```
+/screen — Here is the abstract for [paper title]: [paste abstract]. Score it for relevance.
+```
+
+## The CLAUDE.md Template
+
+```markdown
+# Academic Research Assistant
+
+## Role
+You are an academic research assistant specializing in systematic literature reviews. You help build search strategies, screen abstracts, manage citations, compare methodologies, refine research questions, map theoretical frameworks, and identify research gaps. You maintain rigorous academic standards and consistent assessment criteria across all papers.
+
+## Workflow
+
+### Phase 1: Research Question Refinement
+Work with `research-questions.md` in the project root:
+- Start with broad questions and iteratively narrow them
+- For each question, identify: population, intervention/phenomenon, comparison, outcome (PICO/PICO framework where applicable)
+- Track question evolution with dated entries
+- Link each question to the theoretical framework it implies
+
+### Phase 2: Search Strategy Design
+Document search strategies in `search-strategies/`:
+- For each database or source, create a strategy file: `search-strategies/[database-name].md`
+- Include: search terms, Boolean operators, filters (date range, language, peer-reviewed)
+- Record the number of results returned for each query
+- Track which strategies yielded the most relevant results
+- Maintain a master search log in `search-strategies/search-log.md` with dates, databases, queries, and result counts
+
+### Phase 3: Abstract Screening
+Screen papers in `screening/`:
+- For each paper, create or update the screening tracker: `screening/screening-tracker.md`
+- Score each abstract on relevance (1-5), methodology fit (1-5), and recency (1-5)
+- Decision: Include / Exclude / Maybe — with one-line justification
+- Track inclusion/exclusion statistics for PRISMA flow diagram data
+- Store detailed notes for included papers in `papers/[author-year].md`
+
+### Phase 4: Full Paper Assessment
+For each included paper, create a detailed assessment in `papers/`:
+- Citation: full APA/Chicago/IEEE citation (match user's preferred style)
+- Research question(s) addressed by the paper
+- Theoretical framework used
+- Methodology: design, sample, data collection, analysis method
+- Key findings: numbered list of main results
+- Limitations: stated by authors + your own assessment
+- Relevance to your research questions (with specific connections)
+- Key quotes with page numbers
+
+### Phase 5: Methodology Comparison
+Build methodology comparison tables in `analysis/methodology-comparison.md`:
+- Compare research designs across all included papers
+- Track sample sizes, populations, geographic contexts
+- Note which analytical methods are most common
+- Identify methodological strengths and weaknesses of the field
+- Flag papers that use novel or underrepresented approaches
+
+### Phase 6: Theoretical Framework Mapping
+Map frameworks in `analysis/framework-map.md`:
+- List all theoretical frameworks used across the literature
+- Count how many papers use each framework
+- Note which frameworks are applied to which research questions
+- Identify frameworks that could apply but have not been used
+- Map relationships and conflicts between frameworks
+
+### Phase 7: Research Gap Identification
+Document gaps in `analysis/gaps.md`:
+- Methodological gaps: approaches not yet tried
+- Population gaps: groups not studied
+- Geographic gaps: regions not represented
+- Temporal gaps: time periods not covered
+- Theoretical gaps: frameworks not yet applied
+- For each gap, assess: significance, feasibility of addressing, potential contribution
+- Connect gaps to your research questions
+
+### Phase 8: Bibliography Generation
+Maintain bibliography in `bibliography/`:
+- `bibliography/references.md` — Full reference list in the chosen citation style
+- `bibliography/annotated.md` — Annotated bibliography with 2-3 sentence summaries
+- Support APA 7th, Chicago, IEEE, and Harvard styles
+- Track which papers cite which other papers (citation network)
+
+## Output Format
+- Screening tracker: markdown table with columns for Author, Year, Title, Relevance, Method Fit, Recency, Decision, Justification
+- Paper assessments: structured markdown with consistent headings
+- Methodology comparison: markdown table sortable by any column
+- Framework map: hierarchical list with paper counts
+- Gaps: numbered list with significance ratings (High/Medium/Low)
+- Bibliography: formatted text in the chosen citation style
+
+## Commands
+- "/search-strategy" — Design or refine a search strategy for a specific database
+- "/screen [abstract]" — Screen an abstract and score for relevance
+- "/assess [paper details]" — Create a full paper assessment
+- "/compare-methods" — Generate methodology comparison table across all assessed papers
+- "/frameworks" — Map theoretical frameworks across the literature
+- "/gaps" — Identify research gaps from the current literature
+- "/bibliography [style]" — Generate bibliography in specified style (default: APA 7th)
+- "/annotated" — Generate annotated bibliography
+- "/refine-rq" — Revisit and refine research questions based on current literature
+- "/prisma" — Generate PRISMA flow diagram data (search results, screened, included, excluded)
+- "/status" — Show progress: papers screened, included, assessed, and coverage by research question
+- "/cite [topic]" — Find papers in the database that support a specific claim or topic
+
+## Quality Checklist
+- [ ] Research questions follow PICO or equivalent structured format
+- [ ] Search strategy is documented with reproducible queries and result counts
+- [ ] Every screened abstract has a relevance score and inclusion decision with justification
+- [ ] Every included paper has a full structured assessment
+- [ ] Methodology comparison covers all included papers
+- [ ] Theoretical frameworks are mapped with paper counts
+- [ ] Research gaps are identified with significance ratings
+- [ ] Bibliography is complete and consistently formatted
+- [ ] PRISMA data is available for flow diagram
+- [ ] No paper is cited without a full assessment on file
+
+## Notes
+- Screen abstracts in batches of 10-20 for consistency in scoring
+- Re-run /gaps after every 5 new papers added — gaps shift as the literature base grows
+- The methodology comparison table is invaluable during the writing phase — keep it updated
+- Citation style should be set once at the start and used consistently
+- Research questions should be revisited after Phase 3 — screening often reveals that the original questions need adjustment
+- Store PDFs or links to full papers outside this system; the assessment files here are structured notes, not replacements for reading
+```
+
+## Example Commands
+
+```
+"/search-strategy — I'm researching the impact of AI tutoring systems on undergraduate STEM learning outcomes. Help me design search strategies for PubMed, ERIC, and Google Scholar."
+
+"/screen — Title: 'Adaptive AI Tutoring in Introductory Physics'. Abstract: [paste abstract]. Score for relevance to my research questions."
+
+"/assess — Here are my notes on Smith & Jones 2024: [paste key sections]. Create a full assessment with methodology classification and relevance mapping."
+
+"/compare-methods — Show me a table comparing all assessed papers by research design, sample size, analysis method, and key findings."
+
+"/frameworks — Which theoretical frameworks appear across my literature? Which ones are overrepresented or underrepresented?"
+
+"/gaps — Based on the 22 papers I've assessed, what are the significant gaps in the literature? Rate each by significance and feasibility."
+
+"/bibliography apa — Generate a complete APA 7th edition reference list for all included papers."
+
+"/prisma — Give me the numbers for my PRISMA flow diagram: total identified, screened, eligible, included, with exclusion reasons."
+
+"/refine-rq — Based on what I've read so far, should I narrow or adjust my research questions? What does the literature suggest?"
+
+"/cite self-regulated learning — Which papers in my database discuss self-regulated learning? What do they say?"
+```
+
+## Tips
+
+- **Start with the search strategy, not the reading.** A systematic search strategy documented upfront protects you from reviewer criticism about cherry-picking sources. It also helps you estimate the scope of your review.
+- **Screen before you read.** Abstract screening at scale saves enormous time. A paper scoring 2/5 on relevance does not deserve a full read. Be disciplined about the inclusion threshold.
+- **Assessment consistency matters.** The structured paper assessment template ensures you extract the same information from every paper. This makes the methodology comparison and gap analysis possible.
+- **Revisit research questions after screening.** The literature often reveals that your initial questions were too broad, too narrow, or slightly off-target. Phase 3 is the natural checkpoint for refinement.
+- **The gap analysis is your contribution.** In academic research, showing what has NOT been studied is just as important as summarizing what has. A well-documented gap directly justifies your own research.
+- **Use /cite during writing.** When drafting your literature review, use /cite to quickly find which papers support specific claims. This is faster than searching through individual assessment files.
+
+## Troubleshooting
+
+**Problem**: Abstract screening scores are inconsistent across batches
+
+**Solution**: Before each screening batch, re-read your inclusion/exclusion criteria and the scoring rubric in the template. If scores have drifted, re-screen the borderline cases (scores of 3) from earlier batches. Consistency improves when you screen in larger batches rather than one at a time.
+
+**Problem**: The methodology comparison table is too large to be useful
+
+**Solution**: Split the comparison by research design type. Create separate tables for quantitative, qualitative, and mixed-methods studies. Or filter to only papers scoring 4-5 on relevance. You can also ask Claude to highlight the 3-4 most common and 2-3 most unusual methodological approaches.
+
+**Problem**: Research questions keep changing as I read more
+
+**Solution**: This is normal and expected. Track each version of your research questions with a date in `research-questions.md`. After 15-20 papers, your questions should stabilize. If they are still shifting after 30 papers, your topic scope may be too broad — consider splitting into sub-questions.
+
+**Problem**: Cannot find enough papers in a specific area
+
+**Solution**: Run /gaps to confirm this is a genuine gap and not a search strategy issue. Try alternative search terms, check reference lists of the most relevant papers you do have (backward snowballing), and search for papers that cite those key papers (forward snowballing). Document the sparse results as evidence of the gap.

@@ -1,0 +1,110 @@
+---
+title: "Scrum Master Coach"
+description: "Facilitate sprint ceremonies, coach agile practices, run effective retrospectives, remove impediments, track team health metrics, and generate ceremony templates."
+category: "project-management"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "davila7/claude-code-templates"
+tags: ["scrum", "agile", "retrospective", "sprint", "coaching", "team-health", "ceremonies"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Serves as your Scrum Master co-pilot. It generates ceremony agendas and facilitation guides, provides retrospective formats that keep the team engaged, helps you identify and remove impediments systematically, tracks team health metrics over time, and coaches you on agile principles when situations get tricky. Built for practicing scrum masters who want to raise their game, not for passing a certification exam.
+
+---
+
+## The Problem
+
+Scrum masters wear too many hats: facilitator, coach, impediment-remover, shield, and metrics tracker. Retros get stale when you use the same format every sprint. Stand-ups drift into status meetings. You spend hours preparing ceremony materials instead of actually coaching the team. And when an organizational impediment shows up, you need structured approaches to escalate it effectively.
+
+---
+
+## The Fix
+
+Place a CLAUDE.md template in your scrum workspace and let Claude handle the ceremony prep and documentation. Get fresh retrospective formats tailored to your team's current challenges, structured impediment logs with escalation paths, team health dashboards, and coaching prompts for common situations. You focus on reading the room and facilitating; Claude handles the frameworks and paperwork.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above, then move it:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Projects/scrum-workspace/
+```
+
+### Step 2: Set Up Your Workspace
+
+```
+scrum-workspace/
+├── CLAUDE.md
+├── ceremonies/
+│   ├── stand-ups/
+│   ├── sprint-planning/
+│   ├── sprint-reviews/
+│   └── retrospectives/
+├── impediments/
+├── metrics/
+│   ├── velocity/
+│   └── team-health/
+└── coaching/
+```
+
+### Step 3: Launch Claude Code
+
+```bash
+cd ~/Projects/scrum-workspace
+claude
+```
+
+Say: **"Help me prepare a retrospective for a team struggling with missed commitments"**
+
+---
+
+## Example Commands
+
+```
+"Generate a retrospective format for a team with low morale"
+"Create a sprint planning agenda for a 2-week sprint"
+"Help me facilitate a stand-up that's turning into a status meeting"
+"Track this impediment: [description] - suggest escalation steps"
+"Build a team health check survey for this sprint"
+"Coach me on handling a team member who dominates retro discussions"
+"Create a sprint review agenda with demo order"
+"What metrics should I track for a team transitioning to scrum?"
+"Generate a definition of done template for our team"
+"Help me prepare talking points for removing an organizational blocker"
+```
+
+---
+
+## Tips
+
+- **Rotate retro formats** - Ask Claude for a different format each sprint to prevent retro fatigue
+- **Customize for your team** - Share context like team size, maturity level, and current pain points so frameworks match your reality
+- **Track patterns over time** - Feed past retro action items back to Claude to identify recurring themes the team has not resolved
+- **Prepare, do not script** - Use ceremony templates as facilitation guides, not rigid scripts. Read the room and adapt.
+- **Coach, do not dictate** - When asking for coaching advice, specify the situation fully. Claude can suggest questions to ask the team rather than answers to give them
+- **Measure what matters** - Focus on 3-5 metrics max. More metrics means less attention to each one.
+
+---
+
+## Troubleshooting
+
+**Retros feel repetitive**
+Ask: "Give me 5 retrospective formats we haven't used. Our team is 6 people, mature with scrum, and our current challenge is cross-team dependencies"
+
+**Stand-ups are running long**
+Ask: "Help me redesign our stand-up format for a team of 9 where meetings consistently run over 15 minutes"
+
+**Team resists scrum practices**
+Ask: "Coach me on introducing [practice] to a team that sees it as overhead. They've been doing waterfall for 3 years"
+
+**Metrics feel meaningless**
+Ask: "What metrics actually help a [team size] team improve? We're currently tracking [current metrics] and nobody looks at them"
+
+**Impediment is stuck at management level**
+Ask: "Help me build a business case for removing [impediment]. The impact is [description] and it's been unresolved for [duration]"

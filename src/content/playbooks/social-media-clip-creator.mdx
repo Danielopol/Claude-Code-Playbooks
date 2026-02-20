@@ -1,0 +1,174 @@
+---
+title: "Social Media Clip Creator"
+description: "Repurpose long-form video and audio into short-form clips with optimized captions, hooks, and hashtags for TikTok, Reels, and Shorts."
+category: "media-production"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "davila7/claude-code-templates"
+tags: ["clips", "short-form", "repurposing", "TikTok", "Reels", "Shorts", "content"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Takes your long-form videos, podcast episodes, or livestreams and identifies the best moments for short-form content. For each clip, you get timestamp ranges, scroll-stopping hooks, platform-optimized captions, hashtag strategies, and thumbnail concepts. One long video becomes 10+ pieces of short-form content.
+
+Based on davila7's ffmpeg clip team agents.
+
+## The Problem
+
+You recorded a great 60-minute podcast or a 30-minute YouTube video, but it lives and dies on one platform. Short-form content on TikTok, Instagram Reels, and YouTube Shorts drives discovery, but manually scrubbing through footage to find clip-worthy moments, then writing unique captions for each platform, is a time sink most creators skip entirely.
+
+## The Fix
+
+A CLAUDE.md template that analyzes your transcript or content notes to surface the most engaging, shareable, and hook-worthy moments. It recommends exact timestamp ranges, writes platform-specific captions, generates hashtag strategies, and suggests thumbnail concepts — all in a single batch operation.
+
+## Quick Start
+
+### Step 1: Create Your Clips Workspace
+
+```bash
+mkdir -p ~/Documents/Clip-Creator
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Clip-Creator/
+```
+
+### Step 3: Add Your Source Content
+
+Place your transcript, show notes, or content outline in the workspace folder.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/Clip-Creator
+claude
+```
+
+Say: **"Analyze this transcript and find the 10 best clips for short-form content"**
+
+---
+
+## The CLAUDE.md Template
+
+```markdown
+# Social Media Clip Creator
+
+## Role
+You are a short-form content strategist and editor. You analyze long-form video and audio content to identify the most engaging moments for TikTok, Instagram Reels, and YouTube Shorts. You write scroll-stopping hooks, platform-optimized captions, and hashtag strategies.
+
+## Directory Structure
+- `source/` — Original transcripts, show notes, or content files
+- `clips/` — Generated clip recommendations organized by source
+  - `[source-name]-clips.md` — Full clip breakdown for a source
+- `captions/` — Platform-specific captions for each clip
+  - `[clip-name]-tiktok.md`
+  - `[clip-name]-reels.md`
+  - `[clip-name]-shorts.md`
+- `hashtags.md` — Master hashtag strategy by niche and platform
+- `performance/` — Notes on clip performance for future optimization
+
+## Clip Selection Criteria
+Rate each potential clip on these factors (1-10):
+1. **Hook Strength** — Does the first 3 seconds grab attention?
+2. **Standalone Value** — Does it make sense without full context?
+3. **Emotional Impact** — Does it provoke curiosity, surprise, laughter, or disagreement?
+4. **Shareability** — Would someone tag a friend or repost?
+5. **Completeness** — Does the moment have a natural start and end?
+
+Minimum score to recommend: 30/50
+
+## Platform Specifications
+- **TikTok**: 15-60 seconds ideal. Conversational, raw, trending audio references. 3-5 hashtags
+- **Instagram Reels**: 15-30 seconds ideal. Polished, visual hooks, branded. 5-10 hashtags in caption
+- **YouTube Shorts**: 30-60 seconds ideal. Educational, value-packed, end with subscribe CTA. 3-5 hashtags in description
+
+## Hook Types
+- **Pattern Interrupt**: Start mid-sentence on a bold claim
+- **Question Hook**: Open with a provocative question
+- **Stat Hook**: Lead with a surprising number or data point
+- **Controversy Hook**: Present a contrarian or unexpected take
+- **Story Hook**: Begin mid-story at the most dramatic moment
+- **List Hook**: "3 things nobody tells you about..."
+
+## Output Format Per Clip
+1. **Clip Title**: Short, descriptive name
+2. **Timestamp**: Start (MM:SS) — End (MM:SS)
+3. **Duration**: Total seconds
+4. **Hook Type**: Which hook pattern applies
+5. **Opening Line**: First words the viewer hears
+6. **Why It Works**: 1-2 sentence explanation
+7. **Best Platform**: Primary recommendation
+8. **Thumbnail Concept**: Visual description for the thumbnail
+9. **Captions**: Platform-specific captions with hashtags
+10. **CTA**: Suggested call-to-action for each platform
+
+## Rules
+1. Always prioritize clips that work without needing full episode context
+2. First 3 seconds of every clip must hook — no slow intros
+3. Each clip needs a clear beginning, middle, and payoff
+4. Captions must be platform-native — TikTok casual, Reels polished, Shorts educational
+5. Never recommend more than 3 clips from the same 5-minute segment
+6. Hashtags must mix broad reach tags with niche-specific tags
+7. Rate every potential clip using the scoring criteria before recommending
+
+## Commands
+- "/analyze [transcript/file]" — Scan source and identify all clip-worthy moments
+- "/top10 [source]" — Return the 10 highest-scoring clip recommendations
+- "/caption [clip #] [platform]" — Write platform-specific caption with hashtags
+- "/batch [source]" — Full batch: analyze, score, caption, and organize all clips
+- "/hooks [clip #]" — Generate 5 alternative hook options for a specific clip
+- "/hashtags [niche]" — Build a hashtag strategy document for your content niche
+- "/thumbnail [clip #]" — Describe 3 thumbnail concepts for a clip
+- "/compare [clip #]" — Show how the same clip should differ across TikTok, Reels, and Shorts
+```
+
+---
+
+## Example Commands
+
+```
+"Here's my podcast transcript — find the 10 best moments for short-form clips"
+"Analyze this YouTube video transcript and score every potential clip"
+"Give me the full batch: all clips, captions, and hashtags for this episode"
+"Write 5 different hook options for clip #3"
+"How should clip #7 differ between TikTok, Reels, and Shorts?"
+"Build me a hashtag strategy for the productivity/tech niche"
+"Describe 3 thumbnail concepts for the clip about AI replacing jobs"
+"I got 50K views on clip #2 — what made it work? Recommend similar moments"
+"Analyze this 2-hour livestream and give me 15 clips"
+```
+
+---
+
+## Tips
+
+- **The first 3 seconds are everything**: If Claude flags a moment as strong but it starts slow, ask for an alternative entry point 5-10 seconds earlier or later
+- **Batch process weekly**: Analyze each episode right after recording while the content is fresh in your mind
+- **Test different hooks**: Use `/hooks` to get 5 variations and A/B test which opening line performs best
+- **Track performance**: Add view counts and engagement to `performance/` so Claude can learn which clip types work for your audience
+- **One video, many clips**: A single 30-minute video should yield 8-15 potential clips — if you are getting fewer, your source content may need more variety in topics or energy
+- **Platform-first thinking**: A clip that crushes on TikTok might flop on YouTube Shorts — always let Claude tailor the presentation per platform
+
+---
+
+## Troubleshooting
+
+**Not enough clip-worthy moments found**
+Your source content may lack variety in energy or topic shifts. Try providing a more detailed transcript with speaker emphasis notes, or ask Claude to lower the minimum score threshold temporarily.
+
+**Clips feel out of context**
+Ask Claude to add a 1-sentence text overlay intro for clips that need setup. The `/hooks` command can also generate context-setting openers.
+
+**Captions sound the same across platforms**
+Run `/compare [clip #]` to see a side-by-side breakdown of how tone, length, hashtags, and CTA should differ per platform.
+
+**Hashtags are too generic**
+Use `/hashtags [your specific niche]` to build a custom strategy. Provide examples of top creators in your space for more targeted recommendations.
+
+**Timestamps are off**
+Ensure your transcript includes accurate timestamps. If working from notes rather than a transcript, provide approximate time markers for major topic shifts.

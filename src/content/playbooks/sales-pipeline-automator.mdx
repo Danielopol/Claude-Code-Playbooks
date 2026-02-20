@@ -1,0 +1,146 @@
+---
+title: "Sales Pipeline Automator"
+description: "Design lead scoring models, automated follow-up sequences, deal stage progression rules, and pipeline velocity optimization."
+category: "sales-revenue"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "davila7/claude-code-templates"
+tags: ["sales", "automation", "lead-scoring", "follow-up", "pipeline", "sequences"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Builds a complete sales pipeline automation system: lead scoring models tailored to your ICP, multi-touch follow-up sequences, deal stage progression rules with exit criteria, and pipeline velocity analysis to identify bottlenecks and forecast revenue.
+
+---
+
+## The Problem
+
+Sales teams lose deals through inconsistent follow-up, unclear stage definitions, and no systematic way to prioritize leads. Reps waste time on low-quality prospects while hot leads go cold, and managers lack visibility into where deals stall.
+
+---
+
+## The Fix
+
+Give Claude your sales process details — deal stages, typical cycle length, ICP criteria, and any CRM data you have. It designs scoring models, writes follow-up sequences for every stage, defines clear progression criteria, and analyzes pipeline health metrics to surface exactly where deals are getting stuck.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Describe Your Sales Process
+
+Prepare a brief overview:
+- Your deal stages (e.g., Discovery, Demo, Proposal, Negotiation, Closed)
+- Average deal size and sales cycle length
+- Your ICP (industry, company size, buyer role)
+- Current pain points (slow follow-up, unclear qualification, etc.)
+
+### Step 3: Run the Automator
+
+```bash
+claude
+```
+
+Say: **"Build a sales pipeline automation system for my team"**
+
+---
+
+## Example Commands
+
+```
+"Create a lead scoring model based on my ICP"
+"Write a 5-touch follow-up sequence for post-demo leads"
+"Define exit criteria for each deal stage"
+"Analyze my pipeline data and find bottlenecks"
+"Build a deal velocity report template"
+"Design an automated nurture sequence for stalled deals"
+"Create qualification criteria for moving leads from MQL to SQL"
+"Generate email templates for each stage of the pipeline"
+```
+
+---
+
+## What Gets Built
+
+| Deliverable | Description |
+|-------------|-------------|
+| **Lead Scoring Model** | Point-based system weighing firmographic, behavioral, and engagement signals |
+| **Follow-Up Sequences** | Multi-touch email/call cadences for every deal stage |
+| **Stage Definitions** | Clear entry/exit criteria for each pipeline stage |
+| **Velocity Analysis** | Conversion rates, time-in-stage, and bottleneck identification |
+| **Nurture Workflows** | Re-engagement sequences for stalled or lost deals |
+| **Forecasting Model** | Pipeline-weighted revenue projections |
+
+---
+
+## Example Output
+
+```markdown
+## Lead Scoring Model
+
+### Firmographic Signals (max 40 pts)
+| Signal | Criteria | Points |
+|--------|----------|--------|
+| Company size | 50-500 employees | +15 |
+| Industry | SaaS / Fintech / Healthcare | +10 |
+| Revenue | $5M-$100M | +10 |
+| Geography | US, UK, Canada | +5 |
+
+### Behavioral Signals (max 40 pts)
+| Signal | Criteria | Points |
+|--------|----------|--------|
+| Pricing page visit | Viewed pricing 2+ times | +15 |
+| Content download | Downloaded whitepaper/case study | +10 |
+| Demo request | Submitted demo form | +15 |
+
+### Engagement Signals (max 20 pts)
+| Signal | Criteria | Points |
+|--------|----------|--------|
+| Email opens | Opened 3+ emails in 7 days | +10 |
+| Reply | Replied to outbound email | +10 |
+
+### Score Thresholds
+- 70-100: Hot lead — route to AE immediately
+- 40-69: Warm lead — enroll in nurture sequence
+- 0-39: Cold lead — marketing nurture only
+
+## Pipeline Stage Definitions
+
+### Stage 2: Discovery → Demo
+**Entry criteria:** Qualified via BANT, budget confirmed
+**Exit criteria:** Demo completed, next steps agreed
+**Max time in stage:** 7 days
+**If stalled:** Trigger re-engagement sequence #2
+```
+
+---
+
+## Tips
+
+- **Score behavior over demographics**: What prospects do matters more than who they are
+- **Time-box every stage**: Deals without deadlines die; set maximum days per stage
+- **Automate the mundane**: Follow-up reminders, stage updates, and data entry should never be manual
+- **Review scoring quarterly**: As your ICP evolves, your scoring model must follow
+- **Track velocity, not just volume**: A fast-moving pipeline with 30 deals beats a stagnant one with 100
+
+---
+
+## Troubleshooting
+
+**No CRM data to analyze**
+Claude can build the scoring model and sequences from your ICP description alone — start there and refine with data later.
+
+**Too many deal stages**
+Ask: "Simplify my pipeline to 5 stages or fewer" — research shows more stages increase friction without improving visibility.
+
+**Follow-up sequences feel generic**
+Provide Claude with 2-3 real customer stories or objections and it will personalize the messaging around actual pain points.
+
+**Scoring model assigns too many hot leads**
+Tighten the thresholds: "Increase the hot lead threshold to 80 points and add a mandatory behavioral signal requirement."

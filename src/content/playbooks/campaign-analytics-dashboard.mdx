@@ -1,0 +1,138 @@
+---
+title: "Campaign Analytics Dashboard"
+description: "Analyze marketing funnels, run attribution modeling, validate A/B tests, and optimize budget allocation across channels with data-driven precision."
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "davila7/claude-code-templates"
+tags: ["campaigns", "analytics", "attribution", "A/B-testing", "funnel", "conversion"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Transforms raw campaign data into strategic decisions. Analyzes your full marketing funnel from first touch to conversion, runs multi-touch attribution models, validates A/B test significance, calculates CAC and LTV by channel, and recommends where to shift budget for maximum return.
+
+---
+
+## The Problem
+
+Marketing teams run campaigns across email, paid search, social, and content — but analyzing them together is a nightmare. Attribution is a black box, A/B tests get called too early, budget allocation is based on gut feeling, and nobody can confidently answer "which channel actually drives revenue?" You need a data analyst, but you have a spreadsheet.
+
+---
+
+## The Fix
+
+A structured analytics workflow that ingests your campaign data, maps the full funnel (TOFU/MOFU/BOFU), runs proper attribution modeling, checks A/B test statistical significance before declaring winners, and calculates real unit economics by channel. You bring the data, Claude brings the analysis.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Prepare Your Data
+
+Export campaign performance data from your ad platforms, CRM, and analytics tools. CSV or spreadsheet format works best.
+
+### Step 3: Run Analysis
+
+```bash
+claude
+```
+
+Say: **"Analyze my campaign performance and funnel conversion rates"**
+
+---
+
+## Example Commands
+
+```
+"Map my funnel conversion rates from ad click to purchase"
+"Run multi-touch attribution across all channels"
+"Is my A/B test statistically significant yet?"
+"Where should I reallocate budget for the best ROI?"
+"Calculate CAC and LTV by acquisition channel"
+"Generate a weekly campaign performance report"
+"Compare this month's funnel to last month"
+"Which campaigns should I pause and which should I scale?"
+```
+
+---
+
+## Funnel Analysis
+
+| Stage | What's Measured |
+|-------|----------------|
+| **TOFU** | Impressions, clicks, CTR, CPM, landing page visits |
+| **MOFU** | Leads, email signups, content downloads, demo requests |
+| **BOFU** | Trials, purchases, revenue, average order value |
+| **Retention** | Repeat purchases, churn rate, expansion revenue |
+
+---
+
+## Example Output
+
+```markdown
+## Campaign Dashboard — Week of Jan 20
+
+### Funnel Overview
+| Stage | Volume | Conv Rate | Drop-off |
+|-------|--------|-----------|----------|
+| Impressions | 450,000 | — | — |
+| Clicks | 13,500 | 3.0% | — |
+| Leads | 1,215 | 9.0% | 91% |
+| MQLs | 365 | 30.0% | 70% |
+| Opportunities | 73 | 20.0% | 80% |
+| Closed Won | 18 | 24.7% | 75% |
+
+### Channel Attribution (Linear Model)
+| Channel | Attributed Rev | CAC | ROAS |
+|---------|---------------|-----|------|
+| Paid Search | $42,000 | $85 | 4.2x |
+| LinkedIn Ads | $28,000 | $140 | 2.8x |
+| Email | $35,000 | $12 | 12.5x |
+| Organic | $18,000 | $0* | — |
+
+### A/B Test Status
+| Test | Variant A | Variant B | Confidence | Verdict |
+|------|-----------|-----------|------------|---------|
+| Landing page headline | 3.2% conv | 4.1% conv | 94% | Not yet significant |
+| Email subject line | 22% open | 28% open | 99% | B wins |
+
+### Budget Recommendation
+Move 20% of LinkedIn budget to Paid Search
+(projected +$8K revenue at same spend)
+```
+
+---
+
+## Tips
+
+- **Wait for significance**: 95% confidence minimum before calling A/B test winners
+- **Attribution is a model, not truth**: Run multiple models (first-touch, last-touch, linear) and compare
+- **CAC should include all costs**: Ad spend + tools + team time allocated to that channel
+- **LTV needs cohort analysis**: Monthly cohorts reveal whether acquisition quality is improving
+- **ROAS alone is misleading**: A 10x ROAS on $100 spend matters less than 3x ROAS on $50K spend
+- **Track leading indicators**: MQL-to-SQL conversion rate predicts revenue weeks before it arrives
+
+---
+
+## Troubleshooting
+
+**Attribution data is messy**
+Start simple: "Use last-touch attribution first, then we'll layer in multi-touch"
+
+**A/B test sample size is too small**
+Ask: "How many more conversions do I need for 95% confidence?" — Claude calculates the required sample
+
+**Can't connect revenue to campaigns**
+Use UTM parameters: "Map these UTM-tagged URLs to revenue data from my CRM export"
+
+**Too many campaigns to analyze at once**
+Focus: "Just analyze the top 5 campaigns by spend and the bottom 5 by ROAS"
+
+**Budget recommendations feel risky**
+Ask for scenarios: "Model what happens if I shift 10%, 20%, and 30% from LinkedIn to Search"

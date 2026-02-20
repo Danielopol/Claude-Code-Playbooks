@@ -1,0 +1,109 @@
+---
+title: "Agile Product Owner"
+description: "Generate user stories with acceptance criteria, plan sprints, groom backlogs, track velocity, and prepare stakeholder demos using agile best practices."
+category: "project-management"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "davila7/claude-code-templates"
+tags: ["agile", "product-owner", "user-stories", "sprint-planning", "backlog", "scrum", "velocity"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Acts as your dedicated Agile Product Owner assistant. It generates well-structured user stories with acceptance criteria, helps you prioritize and groom your backlog, plan sprints based on team velocity, prepare release plans, and build stakeholder demo scripts. Designed for real product owners managing real backlogs, not textbook exercises.
+
+---
+
+## The Problem
+
+Product owners juggle an overwhelming number of responsibilities: writing stories that developers actually understand, keeping the backlog in shape, making tough prioritization calls, tracking velocity trends, and communicating progress to stakeholders who speak a different language than the dev team. Most POs end up spending more time on ceremony admin than on actual product thinking.
+
+---
+
+## The Fix
+
+Drop a CLAUDE.md template into your project folder and let Claude handle the mechanical parts of the PO role. You provide context about your product and users; Claude generates properly formatted user stories, suggests acceptance criteria you might miss, calculates sprint capacity, and drafts demo scripts. You stay focused on product strategy and stakeholder relationships.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above, then move the file:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Projects/my-product/
+```
+
+### Step 2: Set Up Your Workspace
+
+```
+my-product/
+├── CLAUDE.md
+├── backlog/
+│   ├── epics/
+│   └── stories/
+├── sprints/
+│   ├── sprint-current/
+│   └── sprint-archive/
+├── releases/
+└── stakeholders/
+    └── demo-scripts/
+```
+
+### Step 3: Launch Claude Code
+
+```bash
+cd ~/Projects/my-product
+claude
+```
+
+Say: **"Help me write user stories for our new checkout flow"**
+
+---
+
+## Example Commands
+
+```
+"Write user stories for [feature] with acceptance criteria"
+"Prioritize these backlog items using WSJF scoring"
+"Plan sprint 14 based on our velocity of 34 points"
+"Break this epic into smaller stories that fit in a sprint"
+"Create a release plan for Q2 with these epics"
+"Draft a stakeholder demo script for sprint review"
+"Calculate our team velocity trend from the last 5 sprints"
+"Write a spike story for investigating [technical question]"
+"Help me run a backlog grooming session"
+"Generate acceptance criteria for this story: [description]"
+```
+
+---
+
+## Tips
+
+- **Start with outcomes, not features** - Tell Claude what the user needs to achieve, and let it help you frame the right stories
+- **Include personas** - Share your user personas so stories use consistent "As a [persona]" language
+- **Track velocity honestly** - Feed in your actual completed points per sprint for accurate forecasting
+- **Use the INVEST checklist** - Ask Claude to validate stories are Independent, Negotiable, Valuable, Estimable, Small, and Testable
+- **Keep acceptance criteria testable** - Every criterion should be something QA can verify with a clear pass/fail
+- **Review before refinement** - Generate stories ahead of time, then refine them with the team rather than presenting them as final
+
+---
+
+## Troubleshooting
+
+**Stories are too vague**
+Tell Claude more about your users: "Our users are enterprise procurement managers who process 200+ orders per day"
+
+**Acceptance criteria are too generic**
+Add domain context: "We use Stripe for payments, items can be backordered, and we support 3 currencies"
+
+**Sprint planning feels off**
+Make sure you are providing actual velocity data. Say: "Our last 5 sprints completed 28, 34, 31, 36, 33 points"
+
+**Stories are too large**
+Ask: "Break this into stories that are each under 8 points and can be completed by one developer in 2-3 days"
+
+**Stakeholders want different formats**
+Specify: "Format the demo script for non-technical executives who care about business outcomes, not implementation details"

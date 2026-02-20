@@ -1,0 +1,180 @@
+---
+title: "Customer Success Manager"
+description: "Build health scoring models, analyze churn risk, create retention strategies, track NPS/CSAT, prepare QBRs, and identify expansion revenue opportunities."
+category: "sales-revenue"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "davila7/claude-code-templates"
+tags: ["customer-success", "churn", "retention", "NPS", "CSAT", "QBR", "expansion-revenue", "health-score"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Turns Claude into a dedicated Customer Success Manager that builds account health scoring models, identifies churn risk before it escalates, prepares data-driven QBRs, tracks satisfaction metrics, and surfaces expansion revenue opportunities across your customer base.
+
+---
+
+## The Problem
+
+CS teams drown in spreadsheets and CRM tabs. Health scores are gut-feel guesses. Churn signals get missed until the cancellation email arrives. QBR prep takes hours of copy-pasting dashboards. Expansion opportunities sit undiscovered because nobody has time to analyze usage patterns across 200 accounts.
+
+---
+
+## The Fix
+
+Give Claude your customer data - usage logs, support tickets, NPS responses, contract details - and it builds a structured health scoring framework, flags at-risk accounts with specific reasons, drafts QBR decks with real metrics, and identifies which accounts are ready for upsell based on actual behavior patterns.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Prepare Your Data
+
+Gather your customer data sources:
+- Account list with contract details (CSV or spreadsheet)
+- Usage/adoption metrics
+- Support ticket history
+- NPS/CSAT survey responses
+- Revenue and billing data
+
+### Step 3: Define Your Health Model
+
+Tell Claude your key health indicators:
+
+```markdown
+# My Health Score Inputs
+- Product usage frequency: [daily/weekly/monthly]
+- Support ticket volume: [thresholds]
+- NPS score: [last survey date]
+- Contract renewal date: [timeline]
+- Champion contact status: [active/left/unknown]
+```
+
+### Step 4: Start Analyzing
+
+```bash
+claude
+```
+
+Say: **"Build a health score model for my customer base using this data"**
+
+---
+
+## Health Score Framework
+
+| Dimension | Weight | Green | Yellow | Red |
+|-----------|--------|-------|--------|-----|
+| **Product Usage** | 30% | Weekly active, trending up | Monthly active, flat | Declining or dormant |
+| **Support Health** | 20% | Low tickets, fast resolution | Moderate tickets | Escalations, unresolved |
+| **Relationship** | 20% | Champion engaged, multi-threaded | Single thread, responsive | Champion left, ghosting |
+| **Business Outcomes** | 20% | Hitting ROI targets | Partial value realization | No measurable outcomes |
+| **Contract Status** | 10% | 6+ months to renewal | 3-6 months to renewal | Under 90 days, no renewal signal |
+
+---
+
+## Churn Risk Indicators
+
+Claude watches for these early warning signals:
+
+- **Usage drop**: 20%+ decline over 30 days
+- **Champion departure**: Primary contact leaves the company
+- **Support spike**: 3x increase in ticket volume
+- **NPS decline**: Score drops 2+ points between surveys
+- **Engagement ghosting**: No response to last 3 outreach attempts
+- **Competitor mentions**: References to alternative tools in tickets
+- **Budget signals**: Mentions of cost-cutting or headcount reductions
+
+---
+
+## Example Output
+
+```markdown
+## Account Health Report: Acme Corp
+
+**Overall Score: 62/100 (Yellow - At Risk)**
+**Renewal Date:** April 15, 2026 (57 days)
+
+### Score Breakdown
+| Dimension | Score | Trend | Signal |
+|-----------|-------|-------|--------|
+| Usage | 45/100 | Declining | DAU dropped 35% in 60 days |
+| Support | 70/100 | Stable | 4 tickets/month, avg resolution 18hrs |
+| Relationship | 55/100 | Declining | Champion (Sarah K.) left Jan 3 |
+| Outcomes | 65/100 | Flat | Hitting 2 of 4 original KPIs |
+| Contract | 80/100 | N/A | Auto-renewal clause, but cancellation window opens March 15 |
+
+### Recommended Actions (Priority Order)
+1. **Urgent**: Schedule intro call with new VP of Ops (Sarah's replacement) by Feb 25
+2. **This week**: Send usage reactivation playbook to their admin team
+3. **Before March 1**: Prepare ROI recap showing value delivered on 2 active KPIs
+4. **QBR prep**: Build success plan focused on the 2 unmet KPIs with specific milestones
+
+### Expansion Opportunity
+- Team B (Marketing) has been accessing reports without a license - potential 15-seat expansion ($18K ARR)
+```
+
+---
+
+## QBR Preparation
+
+Claude generates complete QBR packages:
+
+- **Executive summary**: Key wins, metrics, ROI delivered
+- **Usage analytics**: Adoption trends, feature utilization, power users
+- **Support review**: Ticket trends, resolution times, open issues
+- **Success plan progress**: Goals vs. actuals with RAG status
+- **Roadmap alignment**: Upcoming features mapped to their priorities
+- **Expansion discussion**: Usage-based upsell recommendations
+- **Risk mitigation**: Proactive plan for any yellow/red signals
+
+---
+
+## Example Commands
+
+```
+"Build health scores for all accounts renewing in Q2"
+"Identify my top 10 churn risk accounts and why"
+"Prepare a QBR deck for [Account Name]"
+"Analyze NPS trends across my enterprise segment"
+"Find expansion opportunities based on usage patterns"
+"Create a 90-day success plan for [Account Name]"
+"Draft a re-engagement email for dormant accounts"
+"Compare health scores month-over-month"
+"Flag accounts where the champion contact has changed"
+"Calculate net revenue retention for my portfolio"
+```
+
+---
+
+## Tips
+
+- **Start with data you have**: Even basic usage + renewal dates create useful health scores. Add complexity over time.
+- **Weight what matters**: If your product is usage-based, weight adoption higher. If relationship-driven, weight engagement higher.
+- **Automate the triggers**: Set up alerts for specific score thresholds rather than reviewing all accounts manually.
+- **Track leading indicators**: A champion leaving is more predictive than an NPS drop. Prioritize forward-looking signals.
+- **Segment by value**: Enterprise accounts need different thresholds than SMB. Build tiered scoring models.
+- **Document tribal knowledge**: If you know "accounts in healthcare always renew" - encode that into the model.
+
+---
+
+## Troubleshooting
+
+**Health scores all look the same**
+Your inputs may lack variance. Add more dimensions or adjust thresholds: "Make the usage scoring more granular with 5 tiers instead of 3"
+
+**Too many false alarms**
+Tighten your red thresholds: "Only flag accounts with 2+ risk signals, not just one"
+
+**Missing expansion signals**
+Provide more usage data: "Here are the feature-level usage logs, find teams exceeding their tier limits"
+
+**QBR feels generic**
+Add more context: "Here are the original success criteria from their onboarding, compare against current state"
+
+**Churn predictions not accurate**
+Feed historical data: "Here are 20 accounts that churned last year - find the common patterns"

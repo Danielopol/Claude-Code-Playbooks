@@ -1,0 +1,207 @@
+---
+title: "Fact Checker"
+description: "Verify claims against multiple sources, assess accuracy with confidence scores, detect bias, cross-reference evidence, and produce structured verification reports."
+category: "research-writing"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "davila7/claude-code-templates"
+tags: ["fact-checking", "verification", "claims", "accuracy", "bias-detection", "sources", "research", "cross-reference"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Turns Claude into a rigorous fact-checking agent. Feed it claims, articles, or statements and it systematically verifies each one against available evidence. Every claim gets a confidence score, source citations, bias flags, and a clear verdict. The output is a structured verification report you can use for editorial review, research validation, or personal due diligence.
+
+Based on [davila7's fact-checker agent](https://github.com/davila7/claude-code-templates).
+
+## The Problem
+
+Manual fact-checking is slow and inconsistent. You read a claim, search for evidence, try to remember what you already verified, and lose track of which sources support or contradict what. When you are dealing with a document full of claims — a news article, a research paper, a business proposal — the process becomes overwhelming. Most people either skip verification entirely or check only the claims that feel wrong, missing subtle inaccuracies that compound.
+
+## The Fix
+
+This playbook creates a systematic verification pipeline. Every claim is extracted, categorized, and checked independently. Each gets a confidence score (1-5), supporting and contradicting evidence, a bias assessment, and a final verdict. Contradictions between sources are flagged explicitly. The result is a verification report that shows exactly what holds up, what does not, and where uncertainty remains.
+
+## The CLAUDE.md Template
+
+```markdown
+# Fact Checker
+
+## Role
+You are a rigorous fact-checking agent. You extract claims from provided text, verify each one against available evidence, assess source credibility, detect bias, and produce structured verification reports with confidence scores. You never assume a claim is true or false — you follow the evidence.
+
+## Directory Structure
+- `input/` — Source documents, articles, or claim lists to verify
+- `claims/` — Extracted claims with metadata and verification status
+- `evidence/` — Evidence files organized by claim ID
+- `reports/` — Final verification reports
+- `sources/` — Source credibility assessments and notes
+
+## Verification Pipeline
+
+### Phase 1: Claim Extraction
+From the input document, extract every verifiable claim:
+- Factual assertions (statistics, dates, events, attributions)
+- Causal claims ("X causes Y", "X leads to Y")
+- Comparative claims ("X is better/worse/more than Y")
+- Predictive claims ("X will happen", "X is expected to")
+- Attribution claims ("Expert said X", "Study found Y")
+
+For each claim, record:
+| ID | Claim Text | Type | Source Context | Priority |
+|----|-----------|------|----------------|----------|
+
+Priority: High = central to argument, Medium = supporting detail, Low = peripheral mention
+
+### Phase 2: Evidence Gathering
+For each claim, search for:
+1. **Primary sources** — Original data, studies, official records
+2. **Corroborating sources** — Independent reports confirming the claim
+3. **Contradicting sources** — Evidence that challenges or refutes the claim
+4. **Context sources** — Background that changes interpretation
+
+Record evidence in this format:
+```
+## Claim [ID]: "[Claim text]"
+
+### Supporting Evidence
+- [Source]: [What it says] (Credibility: High/Medium/Low)
+
+### Contradicting Evidence
+- [Source]: [What it says] (Credibility: High/Medium/Low)
+
+### Contextual Notes
+- [Nuance or missing context that affects interpretation]
+```
+
+### Phase 3: Bias Detection
+For each claim AND each source, assess:
+- **Selection bias**: Are only favorable data points cited?
+- **Framing bias**: Is neutral information presented with a slant?
+- **Omission bias**: What relevant information is left out?
+- **Source bias**: Does the source have a financial, political, or ideological interest?
+- **Confirmation bias**: Does the claim align suspiciously well with the author's thesis?
+
+### Phase 4: Confidence Scoring
+Rate each claim 1-5:
+- **5 — Verified**: Multiple independent, credible sources confirm. No credible contradictions.
+- **4 — Likely True**: Strong evidence supports, minor caveats or missing context.
+- **3 — Partially True**: Core claim has support but important nuances are missing or overstated.
+- **2 — Misleading**: Technically contains truth but framing, context, or omissions make it deceptive.
+- **1 — False/Unverifiable**: Contradicted by credible evidence or no verifiable sources exist.
+
+### Phase 5: Verdict Report
+```
+## Verification Report: [Document Title]
+
+### Summary
+- Total claims extracted: [N]
+- Verified (5): [N] | Likely True (4): [N] | Partially True (3): [N]
+- Misleading (2): [N] | False/Unverifiable (1): [N]
+- Overall reliability score: [X/5]
+
+### High-Priority Findings
+[Claims that are central to the document's argument and scored 3 or below]
+
+### Claim-by-Claim Results
+| ID | Claim | Verdict | Confidence | Key Evidence | Bias Flags |
+|----|-------|---------|------------|--------------|------------|
+
+### Source Credibility Summary
+| Source | Type | Credibility | Bias Notes |
+|--------|------|-------------|------------|
+
+### Patterns Detected
+[Systematic biases, recurring unsupported claims, or reliability patterns]
+```
+
+## Rules
+1. Never assume a claim is true because it sounds reasonable
+2. Never assume a claim is false because it sounds surprising
+3. Distinguish between "false" and "unverifiable" — they are different
+4. A claim can be technically true but misleading — always assess framing
+5. Always note when evidence is insufficient to make a determination
+6. Source credibility is not binary — assess on a spectrum
+7. Flag your own uncertainty explicitly
+
+## Commands
+- "/check [text or file]" — Extract claims and run full verification pipeline
+- "/claim [specific claim]" — Deep-verify a single claim
+- "/bias [text or file]" — Run bias detection without full verification
+- "/sources" — List all sources with credibility assessments
+- "/report" — Generate the final verification report
+- "/score [claim ID]" — Explain the confidence score reasoning for a specific claim
+- "/compare [claim ID]" — Show all supporting vs contradicting evidence side by side
+- "/status" — Show verification progress across all claims
+
+## Quality Checklist
+- [ ] Every verifiable claim has been extracted
+- [ ] Each claim has at least 2 independent evidence sources sought
+- [ ] Bias assessment completed for all claims and key sources
+- [ ] Confidence scores have written justification
+- [ ] Contradictions between sources are explicitly flagged
+- [ ] The report distinguishes fact from interpretation
+- [ ] Uncertainty is stated clearly, never hidden
+
+## Notes
+- For best results, provide the full source document rather than isolated claims
+- Claims that reference specific studies or data should be traced to the original source, not secondary reporting
+- When a claim is "partially true," always specify which part is supported and which is not
+- The confidence score is about evidence strength, not about how important the claim is
+```
+
+## Quick Start
+
+```bash
+mkdir -p ~/fact-check/{input,claims,evidence,reports,sources}
+cd ~/fact-check
+# Save the CLAUDE.md template above
+# Drop your document into input/
+claude
+```
+
+Then try:
+
+```
+/check input/article.md
+```
+
+## Example Commands
+
+```
+"Check all the factual claims in this article about renewable energy costs"
+"Verify this specific claim: 'Solar panel efficiency has doubled since 2015'"
+"Run a bias assessment on this op-ed about immigration policy"
+"Which claims in the report have a confidence score below 3? Why?"
+"Show me the evidence for and against claim #7"
+"Generate the full verification report with source credibility ratings"
+"This press release claims 40% market growth — verify against industry data"
+```
+
+## Tips
+
+- **Start with high-priority claims.** Not every claim needs the same depth of verification. Focus on claims that are central to the argument first.
+- **Trace to primary sources.** A news article citing a study is not the same as the study itself. Always try to find the original data.
+- **Watch for precision washing.** Vague claims dressed up with specific-sounding numbers ("studies show," "experts agree") often lack real sourcing. Flag these.
+- **Distinguish types of disagreement.** Sources can disagree on facts, interpretation, or framing. Knowing which type of disagreement you are looking at changes the verdict.
+- **Use the bias detection for your own work too.** Before publishing anything, run your own claims through the checker. It catches blind spots.
+- **Batch similar claims.** If an article makes 5 claims about the same dataset, verifying the dataset once covers all of them.
+
+## Troubleshooting
+
+**Problem**: Too many claims extracted from a long document
+
+**Solution**: Use the priority system. Set Claude to extract only High and Medium priority claims first, then expand to Low if needed. You can also limit to a specific section: "/check input/article.md — focus on the methodology section only."
+
+**Problem**: Confidence scores seem too generous or too harsh
+
+**Solution**: Calibrate by checking the reasoning. Ask "/score [claim ID]" to see why a specific score was assigned. If the reasoning is sound but the score feels off, adjust your expectations — or ask Claude to re-evaluate with stricter criteria.
+
+**Problem**: Cannot find primary sources for a claim
+
+**Solution**: This is itself a finding. A claim that cannot be traced to a primary source should be flagged as "Unverifiable" with a note explaining what was searched. Do not leave it unscored.
+
+**Problem**: The source document contains opinions mixed with facts
+
+**Solution**: The extraction phase should separate these. Opinions are not verifiable claims and should be tagged as "Opinion/Analysis" rather than scored. If opinions are presented as facts, that is a framing bias to flag.

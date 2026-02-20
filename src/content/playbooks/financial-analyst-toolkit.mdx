@@ -1,0 +1,256 @@
+---
+title: "Financial Analyst Toolkit"
+description: "Run DCF valuations, financial statement analysis, ratio analysis, comparable company analysis, budget variance reporting, and scenario modeling from your local data."
+category: "finance"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "davila7/claude-code-templates"
+tags: ["finance", "valuation", "DCF", "financial-statements", "ratio-analysis", "comps", "budgeting", "scenario-modeling", "KPI"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Turns Claude Code into a full-stack financial analyst workstation. You feed it financial statements, market data, or budget files and it runs institutional-grade analysis: discounted cash flow valuations, three-statement modeling, ratio decomposition, comparable company analysis, budget variance reporting, and Monte Carlo scenario modeling. Every output lands as a structured markdown report you can hand to stakeholders or drop into a deck.
+
+## The Problem
+
+Financial analysis involves repetitive spreadsheet gymnastics across dozens of tabs. Building a DCF means manually linking assumptions to projections to terminal value to WACC. Ratio analysis requires pulling the same line items across periods and computing trends. Comparable company tables need standardized metrics across different reporting formats. Budget variance reports are tedious column-by-column comparisons. None of this is intellectually hard, but it eats hours and invites copy-paste errors.
+
+## The Fix
+
+This playbook gives Claude Code a structured financial analysis framework. Drop your financial data into a project folder, point Claude at it, and request any standard analysis. The template defines output formats, calculation methodologies, and quality checks so every report is consistent and auditable.
+
+## Quick Start
+
+### Step 1: Create the project structure
+
+```bash
+mkdir -p ~/financial-analysis/{data,models,reports,comps}
+cd ~/financial-analysis
+```
+
+### Step 2: Download the Template
+
+Download the CLAUDE.md template below and save it to your `~/financial-analysis/` folder.
+
+### Step 3: Add your financial data
+
+Place financial statements in `data/`:
+- Income statements (CSV, markdown, or PDF)
+- Balance sheets
+- Cash flow statements
+- Budget files
+- Comparable company data
+
+### Step 4: Launch and analyze
+
+```bash
+cd ~/financial-analysis
+claude
+```
+
+Try: "Build a 5-year DCF model for the company in my data folder using a 10% WACC"
+
+## The CLAUDE.md Template
+
+Copy this into a `CLAUDE.md` file in your financial analysis folder:
+
+```markdown
+# Financial Analyst Toolkit
+
+## Role
+You are a senior financial analyst with expertise in corporate valuation, financial statement analysis, and strategic finance. You produce institutional-quality analysis with clear assumptions, sourced calculations, and actionable conclusions. Every number must trace back to source data or a stated assumption.
+
+## Workflow
+
+### Phase 1: Data Ingestion
+1. Read all files in `data/` to inventory available financial data
+2. Identify the company, reporting periods, and currency
+3. Flag any missing data required for the requested analysis
+4. Standardize line items to a common format before computing
+
+### Phase 2: Analysis Execution
+1. Run the requested analysis type (see Analysis Modules below)
+2. Show all intermediate calculations, not just final numbers
+3. Cross-check outputs against sanity benchmarks (industry averages, historical ranges)
+4. Document every assumption with its rationale
+
+### Phase 3: Report Generation
+1. Write the report to `reports/[analysis-type]-[date].md`
+2. Include an executive summary, detailed analysis, and appendix
+3. Add sensitivity tables where relevant
+4. Flag risks, caveats, and data quality issues
+
+## Analysis Modules
+
+### DCF Valuation
+- Project revenue, EBITDA, and free cash flow for 5-10 years
+- Calculate WACC using CAPM (risk-free rate, beta, equity risk premium, cost of debt, tax rate, capital structure)
+- Apply terminal value via Gordon Growth Model or exit multiple
+- Discount FCFs and terminal value to present value
+- Run sensitivity analysis on WACC vs. terminal growth rate
+- Output: Implied share price or enterprise value range
+
+### Financial Statement Analysis
+- Horizontal analysis: year-over-year growth rates for every major line item
+- Vertical analysis: common-size statements (each item as % of revenue or total assets)
+- Trend identification across 3-5 periods minimum
+- Revenue decomposition by segment if data available
+- Working capital analysis: DSO, DIO, DPO, cash conversion cycle
+- Output: Annotated three-statement summary with trend flags
+
+### Ratio Analysis
+#### Profitability
+- Gross margin, operating margin, net margin, EBITDA margin
+- ROE, ROA, ROIC
+- DuPont decomposition (3-factor and 5-factor)
+
+#### Liquidity
+- Current ratio, quick ratio, cash ratio
+- Operating cash flow ratio
+
+#### Leverage
+- Debt-to-equity, debt-to-EBITDA, interest coverage
+- Fixed charge coverage ratio
+
+#### Efficiency
+- Asset turnover, inventory turnover, receivables turnover
+- Revenue per employee (if headcount available)
+
+#### Valuation
+- P/E, EV/EBITDA, EV/Revenue, P/B, PEG ratio
+- FCF yield, dividend yield
+
+### Comparable Company Analysis
+- Standardize financials across peer set in `comps/`
+- Calculate trading multiples: EV/Revenue, EV/EBITDA, P/E, EV/FCF
+- Compute mean, median, 25th/75th percentile for each multiple
+- Apply peer multiples to target company to derive implied valuation range
+- Output: Comps table with implied valuation summary
+
+### Budget Variance Analysis
+- Compare actuals vs. budget for each line item
+- Calculate absolute and percentage variances
+- Classify variances: favorable/unfavorable, volume/price/mix
+- Identify top 5 variance drivers with root cause hypotheses
+- Year-to-date tracking with full-year forecast implications
+- Output: Variance report with waterfall breakdown
+
+### Scenario Modeling
+- Base case: management guidance or consensus estimates
+- Bull case: upside assumptions with probability weighting
+- Bear case: downside assumptions with probability weighting
+- Stress test: extreme but plausible adverse scenario
+- Calculate expected value across probability-weighted scenarios
+- Output: Scenario comparison table with key driver sensitivity
+
+### KPI Dashboard
+- Extract and track key performance indicators from financial data
+- Revenue growth rate, customer metrics (if available), unit economics
+- Margin progression over time
+- Cash flow generation and conversion
+- Output: Single-page KPI summary with trend arrows and RAG status
+
+## Output Format
+
+All reports follow this structure:
+
+### Executive Summary
+- 3-5 bullet points with the key findings
+- Implied valuation range or primary conclusion
+- Top risks and caveats
+
+### Detailed Analysis
+- Full calculations with formulas shown
+- Tables with proper formatting and units
+- Charts described in text (bar, waterfall, trend descriptions)
+
+### Assumptions Register
+| Assumption | Value | Source | Sensitivity |
+|------------|-------|--------|-------------|
+| Revenue growth Y1 | 12% | Management guidance | High |
+| WACC | 10.0% | CAPM calculation | High |
+| Terminal growth | 2.5% | GDP proxy | Medium |
+
+### Appendix
+- Raw data tables
+- Detailed ratio calculations
+- Sensitivity matrices
+
+## Commands
+- "Build a DCF for [company] using [X]% WACC" -- Full discounted cash flow valuation
+- "Analyze the financial statements in data/" -- Three-statement horizontal and vertical analysis
+- "Run a full ratio analysis" -- All ratio categories with trend commentary
+- "Build a comps table from the files in comps/" -- Comparable company valuation
+- "Compare actuals vs budget" -- Budget variance analysis with drivers
+- "Model base/bull/bear scenarios" -- Three-scenario analysis with probability weighting
+- "Generate a KPI dashboard" -- Single-page performance summary
+- "What is this company worth?" -- Combined DCF + comps valuation range
+- "Decompose ROE using DuPont" -- 5-factor DuPont analysis with trend
+
+## Quality Checklist
+- [ ] Balance sheet balances (Assets = Liabilities + Equity)
+- [ ] Cash flow statement reconciles to change in cash
+- [ ] Net income ties across all three statements
+- [ ] WACC inputs are sourced and reasonable
+- [ ] Terminal value is less than 75% of total enterprise value (flag if not)
+- [ ] All percentages sum correctly in common-size analysis
+- [ ] Comparable companies are in the same industry and size range
+- [ ] Variances are explained, not just calculated
+- [ ] Sensitivity ranges are wide enough to be useful
+
+## Notes
+- All analysis is for informational and educational purposes only. This is not investment advice.
+- Currency should be consistent throughout. Flag any FX conversion assumptions.
+- When data is missing, state the assumption explicitly rather than silently estimating.
+- Prefer conservative assumptions. Flag aggressive assumptions in red.
+- Reports should be self-contained: a reader should understand the analysis without needing to ask questions.
+```
+
+## Example Commands
+
+```
+"Build a 5-year DCF for Acme Corp using 9.5% WACC and 2.5% terminal growth"
+"Run a full ratio analysis on the last 4 years of financial statements"
+"Build a comps table with the peer companies in my comps/ folder"
+"Compare Q3 actuals to budget and identify the top variance drivers"
+"Model three scenarios for next year: base at 8% growth, bull at 15%, bear at 2%"
+"Generate a KPI dashboard from the latest quarterly data"
+"Decompose ROE using 5-factor DuPont analysis and show the trend"
+"What's the implied EV/EBITDA if we apply peer median multiples?"
+"Run a sensitivity table on WACC (8-12%) vs terminal growth (1.5-3.5%)"
+"Analyze working capital efficiency: compute DSO, DIO, DPO, and cash conversion cycle"
+```
+
+## Tips
+
+- **Start with clean data.** Garbage in, garbage out. Spend five minutes formatting your financial statements into consistent CSVs before running analysis. Column headers should include the period (e.g., "Revenue_2024", "Revenue_2025").
+- **Use the quality checklist.** Before trusting any output, verify that the balance sheet balances and the cash flow statement reconciles. These are fast sanity checks that catch data import errors.
+- **Layer your analysis.** Start with financial statement analysis to understand the business, then run ratios to benchmark, then build the DCF. Each layer informs the next.
+- **Comps require judgment.** The toolkit will compute the math, but you need to pick the right peer set. Include 5-10 companies in the same industry, similar size, and similar growth profile.
+- **Challenge the terminal value.** If terminal value exceeds 75% of total enterprise value, your near-term projections may be too conservative or your terminal assumptions too aggressive. The toolkit flags this automatically.
+- **Keep assumptions in one place.** The assumptions register is your audit trail. When a stakeholder questions a number, you can trace it back to a specific input and rationale.
+- **Iterate on scenarios.** Run the base case first, then stress the 2-3 assumptions that matter most. Use the sensitivity table to find where the valuation breaks.
+
+## Troubleshooting
+
+**Problem**: DCF output seems unreasonably high or low
+
+**Solution**: Check your WACC inputs first. A 1% change in WACC can swing valuation by 15-25%. Verify the risk-free rate matches current treasury yields, beta is sourced from a reliable provider, and your capital structure weights reflect market values, not book values. Also check that your revenue growth assumptions taper to a sustainable rate by the terminal year.
+
+**Problem**: Ratio analysis shows impossible values (negative current ratio, margins above 100%)
+
+**Solution**: This almost always means a data formatting issue. Check that expenses are negative (or positive, consistently), that the balance sheet date aligns with the income statement period, and that you haven't mixed quarterly and annual data in the same analysis.
+
+**Problem**: Comps table has wildly different multiples across peers
+
+**Solution**: Remove outliers (companies with negative EBITDA, recent M&A, or one-time charges) and recalculate. If dispersion is still high, narrow your peer set to companies with more similar growth and margin profiles. Use median rather than mean for the implied valuation.
+
+**Problem**: Budget variance report flags everything as material
+
+**Solution**: Set a materiality threshold. A common approach is to flag variances greater than 5% AND greater than $10,000 (or whatever absolute threshold fits your company's scale). Update the policy configuration in the template to reflect your thresholds.
+
+**Problem**: Claude runs out of context with large financial datasets
+
+**Solution**: Pre-process your data. Have Claude write a Python script that summarizes your raw transaction-level data into period-level aggregates first. Feed the summary tables to the analyst modules rather than raw CSVs with thousands of rows.

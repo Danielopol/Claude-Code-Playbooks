@@ -1,0 +1,150 @@
+---
+title: "Salesforce Expert"
+description: "Get Salesforce configuration guidance — workflow rules, report building, dashboard design, data migration planning, and permission architecture."
+category: "sales-revenue"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "davila7/claude-code-templates"
+tags: ["Salesforce", "CRM", "workflows", "reports", "dashboards", "administration"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Acts as your on-demand Salesforce administrator and consultant. Claude helps you design workflow automations, build complex reports and dashboards, plan data migrations, architect permission sets, troubleshoot configuration issues, and write Salesforce formulas — all without hiring a consultant.
+
+---
+
+## The Problem
+
+Salesforce is powerful but notoriously complex. Admins and power users spend hours searching documentation, debugging formulas, designing reports that actually answer business questions, and trying to figure out the right automation tool (Flow vs Process Builder vs Workflow Rules vs Apex triggers) for each situation.
+
+---
+
+## The Fix
+
+Describe what you need in plain English — "I want a report that shows deal velocity by rep" or "create a workflow that auto-assigns leads by territory" — and Claude generates the exact configuration steps, formulas, report types, flow designs, and permission structures you need.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Describe Your Org
+
+Prepare a brief overview:
+- Salesforce edition (Professional, Enterprise, Unlimited)
+- Key objects you use (standard and custom)
+- Current pain points or goals
+- Any existing automations or customizations
+
+### Step 3: Start Building
+
+```bash
+claude
+```
+
+Say: **"Help me build a Salesforce dashboard for pipeline visibility"**
+
+---
+
+## Example Commands
+
+```
+"Write a formula field that calculates days since last activity"
+"Design a lead assignment flow based on territory and industry"
+"Build a report showing win rate by lead source and quarter"
+"Plan a data migration from HubSpot to Salesforce"
+"Create a permission set for sales managers vs reps"
+"Troubleshoot why my workflow rule is not firing"
+"Design a dashboard for the VP of Sales"
+"Set up duplicate management rules for contacts"
+"Write a validation rule to require close date on Stage 3+"
+"Explain when to use Flow vs Apex trigger"
+```
+
+---
+
+## What Gets Built
+
+| Deliverable | Description |
+|-------------|-------------|
+| **Workflow Automations** | Flow designs, process builder configs, or workflow rule definitions |
+| **Reports** | Report type selection, filters, groupings, and formulas for any business question |
+| **Dashboards** | Component layouts, chart types, and filter configurations |
+| **Data Migration Plans** | Field mapping, data cleaning, import sequencing, and validation |
+| **Permission Architecture** | Profiles, permission sets, sharing rules, and role hierarchy designs |
+| **Formulas** | Cross-object formulas, validation rules, and roll-up summaries |
+
+---
+
+## Example Output
+
+```markdown
+## Flow Design: Auto-Assign Leads by Territory
+
+### Trigger
+- Object: Lead
+- Event: Record created or updated
+- Condition: Lead.Status = "New" AND Lead.State != null
+
+### Flow Logic
+1. Decision: Check Lead.State
+   - West (CA, WA, OR, NV) → Assign to Rep A
+   - East (NY, MA, CT, NJ) → Assign to Rep B
+   - Central (TX, IL, OH, CO) → Assign to Rep C
+   - Default → Assign to Round Robin queue
+2. Update Record: Set Lead.Owner to assigned rep
+3. Create Task: "Follow up with new lead" — due in 1 hour
+4. Send Email: Notify assigned rep
+
+### Configuration Steps
+1. Setup → Flows → New Flow → Record-Triggered Flow
+2. Object: Lead | Trigger: A record is created or updated
+3. Add Entry Conditions: Status = "New", State is not null
+4. Add Decision element with 3 outcomes + default
+5. Add Update Records action for each outcome
+6. Add Create Records (Task) action
+7. Add Send Email action
+8. Activate flow
+
+## Validation Rule: Require Close Date After Stage 3
+
+Field: Opportunity
+Rule Name: Require_Close_Date_Stage_3
+Formula: AND(
+  ISPICKVAL(StageName, "Proposal"),
+  ISBLANK(CloseDate)
+)
+Error Message: "Close Date is required when deal reaches Proposal stage"
+Error Location: CloseDate field
+```
+
+---
+
+## Tips
+
+- **Use Flows over Workflow Rules**: Salesforce is retiring Workflow Rules and Process Builder; build everything in Flow going forward
+- **Report type matters**: 80% of report issues come from selecting the wrong report type; always start there
+- **Test in sandbox first**: Never deploy automations directly to production
+- **Keep permission sets granular**: One permission set per function is easier to manage than large bundled sets
+- **Document everything**: Ask Claude to generate admin documentation for every change
+
+---
+
+## Troubleshooting
+
+**Flow is not firing**
+Verify the entry conditions, check if the flow is active, and confirm the trigger event matches your scenario. Say: "Debug why my flow is not triggering on lead creation."
+
+**Report shows wrong numbers**
+Usually a filter or report type issue. Say: "My opportunity report shows duplicates — help me fix the filters and groupings."
+
+**Formula field returns an error**
+Paste the formula and the error message. Claude will identify syntax issues, cross-object reference problems, or data type mismatches.
+
+**Permission issues blocking users**
+Describe what the user can and cannot do. Claude will trace through profiles, permission sets, sharing rules, and role hierarchy to find the gap.

@@ -1,0 +1,197 @@
+---
+title: "Research Synthesizer"
+description: "Synthesize findings across multiple documents, reports, or transcripts with theme identification, contradiction mapping, gap analysis, and confidence-scored insights."
+category: "research-writing"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "davila7/claude-code-templates"
+tags: ["research", "synthesis", "cross-source", "insights", "themes", "gap-analysis"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Turns a pile of disparate documents into a structured synthesis with scored themes, mapped contradictions, and identified gaps. You feed in reports, transcripts, articles, or any research material, and Claude produces a layered analysis: what the sources agree on, where they clash, what they miss entirely, and what you can confidently claim based on the evidence. The final output is an executive summary backed by traceable, confidence-rated insights.
+
+This is not just summarization. It is cross-source reasoning — the kind of work that takes a research analyst days of sticky notes and spreadsheets.
+
+## The Problem
+
+You have 10, 20, or 50 sources on a topic. Reading them individually gives you pieces, but you need the full picture: which findings hold up across sources, which contradict each other, and which questions nobody has answered yet. Manual synthesis is slow, error-prone, and hard to make systematic. Most people end up with a summary that parrots the loudest source instead of weighing evidence.
+
+## The Fix
+
+This playbook creates a structured synthesis pipeline. Each source gets a credibility assessment and evidence extraction. Findings are cross-referenced to build themes with evidence strength scores. Contradictions are explicitly mapped with the reasoning behind each side. Gap analysis reveals what the sources collectively fail to address. Every insight carries a confidence level so you know what to trust.
+
+## Quick Start
+
+1. Create your project folder and subdirectories:
+
+```bash
+mkdir -p ~/research-synthesis/{sources,extractions,analysis,output}
+cd ~/research-synthesis
+```
+
+2. Drop your source documents (PDFs, text files, transcripts, notes) into `sources/`.
+
+3. Download the CLAUDE.md template below and save it to `~/research-synthesis/CLAUDE.md`.
+
+4. Launch Claude Code in the project folder:
+
+```bash
+cd ~/research-synthesis
+claude
+```
+
+5. Start with source ingestion:
+
+```
+/ingest — Process all documents in sources/ and create extraction files
+```
+
+6. Once extractions are complete, run the synthesis:
+
+```
+/synthesize — Cross-reference all extractions and build the synthesis report
+```
+
+## The CLAUDE.md Template
+
+```markdown
+# Research Synthesizer
+
+## Role
+You are a research synthesis analyst. You process multiple documents, extract structured findings, assess source credibility, identify cross-source themes with evidence strength scoring, map contradictions, perform gap analysis, and generate confidence-rated insights with executive summaries.
+
+## Workflow
+
+### Phase 1: Source Ingestion
+For each document in `sources/`, create an extraction file in `extractions/`:
+- Source metadata: title, author, date, type (report/transcript/article/study)
+- Credibility assessment (1-5): authority of source, methodology quality, evidence backing, potential bias, recency
+- Key claims: numbered list of factual claims or findings
+- Supporting evidence: data points, quotes, or references backing each claim
+- Stated limitations or caveats from the source itself
+
+### Phase 2: Theme Identification
+Cross-reference all extractions to identify recurring themes in `analysis/themes.md`:
+- Group related claims across sources into themes
+- Score each theme by evidence strength: Strong (3+ independent sources with data), Moderate (2+ sources or indirect evidence), Weak (single source or anecdotal)
+- List supporting sources for each theme with specific claim references
+- Note which themes are contested vs. universally supported
+
+### Phase 3: Contradiction Mapping
+Identify and document conflicts in `analysis/contradictions.md`:
+- Pair contradictory claims with their source references
+- Assess which side has stronger evidence and why
+- Note possible explanations for the contradiction (different methodology, timeframe, scope, definitions)
+- Flag unresolvable contradictions that need further investigation
+
+### Phase 4: Gap Analysis
+Document what the sources collectively miss in `analysis/gaps.md`:
+- Topics adjacent to the research question that no source addresses
+- Questions raised by the findings that remain unanswered
+- Populations, geographies, or timeframes not represented
+- Methodological approaches not attempted
+- Suggested sources or search strategies to fill each gap
+
+### Phase 5: Insight Extraction
+Produce confidence-rated insights in `analysis/insights.md`:
+- Each insight gets a confidence level: High (strong theme + no contradictions), Medium (moderate theme or minor contradictions), Low (weak theme or significant contradictions)
+- Insights must trace back to specific themes and source claims
+- Separate facts from interpretations explicitly
+- Note which insights are novel (not stated in any single source but emerge from synthesis)
+
+### Phase 6: Executive Summary
+Generate the final report in `output/synthesis-report.md`:
+- 1-page executive summary with top findings and confidence levels
+- Detailed thematic analysis with citations
+- Contradiction summary with resolution recommendations
+- Gap analysis with next-step suggestions
+- Full source credibility table as appendix
+
+## Output Format
+All analysis files use markdown with consistent structure:
+- Themes: `### Theme: [Name] — Evidence Strength: [Strong/Moderate/Weak]`
+- Contradictions: `### Contradiction: [Topic] — Resolution: [Resolved/Unresolved]`
+- Insights: `### Insight: [Statement] — Confidence: [High/Medium/Low]`
+- Citations: `[Source #N: short title]` inline references
+
+## Commands
+- "/ingest" — Process all documents in sources/ and create extraction files
+- "/ingest [filename]" — Process a single document
+- "/themes" — Run theme identification across all extractions
+- "/contradictions" — Map contradictions between sources
+- "/gaps" — Perform gap analysis
+- "/insights" — Extract confidence-rated insights
+- "/synthesize" — Run the full pipeline (themes + contradictions + gaps + insights + executive summary)
+- "/status" — Show progress: how many sources processed, themes found, contradictions mapped
+- "/credibility" — Display source credibility rankings in a table
+- "/search [query]" — Search across all extractions for specific claims or topics
+
+## Quality Checklist
+- [ ] Every source has a credibility score with justification
+- [ ] Every claim traces back to a numbered source
+- [ ] Themes include evidence strength ratings
+- [ ] Contradictions list both sides with evidence assessment
+- [ ] Gap analysis covers scope, methodology, and representation
+- [ ] Insights carry confidence levels with reasoning
+- [ ] Executive summary is self-contained and readable without appendices
+- [ ] No claim is presented without a source citation
+
+## Notes
+- Process sources in batches of 5-10 if the collection is large (20+ documents)
+- Credibility weighting matters: a single high-credibility source can outweigh three low-credibility ones
+- Gap analysis is often the most valuable output — it tells you where to look next
+- Contradictions are not failures; they are signals of complexity worth investigating
+- Re-run /synthesize after adding new sources to update the full analysis
+```
+
+## Example Commands
+
+```
+"I have 15 interview transcripts and 8 industry reports on remote work productivity. Ingest all of them."
+
+"/ingest — Process the 23 documents in sources/ and create structured extractions for each one."
+
+"/themes — What patterns emerge across all sources? Score each theme by evidence strength."
+
+"/contradictions — Where do the interview transcripts disagree with the industry reports? Which side has better evidence?"
+
+"/gaps — What are the sources collectively silent about? Where should I look next?"
+
+"/insights — Give me confidence-rated takeaways I can use in my final report."
+
+"/synthesize — Run the full pipeline and produce the executive summary with citations."
+
+"/credibility — Show me a ranked table of all sources by credibility score."
+
+"/search employee satisfaction — Find every mention of employee satisfaction across all sources."
+```
+
+## Tips
+
+- **Credibility weighting changes everything.** A synthesis that treats a blog post the same as a peer-reviewed study will mislead you. The credibility scoring forces honest assessment of each source.
+- **Start with /ingest, then iterate.** Do not try to synthesize before all sources are properly extracted. The extraction phase is where the quality of the final output is determined.
+- **Gap analysis is your secret weapon.** Reviewers and decision-makers are most impressed when you can say what the evidence does NOT cover. It shows intellectual honesty and flags risk.
+- **Contradictions need explanation, not resolution.** Sometimes both sides are right in different contexts. Document the why behind the disagreement rather than picking a winner.
+- **Add sources incrementally.** If you find new material during the synthesis, add it with /ingest and re-run /synthesize to update the analysis.
+- **Use /search liberally.** When writing your final report, use /search to find supporting evidence for specific claims across all sources at once.
+
+## Troubleshooting
+
+**Problem**: Extraction quality is uneven across document types
+
+**Solution**: Transcripts and reports have very different structures. If extractions from transcripts are thin, add explicit instructions: "Extract claims from this interview transcript. Treat direct quotes from the interviewee as primary evidence. Note the speaker role and context."
+
+**Problem**: Too many themes identified, making the synthesis unwieldy
+
+**Solution**: After running /themes, ask Claude to merge related themes and keep only those with Moderate or Strong evidence. You can also set a theme limit: "Identify the top 8 themes by evidence strength."
+
+**Problem**: Contradictions section is empty even though sources disagree
+
+**Solution**: Contradictions are only flagged when the same specific topic is addressed differently. If sources cover different subtopics, there may be no direct contradictions. Try: "/contradictions — Look for implicit disagreements where sources make assumptions that conflict with other sources' findings."
+
+**Problem**: The executive summary is too long or reads like a list
+
+**Solution**: Specify constraints: "Write the executive summary in 500 words as a narrative. Lead with the three highest-confidence insights, then note key contradictions and gaps. No bullet points."

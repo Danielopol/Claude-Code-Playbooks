@@ -1,0 +1,129 @@
+---
+title: "App Store Optimizer"
+description: "Optimize Apple App Store and Google Play listings with keyword research, metadata tuning, and A/B testing strategies."
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "davila7/claude-code-templates"
+tags: ["aso", "app-store", "google-play", "keyword-research", "mobile-marketing", "conversion-optimization"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Turns Claude into an ASO specialist that optimizes your App Store and Google Play listings for maximum visibility and conversion. It handles keyword research, metadata optimization, competitor keyword gap analysis, and structured A/B testing plans so your app ranks higher and converts more page visitors into installs.
+
+Based on [alirezarezvani's ASO skill](https://github.com/alirezarezvani).
+
+---
+
+## The Problem
+
+App store visibility is the single biggest growth lever for mobile apps, yet most teams treat metadata as an afterthought. Titles are stuffed with brand names instead of search terms. Descriptions read like press releases. Keyword fields are wasted on duplicates and low-volume terms. Meanwhile, competitors who invest in ASO quietly take your rankings and installs.
+
+---
+
+## The Fix
+
+A systematic ASO workflow where Claude audits your current listings, researches high-value keywords, optimizes every metadata field within character limits, and builds testing plans to continuously improve conversion rates.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Gather Your App Data
+
+```
+aso-workspace/
+├── CLAUDE.md
+├── current-listing/
+│   ├── ios-metadata.md          # Current App Store listing
+│   └── android-metadata.md      # Current Play Store listing
+├── keywords/
+├── competitors/
+└── tests/
+```
+
+### Step 3: Run Your First ASO Audit
+
+```bash
+claude
+```
+
+Say: **"Audit my app store listing and find optimization opportunities"**
+
+---
+
+## Example Commands
+
+```
+"Audit my iOS app listing for ASO issues"
+"Research keywords for a [category] app targeting [audience]"
+"Optimize my App Store title and subtitle within character limits"
+"Analyze keyword gaps between my app and top 3 competitors"
+"Write a conversion-optimized App Store description"
+"Build an A/B test plan for my Google Play short description"
+"Generate localized metadata for Spanish, German, and Japanese markets"
+"What keywords are my competitors ranking for that I'm missing?"
+```
+
+---
+
+## What Gets Optimized
+
+| Element | iOS Limits | Google Play Limits | Impact |
+|---------|-----------|-------------------|--------|
+| **App Name/Title** | 30 chars | 30 chars | Very High |
+| **Subtitle** | 30 chars | N/A | High |
+| **Short Description** | N/A | 80 chars | High |
+| **Keywords Field** | 100 chars | N/A | High |
+| **Full Description** | 4,000 chars | 4,000 chars | Medium (GP: High) |
+| **Promotional Text** | 170 chars | N/A | Low (not indexed) |
+| **What's New** | 4,000 chars | 500 chars | Low |
+| **Screenshots** | Up to 10 | Up to 8 | Very High (CVR) |
+
+---
+
+## Keyword Research Strategy
+
+| Source | What You Get |
+|--------|-------------|
+| **Auto-suggest** | App Store / Play Store search suggestions |
+| **Competitor metadata** | Terms your rivals rank for |
+| **Review mining** | Language your users actually use |
+| **Category browsing** | High-volume category terms |
+| **Seasonal trends** | Spikes around events, holidays, seasons |
+
+---
+
+## Tips
+
+- **iOS keyword field** — use commas, no spaces, no duplicates of title/subtitle words (Apple indexes them automatically)
+- **Google Play indexes the description** — unlike iOS, so keyword density in the full description matters on Google Play
+- **Front-load your title** — the first 20 characters show in search results; put your highest-value keyword there
+- **Screenshot captions** are not indexed but massively impact conversion rate — treat them as ad headlines
+- **Localization multiplies your reach** — even a basic translation of metadata into top-5 languages can 3x your visibility
+- **Update metadata with major releases** — algorithm freshness signals matter
+
+---
+
+## Troubleshooting
+
+**Not sure which keywords to target**
+Start with: "Give me 50 keyword ideas for a [app type] app, sorted by estimated search volume and difficulty." Then prioritize medium-volume, low-competition terms.
+
+**Character limits are too tight**
+Say: "Optimize this title to exactly 30 characters while keeping the primary keyword." Claude will iterate on character-perfect metadata.
+
+**Competitor analysis feels incomplete**
+Provide the competitor app names/URLs. Claude can analyze their visible metadata (title, subtitle, description) even without paid ASO tool data.
+
+**Don't know what to A/B test first**
+Test in this order: (1) screenshots/icon, (2) title, (3) short description, (4) full description. Visual elements have the highest conversion impact.
+
+**Localization quality concerns**
+Say: "Generate ASO-optimized metadata for [language], not a direct translation — research local keyword preferences for this market."

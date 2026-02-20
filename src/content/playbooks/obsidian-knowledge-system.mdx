@@ -1,0 +1,156 @@
+---
+title: "Obsidian Knowledge System"
+description: "Manage your Obsidian vault — auto-generate Maps of Content, build smart tagging taxonomies, discover hidden connections, audit vault health, and consolidate scattered notes."
+category: "knowledge-management"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "davila7/claude-code-templates"
+tags: ["Obsidian", "knowledge-management", "MOC", "tagging", "PKM", "notes", "vault"]
+createdAt: "2026-02-18"
+---
+
+## What This Does
+
+Turns a messy Obsidian vault into an organized knowledge system. Claude scans your vault and generates Maps of Content (MOCs), builds a consistent tagging taxonomy, discovers connections between unlinked notes, audits vault health (orphans, duplicates, broken links), and consolidates scattered notes on the same topic into comprehensive pages.
+
+---
+
+## The Problem
+
+Obsidian vaults grow organically and quickly become unmanageable. Notes pile up without structure, tags are inconsistent, related ideas sit in separate files with no links, orphan notes drift into obscurity, and you lose confidence that you can actually find what you know. The vault becomes a graveyard instead of a second brain.
+
+---
+
+## The Fix
+
+Point Claude at your vault and tell it what to fix. It reads your notes, understands the content, and performs structural improvements: generating MOC index pages, normalizing tags, wikilink-connecting related notes, flagging orphans and broken links, and merging fragments into complete notes. Your vault stays in Obsidian — Claude just makes it organized.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Place in Your Vault
+
+Save the `CLAUDE.md` file in the root of your Obsidian vault folder.
+
+### Step 3: Run the System
+
+```bash
+cd ~/Documents/ObsidianVault  # or your vault path
+claude
+```
+
+Say: **"Audit my vault and generate a MOC for my top topics"**
+
+---
+
+## Example Commands
+
+```
+"Scan my vault and generate Maps of Content for the top 10 topics"
+"Build a tagging taxonomy from my existing notes"
+"Find notes that should be linked but are not"
+"Audit my vault — orphan notes, broken links, duplicate content"
+"Consolidate all notes related to [topic] into one comprehensive note"
+"Suggest a folder structure based on my content"
+"Normalize my tags — merge duplicates and fix inconsistencies"
+"Find notes I haven't touched in over 6 months"
+"Create a daily note template based on my patterns"
+"Generate a graph analysis — what are my most connected ideas?"
+```
+
+---
+
+## What Gets Built
+
+| Deliverable | Description |
+|-------------|-------------|
+| **Maps of Content** | Index notes that link to all related notes on a topic |
+| **Tag Taxonomy** | Consistent, hierarchical tagging system applied across the vault |
+| **Link Suggestions** | Pairs of notes that should be connected via wikilinks |
+| **Vault Audit Report** | Orphan count, broken links, duplicates, stale notes |
+| **Consolidated Notes** | Fragments merged into comprehensive topic pages |
+| **Folder Suggestions** | Recommended structure based on content patterns |
+
+---
+
+## Example Output
+
+```markdown
+## Vault Audit Report
+
+### Overview
+- Total notes: 842
+- Orphan notes (no inbound links): 186 (22%)
+- Broken links: 23
+- Duplicate/near-duplicate notes: 14 pairs
+- Notes not modified in 6+ months: 312
+- Average links per note: 2.4
+
+### Top Topics by Note Count
+| Topic | Notes | Has MOC? | Tag Consistent? |
+|-------|-------|----------|-----------------|
+| Machine Learning | 47 | No | Partial (#ml, #ML, #machine-learning) |
+| Product Management | 38 | No | No (untagged) |
+| Book Notes | 31 | Yes | Yes (#book-notes) |
+| Python | 28 | No | Partial (#python, #Python) |
+
+### Recommended Actions
+1. Generate MOCs for Machine Learning, Product Management, Python
+2. Normalize tags: merge #ml, #ML → #machine-learning
+3. Review 14 duplicate pairs for consolidation
+4. Triage 186 orphan notes — link, archive, or delete
+5. Fix 23 broken links (renamed or deleted targets)
+
+---
+
+## MOC: Machine Learning
+
+### Fundamentals
+- [[Neural Networks Basics]]
+- [[Gradient Descent Explained]]
+- [[Overfitting and Regularization]]
+
+### Techniques
+- [[Random Forests]]
+- [[Support Vector Machines]]
+- [[Transformer Architecture Notes]]
+
+### Projects
+- [[Sentiment Analysis Project]]
+- [[Image Classifier Experiment]]
+
+### Resources
+- [[ML Courses List]]
+- [[Papers to Read - ML]]
+```
+
+---
+
+## Tips
+
+- **Start with the audit**: Run the vault health check first to see the full picture before making changes
+- **MOCs over folders**: Maps of Content are more flexible than folders because a note can appear in multiple MOCs
+- **Use hierarchical tags**: Prefer `#project/ml-classifier` over flat tags like `#ml` for better filtering
+- **Review before merging**: Always review Claude's consolidation suggestions before it merges notes — context matters
+- **Incremental is fine**: You do not need to fix everything at once; tackle one topic cluster per session
+
+---
+
+## Troubleshooting
+
+**Vault is too large to scan**
+Say: "Only scan notes in the [folder name] folder" or "Only scan notes modified in the last 90 days" to limit scope.
+
+**MOCs are too broad**
+Ask: "Break the Machine Learning MOC into sub-MOCs: Fundamentals, Techniques, Projects, and Resources."
+
+**Tag normalization changed things I did not want changed**
+Undo in Obsidian (Ctrl+Z works on recent changes) or use git if your vault is version-controlled. Next time, say: "Show me the tag changes before applying them."
+
+**Claude suggests linking notes that are not actually related**
+This happens with short or ambiguous notes. Say: "Only suggest links where both notes share at least 2 common concepts."

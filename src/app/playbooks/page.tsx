@@ -93,8 +93,8 @@ export default async function PlaybooksPage({ searchParams }: PlaybooksPageProps
 
   return (
     <div className="container py-8">
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold mb-2 flex items-center gap-2">
+      <div className="text-center mb-8" data-testid="header-wrapper">
+        <h1 className="text-2xl font-bold mb-2 flex items-center justify-center gap-2">
           <span className="text-[#22d3ee]">$</span>
           <span>ls playbooks/</span>
         </h1>
@@ -103,7 +103,7 @@ export default async function PlaybooksPage({ searchParams }: PlaybooksPageProps
         </p>
       </div>
 
-      <div className="flex flex-col gap-4 mb-6 sm:flex-row sm:items-center">
+      <div className="flex flex-col gap-4 mb-6 sm:flex-row sm:items-center sm:justify-center">
         <Suspense fallback={<div className="h-10 w-full sm:w-64 bg-[#161b22] animate-pulse rounded-lg" />}>
           <SearchBar className="w-full sm:w-80" autoSearch />
         </Suspense>

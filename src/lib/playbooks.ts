@@ -141,3 +141,42 @@ export function getRelatedPlaybooks(playbook: Playbook, limit = 3): Playbook[] {
     .filter((p) => p.slug !== playbook.slug && p.category === playbook.category)
     .slice(0, limit);
 }
+
+export interface LatestPlaybooksResult {
+  date: string;
+  totalNew: number;
+  totalAll: number;
+  byCategory: { category: Category; playbooks: Playbook[] }[];
+}
+
+export function getLatestPlaybooks(): LatestPlaybooksResult {
+  const all = getAllPlaybooks();
+
+  // Find the most recent createdAt date
+  const mostRecentDate = all.reduce((latest, p) => {
+    return p.createdAt > latest ? p.createdAt : latest;
+  }, '');
+
+  // Get all playbooks from that date
+  const latestPlaybooks = all.filter((p) => p.createdAt === mostRecentDate);
+
+  // Group by category
+  const categoryMap = new Map<Category, Playbook[]>();
+  for (const p of latestPlaybooks) {
+    const existing = categoryMap.get(p.category) || [];
+    existing.push(p);
+    categoryMap.set(p.category, existing);
+  }
+
+  // Sort categories by count (largest first) then alphabetically
+  const byCategory = Array.from(categoryMap.entries())
+    .sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]))
+    .map(([category, playbooks]) => ({ category, playbooks }));
+
+  return {
+    date: mostRecentDate,
+    totalNew: latestPlaybooks.length,
+    totalAll: all.length,
+    byCategory,
+  };
+}

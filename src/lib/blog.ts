@@ -213,6 +213,20 @@ export const blogPosts: BlogPost[] = [
     tags: ['skills', 'subagents', 'MCP', 'progressive disclosure', 'custom agents', 'tutorial', 'viral thread'],
     createdAt: '2026-02-15',
   },
+  {
+    id: 'top-10-claude-code-tips-for-non-developers',
+    title: 'Top 10 Claude Code Tips for Non-Developers',
+    description: 'JJ Englert shares his top 10 tips for non-developers using Claude Code, drawn from building 20+ projects without writing a single line of code.',
+    category: 'tutorial',
+    difficulty: 'basic',
+    readingTime: '24 min read',
+    url: 'https://x.com/JJEnglert/status/2024858907773169874',
+    featured: true,
+    thumbnailType: 'agent',
+    thumbnailTitle: 'no-code tips',
+    tags: ['non-developer', 'tips', 'no-code', 'vibe coding', 'video', 'workflow'],
+    createdAt: '2026-02-20',
+  },
 ];
 
 export function getAllBlogPosts(): BlogPost[] {

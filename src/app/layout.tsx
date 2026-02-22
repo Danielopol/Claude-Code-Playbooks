@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Github, Home, BookOpen, Rss, Phone, Mail, Sparkles } from 'lucide-react';
+import { Github, Home, BookOpen, Rss, Phone, Mail } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
 import './globals.css';
 
@@ -44,13 +44,6 @@ function Header() {
           >
             <BookOpen className="h-4 w-4" />
             <span>Browse</span>
-          </Link>
-          <Link
-            href="/latest"
-            className="flex items-center gap-1.5 text-muted-foreground hover:text-[#f97316] transition-colors"
-          >
-            <Sparkles className="h-4 w-4" />
-            <span>Latest</span>
           </Link>
           <Link
             href="/blog"

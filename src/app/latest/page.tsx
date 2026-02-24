@@ -8,6 +8,9 @@ import { Sparkles, ArrowRight } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Latest Releases | Claude Code Playbooks',
   description: 'The newest playbooks just added to Claude Code Playbooks. Browse the latest copy-paste workflows.',
+  alternates: {
+    canonical: '/latest',
+  },
 };
 
 function formatDate(dateStr: string): string {

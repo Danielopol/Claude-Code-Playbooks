@@ -32,6 +32,9 @@ export async function generateMetadata({ params }: PlaybookPageProps): Promise<M
   return {
     title: `${playbook.title} | Claude Code Playbooks`,
     description: playbook.description,
+    alternates: {
+      canonical: `/playbooks/${slug}`,
+    },
     openGraph: {
       title: playbook.title,
       description: playbook.description,

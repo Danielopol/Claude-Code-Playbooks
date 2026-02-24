@@ -26,6 +26,9 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   return {
     title: `${categoryInfo.name} Playbooks | Claude Code Playbooks`,
     description: categoryInfo.description,
+    alternates: {
+      canonical: `/categories/${category}`,
+    },
   };
 }
 

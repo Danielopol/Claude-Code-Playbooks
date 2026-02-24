@@ -10,6 +10,9 @@ import { Category } from '@/types/playbook';
 export const metadata: Metadata = {
   title: 'All Playbooks | Claude Code Playbooks',
   description: 'Browse all copy-paste workflows for Claude Code. No coding required.',
+  alternates: {
+    canonical: '/playbooks',
+  },
 };
 
 const ITEMS_PER_PAGE = 24;

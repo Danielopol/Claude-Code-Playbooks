@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   description: 'Ready-to-use configurations for your Claude Code projects',
   keywords: ['Claude Code', 'AI workflows', 'productivity', 'automation', 'templates'],
   authors: [{ name: 'Claude Code Playbooks' }],
+  alternates: {
+    canonical: '/',
+  },
   icons: {
     icon: [
       { url: '/favicon.png', type: 'image/png' },

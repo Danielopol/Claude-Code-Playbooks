@@ -94,8 +94,42 @@ export default async function PlaybooksPage({ searchParams }: PlaybooksPageProps
   const query = params.q;
   const page = parseInt(params.page || '1', 10);
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.claudecodehq.com',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Playbooks',
+      },
+    ],
+  };
+
+  const collectionJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'All Playbooks',
+    description: 'Browse all copy-paste workflows for Claude Code. No coding required.',
+    url: 'https://www.claudecodehq.com/playbooks',
+  };
+
   return (
     <div className="container py-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
       <div className="text-center mb-8" data-testid="header-wrapper">
         <h1 className="text-2xl font-bold mb-2 flex items-center justify-center gap-2">
           <span className="text-[#22d3ee]">$</span>

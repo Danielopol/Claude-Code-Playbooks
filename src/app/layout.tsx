@@ -134,9 +134,48 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const websiteJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Claude Code Playbooks',
+    url: 'https://www.claudecodehq.com',
+    description: 'Ready-to-use configurations for your Claude Code projects',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://www.claudecodehq.com/playbooks?q={search_term_string}',
+      'query-input': 'required name=search_term_string',
+    },
+  };
+
+  const organizationJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Claude Code Playbooks',
+    url: 'https://www.claudecodehq.com',
+    logo: 'https://www.claudecodehq.com/logo.png',
+    sameAs: [
+      'https://x.com/DanielGPT2022',
+      'https://github.com/Danielopol/Claude-Code-Playbooks',
+    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+40728083312',
+      email: 'valentin.marin83@gmail.com',
+      contactType: 'customer support',
+    },
+  };
+
   return (
     <html lang="en" className="dark">
       <body className="antialiased min-h-screen flex flex-col bg-[#0d1117]">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

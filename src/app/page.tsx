@@ -84,8 +84,30 @@ export default async function HomePage({ searchParams }: HomePageProps) {
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const playbooks = allPlaybooks.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
+  const collectionJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Claude Code Playbooks',
+    description: 'Ready-to-use configurations for your Claude Code projects',
+    url: 'https://www.claudecodehq.com',
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: totalPlaybooks,
+      itemListElement: playbooks.map((p, i) => ({
+        '@type': 'ListItem',
+        position: startIndex + i + 1,
+        url: `https://www.claudecodehq.com/playbooks/${p.slug}`,
+        name: p.title,
+      })),
+    },
+  };
+
   return (
     <div className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
       {/* Hero Section with Pixel Title */}
       <section className="container py-12 md:py-16">
         <div className="text-center mb-8">

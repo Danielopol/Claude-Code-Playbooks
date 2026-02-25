@@ -42,8 +42,49 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   const playbooks = getPlaybooksByCategory(category as Category);
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.claudecodehq.com',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Playbooks',
+        item: 'https://www.claudecodehq.com/playbooks',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: categoryInfo.name,
+      },
+    ],
+  };
+
+  const collectionJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: `${categoryInfo.name} Playbooks`,
+    description: categoryInfo.description,
+    url: `https://www.claudecodehq.com/categories/${category}`,
+    numberOfItems: playbooks.length,
+  };
+
   return (
     <div className="container py-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
       <Link
         href="/playbooks"
         className="inline-flex items-center text-sm text-muted-foreground hover:text-[#22d3ee] mb-6 transition-colors"

@@ -53,8 +53,99 @@ export default async function PlaybookPage({ params }: PlaybookPageProps) {
   const categoryInfo = getCategoryById(playbook.category);
   const relatedPlaybooks = getRelatedPlaybooks(playbook);
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.claudecodehq.com',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Playbooks',
+        item: 'https://www.claudecodehq.com/playbooks',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: playbook.title,
+      },
+    ],
+  };
+
+  const softwareAppJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: playbook.title,
+    description: playbook.description,
+    url: `https://www.claudecodehq.com/playbooks/${slug}`,
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: 'Any',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    author: {
+      '@type': playbook.author === 'community' ? 'Organization' : 'Person',
+      name: playbook.author === 'community' ? 'Claude Code Playbooks Community' : playbook.author,
+    },
+    datePublished: playbook.createdAt,
+    ...(playbook.updatedAt && { dateModified: playbook.updatedAt }),
+    keywords: playbook.tags.join(', '),
+  };
+
+  const howToJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: `How to use ${playbook.title}`,
+    description: playbook.description,
+    step: [
+      {
+        '@type': 'HowToStep',
+        position: 1,
+        name: 'Browse and select the playbook',
+        text: `Find the ${playbook.title} playbook on Claude Code Playbooks and review the configuration.`,
+      },
+      {
+        '@type': 'HowToStep',
+        position: 2,
+        name: 'Copy the CLAUDE.md template',
+        text: 'Copy the CLAUDE.md template and place it in your project folder.',
+      },
+      {
+        '@type': 'HowToStep',
+        position: 3,
+        name: 'Start using with Claude Code',
+        text: 'Launch Claude Code in your project directory. It will automatically detect and use the CLAUDE.md configuration.',
+      },
+    ],
+    tool: {
+      '@type': 'SoftwareApplication',
+      name: 'Claude Code',
+      url: 'https://claude.ai/code',
+    },
+    totalTime: playbook.timeToSetup,
+  };
+
   return (
     <div className="container mx-auto py-8 max-w-4xl">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
+      />
       <Link
         href="/playbooks"
         className="inline-flex items-center text-sm text-muted-foreground hover:text-[#22d3ee] mb-6 transition-colors"

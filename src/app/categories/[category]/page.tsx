@@ -2,10 +2,10 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getPlaybooksByCategory } from '@/lib/playbooks';
-import { categories, getCategoryById } from '@/lib/categories';
+import { categories, getCategoryById, getCategoriesByVertical } from '@/lib/categories';
 import { PlaybookCard } from '@/components/PlaybookCard';
 import { Category } from '@/types/playbook';
-import { ArrowLeft, FolderOpen } from 'lucide-react';
+import { ArrowLeft, FolderOpen, Layers } from 'lucide-react';
 
 interface CategoryPageProps {
   params: Promise<{ category: string }>;
@@ -127,6 +127,42 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           ))}
         </div>
       )}
+
+      {/* Related Categories — internal linking for SEO */}
+      {(() => {
+        const relatedInVertical = getCategoriesByVertical(categoryInfo.vertical).filter(
+          (c) => c.id !== categoryInfo.id
+        );
+        // Also show a few categories from other verticals
+        const otherCategories = categories
+          .filter((c) => c.vertical !== categoryInfo.vertical && c.id !== categoryInfo.id)
+          .slice(0, 4);
+        const relatedCategories = [...relatedInVertical, ...otherCategories].slice(0, 6);
+
+        return relatedCategories.length > 0 ? (
+          <section className="mt-12 pt-8 border-t border-[#30363d]">
+            <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
+              <Layers className="h-5 w-5 text-[#a78bfa]" />
+              Explore More Categories
+            </h2>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {relatedCategories.map((cat) => (
+                <Link
+                  key={cat.id}
+                  href={`/categories/${cat.id}`}
+                  className="p-4 bg-[#161b22] border border-[#30363d] rounded-lg hover:border-[#22d3ee] transition-colors group"
+                >
+                  <p className="text-xs text-muted-foreground/70 mb-1">{cat.vertical}</p>
+                  <h3 className="text-sm font-semibold group-hover:text-[#22d3ee] transition-colors">
+                    {cat.name}
+                  </h3>
+                  <p className="text-xs text-muted-foreground mt-1">{cat.description}</p>
+                </Link>
+              ))}
+            </div>
+          </section>
+        ) : null;
+      })()}
     </div>
   );
 }

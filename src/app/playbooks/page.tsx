@@ -1,11 +1,14 @@
 import { Suspense } from 'react';
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { getAllPlaybooks, getPlaybooksByCategory, searchPlaybooks } from '@/lib/playbooks';
 import { PlaybookCard } from '@/components/PlaybookCard';
 import { CategoryFilter } from '@/components/CategoryFilter';
 import { SearchBar } from '@/components/SearchBar';
 import { Pagination } from '@/components/Pagination';
 import { Category } from '@/types/playbook';
+import { categories } from '@/lib/categories';
+import { FolderOpen } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'All Playbooks | Claude Code Playbooks',
@@ -166,6 +169,29 @@ export default async function PlaybooksPage({ searchParams }: PlaybooksPageProps
       >
         <PlaybooksList category={category} query={query} page={page} />
       </Suspense>
+
+      {/* Browse by Category — internal linking for SEO */}
+      <section className="mt-16 pt-8 border-t border-[#30363d]">
+        <h2 className="text-lg font-semibold mb-6 flex items-center gap-2">
+          <FolderOpen className="h-5 w-5 text-[#a78bfa]" />
+          Browse by Category
+        </h2>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {categories.map((cat) => (
+            <Link
+              key={cat.id}
+              href={`/categories/${cat.id}`}
+              className="p-3 bg-[#161b22] border border-[#30363d] rounded-lg hover:border-[#22d3ee] transition-colors group"
+            >
+              <p className="text-xs text-muted-foreground/70 mb-0.5">{cat.vertical}</p>
+              <h3 className="text-sm font-semibold group-hover:text-[#22d3ee] transition-colors">
+                {cat.name}
+              </h3>
+              <p className="text-xs text-muted-foreground mt-1 line-clamp-1">{cat.description}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

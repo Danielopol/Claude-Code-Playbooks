@@ -24,12 +24,16 @@ function getPlaybooks(): Playbook[] {
       const filePath = path.join(playbooksDirectory, file);
       const fileContent = fs.readFileSync(filePath, 'utf8');
       const { data } = matter(fileContent);
-      const fileStats = fs.statSync(filePath);
+
+      // Use frontmatter createdAt if available, otherwise fall back to file mtime
+      const lastModified = data.createdAt
+        ? new Date(data.createdAt)
+        : fs.statSync(filePath).mtime;
 
       playbooks.push({
         slug: file.replace('.mdx', ''),
         category: data.category || 'uncategorized',
-        lastModified: fileStats.mtime,
+        lastModified,
       });
     }
   });
@@ -50,59 +54,71 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const playbooks = getPlaybooks();
   const categories = getUniqueCategories(playbooks);
 
+  // Use the most recent playbook date as the lastModified for listing pages
+  const latestPlaybookDate = playbooks.length > 0
+    ? new Date(Math.max(...playbooks.map((p) => p.lastModified.getTime())))
+    : new Date('2026-02-25');
+
   // Static pages
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: latestPlaybookDate,
       changeFrequency: 'daily',
       priority: 1,
     },
     {
       url: `${baseUrl}/playbooks`,
-      lastModified: new Date(),
+      lastModified: latestPlaybookDate,
       changeFrequency: 'daily',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/blog`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-02-25'),
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/latest`,
-      lastModified: new Date(),
+      lastModified: latestPlaybookDate,
       changeFrequency: 'weekly',
       priority: 0.7,
     },
     {
       url: `${baseUrl}/about`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-02-25'),
       changeFrequency: 'monthly',
       priority: 0.3,
     },
     {
       url: `${baseUrl}/privacy`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-02-25'),
       changeFrequency: 'yearly',
       priority: 0.2,
     },
     {
       url: `${baseUrl}/terms`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-02-25'),
       changeFrequency: 'yearly',
       priority: 0.2,
     },
   ];
 
-  // Category pages
-  const categoryPages: MetadataRoute.Sitemap = categories.map((category) => ({
-    url: `${baseUrl}/categories/${category}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.7,
-  }));
+  // Category pages — use the most recent playbook date per category
+  const categoryPages: MetadataRoute.Sitemap = categories.map((category) => {
+    const categoryPlaybooks = playbooks.filter((p) => p.category === category);
+    const latestInCategory = categoryPlaybooks.length > 0
+      ? new Date(Math.max(...categoryPlaybooks.map((p) => p.lastModified.getTime())))
+      : latestPlaybookDate;
+
+    return {
+      url: `${baseUrl}/categories/${category}`,
+      lastModified: latestInCategory,
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    };
+  });
 
   // Playbook pages
   const playbookPages: MetadataRoute.Sitemap = playbooks.map((playbook) => ({

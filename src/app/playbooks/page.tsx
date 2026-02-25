@@ -82,7 +82,12 @@ async function PlaybooksList({
       </div>
 
       {totalPages > 1 && (
-        <Pagination currentPage={currentPage} totalPages={totalPages} className="mt-8" />
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          className="mt-8"
+          searchParams={{ category, q: query }}
+        />
       )}
     </>
   );

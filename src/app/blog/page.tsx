@@ -120,8 +120,7 @@ export default function BlogPage() {
         <div className="text-center mb-6">
           <h2 className="text-xl font-semibold mb-2 flex items-center justify-center gap-2">
             <span className="text-[#22c55e]">*</span>
-            <span className="font-bold">Blog</span>
-            <span className="text-muted-foreground">(articles/tutorials/guides)</span>
+            <span className="font-bold">All Articles</span>
           </h2>
           <p className="text-sm text-muted-foreground">
             <span className="text-[#30363d]">|_</span> Learn how to maximize your AI-powered development with Claude Code
@@ -131,10 +130,10 @@ export default function BlogPage() {
 
       {/* Featured Posts Carousel */}
       <section className="container pb-12">
-        <h3 className="text-lg font-semibold mb-6 flex items-center gap-2">
+        <h2 className="text-lg font-semibold mb-6 flex items-center gap-2">
           <Star className="h-5 w-5 text-[#f97316] fill-current" />
           Featured Posts
-        </h3>
+        </h2>
 
         <div className="relative">
           {/* Left Arrow */}

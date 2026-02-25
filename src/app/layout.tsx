@@ -6,9 +6,9 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.claudecodehq.com'),
-  title: 'Claude Code Playbooks',
-  description: 'Ready-to-use configurations for your Claude Code projects',
-  keywords: ['Claude Code', 'AI workflows', 'productivity', 'automation', 'templates'],
+  title: 'Claude Code Playbooks | Copy-Paste AI Workflows & Templates',
+  description: 'Browse 239+ ready-to-use CLAUDE.md configurations for Claude Code. Copy-paste playbooks for finance, marketing, dev tools, productivity, and more. Free and open source.',
+  keywords: ['Claude Code', 'AI workflows', 'productivity', 'automation', 'templates', 'CLAUDE.md', 'playbooks'],
   authors: [{ name: 'Claude Code Playbooks' }],
   alternates: {
     canonical: '/',
@@ -19,15 +19,18 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: 'Claude Code Playbooks',
-    description: 'Ready-to-use configurations for your Claude Code projects',
+    title: 'Claude Code Playbooks | Copy-Paste AI Workflows & Templates',
+    description: 'Browse 239+ ready-to-use CLAUDE.md configurations for Claude Code. Copy-paste playbooks for finance, marketing, dev tools, productivity, and more.',
     type: 'website',
+    siteName: 'Claude Code Playbooks',
+    url: 'https://www.claudecodehq.com',
     images: [{ url: 'https://www.claudecodehq.com/og-image.jpg', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Claude Code Playbooks',
-    description: 'Ready-to-use configurations for your Claude Code projects',
+    site: '@DanielGPT2022',
+    title: 'Claude Code Playbooks | Copy-Paste AI Workflows & Templates',
+    description: 'Browse 239+ ready-to-use CLAUDE.md configurations for Claude Code. Free and open source.',
     images: ['https://www.claudecodehq.com/og-image.jpg'],
   },
 };

@@ -189,8 +189,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         <div className="text-center mb-6">
           <h2 className="text-xl font-semibold mb-2 flex items-center justify-center gap-2">
             <span className="text-[#22c55e]">*</span>
-            <span>Search</span>
-            <span className="text-muted-foreground">(playbooks/templates/workflows)</span>
+            <span>Search Playbooks</span>
           </h2>
           <p className="text-sm text-muted-foreground">
             <span className="text-[#30363d]">└</span> Find your personalized automation stack

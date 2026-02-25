@@ -1,6 +1,4 @@
-'use client';
-
-import { useRouter, useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -8,40 +6,52 @@ interface PaginationProps {
   currentPage: number;
   totalPages: number;
   className?: string;
+  basePath?: string;
+  searchParams?: Record<string, string | undefined>;
 }
 
-export function Pagination({ currentPage, totalPages, className }: PaginationProps) {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+function buildHref(
+  page: number,
+  basePath: string,
+  searchParams?: Record<string, string | undefined>
+): string {
+  const params = new URLSearchParams();
+  if (searchParams) {
+    Object.entries(searchParams).forEach(([key, value]) => {
+      if (value) params.set(key, value);
+    });
+  }
+  if (page > 1) {
+    params.set('page', page.toString());
+  } else {
+    params.delete('page');
+  }
+  const queryString = params.toString();
+  return queryString ? `${basePath}?${queryString}` : basePath;
+}
 
-  const handlePageChange = (page: number) => {
-    const params = new URLSearchParams(searchParams.toString());
-    if (page === 1) {
-      params.delete('page');
-    } else {
-      params.set('page', page.toString());
-    }
-    router.push(`/playbooks?${params.toString()}`);
-  };
-
+export function Pagination({
+  currentPage,
+  totalPages,
+  className,
+  basePath = '/playbooks',
+  searchParams,
+}: PaginationProps) {
   // Generate page numbers to display
   const getPageNumbers = () => {
     const pages: (number | string)[] = [];
 
     if (totalPages <= 7) {
-      // Show all pages if 7 or less
       for (let i = 1; i <= totalPages; i++) {
         pages.push(i);
       }
     } else {
-      // Always show first page
       pages.push(1);
 
       if (currentPage > 3) {
         pages.push('...');
       }
 
-      // Show pages around current
       const start = Math.max(2, currentPage - 1);
       const end = Math.min(totalPages - 1, currentPage + 1);
 
@@ -55,7 +65,6 @@ export function Pagination({ currentPage, totalPages, className }: PaginationPro
         pages.push('...');
       }
 
-      // Always show last page
       if (!pages.includes(totalPages)) {
         pages.push(totalPages);
       }
@@ -68,57 +77,70 @@ export function Pagination({ currentPage, totalPages, className }: PaginationPro
 
   return (
     <div className={cn('flex flex-col items-center gap-4', className)}>
-      {/* Pagination buttons */}
-      <div className="flex items-center gap-1 p-2 bg-[#161b22] border border-[#30363d] rounded-lg">
-        {/* Previous button */}
-        <button
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-          className={cn(
-            'w-10 h-10 flex items-center justify-center rounded-md transition-colors',
-            currentPage === 1
-              ? 'text-muted-foreground/50 cursor-not-allowed'
-              : 'text-muted-foreground hover:bg-[#21262d] hover:text-foreground'
-          )}
-          aria-label="Previous page"
-        >
-          <ChevronLeft className="h-4 w-4" />
-        </button>
+      {/* Pagination links */}
+      <nav className="flex items-center gap-1 p-2 bg-[#161b22] border border-[#30363d] rounded-lg" aria-label="Pagination">
+        {/* Previous link */}
+        {currentPage === 1 ? (
+          <span
+            className="w-10 h-10 flex items-center justify-center rounded-md text-muted-foreground/50 cursor-not-allowed"
+            aria-disabled="true"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </span>
+        ) : (
+          <Link
+            href={buildHref(currentPage - 1, basePath, searchParams)}
+            className="w-10 h-10 flex items-center justify-center rounded-md text-muted-foreground hover:bg-[#21262d] hover:text-foreground transition-colors"
+            aria-label="Previous page"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </Link>
+        )}
 
         {/* Page numbers */}
-        {getPageNumbers().map((page, index) => (
-          <button
-            key={index}
-            onClick={() => typeof page === 'number' && handlePageChange(page)}
-            disabled={page === '...'}
-            className={cn(
-              'w-10 h-10 flex items-center justify-center rounded-md text-sm font-medium transition-colors',
-              page === currentPage
-                ? 'bg-[#f97316] text-[#0d1117]'
-                : page === '...'
-                ? 'text-muted-foreground cursor-default'
-                : 'text-muted-foreground hover:bg-[#21262d] hover:text-foreground'
-            )}
-          >
-            {page}
-          </button>
-        ))}
+        {getPageNumbers().map((page, index) =>
+          page === '...' ? (
+            <span
+              key={`ellipsis-${index}`}
+              className="w-10 h-10 flex items-center justify-center rounded-md text-sm font-medium text-muted-foreground cursor-default"
+            >
+              ...
+            </span>
+          ) : (
+            <Link
+              key={page}
+              href={buildHref(page as number, basePath, searchParams)}
+              className={cn(
+                'w-10 h-10 flex items-center justify-center rounded-md text-sm font-medium transition-colors',
+                page === currentPage
+                  ? 'bg-[#f97316] text-[#0d1117]'
+                  : 'text-muted-foreground hover:bg-[#21262d] hover:text-foreground'
+              )}
+              aria-current={page === currentPage ? 'page' : undefined}
+            >
+              {page}
+            </Link>
+          )
+        )}
 
-        {/* Next button */}
-        <button
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-          className={cn(
-            'w-10 h-10 flex items-center justify-center rounded-md transition-colors',
-            currentPage === totalPages
-              ? 'text-muted-foreground/50 cursor-not-allowed'
-              : 'text-muted-foreground hover:bg-[#21262d] hover:text-foreground'
-          )}
-          aria-label="Next page"
-        >
-          <ChevronRight className="h-4 w-4" />
-        </button>
-      </div>
+        {/* Next link */}
+        {currentPage === totalPages ? (
+          <span
+            className="w-10 h-10 flex items-center justify-center rounded-md text-muted-foreground/50 cursor-not-allowed"
+            aria-disabled="true"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </span>
+        ) : (
+          <Link
+            href={buildHref(currentPage + 1, basePath, searchParams)}
+            className="w-10 h-10 flex items-center justify-center rounded-md text-muted-foreground hover:bg-[#21262d] hover:text-foreground transition-colors"
+            aria-label="Next page"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </Link>
+        )}
+      </nav>
 
       {/* Page indicator */}
       <p className="text-sm text-muted-foreground">

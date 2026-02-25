@@ -1,0 +1,97 @@
+---
+title: "Smart Contract Auditor"
+description: "Structured audit framework for smart contract security - access control, reentrancy, MEV exposure, and go/no-go recommendations."
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "5 minutes"
+author: "andreolf"
+sourceUrl: "https://github.com/andreolf/claude-playbooks/blob/master/playbooks/audit_contract.md"
+tags: ["smart-contracts", "security-audit", "blockchain", "solidity", "web3", "defi"]
+createdAt: "2026-02-25"
+---
+
+## What This Does
+
+Acts as a senior smart contract auditor. You provide contract code or diffs, and it produces an actionable audit report with categorized findings, an 8-point security checklist, and a go/no-go shipping recommendation.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Provide Context
+
+Fill in the template variables: project name, chain, scope, threat model, and risk tolerance.
+
+### Step 3: Run the Audit
+
+```bash
+claude
+```
+
+Say: **"Audit this contract"** and paste or reference your contract code.
+
+---
+
+## What Gets Checked
+
+| Area | Details |
+|------|---------|
+| **Access Control** | Role validation, modifier usage, unauthorized access vectors |
+| **Reentrancy** | CEI pattern, guards, external call safety |
+| **Arithmetic** | Overflow/underflow, precision loss, rounding |
+| **External Calls** | Return values, gas limits, untrusted contracts |
+| **Upgradability** | Upgrade mechanism, admin keys, timelocks |
+| **Oracles** | Price manipulation, stale data, fallbacks |
+| **MEV** | Frontrunning, slippage, ordering dependencies |
+| **ERC Compliance** | Standard adherence, interface completeness |
+
+---
+
+## Example Output
+
+```markdown
+## Executive Risk Summary
+- Overall risk: High
+- Top 3 risks:
+  - Unprotected admin function allows rug pull
+  - Missing reentrancy guard on withdraw()
+  - Oracle price can be manipulated via flash loan
+
+## Findings
+### Critical
+- Title: Unprotected withdrawAll()
+  - Impact: Admin can drain contract
+  - Exploit scenario: Call withdrawAll() with owner key
+  - Root cause: No timelock or multisig requirement
+  - Fix: Add 48h timelock + multisig
+  - Test to add: Verify timelock enforced on withdrawAll
+
+## Go or No Go
+- Recommendation: No Go
+- Conditions to ship: Fix critical finding, add timelock
+```
+
+---
+
+## Tips
+
+- **Scope matters**: Narrow the scope to changed files for faster, more focused audits
+- **Provide threat model**: The more specific your threat model, the better the findings
+- **Iterate**: Run follow-up questions on specific findings for deeper analysis
+- **Combine with tools**: Feed in Slither or Mythril output for cross-validation
+
+---
+
+## Commands
+
+```
+"Audit this contract for security issues"
+"Focus on access control and reentrancy"
+"What are the top 3 exploit scenarios?"
+"Give me the go/no-go recommendation"
+"Check ERC-20 compliance"
+```

@@ -1,0 +1,93 @@
+---
+title: "Release Notes Generator"
+description: "Generate release notes, changelogs, and announcement copy from diffs and PR summaries - with upgrade notes and test checklist."
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "andreolf"
+sourceUrl: "https://github.com/andreolf/claude-playbooks/blob/master/playbooks/release_notes.md"
+tags: ["release-notes", "changelog", "documentation", "devops", "announcements"]
+createdAt: "2026-02-25"
+---
+
+## What This Does
+
+Acts as a release manager and technical writer. Feed it diffs, PR summaries, or commit logs and it produces structured release notes, a categorized changelog, upgrade instructions, and announcement copy in multiple lengths.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Gather Your Changes
+
+Collect diffs, PR descriptions, or commit history for the release.
+
+### Step 3: Generate Notes
+
+```bash
+claude
+```
+
+Say: **"Generate release notes for v2.1.0"** and provide the input.
+
+---
+
+## What You Get
+
+| Output | Details |
+|--------|---------|
+| **Executive Summary** | 3-bullet overview |
+| **Changelog** | Added, Improved, Fixed, Deprecated, Breaking |
+| **Upgrade Notes** | Steps and gotchas |
+| **Test Checklist** | 8-item verification list |
+| **Announcements** | Short (280 chars), medium, and dev-focused |
+
+---
+
+## Example Output
+
+```markdown
+## Executive Summary
+- New webhook system for real-time event notifications
+- 40% faster API response times via query optimization
+- Breaking: API v1 endpoints deprecated, removal in v3.0
+
+## Changelog
+- Added: Webhook event system with retry logic
+- Improved: Query performance (40% faster)
+- Fixed: Race condition in concurrent uploads
+- Deprecated: API v1 endpoints
+- Breaking: Auth token format changed to JWT
+
+## Upgrade Notes
+- Steps: Update auth library to v2+, migrate tokens
+- Gotchas: Old tokens expire immediately after upgrade
+
+## Announcement (Short)
+v2.1 is live! Webhooks, 40% faster APIs, and JWT auth.
+```
+
+---
+
+## Tips
+
+- **Feed raw diffs**: The more detail, the better the changelog
+- **Specify audience**: Dev-focused notes differ from user-facing ones
+- **Flag breaking changes**: The template calls them out explicitly
+- **Iterate**: Ask for different tone or length variants
+
+---
+
+## Commands
+
+```
+"Generate release notes from these PRs"
+"What are the breaking changes in this release?"
+"Write the upgrade guide for this version"
+"Create a changelog from the last 20 commits"
+"Draft the announcement tweet for this release"
+```

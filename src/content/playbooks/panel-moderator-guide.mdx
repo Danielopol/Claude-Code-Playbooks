@@ -1,0 +1,94 @@
+---
+title: "Panel Moderator Guide"
+description: "Generate a complete moderator guide - sharp questions, minute-by-minute agenda, follow-ups, and audience prompts for any panel."
+category: "media-production"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "andreolf"
+sourceUrl: "https://github.com/andreolf/claude-playbooks/blob/master/playbooks/panel_questions_web3.md"
+tags: ["moderator", "panel-discussion", "events", "questions", "public-speaking"]
+createdAt: "2026-02-25"
+---
+
+## What This Does
+
+Acts as a world-class panel moderator prep tool. Provide the event details, panelists, and goals, and it generates a complete moderator guide with opening script, 12 sharp questions with follow-ups, a lightning round, and audience prompts.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Define the Panel
+
+Fill in event name, session title, audience, panelists, goals, and duration.
+
+### Step 3: Generate the Guide
+
+```bash
+claude
+```
+
+Say: **"Create a moderator guide for my panel"**
+
+---
+
+## What You Get
+
+| Output | Details |
+|--------|---------|
+| **Opening Script** | 30-second intro |
+| **Agenda** | Minute-by-minute breakdown |
+| **12 Questions** | Each with follow-up + trapdoor if they dodge |
+| **Lightning Round** | 6 rapid-fire questions |
+| **Audience Prompts** | 5 audience engagement starters |
+| **Closing Script** | 20-second wrap-up |
+
+---
+
+## Example Output
+
+```markdown
+## Opening (30 seconds)
+Welcome to "The Future of Decentralized Identity."
+We have 45 minutes and three builders who've shipped
+identity products to over 1M users combined...
+
+## Questions
+- Q1: Your product handles 500K daily verifications.
+  What breaks first at 5M?
+  - Follow up: How do you handle that without
+    centralizing?
+  - Trapdoor if they dodge: Your competitors say
+    you already centralized. What do they see that
+    users don't?
+
+## Lightning Round
+- What's one thing your industry gets wrong?
+- Name a competitor you respect and why.
+- What's the most expensive mistake you've made?
+```
+
+---
+
+## Tips
+
+- **Name panelists**: Include their background for personalized questions
+- **Set goals**: "Extract real product metrics" vs "keep it entertaining"
+- **Specify topics to avoid**: Prevents awkward moments
+- **Use trapdoors**: The "trapdoor" follow-ups push past rehearsed answers
+
+---
+
+## Commands
+
+```
+"Create a moderator guide for a 45-minute panel"
+"Make the questions more confrontational"
+"Add more technical depth to the follow-ups"
+"Generate a lightning round focused on predictions"
+"Rewrite the opening for a developer audience"
+```

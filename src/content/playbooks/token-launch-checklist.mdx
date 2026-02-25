@@ -1,0 +1,95 @@
+---
+title: "Token Launch Checklist"
+description: "Complete token launch operations plan - 21-day timeline, 7 checklists, top 10 failure modes, and emergency actions."
+category: "project-management"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "andreolf"
+sourceUrl: "https://github.com/andreolf/claude-playbooks/blob/master/playbooks/token_launch_checklist.md"
+tags: ["token-launch", "blockchain", "web3", "operations", "checklist", "risk-management"]
+createdAt: "2026-02-25"
+---
+
+## What This Does
+
+Acts as a token launch operations lead. Provide your project details and launch date, and it generates a complete launch plan with a 21-day timeline, 7 operational checklists, and the top 10 failure modes with emergency actions.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Define Your Launch
+
+Fill in project name, token, chain, launch date, distribution model, and constraints.
+
+### Step 3: Generate the Plan
+
+```bash
+claude
+```
+
+Say: **"Create the token launch checklist"**
+
+---
+
+## What You Get
+
+| Output | Details |
+|--------|---------|
+| **Timeline** | T-21 through T+7 day-by-day plan |
+| **Smart Contract Checklist** | Deployment, verification, ownership |
+| **Security Checklist** | Audits, monitoring, incident response |
+| **Liquidity Checklist** | Pool setup, market structure, depth |
+| **Exchange Prep** | Listing requirements, integrations |
+| **Comms Checklist** | Community, announcements, PR |
+| **Analytics** | Dashboards, monitoring, alerts |
+| **Failure Modes** | Top 10 risks with mitigations |
+
+---
+
+## Example Output
+
+```markdown
+## Timeline
+- T-21 to T-14: Final audit remediations, testnet deployment
+- T-14 to T-7: Mainnet deployment, liquidity staging
+- T-7 to T-1: Community announcements, final security review
+- T-1 to T+1: Launch execution, 24/7 monitoring
+- T+2 to T+7: Post-launch monitoring, community support
+
+## Top 10 Failure Modes
+- Failure mode: Liquidity pool drained via exploit
+  - Signal: TVL drops >50% in <1 hour
+  - Mitigation: Audit + time-locked admin functions
+  - Emergency action: Pause contract, notify community
+
+- Failure mode: Bot sniping at launch
+  - Signal: First 10 blocks dominated by MEV bots
+  - Mitigation: Anti-snipe mechanisms, gradual unlock
+  - Emergency action: Adjust max tx limits
+```
+
+---
+
+## Tips
+
+- **Start 21 days out**: The timeline assumes 3 weeks of prep
+- **Be honest about unknowns**: The template forces explicit "Unknown" labels
+- **Separate concerns**: Technical, security, liquidity, and comms each get their own track
+- **Plan for failure**: The failure modes section is the most valuable part
+
+---
+
+## Commands
+
+```
+"Create a token launch checklist for [project]"
+"What are the top failure modes for a DEX launch?"
+"Generate the T-7 to T-1 detailed timeline"
+"Build the security checklist for a mainnet deploy"
+"What should our post-launch monitoring look like?"
+```

@@ -1,0 +1,93 @@
+---
+title: "PR Reviewer"
+description: "Senior engineer PR review system - structured feedback on correctness, security, tests, and maintainability with actionable diffs."
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "andreolf"
+sourceUrl: "https://github.com/andreolf/claude-playbooks/blob/master/playbooks/review_pr.md"
+tags: ["code-review", "pull-request", "engineering", "testing", "security"]
+createdAt: "2026-02-25"
+---
+
+## What This Does
+
+Acts as a strict, precise senior engineer reviewing your pull requests. Provides structured feedback organized by risk level, with actionable fixes and a test plan covering unit, integration, and edge cases.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Provide PR Context
+
+Fill in the repo name, PR title, and risk tolerance level.
+
+### Step 3: Run the Review
+
+```bash
+claude
+```
+
+Say: **"Review this PR"** and paste the diff or PR link.
+
+---
+
+## Review Focus Areas
+
+| Area | What's Checked |
+|------|----------------|
+| **Correctness** | Logic errors, edge cases, off-by-ones |
+| **Security** | Injection, auth issues, data exposure |
+| **Tests** | Coverage gaps, missing edge cases |
+| **Maintainability** | Readability, naming, complexity |
+
+---
+
+## Example Output
+
+```markdown
+## Summary
+- Adds rate limiting middleware to API endpoints
+- Refactors auth token validation into shared util
+- Missing error handling for Redis connection failures
+
+## High Risk Issues
+- Issue: Redis connection failure crashes server
+  - Why: No try/catch around Redis calls in rate limiter
+  - Fix: Add fallback to allow requests when Redis is down
+
+## Medium Risk Issues
+- Issue: Rate limit key doesn't include API version
+  - Why: v1 and v2 share limits, could block v2 users
+  - Fix: Include version prefix in Redis key
+
+## Test Plan
+- Unit: Rate limiter returns 429 after threshold
+- Integration: Middleware integrates with Express pipeline
+- Edge cases: Redis down, concurrent requests, key expiry
+```
+
+---
+
+## Tips
+
+- **Set risk tolerance**: "Low" for production-critical code, "High" for internal tools
+- **Provide full diff**: More context = better review
+- **Iterate on findings**: Ask follow-up questions about specific issues
+- **Pair with CI**: Run before merge to catch issues early
+
+---
+
+## Commands
+
+```
+"Review this PR for security issues"
+"Focus on the test coverage gaps"
+"What are the high-risk changes?"
+"Suggest a test plan for this PR"
+"Give me actionable diffs for the fixes"
+```

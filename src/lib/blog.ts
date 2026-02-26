@@ -227,6 +227,20 @@ export const blogPosts: BlogPost[] = [
     tags: ['non-developer', 'tips', 'no-code', 'vibe coding', 'video', 'workflow'],
     createdAt: '2026-02-20',
   },
+  {
+    id: 'skills-explained-why-folders-of-markdown-files-are',
+    title: 'Skills, Explained: Why Folders of Markdown Files Are So Effective',
+    description: 'Explores how AI skills — organized collections of prompts and resources in markdown files — let teams standardize recurring tasks through progressive disclosure, modular structure, and bundled resources.',
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '8 min read',
+    url: 'https://x.com/gabrielchua/status/2026687426593436066',
+    featured: false,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Skills',
+    tags: ['skills', 'markdown', 'prompting', 'workflows', 'agents', 'teams', 'codex'],
+    createdAt: '2026-02-25',
+  },
 ];
 
 export function getAllBlogPosts(): BlogPost[] {

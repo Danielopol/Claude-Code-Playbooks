@@ -6,9 +6,9 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.claudecodehq.com'),
-  title: 'Claude Code Playbooks | Copy-Paste AI Workflows & Templates',
-  description: 'Browse 239+ ready-to-use CLAUDE.md configurations for Claude Code. Copy-paste playbooks for finance, marketing, dev tools, productivity, and more. Free and open source.',
-  keywords: ['Claude Code', 'AI workflows', 'productivity', 'automation', 'templates', 'CLAUDE.md', 'playbooks'],
+  title: 'Claude Code Playbooks | AI Workflows, Templates & Skills',
+  description: 'Ready-to-use workflows, templates and skills for Claude Code, Codex CLI, Windsurf, Cursor, Antigravity & more AI coding agents. Copy-paste CLAUDE.md playbooks. Free and open source.',
+  keywords: ['Claude Code', 'Claude templates', 'Claude workflows', 'Claude skills', 'AI workflows', 'Codex CLI', 'Windsurf', 'Antigravity', 'Cursor', 'Perplexity', 'AI coding agent', 'productivity', 'automation', 'templates', 'CLAUDE.md', 'playbooks'],
   authors: [{ name: 'Claude Code Playbooks' }],
   alternates: {
     canonical: '/',
@@ -19,8 +19,8 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: 'Claude Code Playbooks | Copy-Paste AI Workflows & Templates',
-    description: 'Browse 239+ ready-to-use CLAUDE.md configurations for Claude Code. Copy-paste playbooks for finance, marketing, dev tools, productivity, and more.',
+    title: 'Claude Code Playbooks | AI Workflows, Templates & Skills',
+    description: 'Ready-to-use workflows, templates and skills for Claude Code, Codex CLI, Windsurf, Cursor, Antigravity & more AI coding agents. Copy-paste CLAUDE.md playbooks.',
     type: 'website',
     siteName: 'Claude Code Playbooks',
     url: 'https://www.claudecodehq.com',
@@ -29,8 +29,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     site: '@DanielGPT2022',
-    title: 'Claude Code Playbooks | Copy-Paste AI Workflows & Templates',
-    description: 'Browse 239+ ready-to-use CLAUDE.md configurations for Claude Code. Free and open source.',
+    title: 'Claude Code Playbooks | AI Workflows, Templates & Skills',
+    description: 'Ready-to-use workflows, templates and skills for Claude Code, Codex CLI, Windsurf & more AI agents. Free and open source.',
     images: ['https://www.claudecodehq.com/og-image.jpg'],
   },
 };
@@ -153,7 +153,7 @@ export default function RootLayout({
     '@type': 'WebSite',
     name: 'Claude Code Playbooks',
     url: 'https://www.claudecodehq.com',
-    description: 'Ready-to-use configurations for your Claude Code projects',
+    description: 'Ready-to-use workflows, templates and skills for Claude Code, Codex CLI, Windsurf, Cursor, Antigravity and more AI coding agents',
     potentialAction: {
       '@type': 'SearchAction',
       target: 'https://www.claudecodehq.com/playbooks?q={search_term_string}',

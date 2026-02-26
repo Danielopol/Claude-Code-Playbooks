@@ -8,6 +8,7 @@ import { HomePagination } from '@/components/HomePagination';
 import { HomeSearch } from '@/components/HomeSearch';
 import { CategoryPills } from '@/components/CategoryPills';
 import { ContributePlaybookModal } from '@/components/ContributePlaybookModal';
+import { HomeFAQ } from '@/components/HomeFAQ';
 import {
   Terminal,
   Sparkles,
@@ -88,7 +89,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'Claude Code Playbooks',
-    description: 'Ready-to-use configurations for your Claude Code projects',
+    description: 'Ready-to-use workflows, templates and skills for Claude Code, Codex CLI, Windsurf, Cursor, Antigravity and more AI coding agents',
     url: 'https://www.claudecodehq.com',
     mainEntity: {
       '@type': 'ItemList',
@@ -117,7 +118,10 @@ export default async function HomePage({ searchParams }: HomePageProps) {
           </h1>
           <p className="text-muted-foreground flex items-center justify-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse"></span>
-            Ready-to-use configurations for your Claude Code projects
+            Ready-to-use workflows, templates & skills for your Claude Code projects
+          </p>
+          <p className="text-sm text-muted-foreground/70 mt-3 max-w-2xl mx-auto">
+            Copy-paste playbooks for Claude Code, Codex CLI, Windsurf, Cursor, Antigravity & more AI coding agents. Browse templates, skills and workflows to supercharge your development.
           </p>
 
           {/* Quick Links */}
@@ -235,6 +239,9 @@ export default async function HomePage({ searchParams }: HomePageProps) {
           <HomePagination currentPage={currentPage} totalPages={totalPages} />
         )}
       </section>
+
+      {/* FAQ Section */}
+      <HomeFAQ />
     </div>
   );
 }

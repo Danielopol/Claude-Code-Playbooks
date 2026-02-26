@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { Github, BookOpen, Users, Sparkles } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About | Claude Code Playbooks',
-  description: 'Claude Code Playbooks is a free, open-source collection of 239+ copy-paste workflows for Claude Code. Built by the community, for the community.',
+  title: 'About | Claude Code Playbooks — AI Workflows, Templates & Skills',
+  description: 'Claude Code Playbooks is a free, open-source directory of community-tested workflows, templates and skills for Claude Code, Codex CLI, Windsurf, Cursor, Antigravity & more. Built for non-developers.',
   alternates: {
     canonical: '/about',
   },
@@ -20,25 +20,33 @@ export default function AboutPage() {
 
       <div className="prose prose-invert max-w-none space-y-6">
         <p className="text-muted-foreground text-lg">
-          Claude Code Playbooks is a free, open-source directory of ready-to-use <code className="text-[#22d3ee] bg-[#161b22] px-1.5 py-0.5 rounded text-sm">CLAUDE.md</code> configurations for{' '}
+          Claude Code Playbooks is a free, open-source directory of community-tested workflows, templates and skills for{' '}
           <Link href="https://claude.ai/code" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
             Claude Code
-          </Link>.
+          </Link>{' '}
+          and other AI coding agents. Every playbook is a real-world use case, tested by the community and curated on this directory so anyone can replicate it.
         </p>
+
+        <div className="mt-6 p-5 bg-[#0d1117] border border-[#f97316]/30 rounded-lg">
+          <h2 className="text-base font-semibold mb-2 text-[#f97316]">Built for Non-Developers</h2>
+          <p className="text-sm text-muted-foreground">
+            You don&apos;t need to be a developer to use AI coding agents. Our playbooks are designed for marketers, analysts, founders, researchers, students and anyone who wants to automate their work with AI. Each workflow is a copy-paste template — no coding experience required.
+          </p>
+        </div>
 
         <div className="grid gap-4 sm:grid-cols-2 mt-8">
           <div className="p-5 bg-[#161b22] border border-[#30363d] rounded-lg">
             <Sparkles className="h-5 w-5 text-[#f97316] mb-3" />
-            <h2 className="text-base font-semibold mb-2">Copy-Paste Ready</h2>
+            <h2 className="text-base font-semibold mb-2">Copy-Paste Workflows</h2>
             <p className="text-sm text-muted-foreground">
-              Every playbook is a complete workflow you can copy into your project and start using immediately. No setup complexity.
+              Every playbook is a complete workflow you can copy into your project as a <code className="text-[#22d3ee] bg-[#0d1117] px-1 py-0.5 rounded text-xs">CLAUDE.md</code> file and start using immediately. No setup complexity, no configuration — just paste and go.
             </p>
           </div>
           <div className="p-5 bg-[#161b22] border border-[#30363d] rounded-lg">
             <Users className="h-5 w-5 text-[#22d3ee] mb-3" />
-            <h2 className="text-base font-semibold mb-2">Community Built</h2>
+            <h2 className="text-base font-semibold mb-2">Community Tested & Curated</h2>
             <p className="text-sm text-muted-foreground">
-              Playbooks are contributed by the Claude Code community. Anyone can submit a playbook via our GitHub repository.
+              Every template on this directory has been submitted and tested by the community. These are real use cases that people actually rely on — curated here for others to replicate and adapt.
             </p>
           </div>
           <div className="p-5 bg-[#161b22] border border-[#30363d] rounded-lg">
@@ -48,14 +56,14 @@ export default function AboutPage() {
               The entire project is open source on{' '}
               <Link href="https://github.com/Danielopol/Claude-Code-Playbooks" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">
                 GitHub
-              </Link>. Star, fork, or contribute.
+              </Link>. Star, fork, or contribute your own skills and workflows.
             </p>
           </div>
           <div className="p-5 bg-[#161b22] border border-[#30363d] rounded-lg">
             <BookOpen className="h-5 w-5 text-[#a78bfa] mb-3" />
-            <h2 className="text-base font-semibold mb-2">239+ Workflows</h2>
+            <h2 className="text-base font-semibold mb-2">Works with Multiple Agents</h2>
             <p className="text-sm text-muted-foreground">
-              From personal finance to DevOps, content marketing to academic research. Browse all categories on the{' '}
+              While built for Claude Code, many templates and skills also work with Codex CLI, Windsurf, Cursor, Antigravity, Perplexity and other AI coding agents. Browse all categories on the{' '}
               <Link href="/playbooks" className="text-[#22d3ee] hover:underline">
                 playbooks page
               </Link>.

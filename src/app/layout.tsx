@@ -138,6 +138,11 @@ function Footer() {
             </div>
           </div>
         </div>
+        <div className="flex justify-center pt-6 border-t border-border/50">
+          <a href="https://neeed.directory/products/claude-code-playbooks?utm_source=claude-code-playbooks" target="_blank" rel="noopener">
+            <img src="https://neeed.directory/badges/neeed-badge-light.svg" alt="Featured on neeed.directory" width={139} />
+          </a>
+        </div>
       </div>
     </footer>
   );

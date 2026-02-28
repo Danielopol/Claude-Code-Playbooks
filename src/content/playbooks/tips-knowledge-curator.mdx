@@ -1,0 +1,126 @@
+---
+title: "Tips & Knowledge Curator"
+description: "Process emails containing tips and insights, assess quality with novelty and credibility ratings, and maintain a curated knowledge log."
+category: "knowledge-management"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://github.com/chrisblattman/claudeblattman/tree/main/skills"
+tags: ["knowledge-management", "tips", "curation", "email", "learning", "mcp"]
+createdAt: "2026-02-27"
+---
+
+## What This Does
+
+Processes self-sent emails containing tips, links, and insights. Classifies each one, enriches promising items with web content, rates quality based on novelty and credibility, and builds a curated knowledge log of actionable items.
+
+---
+
+## Prerequisites
+
+- **Gmail MCP** (required)
+- A Gmail alias for self-sent tips (e.g., `yourname+tips@gmail.com`)
+
+---
+
+## Quick Start
+
+### Step 1: Set Up Your Email Alias
+
+Start forwarding interesting tips to yourself using a Gmail + alias:
+```
+yourname+tips@gmail.com
+```
+Gmail delivers these to your inbox with a label you can filter on.
+
+### Step 2: Download the Template
+
+Click **Download** above, then save to your working directory.
+
+### Step 3: Run Claude Code
+
+```bash
+claude
+```
+
+Then: **"Curate my tips"**
+
+---
+
+## The Curation Workflow
+
+| Step | What Happens |
+|------|-------------|
+| **Pre-check** | Read existing tips log, count unread tip emails |
+| **Batch fetch** | Retrieve up to N emails (default 5) |
+| **Classify** | Sort as worth-reviewing, not-relevant, or needs-manual |
+| **Enrich** | Fetch linked web content for promising items |
+| **Rate quality** | Score based on novelty, credibility, applicability |
+| **Present** | Show recommendations, wait for approval |
+| **Save** | Append approved items to knowledge log |
+
+---
+
+## Quality Rating Criteria
+
+| Rating | Criteria | Action |
+|--------|----------|--------|
+| **High** | Novel, actionable, backed by real usage | Recommend saving |
+| **Medium** | Interesting but may lack direct applicability | Present for review |
+| **Low** | Already known, superficial, or vague | Treat as not-relevant |
+
+### Three Quality Questions
+
+1. **Novelty** — Is this genuinely new or repackaged documentation?
+2. **Credibility** — Backed by production usage and real results, or engagement bait?
+3. **Applicability** — Does it solve an actual problem in your workflows?
+
+---
+
+## Output Format
+
+```
+RECOMMENDED ACTIONS:
+[Subject] (High) — [Key insight extracted]
+  Action: [Concrete change to make]
+  Quality: [Credibility note]
+
+SKIP:
+[Subject] — [Reason: already known / not relevant]
+
+NEEDS YOUR HELP:
+[Subject] — [Paywalled / video-only / can't assess]
+```
+
+---
+
+## Arguments
+
+| Flag | Effect |
+|------|--------|
+| `dryrun` | Preview without saving or marking emails |
+| `limit:N` | Batch size (default 5) |
+| `all` | Process all unread tip emails in loops |
+
+---
+
+## Tips
+
+- **Send tips to yourself throughout the week** — process in batches
+- **X.com/Twitter links are skipped** — they can't be fetched, save the key insight in the email body instead
+- **Paywalled content flagged** — marked as "needs-manual" for you to review
+- **Deduplication built in** — won't re-process tips already in your log
+- **Knowledge log grows over time** — becomes a personal reference library
+
+---
+
+## Troubleshooting
+
+**No emails found**
+Check that your Gmail filter/label is set up correctly for the + alias
+
+**Web enrichment failing**
+Some sites block fetching — the tip is still processed, just without enrichment
+
+**Too many "needs-manual" items**
+Send the key takeaway in the email body, not just a link

@@ -1,0 +1,122 @@
+---
+title: "Project Management Bootstrapper"
+description: "Initialize a comprehensive project management system with folder structures, TODO tracking, resource catalogs, and Claude-specific project configuration."
+category: "project-management"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://github.com/chrisblattman/claudeblattman/tree/main/skills"
+tags: ["project-management", "setup", "folders", "documentation", "organization"]
+createdAt: "2026-02-27"
+---
+
+## What This Does
+
+Bootstraps a complete project management system for any project — folder structures, TODO tracking, a resource catalog, and Claude-specific configuration. It explores your existing setup first, never overwrites, and only creates what's missing.
+
+---
+
+## Quick Start
+
+### Step 1: Navigate to Your Project
+
+```bash
+cd ~/Projects/my-project
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Run Claude Code
+
+```bash
+claude
+```
+
+Then: **"Set up project management for this project"**
+
+---
+
+## The 6-Phase Process
+
+| Phase | What Happens | Changes Made? |
+|-------|-------------|---------------|
+| **1. Discovery** | Explores existing folders, docs, tools | No |
+| **2. Gap Analysis** | Identifies what's missing | No |
+| **3. Design Discussion** | Asks about project type, preferences | No |
+| **4. Propose Plan** | Presents specific changes for approval | No |
+| **5. Implementation** | Creates approved files and folders | Yes |
+| **6. Verification** | Confirms everything is correct | No |
+
+Nothing changes until you approve in Phase 4.
+
+---
+
+## What Gets Created
+
+| File | Purpose |
+|------|---------|
+| `TODO.md` | Project tasks with routing links |
+| `PROJECT_INDEX.md` | Master resource catalog with links |
+| `.claude/CLAUDE.md` | Claude-specific project instructions |
+| `AI_Collaboration/Transcripts/` | Meeting transcript storage |
+| `AI_Collaboration/Weekly_Reviews/` | Weekly review outputs |
+
+---
+
+## Project Types
+
+| Type | Folder Focus |
+|------|-------------|
+| **Quantitative / RCT** | IRB, Survey Instruments, Field Materials, Data |
+| **Qualitative** | Fieldwork, Interview Memos, Transcripts, Consent |
+| **Theory / Writing** | Minimal structure, Paper drafts, References |
+| **Policy Brief** | Streamlined for non-academic deliverables |
+| **Multi-method** | Combined quantitative and qualitative |
+
+---
+
+## Key Principles
+
+1. **Never assume** — always explore before proposing
+2. **Never overwrite** — check for existing files first
+3. **Never reorganize without permission** — existing structure may have reasons
+4. **Iterate** — go back and forth until the plan is right
+5. **Preserve what works** — don't fix what isn't broken
+
+---
+
+## Execution Modes
+
+| Mode | Command | What It Does |
+|------|---------|-------------|
+| **Discover** | `"discover only"` | Phases 1-2 only (assessment) |
+| **Plan** | `"plan only"` | Through Phase 4 (no implementation) |
+| **Full** | `"full setup"` | All 6 phases |
+| **Minimal** | `"minimal setup"` | Only `.claude/CLAUDE.md` and essentials |
+
+---
+
+## Tips
+
+- **Works for any project type** — software, research, writing, policy, business
+- **Adapts to existing tools** — Google Docs, Overleaf, GitHub, Slack, WhatsApp
+- **Run "discover" first** — see what's there before committing to changes
+- **Data sensitivity** — asks about IRB status and handling requirements
+
+---
+
+## Troubleshooting
+
+**Proposed structure doesn't fit my workflow**
+Tell Claude what to change — Phase 3 is a discussion, iterate until it's right
+
+**Want to redo the setup**
+Run again with `discover` to reassess, then propose new changes
+
+**Existing files conflict**
+Claude will flag conflicts and ask how to resolve them

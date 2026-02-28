@@ -1,0 +1,105 @@
+---
+title: "Prompt Engineer & Execute"
+description: "Turn casual, conversational requests into structured prompts with automatic depth calibration, then execute them immediately."
+category: "productivity"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://github.com/chrisblattman/claudeblattman/tree/main/skills"
+tags: ["prompts", "prompt-engineering", "productivity", "workflow", "automation"]
+createdAt: "2026-02-27"
+---
+
+## What This Does
+
+Transforms informal, conversational requests into well-structured prompts with automatic depth calibration (Light, Standard, or Deep), then executes them immediately. Think of it as a formatting layer between your brain and Claude — you speak naturally, it structures professionally.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/Prompts
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Prompts/
+```
+
+### Step 3: Run Claude Code
+
+```bash
+cd ~/Documents/Prompts
+claude
+```
+
+Then just speak naturally: **"Write me an email to my team about the Q2 roadmap changes"**
+
+---
+
+## How Depth Calibration Works
+
+| Depth | When Used | What It Adds |
+|-------|-----------|-------------|
+| **Light** | Simple formatting tasks, quick lookups | Clean structure only |
+| **Standard** | Most requests — analysis, drafting, planning | Structure + rationale + assumptions |
+| **Deep** | Research, verification, complex analysis | Structure + research + verification steps |
+
+You can override depth explicitly: `"depth:deep — research best practices for API rate limiting"`
+
+---
+
+## Example
+
+**Your input:**
+```
+Write a proposal for switching our team from Slack to Discord
+```
+
+**What Claude does:**
+1. Parses intent: persuasive document, audience = leadership, output = proposal
+2. Calibrates depth: Standard (needs rationale, not deep research)
+3. Formats structured prompt with context, constraints, and output format
+4. Executes immediately and delivers the proposal
+
+---
+
+## Tips
+
+- **One clarifying question max** — Claude asks only if truly ambiguous, otherwise makes reasonable assumptions
+- **Say "hold" to pause** — If you want to review the formatted prompt before execution, say "hold" or "don't run"
+- **Override depth anytime** — Prefix with `depth:light`, `depth:standard`, or `depth:deep`
+- **Works for everything** — Emails, analysis, code, documentation, planning, research
+
+---
+
+## Variations
+
+### Prompt-Only Mode (No Execution)
+If you just want the formatted prompt without running it (for use in other tools):
+```
+"Format this as a prompt but don't execute: [your request]"
+```
+
+### Batch Processing
+```
+"Process these three requests at light depth: [list items]"
+```
+
+---
+
+## Troubleshooting
+
+**Output too verbose**
+Add: "Keep output under 200 words" or use `depth:light`
+
+**Wrong depth selected**
+Override explicitly: `depth:deep` or `depth:light`
+
+**Claude asks too many questions**
+The template limits to one clarifying question — if it keeps asking, tell it: "Just make reasonable assumptions"

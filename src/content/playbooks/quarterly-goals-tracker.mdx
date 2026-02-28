@@ -1,0 +1,136 @@
+---
+title: "Quarterly Goals Tracker"
+description: "Track quarterly objectives with progress scoring, evidence gathering from multiple sources, and interactive deadline management."
+category: "productivity"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://github.com/chrisblattman/claudeblattman/tree/main/skills"
+tags: ["goals", "objectives", "okr", "tracking", "quarterly-review", "productivity"]
+createdAt: "2026-02-27"
+---
+
+## What This Does
+
+Runs biweekly goal reviews with progress scoring (0.0 to 1.0), evidence gathering from available sources, and interactive deadline management. Tracks quarterly objectives and key results, flags stalled items, and feeds goal data into other workflows like morning briefings.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Goals File
+
+```bash
+mkdir -p ~/.claude-assistant/config
+```
+
+Create `~/.claude-assistant/config/goals.yaml`:
+
+```yaml
+quarter: Q1 2026
+push_level: moderate  # gentle | moderate | assertive
+
+objectives:
+  - name: "Launch new product line"
+    key_results:
+      - description: "Complete MVP by March 15"
+        progress: 0.3
+        deadline: "2026-03-15"
+      - description: "Onboard 5 beta customers"
+        progress: 0.0
+        deadline: "2026-03-31"
+  - name: "Improve team velocity"
+    key_results:
+      - description: "Reduce cycle time by 20%"
+        progress: 0.5
+        deadline: "2026-03-31"
+      - description: "Implement automated testing"
+        progress: 0.7
+        deadline: "2026-02-28"
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then save to your working directory.
+
+### Step 3: Run Claude Code
+
+```bash
+claude
+```
+
+Then: **"Review my goals"**
+
+---
+
+## Review Modes
+
+| Mode | Command | What You Get |
+|------|---------|-------------|
+| **Full review** | "Review my goals" | Dashboard + interactive score updates |
+| **Status only** | "Goals status" | Dashboard only, no updates |
+| **Deadlines** | "Goals deadlines" | Upcoming deadlines only |
+
+---
+
+## The Dashboard
+
+```
+QUARTERLY GOALS REVIEW — Q1 2026
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Objective: Launch new product line
+  Status: AT RISK
+  [===-------] Complete MVP — 0.3 (due Mar 15)
+  [----------] Onboard beta customers — 0.0 (due Mar 31)
+  Evidence: 3 related emails found, 1 meeting discussed timeline
+
+Objective: Improve team velocity
+  Status: ON TRACK
+  [=====-----] Reduce cycle time — 0.5 (due Mar 31)
+  [=======---] Automated testing — 0.7 (due Feb 28)
+  Evidence: Testing PR merged last week
+
+STALLED: "Onboard beta customers" — no progress in 2 review cycles
+
+UPCOMING DEADLINES:
+  Feb 28 — Automated testing (0.7) ← due this week
+  Mar 15 — Complete MVP (0.3)
+```
+
+---
+
+## Optional Integrations
+
+Evidence gathering works with any available MCP:
+
+| Source | What It Finds |
+|--------|-------------|
+| **Gmail** | Emails mentioning objective keywords |
+| **Google Calendar** | Meetings related to goals |
+| **Granola** | Meeting transcript references |
+| **Apple Reminders** | Related tasks and deadlines |
+
+All sources are optional — the tracker works fine with just the YAML file.
+
+---
+
+## Tips
+
+- **Run biweekly** — keeps scores current and catches stalled items early
+- **Push level** — controls how aggressively other skills nudge you toward goal-aligned work (gentle/moderate/assertive)
+- **Feeds other workflows** — morning briefings and check-ins reference your goals for priority suggestions
+- **Stall detection** — flags key results with no progress across multiple reviews
+
+---
+
+## Troubleshooting
+
+**"No goals file found"**
+Create `~/.claude-assistant/config/goals.yaml` using the template above
+
+**Evidence sources unavailable**
+That's fine — evidence gathering degrades gracefully, core tracking works without MCPs
+
+**Progress scores feel wrong**
+Update interactively during a full review — Claude prompts you for each score

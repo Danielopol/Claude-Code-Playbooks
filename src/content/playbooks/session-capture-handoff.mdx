@@ -1,0 +1,136 @@
+---
+title: "Session Capture & Handoff"
+description: "Capture key decisions, open questions, and follow-ups at the end of each work session for seamless cross-session continuity."
+category: "productivity"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://github.com/chrisblattman/claudeblattman/tree/main/skills"
+tags: ["session-management", "continuity", "handoff", "decisions", "productivity"]
+createdAt: "2026-02-27"
+---
+
+## What This Does
+
+Solves the "where did I leave off?" problem. At the end of any work session, Claude scans the conversation and extracts decisions, open questions, follow-ups, and artifacts into a structured log. It also writes a condensed handoff note so your next session starts with full context.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/
+```
+
+### Step 2: Run Claude Code
+
+At the end of any work session:
+```bash
+claude
+```
+
+Then: **"Capture this session"** or **"Done"**
+
+---
+
+## What Gets Captured
+
+| Category | Examples |
+|----------|---------|
+| **Decisions made** | Config changes, approach selections, commitments |
+| **Open questions** | Unresolved items, deferred decisions, external dependencies |
+| **Follow-ups** | Tasks for next session, things to check/test, people to contact |
+| **Artifacts** | Files created or modified, emails sent, state changes |
+
+---
+
+## Example Output
+
+The session log entry looks like:
+
+```markdown
+## 2026-02-27 14:30 — API Authentication Refactor
+
+**Project:** Backend API
+**Duration:** Extended
+
+### Decisions
+- Switched from API keys to OAuth 2.0 tokens
+- Will use refresh token rotation with 24h expiry
+
+### Open Questions
+- Should we support both auth methods during migration?
+- Need to check if mobile app handles token refresh
+
+### Follow-ups
+- [ ] Update API documentation with new auth flow
+- [ ] Test refresh token rotation with the mobile team
+- [ ] Draft migration guide for API consumers
+
+### Artifacts
+- [Modified] `src/auth/middleware.ts` — replaced API key validation
+- [Created] `src/auth/oauth.ts` — new OAuth handler
+
+### Context
+Refactored auth to OAuth 2.0 for better security. Mobile team
+needs to test token refresh — their current implementation may
+not handle rotation. Migration period TBD.
+```
+
+---
+
+## The Handoff File
+
+A condensed summary is written to `~/.claude/handoff.md` so your next Claude Code session automatically knows what to pick up:
+
+```markdown
+# Handoff — 2026-02-27
+
+## Session Topic
+API authentication refactor to OAuth 2.0
+
+## Key Decisions
+- OAuth 2.0 with refresh token rotation (24h expiry)
+
+## Open Follow-ups
+- [ ] Test refresh token with mobile team
+- [ ] Draft API consumer migration guide
+
+## Context for Next Session
+Auth refactor done but mobile compatibility untested.
+```
+
+---
+
+## Modes
+
+| Mode | Command | What's Captured |
+|------|---------|----------------|
+| **Full** | `"Capture this session"` | Decisions + questions + follow-ups + context |
+| **Quick** | `"Quick capture"` | Decisions + follow-ups only |
+| **Tagged** | `"Capture for project:API"` | Full capture tagged to a project |
+
+---
+
+## Tips
+
+- **Run at the end of every substantive session** — makes next-session startup instant
+- **60-day auto-pruning** — old entries are automatically cleaned up
+- **Reverse chronological** — newest entries at top of the session log
+- **Works with any project** — tag entries with `project:name` for filtering
+
+---
+
+## Troubleshooting
+
+**"Nothing to capture"**
+Session was too brief — only substantive work sessions get logged
+
+**Session log file doesn't exist**
+It's created automatically on first run
+
+**Handoff not loading in next session**
+Check that your handoff file path matches: `~/.claude/handoff.md`

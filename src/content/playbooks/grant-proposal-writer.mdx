@@ -1,0 +1,119 @@
+---
+title: "Grant Proposal Writer"
+description: "Generate first-draft funding proposals from structured inputs, project data, and donor intelligence with voice-consistent academic writing."
+category: "academic-research"
+difficulty: "advanced"
+timeToSetup: "20 minutes"
+author: "community"
+sourceUrl: "https://github.com/chrisblattman/claudeblattman/tree/main/skills"
+tags: ["grants", "proposals", "academic", "funding", "research", "writing"]
+createdAt: "2026-02-27"
+---
+
+## What This Does
+
+Generates first-draft grant proposals from your project context, weekly reviews, prior submissions, and donor profiles. Follows the application template exactly, applies consistent voice rules, and handles both new submissions and resubmissions with reviewer feedback.
+
+---
+
+## Prerequisites
+
+- **Application template / RFP** (required — the process halts without it)
+- Optional: project `.claude/CLAUDE.md`, weekly reviews, Google Docs MCP, donor profiles
+
+---
+
+## Quick Start
+
+### Step 1: Gather Your Materials
+
+You need at minimum:
+- The funder's application template or RFP
+- A project overview (even a rough one)
+- Budget estimate and deadline
+
+### Step 2: Download the Template
+
+Click **Download** above, then save to your project directory.
+
+### Step 3: Run Claude Code
+
+```bash
+claude
+```
+
+Then: **"Write a proposal for the Example Foundation, deadline June 1"**
+
+---
+
+## The 8-Step Process
+
+| Step | What Happens |
+|------|-------------|
+| **1. Input checklist** | Collects funder, template, overview, budget, deadline |
+| **2. Auto-gather context** | Pulls from project config, weekly reviews, prior submissions (~8K word cap) |
+| **3. Donor profile lookup** | Searches for funder-specific values and pitfalls |
+| **4. Context brief** | Summarizes gathered sources, identifies gaps |
+| **5. Template gate** | **Hard stop** if no application template provided |
+| **6. Analyze & plan** | Maps template sections to content, identifies strongest arguments |
+| **7. Draft** | Writes following template structure and voice rules |
+| **8. Save & brief** | Outputs to Grants folder with next-step guidance |
+
+---
+
+## Voice & Style Rules
+
+- **Opening paragraph**: problem + stakes (with numbers) + novelty
+- **Topic sentences**: claims, not background
+- **Active voice**: "We will test..." not "It will be tested..."
+- **Cost framing**: cost-per-unit ("$X per household") not cost-per-activity
+- **No throat-clearing**: skip "It is well-known that..." openings
+
+---
+
+## Resubmission Support
+
+For resubmissions with reviewer feedback, the system categorizes comments:
+
+| Category | Handling |
+|----------|---------|
+| **MUST ADDRESS** | Incorporate directly into revised sections |
+| **SHOULD ADDRESS** | Incorporate where possible |
+| **CONSIDER** | Address if aligned with proposal strategy |
+| **DISAGREE** | Draft respectful response with reasoning |
+
+---
+
+## Usage Examples
+
+```
+"Write a proposal for the Example Foundation, deadline June 1"
+"Write a proposal for Impact Funder, template in ~/RFP.pdf, budget 150K"
+"Write a resubmission for Foundation X with reviewer comments"
+```
+
+---
+
+## Tips
+
+- **Template is non-negotiable** — Claude won't draft without the application structure
+- **Stale context warning** — if weekly reviews are >14 days old, it suggests running a review first
+- **Placeholder tracking** — incomplete sections are marked with [PLACEHOLDER] for you to fill
+- **Donor profiles** — store at `~/Proposal_Resources/donors/` for funder-specific guidance
+- **Voice pack** — create a PROPOSAL_VOICE.md for custom writing style rules
+
+---
+
+## Troubleshooting
+
+**"Template required" error**
+Provide the RFP or application template — this is a hard gate
+
+**Draft sounds generic**
+Create a voice pack (PROPOSAL_VOICE.md) with your specific writing preferences
+
+**Missing context**
+Run a weekly review first to populate recent project data
+
+**Budget section weak**
+Provide cost-per-unit data — the template emphasizes output-based framing

@@ -1,0 +1,125 @@
+---
+title: "Grant Proposal Reviser"
+description: "Apply reviewer and collaborator feedback to grant proposal drafts with voice-consistent revisions, change tracking, and automatic backups."
+category: "academic-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/chrisblattman/claudeblattman/tree/main/skills"
+tags: ["grants", "proposals", "revision", "feedback", "academic", "writing"]
+createdAt: "2026-02-27"
+---
+
+## What This Does
+
+Takes feedback in multiple formats — conversational input, structured comments files, or formal reviewer reports — and applies revisions to your proposal draft while preserving your writing voice. Creates backups, tracks changes, and reports what was modified.
+
+---
+
+## Prerequisites
+
+- Source draft in markdown format
+- Optional: voice pack (PROPOSAL_VOICE.md), donor profiles
+
+---
+
+## Quick Start
+
+### Step 1: Have Your Draft Ready
+
+Your proposal draft should be a markdown file.
+
+### Step 2: Download the Template
+
+Click **Download** above, then save to your project directory.
+
+### Step 3: Run Claude Code
+
+```bash
+claude
+```
+
+Then any of:
+- **"Revise the proposal based on: [paste feedback]"**
+- **"Revise proposal with comments from comments.md"**
+- **"Apply reviewer feedback from reviewer-report.md"**
+
+---
+
+## Three Feedback Input Methods
+
+| Method | Syntax | Best For |
+|--------|--------|----------|
+| **Conversational** | Just type or dictate feedback | Quick notes, verbal feedback |
+| **Comments file** | `comments:path/to/file` | Collaborator written feedback |
+| **Reviewer report** | `reviewer:path/to/file` | Formal reviewer comments with categorization |
+
+Formal reviewer comments are auto-categorized:
+
+| Category | Priority | Handling |
+|----------|----------|---------|
+| **MUST ADDRESS** | Critical | Incorporate directly |
+| **SHOULD ADDRESS** | Important | Incorporate where possible |
+| **CONSIDER** | Optional | Address if aligned with strategy |
+| **DISAGREE** | Response needed | Draft respectful rebuttal |
+
+---
+
+## The Revision Workflow
+
+1. **Locate draft** — from arguments, recent files, or ask user
+2. **Review prior revisions** — check revision notes for context
+3. **Extract funder preferences** — check donor profile for conflicts
+4. **Collect and organize feedback** — categorize by priority
+5. **Apply changes** — revise sections while preserving voice
+6. **Backup and report** — save .bak, report changes, list next steps
+
+---
+
+## Voice Consistency Rules
+
+Revisions maintain your established voice:
+- Short, direct sentences
+- Active voice preference
+- Numbers and specifics over adjectives
+- Claims-first topic sentences
+- No unnecessary section reorganization
+
+If a PROPOSAL_VOICE.md exists, those rules override defaults.
+
+---
+
+## Change Tracking
+
+Each revision includes:
+- Revision date and round number
+- What was changed and why (bullet list)
+- Remaining [PLACEHOLDER] count
+- Word count change (before → after)
+- The .bak backup file path
+
+---
+
+## Tips
+
+- **Automatic backups** — .bak file created before every save
+- **Donor profile conflicts** — if feedback conflicts with funder values, Claude flags it
+- **Preserves structure** — doesn't reorganize sections unless feedback requires it
+- **Round tracking** — maintains revision history across multiple passes
+- **Pairs with Grant Proposal Writer** — write first draft, then iterate with this
+
+---
+
+## Troubleshooting
+
+**Revisions changed my voice**
+Create a PROPOSAL_VOICE.md with your specific style rules
+
+**Feedback conflicts flagged**
+Review the conflicts — some reviewer suggestions may not align with funder priorities
+
+**Draft file not found**
+Specify the path explicitly: "Revise the proposal at ~/proposals/draft.md"
+
+**Too many changes at once**
+Apply feedback in stages — address MUST items first, then SHOULD, then CONSIDER

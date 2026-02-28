@@ -1,0 +1,153 @@
+---
+title: "Calendar Availability Checker"
+description: "Check Google Calendar availability across all calendars and draft professional scheduling replies with optimal time slot proposals."
+category: "productivity"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/chrisblattman/claudeblattman/tree/main/skills"
+tags: ["calendar", "scheduling", "availability", "email", "meetings", "mcp"]
+createdAt: "2026-02-27"
+---
+
+## What This Does
+
+Checks your Google Calendar for conflicts across all calendars, finds optimal meeting slots based on your preferences, and drafts professional scheduling replies with 3-5 time options. Protects deep work blocks and respects buffer times.
+
+---
+
+## Prerequisites
+
+- **Google Calendar MCP** (required)
+- Optional: calendar-policy.md config file
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/
+```
+
+### Step 2: Run Claude Code
+
+```bash
+cd ~/Documents
+claude
+```
+
+Then: **"Find times to meet with Sarah next week for 30 minutes"**
+
+---
+
+## Slot-Finding Algorithm
+
+| Rule | Details |
+|------|---------|
+| **Working hours only** | Default 9am-5:30pm Mon-Fri (configurable) |
+| **15-min buffers** | Between all meetings (configurable) |
+| **Deep work protection** | Avoids proposing during deep work blocks |
+| **Preferred windows** | Mid-morning (10am-12pm) and mid-afternoon (2pm-4pm) scored higher |
+| **Balance** | Prefers days with fewer existing meetings |
+| **Adjacency avoidance** | Deprioritizes slots creating 3+ consecutive meetings |
+
+---
+
+## Config: calendar-policy.md
+
+Create at `~/.claude-assistant/config/calendar-policy.md`:
+
+```markdown
+# Calendar Policy
+
+## Calendars
+- primary@gmail.com
+- work@company.com
+- team-calendar@company.com
+
+## Working Hours
+Monday-Friday: 9:00 AM - 5:30 PM
+
+## Timezone
+America/New_York
+
+## Buffer
+15 minutes between meetings
+
+## Deep Work Blocks
+Tuesday 9:00-12:00, Thursday 9:00-12:00
+
+## Meeting-Free Periods
+Friday afternoon
+```
+
+---
+
+## Example
+
+**Input:** "Find times to meet with Sarah next week for 30 minutes"
+
+**Output:**
+```
+I checked all 3 calendars for next week. Here are your best options:
+
+I'm free at these times:
+- Tuesday, Mar 4 at 2:00 PM ET
+- Wednesday, Mar 5 at 10:30 AM ET
+- Thursday, Mar 6 at 3:00 PM ET
+
+Shall I draft a reply to Sarah with these options?
+```
+
+**Draft reply:**
+```
+Hi Sarah,
+
+I'm free at these times next week — any of them work for you?
+
+- Tuesday 3/4 at 2:00 PM ET
+- Wednesday 3/5 at 10:30 AM ET
+- Thursday 3/6 at 3:00 PM ET
+
+Let me know what works best!
+```
+
+---
+
+## Response Tones
+
+| Tone | When |
+|------|------|
+| **Standard** | Colleagues, familiar contacts |
+| **Formal** | External partners, executives, new contacts |
+
+Customizable via email-voice.md config file.
+
+---
+
+## Tips
+
+- **Never proposes without checking** — always verifies calendar first (hard rule)
+- **Expands search range automatically** — if no slots found in 14 days, extends to 21
+- **Protects deep work** — won't suggest times during your focused blocks
+- **Multiple calendars** — checks ALL configured calendars for conflicts
+- **User approval required** — shows draft before sending
+
+---
+
+## Troubleshooting
+
+**No available slots found**
+Calendar may be packed — try extending the timeframe or allowing shorter buffer times
+
+**Wrong timezone in proposals**
+Set your timezone in calendar-policy.md
+
+**Deep work blocks not protected**
+Define them explicitly in calendar-policy.md
+
+**Calendar errors**
+Check that your calendar IDs are correct — run "List my calendars" to verify

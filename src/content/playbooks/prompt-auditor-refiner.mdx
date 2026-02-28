@@ -1,0 +1,139 @@
+---
+title: "Prompt Auditor & Refiner"
+description: "Audit existing prompts against quality checklists for substance and structure, then output targeted improvements without rewriting from scratch."
+category: "productivity"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://github.com/chrisblattman/claudeblattman/tree/main/skills"
+tags: ["prompts", "prompt-engineering", "quality", "audit", "refinement"]
+createdAt: "2026-02-27"
+---
+
+## What This Does
+
+Reviews an existing prompt against two quality checklists — substance and structure — then makes targeted improvements. It fixes anti-patterns, identifies the single highest-impact improvement, and preserves your intent and voice.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/Prompts
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Prompts/
+```
+
+### Step 3: Run Claude Code
+
+```bash
+cd ~/Documents/Prompts
+claude
+```
+
+Then paste your existing prompt: **"Refine this prompt: [paste your prompt here]"**
+
+---
+
+## Quality Checklists
+
+### Substance Checklist (checked first — these matter most)
+
+| Criterion | What It Checks |
+|-----------|---------------|
+| Depth calibration | Does it instruct the model on how deeply to engage? |
+| Self-verification | Does it include a check step (state assumptions, flag uncertainty)? |
+| Best-practice grounding | Does it tell the model to research standards? |
+| Specificity of "good" | Does it define what strong output looks like? |
+| Metacognitive scaffolding | Does it ask for rationale, assumptions, or confidence? |
+
+### Structure Checklist
+
+| Criterion | What It Checks |
+|-----------|---------------|
+| Task clarity | Is the core ask unambiguous? |
+| Context | Enough background for a cold reader? |
+| Constraints | Length, tone, format, exclusions specified? |
+| Output format | Structure defined (bullets, table, sections)? |
+| Role/persona | Included if it would improve output? |
+| Examples | Provided if they reduce ambiguity? |
+| Bookend pattern | Key instruction restated at end (for long prompts)? |
+| System/user separation | Clear if used in agent/API context? |
+| Versioning | Version header if reusable? |
+
+---
+
+## Anti-Patterns It Catches
+
+| Anti-Pattern | Fix |
+|-------------|-----|
+| Format-only prompts for substantive tasks | Add depth directives |
+| Vague language ("be meticulous", "be thorough") | Replace with specific action verbs |
+| Over-prompting ("CRITICAL", "YOU MUST") | Soften to calm, specific directives |
+| Excessive hedging or caveats | Make direct |
+| Vague format instructions | Specify exact structure |
+| Missing scope constraints | Add length/scope limits |
+| Buried core task | Move the ask to the top |
+
+---
+
+## Example
+
+**Before:**
+```
+You are an expert analyst. Be very thorough and meticulous.
+Analyze the market data I provide and give me insights.
+Make sure to be comprehensive. THIS IS CRITICAL.
+```
+
+**After:**
+```
+Analyze the provided market data and identify the top 3
+actionable insights for Q2 planning.
+
+## Output Format
+For each insight:
+- **Finding**: One-sentence summary
+- **Evidence**: Specific data points that support it
+- **Recommendation**: What to do about it
+
+## Constraints
+- Focus on trends with >10% change quarter-over-quarter
+- Flag any data quality issues before analyzing
+- Keep total output under 500 words
+```
+
+**Changes made:**
+- Moved core task to top (was buried after filler)
+- Replaced "thorough and meticulous" with specific criteria (>10% change threshold)
+- Replaced "CRITICAL" emphasis with calm, specific constraints
+- Added output structure and scope limits
+
+---
+
+## Tips
+
+- **Substance over structure** — Depth and verification gaps are more impactful than formatting issues
+- **Targeted, not rewritten** — If the prompt is mostly good, only minor tweaks are suggested
+- **Preserves your voice** — Won't make it sound generic
+- **For reusable prompts** — Adds version headers and suggests eval test cases
+
+---
+
+## Troubleshooting
+
+**Too many changes suggested**
+Tell Claude: "Focus on the single most impactful improvement only"
+
+**Changes altered my intent**
+Say: "Keep my original intent but only fix the structure"
+
+**Need to audit a very long prompt**
+Break it into sections and refine each separately

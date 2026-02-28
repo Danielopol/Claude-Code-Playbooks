@@ -1,0 +1,105 @@
+---
+title: "Chief of Staff Check-In"
+description: "Run a structured 10-15 minute interactive session combining inbox triage, reminder management, meeting prep, email drafting, and priority alignment."
+category: "productivity"
+difficulty: "advanced"
+timeToSetup: "20 minutes"
+author: "community"
+sourceUrl: "https://github.com/chrisblattman/claudeblattman/tree/main/skills"
+tags: ["check-in", "daily-routine", "email", "meetings", "priorities", "chief-of-staff", "mcp"]
+createdAt: "2026-02-27"
+---
+
+## What This Does
+
+An interactive 10-15 minute session that acts as your chief of staff — triaging your inbox, organizing reminders, prepping for meetings, drafting emails, and aligning your priorities. Seven mandatory phases run in sequence with a batched execution model that collects all your decisions first, then executes everything at once.
+
+---
+
+## Prerequisites
+
+- **Gmail MCP** and **Google Calendar MCP** (required)
+- Recommended: triage-config.md, email-policy.md, calendar-policy.md, goals.yaml
+- Optional: Granola MCP for meeting transcript context
+
+---
+
+## Quick Start
+
+### Step 1: Set Up Config Files
+
+```bash
+mkdir -p ~/.claude-assistant/config
+```
+
+Create your email-policy.md (VIP lists), calendar-policy.md (working hours), and goals.yaml (objectives).
+
+### Step 2: Download the Template
+
+Click **Download** above, then save to your working directory.
+
+### Step 3: Run Claude Code
+
+```bash
+claude
+```
+
+Then: **"Check in"**
+
+---
+
+## The 7 Phases
+
+| Phase | What Happens | Interactive? |
+|-------|-------------|-------------|
+| **0. Data Fetch** | Parallel retrieval of calendar, emails, VIP messages | No |
+| **0.5. Triage** | Auto-classify inbox emails | No |
+| **1. Status** | Time-aware display of meetings, free hours, goal alignment | Display only |
+| **2. Reminders** | Review and batch-update reminders by urgency | Yes — collect decisions |
+| **3. Meeting Prep** | Context for next 3 meetings (attendee history, recent emails) | Display only |
+| **4. Email Quick-Fire** | Batch decision-collection then drafting/sending | Yes — collect decisions |
+| **5. Priorities** | Display actionable priorities, save session state | Display only |
+
+Phases execute sequentially. Skip with arguments: `no-triage`, `no-reminders`, `no-prep`, `no-email`.
+
+---
+
+## Batched Execution Model
+
+Phases 2 (Reminders) and 4 (Email) use a two-step approach:
+
+1. **Collect** — gather all your decisions interactively (no tool calls)
+2. **Apply** — execute everything in a single batch after you're done deciding
+
+This eliminates wait times during interactive decision-making.
+
+---
+
+## Goal Alignment Scoring
+
+The check-in compares your calendar against your quarterly objectives:
+- Shows what percentage of today's time aligns with each goal
+- Flags high-priority objectives with no calendar time allocated
+- Adjusts nudging intensity based on your `push_level` setting
+
+---
+
+## Tips
+
+- **Can't skip phases with natural language** — only explicit arguments like `no-email` work
+- **Meeting prep caps at 3 meetings** — with max 2 email searches each for speed
+- **Time-aware context** — adjusts display for morning/afternoon/evening
+- **Pairs with morning briefing** — use briefing for overview, check-in for action
+
+---
+
+## Troubleshooting
+
+**Takes too long**
+Use skip arguments: `"Check in no-prep no-triage"` for a faster session
+
+**Email drafts don't sound like me**
+Create an `email-voice.md` config file with your tone preferences
+
+**Goal alignment seems off**
+Update your goals.yaml with current quarterly objectives

@@ -1,0 +1,115 @@
+---
+title: "Reusable Prompt Formatter"
+description: "Convert informal requests into clean, structured prompts you can use anywhere — Claude Code, Claude.ai, ChatGPT, or other AI tools."
+category: "productivity"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://github.com/chrisblattman/claudeblattman/tree/main/skills"
+tags: ["prompts", "prompt-engineering", "templates", "reusable", "formatting"]
+createdAt: "2026-02-27"
+---
+
+## What This Does
+
+Converts your casual, conversational requests into well-structured, portable prompts — without executing them. The output is a clean prompt you can paste into Claude.ai, ChatGPT, or any AI tool.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/Prompts
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Prompts/
+```
+
+### Step 3: Run Claude Code
+
+```bash
+cd ~/Documents/Prompts
+claude
+```
+
+Then: **"Format a prompt for: write a competitive analysis of our three main competitors"**
+
+---
+
+## How It Works
+
+| Depth | When Used | What's Added |
+|-------|-----------|-------------|
+| **Light** | Quick one-off tasks | Clear structure, constraints, format |
+| **Standard** | Analysis, planning, multi-step work | + Assumptions, rationale, quality criteria |
+| **Deep** | Research, agent workflows, templates | + Research steps, verification, eval test cases |
+
+Light is the default — simple asks get simple prompts.
+
+---
+
+## Example
+
+**Your input:**
+```
+Format a prompt for: create a weekly team status report from Slack messages
+```
+
+**Output (in a code block you can copy):**
+```
+You are a team status report generator.
+
+## Task
+Synthesize Slack messages from the past week into a structured team status report.
+
+## Input
+[Paste Slack messages or export here]
+
+## Output Format
+- **Highlights**: Top 3-5 accomplishments
+- **In Progress**: Active work items with owners
+- **Blockers**: Issues needing attention
+- **Next Week**: Planned priorities
+
+## Constraints
+- Keep to one page
+- Use bullet points, not paragraphs
+- Attribute work to team members by name
+```
+
+---
+
+## Reusable Templates
+
+For prompts you'll use repeatedly, the formatter adds:
+- **Version header** (v1.0) for tracking iterations
+- **3-5 eval test cases** to verify the prompt works well
+- **System/User prompt separation** for agent or API contexts
+
+---
+
+## Tips
+
+- **One clarifying question max** — Claude assumes sensibly rather than interrogating you
+- **Override depth** — Say `depth:deep` or `depth:light` to control complexity
+- **Tool routing** — If another tool would serve better, it suggests that too
+- **Never executes** — Output only, always in a copyable code block
+
+---
+
+## Troubleshooting
+
+**Prompt is too complex for a simple request**
+Say: "Make this lighter" or explicitly use `depth:light`
+
+**Need System and User prompt separation**
+Say: "Split this into system and user prompts for an API call"
+
+**Want to iterate on the prompt**
+Use the Prompt Auditor & Refiner playbook to improve existing prompts

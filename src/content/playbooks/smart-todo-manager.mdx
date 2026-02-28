@@ -1,0 +1,125 @@
+---
+title: "Smart Todo Manager"
+description: "Add tasks to markdown-based todo lists with intelligent routing, duplicate detection, and automatic priority assignment."
+category: "task-management"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/chrisblattman/claudeblattman/tree/main/skills"
+tags: ["todo", "tasks", "productivity", "markdown", "organization"]
+createdAt: "2026-02-27"
+---
+
+## What This Does
+
+A smart task manager that uses local markdown files — no apps needed. Tell Claude what you need to do and it routes the task to the right list, checks for duplicates, assigns priority, and formats it consistently.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Todo Files
+
+```bash
+mkdir -p ~/Documents
+touch ~/Documents/todo.md ~/Documents/todo-work.md
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/
+```
+
+### Step 3: Run Claude Code
+
+```bash
+cd ~/Documents
+claude
+```
+
+Then: **"Add todo: Review the Q2 budget proposal by Friday"**
+
+---
+
+## How Routing Works
+
+Tasks are automatically routed to the right list based on keywords:
+
+| Keywords | Routes To |
+|----------|----------|
+| config, settings, infrastructure, system | Main todo list |
+| email, calendar, scheduling, meeting | Work todo list |
+| grocery, workout, appointment, personal | Personal todo list |
+| learn, read, course, tutorial | Learning todo list |
+
+You can fully customize these routing rules in the template.
+
+---
+
+## Priority System
+
+| Priority | Criteria | Examples |
+|----------|----------|---------|
+| **High** | Blocking others, near deadline, critical path | "Deploy hotfix before 5pm" |
+| **Medium** | Important but flexible deadline | "Review PR this week" |
+| **Low** | Nice-to-have, no deadline | "Reorganize bookmarks" |
+
+---
+
+## Duplicate Detection
+
+Before adding, Claude scans the target file for overlapping tasks:
+- Exact matches are flagged
+- Similar items suggest expanding the existing task instead
+- You always decide — Claude won't silently skip
+
+---
+
+## Example
+
+**Input:** "Add todo: Set up CI/CD pipeline for the new service"
+
+**Claude's process:**
+1. Routes to Main list (matches "infrastructure" keywords)
+2. Scans for duplicates — finds "Research CI/CD options" already exists
+3. Asks: "Similar item exists. Add as new, or expand the existing one?"
+4. On confirmation, adds:
+
+```markdown
+- [ ] **Set up CI/CD pipeline for new service**
+  - Priority: High
+  - Evaluate GitHub Actions vs CircleCI based on prior research
+```
+
+---
+
+## Customization
+
+The template has clearly marked sections to customize:
+- **File paths** — point to your actual todo files
+- **Routing table** — add/change keyword categories
+- **Priority rules** — adjust what counts as High/Medium/Low
+- **Item format** — change the markdown structure
+
+---
+
+## Tips
+
+- **Natural language works** — "remind me to email Sarah about the contract" routes correctly
+- **Context is preserved** — details you mention get added as sub-bullets
+- **Works with any markdown editor** — Obsidian, VS Code, iA Writer, etc.
+
+---
+
+## Troubleshooting
+
+**Wrong list selected**
+Tell Claude: "Add this to my work list instead"
+
+**Too many false duplicate matches**
+Narrow your keyword matching or say "Add as new item"
+
+**File not found**
+Create the file first: `touch ~/Documents/todo.md`

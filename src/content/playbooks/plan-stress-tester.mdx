@@ -1,0 +1,129 @@
+---
+title: "Plan Stress Tester"
+description: "Stress-test any plan with structured expert critique, best-practice research, and pre-mortem analysis to catch blind spots and wishful thinking."
+category: "executive-strategy"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://github.com/chrisblattman/claudeblattman/tree/main/skills"
+tags: ["planning", "strategy", "review", "critique", "risk-analysis", "pre-mortem"]
+createdAt: "2026-02-27"
+---
+
+## What This Does
+
+Puts any plan through a structured expert review across 6 dimensions — pre-mortem analysis, completeness, feasibility, best-practice alignment, sequencing, and specificity. Catches blind spots, missing steps, and wishful thinking before they become real problems.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/Plans
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Plans/
+```
+
+### Step 3: Run Claude Code
+
+```bash
+cd ~/Documents/Plans
+claude
+```
+
+Then: **"Review my plan"** (if you just finished plan mode) or **"Review the plan in project-plan.md"**
+
+---
+
+## The 6 Review Dimensions
+
+| Dimension | What It Tests |
+|-----------|--------------|
+| **Pre-mortem** | "It's 3 months later and this plan failed. What were the top 3 causes?" |
+| **Completeness** | What's missing that a domain expert would expect? |
+| **Feasibility** | Are there steps depending on unconfirmed resources or approvals? |
+| **Best-practice alignment** | How does this compare to industry standards? |
+| **Sequencing** | Are there hidden blockers? Would reordering reduce risk? |
+| **Specificity** | Could someone unfamiliar execute each step? |
+
+---
+
+## Finding Classification
+
+| Level | Meaning | Action |
+|-------|---------|--------|
+| **Red** | Critical — will likely cause failure if unaddressed | Must fix before proceeding |
+| **Yellow** | Important — creates risk but plan can proceed | Should fix soon |
+| **Green** | Minor — nice-to-have improvement | Fix when convenient |
+
+---
+
+## Example Output
+
+```
+PLAN REVIEW — Q2 Product Launch
+
+Reviewing as: Meticulous strategic planning specialist
+Depth: standard
+
+BEST PRACTICES CONTEXT
+- Launch plans need rollback procedures
+- Customer communication should precede internal deadlines
+- Beta testing typically needs 2-4 weeks minimum
+
+STRENGTHS
+1. Clear ownership — every task has an assigned owner
+2. Realistic timeline — builds in buffer for delays
+
+WEAKNESSES & GAPS
+[Red] No rollback plan — If launch fails, no procedure
+  → Fix: Add rollback checklist with decision criteria
+[Yellow] Beta period too short — 1 week may miss edge cases
+  → Fix: Extend to 2 weeks or add staged rollout
+[Green] Missing success metrics — No definition of "good launch"
+  → Fix: Add KPIs for first 7/30/90 days
+
+VERDICT
+REVISE — Strong foundation but critical gap in rollback planning.
+```
+
+---
+
+## Options
+
+| Flag | Syntax | Default | Purpose |
+|------|--------|---------|---------|
+| File path | `file:path` | Auto-detect | Explicit plan location |
+| Expert role | `role:"..."` | Auto-detect | Override reviewer persona |
+| Focus area | `focus:dimension` | All | Weight one dimension |
+| Depth | `depth:quick/standard/deep` | standard | Web research intensity |
+| Dry run | `dryrun` | Off | Show role + research plan only |
+
+---
+
+## Tips
+
+- **Works on any plan** — project plans, business strategies, product roadmaps, research proposals
+- **Fresh-context review** — Uses a subagent to avoid the bias of reviewing its own plan
+- **Auto-detects domain** — Assigns an appropriate expert role (AI engineering, grants, academic, operations, data science)
+- **Pairs well with** — Run after Claude Code's plan mode, or on any markdown plan file
+
+---
+
+## Troubleshooting
+
+**"No plan found"**
+Specify explicitly: "Review the plan in ~/Documents/my-plan.md"
+
+**Wrong expert role assigned**
+Override: `role:"marketing launch specialist"`
+
+**Too many findings**
+Use `focus:feasibility` to narrow to one dimension

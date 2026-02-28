@@ -1,0 +1,135 @@
+---
+title: "Todo List Reviewer"
+description: "Aggregate tasks across multiple todo files, detect duplicates, and generate prioritized summary views with an interactive action menu."
+category: "task-management"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://github.com/chrisblattman/claudeblattman/tree/main/skills"
+tags: ["todo", "tasks", "review", "consolidation", "productivity"]
+createdAt: "2026-02-27"
+---
+
+## What This Does
+
+Reads all your markdown todo files, aggregates task counts by priority, detects duplicates across lists, and gives you a consolidated view with an interactive action menu. Two modes: quick (high-priority only) or full (everything).
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above, then save to the folder where your todo files live:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/
+```
+
+### Step 2: Run Claude Code
+
+```bash
+cd ~/Documents
+claude
+```
+
+Then: **"Review my todos"** or **"Review my todos full"**
+
+---
+
+## Two Review Modes
+
+| Mode | Command | Shows |
+|------|---------|-------|
+| **Quick** (default) | "Review my todos" | Summary table + high-priority items only |
+| **Full** | "Review my todos full" | Summary table + all priorities |
+
+---
+
+## What You Get
+
+### 1. Summary Table
+
+| List | High | Medium | Low | Total |
+|------|------|--------|-----|-------|
+| Main | 3 | 5 | 2 | 10 |
+| Work | 2 | 4 | 1 | 7 |
+| **Total** | **5** | **9** | **3** | **17** |
+
+### 2. Duplicate Detection
+
+```
+POTENTIAL DUPLICATES:
+- "Set up CI/CD" (Main) ↔ "Configure deployment pipeline" (Work)
+  → Recommendation: Merge into Main list
+- "Read OAuth docs" (Main) ↔ "Research OAuth flow" (Work)
+  → Recommendation: Keep in Work, remove from Main
+```
+
+### 3. Recently Completed (past 7 days)
+
+Shows checked-off items from the past week.
+
+### 4. Interactive Action Menu
+
+After the review, choose:
+- **Reprioritize** — change an item's priority
+- **Mark complete** — check off an item
+- **Add new** — add a task with smart routing
+- **Consolidate** — merge duplicate items
+- **Exit** — done reviewing
+
+---
+
+## Example Output
+
+```
+TODO REVIEW — Quick Mode
+━━━━━━━━━━━━━━━━━━━━━━━
+
+Summary: 17 items across 2 lists (5 high priority)
+
+HIGH PRIORITY
+─────────────
+[Main] Deploy hotfix for auth bug — due today
+[Main] Send quarterly report to leadership — due Friday
+[Work] Review candidate interviews — blocking hiring
+[Work] Respond to client escalation — SLA deadline
+[Main] Update production configs — blocks deployment
+
+DUPLICATES FOUND: 2 pairs (see above)
+
+RECENTLY COMPLETED: 4 items this week
+
+What would you like to do?
+[reprioritize / complete / add / consolidate / exit]
+```
+
+---
+
+## Customization
+
+- **File paths** — configure which todo files to scan
+- **Priority categories** — rename or add priority levels
+- **Section names** — match your personal conventions
+- **Quick mode scope** — include Medium priority in quick mode if desired
+
+---
+
+## Tips
+
+- **Run weekly** — best as a regular review habit
+- **Pairs with Smart Todo Manager** — use that playbook for adding, this one for reviewing
+- **Timestamps updated** — modified files get "Last reviewed" timestamps
+
+---
+
+## Troubleshooting
+
+**No files found**
+Configure the file paths in the template to point to your actual todo files
+
+**Wrong priority counts**
+Make sure your todo items include priority markers that match the template's format
+
+**Duplicates missed**
+Duplicates are detected by keyword similarity — very differently worded items may not match

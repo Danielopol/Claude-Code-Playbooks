@@ -1,0 +1,119 @@
+---
+title: "Tax Prep Guide"
+description: "A guided Q&A that assesses your tax situation and generates a personalized preparation plan with document checklists and workflow recommendations."
+category: "finance"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://github.com/chrisblattman/claudeblattman/tree/main/skills"
+tags: ["taxes", "finance", "tax-prep", "document-checklist", "personal-finance"]
+createdAt: "2026-02-27"
+---
+
+## What This Does
+
+Runs an 8-question assessment of your tax situation and generates a personalized prep plan — which filing tier you fall into, exactly which documents to collect, a step-by-step workflow, and privacy notes for each tool. No MCP required.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/
+```
+
+### Step 2: Run Claude Code
+
+```bash
+cd ~/Documents
+claude
+```
+
+Then: **"Run the tax guide"**
+
+---
+
+## The Assessment
+
+8 sequential questions covering:
+
+| # | Topic | Options |
+|---|-------|---------|
+| 1 | Primary income | W-2 only, W-2 + side income, self-employed, multiple types |
+| 2 | 1099 forms | None, 1-2, 3+ |
+| 3 | Deduction strategy | Itemize, standard deduction, unsure |
+| 4 | Complexity flags | Foreign income, rental property, K-1, stock options, crypto |
+| 5 | Prior filing method | Software, CPA, first time |
+| 6 | AI comfort level | New, intermediate, power user |
+| 7 | Gmail MCP status | Yes, No, What's that? |
+| 8 | Main goal | Organize docs, file myself, prep for CPA, exploring |
+
+---
+
+## Three Recommendation Tiers
+
+| Tier | Criteria | Meaning |
+|------|----------|---------|
+| **Self-file** | W-2 only, no 1099s, no complexity flags | Straightforward — use tax software |
+| **Self-file with care** | Side income, 1-2 1099s, or first-time itemizer | Doable but pay extra attention |
+| **Hire a professional** | Any complexity flag, or multiple income + many 1099s | Worth the cost for specialized expertise |
+
+---
+
+## What You Get
+
+1. **Recommendation** with 2-3 sentence reasoning based on your specific answers
+2. **Personalized document checklist** — only documents relevant to your situation
+3. **Suggested workflow** with step-by-step actions
+4. **Privacy notes** per tool (what data each tool sees)
+
+---
+
+## Document Checklist Examples
+
+| If You Have... | Collect These |
+|---------------|--------------|
+| W-2 salary | W-2 from each employer |
+| Side consulting | 1099-NEC from each client, business expense receipts |
+| Investments | 1099-DIV, 1099-B, 1099-INT from each institution |
+| Mortgage | 1098 from lender |
+| Charitable giving | Donation receipts, tracking spreadsheet |
+| Rental property | Rent records, property expenses, depreciation schedule |
+| Stock options | Exercise statements, Form 3921/3922 |
+| Student loans | 1098-E |
+
+Only rows matching your answers are included.
+
+---
+
+## Important Notes
+
+- **Not tax advice** — this guides workflow complexity, not legal tax interpretation
+- **Never collects sensitive data** — no SSNs, account numbers, or specific dollar amounts
+- **Idempotent** — run again with different answers for a different report
+- **No MCP required** — works on any Claude Code installation
+
+---
+
+## Tips
+
+- **Save your results** — Claude offers to write the report to `tax-guide-output.md`
+- **Gmail MCP enhances but isn't required** — enables automated document discovery in your inbox
+- **Run early in tax season** — gives you time to collect everything
+- **Share with your CPA** — the output makes a great prep handoff document
+
+---
+
+## Troubleshooting
+
+**Not sure which complexity flags apply**
+When in doubt, select them — better to get the "hire a professional" recommendation than miss something
+
+**Want to update my answers**
+Just run again — each run is independent
+
+**Report seems too conservative**
+The guide errs on the side of caution — if you're confident in your abilities, adjust accordingly

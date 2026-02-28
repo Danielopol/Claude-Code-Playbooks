@@ -1,0 +1,124 @@
+---
+title: "Daily Morning Briefing"
+description: "Generate a comprehensive daily briefing consolidating your calendar, email inbox, tasks, weather, and meeting context into one unified view."
+category: "productivity"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://github.com/chrisblattman/claudeblattman/tree/main/skills"
+tags: ["morning-routine", "briefing", "dashboard", "calendar", "email", "productivity", "mcp"]
+createdAt: "2026-02-27"
+---
+
+## What This Does
+
+Generates a comprehensive daily briefing that consolidates your calendar, inbox highlights, VIP emails, tasks, weather, and meeting context into one unified view. Start each day knowing exactly what needs your attention.
+
+---
+
+## Prerequisites
+
+- **Gmail MCP** — for inbox scanning and VIP detection
+- **Google Calendar MCP** — for today's schedule
+- Optional: Granola MCP (meeting context), Apple Reminders (macOS)
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/
+```
+
+### Step 2: Run Claude Code
+
+```bash
+cd ~/Documents
+claude
+```
+
+Then: **"Morning briefing"**
+
+---
+
+## Briefing Sections
+
+| Section | What You See |
+|---------|-------------|
+| **Suggested priorities** | Top items ranked by urgency and goal alignment |
+| **Goal alignment** | How today's calendar maps to your objectives |
+| **Today's schedule** | Meetings with context lines for each |
+| **Hard deadlines** | Items due today (highlighted) |
+| **Inbox highlights** | VIP emails with response time tracking |
+| **Waiting-for** | Sent emails still awaiting replies |
+| **Tasks due today** | From Apple Reminders or configured task source |
+| **Tomorrow preview** | What's coming next (Fridays show weekend) |
+| **Triage summary** | Auto-classified email counts |
+| **Overdue items** | Past-due tasks and follow-ups |
+
+Sections with no data are automatically omitted.
+
+---
+
+## Key Features
+
+- **Free time calculation** — subtracts meetings from working hours to show deep work windows
+- **VIP highlighting** — surfaces urgent emails from important contacts, sorted by wait time
+- **Goal alignment scoring** — maps calendar to your objectives, flags unrepresented goals
+- **Meeting context** — for the next 2 events, shows attendee history, pending decisions, owed deliverables
+- **Adaptive triage** — auto-classifies recent emails, window adjusts to run frequency
+- **Weather** — one-line forecast for your location
+
+---
+
+## Config Files (Optional but Recommended)
+
+| File | What It Configures |
+|------|-------------------|
+| `calendar-policy.md` | Calendar IDs, working hours, buffer times, timezone |
+| `email-policy.md` | VIP tier lists, archive rules |
+| `triage-config.md` | Email classification rules and thresholds |
+| `goals.yaml` | Quarterly objectives for alignment scoring |
+
+Store in `~/.claude-assistant/config/`. Missing files degrade gracefully.
+
+---
+
+## Arguments
+
+| Flag | Effect |
+|------|--------|
+| `email` | Send briefing as formatted HTML email |
+| `tomorrow` | Show tomorrow instead of today |
+| `no-triage` | Skip email auto-classification |
+| `no-reminders` | Skip task/reminder sections |
+
+Combine freely: `"Morning briefing tomorrow no-triage"`
+
+---
+
+## Tips
+
+- **Make it a habit** — same time each morning, 2-3 minute review
+- **Fridays include weekend preview** — so you can plan ahead
+- **Missing MCPs are fine** — sections gracefully omit rather than error
+- **Pairs with goals tracker** — set up goals.yaml for alignment scoring
+
+---
+
+## Troubleshooting
+
+**Calendar shows no events**
+Check that your calendar IDs are configured in calendar-policy.md
+
+**VIP emails not highlighted**
+Add important contacts to Tier 1/Tier 2 in email-policy.md
+
+**Briefing too long**
+Use `no-triage` and `no-reminders` to skip sections you don't need
+
+**Weather missing**
+Configure your city in calendar-policy.md

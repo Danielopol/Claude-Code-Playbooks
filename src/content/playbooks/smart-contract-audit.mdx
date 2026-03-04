@@ -1,0 +1,92 @@
+---
+title: "Smart Contract Audit"
+description: "Audit smart contract changes with a structured, actionable report covering security, access control, reentrancy, and MEV exposure."
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://github.com/andreolf/claude-playbooks/blob/master/playbooks/audit_contract.md"
+tags: ["smart-contract", "security", "audit", "blockchain", "solidity", "web3"]
+createdAt: "2026-02-25"
+---
+
+## What This Does
+
+Turns Claude into a senior smart contract auditor that produces structured, actionable audit reports. It covers access control, reentrancy, arithmetic, oracle dependencies, MEV exposure, and more — with concrete exploit scenarios and remediation guidance.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Provide Context
+
+Tell Claude the project name, chain, scope, and threat model.
+
+### Step 3: Paste Your Contract
+
+Share the contract code or diff you want audited.
+
+### Step 4: Get Your Report
+
+Say: **"Audit this contract"**
+
+---
+
+## What the Report Covers
+
+| Section | Details |
+|---------|---------|
+| **Assumptions** | Privileged roles, upgradeability, external deps, trust model |
+| **Executive Summary** | Overall risk level + top 3 risks |
+| **Findings** | Critical/High/Medium/Low with impact, exploit scenario, root cause, fix |
+| **Checklist** | Access control, reentrancy, arithmetic, external calls, MEV, ERC compliance |
+| **Go/No-Go** | Ship recommendation with conditions |
+
+---
+
+## Finding Format
+
+Each finding includes:
+- **Title** — Clear, specific name
+- **Impact** — What goes wrong
+- **Exploit scenario** — Concrete steps (no code needed)
+- **Root cause** — Why the vulnerability exists
+- **Fix** — Exact remediation guidance
+- **Test to add** — Verification test
+
+---
+
+## Tips
+
+- **Be specific about scope**: Tell Claude exactly which contracts/functions to audit
+- **Include threat model**: "Attacker is an external user" vs "Attacker has admin keys" changes everything
+- **State your chain**: Different chains have different gotchas (e.g., Arbitrum sequencer, L2 gas)
+- **Unknown is okay**: The template explicitly handles unknowns rather than guessing
+
+---
+
+## Commands
+
+```
+"Audit this contract for a DeFi lending protocol on Ethereum"
+"Focus on the access control and upgradeability patterns"
+"What are the top MEV risks in this swap function?"
+"Generate the full checklist for this token contract"
+```
+
+---
+
+## Troubleshooting
+
+**Report is too generic**
+Provide more context: chain, threat model, and what the contract does.
+
+**Missing findings you expected**
+Try: "Also check for [specific vulnerability class]"
+
+**Too many low-severity findings**
+Say: "Focus on Critical and High severity only"

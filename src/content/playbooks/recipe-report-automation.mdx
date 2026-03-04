@@ -1,0 +1,75 @@
+---
+title: "Report Automation Designer"
+description: "Design automated reporting systems with data flow mapping, template creation, and delivery scheduling."
+category: "data-reporting"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["report-automation", "templates", "data-pipeline", "efficiency", "operations"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Designs automated reporting systems — maps data sources to outputs, creates report templates, defines refresh schedules, and documents the end-to-end data flow so reports generate themselves.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Inventory Current Reports
+List: all reports you produce, their sources, frequency, and recipients.
+
+### Step 3: Start Using It
+```bash
+claude
+```
+Say: **"Design an automated reporting system for our weekly, monthly, and quarterly reports. Here's what we currently produce manually..."**
+
+---
+
+## Design Output
+
+| Component | Purpose |
+|-----------|---------|
+| **Report Inventory** | All reports mapped with sources and recipients |
+| **Data Flow Diagram** | Source → Processing → Output pipeline |
+| **Template Designs** | Standardized report formats |
+| **Automation Roadmap** | Which reports to automate first |
+| **Schedule Matrix** | When each report runs and delivers |
+| **Exception Handling** | What happens when data is late or wrong |
+
+---
+
+## Tips
+- **Automate the most frequent first**: Weekly reports save more time than quarterly ones
+- **Standardize templates**: Consistent formats reduce maintenance overhead
+- **Build in data validation**: Automated reports with bad data are worse than no reports
+- **Design for self-service**: Can recipients pull their own data instead of waiting for a report?
+
+---
+
+## Commands
+```
+"Design an automated reporting system from this report inventory"
+"Map data flow from source to final report"
+"Create standardized templates for our top 5 reports"
+"Prioritize which reports to automate first based on ROI"
+```
+
+---
+
+## Troubleshooting
+
+**Too complex to automate**
+Start: "Automate the data collection only — keep the narrative manual for now"
+
+**Data sources aren't standardized**
+Say: "Design a data normalization layer before the reporting layer"
+
+**Stakeholders want different formats**
+Ask: "One data source, multiple output formats — design the template layer for flexibility"

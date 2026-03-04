@@ -1,0 +1,75 @@
+---
+title: "Data Quality Assessment"
+description: "Assess data quality across completeness, accuracy, consistency, and timeliness with remediation priorities."
+category: "data-reporting"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["data-quality", "assessment", "governance", "accuracy", "completeness"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Evaluates data quality across multiple dimensions — completeness, accuracy, consistency, timeliness, and uniqueness — then produces a health scorecard with prioritized remediation recommendations.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Load Your Dataset
+Place the data file(s) to assess in your working directory.
+
+### Step 3: Start Using It
+```bash
+claude
+```
+Say: **"Assess data quality in our customer database. Check for completeness, duplicates, format inconsistencies, and stale records."**
+
+---
+
+## Assessment Dimensions
+
+| Dimension | What's Checked |
+|-----------|---------------|
+| **Completeness** | Missing values, empty required fields |
+| **Accuracy** | Invalid formats, out-of-range values |
+| **Consistency** | Same data represented differently |
+| **Timeliness** | Stale records, outdated information |
+| **Uniqueness** | Duplicates and near-duplicates |
+| **Validity** | Values that don't match business rules |
+
+---
+
+## Tips
+- **Quality scores need context**: 95% complete is great for notes fields, unacceptable for emails
+- **Fix root causes, not symptoms**: If data keeps going bad, fix the input process
+- **Prioritize by business impact**: Which quality issues affect revenue-impacting decisions?
+- **Regular monitoring**: One-time cleanup is useless without ongoing quality checks
+
+---
+
+## Commands
+```
+"Assess data quality in this dataset"
+"Generate a data quality scorecard with grades"
+"Identify the top 10 data quality issues by business impact"
+"Create a remediation plan with priorities"
+```
+
+---
+
+## Troubleshooting
+
+**Too many issues found**
+Prioritize: "Focus on fields that drive business decisions — email, revenue, dates"
+
+**Can't determine accuracy**
+Ask: "Cross-reference against a known-good source to validate"
+
+**Issues keep recurring**
+Say: "Analyze the data entry process — where is bad data being created?"

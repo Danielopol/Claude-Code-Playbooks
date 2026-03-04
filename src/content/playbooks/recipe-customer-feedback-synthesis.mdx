@@ -1,0 +1,75 @@
+---
+title: "Customer Feedback Synthesizer"
+description: "Synthesize customer feedback from multiple channels into actionable themes, sentiment analysis, and product insights."
+category: "data-reporting"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["customer-feedback", "sentiment", "NPS", "VOC", "product-insights"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Aggregates customer feedback from surveys, support tickets, reviews, and interviews to identify recurring themes, track sentiment trends, and surface product improvement opportunities.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Gather Feedback Sources
+Collect: NPS responses, support tickets, app store reviews, customer interviews, social mentions.
+
+### Step 3: Start Using It
+```bash
+claude
+```
+Say: **"Synthesize this month's customer feedback from NPS surveys and support tickets. What are the top themes and what should we fix?"**
+
+---
+
+## Analysis Output
+
+| Section | Content |
+|---------|---------|
+| **Sentiment Overview** | Overall health with trend direction |
+| **Top Themes** | Recurring topics ranked by frequency and impact |
+| **Verbatim Highlights** | Representative quotes (positive and negative) |
+| **Segment Patterns** | Differences by customer type/size/plan |
+| **Product Insights** | Feature requests and pain points |
+| **Recommendations** | Prioritized actions for product/CS teams |
+
+---
+
+## Tips
+- **Combine quantitative and qualitative**: NPS scores + open-ended comments = full picture
+- **Track themes over time**: Is a theme getting better or worse month-over-month?
+- **Distinguish volume from severity**: Many small complaints ≠ one critical issue
+- **Close the loop**: Share back with customers what you changed based on feedback
+
+---
+
+## Commands
+```
+"Synthesize customer feedback from these sources"
+"Top 5 product improvement themes this quarter"
+"Compare enterprise vs. SMB feedback patterns"
+"Track how the 'onboarding difficulty' theme is trending"
+```
+
+---
+
+## Troubleshooting
+
+**Too many themes**
+Say: "Consolidate into top 5 themes by business impact, not just frequency"
+
+**Feedback seems contradictory**
+Segment: "Break by customer type — enterprise and SMB often want opposite things"
+
+**No clear prioritization**
+Ask: "Rank by: frequency × revenue impact × effort to fix"

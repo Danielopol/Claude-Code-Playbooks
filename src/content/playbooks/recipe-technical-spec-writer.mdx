@@ -1,0 +1,76 @@
+---
+title: "Technical Specification Writing"
+description: "Write detailed technical specifications with requirements, architecture decisions, interface definitions, and implementation plans."
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["technical-specs", "specifications", "design-documents", "architecture", "engineering"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Creates detailed technical specifications that define the problem, propose solutions, document architecture decisions, specify interfaces, and outline implementation plans — reducing ambiguity before engineering begins.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Define the Problem
+Describe the feature, system change, or technical challenge that needs a specification.
+
+### Step 3: Start Using It
+```bash
+claude
+```
+Say: **"Write a technical spec for migrating our authentication from session-based to JWT. Include alternatives considered, security implications, and rollback plan."**
+
+---
+
+## Spec Structure
+
+| Section | Content |
+|---------|---------|
+| **Problem Statement** | What problem this solves and why it matters |
+| **Proposed Solution** | Recommended approach with architecture |
+| **Alternatives Considered** | Other options and why they were rejected |
+| **Technical Design** | Data models, APIs, sequences, components |
+| **Security & Privacy** | Implications and mitigations |
+| **Rollout Plan** | Phases, feature flags, rollback procedures |
+| **Open Questions** | Unresolved decisions for team discussion |
+
+---
+
+## Tips
+- **Start with "why"**: The problem statement should make the solution feel inevitable
+- **Show your work**: Alternatives considered with pros/cons builds trust in the recommendation
+- **Be specific about trade-offs**: Every architectural choice has costs — document them
+- **Include rollback plan**: How to undo this change if something goes wrong
+
+---
+
+## Commands
+```
+"Write a technical spec for [feature/change]"
+"Document the architecture for [system component]"
+"Compare approaches for [technical decision]"
+"Create a rollout plan with feature flags and rollback"
+```
+
+---
+
+## Troubleshooting
+
+**Spec too long**
+Say: "Keep the core spec to 2-3 pages. Move detailed designs to appendices."
+
+**Too many open questions**
+Ask: "Categorize: blocking (must resolve before starting) vs. deferrable (can decide during implementation)."
+
+**Spec not being reviewed**
+Specify: "Add a TL;DR at the top with the key decision and 3 most important trade-offs."

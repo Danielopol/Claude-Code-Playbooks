@@ -1,0 +1,76 @@
+---
+title: "Incident Analysis & Root Cause Report"
+description: "Create thorough incident reports with root cause analysis, timeline reconstruction, and corrective action plans."
+category: "operations-compliance"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["incident-analysis", "root-cause", "post-mortem", "RCA", "operations"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Transforms raw incident data — logs, communications, timeline notes — into structured post-mortem reports with root cause analysis, impact assessment, timeline reconstruction, and corrective action plans.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Gather Incident Data
+Collect: timeline events, logs, communications, and impact metrics.
+
+### Step 3: Start Using It
+```bash
+claude
+```
+Say: **"Create a root cause analysis for yesterday's 3-hour outage. Here's the timeline and what we know..."**
+
+---
+
+## Report Sections
+
+| Section | Content |
+|---------|---------|
+| **Executive Summary** | What happened, impact, and current status |
+| **Timeline** | Minute-by-minute reconstruction |
+| **Root Cause** | Underlying cause (not just trigger) |
+| **Impact Assessment** | Customers, revenue, reputation affected |
+| **Contributing Factors** | What made it worse or delayed resolution |
+| **Corrective Actions** | Short-term fixes and long-term prevention |
+| **Lessons Learned** | What to improve in response process |
+
+---
+
+## Tips
+- **Blameless post-mortems**: Focus on systems and processes, not individuals
+- **Five Whys technique**: Keep asking "why" until you reach the root cause
+- **Separate trigger from root cause**: "Deploy caused the outage" is the trigger, not the root cause
+- **Assign owners to corrective actions**: Unowned actions don't get done
+
+---
+
+## Commands
+```
+"Create a root cause analysis from this incident timeline"
+"Apply the Five Whys technique to find the underlying cause"
+"Draft corrective actions with owners and deadlines"
+"Write an executive summary for leadership"
+```
+
+---
+
+## Troubleshooting
+
+**Report is blame-focused**
+Say: "Reframe all people references as system/process gaps — blameless format"
+
+**Root cause isn't deep enough**
+Ask: "Apply Five Whys — you stopped at the trigger, not the root cause"
+
+**Too many corrective actions**
+Prioritize: "Top 5 actions that prevent recurrence, ranked by impact"

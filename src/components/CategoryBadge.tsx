@@ -31,6 +31,9 @@ const categoryColors: Record<Category, string> = {
   'sales-revenue': 'bg-[#10b981]/15 text-[#10b981] border-[#10b981]/30',
   'project-management': 'bg-[#3b82f6]/15 text-[#3b82f6] border-[#3b82f6]/30',
   'media-production': 'bg-[#e879f9]/15 text-[#e879f9] border-[#e879f9]/30',
+  'communications': 'bg-[#38bdf8]/15 text-[#38bdf8] border-[#38bdf8]/30',
+  'operations-compliance': 'bg-[#fb923c]/15 text-[#fb923c] border-[#fb923c]/30',
+  'data-reporting': 'bg-[#a78bfa]/15 text-[#a78bfa] border-[#a78bfa]/30',
 };
 
 export function CategoryBadge({ category, className }: CategoryBadgeProps) {

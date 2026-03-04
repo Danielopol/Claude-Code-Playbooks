@@ -184,6 +184,30 @@ export const categories: CategoryInfo[] = [
     icon: 'Mic',
     vertical: 'Media Production',
   },
+  // Communications
+  {
+    id: 'communications',
+    name: 'Communications',
+    description: 'Proposals, press releases, newsletters, speeches, and professional communication',
+    icon: 'MessageSquare',
+    vertical: 'Communications',
+  },
+  // Operations & Compliance
+  {
+    id: 'operations-compliance',
+    name: 'Operations & Compliance',
+    description: 'SOPs, policy documentation, vendor evaluation, audits, and change management',
+    icon: 'ClipboardCheck',
+    vertical: 'Operations & Compliance',
+  },
+  // Data & Reporting
+  {
+    id: 'data-reporting',
+    name: 'Data & Reporting',
+    description: 'Dashboard narratives, KPI analysis, survey reports, and data quality assessment',
+    icon: 'BarChart3',
+    vertical: 'Data & Reporting',
+  },
 ];
 
 export function getCategoryById(id: Category): CategoryInfo | undefined {
@@ -209,4 +233,7 @@ export const verticals = [
   'Sales & Revenue',
   'Project Management',
   'Media Production',
+  'Communications',
+  'Operations & Compliance',
+  'Data & Reporting',
 ];

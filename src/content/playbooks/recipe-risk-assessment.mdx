@@ -1,0 +1,98 @@
+---
+title: "Risk Assessment & Mitigation Planner"
+description: "Identify, assess, and plan mitigation for business risks with probability/impact matrices and action plans."
+category: "executive-strategy"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["risk-assessment", "mitigation", "planning", "risk-management", "strategy"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Systematically identifies risks across business dimensions, assesses probability and impact, and creates structured mitigation plans with owners, triggers, and contingencies.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Gather Context
+
+Prepare: project details, known risks, strategic objectives, past incident data.
+
+### Step 3: Start Using It
+
+```bash
+claude
+```
+
+Say: **"Create a risk assessment for our Q4 product launch. Key areas: technical readiness, market timing, resource availability."**
+
+---
+
+## Risk Framework
+
+| Dimension | Examples |
+|-----------|---------|
+| **Strategic** | Market shifts, competitive threats |
+| **Operational** | Resource gaps, process failures |
+| **Financial** | Budget overruns, revenue shortfalls |
+| **Technical** | System failures, integration issues |
+| **Regulatory** | Compliance changes, legal exposure |
+| **People** | Key person dependency, turnover |
+
+---
+
+## Output Structure
+
+```markdown
+## Risk Register
+| Risk | Probability | Impact | Score | Owner | Mitigation |
+|------|------------|--------|-------|-------|------------|
+| Key engineer leaves | Medium | High | 12 | CTO | Cross-train backup |
+
+## Top 5 Risks — Detailed Mitigation Plans
+[Each with triggers, actions, contingency, and monitoring plan]
+
+## Risk Heat Map
+[Probability x Impact matrix with risk placement]
+```
+
+---
+
+## Tips
+
+- **Think pre-mortem**: "Imagine the project failed — why?" surfaces hidden risks
+- **Assign every risk an owner**: Unowned risks don't get mitigated
+- **Set trigger points**: "If X happens, activate contingency plan Y"
+- **Review monthly**: New risks emerge; old risks change severity
+
+---
+
+## Commands
+
+```
+"Create a risk assessment for [project/initiative]"
+"Run a pre-mortem analysis — what could go wrong?"
+"Build mitigation plans for our top 5 risks"
+"Generate a risk heat map for the leadership team"
+```
+
+---
+
+## Troubleshooting
+
+**Risks too generic**
+Provide project specifics: "We're migrating 500 customers to a new platform in 6 weeks"
+
+**Too many risks identified**
+Say: "Focus on the top 10 risks by severity score"
+
+**Mitigation plans aren't actionable**
+Ask: "Each mitigation needs a specific owner, timeline, and trigger condition"

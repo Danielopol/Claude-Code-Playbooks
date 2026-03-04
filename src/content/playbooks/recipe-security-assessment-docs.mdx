@@ -1,0 +1,75 @@
+---
+title: "Security Assessment Documentation"
+description: "Document security assessments with threat modeling, vulnerability findings, risk ratings, and remediation recommendations."
+category: "operations-compliance"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["security-assessment", "threat-modeling", "vulnerability", "risk-assessment", "cybersecurity"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Structures security assessment findings into professional documentation — threat models, vulnerability reports, risk ratings, and prioritized remediation plans — suitable for technical teams and executive stakeholders.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Provide Assessment Findings
+Compile scan results, penetration test findings, architecture diagrams, and existing security controls.
+
+### Step 3: Start Using It
+```bash
+claude
+```
+Say: **"Document our security assessment for the customer portal. Include threat model, vulnerability findings, risk ratings, and remediation priorities."**
+
+---
+
+## Assessment Sections
+
+| Section | Content |
+|---------|---------|
+| **Scope & Methodology** | What was assessed and how |
+| **Threat Model** | STRIDE-based threat identification |
+| **Vulnerability Findings** | Issues found with CVSS scoring |
+| **Risk Matrix** | Likelihood × impact assessment |
+| **Remediation Plan** | Prioritized fixes with effort estimates |
+| **Executive Summary** | Non-technical overview for leadership |
+
+---
+
+## Tips
+- **CVSS scoring for consistency**: Use Common Vulnerability Scoring System for objective risk rating
+- **Business context matters**: A critical vulnerability in a test environment is different from production
+- **Remediation timeline**: Critical = 24 hours, High = 7 days, Medium = 30 days, Low = 90 days
+- **Retest plan**: Document how and when fixes will be verified
+
+---
+
+## Commands
+```
+"Document security assessment findings for [system]"
+"Create a threat model using STRIDE for [application]"
+"Prioritize vulnerabilities by risk and effort to fix"
+"Write an executive summary of security posture"
+```
+
+---
+
+## Troubleshooting
+
+**Too many low-severity findings**
+Say: "Group low-severity items into categories. Focus the report on critical and high findings."
+
+**Non-technical stakeholders confused**
+Ask: "Create a separate executive summary with business impact language, no technical jargon."
+
+**Remediation ownership unclear**
+Specify: "Assign each finding to a team with a deadline. Track in a separate remediation tracker."

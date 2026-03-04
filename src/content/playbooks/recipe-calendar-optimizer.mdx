@@ -1,0 +1,97 @@
+---
+title: "Calendar & Schedule Optimizer"
+description: "Analyze your calendar to find time waste, optimize meeting load, and redesign your week for strategic priorities."
+category: "productivity"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["calendar", "scheduling", "time-management", "meetings", "optimization"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Analyzes your calendar data to reveal where your time actually goes versus where it should go. Identifies meetings to cut, consolidate, or restructure, then proposes an optimized weekly design aligned with your priorities.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Export Your Calendar
+
+Export 2-4 weeks of calendar data (CSV from Google Calendar or Outlook), or describe your typical week.
+
+### Step 3: Start Using It
+
+```bash
+claude
+```
+
+Say: **"Analyze my calendar export and tell me where I'm wasting time. My top priorities are product launch and hiring."**
+
+---
+
+## Analysis Output
+
+| Section | What You Learn |
+|---------|---------------|
+| **Time Allocation** | Hours by category vs. ideal split |
+| **Meeting Audit** | Each recurring meeting rated for value |
+| **Pattern Analysis** | Problem time slots and fragmentation |
+| **Recommendations** | Specific meetings to cut/change with draft messages |
+| **Redesigned Week** | Proposed schedule with focus blocks |
+| **Implementation Plan** | Quick wins vs. conversations needed |
+
+---
+
+## Example Output
+
+```markdown
+## Time Allocation
+- Meetings: 28 hrs (70%) → Target: 16 hrs (40%)
+- Focus work: 4 hrs (10%) → Target: 12 hrs (30%)
+- Strategic thinking: 0 hrs → Target: 4 hrs (10%)
+
+## Quick Wins (no permission needed)
+- Decline "FYI Status Sync" (2 hrs/week, low value)
+- Batch 1:1s to Tuesday/Thursday afternoons
+- Block 9-11am Mon/Wed/Fri as focus time
+```
+
+---
+
+## Tips
+
+- **Audit recurring meetings first**: Cutting one weekly meeting saves ~52 hours/year
+- **Protect focus blocks like CEO meetings**: Mark as "Busy" not "Free"
+- **Consider restructuring over eliminating**: Weekly → biweekly, 60min → 30min, sync → async
+- **Review monthly**: 15-minute monthly check prevents calendar creep
+
+---
+
+## Commands
+
+```
+"Analyze my calendar CSV and compare to my stated priorities"
+"Which recurring meetings should I decline or delegate?"
+"Design an ideal weekly schedule for a VP Engineering"
+"Draft a polite decline message for the status sync meeting"
+```
+
+---
+
+## Troubleshooting
+
+**Calendar export too messy**
+Describe your typical week instead: "Monday I have X, Tuesday I have Y..."
+
+**Recommendations too aggressive**
+Say: "Keep all client-facing meetings, only optimize internal ones"
+
+**Can't implement changes**
+Ask: "Which 3 changes give the biggest time savings with least political risk?"

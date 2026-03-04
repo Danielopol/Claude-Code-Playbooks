@@ -1,0 +1,76 @@
+---
+title: "API & Integration Documentation"
+description: "Generate comprehensive API documentation with endpoint references, authentication guides, code examples, and integration tutorials."
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["api-documentation", "integration-guide", "endpoints", "developer-docs", "openapi"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Creates comprehensive API documentation from code, OpenAPI specs, or informal descriptions — including endpoint references, authentication guides, request/response examples, error handling, and integration tutorials.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Provide API Information
+Share API source code, OpenAPI/Swagger specs, or informal descriptions of endpoints.
+
+### Step 3: Start Using It
+```bash
+claude
+```
+Say: **"Generate API documentation for our user management service. Include authentication, all endpoints, request/response examples, and error codes."**
+
+---
+
+## Documentation Sections
+
+| Section | Content |
+|---------|---------|
+| **Getting Started** | Authentication, base URL, rate limits |
+| **Authentication** | API keys, OAuth flows, token management |
+| **Endpoint Reference** | Method, path, parameters, request/response |
+| **Code Examples** | cURL, Python, JavaScript examples per endpoint |
+| **Error Reference** | Error codes, meanings, and resolution steps |
+| **Webhooks** | Event types, payload formats, verification |
+| **Changelog** | API version history and breaking changes |
+
+---
+
+## Tips
+- **Working examples first**: Developers try examples before reading docs — make them copy-pasteable
+- **Show error handling**: Happy path examples are useless without error response documentation
+- **Include rate limits**: Developers need to know limits before they build, not after they hit them
+- **Version prominently**: Make it obvious which API version the docs describe
+
+---
+
+## Commands
+```
+"Generate API docs from this OpenAPI spec"
+"Create endpoint reference with request/response examples"
+"Write an authentication guide for our API"
+"Build integration tutorials for common use cases"
+```
+
+---
+
+## Troubleshooting
+
+**Docs out of sync with code**
+Say: "Generate docs directly from code annotations or OpenAPI specs to stay current."
+
+**Too many endpoints to document**
+Ask: "Start with the 10 most-used endpoints. Track which docs pages get the most traffic."
+
+**Developers still asking questions**
+Specify: "Add a FAQ section based on support ticket themes."

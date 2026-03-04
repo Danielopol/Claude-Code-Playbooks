@@ -1,0 +1,80 @@
+---
+title: "Team Capacity & Resource Planner"
+description: "Analyze team workload, identify capacity gaps, and model resource allocation scenarios for staffing decisions."
+category: "project-management"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["capacity-planning", "resource-allocation", "staffing", "workload", "team-management"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Analyzes your team roster, current allocations, and incoming requests to produce utilization reports, gap analysis, and scenario models for resource decisions. Turns guesswork into data-driven staffing conversations.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Prepare Team Data
+
+Gather: team roster with roles, current project allocations, upcoming work requests, known PTO.
+
+### Step 3: Start Using It
+
+```bash
+claude
+```
+
+Say: **"Analyze my team's capacity for Q2. Here's the roster and current project allocations..."**
+
+---
+
+## Analysis Output
+
+| Section | What You Get |
+|---------|-------------|
+| **Utilization Report** | Current allocation % per person |
+| **Capacity Table** | Available vs. committed hours |
+| **Gap Analysis** | Demand vs. supply by skill |
+| **Scenario Models** | Accept all / Prioritize / Add headcount |
+| **Resource Request** | Justification narrative for leadership |
+
+---
+
+## Tips
+
+- **Plan at 80% utilization**: 100% allocated plans collapse instantly with any unplanned work
+- **Track allocation, not busyness**: Someone in meetings all day may have zero project capacity
+- **Account for skill differences**: 3 juniors ≠ 1 senior for complex work
+- **Update monthly**: Capacity shifts constantly — treat this as a living analysis
+
+---
+
+## Commands
+
+```
+"Analyze team capacity from this roster and allocation data"
+"Model 3 scenarios: accept all requests, prioritize top 3, add 2 hires"
+"Generate a resource request justification for leadership"
+"Show me who's over-allocated and what to reassign"
+```
+
+---
+
+## Troubleshooting
+
+**Utilization numbers seem wrong**
+Clarify: "Available hours should be 32/week per person (accounting for meetings and admin)"
+
+**Need skill-based analysis**
+Add: "Tag each person with skills: frontend, backend, ML, design"
+
+**Scenarios too abstract**
+Specify: "Show the impact on project X delivery date for each scenario"

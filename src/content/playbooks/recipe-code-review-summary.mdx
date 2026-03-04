@@ -1,0 +1,75 @@
+---
+title: "Code Review Summary & Documentation"
+description: "Generate structured code review summaries with findings categorization, pattern analysis, and team improvement recommendations."
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["code-review", "review-summary", "engineering-quality", "best-practices", "documentation"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Synthesizes code review findings into structured summaries — categorizing issues, identifying recurring patterns, tracking quality trends, and producing improvement recommendations for engineering teams.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Provide Review Data
+Compile code review comments, PR descriptions, and any review checklists from the analysis period.
+
+### Step 3: Start Using It
+```bash
+claude
+```
+Say: **"Summarize code review findings from our last 50 PRs. What patterns emerge? Where should we invest in team training?"**
+
+---
+
+## Summary Components
+
+| Component | Content |
+|-----------|---------|
+| **Finding Categories** | Bugs, security, performance, style, architecture |
+| **Pattern Analysis** | Recurring issues across multiple reviews |
+| **Quality Trends** | Improvement or regression over time |
+| **Hotspot Files** | Files that generate the most review comments |
+| **Team Insights** | Common knowledge gaps or strengths |
+| **Recommendations** | Training, tooling, or process improvements |
+
+---
+
+## Tips
+- **Categorize findings**: Bug, security, performance, maintainability, style — not just "change this"
+- **Patterns over incidents**: One-off issues are noise; recurring patterns are signals
+- **Positive patterns too**: Highlight what the team does well, not just what needs fixing
+- **Automate what you can**: If the same comment appears 10 times, it should be a linter rule
+
+---
+
+## Commands
+```
+"Summarize code review findings from [period/PRs]"
+"Identify recurring patterns across reviews"
+"Which areas need the most engineering training?"
+"Recommend linter rules or automation for common findings"
+```
+
+---
+
+## Troubleshooting
+
+**Too many findings to summarize**
+Say: "Group by category and rank by frequency. Focus on the top 5 recurring patterns."
+
+**Reviews too nitpicky**
+Ask: "Separate style issues (automate with linting) from substantive issues (require human review)."
+
+**Team not learning from reviews**
+Specify: "Create a 'common patterns' guide from the top 10 recurring issues with examples."

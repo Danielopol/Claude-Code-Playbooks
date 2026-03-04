@@ -1,0 +1,74 @@
+---
+title: "Product Feature Prioritization"
+description: "Prioritize product features using RICE, weighted scoring, and value-vs-effort frameworks with stakeholder alignment."
+category: "project-management"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["feature-prioritization", "rice-scoring", "product-management", "roadmap-planning", "value-effort"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Applies structured prioritization frameworks (RICE, weighted scoring, value vs. effort) to product feature lists. Produces defensible rankings that align stakeholders and focus engineering resources on highest-impact work.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: List Your Feature Candidates
+Compile the features, enhancements, and tech debt items competing for development resources.
+
+### Step 3: Start Using It
+```bash
+claude
+```
+Say: **"Prioritize these 25 feature requests using RICE scoring. We have 2 engineering teams and need to pick the top 8 for next quarter."**
+
+---
+
+## Prioritization Frameworks
+
+| Framework | Best For |
+|-----------|----------|
+| **RICE** | Quantitative scoring (Reach × Impact × Confidence ÷ Effort) |
+| **Value vs. Effort** | Quick visual prioritization on 2×2 matrix |
+| **Weighted Scoring** | Multi-criteria evaluation with stakeholder-defined weights |
+| **Kano Model** | Understanding must-have vs. delighter features |
+| **ICE** | Fast scoring (Impact × Confidence × Ease) |
+
+---
+
+## Tips
+- **Confidence matters**: A high-impact feature with low confidence should rank lower than you think
+- **Involve stakeholders in weighting**: Let them debate criteria weights, not individual feature scores
+- **Re-prioritize quarterly**: Market conditions and customer needs change
+- **Track prediction accuracy**: Compare estimated impact to actual results over time
+
+---
+
+## Commands
+```
+"Prioritize these features using RICE scoring"
+"Create a value vs. effort matrix for [feature list]"
+"Build a weighted scoring model with [criteria]"
+"Which 5 features deliver the most impact with least effort?"
+```
+
+---
+
+## Troubleshooting
+
+**Everything scores similarly**
+Say: "Force-rank the top 5 only. If everything's a priority, nothing is."
+
+**Stakeholders disagree on priorities**
+Ask: "Align on criteria weights first, then let the math determine ranking."
+
+**Technical debt never makes the cut**
+Specify: "Allocate a fixed percentage (e.g., 20%) of capacity for tech debt, separate from feature prioritization."

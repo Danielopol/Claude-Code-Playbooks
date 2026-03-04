@@ -1,0 +1,74 @@
+---
+title: "Release Notes & Changelog"
+description: "Generate clear, audience-appropriate release notes and changelogs from commit logs, tickets, and feature descriptions."
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["release-notes", "changelog", "product-updates", "documentation", "versioning"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Transforms raw commit logs, JIRA tickets, and feature descriptions into polished, audience-appropriate release notes — customer-facing announcements, internal changelogs, and technical migration guides.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Provide Release Information
+Share commit logs, closed tickets, feature descriptions, and any breaking changes for this release.
+
+### Step 3: Start Using It
+```bash
+claude
+```
+Say: **"Generate release notes for v3.2.0 from these git commits and JIRA tickets. Create customer-facing and developer-facing versions."**
+
+---
+
+## Release Note Formats
+
+| Format | Audience |
+|--------|----------|
+| **Customer Announcement** | End users — new features, improvements, benefits |
+| **Developer Changelog** | Technical team — API changes, deprecations, migrations |
+| **Internal Notes** | Team — bugs fixed, tech debt addressed, known issues |
+| **Migration Guide** | Developers — breaking changes and upgrade steps |
+| **Marketing Summary** | Growth team — highlight reel for promotion |
+
+---
+
+## Tips
+- **Lead with value**: "You can now..." beats "We added support for..."
+- **Group by impact**: New features → improvements → bug fixes → deprecations
+- **Breaking changes first**: If anything breaks, make it impossible to miss
+- **Keep it scannable**: One line per change, with links to detailed docs
+
+---
+
+## Commands
+```
+"Generate release notes from these commits"
+"Create customer-facing release announcement for v[X.Y.Z]"
+"Write a migration guide for breaking changes"
+"Summarize this release for the marketing team"
+```
+
+---
+
+## Troubleshooting
+
+**Commits too cryptic**
+Say: "Cross-reference with JIRA tickets to understand the user impact of each change."
+
+**Too many minor changes**
+Ask: "Group minor fixes into 'Bug fixes and stability improvements' and highlight top 5 features."
+
+**Breaking changes unclear**
+Specify: "List exact steps to migrate, with before/after code examples."

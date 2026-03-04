@@ -1,0 +1,75 @@
+---
+title: "Contract Review & Risk Summarizer"
+description: "Review contracts to identify risks, unusual clauses, missing protections, and generate plain-language summaries for stakeholders."
+category: "legal-compliance"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["contract-review", "legal", "risk", "compliance", "due-diligence"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Reviews contracts to flag risks, identify unusual or unfavorable clauses, highlight missing protections, and generate plain-language summaries that non-legal stakeholders can understand and act on.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Load the Contract
+Place the contract document in your working directory.
+
+### Step 3: Start Using It
+```bash
+claude
+```
+Say: **"Review this vendor contract and flag any risks, unusual clauses, or missing protections we should negotiate"**
+
+---
+
+## Review Output
+
+| Section | Content |
+|---------|---------|
+| **Executive Summary** | Plain-language overview of what you're agreeing to |
+| **Risk Register** | Risks rated by severity with clause references |
+| **Unusual Clauses** | Terms that deviate from market standard |
+| **Missing Protections** | Standard clauses that should be added |
+| **Negotiation Points** | Recommended changes with suggested language |
+| **Comparison** | How this compares to your standard terms |
+
+---
+
+## Tips
+- **Not a substitute for legal counsel**: Use this for initial review and stakeholder communication
+- **Include your standard terms**: Comparing against your preferred language reveals gaps
+- **Focus on business risk**: "This means we can't switch vendors for 3 years" beats legal jargon
+- **Track negotiation history**: Save review outputs to build a clause library
+
+---
+
+## Commands
+```
+"Review this contract and flag risks"
+"Summarize key terms in plain language for my manager"
+"Compare this to our standard vendor agreement"
+"Generate a list of negotiation points with suggested language"
+```
+
+---
+
+## Troubleshooting
+
+**Missing important risks**
+Specify: "Focus on liability, termination, IP ownership, and data handling"
+
+**Too much legal jargon**
+Say: "Plain language only — explain what each risk means for the business"
+
+**Need specific clause language**
+Ask: "Draft alternative language for section 7.3 that limits our liability"

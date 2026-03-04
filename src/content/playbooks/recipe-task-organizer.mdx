@@ -1,0 +1,102 @@
+---
+title: "Task & Project List Organizer"
+description: "Transform scattered tasks from every source into a prioritized, organized system with realistic weekly plans."
+category: "task-management"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["tasks", "project-management", "prioritization", "planning", "organization"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Takes your scattered tasks — brain dumps, flagged emails, meeting action items, app exports — and consolidates them into a clean, prioritized system with realistic weekly plans. Perfect for the Monday morning "where do I start?" problem.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Dump Everything
+
+Brain dump all your tasks, open todos, and commitments in any format.
+
+### Step 3: Start Using It
+
+```bash
+claude
+```
+
+Say: **"Organize all these tasks, prioritize them, and create a realistic plan for this week (I have ~20 hours of focus time)"**
+
+---
+
+## Priority Framework
+
+| Level | Criteria | Examples |
+|-------|----------|---------|
+| **P1** | Urgent + Important | Client deadline Friday |
+| **P2** | Important, not urgent | Q2 strategy document |
+| **P3** | Urgent, not important | Reply to vendor email |
+| **P4** | Defer or delegate | Update team wiki |
+
+---
+
+## Output Structure
+
+```markdown
+## Consolidated Tasks (23 items)
+### Project: Product Launch (8 tasks)
+- [P1] Finalize pricing page copy — Due: Wed
+- [P2] Review competitor landing pages — Due: Fri
+
+### Project: Hiring (5 tasks)
+- [P1] Interview prep for Sr. Engineer — Due: Tue
+
+## Weekly Plan
+Monday: Focus on P1 items (6 hrs)
+Tuesday: Interviews + P2 writing (4 hrs)
+...
+
+## Waiting On
+- Design mockups from Sarah (asked Mon)
+- Budget approval from Finance (escalate if no response by Wed)
+```
+
+---
+
+## Tips
+
+- **Weekly ritual**: Block 20-30 minutes every Monday for planning
+- **Be honest about capacity**: Don't plan 30 hours of tasks if you have 15 focus hours
+- **Track "waiting on" items**: Dependencies blocked by others need visibility
+- **Distinguish projects from tasks**: Break large initiatives into specific next actions
+
+---
+
+## Commands
+
+```
+"Organize and prioritize all these tasks"
+"Create a weekly plan assuming 20 hours of focus time"
+"What should I work on right now?"
+"Move the website redesign tasks to next week"
+```
+
+---
+
+## Troubleshooting
+
+**Too many P1 items**
+Say: "Force-rank these — if I can only do 3 things this week, which 3?"
+
+**Tasks too vague**
+Claude will flag them: "Clarify: what's the next specific action for 'work on marketing'?"
+
+**Plan is unrealistic**
+Specify available hours: "I only have 4 hours of uninterrupted time this week"

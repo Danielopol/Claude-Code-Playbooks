@@ -1,0 +1,97 @@
+---
+title: "Meeting Notes to Action Items"
+description: "Transform raw meeting notes into structured summaries, action item tables, and follow-up emails in minutes."
+category: "productivity"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["meetings", "action-items", "follow-up", "notes", "productivity"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Turns messy meeting notes into three polished outputs: a shareable summary paragraph, an action items table with owners and deadlines, and personalized follow-up emails for each assignee. What used to take 30-60 minutes now takes under 5.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Gather Your Notes
+
+Have your raw meeting notes ready — typed notes, transcript, or even bullet fragments.
+
+### Step 3: Start Using It
+
+```bash
+claude
+```
+
+Say: **"Process my meeting notes from today's Q4 planning session into a summary, action items, and follow-up emails"**
+
+---
+
+## What Claude Extracts
+
+| Source | What It Extracts |
+|--------|-----------------|
+| **Raw notes** | Decisions, topics, outcomes |
+| **Names mentioned** | Action item owners |
+| **Dates/deadlines** | Timeline for each task |
+| **Discussion context** | Background for follow-ups |
+| **Open questions** | Items needing clarification |
+
+---
+
+## Output Structure
+
+```markdown
+## Meeting Summary
+[One paragraph suitable for non-attendees]
+
+## Action Items
+| Owner | Action Item | Deadline | Context |
+|-------|------------|----------|---------|
+| Sarah | Draft Q4 budget proposal | Oct 15 | Based on 12% growth target |
+
+## Follow-Up Emails
+[Personalized email per assignee with their items]
+```
+
+---
+
+## Tips
+
+- **Process immediately**: Run within 5 minutes of the meeting while context is fresh
+- **Include attendee roles**: "Mike (Eng Lead)" helps Claude attribute items correctly
+- **Don't clean your notes**: Raw shorthand works fine — messy input, clean output
+- **Batch meetings**: Process multiple meetings from the same day in one session
+
+---
+
+## Commands
+
+```
+"Process these meeting notes into summary and action items"
+"Add Sarah as owner for the budget task with Oct 15 deadline"
+"Generate follow-up emails for all action item owners"
+"Compare this week's actions with last week's — what's still open?"
+```
+
+---
+
+## Troubleshooting
+
+**Action items are vague**
+Add more context: "The discussion about X was specifically about migrating to Y by end of quarter"
+
+**Wrong person assigned**
+Specify roles: "Mike is the engineering lead, Sarah handles product"
+
+**Missing items**
+Say: "We also decided to postpone the API migration — add that as a tracked decision"

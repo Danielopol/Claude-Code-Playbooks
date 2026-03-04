@@ -1,0 +1,105 @@
+---
+title: "Quick Reference Guide Creator"
+description: "Turn complex processes and tribal knowledge into scannable, one-page quick reference guides and cheat sheets."
+category: "knowledge-management"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["documentation", "reference-guide", "cheat-sheet", "knowledge-base", "SOPs"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Transforms complex processes, lengthy documentation, or expert knowledge into concise, scannable quick reference guides. Perfect for onboarding, reducing repeated questions, and capturing tribal knowledge before experts leave.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Gather Your Knowledge
+
+Have existing docs, process descriptions, or expert knowledge ready to distill.
+
+### Step 3: Start Using It
+
+```bash
+claude
+```
+
+Say: **"Create a quick reference guide for our deployment process based on these docs"**
+
+---
+
+## Guide Sections
+
+| Section | Purpose |
+|---------|---------|
+| **Title + Purpose** | One-line "what this is for" |
+| **Prerequisites** | What you need before starting |
+| **Quick Steps** | Numbered, scannable actions |
+| **Key Commands** | Shortcuts and reference table |
+| **Common Issues** | Top problems + instant fixes |
+| **Decision Tree** | "If X, do Y" logic flows |
+| **Tips** | Pro advice from experienced users |
+
+---
+
+## Example Output
+
+```markdown
+# Deployment Quick Reference
+*Deploy to production in 5 steps*
+
+## Prerequisites
+✅ VPN connected  ✅ SSH keys configured  ✅ Slack #deploy open
+
+## Steps
+1. Run `./deploy.sh staging` — verify in 5 min
+2. Check dashboard: green = proceed, red = abort
+3. Run `./deploy.sh production`
+4. Monitor #alerts for 15 minutes
+5. Post in #deploy: "v2.3 live ✅"
+
+## If Something Goes Wrong
+🔴 500 errors → Run `./rollback.sh` immediately
+🟡 Slow responses → Check `htop` on prod-1
+```
+
+---
+
+## Tips
+
+- **Walk through the steps yourself**: Missing steps surface immediately during self-testing
+- **Include the WHY for warnings**: "Don't deploy during market hours (causes trade delays)" works better than just "don't deploy"
+- **Keep guides dated**: So users know when info might be outdated
+- **Capture tribal knowledge first**: Create guides for things people keep asking about
+
+---
+
+## Commands
+
+```
+"Create a quick reference guide for [process]"
+"Condense this 20-page doc into a 1-page cheat sheet"
+"Add a troubleshooting section for common errors"
+"Create a decision tree for handling customer escalations"
+```
+
+---
+
+## Troubleshooting
+
+**Guide is too long**
+Say: "Strict 1-page limit — what's absolutely essential?"
+
+**Missing important steps**
+Walk through it: "I followed the guide and got stuck at step 4 — there's a missing step"
+
+**Too technical for audience**
+Specify: "Written for new hires with no technical background"

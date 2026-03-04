@@ -1,0 +1,75 @@
+---
+title: "Lead Scoring & Prioritization"
+description: "Design lead scoring models with demographic, firmographic, and behavioral criteria to prioritize sales outreach by conversion likelihood."
+category: "sales-revenue"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["lead-scoring", "prioritization", "sales-pipeline", "conversion", "qualification"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Builds lead scoring models that combine demographic, firmographic, and behavioral signals to rank leads by conversion likelihood. Helps sales teams focus on high-probability opportunities and stop chasing unqualified leads.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Provide Historical Data
+Gather data on past converted leads — company size, industry, engagement patterns, and deal outcomes.
+
+### Step 3: Start Using It
+```bash
+claude
+```
+Say: **"Design a lead scoring model for our B2B SaaS product. Analyze our last 200 closed deals to identify which attributes predict conversion."**
+
+---
+
+## Scoring Model Components
+
+| Component | Content |
+|-----------|---------|
+| **Firmographic Scoring** | Company size, industry, geography, tech stack |
+| **Demographic Scoring** | Title, seniority, department, decision authority |
+| **Behavioral Scoring** | Website visits, content downloads, email engagement |
+| **Negative Scoring** | Disqualification signals (competitors, students, wrong geo) |
+| **Threshold Definitions** | MQL, SQL, and hot lead score boundaries |
+| **Routing Rules** | Score-based assignment to SDR vs. AE |
+
+---
+
+## Tips
+- **Validate against history**: Test your model against past deals — does it correctly rank known converters?
+- **Behavioral signals matter most**: What someone does predicts better than who they are
+- **Decay scores**: Reduce scores for inactivity — a hot lead 6 months ago isn't hot today
+- **Keep it simple**: 10-15 scoring criteria maximum. Complexity reduces trust
+
+---
+
+## Commands
+```
+"Design a lead scoring model for [product/segment]"
+"Analyze which lead attributes predict conversion"
+"Set MQL and SQL thresholds based on historical data"
+"Create lead routing rules by score tier"
+```
+
+---
+
+## Troubleshooting
+
+**Model doesn't predict well**
+Say: "Analyze the last 50 conversions and 50 non-conversions. Which attributes differ?"
+
+**Too many MQLs, few convert**
+Ask: "Raise the MQL threshold or add behavioral requirements to score qualification."
+
+**Sales doesn't trust the scores**
+Specify: "Show the win rate at each score tier. Let data build confidence."

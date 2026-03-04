@@ -1,0 +1,75 @@
+---
+title: "KPI Variance Analysis & Commentary"
+description: "Generate variance analysis commentary explaining why KPIs deviated from targets with root causes and corrective actions."
+category: "data-reporting"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["KPI", "variance-analysis", "performance", "commentary", "targets"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Analyzes KPI performance against targets, explains variances with root causes, assesses whether deviations are temporary or structural, and generates commentary suitable for management reporting.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Prepare KPI Data
+Gather: actual vs. target for each KPI, prior period comparisons, and known context.
+
+### Step 3: Start Using It
+```bash
+claude
+```
+Say: **"Analyze these KPI variances for Q3. Revenue beat by 5% but customer acquisition cost missed by 20%. Explain what's happening."**
+
+---
+
+## Commentary Structure
+
+| Element | Content |
+|---------|---------|
+| **Variance Summary** | Which KPIs beat, met, or missed targets |
+| **Root Cause Analysis** | Why each significant variance occurred |
+| **Structural vs. Temporary** | Is this a trend or one-time event? |
+| **Interconnections** | How variances in one area affect others |
+| **Forecast Impact** | What this means for year-end projections |
+| **Corrective Actions** | What to do about misses |
+
+---
+
+## Tips
+- **Explain the WHY, not just the WHAT**: "Revenue up 5%" is data; "Revenue up 5% driven by 2 large enterprise deals" is insight
+- **Separate structural from temporary**: One-time events need different responses than trend shifts
+- **Show interconnections**: High CAC and high revenue might mean you're buying growth
+- **Always project forward**: "If this trend continues, we'll end the year at..."
+
+---
+
+## Commands
+```
+"Analyze these KPI variances and explain root causes"
+"Is the CAC increase temporary or structural?"
+"How do these variances affect our year-end forecast?"
+"Generate management commentary for the monthly review"
+```
+
+---
+
+## Troubleshooting
+
+**Commentary is too surface-level**
+Provide context: "We launched a new marketing campaign in week 3 — that's driving the CAC spike"
+
+**Too many KPIs to analyze**
+Focus: "Only analyze variances greater than 10% from target"
+
+**Can't determine root cause**
+Flag: "Mark as 'requires further investigation' and recommend specific data to gather"

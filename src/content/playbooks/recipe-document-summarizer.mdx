@@ -1,0 +1,102 @@
+---
+title: "Document Summarizer"
+description: "Get role-specific summaries from any document — executive summaries, key findings, implications, and recommended actions."
+category: "research-writing"
+difficulty: "beginner"
+timeToSetup: "2 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["summarization", "documents", "pdf", "analysis", "research"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Reads any document (PDF, Word, text) and produces a tailored summary based on your role and purpose. Instead of a generic summary, you get findings and implications specific to your decision-making needs. Saves 15-45 minutes per document.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Place Your Document
+
+Put the file in your working directory or have text ready to paste.
+
+### Step 3: Start Using It
+
+```bash
+claude
+```
+
+Say: **"Summarize report.pdf — I'm a product manager evaluating this market opportunity for a leadership presentation"**
+
+---
+
+## Summary Sections
+
+| Section | What You Get |
+|---------|-------------|
+| **Executive Summary** | 3-5 sentence overview of the document |
+| **Key Findings** | 5-7 most important bullets with data |
+| **Implications** | What this means for your role specifically |
+| **Recommended Actions** | Next steps based on the findings |
+| **Notable Data Points** | Quotable stats with page references |
+| **Gaps & Limitations** | What the document doesn't cover |
+
+---
+
+## Example Output
+
+```markdown
+## Executive Summary
+The Q3 market report reveals a 23% shift toward
+AI-native solutions in the mid-market segment,
+with adoption rates accelerating fastest in
+financial services and healthcare.
+
+## Key Findings
+- AI-native spend grew 23% YoY in mid-market
+- 67% of buyers cite "ease of integration" as #1 factor
+- Top 3 competitors launched enterprise tiers in Q3
+
+## Implications for Product Manager
+This validates our planned API-first approach and
+suggests we should accelerate the healthcare vertical.
+```
+
+---
+
+## Tips
+
+- **Always state your role**: A CFO's summary differs completely from a PM's on the same document
+- **State what you'll do with it**: "For a board presentation" shapes the output differently than "for my own understanding"
+- **Process multiple docs together**: "Synthesize these 3 reports and highlight contradictions"
+- **Request page citations**: For high-stakes decisions, ask for source references
+
+---
+
+## Commands
+
+```
+"Summarize this document for a CFO audience"
+"Extract the 5 most important data points with page numbers"
+"Compare these two reports and highlight contradictions"
+"Create a 1-page brief I can share with my team"
+```
+
+---
+
+## Troubleshooting
+
+**Summary too generic**
+Add your purpose: "I need to decide whether to invest in this market segment"
+
+**Missing key details**
+Ask: "What does this document say specifically about pricing trends?"
+
+**Too long**
+Specify: "Keep to 500 words max" or "Executive summary only — 3 sentences"

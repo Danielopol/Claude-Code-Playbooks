@@ -1,0 +1,75 @@
+---
+title: "Requirements Documentation"
+description: "Transform stakeholder needs into structured requirements documents with user stories, acceptance criteria, and traceability matrices."
+category: "project-management"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["requirements", "user-stories", "acceptance-criteria", "specifications", "brd"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Converts stakeholder interviews, meeting notes, and business needs into structured requirements documents — with user stories, acceptance criteria, priority rankings, and traceability to business objectives.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Gather Stakeholder Inputs
+Compile meeting notes, feature requests, business needs, and any existing specifications.
+
+### Step 3: Start Using It
+```bash
+claude
+```
+Say: **"Transform these stakeholder interview notes into a structured requirements document with user stories, acceptance criteria, and MoSCoW prioritization."**
+
+---
+
+## Document Structure
+
+| Section | Content |
+|---------|---------|
+| **Business Requirements** | High-level needs tied to business objectives |
+| **Functional Requirements** | What the system must do |
+| **Non-Functional Requirements** | Performance, security, scalability constraints |
+| **User Stories** | As a [user], I want [action], so that [benefit] |
+| **Acceptance Criteria** | Given/When/Then conditions for each story |
+| **Traceability Matrix** | Requirements mapped to business objectives |
+
+---
+
+## Tips
+- **MoSCoW prioritization**: Must-have, Should-have, Could-have, Won't-have this time
+- **Acceptance criteria are contracts**: If it doesn't have criteria, it's not a requirement
+- **Trace to business value**: Every requirement should map to a business objective
+- **Separate what from how**: Requirements define outcomes, not implementation
+
+---
+
+## Commands
+```
+"Create requirements from these stakeholder notes"
+"Write user stories with acceptance criteria for [feature]"
+"Prioritize requirements using MoSCoW"
+"Build a traceability matrix linking requirements to objectives"
+```
+
+---
+
+## Troubleshooting
+
+**Requirements too vague**
+Say: "Add acceptance criteria using Given/When/Then format for every requirement."
+
+**Too many Must-haves**
+Ask: "If we could only ship 5 features, which ones? Those are the real Must-haves."
+
+**Conflicting requirements**
+Specify: "Flag conflicts and document which stakeholder owns each requirement."

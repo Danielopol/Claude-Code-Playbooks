@@ -1,0 +1,75 @@
+---
+title: "Cohort & Segment Analysis"
+description: "Perform cohort analysis and customer segmentation to identify behavioral patterns, retention trends, and high-value groups."
+category: "data-reporting"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["cohort-analysis", "segmentation", "retention", "customer-analytics", "patterns"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Analyzes customer data by cohort (sign-up month, acquisition channel) and segments to reveal retention patterns, behavioral differences, and lifetime value trends that aggregate metrics hide.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Prepare Customer Data
+Export: customer list with sign-up dates, revenue, usage, and key attributes for segmentation.
+
+### Step 3: Start Using It
+```bash
+claude
+```
+Say: **"Run a cohort analysis on this customer data. Group by sign-up month, show retention and revenue trends per cohort."**
+
+---
+
+## Analysis Output
+
+| Section | Content |
+|---------|---------|
+| **Cohort Retention** | Month-by-month retention curves per cohort |
+| **Revenue Cohorts** | Revenue per cohort over time |
+| **Segment Profiles** | Behavioral clusters with characteristics |
+| **High-Value Segments** | Groups with highest LTV and why |
+| **At-Risk Patterns** | Early indicators of churn by segment |
+| **Recommendations** | Segment-specific strategies |
+
+---
+
+## Tips
+- **Recent cohorts tell you about current product-market fit**: Improving retention = product is getting better
+- **Look for "aha moments"**: What do high-retention cohorts do that low-retention ones don't?
+- **Segment by behavior, not just demographics**: Usage patterns predict outcomes better than company size
+- **Compare acquisition channels**: Which channels bring the highest-LTV customers?
+
+---
+
+## Commands
+```
+"Run cohort analysis by sign-up month"
+"Segment customers by usage pattern and compare retention"
+"Which acquisition channel produces highest-LTV customers?"
+"Identify early warning signs for churn in each segment"
+```
+
+---
+
+## Troubleshooting
+
+**Cohorts look too similar**
+Try different dimensions: "Segment by plan type, company size, or first feature used"
+
+**Not enough data**
+Say: "Use 6-month retention as proxy — we don't have enough data for 12-month cohorts yet"
+
+**Results are confusing**
+Ask: "Summarize the single most important insight from this cohort analysis"

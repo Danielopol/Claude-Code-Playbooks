@@ -1,0 +1,93 @@
+---
+title: "Data Cleanup & Formatting"
+description: "Clean, standardize, and validate messy data files — fix formats, remove duplicates, and get analysis-ready datasets."
+category: "data-reporting"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["data-cleanup", "csv", "formatting", "standardization", "data-quality"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Takes messy CSV/Excel files with inconsistent formats, duplicates, and errors, and produces clean, standardized, analysis-ready data. Includes a detailed change log so you know exactly what was modified. Handles what used to take hours of manual cleanup.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Place Your Data File
+
+Put the messy CSV or Excel file in your working directory.
+
+### Step 3: Start Using It
+
+```bash
+claude
+```
+
+Say: **"Clean up customers.csv — standardize dates to YYYY-MM-DD, fix phone numbers, remove duplicates, and flag missing emails"**
+
+---
+
+## What Gets Cleaned
+
+| Area | Before → After |
+|------|---------------|
+| **Dates** | "Jan 5, 2024" / "1/5/24" → "2024-01-05" |
+| **Phone numbers** | "(555) 123-4567" / "5551234567" → "+1-555-123-4567" |
+| **Names** | "john smith" / "JOHN SMITH" → "John Smith" |
+| **Duplicates** | 3 entries for same person → 1 merged record |
+| **Missing values** | Empty fields → Flagged for review |
+| **Whitespace** | Extra spaces, line breaks → Clean text |
+
+---
+
+## Output Files
+
+```markdown
+## What You Get
+1. cleaned-customers.csv — Ready for analysis
+2. change-log.md — Every modification documented
+3. data-quality-report.md — Issues found and resolved
+4. review-needed.csv — Rows requiring human judgment
+```
+
+---
+
+## Tips
+
+- **Never overwrite source data**: Always create a new "cleaned" file
+- **Start with 100 rows**: Verify rules work before processing the full dataset
+- **Save your standards**: Create a "data-standards.md" for reuse across projects
+- **Validate results**: Check row counts and totals match the original
+
+---
+
+## Commands
+
+```
+"Clean and standardize this CSV file"
+"Show me all duplicate entries in this dataset"
+"Standardize all dates to ISO format (YYYY-MM-DD)"
+"Generate a data quality report for this file"
+```
+
+---
+
+## Troubleshooting
+
+**Lost rows after cleanup**
+Check the change log — duplicates may have been merged. Say: "Show me which rows were merged"
+
+**Wrong format applied**
+Specify exactly: "Use MM/DD/YYYY for dates, not ISO format"
+
+**Too many flagged items**
+Set thresholds: "Only flag rows missing more than 3 fields"

@@ -1,0 +1,75 @@
+---
+title: "Sales Pipeline Analysis & Commentary"
+description: "Analyze sales pipeline data to identify trends, forecast accuracy, deal risks, and generate management-ready pipeline reviews."
+category: "sales-revenue"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["sales-pipeline", "forecasting", "deal-analysis", "revenue", "CRM"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Analyzes CRM pipeline data to assess deal health, forecast accuracy, conversion trends, and risk. Generates pipeline review commentary and recommendations for sales leadership.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Export Pipeline Data
+Pull: deal list with stages, amounts, close dates, and deal age from your CRM.
+
+### Step 3: Start Using It
+```bash
+claude
+```
+Say: **"Analyze our Q4 pipeline. Are we going to hit target? Flag deals at risk and stalled opportunities."**
+
+---
+
+## Analysis Output
+
+| Section | Content |
+|---------|---------|
+| **Pipeline Summary** | Total value, coverage ratio, stage distribution |
+| **Forecast Assessment** | Likely, best case, worst case scenarios |
+| **At-Risk Deals** | Stalled, aging, or unlikely to close |
+| **Conversion Analysis** | Stage-to-stage conversion rates and trends |
+| **Deal Velocity** | Average time in each stage vs. benchmark |
+| **Recommendations** | Where to focus sales effort for maximum impact |
+
+---
+
+## Tips
+- **Pipeline coverage ratio**: 3x target is healthy; below 2x is a red flag
+- **Flag aging deals**: Deals stuck longer than average cycle time need intervention
+- **Weighted vs. unweighted**: Forecast using stage-weighted probabilities, not total pipeline
+- **Track push rates**: Deals that keep moving close dates are likely not closing
+
+---
+
+## Commands
+```
+"Analyze this pipeline data and assess Q4 forecast"
+"Which deals are at risk based on age and stage?"
+"Calculate stage-to-stage conversion rates"
+"Generate a pipeline review commentary for the VP Sales"
+```
+
+---
+
+## Troubleshooting
+
+**Forecast seems too optimistic**
+Ask: "Apply historical conversion rates by stage, not rep-submitted probabilities"
+
+**Too many deals flagged as at-risk**
+Set thresholds: "Only flag deals >$50K that are 2x past average cycle time"
+
+**Data is messy**
+Say: "Ignore deals last updated more than 30 days ago — they're likely dead"

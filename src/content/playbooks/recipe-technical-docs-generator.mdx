@@ -1,0 +1,75 @@
+---
+title: "Technical Documentation from Engineering"
+description: "Transform engineering inputs like code, architecture diagrams, and design docs into clear technical documentation for different audiences."
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["technical-documentation", "engineering-docs", "architecture", "system-design", "documentation"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Converts raw engineering artifacts — code comments, architecture diagrams, design documents, and Slack conversations — into structured technical documentation suitable for different audiences (developers, ops, leadership).
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Gather Engineering Inputs
+Collect code files, design documents, architecture diagrams, and any relevant team discussions.
+
+### Step 3: Start Using It
+```bash
+claude
+```
+Say: **"Create technical documentation for our payment processing service from these design docs and code files. Target audience: new engineers onboarding to the team."**
+
+---
+
+## Documentation Types
+
+| Type | Audience |
+|------|----------|
+| **Architecture Overview** | Engineers and architects — system design and decisions |
+| **Runbook** | Operations — how to deploy, monitor, and troubleshoot |
+| **Onboarding Guide** | New engineers — how the system works and how to contribute |
+| **API Reference** | Integration developers — endpoints, schemas, examples |
+| **Decision Records** | Future team — why decisions were made (ADRs) |
+| **System Diagram** | All audiences — visual representation with context |
+
+---
+
+## Tips
+- **Start with "why"**: Before explaining how the system works, explain why it exists
+- **Use real examples**: Code snippets and API calls from the actual system
+- **Document decisions, not just designs**: Architecture Decision Records (ADRs) prevent re-debating
+- **Keep diagrams simple**: One diagram per concept — C4 model levels work well
+
+---
+
+## Commands
+```
+"Create technical docs from these engineering files"
+"Write an architecture overview for [service/system]"
+"Generate a runbook for deploying and operating [service]"
+"Build an onboarding guide for new engineers on [team]"
+```
+
+---
+
+## Troubleshooting
+
+**Docs too detailed for the audience**
+Say: "Write for someone who's technical but unfamiliar with this specific system."
+
+**Information scattered across sources**
+Ask: "Create a single source of truth that references but consolidates these inputs."
+
+**Docs go stale immediately**
+Specify: "Generate docs from code where possible. Document stable concepts, not volatile details."

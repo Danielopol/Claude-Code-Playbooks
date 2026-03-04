@@ -1,0 +1,75 @@
+---
+title: "Executive Summary Generator"
+description: "Distill detailed reports into concise executive summaries with key findings, implications, and decision recommendations."
+category: "data-reporting"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["executive-summary", "reports", "briefing", "leadership", "synthesis"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Takes lengthy detailed reports and distills them into concise executive summaries that busy leaders can read in 2 minutes — with key findings, implications, decisions needed, and recommended actions.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Load the Detailed Report
+Place the report to summarize in your working directory.
+
+### Step 3: Start Using It
+```bash
+claude
+```
+Say: **"Create an executive summary of this 30-page market analysis. My CEO has 2 minutes — what does she need to know?"**
+
+---
+
+## Summary Structure
+
+| Section | Content |
+|---------|---------|
+| **Bottom Line** | One sentence — the single most important finding |
+| **Key Findings** | 3-5 bullets with specific data points |
+| **Implications** | What this means for the business |
+| **Decisions Needed** | What leadership needs to decide |
+| **Recommended Actions** | What to do, prioritized |
+| **Risks** | What to watch out for |
+
+---
+
+## Tips
+- **Bottom line first**: The single most important insight goes in sentence one
+- **Specific over general**: "Revenue grew 23%" beats "Revenue grew significantly"
+- **Decision-focused**: What does the reader need to decide or approve?
+- **Link to detail**: "See page 12 for full analysis" for those who want depth
+
+---
+
+## Commands
+```
+"Create an executive summary of this report"
+"Bottom-line it in one sentence"
+"What are the 3 decisions the CEO needs to make based on this?"
+"Write a 30-second verbal summary I can deliver in the elevator"
+```
+
+---
+
+## Troubleshooting
+
+**Summary too long**
+Say: "Half a page maximum. Force-rank to top 3 findings only."
+
+**Missing the point**
+Specify: "The key question this report answers is: [question]. Lead with that answer."
+
+**Too many recommendations**
+Ask: "If we can only do one thing, what should it be?"

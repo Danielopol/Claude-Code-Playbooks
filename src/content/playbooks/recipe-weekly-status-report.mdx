@@ -1,0 +1,99 @@
+---
+title: "Weekly Status Report Generator"
+description: "Transform scattered notes, emails, and task updates into polished weekly status reports in minutes instead of hours."
+category: "productivity"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["status-report", "weekly-update", "reporting", "management", "productivity"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Compiles your scattered weekly inputs — emails, Slack notes, task completions, meeting outcomes — into a polished, executive-ready status report. Saves 2-3 hours per week and ensures consistent, professional reporting.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Gather Weekly Inputs
+
+Collect: completed tasks, email highlights, meeting decisions, blockers encountered.
+
+### Step 3: Start Using It
+
+```bash
+claude
+```
+
+Say: **"Generate my weekly status report from these notes for the period March 1-7"**
+
+---
+
+## Report Sections
+
+| Section | Purpose |
+|---------|---------|
+| **Highlights** | Top 3-5 accomplishments (lead with wins) |
+| **Progress Update** | Status by project or workstream |
+| **Blockers & Risks** | Issues with severity ratings |
+| **Upcoming** | Next week's priorities |
+| **Notes / FYI** | Optional context for stakeholders |
+
+---
+
+## Example Output
+
+```markdown
+## Highlights
+- ✅ Shipped v2.3 payment integration (on schedule)
+- ✅ Closed 3 enterprise deals ($420K combined)
+- ✅ Reduced API response time by 40%
+
+## Progress
+**Payment Platform**: On track, 85% complete
+**Enterprise Sales**: Ahead of plan, Q1 target hit early
+
+## Blockers
+🔴 Design resources unavailable until March 15
+🟡 Vendor API rate limits affecting batch imports
+```
+
+---
+
+## Tips
+
+- **Keep a running note all week**: Don't reconstruct from memory on Friday
+- **Specify what "highlight" means for your role**: Revenue impact? Features shipped? Risks mitigated?
+- **Generate multiple versions**: Detailed for manager, 3-bullet summary for skip-level
+- **Save your refined prompt**: Makes subsequent weeks trivial
+
+---
+
+## Commands
+
+```
+"Generate my weekly status report from these notes"
+"Create an executive summary version (3 bullets max)"
+"Compare this week's progress against last week"
+"Add a risk section for the delayed vendor integration"
+```
+
+---
+
+## Troubleshooting
+
+**Report is too long**
+Specify: "Keep under 1 page, bullets only, bold key items"
+
+**Misses important updates**
+Add context: "Also include that we hired 2 engineers this week"
+
+**Wrong tone for audience**
+Specify: "This goes to the CEO — keep it strategic, not tactical"

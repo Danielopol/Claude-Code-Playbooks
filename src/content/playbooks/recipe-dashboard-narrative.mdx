@@ -1,0 +1,75 @@
+---
+title: "Dashboard Narrative Generator"
+description: "Transform dashboard data and KPI snapshots into compelling written narratives that explain the story behind the numbers."
+category: "data-reporting"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://github.com/sgharlow/claude-code-recipes"
+tags: ["dashboard", "narrative", "KPIs", "reporting", "data-storytelling"]
+createdAt: "2026-03-01"
+---
+
+## What This Does
+
+Turns raw dashboard data — screenshots, CSV exports, KPI lists — into written narratives that explain what happened, why it matters, and what to do about it. Converts numbers into stories executives can act on.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Export Dashboard Data
+Screenshot your dashboard or export KPI data to CSV.
+
+### Step 3: Start Using It
+```bash
+claude
+```
+Say: **"Write a narrative explaining this month's dashboard. Highlight the revenue spike and the support ticket increase."**
+
+---
+
+## Narrative Sections
+
+| Section | Content |
+|---------|---------|
+| **Headline** | The one thing that matters most this period |
+| **Performance Summary** | Key metrics with trend context |
+| **Bright Spots** | What's going well and why |
+| **Concerns** | What's trending wrong and root causes |
+| **Connections** | How metrics relate to each other |
+| **Recommended Actions** | What to do based on the data |
+
+---
+
+## Tips
+- **Lead with the story, not the data**: "We're growing faster but spending more to do it" beats a table of numbers
+- **Always include context**: "4.2% churn" means nothing without "vs. 3.8% target and 5.1% industry average"
+- **Connect the dots**: Show how metrics influence each other
+- **End with action**: Every narrative should answer "so what do we do?"
+
+---
+
+## Commands
+```
+"Write a narrative from this dashboard data"
+"Explain what's driving the [metric] change"
+"Compare this month vs. last month — what's the story?"
+"Generate board-ready commentary for these KPIs"
+```
+
+---
+
+## Troubleshooting
+
+**Narrative too generic**
+Add context: "Our target was $2M revenue, we hit $2.3M because of the enterprise deal"
+
+**Missing root causes**
+Ask: "Why did support tickets spike 40%? Hypothesize based on product changes"
+
+**Too many metrics**
+Focus: "Top 5 metrics only — what would a CEO care about?"

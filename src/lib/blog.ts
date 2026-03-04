@@ -241,6 +241,20 @@ export const blogPosts: BlogPost[] = [
     tags: ['skills', 'markdown', 'prompting', 'workflows', 'agents', 'teams', 'codex'],
     createdAt: '2026-02-25',
   },
+  {
+    id: 'the-shorthand-guide-to-everything-claude-code',
+    title: 'The Shorthand Guide to Everything Claude Code',
+    description: 'A complete Claude Code setup guide after 10 months of daily use covering skills, hooks, subagents, MCPs, plugins, context window management, and practical tips.',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '15 min read',
+    url: 'https://x.com/affaanmustafa/status/2012378465664745795',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'complete setup',
+    tags: ['skills', 'hooks', 'subagents', 'mcp', 'plugins', 'context window', 'setup', 'configuration'],
+    createdAt: '2026-01-17',
+  },
 ];
 
 export function getAllBlogPosts(): BlogPost[] {

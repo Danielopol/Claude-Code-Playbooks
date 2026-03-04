@@ -1,0 +1,188 @@
+---
+title: "Voice DNA: Clone Your Writing Style"
+description: "One markdown file that makes Claude stop sounding like AI and start writing in your actual voice. 95% pre-built, you just paste writing samples."
+category: "creative-writing"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://x.com/itsolelehmann"
+tags: ["voice", "writing-style", "tone", "ghostwriting", "content-creation", "personal-brand", "ai-writing"]
+createdAt: "2026-03-04"
+---
+
+## What This Does
+
+Makes Claude write like you. Not "kind of" like you. Actually like you, to the point where you can't tell which drafts are yours.
+
+The template ships with writing rules, banned phrases, and formatting constraints already filled in. Those handle 95% of the work by killing the most obvious AI-isms out of the box.
+
+The only part you fill in: a section at the bottom where you paste examples of your own writing. That's what Claude pattern-matches against.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Find Your Writing Samples
+
+Dig up 5-10 pieces of writing that sound like *you*. The best sources:
+
+| Source | Why It Works |
+|--------|-------------|
+| **Google Docs** | Longer stuff where you were actually trying to communicate something |
+| **Reports & proposals** | Things you spent real time on |
+| **Sent emails** | Especially ones where you explained something complex |
+| **Slack messages** | The longer, thoughtful ones (not "sounds good") |
+| **Old blog posts & memos** | Anything you wrote before you started using AI |
+
+That last point matters. You want your **pre-AI voice**, before it started blending with Claude's defaults.
+
+### Step 3: Paste Samples into the Template
+
+Open the downloaded file, scroll to the `## Writing Samples` section at the bottom, and paste your writing there. More samples = better voice match.
+
+### Step 4: Drop It in Your Project
+
+```bash
+# Move to your project's cowork context folder
+mv ~/Downloads/CLAUDE.md ~/.claude/
+```
+
+Or place it in the root of whatever project you're working in.
+
+### Step 5: Run Claude Code
+
+```bash
+claude
+```
+
+Say: **"Write a draft about [topic] in my voice"**
+
+Claude reads the file before you say a word. Every session after that, it matches your voice automatically.
+
+---
+
+## How It Works
+
+The template has 3 layers that stack on each other:
+
+| Layer | What It Does | You Touch It? |
+|-------|-------------|---------------|
+| **Writing Rules** | Short paragraphs, natural hedging, physical verbs, no padding | No (pre-built) |
+| **Banned Phrases** | Kills "delve," "harness," "in today's," and 40+ other AI-isms | No (pre-built) |
+| **Writing Samples** | Your actual voice for Claude to pattern-match against | **Yes (paste here)** |
+
+The rules and bans get you from "obvious AI" to "decent." The writing samples get you from "decent" to "wait, did I write this?"
+
+---
+
+## What the Banned Phrases Kill
+
+The template blocks 5 categories of AI slop:
+
+### Dead AI Language
+"Delve," "harness," "leverage," "robust," "landscape," "game-changer." The words that make every AI draft sound identical.
+
+### Dead Transitions
+"Furthermore," "additionally," "moreover," "moving forward." Mechanical connectors that no human uses in casual writing.
+
+### Engagement Bait
+"Let that sink in," "read that again," "full stop." The LinkedIn influencer starter pack.
+
+### AI Cringe
+"Supercharge," "unlock," "10x your productivity," "the AI revolution." Terms that make readers close the tab.
+
+### The Fatal Pattern
+"This isn't X. This is Y." and all variations. "Not X. Y." / "Forget X. This is Y." / "Less X, more Y." Any sentence that negates one framing then asserts a corrected one. The single most common AI writing pattern. If even one appears, the output fails.
+
+---
+
+## Finding Good Writing Samples
+
+### What to look for
+
+- **Length**: Anything over 3 sentences where you were making a point
+- **Effort**: Writing you actually revised or cared about
+- **Range**: Mix of formal and casual, short and long
+- **Recency**: But before you started using AI tools heavily
+
+### What to avoid
+
+- One-word replies, quick acknowledgments
+- Writing you already generated with AI
+- Copy-pasted templates or boilerplate
+- Writing where you were mimicking someone else's style
+
+### How much to paste
+
+| Amount | Result |
+|--------|--------|
+| 1-2 samples | Basic tone matching |
+| 5-10 samples | Solid voice clone |
+| 15+ samples | Hard to distinguish from your own writing |
+
+---
+
+## Example
+
+**Without Voice DNA:**
+```
+In today's rapidly evolving landscape of remote work, it's important
+to note that companies must leverage cutting-edge collaboration tools
+to harness the full potential of their distributed teams. Furthermore,
+organizations that fail to adapt will find themselves at a significant
+disadvantage moving forward.
+```
+
+**With Voice DNA (after adding your samples):**
+```
+Most remote teams are using the wrong tools. They buy Notion, Monday,
+Asana (sometimes all three) and still lose track of who's doing what.
+
+The fix is boring: one shared doc, updated daily, with 3 columns.
+That's it. We switched 6 months ago and haven't opened a project
+management app since.
+```
+
+The second version has opinions, specifics, and sounds like a person wrote it. That's the difference.
+
+---
+
+## Tips
+
+- **Update samples periodically**: Your voice evolves. Refresh every few months.
+- **Separate contexts**: Create different voice files for different audiences (Twitter vs. reports vs. emails).
+- **Test it**: Ask Claude to write something, then compare it against your real writing. Adjust samples if something feels off.
+- **The banned list alone is valuable**: Even without samples, the rules and bans strip out the worst AI patterns.
+
+---
+
+## Commands
+
+```
+"Write a draft about [topic] in my voice"
+"Rewrite this to sound like me"
+"Draft a response to this email"
+"Write a Twitter thread about [topic]"
+"Does this draft sound like my writing? What's off?"
+"Make this less AI, more me"
+```
+
+---
+
+## Troubleshooting
+
+**Still sounds too formal**
+Add more casual writing samples (Slack messages, tweets, informal emails).
+
+**Lost my humor/personality**
+Your samples might be too corporate. Add pieces where you were being yourself, not performing.
+
+**Inconsistent across sessions**
+Make sure the file is in the right location (project root or `~/.claude/`). Claude should read it automatically at session start.
+
+**Too much mimicry, not enough substance**
+Claude might be over-indexing on quirks. Add a note: "Match my tone and rhythm, but prioritize clarity."

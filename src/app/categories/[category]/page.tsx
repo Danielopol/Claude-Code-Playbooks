@@ -29,6 +29,19 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     alternates: {
       canonical: `/categories/${category}`,
     },
+    openGraph: {
+      title: `${categoryInfo.name} Playbooks | Claude Code Playbooks`,
+      description: categoryInfo.description,
+      url: `https://www.claudecodehq.com/categories/${category}`,
+      type: 'website',
+      images: [{ url: 'https://www.claudecodehq.com/og-image.jpg', width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${categoryInfo.name} Playbooks | Claude Code Playbooks`,
+      description: categoryInfo.description,
+      images: ['https://www.claudecodehq.com/og-image.jpg'],
+    },
   };
 }
 

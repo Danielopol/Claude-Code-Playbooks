@@ -6,6 +6,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/terms',
   },
+  openGraph: {
+    title: 'Terms of Use | Claude Code Playbooks',
+    description: 'Terms of use for Claude Code Playbooks. Read about acceptable use, disclaimers, and community contributions.',
+    url: 'https://www.claudecodehq.com/terms',
+    type: 'website',
+    images: [{ url: 'https://www.claudecodehq.com/og-image.jpg', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Terms of Use | Claude Code Playbooks',
+    description: 'Terms of use for Claude Code Playbooks. Read about acceptable use, disclaimers, and community contributions.',
+    images: ['https://www.claudecodehq.com/og-image.jpg'],
+  },
 };
 
 export default function TermsPage() {

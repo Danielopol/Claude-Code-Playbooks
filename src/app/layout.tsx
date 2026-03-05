@@ -1,8 +1,30 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
+import { JetBrains_Mono, Press_Start_2P } from 'next/font/google';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Github, Home, BookOpen, Rss, Phone, Mail } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
 import './globals.css';
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-jetbrains-mono',
+  display: 'swap',
+});
+
+const pressStart2P = Press_Start_2P({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-press-start',
+  display: 'swap',
+});
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#0d1117',
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.claudecodehq.com'),
@@ -79,7 +101,7 @@ function Footer() {
       <div className="container flex flex-col gap-8">
         <div className="flex flex-col md:flex-row justify-between gap-8">
           <div>
-            <img src="/logo.png" alt="Claude Code Playbooks" className="h-10 mb-4" />
+            <Image src="/logo.png" alt="Claude Code Playbooks" width={79} height={40} className="h-10 w-auto mb-4" />
             <p className="text-center md:text-left text-sm text-muted-foreground">
               <span className="text-[#22d3ee]">$</span> Built for the Claude Code community. Not affiliated with Anthropic.
             </p>
@@ -140,7 +162,7 @@ function Footer() {
         </div>
         <div className="flex justify-center pt-6 border-t border-border/50">
           <a href="https://neeed.directory/products/claude-code-playbooks?utm_source=claude-code-playbooks" target="_blank" rel="noopener">
-            <img src="https://neeed.directory/badges/neeed-badge-light.svg" alt="Featured on neeed.directory" width={139} />
+            <Image src="https://neeed.directory/badges/neeed-badge-light.svg" alt="Featured on neeed.directory" width={139} height={32} unoptimized />
           </a>
         </div>
       </div>
@@ -185,7 +207,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className={`dark ${jetbrainsMono.variable} ${pressStart2P.variable}`}>
       <body className="antialiased min-h-screen flex flex-col bg-[#0d1117]">
         <script
           type="application/ld+json"

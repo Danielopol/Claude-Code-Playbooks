@@ -8,6 +8,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/about',
   },
+  openGraph: {
+    title: 'About | Claude Code Playbooks',
+    description: 'Free, open-source directory of community-tested workflows, templates and skills for Claude Code and other AI coding agents.',
+    url: 'https://www.claudecodehq.com/about',
+    type: 'website',
+    images: [{ url: 'https://www.claudecodehq.com/og-image.jpg', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About | Claude Code Playbooks',
+    description: 'Free, open-source directory of community-tested workflows, templates and skills for Claude Code and other AI coding agents.',
+    images: ['https://www.claudecodehq.com/og-image.jpg'],
+  },
 };
 
 export default function AboutPage() {

@@ -212,7 +212,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       {/* Playbooks Grid */}
       <section className="container pb-16">
         <div className="flex flex-col items-start gap-4 mb-6">
-          <img src="/logo.png" alt="Claude Code Playbooks" className="h-10" />
+          <Image src="/logo.png" alt="Claude Code Playbooks" width={79} height={40} className="h-10 w-auto" />
           <h2 className="text-lg font-semibold flex items-center gap-2">
             <span>Playbooks</span>
             <span className="text-muted-foreground text-sm font-normal">({totalPlaybooks} total)</span>

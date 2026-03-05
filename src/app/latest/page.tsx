@@ -11,6 +11,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/latest',
   },
+  openGraph: {
+    title: 'Latest Releases | Claude Code Playbooks',
+    description: 'The newest playbooks just added to Claude Code Playbooks. Browse the latest copy-paste workflows.',
+    url: 'https://www.claudecodehq.com/latest',
+    type: 'website',
+    images: [{ url: 'https://www.claudecodehq.com/og-image.jpg', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Latest Releases | Claude Code Playbooks',
+    description: 'The newest playbooks just added to Claude Code Playbooks. Browse the latest copy-paste workflows.',
+    images: ['https://www.claudecodehq.com/og-image.jpg'],
+  },
 };
 
 function formatDate(dateStr: string): string {

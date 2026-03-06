@@ -255,6 +255,20 @@ export const blogPosts: BlogPost[] = [
     tags: ['skills', 'hooks', 'subagents', 'mcp', 'plugins', 'context window', 'setup', 'configuration'],
     createdAt: '2026-01-17',
   },
+  {
+    id: 'the-claude-native-law-firm-how-i-actually-practice',
+    title: 'The Claude-Native Law Firm — How I Actually Practice Law with AI in 2026',
+    description: 'A practicing lawyer details how he runs a two-person boutique firm that competes with large firms by building his practice around Claude, using custom skills, autonomous cowork mode, and XML-level document manipulation for contract review, legal research, and real-time negotiation support.',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '25 min read',
+    url: 'https://x.com/zackbshapiro/status/2027389987444957625',
+    featured: false,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'law firm',
+    tags: ['legal', 'AI workflows', 'skills', 'cowork', 'contract review', 'law', 'productivity'],
+    createdAt: '2026-03-06',
+  },
 ];
 
 export function getAllBlogPosts(): BlogPost[] {

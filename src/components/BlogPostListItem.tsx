@@ -43,6 +43,11 @@ function getDifficultyColor(difficulty: BlogDifficulty): string {
   return colors[difficulty];
 }
 
+function formatDate(dateStr: string): string {
+  const date = new Date(dateStr + 'T00:00:00');
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
 interface BlogPostListItemProps {
   post: BlogPost;
 }
@@ -86,9 +91,12 @@ export function BlogPostListItem({ post }: BlogPostListItemProps) {
 
         {/* Content */}
         <div className="flex-1 min-w-0">
-          {/* Reading Time and Difficulty */}
+          {/* Date, Reading Time, and Difficulty */}
           <div className="flex items-center gap-3 mb-2">
             <span className="text-sm text-muted-foreground border-l-2 border-[#f97316] pl-2">
+              {formatDate(post.createdAt)}
+            </span>
+            <span className="text-sm text-muted-foreground">
               {post.readingTime}
             </span>
             <span className={`px-2 py-0.5 text-xs font-medium rounded ${getDifficultyColor(post.difficulty)}`}>

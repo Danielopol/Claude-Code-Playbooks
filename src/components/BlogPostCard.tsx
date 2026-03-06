@@ -26,6 +26,11 @@ function getCategoryColor(category: BlogCategory): string {
   return colors[category];
 }
 
+function formatDate(dateStr: string): string {
+  const date = new Date(dateStr + 'T00:00:00');
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
 interface BlogPostCardProps {
   post: BlogPost;
   variant?: 'carousel' | 'grid';
@@ -77,8 +82,10 @@ export function BlogPostCard({ post, variant = 'carousel' }: BlogPostCardProps) 
 
         {/* Content */}
         <div className="p-4">
-          {/* Reading Time */}
-          <p className="text-xs text-muted-foreground mb-2">{post.readingTime}</p>
+          {/* Date and Reading Time */}
+          <p className="text-xs text-muted-foreground mb-2">
+            {formatDate(post.createdAt)} · {post.readingTime}
+          </p>
 
           {/* Title */}
           <h3 className="font-semibold text-foreground mb-2 line-clamp-2 group-hover:text-[#f97316] transition-colors">

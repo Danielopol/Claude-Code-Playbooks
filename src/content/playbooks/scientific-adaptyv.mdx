@@ -1,0 +1,91 @@
+---
+title: "Scientific Skill: Adaptyv"
+description: "Cloud laboratory platform for automated protein testing and validation. Use when designing proteins and needing experimental validation including binding assays, expression testing, thermostability measurements, enzyme activity assays, or protein ..."
+category: "academic-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "K-Dense AI"
+sourceUrl: "https://github.com/K-Dense-AI/claude-scientific-skills/tree/main/scientific-skills/adaptyv"
+tags: ["scientific", "claude-code", "adaptyv", "database", "protein"]
+createdAt: "2026-03-06"
+---
+
+## What This Does
+
+A scientific skill for adaptyv workflows with Claude Code.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Projects/adaptyv
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Projects/adaptyv/
+```
+
+### Step 3: Start Claude Code
+
+```bash
+cd ~/Projects/adaptyv
+claude
+```
+
+---
+
+Adaptyv is a cloud laboratory platform that provides automated protein testing and validation services. Submit protein sequences via API or web interface and receive experimental results in approximately 21 days.
+
+## Available Experiment Types
+Adaptyv supports multiple assay types:
+- **Binding assays** - Test protein-target interactions using biolayer interferometry
+- **Expression testing** - Measure protein expression levels
+- **Thermostability** - Characterize protein thermal stability
+- **Enzyme activity** - Assess enzymatic function
+
+See `reference/experiments.md` for detailed information on each experiment type and workflows.
+
+## Protein Sequence Optimization
+Before submitting sequences, optimize them for better expression and stability:
+
+**Common issues to address:**
+- Unpaired cysteines that create unwanted disulfides
+- Excessive hydrophobic regions causing aggregation
+- Poor solubility predictions
+
+**Recommended tools:**
+- NetSolP / SoluProt - Initial solubility filtering
+- SolubleMPNN - Sequence redesign for improved solubility
+- ESM - Sequence likelihood scoring
+- ipTM - Interface stability assessment
+- pSAE - Hydrophobic exposure quantification
+
+See `reference/protein_optimization.md` for detailed optimization workflows and tool usage.
+
+## API Reference
+For complete API documentation including all endpoints, request/response formats, and authentication details, see `reference/api_reference.md`.
+
+## Examples
+For concrete code examples covering common use cases (experiment submission, status tracking, result retrieval, batch processing), see `reference/examples.md`.
+
+## Important Notes
+- Platform is currently in alpha/beta phase with features subject to change
+- Not all platform features are available via API yet
+- Results typically delivered in ~21 days
+- Contact support@adaptyvbio.com for access requests or questions
+- Suitable for high-throughput AI-driven protein design workflows
+
+
+---
+
+## Tips
+
+- **Read the docs**: Check the official adaptyv documentation for latest API changes
+- **Start simple**: Begin with basic examples before tackling complex workflows
+- **Save your work**: Keep intermediate results in case of long-running analyses

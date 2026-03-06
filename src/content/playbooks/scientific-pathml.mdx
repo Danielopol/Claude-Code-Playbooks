@@ -1,0 +1,128 @@
+---
+title: "Scientific Skill: Pathml"
+description: "Full-featured computational pathology toolkit. Use for advanced WSI analysis including multiplexed immunofluorescence (CODEX, Vectra), nucleus segmentation, tissue graph construction, and ML model training on pathology data. Supports 160+ slide fo..."
+category: "academic-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "K-Dense AI"
+sourceUrl: "https://github.com/K-Dense-AI/claude-scientific-skills/tree/main/scientific-skills/pathml"
+tags: ["scientific", "claude-code", "pathml", "machine-learning", "visualization", "database", "protein", "genomics"]
+createdAt: "2026-03-06"
+---
+
+## What This Does
+
+PathML is a comprehensive Python toolkit for computational pathology workflows, designed to facilitate machine learning and image analysis for whole-slide pathology images. The framework provides modular, composable tools for loading diverse slide formats, preprocessing images, constructing spatial graphs, training deep learning models, and analyzing multiparametric imaging data from technologies like CODEX and multiplex immunofluorescence.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Projects/pathml
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Projects/pathml/
+```
+
+### Step 3: Start Claude Code
+
+```bash
+cd ~/Projects/pathml
+claude
+```
+
+---
+
+## Core Capabilities
+
+PathML provides six major capability areas documented in detail within reference files:
+
+### 1. Image Loading & Formats
+
+Load whole-slide images from 160+ proprietary formats including Aperio SVS, Hamamatsu NDPI, Leica SCN, Zeiss ZVI, DICOM, and OME-TIFF. PathML automatically handles vendor-specific formats and provides unified interfaces for accessing image pyramids, metadata, and regions of interest.
+
+**See:** `references/image_loading.md` for supported formats, loading strategies, and working with different slide types.
+
+### 2. Preprocessing Pipelines
+
+Build modular preprocessing pipelines by composing transforms for image manipulation, quality control, stain normalization, tissue detection, and mask operations. PathML's Pipeline architecture enables reproducible, scalable preprocessing across large datasets.
+
+**Key transforms:**
+- `StainNormalizationHE` - Macenko/Vahadane stain normalization
+- `TissueDetectionHE`, `NucleusDetectionHE` - Tissue/nucleus segmentation
+- `MedianBlur`, `GaussianBlur` - Noise reduction
+- `LabelArtifactTileHE` - Quality control for artifacts
+
+**See:** `references/preprocessing.md` for complete transform catalog, pipeline construction, and preprocessing workflows.
+
+### 3. Graph Construction
+
+Construct spatial graphs representing cellular and tissue-level relationships. Extract features from segmented objects to create graph-based representations suitable for graph neural networks and spatial analysis.
+
+**See:** `references/graphs.md` for graph construction methods, feature extraction, and spatial analysis workflows.
+
+### 4. Machine Learning
+
+Train and deploy deep learning models for nucleus detection, segmentation, and classification. PathML integrates PyTorch with pre-built models (HoVer-Net, HACTNet), custom DataLoaders, and ONNX support for inference.
+
+**Key models:**
+- **HoVer-Net** - Simultaneous nucleus segmentation and classification
+- **HACTNet** - Hierarchical cell-type classification
+
+**See:** `references/machine_learning.md` for model training, evaluation, inference workflows, and working with public datasets.
+
+### 5. Multiparametric Imaging
+
+Analyze spatial proteomics and gene expression data from CODEX, Vectra, MERFISH, and other multiplex imaging platforms. PathML provides specialized slide classes and transforms for processing multiparametric data, cell segmentation with Mesmer, and quantification workflows.
+
+**See:** `references/multiparametric.md` for CODEX/Vectra workflows, cell segmentation, marker quantification, and integration with AnnData.
+
+### 6. Data Management
+
+Efficiently store and manage large pathology datasets using HDF5 format. PathML handles tiles, masks, metadata, and extracted features in unified storage structures optimized for machine learning workflows.
+
+**See:** `references/data_management.md` for HDF5 integration, tile management, dataset organization, and batch processing strategies.
+
+## References to Detailed Documentation
+
+When working on specific tasks, refer to the appropriate reference file for comprehensive information:
+
+- **Loading images:** `references/image_loading.md`
+- **Preprocessing workflows:** `references/preprocessing.md`
+- **Spatial analysis:** `references/graphs.md`
+- **Model training:** `references/machine_learning.md`
+- **CODEX/multiplex IF:** `references/multiparametric.md`
+- **Data storage:** `references/data_management.md`
+
+## Resources
+
+This skill includes comprehensive reference documentation organized by capability area. Each reference file contains detailed API information, workflow examples, best practices, and troubleshooting guidance for specific PathML functionality.
+
+### references/
+
+Documentation files providing in-depth coverage of PathML capabilities:
+
+- `image_loading.md` - Whole-slide image formats, loading strategies, slide classes
+- `preprocessing.md` - Complete transform catalog, pipeline construction, preprocessing workflows
+- `graphs.md` - Graph construction methods, feature extraction, spatial analysis
+- `machine_learning.md` - Model architectures, training workflows, evaluation, inference
+- `multiparametric.md` - CODEX, Vectra, multiplex IF analysis, cell segmentation, quantification
+- `data_management.md` - HDF5 storage, tile management, batch processing, dataset organization
+
+Load these references as needed when working on specific computational pathology tasks.
+
+
+---
+
+## Tips
+
+- **Read the docs**: Check the official pathml documentation for latest API changes
+- **Start simple**: Begin with basic examples before tackling complex workflows
+- **Save your work**: Keep intermediate results in case of long-running analyses

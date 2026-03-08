@@ -1,0 +1,126 @@
+---
+title: "Audience Swipe File Builder"
+description: "Automatically scan your replies and comments to build a running swipe file of recurring questions, objections, and content ideas from your audience."
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://x.com/itsolelehmann/status/1931019974083019089"
+tags: ["audience-research", "swipe-file", "content-ideas", "social-media", "x", "linkedin", "scheduled-tasks"]
+createdAt: "2026-03-08"
+---
+
+## What This Does
+
+Scans your replies and comments on X and LinkedIn, extracts recurring questions, objections, compliments, and requests, then groups them by theme. After a month, you have a content goldmine built entirely from conversations you were already having.
+
+The swipe file grows automatically. Each week it appends new findings without overwriting previous entries, and maintains a ranked list of the top 10 most common themes with frequency counts at the top.
+
+---
+
+## Prerequisites
+
+- X and/or LinkedIn accounts with active engagement
+- MCP connection to X API (for reading replies/mentions)
+- Claude scheduled tasks enabled
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Project Folder
+
+```bash
+mkdir -p ~/audience-research
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/audience-research/
+```
+
+### Step 3: Configure Your Handles
+
+Open `CLAUDE.md` and replace the placeholder handles with your actual X and LinkedIn profiles.
+
+### Step 4: Set Up the Schedule
+
+```bash
+cd ~/audience-research
+claude
+```
+
+Say: **"Schedule this to run every Friday at 9am. Scan my replies and comments and update the swipe file."**
+
+---
+
+## How It Works
+
+Each week, Claude:
+
+1. Scans your recent replies, mentions, and comments on X and LinkedIn
+2. Pulls out every recurring question, objection, compliment, and request
+3. Groups them by theme
+4. Writes a one-liner for each theme describing the core tension or desire behind it
+5. Appends findings to `/swipe-file.md` under today's date
+6. Updates the ranked top 10 themes list at the top of the file with frequency counts
+
+---
+
+## Example Output
+
+```markdown
+# Audience Swipe File
+
+## Top 10 Recurring Themes (Updated 2026-03-08)
+1. "How do I start?" anxiety (×23)
+2. Pricing confidence (×18)
+3. Tool overwhelm (×14)
+4. Consistency struggles (×12)
+5. Audience growth plateau (×11)
+...
+
+---
+
+## 2026-03-08
+
+### Questions
+- "How do you decide what to post vs what to save for the newsletter?"
+  → Theme: Content allocation tension
+- "What tools do you actually use day to day?"
+  → Theme: Tool overwhelm
+
+### Objections
+- "This only works if you already have an audience"
+  → Theme: Chicken-and-egg frustration
+
+### Compliments
+- "This is the first framework that actually made sense"
+  → Theme: Craving simplicity over complexity
+
+### Requests
+- "Can you do a breakdown of how you structure your week?"
+  → Theme: Behind-the-scenes demand
+```
+
+---
+
+## What Gets Extracted
+
+| Type | What It Captures |
+|------|-----------------|
+| **Questions** | What your audience is asking, struggling with, or confused about |
+| **Objections** | Pushback, skepticism, "but what about..." responses |
+| **Compliments** | What people specifically praise — reveals what they value most |
+| **Requests** | Direct asks for content, products, or deeper dives |
+
+---
+
+## Tips
+
+- **Let it run for 4+ weeks** before drawing conclusions — patterns emerge over time
+- **Use the top 10 list for content planning** — each theme is a proven content angle
+- **The one-liners are gold** — the "core tension" descriptions become hooks for future posts
+- **Don't just read it, use it** — every top theme is a validated content idea your audience is already asking for

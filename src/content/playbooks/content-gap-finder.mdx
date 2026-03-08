@@ -1,0 +1,122 @@
+---
+title: "Content Gap Finder"
+description: "Find the most-discussed pain points in your niche from Reddit and X, rank them by intensity, and map them against your existing content to find your next 5 posts."
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://x.com/itsolelehmann/status/1931019974083019089"
+tags: ["content-gaps", "pain-points", "reddit", "x", "content-strategy", "audience-research", "scheduled-tasks"]
+createdAt: "2026-03-08"
+---
+
+## What This Does
+
+Scans Reddit, X, and niche forums weekly for the pain points, frustrations, and questions people in your niche keep posting about. Ranks them by how often they come up and how emotionally intense the posts are. Then cross-references each pain point against your published content.
+
+The gaps — pain points you haven't addressed yet — become your next 5 posts, complete with working titles and hooks.
+
+---
+
+## Prerequisites
+
+- A list of relevant subreddits and niche keywords
+- A public URL for your existing content (blog, newsletter archive)
+- Claude scheduled tasks enabled
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Project Folder
+
+```bash
+mkdir -p ~/content-strategy
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/content-strategy/
+```
+
+### Step 3: Configure Your Sources
+
+Open `CLAUDE.md` and add your subreddits, X keywords, forum URLs, and your content URL.
+
+### Step 4: Set Up the Schedule
+
+```bash
+cd ~/content-strategy
+claude
+```
+
+Say: **"Schedule this to run every Sunday at 10am. Scan for pain points and find my content gaps."**
+
+---
+
+## How It Works
+
+Each week, Claude:
+
+1. Scans Reddit, X, and forums for recurring pain points using your keywords
+2. Ranks them by frequency (how often they come up) and intensity (how emotional/frustrated the posts are)
+3. Cross-references each pain point against your published content
+4. Flags any pain points you haven't addressed yet
+5. For the top 5 gaps, suggests a content angle with a working title and one-sentence hook
+6. Appends to `/content-gaps.md` with this week's date
+
+---
+
+## Example Output
+
+```markdown
+# Content Gaps — Week of 2026-03-08
+
+## Pain Points This Week (Ranked)
+
+| Rank | Pain Point | Frequency | Intensity | Covered? |
+|------|-----------|-----------|-----------|----------|
+| 1 | "I don't know how to price my first product" | 34 mentions | High | Partially |
+| 2 | "My newsletter is growing but nobody buys" | 28 mentions | High | No |
+| 3 | "Tool overwhelm — too many options" | 22 mentions | Medium | Yes |
+| 4 | "Can't stay consistent posting" | 19 mentions | High | No |
+| 5 | "Imposter syndrome when selling" | 17 mentions | Very High | No |
+
+## Top 5 Content Gaps
+
+### 1. Newsletter-to-Revenue Gap
+Title: "Your newsletter has 5,000 subscribers and $0 revenue. Here's why."
+Hook: Most creators treat their newsletter like content. The ones making money treat it like a funnel.
+
+### 2. Consistency Without Burnout
+Title: "I post 5x a week and it takes me 2 hours total"
+Hook: The trick isn't discipline. It's having a system that makes inconsistency harder than consistency.
+
+### 3. Imposter Syndrome in Sales
+Title: "You're not an imposter. You just haven't sold enough times yet."
+Hook: Imposter syndrome doesn't go away when you get better. It goes away when you get reps.
+
+[...]
+```
+
+---
+
+## What Gets Scanned
+
+| Source | What It Reveals |
+|--------|----------------|
+| **Reddit** | Raw, unfiltered frustrations — people vent honestly on Reddit |
+| **X** | Public complaints, questions, hot takes |
+| **Niche forums** | Deep domain-specific problems |
+| **Your content** | What you've already covered (to avoid repeating yourself) |
+
+---
+
+## Tips
+
+- **Intensity matters more than frequency** — a pain point mentioned 10 times with extreme frustration is more valuable than one mentioned 30 times casually
+- **Check "partially covered" too** — if you covered a topic but people are still asking, your existing content isn't solving the problem
+- **Use their language in your hooks** — the exact phrases from Reddit become your headlines
+- **Run for 4+ weeks** — the compound data set gets more valuable over time

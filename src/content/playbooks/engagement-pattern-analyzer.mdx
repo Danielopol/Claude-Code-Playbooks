@@ -1,0 +1,120 @@
+---
+title: "Engagement Pattern Analyzer"
+description: "Analyze which posts get saved vs liked vs replied to, find the patterns, and separate what your audience actually values from vanity engagement."
+category: "data-reporting"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://x.com/itsolelehmann/status/1931019974083019089"
+tags: ["analytics", "engagement", "saves", "bookmarks", "content-strategy", "x", "linkedin", "scheduled-tasks"]
+createdAt: "2026-03-08"
+---
+
+## What This Does
+
+Pulls your X and LinkedIn analytics weekly and separates your posts into three categories: high saves (people bookmarking for later), high replies (people wanting to continue the conversation), and high likes only (surface-level engagement).
+
+For each category, it identifies common patterns — topics, formats, hooks, lengths, and tones — so you know what your audience actually values vs. what just gets vanity engagement. Posts with high saves but low likes get flagged as "hidden gems."
+
+---
+
+## Prerequisites
+
+- X analytics access (for bookmark/save data)
+- LinkedIn post performance data
+- MCP connections to X/LinkedIn APIs
+- Claude scheduled tasks enabled
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Project Folder
+
+```bash
+mkdir -p ~/engagement-analysis
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/engagement-analysis/
+```
+
+### Step 3: Configure Your Profiles
+
+Open `CLAUDE.md` and add your X handle and LinkedIn profile URL.
+
+### Step 4: Set Up the Schedule
+
+```bash
+cd ~/engagement-analysis
+claude
+```
+
+Say: **"Schedule this to run every Sunday at 8pm. Analyze my posts from the last 7 days."**
+
+---
+
+## How It Works
+
+Each week, Claude:
+
+1. Pulls your X and LinkedIn post analytics for the last 7 days
+2. Categorizes each post by its dominant engagement type
+3. Identifies patterns within each category
+4. Updates `/engagement-patterns.md` with this week's analysis
+5. Maintains a running "What Actually Resonates" section at the top that synthesizes patterns across all weeks
+
+---
+
+## The Three Categories
+
+| Category | Signal | What It Means |
+|----------|--------|--------------|
+| **High Saves** | Bookmarks, saves | People want to reference this later — it's genuinely useful |
+| **High Replies** | Comments, quote tweets | People want to discuss — it's thought-provoking or relatable |
+| **High Likes Only** | Likes but low saves/replies | Surface-level agreement — nice but not impactful |
+
+---
+
+## Example Output
+
+```markdown
+# Engagement Patterns
+
+## What Actually Resonates (Running Summary)
+- Tactical how-to threads consistently get the highest saves
+- Personal stories about failures get 3x more replies than successes
+- Posts under 100 words outperform longer posts on saves
+- Contrarian takes get replies but not saves (people argue, don't bookmark)
+- "Here's my system" posts are the highest combined engagement
+
+## Week of 2026-03-08
+
+### High Saves (Bookmarked for Later)
+Posts: "My content system thread", "Pricing calculator breakdown"
+Patterns: Step-by-step format, specific numbers, actionable frameworks
+
+### High Replies (Sparked Conversation)
+Posts: "Hot take on AI writing", "Story about my worst launch"
+Patterns: Personal vulnerability, contrarian opinions, open questions
+
+### High Likes Only (Vanity Engagement)
+Posts: "Grateful for 10K followers", "Monday motivation quote"
+Patterns: Generic positivity, milestone celebrations, motivational content
+
+### Hidden Gems (High Saves, Low Likes)
+Posts: "The spreadsheet I use to track content ROI"
+Note: Low visibility but extremely high value — boost this format
+```
+
+---
+
+## Tips
+
+- **Hidden gems are your most important finding** — high saves with low likes means the content is genuinely valuable but not getting surfaced by the algorithm. Double down on that format.
+- **Likes are noise, saves are signal** — optimize for saves over likes and your content quality goes up
+- **Run for 4+ weeks** — the running summary at the top gets more reliable over time
+- **Use this to inform your content calendar** — if tactical threads get saves and stories get replies, alternate between them

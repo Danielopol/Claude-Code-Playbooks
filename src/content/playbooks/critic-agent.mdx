@@ -1,0 +1,196 @@
+---
+title: "Critic Agent"
+description: "Make Claude self-correct its own writing by spinning up an internal critic that reviews drafts against your voice and style rules — up to 3 rounds, no manual editing needed."
+category: "research-writing"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://x.com/itsolelehmann/status/1929535482826985706"
+tags: ["writing", "editing", "voice", "tone", "self-review", "critic", "agent", "style"]
+createdAt: "2026-03-08"
+---
+
+## What This Does
+
+Eliminates the manual editing step when Claude writes for you. Instead of spending 15-30 minutes tweaking tone, cutting AI slop, and making output sound like you — Claude does it itself.
+
+When you say **"run the critic on this"**, Claude spins up a sub-agent whose only job is to find problems with what the first version wrote. The critic reads the draft against your voice file and returns specific, actionable feedback like:
+
+- "The intro reads like a LinkedIn post, not like you"
+- "Paragraph 4 is just restating paragraph 2 in different words"
+- "This sentence uses 'furthermore' which is on your banned list"
+
+Claude rewrites based on that feedback, then the critic reviews again — up to 3 rounds — until the output is something you'd actually send without editing.
+
+---
+
+## Prerequisites
+
+- A **voice DNA file** that captures how you write (see setup below)
+- Any writing project where Claude generates content for you
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Voice DNA File
+
+Create a file called `voice-dna.md` in your project folder. This teaches Claude how you actually sound. Include:
+
+- **3-5 writing samples** that represent your real voice (emails, posts, docs you've written)
+- **Banned phrases** — words and phrases you never use (e.g., "furthermore", "leverage", "in conclusion", "it's worth noting")
+- **Voice traits** — your rhythm, sentence length, formality level, quirks
+- **Formatting preferences** — how you structure things, use of headers, lists, etc.
+
+Example structure:
+
+```
+# Voice DNA
+
+## Writing Samples
+[Paste 3-5 real examples of your writing here]
+
+## Banned Phrases
+- "Furthermore"
+- "It's worth noting"
+- "In today's fast-paced world"
+- "Leverage"
+- "Synergy"
+- [Add your own]
+
+## Voice Traits
+- Short, punchy sentences. Mix in longer ones occasionally.
+- Casual but not sloppy.
+- Uses "you" a lot. Talks directly to the reader.
+- Okay with sentence fragments. Starts sentences with "And" or "But."
+- Avoids jargon unless it's industry-specific and necessary.
+
+## Formatting
+- Short paragraphs (2-3 sentences max)
+- Minimal headers
+- Bullet points for lists, not numbered
+```
+
+### Step 2: Download the Critic Agent Template
+
+Click **Download** above, then:
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/your-project-folder/
+```
+
+Make sure both `CLAUDE.md` and `voice-dna.md` are in the same folder.
+
+### Step 3: Run Claude Code
+
+```bash
+cd ~/your-project-folder
+claude
+```
+
+Ask Claude to write something, then say: **"run the critic on this"**
+
+---
+
+## How It Works
+
+### The Loop
+
+1. Claude writes your first draft
+2. You say **"run the critic on this"**
+3. Claude spins up a critic sub-agent
+4. The critic reads the draft against `voice-dna.md` and all other context files
+5. The critic assigns a rating: **Needs Work**, **Good**, or **Excellent**
+6. If below Excellent, the critic gives specific, line-level feedback
+7. Claude rewrites based on that feedback
+8. The critic reviews the revised version
+9. Repeat until **Excellent** or **3 rounds** (whichever comes first)
+
+### What the Critic Checks
+
+**Voice Match**
+- Does this read like the writing samples? Same rhythm, sentence length, formality?
+- Any banned phrases present? (Checks every single one.)
+- Does it use words and phrases you actually use?
+- Would someone who knows you recognize your voice?
+
+**Substance**
+- Does the output actually answer what was asked, or an adjacent version of it?
+- Are claims specific and grounded, or vague and generic?
+- Is anything padded or restated in different words to seem thorough?
+
+**Final Bar**
+- Would you send, publish, or present this without editing?
+- If not, what specifically needs to change?
+
+---
+
+## Example
+
+**You:** "Write me a cold outreach email to a potential podcast guest"
+
+**Claude writes a draft, then you say:**
+
+```
+"run the critic on this"
+```
+
+**Critic (Round 1 — Needs Work):**
+
+| Issue | Location | Feedback |
+|-------|----------|----------|
+| Banned phrase | Line 2 | "I hope this email finds you well" — on banned list |
+| Voice mismatch | Paragraph 1 | Too formal. Your samples never open with pleasantries |
+| Padding | Paragraph 3 | Restates paragraph 1 in different words |
+| Generic | Throughout | No specific reference to the guest's work |
+
+**Claude rewrites. Critic reviews again.**
+
+**Critic (Round 2 — Good):**
+
+| Issue | Location | Feedback |
+|-------|----------|----------|
+| Sentence length | Paragraph 2 | Three long sentences in a row. Your samples mix short and long |
+
+**Claude revises. Critic reviews once more.**
+
+**Critic (Round 3 — Excellent):** Ship it.
+
+---
+
+## Trigger Phrases
+
+All of these activate the critic:
+
+```
+"run the critic on this"
+"run the critic"
+"critic this"
+"review this against my voice"
+```
+
+---
+
+## Tips
+
+- **Invest in your voice DNA file** — the critic is only as good as the reference material you give it
+- **Include real writing samples** — not aspirational ones. Paste actual emails, posts, and docs you've sent
+- **Update your banned list** — when you catch AI slop you hate, add it to the list
+- **Works on everything** — emails, posts, docs, proposals, scripts, bios
+- **Don't over-polish** — the critic is trained to preserve natural imperfections. Casual language and hedging are features, not bugs
+
+---
+
+## Troubleshooting
+
+**Critic is too harsh / never reaches Excellent**
+Simplify your voice DNA. Too many constraints make it impossible to pass. Start with 3 samples and 10 banned phrases.
+
+**Output loses personality after revisions**
+Add a note to your voice DNA: "Natural imperfections are intentional. Don't smooth everything out."
+
+**Critic feedback is vague**
+Make sure your voice DNA has concrete examples, not just descriptions. "Short sentences" is vague. Actual writing samples are specific.
+
+**Critic ignores banned phrases**
+List them explicitly in your `voice-dna.md` under a clear "Banned Phrases" header. The more structured, the better.

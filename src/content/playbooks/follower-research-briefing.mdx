@@ -1,0 +1,122 @@
+---
+title: "Follower Research Briefing"
+description: "Get a daily brief on your newest followers — who's worth engaging with, what they care about, and a personalized conversation starter for each."
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://x.com/itsolelehmann/status/1931019974083019089"
+tags: ["followers", "networking", "engagement", "x", "social-media", "outreach", "scheduled-tasks"]
+createdAt: "2026-03-08"
+---
+
+## What This Does
+
+Most people miss warm connections because they never look at who just followed them. This playbook researches your newest followers daily and briefs you on who's worth engaging with — before they DM you or drift away.
+
+Each morning you get a short report: who followed, who's interesting, what they care about, and one specific thing you could say to start a real conversation.
+
+---
+
+## Prerequisites
+
+- X account with regular follower growth
+- MCP connection to X API (for reading follower data and profiles)
+- Claude scheduled tasks enabled
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Project Folder
+
+```bash
+mkdir -p ~/follower-research/follower-briefs
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/follower-research/
+```
+
+### Step 3: Configure Your Criteria
+
+Open `CLAUDE.md` and set your follower count threshold, niche keywords, and what makes someone "interesting" to you.
+
+### Step 4: Set Up the Schedule
+
+```bash
+cd ~/follower-research
+claude
+```
+
+Say: **"Schedule this to run every morning at 7am. Pull my new followers and write the brief."**
+
+---
+
+## How It Works
+
+Each morning, Claude:
+
+1. Pulls your latest followers on X since yesterday
+2. Looks up each person's profile and recent posts
+3. Filters for anyone who meets your criteria (follower count, niche, potential value)
+4. Writes a 2-3 sentence brief for each interesting person
+5. Saves to `/follower-briefs` with today's date
+
+---
+
+## Filtering Criteria
+
+Customize which followers get flagged as "interesting":
+
+| Criteria | Example |
+|----------|---------|
+| **Audience size** | Over 5,000 followers |
+| **Niche alignment** | Runs a business in your space |
+| **Recent activity** | Posted about topics you cover in the last week |
+| **Collaboration potential** | Could be a podcast guest, co-creator, or partner |
+| **Customer potential** | Fits your ideal customer profile |
+
+---
+
+## Example Output
+
+```markdown
+# Follower Brief — 2026-03-08
+
+## High-Priority (3 new)
+
+### @sarahbuilds (12.4K followers)
+Runs a SaaS for freelance designers. Has been posting about
+pricing psychology all week — directly overlaps with your
+recent newsletter. Conversation starter: Reply to her thread
+about hourly vs value pricing with your data from the
+freelancer survey.
+
+### @devmarketer (8.2K followers)
+Marketing lead at [Company]. Just shipped a new landing page
+and is asking for feedback publicly. Conversation starter:
+Give specific, useful feedback on the hero section — he'll
+notice.
+
+### @jenpodcasts (22K followers)
+Hosts a top-50 business podcast. Recently tweeted looking for
+guests who talk about creator monetization. Conversation
+starter: Reply with your take on the topic and mention you've
+helped 200+ creators price their products.
+
+## Other New Followers (17)
+[Brief list with handles and one-line descriptions]
+```
+
+---
+
+## Tips
+
+- **Act on the brief the same day** — warm connections cool fast
+- **Don't mass-DM** — the conversation starters are for public replies that feel natural
+- **Adjust your threshold** — if you're getting too many or too few results, tune the follower count and niche filters
+- **Track conversions** — note which briefed followers turn into real conversations, collaborations, or customers

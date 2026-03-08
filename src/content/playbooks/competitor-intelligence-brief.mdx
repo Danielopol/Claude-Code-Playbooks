@@ -1,0 +1,117 @@
+---
+title: "Competitor Intelligence Brief"
+description: "Monitor your competitors' feeds and newsletters daily — get briefed on what they shipped, messaging changes, and gaps you could fill."
+category: "market-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://x.com/itsolelehmann/status/1931019974083019089"
+tags: ["competitors", "market-research", "intelligence", "monitoring", "strategy", "scheduled-tasks"]
+createdAt: "2026-03-08"
+---
+
+## What This Does
+
+Reads your competitors' feeds and newsletters daily and writes you a brief on what they shipped, what messaging changed, and where they left a gap you could fill. Instead of manually checking 5-10 competitor feeds, you get a single document with everything that matters.
+
+Every brief ends with an "Opportunities" section — specific content angles or positioning moves you could act on this week.
+
+---
+
+## Prerequisites
+
+- A list of competitor X handles, Substack/newsletter URLs, and/or blog URLs
+- Claude scheduled tasks enabled
+- Optional: MCP connections for deeper API access
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Project Folder
+
+```bash
+mkdir -p ~/competitor-intel
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/competitor-intel/
+```
+
+### Step 3: Add Your Competitors
+
+Open `CLAUDE.md` and list your competitors' X handles, newsletter URLs, and blog URLs.
+
+### Step 4: Set Up the Schedule
+
+```bash
+cd ~/competitor-intel
+claude
+```
+
+Say: **"Schedule this to run every morning at 7am. Check my competitors and write the daily brief."**
+
+---
+
+## How It Works
+
+Each day, Claude:
+
+1. Checks each competitor's live feeds (X, blog, newsletter)
+2. Notes any new content, product updates, pricing changes, new positioning, or messaging shifts
+3. Writes a short brief per competitor: what they did, why it matters, and whether it opens a gap
+4. Adds an "Opportunities" section with specific, actionable moves you could make
+5. Appends everything to `/competitor-intel.md` with today's date
+
+---
+
+## What Gets Tracked
+
+| Signal | Why It Matters |
+|--------|---------------|
+| **New content** | Topics they're doubling down on |
+| **Product updates** | Features they're shipping, direction they're heading |
+| **Pricing changes** | Market positioning shifts |
+| **New messaging** | How they're talking about themselves differently |
+| **Tone shifts** | Going more casual? More enterprise? |
+| **Gaps** | Topics they're ignoring that you could own |
+
+---
+
+## Example Output
+
+```markdown
+# Competitor Intel — 2026-03-08
+
+## @competitor_a
+- Published a thread on "why we're going all-in on AI agents"
+- Shifted messaging from "automation" to "autonomous workflows"
+- Why it matters: They're repositioning for a higher-end market
+- Gap: They're not talking about implementation for solopreneurs
+
+## @competitor_b
+- Launched a new free tier with limited features
+- Newsletter focused on "the death of courses"
+- Why it matters: Undercutting on price, moving to freemium
+- Gap: No mention of ROI or results — all features, no outcomes
+
+## Opportunities
+- Content angle: "AI agents for solopreneurs" — competitor A
+  abandoned this positioning
+- Counter-narrative: "Courses aren't dead, bad courses are"
+  — directly responds to competitor B's newsletter
+- Pricing content: Write about value-based pricing while
+  competitor B races to the bottom
+```
+
+---
+
+## Tips
+
+- **Start with 3-5 competitors** — too many and the brief becomes noise
+- **Include indirect competitors** — people competing for your audience's attention, not just your market
+- **Act on opportunities weekly** — review the week's briefs every Friday and pick 1-2 moves
+- **Track patterns over time** — individual days are noisy, but monthly trends reveal real strategy shifts

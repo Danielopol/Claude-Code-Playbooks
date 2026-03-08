@@ -1,0 +1,117 @@
+---
+title: "Voice of Customer Tracker"
+description: "Build a living document of your customers' exact language from testimonials, reviews, and social mentions — organized for sales copy and positioning."
+category: "market-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://x.com/itsolelehmann/status/1931019974083019089"
+tags: ["voice-of-customer", "testimonials", "reviews", "sales-copy", "positioning", "market-research", "scheduled-tasks"]
+createdAt: "2026-03-08"
+---
+
+## What This Does
+
+Scans your testimonials, reviews, support messages, and social mentions weekly and extracts the exact phrases your customers use. Organizes everything into a living "Voice of Customer" document with four categories: pain points, desired outcomes, objections, and results.
+
+Your sales copy and positioning get sharper every single week — without you touching them. You're writing in your customers' words, not yours.
+
+---
+
+## Prerequisites
+
+- Public review/testimonial pages (Gumroad, Product Hunt, Trustpilot, G2, etc.)
+- X account where customers mention you
+- Claude scheduled tasks enabled
+- Optional: MCP connections to support tools for ticket/message access
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Project Folder
+
+```bash
+mkdir -p ~/customer-research
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/customer-research/
+```
+
+### Step 3: Configure Your Sources
+
+Open `CLAUDE.md` and add your review page URLs, X handle, and any other feedback sources.
+
+### Step 4: Set Up the Schedule
+
+```bash
+cd ~/customer-research
+claude
+```
+
+Say: **"Schedule this to run every Monday at 9am. Scan my testimonials and reviews and update the voice of customer doc."**
+
+---
+
+## How It Works
+
+Each week, Claude:
+
+1. Scans your testimonial pages, review platforms, and X mentions
+2. Extracts exact customer phrases — no paraphrasing
+3. Categorizes them into pain points, desired outcomes, objections, and results
+4. Adds them to `/voice-of-customer.md` with frequency counts
+5. Updates recurring phrases so the most common ones bubble to the top
+
+---
+
+## The Four Categories
+
+| Category | What It Captures | Use It For |
+|----------|-----------------|-----------|
+| **Pain Points** | Problems before finding you, in their exact words | Ad hooks, email subject lines, landing page headlines |
+| **Desired Outcomes** | What they wanted to achieve, in their exact words | Product positioning, feature prioritization |
+| **Objections** | Doubts they had before buying | FAQ sections, sales page copy, objection handling |
+| **Results** | Specific outcomes after using your product | Testimonial sections, case studies, social proof |
+
+---
+
+## Example Output
+
+```markdown
+# Voice of Customer
+
+## Pain Points (Their Words)
+- "I was spending 3 hours a day just writing tweets" (×7)
+- "I knew I should be posting but I had nothing to say" (×5)
+- "Every template I tried sounded like a robot" (×4)
+- "I felt like I was shouting into the void" (×3)
+
+## Desired Outcomes (Their Words)
+- "I just wanted a system that didn't require willpower" (×6)
+- "I needed to sound like myself, not like an AI" (×5)
+- "I wanted to grow without spending all day on social" (×4)
+
+## Objections Before Buying
+- "I thought it was just another course" (×4)
+- "I wasn't sure it would work for my niche" (×3)
+- "The price felt high for something digital" (×2)
+
+## Results After Using
+- "Went from 200 to 2,000 followers in 6 weeks" (×3)
+- "I actually enjoy posting now" (×5)
+- "Made back the price in my first week" (×2)
+```
+
+---
+
+## Tips
+
+- **Never paraphrase** — the power is in their exact words. "I was drowning in content creation" hits differently than "users found content creation challenging"
+- **Use frequency counts for prioritization** — the phrases that show up most become your headlines
+- **Copy directly into sales pages** — the highest-frequency pain points become your above-the-fold copy
+- **Share with your team** — this doc is gold for anyone writing copy, building features, or talking to customers

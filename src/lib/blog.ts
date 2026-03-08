@@ -269,6 +269,20 @@ export const blogPosts: BlogPost[] = [
     tags: ['legal', 'AI workflows', 'skills', 'cowork', 'contract review', 'law', 'productivity'],
     createdAt: '2026-03-06',
   },
+  {
+    id: 'claude-cowork-masterclass-for-beginners-full-tutor',
+    title: 'Claude Cowork Masterclass for Beginners (Full Tutorial)',
+    description: 'A comprehensive beginner\'s guide to Claude Cowork covering setup, context files, plugins, and real use cases for turning Claude into an autonomous coworker on your desktop.',
+    category: 'tutorial',
+    difficulty: 'basic',
+    readingTime: '8 min read',
+    url: 'https://x.com/coreyganim/status/2028470330247803361',
+    featured: false,
+    thumbnailType: 'agent',
+    thumbnailTitle: 'cowork guide',
+    tags: ['cowork', 'desktop', 'beginner', 'tutorial', 'automation', 'workspace', 'context files'],
+    createdAt: '2026-03-08',
+  },
 ];
 
 export function getAllBlogPosts(): BlogPost[] {

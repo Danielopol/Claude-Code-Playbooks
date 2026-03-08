@@ -1,0 +1,127 @@
+---
+title: "Content Drift Monitor"
+description: "Weekly brand consistency check — compare your recent posts against your top performers and get flagged when you're drifting from what actually resonates."
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://x.com/itsolelehmann/status/1931019974083019089"
+tags: ["content-strategy", "brand-consistency", "analytics", "drift", "x", "linkedin", "scheduled-tasks"]
+createdAt: "2026-03-08"
+---
+
+## What This Does
+
+Pulls your last 7 days of posts and compares them against your top 20 best-performing posts (highest saves and replies over the last 90 days). Scores each new post on how closely it matches the patterns that work: topic relevance, hook strength, formatting style, tone, length, and specificity.
+
+Flags when you're drifting from what resonates. And if you're trending in a new direction worth exploring, it notes that too.
+
+Like having a brand consistency editor that runs on autopilot.
+
+---
+
+## Prerequisites
+
+- X and/or LinkedIn accounts with 90+ days of post history
+- MCP connections to X/LinkedIn APIs for analytics
+- Claude scheduled tasks enabled
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Project Folder
+
+```bash
+mkdir -p ~/content-monitoring
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/content-monitoring/
+```
+
+### Step 3: Configure Your Profiles
+
+Open `CLAUDE.md` and add your X handle and LinkedIn profile URL.
+
+### Step 4: Set Up the Schedule
+
+```bash
+cd ~/content-monitoring
+claude
+```
+
+Say: **"Schedule this to run every Sunday at 7pm. Compare my recent posts against my best performers."**
+
+---
+
+## How It Works
+
+Each week, Claude:
+
+1. Pulls your posts from the last 7 days (X and LinkedIn)
+2. Pulls your top 20 best-performing posts by saves and replies over the last 90 days
+3. Scores each new post on six dimensions against the top-performer patterns
+4. Flags any posts where you're drifting, with specific explanations
+5. Notes any new directions worth exploring
+6. Updates `/content-drift.md` with a rolling trend showing whether you're getting closer to or further from what resonates
+
+---
+
+## The Six Dimensions
+
+| Dimension | What It Measures |
+|-----------|-----------------|
+| **Topic Relevance** | Are you covering topics your audience responds to? |
+| **Hook Strength** | Are your opening lines as strong as your best? |
+| **Formatting Style** | Thread vs single, lists vs narrative — matching what works? |
+| **Tone** | Casual vs professional, vulnerable vs authoritative |
+| **Length** | Are your posts the right length for engagement? |
+| **Specificity** | Concrete examples and numbers vs vague advice |
+
+---
+
+## Example Output
+
+```markdown
+# Content Drift — Week of 2026-03-08
+
+## Rolling Trend
+Weeks 1-4: ████████░░ (Closely aligned)
+Week 5:    ██████░░░░ (Starting to drift)
+Week 6:    █████░░░░░ (Drifting — this week)
+
+## This Week's Analysis
+
+### Post: "Why I stopped using funnels"
+Topic: ★★★★☆ | Hook: ★★★★★ | Format: ★★★★☆
+Tone: ★★★☆☆ | Length: ★★★★☆ | Specificity: ★★☆☆☆
+Drift flag: Specificity is low. Your top posts include exact
+numbers ("grew 200% in 3 months"). This post makes claims
+without data.
+
+### Post: "Monday motivation: keep building"
+Topic: ★☆☆☆☆ | Hook: ★★☆☆☆ | Format: ★★★☆☆
+Tone: ★★☆☆☆ | Length: ★★☆☆☆ | Specificity: ★☆☆☆☆
+Drift flag: This doesn't match any of your top 20 patterns.
+Motivational content consistently underperforms for your
+audience. Your best posts are tactical, not inspirational.
+
+### New Direction Worth Exploring
+Your post about "behind the scenes of my pricing decision"
+scored high on tone and hook but covers a topic not in your
+top 20. Early engagement suggests this could become a new
+winning format. Watch next week.
+```
+
+---
+
+## Tips
+
+- **Don't panic at every drift flag** — some experimentation is healthy. The monitor tells you when experimentation is becoming a habit.
+- **Watch the rolling trend** — a single off-brand post is fine. Three weeks of declining alignment means your content strategy is shifting.
+- **"New Direction Worth Exploring" is the most valuable output** — this is how you discover new content veins that your audience loves
+- **Use alongside Engagement Pattern Analyzer** — the drift monitor tells you what you're doing differently, the pattern analyzer tells you what's working

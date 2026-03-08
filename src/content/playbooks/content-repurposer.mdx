@@ -1,0 +1,133 @@
+---
+title: "Content Repurposer"
+description: "Automatically turn your long-form content (newsletters, podcasts, videos) into platform-native posts for X and LinkedIn every week."
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://x.com/itsolelehmann/status/1931019974083019089"
+tags: ["content", "repurposing", "social-media", "x", "linkedin", "newsletter", "automation", "scheduled-tasks"]
+createdAt: "2026-03-08"
+---
+
+## What This Does
+
+Takes your long-form content — newsletters, podcast episodes, videos — and silently turns each piece into 10+ platform-native social posts while you sleep. One newsletter becomes standalone posts optimized for X (short, punchy, conversational) and LinkedIn (longer, professional, with takeaways).
+
+Runs weekly on a schedule. You publish your newsletter once, and the repurposed posts just appear in your output folder, ready to queue.
+
+---
+
+## Prerequisites
+
+- A public newsletter URL (Substack, Beehiiv, ConvertKit, or any RSS-accessible source)
+- Claude scheduled tasks enabled
+- Optional: MCP connections to X or LinkedIn for direct posting
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Project Folder
+
+```bash
+mkdir -p ~/content-repurposer/weekly-repurposed
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/content-repurposer/
+```
+
+### Step 3: Configure Your Source
+
+Open `CLAUDE.md` and replace the placeholder URLs and handles with your actual newsletter URL and social profiles.
+
+### Step 4: Set Up the Schedule
+
+```bash
+cd ~/content-repurposer
+claude
+```
+
+Say: **"Schedule this to run every Monday at 8am. Check my latest newsletter and create repurposed posts for the week."**
+
+---
+
+## How It Works
+
+Each week, Claude:
+
+1. Visits your newsletter URL and reads any editions published that week
+2. Extracts 3-5 standalone ideas from each edition — moments where you had a strong opinion, told a story, or shared a specific tactic
+3. Rewrites each idea twice:
+   - **X version**: short, conversational, lowercase, punchy hook in the first line
+   - **LinkedIn version**: slightly longer, professional but human, with a takeaway at the end
+4. Saves everything to `/weekly-repurposed` organized by date
+
+---
+
+## Example Output
+
+**From a newsletter about pricing strategy:**
+
+**X version:**
+```
+most creators underprice because they're scared, not strategic.
+
+the ones who charge more don't have more confidence.
+they have more data.
+
+here's what i track before raising prices:
+```
+
+**LinkedIn version:**
+```
+I raised my prices 3x this year. Not because I suddenly got better —
+because I finally started tracking the right data.
+
+Most creators set prices based on what "feels right." That's fear
+dressed up as intuition.
+
+Here's the framework I use before every price change:
+
+[Framework details]
+
+The takeaway: pricing confidence comes from data, not courage.
+```
+
+---
+
+## What Gets Prioritized
+
+The repurposer looks for moments in your content that work best as standalone posts:
+
+| Signal | Why It Works |
+|--------|-------------|
+| **Strong opinions** | Generates engagement and replies |
+| **Personal stories** | Builds connection, hard to replicate |
+| **Specific tactics** | Gets saved and bookmarked |
+| **Contrarian takes** | Stops the scroll |
+| **Data or results** | Adds credibility |
+
+---
+
+## Customization
+
+Add to your `CLAUDE.md` to fine-tune output:
+
+- **Tone preferences**: "I write in lowercase on X, proper case on LinkedIn"
+- **Content filters**: "Never repurpose anything about my personal life"
+- **Format preferences**: "I like threads on X, not single tweets"
+- **Hashtag rules**: "No hashtags on X, 3-5 on LinkedIn"
+
+---
+
+## Tips
+
+- **Quality in = quality out** — the better your newsletter, the better the posts
+- **Review before posting** — schedule the repurpose a day before you plan to post so you can review
+- **Add a voice DNA file** — pair with the Critic Agent playbook for voice-matched output
+- **Track what hits** — after a few weeks, tell Claude which repurposed posts performed best so it learns your patterns

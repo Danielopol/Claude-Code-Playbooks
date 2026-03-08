@@ -1,0 +1,107 @@
+---
+title: "Trending Conversations Scout"
+description: "Every morning, get the top 3 trending conversations in your niche so you can jump in while they're still fresh and everyone else is catching up."
+category: "marketing-content"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://x.com/itsolelehmann/status/1931019974083019089"
+tags: ["trending", "social-media", "engagement", "x", "reddit", "linkedin", "niche", "scheduled-tasks"]
+createdAt: "2026-03-08"
+---
+
+## What This Does
+
+Searches X, Reddit, and LinkedIn every morning for the most active conversations in your niche from the last 24 hours. Gives you the top 3 trending topics with a summary, a link, and a suggested angle you could take that adds value.
+
+You jump in while the conversation is hot. Everyone else finds it 48 hours later when it's already dead.
+
+---
+
+## Prerequisites
+
+- Knowledge of your niche keywords and relevant subreddits
+- Claude scheduled tasks enabled
+- Optional: MCP connections to X/Reddit APIs for deeper access
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Project Folder
+
+```bash
+mkdir -p ~/trending-scout
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/trending-scout/
+```
+
+### Step 3: Configure Your Niche
+
+Open `CLAUDE.md` and set your niche keywords, subreddits, and expertise areas.
+
+### Step 4: Set Up the Schedule
+
+```bash
+cd ~/trending-scout
+claude
+```
+
+Say: **"Schedule this to run every morning at 6:30am. Find the top trending conversations in my niche."**
+
+---
+
+## How It Works
+
+Each morning, Claude:
+
+1. Searches X, Reddit (your subreddits), and LinkedIn for active conversations using your keywords
+2. Ranks by engagement and reply volume from the last 24 hours
+3. Picks the top 3 trending topics, threads, or debates
+4. Writes a 2-3 sentence summary, includes a link, and suggests an angle you could take
+5. Saves to `/trending-daily.md` with today's date
+
+---
+
+## Example Output
+
+```markdown
+# Trending — 2026-03-08
+
+## 1. "Is email marketing dead for creators?"
+Platform: X | Thread by @marketer (2.4K replies)
+Summary: Heated debate about whether newsletters still
+convert. Most replies are anecdotal. Very few cite actual data.
+Your angle: Share your open rate and revenue-per-subscriber
+data from the last quarter. Data-backed takes are dominating
+the replies.
+
+## 2. "I quit my 6-figure job to go full-time creator"
+Platform: Reddit r/EntrepreneurRideAlong (890 comments)
+Summary: Classic "I quit my job" post but this one has real
+numbers. Comments are split between "brave" and "reckless."
+Your angle: Reply with the financial safety net framework
+you shared last month — it's directly relevant and adds nuance.
+
+## 3. "LinkedIn is turning into Facebook"
+Platform: LinkedIn (1.2K reactions, 340 comments)
+Summary: Viral post about LinkedIn feed quality declining.
+People are agreeing loudly.
+Your angle: Contrarian take — share what's still working on
+LinkedIn with specific examples. "Here's what I posted last
+week that got 50K impressions and 12 inbound leads."
+```
+
+---
+
+## Tips
+
+- **Act within 2 hours** of getting the brief — trending conversations have a short window
+- **Add value, don't just comment** — the suggested angles are designed to position you as an expert, not just a participant
+- **Track which conversations you joined** — note which ones drove followers, profile visits, or leads
+- **Expand your subreddit list** — add adjacent communities where your audience lurks

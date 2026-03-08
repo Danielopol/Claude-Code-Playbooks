@@ -1,0 +1,130 @@
+---
+title: "Funnel Metrics Analyst"
+description: "Get a daily one-paragraph analysis of your funnel metrics — what moved, what's stalling, and what to do about it. An actual opinion, not a dashboard."
+category: "data-reporting"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://x.com/itsolelehmann/status/1931019974083019089"
+tags: ["funnel", "metrics", "analytics", "stripe", "revenue", "email", "google-analytics", "scheduled-tasks"]
+createdAt: "2026-03-08"
+---
+
+## What This Does
+
+Pulls your funnel data daily from Stripe (revenue, new customers, churn), your email platform (signups, open rates, click rates), and Google Analytics (traffic, top pages, sources). Compares each metric to last week and the 7-day rolling average. Then writes one paragraph — 5-7 sentences — telling you what's improving, what's declining, and what you should actually do about it today.
+
+An actual opinion you can act on, not a dashboard you have to interpret.
+
+---
+
+## Prerequisites
+
+- Stripe account (for revenue data)
+- Email platform (ConvertKit, Beehiiv, Mailchimp, etc.)
+- Google Analytics
+- MCP connections to each data source
+- Claude scheduled tasks enabled
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Project Folder
+
+```bash
+mkdir -p ~/funnel-analysis
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/funnel-analysis/
+```
+
+### Step 3: Connect Your Data Sources
+
+Set up MCP connections to Stripe, your email platform, and Google Analytics. This is a one-time setup.
+
+### Step 4: Set Up the Schedule
+
+```bash
+cd ~/funnel-analysis
+claude
+```
+
+Say: **"Schedule this to run every morning at 7am. Pull my metrics and write the daily analysis."**
+
+---
+
+## How It Works
+
+Each morning, Claude:
+
+1. Pulls latest data from Stripe, email platform, and Google Analytics
+2. Compares each metric to the same day last week and the 7-day rolling average
+3. Writes one paragraph (5-7 sentences max) with specific, opinionated analysis
+4. Saves to `/funnel-daily.md` with today's date
+
+---
+
+## What Gets Tracked
+
+| Source | Metrics |
+|--------|---------|
+| **Stripe** | Revenue, new customers, churn rate, MRR |
+| **Email** | New signups, open rates, click rates, unsubscribes |
+| **Google Analytics** | Total traffic, top pages, traffic sources, bounce rate |
+
+---
+
+## Example Output
+
+```markdown
+# Funnel Daily — 2026-03-08
+
+Revenue is up 12% vs last week — the new pricing page is
+converting. But email signups dropped 18% and that's the
+second day in a row, which means the top of funnel is
+softening. Traffic from X is down 23% (you didn't post
+yesterday). Open rates are steady at 42%, so the list is
+healthy — you just need more people entering it. Today:
+publish that thread you've been sitting on to push traffic
+back up, and check if the lead magnet landing page has any
+technical issues since signups fell off a cliff Tuesday.
+```
+
+---
+
+## What Makes This Different
+
+| Traditional Dashboard | This Playbook |
+|----------------------|---------------|
+| Shows you numbers | Tells you what the numbers mean |
+| You interpret trends | Trends are interpreted for you |
+| No recommendations | Specific actions for today |
+| Requires context switching | Delivered to one file |
+| Updated when you check | Waiting for you every morning |
+
+---
+
+## Tips
+
+- **Read it with your morning coffee** — it's designed to be a 30-second read that sets your priorities
+- **Act on the recommendation** — the whole point is a daily action item, not just awareness
+- **Trust the trend, not the day** — individual days are noisy. The 7-day rolling average is what matters.
+- **Add context when needed** — if you know why something spiked or dropped (launched a product, ran an ad), tell Claude so future analyses account for it
+
+---
+
+## Troubleshooting
+
+**Analysis is too generic**
+Make sure MCP connections are pulling real numbers, not just API status. The analysis is only as good as the data.
+
+**Recommendations aren't actionable**
+Add context to your `CLAUDE.md` about what levers you can actually pull — "I can publish content, adjust pricing, send emails, run ads."
+
+**Missing data sources**
+Start with whatever you have. Even Stripe + email without analytics is valuable. Add sources over time.

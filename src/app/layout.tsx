@@ -34,6 +34,9 @@ export const metadata: Metadata = {
   authors: [{ name: 'Claude Code Playbooks' }],
   alternates: {
     canonical: '/',
+    types: {
+      'text/plain': '/llms.txt',
+    },
   },
   icons: {
     icon: [

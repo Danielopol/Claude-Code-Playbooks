@@ -1,0 +1,250 @@
+# PowerPoint Manipulation Tool
+
+## Goal
+>
+
+## What You Can Do
+- Pptx
+- Powerpoint
+- Manipulation
+- Editing
+
+## How to Use
+1. Describe the presentation you want to create or modify
+2. Provide content, data, or images to include
+3. I'll generate python-pptx code and execute it
+
+**Example prompts:**
+- "Create a 10-slide pitch deck from this outline"
+- "Add a chart to slide 3 with this data"
+- "Extract all text from this presentation"
+- "Generate slides from this markdown content"
+
+## Domain Knowledge
+### python-pptx Fundamentals
+
+```python
+from pptx import Presentation
+from pptx.util import Inches, Pt
+from pptx.enum.shapes import MSO_SHAPE
+from pptx.enum.text import PP_ALIGN
+
+# Create new presentation
+prs = Presentation()
+
+# Or open existing
+prs = Presentation('existing.pptx')
+```
+
+### Presentation Structure
+```
+Presentation
+├── slide_layouts (predefined layouts)
+├── slides (individual slides)
+│   ├── shapes (text, images, charts)
+│   │   ├── text_frame (paragraphs)
+│   │   └── table (rows, cells)
+│   └── placeholders (title, content)
+└── slide_masters (templates)
+```
+
+### Slide Layouts
+```python
+# Common layout indices (may vary by template)
+TITLE_SLIDE = 0
+TITLE_CONTENT = 1
+SECTION_HEADER = 2
+TWO_CONTENT = 3
+COMPARISON = 4
+TITLE_ONLY = 5
+BLANK = 6
+
+# Add slide with layout
+slide_layout = prs.slide_layouts[TITLE_CONTENT]
+slide = prs.slides.add_slide(slide_layout)
+```
+
+### Adding Content
+
+#### Title Slide
+```python
+slide_layout = prs.slide_layouts[0]  # Title slide
+slide = prs.slides.add_slide(slide_layout)
+
+title = slide.shapes.title
+subtitle = slide.placeholders[1]
+
+title.text = "Quarterly Report"
+subtitle.text = "Q4 2024 Performance Review"
+```
+
+#### Text Content
+```python
+# Using placeholder
+body = slide.placeholders[1]
+tf = body.text_frame
+tf.text = "First bullet point"
+
+# Add more paragraphs
+p = tf.add_paragraph()
+p.text = "Second bullet point"
+p.level = 0
+
+p = tf.add_paragraph()
+p.text = "Sub-bullet"
+p.level = 1
+```
+
+#### Text Box
+```python
+from pptx.util import Inches, Pt
+
+left = Inches(1)
+top = Inches(2)
+width = Inches(4)
+height = Inches(1)
+
+txBox = slide.shapes.add_textbox(left, top, width, height)
+tf = txBox.text_frame
+
+p = tf.paragraphs[0]
+p.text = "Custom text box"
+p.font.bold = True
+p.font.size = Pt(18)
+```
+
+#### Shapes
+```python
+from pptx.enum.shapes import MSO_SHAPE
+
+# Rectangle
+shape = slide.shapes.add_shape(
+    MSO_SHAPE.RECTANGLE,
+    Inches(1), Inches(2),  # left, top
+    Inches(3), Inches(1.5) # width, height
+)
+shape.text = "Rectangle with text"
+
+# Common shapes:
+# MSO_SHAPE.RECTANGLE, ROUNDED_RECTANGLE
+# MSO_SHAPE.OVAL, CHEVRON, ARROW_RIGHT
+# MSO_SHAPE.CALLOUT_ROUNDED_RECTANGLE
+```
+
+#### Images
+```python
+# Add image
+slide.shapes.add_picture(
+    'image.png',
+    Inches(1), Inches(2),  # position
+    width=Inches(4)        # auto height
+)
+
+# Or specify both dimensions
+slide.shapes.add_picture(
+    'logo.png',
+    Inches(8), Inches(0.5),
+    Inches(1.5), Inches(0.75)
+)
+```
+
+### Tables
+```python
+# Create table
+rows, cols = 4, 3
+left = Inches(1)
+top = Inches(2)
+width = Inches(8)
+height = Inches(2)
+
+table = slide.shapes.add_table(rows, cols, left, top, width, height).table
+
+# Set column widths
+table.columns[0].width = Inches(2)
+table.columns[1].width = Inches(3)
+table.columns[2].width = Inches(3)
+
+# Add headers
+headers = ['Product', 'Q3 Sales', 'Q4 Sales']
+for i, header in enumerate(headers):
+    cell = table.cell(0, i)
+    cell.text = header
+    cell.text_frame.paragraphs[0].font.bold = True
+
+# Add data
+data = [
+    ['Widget A', '$10,000', '$12,500'],
+    ['Widget B', '$8,000', '$9,200'],
+    ['Widget C', '$15,000', '$18,000'],
+]
+for row_idx, row_data in enumerate(data, 1):
+    for col_idx, value in enumerate(row_data):
+        table.cell(row_idx, col_idx).text = value
+```
+
+### Charts
+```python
+from pptx.chart.data import CategoryChartData
+from pptx.enum.chart import XL_CHART_TYPE
+
+# Chart data
+chart_data = CategoryChartData()
+chart_data.categories = ['Q1', 'Q2', 'Q3', 'Q4']
+chart_data.add_series('Sales', (19.2, 21.4, 16.7, 23.8))
+chart_data.add_series('Expenses', (12.1, 15.3, 14.2, 18.1))
+
+# Add chart
+x, y, cx, cy = Inches(1), Inches(2), Inches(8), Inches(4)
+chart = slide.shapes.add_chart(
+    XL_CHART_TYPE.COLUMN_CLUSTERED,
+    x, y, cx, cy, chart_data
+).chart
+
+# Customize
+chart.has_legend = True
+chart.legend.include_in_layout = False
+```
+
+### Formatting
+
+#### Text Formatting
+```python
+from pptx.dml.color import RGBColor
+
+run = p.runs[0]
+run.font.name = 'Arial'
+run.font.size = Pt(24)
+run.font.bold = True
+run.font.italic = True
+run.font.color.rgb = RGBColor(0x00, 0x66, 0xCC)
+```
+
+#### Shape Fill & Line
+```python
+from pptx.dml.color import RGBColor
+
+shape.fill.solid()
+shape.fill.fore_color.rgb = RGBColor(0x00, 0x80, 0x00)
+
+shape.line.color.rgb = RGBColor(0x00, 0x00, 0x00)
+shape.line.width = Pt(2)
+```
+
+#### Paragraph Alignment
+```python
+from pptx.enum.text import PP_ALIGN
+
+p.alignment = PP_ALIGN.CENTER  # LEFT, RIGHT, JUSTIFY
+```
+
+## Tips
+1. **Use Templates**: Start with a .pptx template for consistent branding
+2. **Layout First**: Plan slide structure before coding
+3. **Reuse Slide Masters**: Maintain consistency across presentations
+4. **Optimize Images**: Compress images before adding
+5. **Test Output**: Always verify generated presentations
+
+## Limitations
+- This is an AI assistant, not a replacement for professional expertise
+- Always verify important outputs independently
+- For high-stakes decisions, consult domain experts

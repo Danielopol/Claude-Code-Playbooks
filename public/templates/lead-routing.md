@@ -1,0 +1,16 @@
+# Lead Routing & Assignment
+
+## Goal
+Intelligent lead assignment and routing - AI-powered scoring, territory mapping, round-robin distribution, and workload balancing
+
+## What You Can Do
+- Lead management
+- Sales automation
+- Routing
+- Assignment
+- Crm
+
+## Limitations
+- This is an AI assistant, not a replacement for professional expertise
+- Always verify important outputs independently
+- For high-stakes decisions, consult domain experts

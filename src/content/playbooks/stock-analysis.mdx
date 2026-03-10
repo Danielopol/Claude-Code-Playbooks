@@ -1,0 +1,189 @@
+---
+title: "Stock Analysis & Research"
+description: "Analyze stocks with fundamental and technical analysis. Supports US, China A-shares, and Hong Kong markets. Generate investment reports with key metrics."
+category: "finance"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/claude-office-skills/skills-hub/tree/main/stock-analysis"
+tags: ["stock", "analysis", "investment", "fundamental", "technical"]
+createdAt: "2026-03-10"
+---
+
+## What This Does
+
+I help you analyze stocks using fundamental and technical analysis methods. I can evaluate companies across US, China A-shares, and Hong Kong markets.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/StockAnalysis
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/StockAnalysis/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/StockAnalysis
+claude
+```
+
+---
+
+## The CLAUDE.md Template
+
+```markdown
+# Stock Analysis & Research
+
+## Goal
+Analyze stocks with fundamental and technical analysis. Supports US, China A-shares, and Hong Kong markets. Generate investment reports with key metrics.
+
+## What You Can Do
+- Fundamental analysis (P/E, P/B, ROE, revenue growth, margins)
+- Technical analysis (trend, support/resistance, indicators)
+- Peer comparison and industry positioning
+- Risk assessment and investment thesis
+- Generate structured analysis reports
+
+## How to Use
+### Step 1: Provide Company Information
+
+Tell me:
+- Stock ticker/code (e.g., AAPL, 600519.SH, 0700.HK)
+- Market (US/China A-shares/Hong Kong)
+- Or provide financial data directly
+
+### Step 2: Choose Analysis Type
+
+- **Quick Analysis**: Key metrics overview
+- **Deep Dive**: Comprehensive fundamental analysis
+- **Technical Review**: Chart patterns and indicators
+- **Peer Comparison**: Compare with competitors
+
+### Step 3: Receive Analysis Report
+
+I'll provide a structured report with:
+- Company overview
+- Key financial metrics
+- Valuation assessment
+- Risk factors
+- Investment thesis
+
+## Domain Knowledge
+### Fundamental Analysis Metrics
+
+#### Valuation Ratios
+| Metric | Formula | Interpretation |
+|--------|---------|----------------|
+| P/E Ratio | Price / EPS | <15 undervalued, >25 expensive |
+| P/B Ratio | Price / Book Value | <1 potential value, >3 growth priced in |
+| P/S Ratio | Price / Revenue | Useful for unprofitable companies |
+| EV/EBITDA | Enterprise Value / EBITDA | <10 attractive, >15 expensive |
+| PEG Ratio | P/E / Growth Rate | <1 undervalued relative to growth |
+
+#### Profitability Metrics
+| Metric | Formula | Good Benchmark |
+|--------|---------|----------------|
+| Gross Margin | Gross Profit / Revenue | >40% strong pricing power |
+| Operating Margin | Operating Income / Revenue | >15% efficient operations |
+| Net Margin | Net Income / Revenue | >10% healthy profitability |
+| ROE | Net Income / Shareholder Equity | >15% good capital efficiency |
+| ROIC | NOPAT / Invested Capital | >WACC value creation |
+
+#### Growth Metrics
+| Metric | What to Look For |
+|--------|------------------|
+| Revenue Growth | >10% YoY indicates strong demand |
+| EPS Growth | Should outpace revenue (operating leverage) |
+| FCF Growth | Sustainable growth driver |
+
+#### Financial Health
+| Metric | Formula | Safe Range |
+|--------|---------|------------|
+| Debt/Equity | Total Debt / Equity | <1 for most industries |
+| Current Ratio | Current Assets / Current Liabilities | >1.5 healthy liquidity |
+| Interest Coverage | EBIT / Interest Expense | >5 comfortable |
+| FCF Yield | FCF / Market Cap | >5% attractive |
+
+### Technical Analysis Patterns
+
+#### Trend Indicators
+- **Moving Averages**: 50-day, 200-day crossovers
+- **MACD**: Momentum and trend direction
+- **RSI**: Overbought (>70) / Oversold (<30)
+
+#### Chart Patterns
+- **Support/Resistance**: Key price levels
+- **Head and Shoulders**: Reversal pattern
+- **Double Top/Bottom**: Reversal signals
+- **Breakouts**: Volume-confirmed moves
+
+## Output Format
+```markdown
+# Stock Analysis Report: [TICKER]
+
+**Company**: [Full Name]
+**Market**: [Exchange]
+**Sector**: [Industry]
+**Analysis Date**: [Date]
+
+## Tips
+1. **Provide recent financials** if available for more accurate analysis
+2. **Specify your investment horizon** (short-term trading vs long-term investing)
+3. **Mention specific concerns** you want me to address
+4. **Include peer companies** for comparison analysis
+5. **Specify market context** (bull/bear market conditions)
+
+## Limitations
+- This is an AI assistant, not a replacement for professional expertise
+- Always verify important outputs independently
+- For high-stakes decisions, consult domain experts
+```
+
+---
+
+## Examples
+
+### User Request
+```
+Analyze Apple (AAPL) stock. Focus on fundamental analysis and current valuation.
+```
+
+### My Response
+
+# Stock Analysis Report: AAPL
+
+**Company**: Apple Inc.
+**Market**: NASDAQ
+**Sector**: Technology / Consumer Electronics
+**Analysis Date**: January 2025
+
+---
+
+## Tips
+
+1. **Provide recent financials** if available for more accurate analysis
+2. **Specify your investment horizon** (short-term trading vs long-term investing)
+3. **Mention specific concerns** you want me to address
+4. **Include peer companies** for comparison analysis
+5. **Specify market context** (bull/bear market conditions)
+
+---
+
+## Limitations
+
+- Cannot access real-time market data
+- Analysis based on publicly available information only
+- Does not account for insider information or pending announcements
+- Valuation models have inherent assumptions and limitations
+- Not a substitute for professional financial advice

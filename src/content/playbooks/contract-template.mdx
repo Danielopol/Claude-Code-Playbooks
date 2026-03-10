@@ -1,0 +1,105 @@
+---
+title: "Contract Template Generator"
+description: ">"
+category: "legal-compliance"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/claude-office-skills/skills-hub/tree/main/contract-template"
+tags: ["contract", "template", "legal", "accord"]
+createdAt: "2026-03-10"
+---
+
+## What This Does
+
+This workflow enables creation of smart contract templates using **Accord Project** - an open-source framework for legally enforceable, machine-readable contracts. Create templates with embedded logic that can automate contract execution.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/ContractTemplate
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/ContractTemplate/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/ContractTemplate
+claude
+```
+
+---
+
+## The CLAUDE.md Template
+
+```markdown
+# Contract Template Generator
+
+## Goal
+>
+
+## What You Can Do
+- Contract
+- Template
+- Legal
+- Accord
+
+## How to Use
+1. Describe the contract type and terms
+2. Specify variables and logic rules
+3. I'll generate Accord Project template
+
+**Example prompts:**
+- "Create an NDA template with variable terms"
+- "Build a service agreement with payment milestones"
+- "Generate a rental agreement template"
+- "Design a consulting contract with termination clauses"
+
+## Domain Knowledge
+### Template Structure
+
+```
+contract-template/
+├── package.json           # Metadata
+├── grammar/
+│   └── template.tem.md    # Natural language template
+├── model/
+│   └── model.cto          # Data model
+├── logic/
+│   └── logic.ergo         # Business logic
+└── text/
+    └── sample.md          # Sample contract
+```
+
+### Template Syntax (TemplateMark)
+
+```markdown
+# Service Agreement
+
+This Agreement is made between [{supplier}] ("Supplier") 
+and [{buyer}] ("Buyer").
+
+## Limitations
+- This is an AI assistant, not a replacement for professional expertise
+- Always verify important outputs independently
+- For high-stakes decisions, consult domain experts
+```
+
+---
+
+## Tips
+
+- Provide clear context about what you want to accomplish
+- Be specific about your requirements and constraints
+- Ask follow-up questions to refine the output
+- Review and customize the generated content for your needs

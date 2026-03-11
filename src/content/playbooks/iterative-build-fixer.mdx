@@ -26,27 +26,6 @@ This playbook creates an automated build-fix loop that:
 - Claude Code installed
 - A project with a build system (npm, cargo, go, make, etc.)
 - Understanding of your build command
-
-## The CLAUDE.md Template
-
-Copy this into a `CLAUDE.md` file in your project:
-
-```markdown
-# Iterative Build & Fix Protocol
-
-## Activation
-
-When I say "/build", "fix build", or "build until it passes", activate this protocol.
-
-## Build Configuration
-
-```yaml
-# Customize for your project
-build_command: "npm run build"
-max_attempts: 5
-timeout_seconds: 120
-```
-
 ## The Build-Fix Loop
 
 ```

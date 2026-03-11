@@ -1486,7 +1486,7 @@ Guidance beyond LaTeX for effective poster sessions:
    - Create handout version (8.5×11" summary)
    - Prepare digital version for email sharing
 
-## Integration with Other Skills
+## Integration with Other Workflows
 
 This skill works effectively with:
 - **Scientific Schematics**: CRITICAL - Use for generating all poster diagrams and flowcharts

@@ -779,7 +779,7 @@ See `references/sql_patterns.md` for quick-reference SQL patterns including:
 
 For segmentation and annotation details, also see `references/digital_pathology_guide.md`.
 
-## Related Skills
+## Related Workflows
 
 The following skills complement IDC workflows for downstream analysis and visualization:
 

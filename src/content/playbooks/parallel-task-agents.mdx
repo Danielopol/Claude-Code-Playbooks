@@ -18,32 +18,6 @@ Claude Code can spawn multiple agents simultaneously using the Task tool. This p
 
 - Claude Code installed and configured
 - Tasks with independent subtasks (no dependencies between them)
-
-## The CLAUDE.md Template
-
-Copy this into a `CLAUDE.md` file in your project:
-
-```markdown
-# Parallel Agent Protocol
-
-## When to Use Parallel Agents
-
-Use parallel agents when:
-- Subtasks are **independent** (don't depend on each other's output)
-- Each subtask is substantial (not trivial one-liners)
-- Time savings justify the overhead
-
-| Scenario | Sequential (slow) | Parallel (fast) |
-|----------|-------------------|-----------------|
-| Reviewing 3 files | Review file 1, then 2, then 3 | Review all 3 simultaneously |
-| Analyzing 3 papers | Read paper 1, then 2, then 3 | Spawn 3 agents, each reads one |
-| Generating 3 reports | Generate report A, B, then C | Spawn agents for each report |
-| Testing 3 scenarios | Run test 1, then 2, then 3 | Run all 3 in parallel |
-
-## Requesting Parallel Execution
-
-**Explicit parallel request:**
-```
 Run these in parallel:
 1. Analyze the auth module for security issues
 2. Analyze the payments module for security issues

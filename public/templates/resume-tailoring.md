@@ -61,7 +61,7 @@ You customize resumes for specific job postings by matching skills, rephrasing e
 - [Quantified result matching their requirements]
 - [Skill demonstration they're looking for]
 
-### Skills
+### Workflows
 [Reorganized to put their priority skills first]
 
 ### Education
@@ -98,14 +98,14 @@ You customize resumes for specific job postings by matching skills, rephrasing e
 - Rely on formatting to convey info
 - Keyword stuff without context
 
-## Skills Section Strategy
+## Workflows Section Strategy
 
 ```markdown
-### Skills (Prioritized for [Job Title])
+### Workflows (Prioritized for [Job Title])
 
 **Core Competencies:** [Their top 3 requirements]
 
-**Technical Skills:** [Matched to posting]
+**Technical Workflows:** [Matched to posting]
 
 **Tools & Platforms:** [What they use]
 

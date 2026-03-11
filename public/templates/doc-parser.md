@@ -1,15 +1,11 @@
 # Document Parser
 
-## Goal
->
+## Overview
 
-## What You Can Do
-- Parsing
-- Extraction
-- Layout
-- Docling
+This workflow enables advanced document parsing using **docling** - IBM's state-of-the-art document understanding library. Parse complex PDFs, Word documents, and images while preserving structure, extracting tables, figures, and handling multi-column layouts.
 
 ## How to Use
+
 1. Provide the document to parse
 2. Specify what you want to extract (text, tables, figures, etc.)
 3. I'll parse it and return structured data
@@ -21,6 +17,7 @@
 - "Parse this report preserving the document structure"
 
 ## Domain Knowledge
+
 ### docling Fundamentals
 
 ```python
@@ -267,14 +264,266 @@ def batch_parse(input_dir, output_dir, max_workers=4):
     return results
 ```
 
-## Tips
+## Best Practices
+
 1. **Use Appropriate Pipeline**: Configure for your document type
 2. **Handle Large Documents**: Process in chunks if needed
 3. **Verify Table Extraction**: Complex tables may need review
 4. **Check OCR Quality**: Enable OCR for scanned documents
 5. **Cache Results**: Store parsed documents for reuse
 
+## Common Patterns
+
+### Academic Paper Parser
+```python
+def parse_academic_paper(pdf_path):
+    """Parse academic paper structure."""
+    
+    converter = DocumentConverter()
+    result = converter.convert(pdf_path)
+    doc = result.document
+    
+    paper = {
+        'title': None,
+        'abstract': None,
+        'sections': [],
+        'references': [],
+        'tables': [],
+        'figures': []
+    }
+    
+    current_section = None
+    
+    for element in doc.iterate_items():
+        text = element.text if hasattr(element, 'text') else ''
+        
+        if element.type == 'title':
+            paper['title'] = text
+        
+        elif element.type == 'heading':
+            if 'abstract' in text.lower():
+                current_section = 'abstract'
+            elif 'reference' in text.lower():
+                current_section = 'references'
+            else:
+                paper['sections'].append({
+                    'title': text,
+                    'content': ''
+                })
+                current_section = 'section'
+        
+        elif element.type == 'paragraph':
+            if current_section == 'abstract':
+                paper['abstract'] = text
+            elif current_section == 'section' and paper['sections']:
+                paper['sections'][-1]['content'] += text + '\n'
+        
+        elif element.type == 'table':
+            paper['tables'].append({
+                'caption': element.caption if hasattr(element, 'caption') else None,
+                'data': element.export_to_dataframe() if hasattr(element, 'export_to_dataframe') else None
+            })
+    
+    return paper
+```
+
+### Report to Structured Data
+```python
+def parse_business_report(doc_path):
+    """Parse business report into structured format."""
+    
+    converter = DocumentConverter()
+    result = converter.convert(doc_path)
+    doc = result.document
+    
+    report = {
+        'metadata': {
+            'title': None,
+            'date': None,
+            'author': None
+        },
+        'executive_summary': None,
+        'sections': [],
+        'key_metrics': [],
+        'recommendations': []
+    }
+    
+    # Parse document structure
+    for element in doc.iterate_items():
+        # Implement parsing logic based on document structure
+        pass
+    
+    return report
+```
+
+## Examples
+
+### Example 1: Parse Financial Report
+```python
+from docling.document_converter import DocumentConverter
+
+def parse_financial_report(pdf_path):
+    """Extract structured data from financial report."""
+    
+    converter = DocumentConverter()
+    result = converter.convert(pdf_path)
+    doc = result.document
+    
+    financial_data = {
+        'income_statement': None,
+        'balance_sheet': None,
+        'cash_flow': None,
+        'notes': []
+    }
+    
+    # Extract tables
+    tables = []
+    for element in doc.iterate_items():
+        if element.type == 'table':
+            table_df = element.export_to_dataframe()
+            
+            # Identify table type
+            if 'revenue' in str(table_df).lower() or 'income' in str(table_df).lower():
+                financial_data['income_statement'] = table_df
+            elif 'asset' in str(table_df).lower() or 'liabilities' in str(table_df).lower():
+                financial_data['balance_sheet'] = table_df
+            elif 'cash' in str(table_df).lower():
+                financial_data['cash_flow'] = table_df
+            else:
+                tables.append(table_df)
+    
+    # Extract markdown for notes
+    financial_data['markdown'] = doc.export_to_markdown()
+    
+    return financial_data
+
+report = parse_financial_report('annual_report.pdf')
+print("Income Statement:")
+print(report['income_statement'])
+```
+
+### Example 2: Technical Documentation Parser
+```python
+from docling.document_converter import DocumentConverter
+
+def parse_technical_docs(doc_path):
+    """Parse technical documentation."""
+    
+    converter = DocumentConverter()
+    result = converter.convert(doc_path)
+    doc = result.document
+    
+    documentation = {
+        'title': None,
+        'version': None,
+        'sections': [],
+        'code_blocks': [],
+        'diagrams': []
+    }
+    
+    current_section = None
+    
+    for element in doc.iterate_items():
+        if element.type == 'title':
+            documentation['title'] = element.text
+        
+        elif element.type == 'heading':
+            current_section = {
+                'title': element.text,
+                'level': element.level if hasattr(element, 'level') else 1,
+                'content': []
+            }
+            documentation['sections'].append(current_section)
+        
+        elif element.type == 'code':
+            if current_section:
+                current_section['content'].append({
+                    'type': 'code',
+                    'content': element.text
+                })
+            documentation['code_blocks'].append(element.text)
+        
+        elif element.type == 'picture':
+            documentation['diagrams'].append({
+                'page': element.prov[0].page_no if element.prov else None,
+                'caption': element.caption if hasattr(element, 'caption') else None
+            })
+    
+    return documentation
+
+docs = parse_technical_docs('api_documentation.pdf')
+print(f"Title: {docs['title']}")
+print(f"Sections: {len(docs['sections'])}")
+```
+
+### Example 3: Contract Analysis
+```python
+from docling.document_converter import DocumentConverter
+
+def analyze_contract(pdf_path):
+    """Parse contract document for key clauses."""
+    
+    converter = DocumentConverter()
+    result = converter.convert(pdf_path)
+    doc = result.document
+    
+    contract = {
+        'parties': [],
+        'clauses': [],
+        'dates': [],
+        'amounts': [],
+        'full_text': doc.export_to_text()
+    }
+    
+    import re
+    
+    # Extract dates
+    date_pattern = r'\b\d{1,2}[/-]\d{1,2}[/-]\d{2,4}\b|\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]* \d{1,2},? \d{4}\b'
+    contract['dates'] = re.findall(date_pattern, contract['full_text'], re.IGNORECASE)
+    
+    # Extract monetary amounts
+    amount_pattern = r'\$[\d,]+(?:\.\d{2})?|\b\d+(?:,\d{3})*(?:\.\d{2})?\s*(?:USD|dollars)\b'
+    contract['amounts'] = re.findall(amount_pattern, contract['full_text'], re.IGNORECASE)
+    
+    # Parse sections as clauses
+    for element in doc.iterate_items():
+        if element.type == 'heading':
+            contract['clauses'].append({
+                'title': element.text,
+                'content': ''
+            })
+        elif element.type == 'paragraph' and contract['clauses']:
+            contract['clauses'][-1]['content'] += element.text + '\n'
+    
+    return contract
+
+contract_data = analyze_contract('agreement.pdf')
+print(f"Key dates: {contract_data['dates']}")
+print(f"Amounts: {contract_data['amounts']}")
+```
+
 ## Limitations
-- This is an AI assistant, not a replacement for professional expertise
-- Always verify important outputs independently
-- For high-stakes decisions, consult domain experts
+
+- Very large documents may require chunking
+- Handwritten content needs OCR preprocessing
+- Complex nested tables may need manual review
+- Some PDF types (encrypted) not supported
+- GPU recommended for best performance
+
+## Installation
+
+```bash
+pip install docling
+
+# For full functionality
+pip install docling[all]
+
+# For OCR support
+pip install docling[ocr]
+```
+
+## Resources
+
+- [docling GitHub](https://github.com/DS4SD/docling)
+- [Documentation](https://ds4sd.github.io/docling/)
+- [IBM Research Blog](https://research.ibm.com/)

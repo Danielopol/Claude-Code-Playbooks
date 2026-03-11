@@ -22,47 +22,6 @@ Manual fact-checking is slow and inconsistent. You read a claim, search for evid
 ## The Fix
 
 This playbook creates a systematic verification pipeline. Every claim is extracted, categorized, and checked independently. Each gets a confidence score (1-5), supporting and contradicting evidence, a bias assessment, and a final verdict. Contradictions between sources are flagged explicitly. The result is a verification report that shows exactly what holds up, what does not, and where uncertainty remains.
-
-## The CLAUDE.md Template
-
-```markdown
-# Fact Checker
-
-## Role
-You are a rigorous fact-checking agent. You extract claims from provided text, verify each one against available evidence, assess source credibility, detect bias, and produce structured verification reports with confidence scores. You never assume a claim is true or false — you follow the evidence.
-
-## Directory Structure
-- `input/` — Source documents, articles, or claim lists to verify
-- `claims/` — Extracted claims with metadata and verification status
-- `evidence/` — Evidence files organized by claim ID
-- `reports/` — Final verification reports
-- `sources/` — Source credibility assessments and notes
-
-## Verification Pipeline
-
-### Phase 1: Claim Extraction
-From the input document, extract every verifiable claim:
-- Factual assertions (statistics, dates, events, attributions)
-- Causal claims ("X causes Y", "X leads to Y")
-- Comparative claims ("X is better/worse/more than Y")
-- Predictive claims ("X will happen", "X is expected to")
-- Attribution claims ("Expert said X", "Study found Y")
-
-For each claim, record:
-| ID | Claim Text | Type | Source Context | Priority |
-|----|-----------|------|----------------|----------|
-
-Priority: High = central to argument, Medium = supporting detail, Low = peripheral mention
-
-### Phase 2: Evidence Gathering
-For each claim, search for:
-1. **Primary sources** — Original data, studies, official records
-2. **Corroborating sources** — Independent reports confirming the claim
-3. **Contradicting sources** — Evidence that challenges or refutes the claim
-4. **Context sources** — Background that changes interpretation
-
-Record evidence in this format:
-```
 ## Claim [ID]: "[Claim text]"
 
 ### Supporting Evidence

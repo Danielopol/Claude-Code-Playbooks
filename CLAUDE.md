@@ -43,7 +43,13 @@ npm run lint    # Run ESLint
 
 ## Adding a New Playbook
 
-Create a new `.mdx` file in `src/content/playbooks/` with this structure:
+### 1. Create the template file
+
+Create `public/templates/{slug}.md` with the raw CLAUDE.md template content — no frontmatter, no wrapper, just the template text that users will download.
+
+### 2. Create the MDX file
+
+Create `src/content/playbooks/{slug}.mdx` where `{slug}` matches the template filename:
 
 ```mdx
 ---
@@ -57,12 +63,32 @@ tags: ["tag1", "tag2"]
 createdAt: "2026-01-09"
 ---
 
-Content with the CLAUDE.md template in a markdown code block.
+## What This Does
+
+Brief explanation of what this playbook helps the user accomplish.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+...setup instructions...
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file...
+
+### Step 3: Start Working
+
+...how to start using it...
 ```
 
-The first markdown code block in the content is automatically extracted as the copyable CLAUDE.md template.
+### Important rules for MDX content
 
-**Important:** When creating a new playbook MDX file, you must also create a corresponding template file at `public/templates/{slug}.md` where `{slug}` matches the MDX filename (without extension). This template file should contain only the raw content of the first markdown code block from the MDX file (the CLAUDE.md template) — no frontmatter, no surrounding content, just the template text. The build system checks `public/templates/{slug}.md` first before falling back to extracting from the MDX code block.
+- **DO NOT** include a "The CLAUDE.md Template" section or embed the template content in the MDX file. The template is served separately from `public/templates/{slug}.md` via the Download/Copy buttons on the playbook page. Embedding it inline is redundant.
+- The MDX file should only contain: a "What This Does" overview, setup instructions (Quick Start), and optionally Tips, Examples, or Troubleshooting sections.
+- The build system reads the template from `public/templates/{slug}.md`. It falls back to extracting from the first markdown code block in the MDX only if no template file exists — but prefer always creating the separate template file.
 
 ## Adding a Blog Post from URL
 

@@ -1,15 +1,11 @@
-# MCP Server Hub Manager
+# Mcp Hub
 
-## Goal
-Access 1200+ AI Agent tools via Model Context Protocol (MCP)
+## Overview
 
-## What You Can Do
-- Mcp
-- Hub
-- Tools
-- Integration
+This workflow provides access to 1200+ MCP (Model Context Protocol) servers - standardized tools that extend AI capabilities. Connect Claude to filesystems, databases, APIs, and document processing tools.
 
 ## How to Use
+
 1. Describe what you want to accomplish
 2. Provide any required input data or files
 3. I'll execute the appropriate operations
@@ -21,6 +17,8 @@ Access 1200+ AI Agent tools via Model Context Protocol (MCP)
 - "Run document processing tools"
 
 ## Domain Knowledge
+
+
 ### MCP Architecture
 
 ```
@@ -77,13 +75,22 @@ Browse available servers:
 # search_files(query) - Search for files
 ```
 
-## Tips
+
+## Best Practices
+
 1. **Only enable MCP servers you need (security)**
 2. **Use official servers when available**
 3. **Check server permissions before enabling**
 4. **Combine multiple servers for complex workflows**
 
-## Limitations
-- This is an AI assistant, not a replacement for professional expertise
-- Always verify important outputs independently
-- For high-stakes decisions, consult domain experts
+## Installation
+
+```bash
+# Install required dependencies
+pip install python-docx openpyxl python-pptx reportlab jinja2
+```
+
+## Resources
+
+- [MCP Servers Repository](https://github.com/modelcontextprotocol/servers)
+- [Claude Code Hub](https://github.com/claude-code/workflows)

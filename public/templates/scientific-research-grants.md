@@ -898,7 +898,7 @@ For detailed resubmission guidance, refer to `references/resubmission_strategies
 
 **Critical Tip**: Never wait until the deadline. Portals crash, files corrupt, and emergencies happen. Aim for 48 hours early.
 
-## Integration with Other Skills
+## Integration with Other Workflows
 
 This skill works effectively with:
 - **Scientific Writing**: For clear, compelling prose

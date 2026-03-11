@@ -1,15 +1,11 @@
-# Batch Document Processor
+# Batch Processor
 
-## Goal
-Process multiple documents in bulk with parallel execution
+## Overview
 
-## What You Can Do
-- Batch
-- Processor
-- Bulk
-- Automation
+This workflow enables efficient bulk processing of documents - convert, transform, extract, or analyze hundreds of files with parallel execution and progress tracking.
 
 ## How to Use
+
 1. Describe what you want to accomplish
 2. Provide any required input data or files
 3. I'll execute the appropriate operations
@@ -21,6 +17,8 @@ Process multiple documents in bulk with parallel execution
 - "Mass update document headers/footers"
 
 ## Domain Knowledge
+
+
 ### Batch Processing Patterns
 
 ```
@@ -105,13 +103,22 @@ class BatchProcessor:
             self._save_checkpoint()  # Resume-safe
 ```
 
-## Tips
+
+## Best Practices
+
 1. **Use progress bars (tqdm) for user feedback**
 2. **Implement checkpointing for long jobs**
 3. **Set reasonable worker counts (CPU cores)**
 4. **Log failures for later review**
 
-## Limitations
-- This is an AI assistant, not a replacement for professional expertise
-- Always verify important outputs independently
-- For high-stakes decisions, consult domain experts
+## Installation
+
+```bash
+# Install required dependencies
+pip install python-docx openpyxl python-pptx reportlab jinja2
+```
+
+## Resources
+
+- [Custom Repository](https://github.com/claude-code/workflows)
+- [Claude Code Hub](https://github.com/claude-code/workflows)

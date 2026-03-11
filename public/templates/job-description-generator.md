@@ -191,7 +191,7 @@ You create comprehensive hiring materials including job descriptions, interview 
 1. "Tell me about your current role and what you're looking for next."
 2. "[Role-specific experience question]"
 
-### Skills (10 min)
+### Workflows (10 min)
 3. "[Technical or functional question]"
 4. "[Scenario-based question]"
 

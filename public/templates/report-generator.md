@@ -1,15 +1,11 @@
-# Automated Report Generator
+# Report Generator
 
-## Goal
-Generate professional data reports with charts, tables, and visualizations
+## Overview
 
-## What You Can Do
-- Report
-- Generator
-- Data
-- Visualization
+This workflow enables automatic generation of professional data reports. Create dashboards, KPI summaries, and analytical reports with charts, tables, and insights from your data.
 
 ## How to Use
+
 1. Provide data (CSV, Excel, JSON, or describe it)
 2. Specify the type of report needed
 3. I'll generate a formatted report with visualizations
@@ -21,6 +17,7 @@ Generate professional data reports with charts, tables, and visualizations
 - "Produce a data analysis report"
 
 ## Domain Knowledge
+
 ### Report Components
 
 ```python
@@ -104,7 +101,53 @@ def generate_html_report(data, title):
     return html
 ```
 
-## Limitations
-- This is an AI assistant, not a replacement for professional expertise
-- Always verify important outputs independently
-- For high-stakes decisions, consult domain experts
+## Example: Sales Report
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+
+def create_sales_report(csv_path, output_path):
+    # Read data
+    df = pd.read_csv(csv_path)
+    
+    # Calculate metrics
+    metrics = {
+        'total_revenue': df['amount'].sum(),
+        'total_orders': len(df),
+        'avg_order': df['amount'].mean(),
+        'top_product': df.groupby('product')['amount'].sum().idxmax()
+    }
+    
+    # Create visualizations
+    fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+    
+    # Revenue by product
+    df.groupby('product')['amount'].sum().plot(
+        kind='bar', ax=axes[0,0], title='Revenue by Product'
+    )
+    
+    # Monthly trend
+    df.groupby('month')['amount'].sum().plot(
+        kind='line', ax=axes[0,1], title='Monthly Revenue'
+    )
+    
+    plt.tight_layout()
+    plt.savefig(output_path.replace('.html', '_charts.png'))
+    
+    # Generate HTML report
+    html = generate_html_report(metrics, 'Sales Report')
+    
+    with open(output_path, 'w') as f:
+        f.write(html)
+    
+    return output_path
+
+create_sales_report('sales_data.csv', 'sales_report.html')
+```
+
+## Resources
+
+- [Matplotlib](https://matplotlib.org/)
+- [Plotly](https://plotly.com/)
+- [ReportLab](https://www.reportlab.com/)

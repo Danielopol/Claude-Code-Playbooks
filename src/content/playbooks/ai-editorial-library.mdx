@@ -19,28 +19,6 @@ This playbook creates a personalized editorial library where AI personas (based 
 - Claude Code installed and configured
 - A dedicated project folder for your knowledge library
 - Source material: notes, bookmarks, YouTube summaries, article highlights, or any content you want to synthesize
-
-## The CLAUDE.md Template
-
-Copy this into a `CLAUDE.md` file in your library project folder:
-
-```markdown
-# Editorial Library
-
-## Goal
-Generate insightful editorials by synthesizing atomic notes through configurable personas. Each editorial should surface unexpected connections between ideas and present them in the persona's unique voice.
-
-## Directory Structure
-- `notes/` — Atomic notes with YAML frontmatter (tags, source, date)
-- `personas/` — Persona configuration files (one .md per persona)
-- `editorials/` — Generated editorials (YYYY-MM-DD_persona_topic-slug.md)
-- `responses/` — Persona responses to other editorials
-- `tags/` — Auto-generated tag index files
-
-## Note Format
-Each note in `notes/` should follow this structure:
-```
----
 title: "Note Title"
 source: "YouTube video / Article / Book / etc."
 sourceUrl: "https://..."

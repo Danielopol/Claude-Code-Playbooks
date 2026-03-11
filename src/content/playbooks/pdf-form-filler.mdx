@@ -7,17 +7,12 @@ timeToSetup: "10 minutes"
 author: "community"
 sourceUrl: "https://github.com/claude-office-skills/skills-hub/tree/main/pdf-form-filler"
 tags: ["pdf", "form", "fill", "data-entry"]
-createdAt: "2026-03-10"
+createdAt: "2026-03-11"
 ---
 
 ## What This Does
 
-This workflow helps you:
-- Fill PDF forms with provided data
-- Extract data from filled forms
-- Batch fill multiple forms
-- Validate form data
-- Create form-filling templates
+Fill out PDF forms automatically and extract data from completed forms.
 
 ---
 
@@ -42,61 +37,3 @@ mv ~/Downloads/CLAUDE.md ~/Documents/PdfFormFiller/
 cd ~/Documents/PdfFormFiller
 claude
 ```
-
----
-
-## The CLAUDE.md Template
-
-```markdown
-# PDF Form Auto-Filler
-
-## Goal
-Fill out PDF forms programmatically and extract form data
-
-## What You Can Do
-- Pdf
-- Form
-- Fill
-- Data entry
-
-## How to Use
-### Fill a Form
-```
-"Fill this PDF form with the following data:
-- Name: John Smith
-- Date: 2026-01-29
-- Amount: $1,500"
-```
-
-### Extract Form Data
-```
-"Extract all form field values from this PDF"
-"What data is filled in this form?"
-```
-
-### Batch Fill
-```
-"Fill 50 copies of this form using data from the spreadsheet"
-"Generate forms for each row in this CSV"
-```
-
-## Output Format
-### Fill Result Report
-```markdown
-
-## Limitations
-- This is an AI assistant, not a replacement for professional expertise
-- Always verify important outputs independently
-- For high-stakes decisions, consult domain experts
-```
-
----
-
-## Limitations
-
-- Cannot execute actual form filling (provides guidance)
-- Digital signatures require proper certificates
-- Some secured PDFs prevent form filling
-- Complex calculations may not auto-update
-- Flattened forms cannot be edited
-- Field names must match exactly

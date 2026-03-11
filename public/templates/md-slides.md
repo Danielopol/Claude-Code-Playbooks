@@ -1,14 +1,11 @@
-# Markdown to Slides Converter
+# Markdown Slides
 
-## Goal
->
+## Overview
 
-## What You Can Do
-- Markdown
-- Slides
-- Marp
+This workflow enables creation of presentations from pure Markdown using **Marp**. Write slides in familiar Markdown syntax and export to PDF, PPTX, or HTML with professional themes.
 
 ## How to Use
+
 1. Write or provide Markdown content
 2. I'll format it for Marp with proper directives
 3. Export to your preferred format (PDF/PPTX/HTML)
@@ -20,11 +17,131 @@
 - "Generate PDF slides from this outline"
 
 ## Domain Knowledge
+
 ### Basic Syntax
 
 ```markdown
+---
+marp: true
+---
 
-## Limitations
-- This is an AI assistant, not a replacement for professional expertise
-- Always verify important outputs independently
-- For high-stakes decisions, consult domain experts
+# First Slide
+
+Content here
+
+---
+
+# Second Slide
+
+- Bullet 1
+- Bullet 2
+```
+
+### Themes
+
+```markdown
+---
+marp: true
+theme: default  # default, gaia, uncover
+---
+```
+
+### Directives
+
+```markdown
+---
+marp: true
+theme: gaia
+class: lead        # Centered title
+paginate: true     # Page numbers
+header: 'Header'   # Header text
+footer: 'Footer'   # Footer text
+backgroundColor: #fff
+---
+```
+
+### Images
+
+```markdown
+![width:500px](image.png)
+![bg](background.jpg)
+![bg left:40%](sidebar.jpg)
+```
+
+### Columns
+
+```markdown
+<div class="columns">
+<div>
+
+## Left
+
+Content
+
+</div>
+<div>
+
+## Right
+
+Content
+
+</div>
+</div>
+```
+
+## Example
+
+```markdown
+---
+marp: true
+theme: gaia
+paginate: true
+---
+
+<!-- _class: lead -->
+
+# Project Update
+
+Q4 2024 Review
+
+---
+
+# Highlights
+
+- Revenue: +25%
+- Users: +50%
+- NPS: 72
+
+---
+
+# Roadmap
+
+| Q1 | Q2 | Q3 | Q4 |
+|----|----|----|-----|
+| MVP | Beta | Launch | Scale |
+
+---
+
+<!-- _class: lead -->
+
+# Thank You!
+
+questions@company.com
+```
+
+## CLI Usage
+
+```bash
+# Install
+npm install -g @marp-team/marp-cli
+
+# Convert
+marp slides.md -o presentation.pdf
+marp slides.md -o presentation.pptx
+marp slides.md -o presentation.html
+```
+
+## Resources
+
+- [Marp Documentation](https://marp.app/)
+- [GitHub](https://github.com/marp-team/marp)

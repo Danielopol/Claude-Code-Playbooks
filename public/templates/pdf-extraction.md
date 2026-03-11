@@ -1,15 +1,11 @@
-# PDF Text & Table Extractor
+# PDF Extraction
 
-## Goal
-Extract text, tables, and metadata from PDFs using pdfplumber
+## Overview
 
-## What You Can Do
-- Pdf
-- Extraction
-- Text
-- Tables
+This workflow enables precise extraction of text, tables, and metadata from PDF documents using **pdfplumber** - the go-to library for PDF data extraction. Unlike basic PDF readers, pdfplumber provides detailed character-level positioning, accurate table detection, and visual debugging.
 
 ## How to Use
+
 1. Provide the PDF file you want to extract from
 2. Specify what you need: text, tables, images, or metadata
 3. I'll generate pdfplumber code and execute it
@@ -21,6 +17,7 @@ Extract text, tables, and metadata from PDFs using pdfplumber
 - "Convert this PDF table to CSV/Excel"
 
 ## Domain Knowledge
+
 ### pdfplumber Fundamentals
 
 ```python
@@ -230,14 +227,253 @@ with pdfplumber.open('document.pdf') as pdf:
         print(f"  Rotation: {page.rotation}")
 ```
 
-## Tips
+## Best Practices
+
 1. **Debug Visually**: Use `to_image()` to understand PDF structure
 2. **Tune Table Settings**: Adjust tolerances for your specific PDF
 3. **Handle Scanned PDFs**: Use OCR first (this workflow is for native text)
 4. **Process Page by Page**: For large PDFs, avoid loading all at once
 5. **Check for Text**: Some PDFs are images - verify text exists
 
+## Common Patterns
+
+### Extract All Tables to DataFrames
+```python
+import pandas as pd
+
+def pdf_tables_to_dataframes(pdf_path):
+    """Extract all tables from PDF as pandas DataFrames."""
+    dfs = []
+    
+    with pdfplumber.open(pdf_path) as pdf:
+        for i, page in enumerate(pdf.pages):
+            tables = page.extract_tables()
+            
+            for j, table in enumerate(tables):
+                if table and len(table) > 1:
+                    # First row as header
+                    df = pd.DataFrame(table[1:], columns=table[0])
+                    df['_page'] = i + 1
+                    df['_table'] = j + 1
+                    dfs.append(df)
+    
+    return dfs
+```
+
+### Extract Specific Region
+```python
+def extract_invoice_amount(pdf_path):
+    """Extract amount from typical invoice layout."""
+    with pdfplumber.open(pdf_path) as pdf:
+        page = pdf.pages[0]
+        
+        # Search for "Total" and get nearby numbers
+        words = page.extract_words()
+        
+        for i, word in enumerate(words):
+            if 'total' in word['text'].lower():
+                # Look at next few words
+                for next_word in words[i+1:i+5]:
+                    text = next_word['text'].replace(',', '').replace('$', '')
+                    try:
+                        return float(text)
+                    except ValueError:
+                        continue
+    
+    return None
+```
+
+### Multi-column Layout
+```python
+def extract_columns(page, num_columns=2):
+    """Extract text from multi-column layout."""
+    width = page.width
+    col_width = width / num_columns
+    
+    columns = []
+    for i in range(num_columns):
+        x0 = i * col_width
+        x1 = (i + 1) * col_width
+        
+        cropped = page.crop((x0, 0, x1, page.height))
+        columns.append(cropped.extract_text())
+    
+    return columns
+```
+
+## Examples
+
+### Example 1: Financial Report Table Extraction
+```python
+import pdfplumber
+import pandas as pd
+
+def extract_financial_tables(pdf_path):
+    """Extract tables from financial report and save to Excel."""
+    
+    with pdfplumber.open(pdf_path) as pdf:
+        all_tables = []
+        
+        for page_num, page in enumerate(pdf.pages):
+            # Debug: save table visualization
+            im = page.to_image()
+            im.debug_tablefinder()
+            im.save(f'debug_page_{page_num+1}.png')
+            
+            # Extract tables
+            tables = page.extract_tables({
+                "vertical_strategy": "lines",
+                "horizontal_strategy": "lines",
+                "snap_tolerance": 5,
+            })
+            
+            for table in tables:
+                if table and len(table) > 1:
+                    # Clean data
+                    clean_table = []
+                    for row in table:
+                        clean_row = [cell.strip() if cell else '' for cell in row]
+                        clean_table.append(clean_row)
+                    
+                    df = pd.DataFrame(clean_table[1:], columns=clean_table[0])
+                    df['Source Page'] = page_num + 1
+                    all_tables.append(df)
+        
+        # Save to Excel with multiple sheets
+        with pd.ExcelWriter('extracted_tables.xlsx') as writer:
+            for i, df in enumerate(all_tables):
+                df.to_excel(writer, sheet_name=f'Table_{i+1}', index=False)
+        
+        return all_tables
+
+tables = extract_financial_tables('annual_report.pdf')
+print(f"Extracted {len(tables)} tables")
+```
+
+### Example 2: Invoice Data Extraction
+```python
+import pdfplumber
+import re
+from datetime import datetime
+
+def extract_invoice_data(pdf_path):
+    """Extract structured data from invoice PDF."""
+    
+    data = {
+        'invoice_number': None,
+        'date': None,
+        'total': None,
+        'line_items': []
+    }
+    
+    with pdfplumber.open(pdf_path) as pdf:
+        page = pdf.pages[0]
+        text = page.extract_text()
+        
+        # Extract invoice number
+        inv_match = re.search(r'Invoice\s*#?\s*:?\s*(\w+)', text, re.IGNORECASE)
+        if inv_match:
+            data['invoice_number'] = inv_match.group(1)
+        
+        # Extract date
+        date_match = re.search(r'Date\s*:?\s*(\d{1,2}[/-]\d{1,2}[/-]\d{2,4})', text)
+        if date_match:
+            data['date'] = date_match.group(1)
+        
+        # Extract total
+        total_match = re.search(r'Total\s*:?\s*\$?([\d,]+\.?\d*)', text, re.IGNORECASE)
+        if total_match:
+            data['total'] = float(total_match.group(1).replace(',', ''))
+        
+        # Extract line items from table
+        tables = page.extract_tables()
+        for table in tables:
+            if table and any('description' in str(row).lower() for row in table[:2]):
+                # Found line items table
+                for row in table[1:]:  # Skip header
+                    if row and len(row) >= 3:
+                        data['line_items'].append({
+                            'description': row[0],
+                            'quantity': row[1] if len(row) > 1 else None,
+                            'amount': row[-1]
+                        })
+    
+    return data
+
+invoice = extract_invoice_data('invoice.pdf')
+print(f"Invoice #{invoice['invoice_number']}")
+print(f"Total: ${invoice['total']}")
+```
+
+### Example 3: Resume/CV Parser
+```python
+import pdfplumber
+
+def parse_resume(pdf_path):
+    """Extract structured sections from resume."""
+    
+    with pdfplumber.open(pdf_path) as pdf:
+        full_text = ''
+        for page in pdf.pages:
+            full_text += (page.extract_text() or '') + '\n'
+        
+        # Common resume sections
+        sections = {
+            'contact': '',
+            'summary': '',
+            'experience': '',
+            'education': '',
+            'workflows': ''
+        }
+        
+        # Split by common headers
+        import re
+        section_patterns = {
+            'summary': r'(summary|objective|profile)',
+            'experience': r'(experience|employment|work history)',
+            'education': r'(education|academic)',
+            'workflows': r'(workflows|competencies|technical)'
+        }
+        
+        lines = full_text.split('\n')
+        current_section = 'contact'
+        
+        for line in lines:
+            line_lower = line.lower().strip()
+            
+            # Check if line is a section header
+            for section, pattern in section_patterns.items():
+                if re.match(pattern, line_lower):
+                    current_section = section
+                    break
+            
+            sections[current_section] += line + '\n'
+        
+        return sections
+
+resume = parse_resume('resume.pdf')
+print("Workflows:", resume['workflows'])
+```
+
 ## Limitations
-- This is an AI assistant, not a replacement for professional expertise
-- Always verify important outputs independently
-- For high-stakes decisions, consult domain experts
+
+- Cannot extract from scanned/image PDFs (use OCR first)
+- Complex layouts may need manual tuning
+- Some PDF encryption types not supported
+- Embedded fonts may affect text extraction
+- No direct PDF editing capability
+
+## Installation
+
+```bash
+pip install pdfplumber
+
+# For image debugging (optional)
+pip install Pillow
+```
+
+## Resources
+
+- [pdfplumber Documentation](https://github.com/jsvine/pdfplumber)
+- [Table Extraction Guide](https://github.com/jsvine/pdfplumber#extracting-tables)
+- [Visual Debugging](https://github.com/jsvine/pdfplumber#visual-debugging)

@@ -7,17 +7,12 @@ timeToSetup: "10 minutes"
 author: "community"
 sourceUrl: "https://github.com/claude-office-skills/skills-hub/tree/main/crm-automation"
 tags: ["crm", "hubspot", "salesforce", "automation", "lead-management"]
-createdAt: "2026-03-10"
+createdAt: "2026-03-11"
 ---
 
 ## What This Does
 
-This workflow covers:
-- Lead capture and enrichment automation
-- Deal stage progression workflows
-- Multi-CRM data synchronization
-- Automated follow-up sequences
-- Sales analytics and reporting
+Automate CRM workflows for HubSpot, Salesforce, and Pipedrive including lead management, deal tracking, pipeline automation, and multi-CRM synchronization. Based on n8n workflow templates.
 
 ---
 
@@ -42,65 +37,3 @@ mv ~/Downloads/CLAUDE.md ~/Documents/CrmAutomation/
 cd ~/Documents/CrmAutomation
 claude
 ```
-
----
-
-## The CLAUDE.md Template
-
-```markdown
-# CRM Automation
-
-## Goal
-CRM workflow automation for HubSpot, Salesforce, Pipedrive - lead management, deal tracking, and multi-CRM synchronization
-
-## What You Can Do
-- Crm
-- Hubspot
-- Salesforce
-- Automation
-- Lead management
-
-## Tips
-### Data Hygiene
-
-```yaml
-data_hygiene_rules:
-  - deduplicate: weekly
-    method: email_match + company_fuzzy_match
-  
-  - validate_emails: on_create
-    action: remove_invalid
-  
-  - enrich_missing: daily
-    fields: [company, title, linkedin]
-  
-  - archive_stale: monthly
-    criteria: no_activity > 180_days
-    action: move_to_archive
-```
-
-### Security
-
-```yaml
-security_practices:
-  - api_keys: rotate_quarterly
-  - access_control: role_based
-  - audit_log: all_changes
-  - pii_handling: encrypt_at_rest
-  - gdpr_compliance: consent_tracking
-```
-
-## Limitations
-- This is an AI assistant, not a replacement for professional expertise
-- Always verify important outputs independently
-- For high-stakes decisions, consult domain experts
-```
-
----
-
-## Tips
-
-- Provide clear context about what you want to accomplish
-- Be specific about your requirements and constraints
-- Ask follow-up questions to refine the output
-- Review and customize the generated content for your needs

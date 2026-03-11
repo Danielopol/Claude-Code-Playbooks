@@ -338,7 +338,7 @@ When to pivot vs. persist:
 
 ## MY SITUATION
 
-- Skills: [list]
+- Workflows: [list]
 - Capital: [$]
 - Time: [hours/week]
 - Background: [experience]

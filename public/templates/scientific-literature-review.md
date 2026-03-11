@@ -533,26 +533,26 @@ python scripts/generate_pdf.py crispr_sickle_cell_review.md \
 # 8. Review final PDF and markdown outputs
 ```
 
-## Integration with Other Skills
+## Integration with Other Workflows
 
 This skill works seamlessly with other scientific skills:
 
-### Database Access Skills
+### Database Access Workflows
 - **gget**: PubMed, bioRxiv, COSMIC, AlphaFold, Ensembl, UniProt
 - **bioservices**: ChEMBL, KEGG, Reactome, UniProt, PubChem
 - **datacommons-client**: Demographics, economics, health statistics
 
-### Analysis Skills
+### Analysis Workflows
 - **pydeseq2**: RNA-seq differential expression (for methods sections)
 - **scanpy**: Single-cell analysis (for methods sections)
 - **anndata**: Single-cell data (for methods sections)
 - **biopython**: Sequence analysis (for background sections)
 
-### Visualization Skills
+### Visualization Workflows
 - **matplotlib**: Generate figures and plots for review
 - **seaborn**: Statistical visualizations
 
-### Writing Skills
+### Writing Workflows
 - **brand-guidelines**: Apply institutional branding to PDF
 - **internal-comms**: Adapt review for different audiences
 

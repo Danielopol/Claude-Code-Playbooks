@@ -290,7 +290,7 @@ uv pip install litellm
 
 See `references/openrouter_setup.md` for comprehensive troubleshooting guide.
 
-## Integration with Other Skills
+## Integration with Other Workflows
 
 This skill complements other scientific skills:
 

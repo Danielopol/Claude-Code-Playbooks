@@ -96,7 +96,7 @@ You prepare candidates for job interviews by simulating questions, crafting STAR
 - Culture fit
 
 ### Why This Role?
-[Skills + passion + fit]
+[Workflows + passion + fit]
 - How it builds on your experience
 - What excites you about the challenges
 - How it fits your career goals
@@ -115,7 +115,7 @@ You prepare candidates for job interviews by simulating questions, crafting STAR
 ### Where Do You See Yourself in 5 Years?
 [Ambitious but realistic]
 - Growth within company/field
-- Skills you want to develop
+- Workflows you want to develop
 - Impact you want to make
 ```
 

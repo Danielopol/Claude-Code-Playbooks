@@ -42,3 +42,7 @@ next-env.d.ts
 
 # temp files
 tmpclaude-*
+nul
+
+# demo video project (large media files)
+/demo-video/

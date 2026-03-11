@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>32 New Playbooks Just Dropped — claudecodehq.com</title>
+<style>
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --bg-primary: #0d1117;
+    --bg-card: #161b22;
+    --bg-card-hover: #1c2129;
+    --bg-category: #12161d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    --border: #30363d;
+    --border-hover: #484f58;
+    --accent-orange: #f97316;
+    --accent-orange-dim: rgba(249, 115, 22, 0.15);
+    --accent-cyan: #22d3ee;
+    --accent-cyan-dim: rgba(34, 211, 238, 0.10);
+    --gradient-orange: linear-gradient(135deg, #f97316, #fb923c);
+    --gradient-cyan: linear-gradient(135deg, #22d3ee, #67e8f9);
+  }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Subtle background pattern */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(249, 115, 22, 0.08), transparent),
+      radial-gradient(ellipse 60% 40% at 80% 0%, rgba(34, 211, 238, 0.05), transparent);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 48px 40px 40px;
+  }
+
+  /* ── Header ── */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent-orange-dim);
+    border: 1px solid rgba(249, 115, 22, 0.3);
+    color: var(--accent-orange);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .badge::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background: var(--accent-orange);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .header h1 {
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 14px;
+    background: linear-gradient(135deg, #e6edf3 30%, #f97316 70%, #22d3ee 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header .subtitle {
+    font-size: 17px;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .header .subtitle a {
+    color: var(--accent-cyan);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .header .subtitle .source {
+    color: var(--text-muted);
+    font-size: 14px;
+    display: block;
+    margin-top: 4px;
+  }
+
+  .stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .stat-number {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .stat-number.orange { color: var(--accent-orange); }
+  .stat-number.cyan { color: var(--accent-cyan); }
+
+  /* ── Divider ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0 0 44px;
+  }
+
+  /* ── Category Section ── */
+  .category-section {
+    margin-bottom: 36px;
+  }
+
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .category-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 80px;
+    height: 2px;
+    border-radius: 1px;
+  }
+
+  .category-section:nth-child(odd) .category-header::after {
+    background: var(--gradient-orange);
+  }
+
+  .category-section:nth-child(even) .category-header::after {
+    background: var(--gradient-cyan);
+  }
+
+  .category-emoji {
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  .category-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .category-count {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: rgba(110, 118, 129, 0.12);
+    padding: 2px 9px;
+    border-radius: 100px;
+    margin-left: 2px;
+  }
+
+  /* ── Card Grid ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 12px;
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .category-section:nth-child(odd) .card::before {
+    background: var(--gradient-orange);
+  }
+
+  .category-section:nth-child(even) .card::before {
+    background: var(--gradient-cyan);
+  }
+
+  .card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .card:hover::before {
+    opacity: 1;
+  }
+
+  .card-name {
+    font-size: 14.5px;
+    font-weight: 650;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+    letter-spacing: -0.005em;
+  }
+
+  .card-desc {
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* ── Two-column category layout ── */
+  .categories-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px 48px;
+  }
+
+  /* Full-width sections for larger categories */
+  .category-section.full-width {
+    grid-column: 1 / -1;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    margin-top: 52px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.12), rgba(34, 211, 238, 0.08));
+    border: 1px solid rgba(249, 115, 22, 0.25);
+    padding: 14px 32px;
+    border-radius: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .footer-cta .count {
+    color: var(--accent-orange);
+  }
+
+  .footer-cta .domain {
+    color: var(--accent-cyan);
+  }
+
+  .footer-sub {
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .footer-sub a {
+    color: var(--accent-cyan);
+    text-decoration: none;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 1100px) {
+    .categories-grid {
+      grid-template-columns: 1fr;
+    }
+    .category-section.full-width {
+      grid-column: 1;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .container {
+      padding: 28px 16px 24px;
+    }
+    .header h1 {
+      font-size: 32px;
+    }
+    .card-grid {
+      grid-template-columns: 1fr;
+    }
+    .stats-row {
+      gap: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="badge">New Release</div>
+    <h1>&#x1F680; 32 New Playbooks Just Dropped</h1>
+    <p class="subtitle">
+      Sourced from <strong>davila7/claude-code-templates</strong> &mdash; now live on
+      <a href="https://claudecodehq.com">claudecodehq.com</a>
+      <span class="source">Copy-paste workflows for Claude Code, ready to use in seconds</span>
+    </p>
+    <div class="stats-row">
+      <div class="stat"><span class="stat-number orange">32</span> New Playbooks</div>
+      <div class="stat"><span class="stat-number cyan">8</span> Categories</div>
+      <div class="stat"><span class="stat-number">226+</span> Total Playbooks</div>
+    </div>
+  </header>
+
+  <div class="divider"></div>
+
+  <!-- Categories Grid -->
+  <div class="categories-grid">
+
+    <!-- Marketing & Content -->
+    <div class="category-section full-width">
+      <div class="category-header">
+        <span class="category-emoji">&#x1F3AF;</span>
+        <span class="category-title">Marketing &amp; Content</span>
+        <span class="category-count">7 playbooks</span>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-name">Marketing Strategy Advisor</div>
+          <div class="card-desc">GTM strategy, positioning, competitive intelligence, messaging frameworks</div>
+        </div>
+        <div class="card">
+          <div class="card-name">Marketing Attribution Analyst</div>
+          <div class="card-desc">Multi-touch attribution, campaign ROI, Bayesian modeling</div>
+        </div>
+        <div class="card">
+          <div class="card-name">App Store Optimizer</div>
+          <div class="card-desc">Apple/Google Play metadata optimization, keyword research, A/B testing</div>
+        </div>
+        <div class="card">
+          <div class="card-name">Social Media Analytics</div>
+          <div class="card-desc">Campaign performance across platforms, ROI tracking, engagement metrics</div>
+        </div>
+        <div class="card">
+          <div class="card-name">Campaign Analytics Dashboard</div>
+          <div class="card-desc">Funnel conversion, A/B test analysis, budget allocation</div>
+        </div>
+        <div class="card">
+          <div class="card-name">SEO Authority Builder</div>
+          <div class="card-desc">Backlink strategy, domain authority, link building outreach</div>
+        </div>
+        <div class="card">
+          <div class="card-name">SEO Content Planner</div>
+          <div class="card-desc">Editorial calendar, keyword clustering, content gap analysis</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sales & Revenue -->
+    <div class="category-section">
+      <div class="category-header">
+        <span class="category-emoji">&#x1F4B0;</span>
+        <span class="category-title">Sales &amp; Revenue</span>
+        <span class="category-count">5 playbooks</span>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-name">Customer Success Manager</div>
+          <div class="card-desc">Health scoring, churn prevention, NPS/CSAT, expansion revenue</div>
+        </div>
+        <div class="card">
+          <div class="card-name">Sales Engineer Toolkit</div>
+          <div class="card-desc">Technical discovery, RFP responses, demo prep, POC planning</div>
+        </div>
+        <div class="card">
+          <div class="card-name">Revenue Operations Analyst</div>
+          <div class="card-desc">Pipeline analytics, forecasting, territory planning, capacity modeling</div>
+        </div>
+        <div class="card">
+          <div class="card-name">Sales Pipeline Automator</div>
+          <div class="card-desc">Lead scoring, follow-up sequences, deal stage automation</div>
+        </div>
+        <div class="card">
+          <div class="card-name">Salesforce Expert</div>
+          <div class="card-desc">CRM configuration, workflow rules, reports, dashboards, data migration</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Executive & Strategy -->
+    <div class="category-section">
+      <div class="category-header">
+        <span class="category-emoji">&#x1F454;</span>
+        <span class="category-title">Executive &amp; Strategy</span>
+        <span class="category-count">4 playbooks</span>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-name">CEO Advisor</div>
+          <div class="card-desc">Strategic planning, board governance, capital allocation, M&amp;A evaluation</div>
+        </div>
+        <div class="card">
+          <div class="card-name">Startup Analyst</div>
+          <div class="card-desc">Market sizing (TAM/SAM/SOM), unit economics, fundraising readiness</div>
+        </div>
+        <div class="card">
+          <div class="card-name">Competitive Intelligence Analyst</div>
+          <div class="card-desc">Landscape mapping, win/loss analysis, battlecard creation</div>
+        </div>
+        <div class="card">
+          <div class="card-name">Trend Analyst</div>
+          <div class="card-desc">Emerging patterns, scenario planning, weak signal identification</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product & Project Management -->
+    <div class="category-section">
+      <div class="category-header">
+        <span class="category-emoji">&#x1F4CB;</span>
+        <span class="category-title">Product &amp; Project Management</span>
+        <span class="category-count">4 playbooks</span>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-name">Agile Product Owner</div>
+          <div class="card-desc">User stories, sprint planning, backlog grooming, velocity tracking</div>
+        </div>
+        <div class="card">
+          <div class="card-name">Scrum Master Coach</div>
+          <div class="card-desc">Sprint facilitation, retrospectives, team health, ceremony templates</div>
+        </div>
+        <div class="card">
+          <div class="card-name">Communication Excellence Coach</div>
+          <div class="card-desc">Writing coaching, tone calibration, presentation feedback</div>
+        </div>
+        <div class="card">
+          <div class="card-name">Product Requirements Generator</div>
+          <div class="card-desc">PRD creation, user story mapping, acceptance criteria</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Finance -->
+    <div class="category-section">
+      <div class="category-header">
+        <span class="category-emoji">&#x1F4CA;</span>
+        <span class="category-title">Finance</span>
+        <span class="category-count">2 playbooks</span>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-name">Financial Analyst Toolkit</div>
+          <div class="card-desc">DCF valuation, financial modeling, ratio analysis, scenario planning</div>
+        </div>
+        <div class="card">
+          <div class="card-name">Risk Manager</div>
+          <div class="card-desc">Risk assessment, Monte Carlo simulations, VaR, stress testing</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legal, HR & Compliance -->
+    <div class="category-section">
+      <div class="category-header">
+        <span class="category-emoji">&#x2696;&#xFE0F;</span>
+        <span class="category-title">Legal, HR &amp; Compliance</span>
+        <span class="category-count">3 playbooks</span>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-name">Legal Advisor</div>
+          <div class="card-desc">Contract analysis, compliance guidance, IP protection, regulatory summaries</div>
+        </div>
+        <div class="card">
+          <div class="card-name">HR Operations Pro</div>
+          <div class="card-desc">Policy drafting, onboarding checklists, performance reviews, compensation</div>
+        </div>
+        <div class="card">
+          <div class="card-name">GDPR Privacy Expert</div>
+          <div class="card-desc">DPIA generation, breach notification, consent management, data mapping</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Research & Intelligence -->
+    <div class="category-section">
+      <div class="category-header">
+        <span class="category-emoji">&#x1F52C;</span>
+        <span class="category-title">Research &amp; Intelligence</span>
+        <span class="category-count">4 playbooks</span>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-name">Fact Checker</div>
+          <div class="card-desc">Claim verification, source validation, bias detection, confidence scoring</div>
+        </div>
+        <div class="card">
+          <div class="card-name">Research Synthesizer</div>
+          <div class="card-desc">Cross-source synthesis, theme identification, gap analysis</div>
+        </div>
+        <div class="card">
+          <div class="card-name">Academic Research Assistant</div>
+          <div class="card-desc">Literature review, citation management, methodology comparison</div>
+        </div>
+        <div class="card">
+          <div class="card-name">Deep Research Coordinator</div>
+          <div class="card-desc">Multi-source orchestration, research briefs, report assembly</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Media Production & Knowledge -->
+    <div class="category-section">
+      <div class="category-header">
+        <span class="category-emoji">&#x1F399;&#xFE0F;</span>
+        <span class="category-title">Media Production &amp; Knowledge</span>
+        <span class="category-count">3 playbooks</span>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-name">Podcast Creator System</div>
+          <div class="card-desc">Episode planning, guest outreach, show notes, SEO, promotion</div>
+        </div>
+        <div class="card">
+          <div class="card-name">Social Media Clip Creator</div>
+          <div class="card-desc">Long-to-short repurposing, timestamp ID, platform-specific captions</div>
+        </div>
+        <div class="card">
+          <div class="card-name">Obsidian Knowledge System</div>
+          <div class="card-desc">MOC creation, smart tagging, connection discovery, vault health</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-cta">
+      Browse all <span class="count">226+</span> playbooks at <span class="domain">claudecodehq.com</span>
+    </div>
+    <p class="footer-sub">
+      Open source &middot; Copy-paste ready &middot; Works with Claude Code out of the box
+    </p>
+  </footer>
+
+</div>
+
+</body>
+</html>

@@ -18,29 +18,6 @@ This playbook creates structured session logs that capture not just what changed
 
 - Claude Code installed and configured
 - A project where you want decision history
-
-## The CLAUDE.md Template
-
-Copy this into a `CLAUDE.md` file in your project:
-
-```markdown
-# Session Logging Protocol
-
-## Purpose
-
-Session logs answer: "Why did we do it this way?" six months later when no one remembers. They capture reasoning, not just output.
-
-## Logging Triggers
-
-Create a log entry when:
-1. **Design decision** — Chose approach A over B
-2. **Problem solved** — Fixed non-obvious bug or issue
-3. **Session end** — Summary of work done
-4. **Context switch** — Before moving to different task
-
-## Log File Structure
-
-```
 logs/
 ├── YYYY-MM-DD-session-N.md    # Daily session logs
 ├── decisions/

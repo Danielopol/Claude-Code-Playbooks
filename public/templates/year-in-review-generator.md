@@ -30,7 +30,7 @@ For each major project:
 - Lines of code added/removed (if meaningful)
 - Projects contributed to
 
-### 4. Skills & Growth
+### 4. Workflows & Growth
 - New technologies learned
 - Leadership or mentorship activities
 - Process improvements introduced

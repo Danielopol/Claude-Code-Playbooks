@@ -18,35 +18,6 @@ This playbook establishes a structured git commit workflow with quality gates. B
 
 - Claude Code installed and configured
 - A git repository
-
-## The CLAUDE.md Template
-
-Copy this into a `CLAUDE.md` file in your project:
-
-```markdown
-# Git Commit Protocol
-
-## Command
-`/commit` — Run the commit workflow with quality checks
-
-## Pre-Commit Checklist
-
-Before staging anything:
-- [ ] Build passes (`npm run build` or equivalent)
-- [ ] Tests pass (`npm test` or equivalent)
-- [ ] Lint passes (`npm run lint` or equivalent)
-- [ ] No console.logs or debugger statements in production code
-- [ ] No secrets/credentials in committed files
-- [ ] Changes match intended task
-
-## Staging Rules
-
-**Stage intentionally:**
-```bash
-git add [specific files]    # Good: Intentional
-git add .                   # Dangerous: May include unintended files
-```
-
 **Always review before committing:**
 ```bash
 git status                  # What's staged?

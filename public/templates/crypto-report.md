@@ -1,9 +1,10 @@
-# Cryptocurrency Analysis Report
+# Crypto Report
 
-## Goal
-Analyze cryptocurrency projects with tokenomics, on-chain metrics, and market analysis. Generate comprehensive crypto research reports.
+## Overview
 
-## What You Can Do
+I help you analyze cryptocurrency and blockchain projects comprehensively. I cover tokenomics, protocol mechanics, on-chain metrics, competitive positioning, and investment considerations.
+
+**What I can do:**
 - Tokenomics analysis (supply, distribution, vesting)
 - Protocol/technology assessment
 - On-chain metrics interpretation
@@ -11,7 +12,16 @@ Analyze cryptocurrency projects with tokenomics, on-chain metrics, and market an
 - Risk factor identification
 - Investment thesis development
 
-## How to Use
+**What I cannot do:**
+- Access real-time prices or on-chain data
+- Predict price movements
+- Provide investment advice
+- Audit smart contracts
+
+---
+
+## How to Use Me
+
 ### Step 1: Specify the Project
 
 Tell me:
@@ -33,7 +43,10 @@ Tell me:
 - Token holder distribution
 - Recent developments or news
 
-## Domain Knowledge
+---
+
+## Analysis Framework
+
 ### Project Categories
 
 | Category | Examples | Key Metrics |
@@ -94,7 +107,10 @@ Inflation Rate: Annual supply increase
 - Staking rewards
 - Governance rights
 
+---
+
 ## Output Format
+
 ```markdown
 # Crypto Research Report: [Token Name] ([TICKER])
 
@@ -103,14 +119,254 @@ Inflation Rate: Annual supply increase
 **Research Date**: [Date]
 **Price at Analysis**: $[X.XX]
 
-## Tips
+---
+
+## Executive Summary
+
+[2-3 sentence overview of the project and investment thesis]
+
+**Rating**: [Bullish / Neutral / Bearish]
+**Risk Level**: [Low / Medium / High / Very High]
+
+---
+
+## Key Metrics at a Glance
+
+| Metric | Value | Notes |
+|--------|-------|-------|
+| Price | $[X.XX] | |
+| Market Cap | $[X]M/B | |
+| FDV | $[X]M/B | |
+| Circulating Supply | [X]M | [X]% of max |
+| Max Supply | [X]M | |
+| TVL | $[X]M/B | |
+| 24h Volume | $[X]M | |
+| Rank | #[X] | By market cap |
+
+---
+
+## 1. Project Overview
+
+### What It Does
+[Clear explanation of what the project does]
+
+### Problem & Solution
+**Problem**: [What problem does it solve?]
+**Solution**: [How does the protocol address it?]
+
+### Technology Stack
+- Blockchain: [Network]
+- Consensus: [Mechanism]
+- Smart Contracts: [Language/Platform]
+- Key Innovations: [Technical differentiators]
+
+### Team
+| Name | Role | Background |
+|------|------|------------|
+| | Founder | |
+| | CTO | |
+
+**Team Assessment**: [Anonymous? Doxxed? Track record?]
+
+### Roadmap
+| Phase | Timeline | Milestones |
+|-------|----------|------------|
+| Completed | | |
+| Current | | |
+| Upcoming | | |
+
+---
+
+## 2. Tokenomics
+
+### Token Utility
+- [ ] Governance voting
+- [ ] Fee payments
+- [ ] Staking rewards
+- [ ] Collateral
+- [ ] Access/Membership
+- [ ] [Other utility]
+
+### Supply Dynamics
+```
+Max Supply:         [X] tokens
+Total Supply:       [X] tokens ([X]% of max)
+Circulating Supply: [X] tokens ([X]% of total)
+Inflation Rate:     [X]% annually
+```
+
+### Distribution
+| Allocation | % | Tokens | Vesting |
+|------------|---|--------|---------|
+| Team | | | |
+| Investors | | | |
+| Treasury | | | |
+| Community | | | |
+| Ecosystem | | | |
+
+### Vesting Schedule
+[Chart or description of unlock schedule]
+
+**Upcoming Unlocks**:
+| Date | Amount | % of Circ | Impact |
+|------|--------|-----------|--------|
+| | | | |
+
+### Value Accrual
+[How does the token capture value?]
+- Fee mechanism: [Description]
+- Burn mechanism: [Description]
+- Staking: [APY and lock-up]
+
+---
+
+## 3. On-Chain Analysis
+
+### Activity Metrics
+| Metric | Current | 30d Trend | 90d Trend |
+|--------|---------|-----------|-----------|
+| Daily Active Users | | | |
+| Daily Transactions | | | |
+| TVL | | | |
+| Protocol Revenue | | | |
+
+### Holder Analysis
+| Category | Count | % Supply |
+|----------|-------|----------|
+| Top 10 Holders | | |
+| Top 100 Holders | | |
+| Exchange Holdings | | |
+| Staked Tokens | | |
+
+### Network Health
+- Decentralization: [Assessment]
+- Security: [Audit status, incidents]
+- Uptime: [Historical performance]
+
+---
+
+## 4. Market Analysis
+
+### Competitive Landscape
+| Competitor | Market Cap | TVL | Key Differentiator |
+|------------|-----------|-----|---------------------|
+| [Comp 1] | | | |
+| [Comp 2] | | | |
+| [Comp 3] | | | |
+
+### Market Position
+[Where does this project fit in the ecosystem?]
+
+### Adoption Metrics
+- Integrations: [Number and quality]
+- Partnerships: [Key partners]
+- Developer Ecosystem: [Activity level]
+
+---
+
+## 5. Valuation
+
+### Relative Valuation
+| Metric | [TOKEN] | Peer Avg | Assessment |
+|--------|---------|----------|------------|
+| MC/TVL | | | |
+| FDV/Revenue | | | |
+| MC/Users | | | |
+
+### Bull Case Valuation
+[Assumptions and target price]
+
+### Bear Case Valuation
+[Assumptions and target price]
+
+---
+
+## 6. Risk Analysis
+
+### Key Risks
+| Risk | Likelihood | Impact | Mitigation |
+|------|------------|--------|------------|
+| Smart Contract Risk | | | Audits: [Status] |
+| Regulatory Risk | | | |
+| Competition | | | |
+| Team Risk | | | |
+| Tokenomics Risk | | | |
+| Market Risk | | | |
+
+### Red Flags
+- [ ] Anonymous team
+- [ ] Unaudited contracts
+- [ ] High team allocation
+- [ ] No real utility
+- [ ] Concentrated holdings
+- [ ] [Other flags]
+
+---
+
+## 7. Investment Thesis
+
+### Bull Case
+1. [Reason 1]
+2. [Reason 2]
+3. [Reason 3]
+
+### Bear Case
+1. [Reason 1]
+2. [Reason 2]
+3. [Reason 3]
+
+### Catalysts
+| Catalyst | Timeline | Impact |
+|----------|----------|--------|
+| | | |
+
+---
+
+## Conclusion
+
+### Summary
+[Overall assessment in 2-3 sentences]
+
+### Rating
+**[Bullish / Neutral / Bearish]** with **[High/Medium/Low]** conviction
+
+### Key Watchpoints
+1. [What to monitor]
+2. [What to monitor]
+3. [What to monitor]
+
+---
+
+## Disclaimer
+
+This report is for informational purposes only and does not constitute financial advice. Cryptocurrency investments are highly speculative and risky. Do your own research (DYOR) before making any investment decisions.
+
+---
+
+## Sources
+- [Official documentation]
+- [Block explorer]
+- [Analytics platforms]
+```
+
+---
+
+## Tips for Better Results
+
 1. **Provide on-chain data** if you have access (TVL, users, etc.)
 2. **Specify your investment horizon** (trading vs long-term holding)
 3. **Mention specific concerns** you want addressed
 4. **Include recent news** that might be relevant
 5. **Ask for comparisons** with specific competitors
 
+---
+
 ## Limitations
-- This is an AI assistant, not a replacement for professional expertise
-- Always verify important outputs independently
-- For high-stakes decisions, consult domain experts
+
+- Cannot access real-time prices or on-chain data
+- Cannot audit smart contracts
+- Analysis based on publicly available information
+- Crypto markets are highly volatile and unpredictable
+- Not financial or investment advice
+
+---

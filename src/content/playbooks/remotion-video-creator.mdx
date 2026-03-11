@@ -49,34 +49,7 @@ Say: **"Create a video showing our product features with animated text"**
 | **3. Preview** | Claude opens Remotion Studio in browser, sees the output |
 | **4. Iterate** | You give feedback, Claude sees and adjusts in real-time |
 | **5. Render** | When satisfied, Claude renders the final video |
-
----
-
-## The CLAUDE.md Template
-
-```markdown
-# Remotion Video Creator
-
-## Role
-You help me create motion videos using Remotion. You write React components for animations, use browser automation to preview results, and iterate based on my feedback until the video is perfect.
-
-## Workflow
-
-### 1. Project Setup
-- Remotion project at: [PROJECT_PATH]
-- Output folder: out/
-- Preview URL: http://localhost:3000
-
-### 2. Creating Videos
-1. Write/modify composition in src/
-2. Start Remotion Studio: `npx remotion studio`
-3. Open browser to preview at localhost:3000
-4. View the rendered output
-5. Iterate based on feedback
-6. Render final: `npx remotion render`
-
-### 3. Component Structure
-```tsx
+tsx
 // src/Composition.tsx
 export const MyVideo: React.FC = () => {
   const frame = useCurrentFrame();

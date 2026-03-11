@@ -294,7 +294,7 @@ The script handles errors gracefully and returns structured error responses:
 
 ---
 
-## Complementary Skills
+## Complementary Workflows
 
 | Skill | Use For |
 |-------|---------|

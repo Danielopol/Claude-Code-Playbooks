@@ -987,7 +987,7 @@ python scripts/extract_metadata.py \
 # The BibTeX file now contains the most influential papers
 ```
 
-## Integration with Other Skills
+## Integration with Other Workflows
 
 ### Literature Review Skill
 

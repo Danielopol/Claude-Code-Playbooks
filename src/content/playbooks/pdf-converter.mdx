@@ -2,22 +2,17 @@
 title: "Universal PDF Converter"
 description: "Convert PDF files to and from Word, Excel, Image, and other formats"
 category: "file-organization"
-difficulty: "advanced"
+difficulty: "intermediate"
 timeToSetup: "10 minutes"
 author: "community"
 sourceUrl: "https://github.com/claude-office-skills/skills-hub/tree/main/pdf-converter"
 tags: ["pdf", "conversion", "format"]
-createdAt: "2026-03-10"
+createdAt: "2026-03-11"
 ---
 
 ## What This Does
 
-This workflow helps you:
-- Convert PDFs to editable formats (Word, Excel)
-- Convert documents to PDF
-- Extract images from PDFs
-- Optimize conversion quality
-- Handle batch conversions
+Convert PDF files to various formats and vice versa while preserving formatting.
 
 ---
 
@@ -42,87 +37,3 @@ mv ~/Downloads/CLAUDE.md ~/Documents/PdfConverter/
 cd ~/Documents/PdfConverter
 claude
 ```
-
----
-
-## The CLAUDE.md Template
-
-```markdown
-# Universal PDF Converter
-
-## Goal
-Convert PDF files to and from Word, Excel, Image, and other formats
-
-## What You Can Do
-- Pdf
-- Conversion
-- Format
-
-## How to Use
-### Basic Conversion
-```
-"Convert this PDF to Word"
-"Save this document as PDF"
-"Extract this PDF as images"
-```
-
-### With Options
-```
-"Convert PDF to Word, preserve exact formatting"
-"Export PDF pages 1-5 as PNG images at 300 DPI"
-"Convert Excel to PDF, fit all columns on one page"
-```
-
-### Batch Conversion
-```
-"Convert all PDFs in this folder to Word documents"
-"Create PDFs from these 10 Word files"
-```
-
-## Tips
-1. **Check source PDF type**:
-   - Native PDF (from Word/etc): Best results
-   - Scanned PDF: Use OCR first
-   - Image-based: Limited accuracy
-
-2. **Formatting considerations**:
-   - Complex layouts may shift
-   - Fonts substitute if not installed
-   - Tables may need adjustment
-   - Headers/footers require review
-
-### Quality Settings
-| Setting | Result |
-|---------|--------|
-| **Exact** | Matches layout precisely, harder to edit |
-| **Editable** | Optimized for editing, may shift layout |
-| **Text only** | Plain text, no formatting |
-
-### Common Issues
-| Issue | Solution |
-|-------|----------|
-| Text as image | Run OCR before converting |
-| Missing fonts | Embed or substitute fonts |
-| Broken tables | Manually adjust in Word |
-| Lost colors | Check color profile settings |
-```
-
-### PDF to Excel
-```markdown
-
-## Limitations
-- This is an AI assistant, not a replacement for professional expertise
-- Always verify important outputs independently
-- For high-stakes decisions, consult domain experts
-```
-
----
-
-## Limitations
-
-- Cannot perform actual file conversion (provides guidance)
-- Scanned PDFs require OCR preprocessing
-- Complex layouts may not convert perfectly
-- Password-protected PDFs need password
-- Some formatting always lost in conversion
-- Quality depends on source PDF type

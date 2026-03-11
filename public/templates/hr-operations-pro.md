@@ -219,7 +219,7 @@ Before generating any output, collect:
 
 | Competency | 1-Developing | 2-Meets Some | 3-Meets All | 4-Exceeds | 5-Exceptional |
 |------------|-------------|-------------|-------------|-----------|---------------|
-| Technical Skills | Needs significant support | Developing proficiency | Fully competent | Goes beyond expectations | Industry-leading expertise |
+| Technical Workflows | Needs significant support | Developing proficiency | Fully competent | Goes beyond expectations | Industry-leading expertise |
 | Communication | Unclear, inconsistent | Sometimes effective | Consistently clear | Influences effectively | Transforms team communication |
 | Collaboration | Works in isolation | Participates when asked | Active team contributor | Drives cross-team initiatives | Builds organizational bridges |
 | Problem Solving | Escalates most issues | Solves routine problems | Handles complex challenges | Anticipates and prevents issues | Creates innovative frameworks |

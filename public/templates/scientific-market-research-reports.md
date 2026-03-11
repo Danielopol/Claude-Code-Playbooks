@@ -739,7 +739,7 @@ For complete formatting reference, see `assets/FORMATTING_GUIDE.md`.
 
 ---
 
-## Integration with Other Skills
+## Integration with Other Workflows
 
 This skill works synergistically with:
 

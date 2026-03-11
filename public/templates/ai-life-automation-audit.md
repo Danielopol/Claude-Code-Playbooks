@@ -97,7 +97,7 @@ The questionnaire must systematically cover ALL of the following domains. No dom
 #### DOMAIN 8: LEARNING & PERSONAL DEVELOPMENT
 - Current learning goals
 - Courses, books, or content they're consuming
-- Skills they want to develop
+- Workflows they want to develop
 - How they capture and retain knowledge
 - Career development planning
 

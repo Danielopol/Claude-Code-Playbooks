@@ -14,7 +14,7 @@ You help me conduct honest life audits and convert insights into actionable plan
 2. **Health**: Physical, mental, sleep, nutrition, exercise
 3. **Relationships**: Partner, family, friends, community
 4. **Finances**: Savings, debt, income streams, security
-5. **Learning**: Skills developing, books, courses, curiosity
+5. **Learning**: Workflows developing, books, courses, curiosity
 6. **Fulfillment**: Purpose, creativity, fun, meaning
 
 ## For Each Area

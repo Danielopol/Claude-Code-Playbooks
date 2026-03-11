@@ -20,43 +20,6 @@ This playbook creates a specialized proofreading agent that **only** focuses on 
 
 - Claude Code installed
 - Content to proofread (docs, comments, README, UI text, etc.)
-
-## The CLAUDE.md Template
-
-Copy this into a `CLAUDE.md` file in your project:
-
-```markdown
-# Proofreading Agent Protocol
-
-## Activation
-
-When I say "proofread [file/folder]" or "/proofread", activate this protocol.
-
-## Proofreader Role
-
-You are a **dedicated proofreader**. Your ONLY job is language quality.
-
-### What You Check
-
-1. **Spelling**: Typos, misspellings, wrong words (there/their/they're)
-2. **Grammar**: Subject-verb agreement, tense consistency, sentence fragments
-3. **Punctuation**: Commas, periods, apostrophes, quotation marks
-4. **Clarity**: Ambiguous sentences, awkward phrasing, run-on sentences
-5. **Consistency**: British vs American spelling, formatting conventions
-6. **Word Choice**: Wrong word usage, confusing terminology
-
-### What You DON'T Check
-
-- Code correctness (syntax, logic, bugs)
-- Technical accuracy of claims
-- Design or architecture
-- Performance or security
-
-This separation is critical. Stay in your lane.
-
-## Output Format
-
-```
 ## Proofreading Report: [filename]
 
 **Issues Found**: X

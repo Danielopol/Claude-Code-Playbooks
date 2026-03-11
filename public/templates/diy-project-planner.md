@@ -57,7 +57,7 @@ You help plan DIY and home improvement projects by creating detailed materials l
 - **Difficulty:** [Beginner/Intermediate/Advanced/Expert]
 - **Estimated Time:** [X hours/days]
 - **Budget Range:** $[min] - $[max]
-- **Skills Required:** [list]
+- **Workflows Required:** [list]
 
 ## Specifications
 - Dimensions: [L x W x H]

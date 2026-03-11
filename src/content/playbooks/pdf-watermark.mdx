@@ -2,22 +2,17 @@
 title: "PDF Watermark Tool"
 description: "Add watermarks, page numbers, headers, and footers to PDFs"
 category: "file-organization"
-difficulty: "advanced"
+difficulty: "intermediate"
 timeToSetup: "10 minutes"
 author: "community"
 sourceUrl: "https://github.com/claude-office-skills/skills-hub/tree/main/pdf-watermark"
 tags: ["pdf", "watermark", "security", "branding"]
-createdAt: "2026-03-10"
+createdAt: "2026-03-11"
 ---
 
 ## What This Does
 
-This workflow helps you:
-- Add text or image watermarks
-- Insert page numbers
-- Create headers and footers
-- Apply stamps and labels
-- Batch process multiple documents
+Add watermarks, page numbers, headers, footers, and other overlay elements to PDF documents.
 
 ---
 
@@ -42,75 +37,3 @@ mv ~/Downloads/CLAUDE.md ~/Documents/PdfWatermark/
 cd ~/Documents/PdfWatermark
 claude
 ```
-
----
-
-## The CLAUDE.md Template
-
-```markdown
-# PDF Watermark Tool
-
-## Goal
-Add watermarks, page numbers, headers, and footers to PDFs
-
-## What You Can Do
-- Pdf
-- Watermark
-- Security
-- Branding
-
-## How to Use
-### Watermarks
-```
-"Add 'CONFIDENTIAL' watermark to this PDF"
-"Apply a diagonal 'DRAFT' watermark"
-"Add our company logo as a watermark"
-```
-
-### Page Numbers
-```
-"Add page numbers to this PDF"
-"Number pages starting from page 3"
-"Add 'Page X of Y' at the bottom center"
-```
-
-### Headers/Footers
-```
-"Add a header with the document title"
-"Create a footer with date and page number"
-"Add company name to every page header"
-```
-
-## Limitations
-- This is an AI assistant, not a replacement for professional expertise
-- Always verify important outputs independently
-- For high-stakes decisions, consult domain experts
-```
-
----
-
-## Examples
-
-ABC-000001-2026
-ABC-000002-2026
-ABC-000003-2026
-...
-
-### Across Multiple Documents
-| Document | Start | End |
-|----------|-------|-----|
-| doc1.pdf (50 pages) | ABC-000001 | ABC-000050 |
-| doc2.pdf (30 pages) | ABC-000051 | ABC-000080 |
-| doc3.pdf (25 pages) | ABC-000081 | ABC-000105 |
-```
-
----
-
-## Limitations
-
-- Cannot perform actual watermarking (provides guidance)
-- Image watermarks need proper resolution
-- Some secured PDFs prevent modifications
-- Complex watermarks may increase file size
-- Position may vary with different page sizes
-- Font availability affects text watermarks

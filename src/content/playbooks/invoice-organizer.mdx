@@ -1,141 +1,39 @@
 ---
-title: "Invoice Organizer"
-description: "Transform chaotic invoice folders into clean, tax-ready filing systems with automatic extraction, renaming, and categorization."
+title: "Invoice Organizer & Tracker"
+description: "Organize, categorize, and track invoices and receipts"
 category: "finance-accounting"
-difficulty: "beginner"
-timeToSetup: "5 minutes"
-author: "Composio"
-sourceUrl: "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/invoice-organizer"
-tags: ["invoices", "tax", "receipts", "accounting", "organization", "bookkeeping"]
-createdAt: "2026-02-10"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/claude-office-skills/skills-hub/tree/main/invoice-organizer"
+tags: ["invoice", "organization", "tracking"]
+createdAt: "2026-03-11"
 ---
 
 ## What This Does
 
-Transform messy invoice folders into organized, tax-ready filing systems. Claude reads your invoices, extracts key information (vendor, date, amount), renames files consistently, and sorts them into logical folders.
+Organize, categorize, and track invoices and receipts for better financial management.
 
 ---
 
 ## Quick Start
 
-### Step 1: Locate Your Invoice Folder
+### Step 1: Create a Project Folder
 
-Find where your invoices are stored.
+```bash
+mkdir -p ~/Documents/InvoiceOrganizer
+```
 
 ### Step 2: Download the Template
 
 Click **Download** above, then:
 ```bash
-mv ~/Downloads/CLAUDE.md ~/Documents/Invoices/
+mv ~/Downloads/CLAUDE.md ~/Documents/InvoiceOrganizer/
 ```
 
-### Step 3: Start Organizing
+### Step 3: Start Working
 
 ```bash
-cd ~/Documents/Invoices
+cd ~/Documents/InvoiceOrganizer
 claude
 ```
-
-Then say: **"Organize all invoices in this folder for tax preparation"**
-
----
-
-## Supported Formats
-
-| Format | Examples |
-|--------|----------|
-| PDF | Invoice PDFs, statements |
-| Images | Scanned receipts (JPG, PNG) |
-| Screenshots | Quick captures |
-| Email exports | Forwarded invoices |
-
----
-
-## Naming Convention
-
-Files are renamed to a consistent format:
-```
-YYYY-MM-DD Vendor - Invoice - Product.pdf
-```
-
-Example:
-```
-2024-03-15 Amazon - Invoice - Office Supplies.pdf
-```
-
----
-
-## Organization Options
-
-### By Vendor
-```
-Invoices/
-├── Amazon/
-├── Google/
-├── Microsoft/
-└── Contractors/
-```
-
-### By Category
-```
-Invoices/
-├── Software/
-├── Office Supplies/
-├── Services/
-└── Travel/
-```
-
-### By Quarter
-```
-Invoices/
-├── 2024-Q1/
-├── 2024-Q2/
-├── 2024-Q3/
-└── 2024-Q4/
-```
-
-### By Tax Status
-```
-Invoices/
-├── Deductible/
-├── Non-Deductible/
-└── Review-Needed/
-```
-
----
-
-## Output Includes
-
-- Renamed and sorted invoices
-- CSV spreadsheet with all details
-- Summary with statistics
-- Flags for files needing manual review
-
----
-
-## Example Prompts
-
-- "Organize invoices by vendor name"
-- "Sort receipts by date and create a summary"
-- "Prepare invoices for tax filing"
-- "Extract all invoice data to a spreadsheet"
-
----
-
-## Use Cases
-
-| Scenario | Benefit |
-|----------|---------|
-| Tax preparation | All deductions organized |
-| Expense reconciliation | Easy matching |
-| Multi-year archives | Clean historical records |
-| Ongoing bookkeeping | Consistent filing system |
-
----
-
-## Tips
-
-- **Originals preserved**: Copies are organized, originals stay safe
-- **Review flagged items**: Some may need manual verification
-- **Export to CSV**: Perfect for accountants and tax software
-- **Set up ongoing system**: Maintain organization going forward

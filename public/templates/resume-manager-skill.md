@@ -116,7 +116,7 @@ Job requires: Python, AWS, ML experience
 ### Step 4: ATS Optimization
 
 **Include:**
-- Standard section headers (Experience, Education, Skills)
+- Standard section headers (Experience, Education, Workflows)
 - Keywords from job description (exact match)
 - Quantified achievements
 - Clear formatting
@@ -151,7 +151,7 @@ Job requires: Python, AWS, ML experience
 ### [Project Name]
 [Description] | [Impact]
 
-## Skills
+## Workflows
 **Languages:** [List]
 **Frameworks:** [List]
 **Tools:** [List]
@@ -165,7 +165,7 @@ Job requires: Python, AWS, ML experience
 **Add Experience:**
 "Add my new role as Senior Engineer at TechCo starting January 2024"
 
-**Update Skills:**
+**Update Workflows:**
 "Add Rust and WebAssembly to my skills"
 
 **Add Achievement:**

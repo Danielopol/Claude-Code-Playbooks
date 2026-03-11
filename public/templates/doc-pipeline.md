@@ -1,15 +1,11 @@
-# Document Processing Pipeline
+# Doc Pipeline
 
-## Goal
-Chain document operations into reusable pipelines
+## Overview
 
-## What You Can Do
-- Pipeline
-- Workflow
-- Document
-- Automation
+This workflow enables building document processing pipelines - chain multiple operations (extract, transform, convert) into reusable workflows with data flowing between stages.
 
 ## How to Use
+
 1. Describe what you want to accomplish
 2. Provide any required input data or files
 3. I'll execute the appropriate operations
@@ -21,6 +17,8 @@ Chain document operations into reusable pipelines
 - "Multiple inputs → Merge → Format → Output"
 
 ## Domain Knowledge
+
+
 ### Pipeline Architecture
 
 ```
@@ -117,13 +115,22 @@ pipeline.add_conditional_stage(
 )
 ```
 
-## Tips
+
+## Best Practices
+
 1. **Keep stages focused (single responsibility)**
 2. **Use intermediate outputs for debugging**
 3. **Implement stage-level error handling**
 4. **Make pipelines configurable via YAML/JSON**
 
-## Limitations
-- This is an AI assistant, not a replacement for professional expertise
-- Always verify important outputs independently
-- For high-stakes decisions, consult domain experts
+## Installation
+
+```bash
+# Install required dependencies
+pip install python-docx openpyxl python-pptx reportlab jinja2
+```
+
+## Resources
+
+- [Custom Repository](https://github.com/claude-code/workflows)
+- [Claude Code Hub](https://github.com/claude-code/workflows)

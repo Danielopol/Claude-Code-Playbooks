@@ -1,14 +1,11 @@
-# Invoice Template Designer
+# Invoice Template
 
-## Goal
-Generate professional PDF invoices from templates
+## Overview
 
-## What You Can Do
-- Invoice
-- Template
-- Billing
+This workflow generates professional PDF invoices from structured data and templates. Create invoices with company branding, itemized lists, tax calculations, and payment details.
 
 ## How to Use
+
 1. Describe what you want to accomplish
 2. Provide any required input data or files
 3. I'll execute the appropriate operations
@@ -20,6 +17,8 @@ Generate professional PDF invoices from templates
 - "Customize invoice templates per client"
 
 ## Domain Knowledge
+
+
 ### Invoice Data Structure
 
 ```python
@@ -165,13 +164,22 @@ def create_invoice_html(data: dict, output_path: str):
     return output_path
 ```
 
-## Tips
+
+## Best Practices
+
 1. **Validate required fields before generation**
 2. **Use templates for consistent branding**
 3. **Auto-calculate totals (don't trust input)**
 4. **Include payment instructions and terms**
 
-## Limitations
-- This is an AI assistant, not a replacement for professional expertise
-- Always verify important outputs independently
-- For high-stakes decisions, consult domain experts
+## Installation
+
+```bash
+# Install required dependencies
+pip install python-docx openpyxl python-pptx reportlab jinja2
+```
+
+## Resources
+
+- [easy-invoice-pdf Repository](https://github.com/nickmitchko/easy-invoice-pdf)
+- [Claude Code Hub](https://github.com/claude-code/workflows)

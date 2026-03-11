@@ -855,7 +855,7 @@ python ../document-skills/pptx/scripts/thumbnail.py presentation.pptx review/gri
 - [ ] Business cards/handouts
 - [ ] Comfortable with material (3+ practices)
 
-## Integration with Other Skills
+## Integration with Other Workflows
 
 **Research Lookup** (Critical for Scientific Presentations):
 - **Background development**: Search literature to build introduction context

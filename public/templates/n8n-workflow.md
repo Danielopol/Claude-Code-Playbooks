@@ -1,15 +1,11 @@
-# n8n Workflow Builder
+# N8N Workflow
 
-## Goal
-Automate document workflows with n8n - 7800+ workflow templates
+## Overview
 
-## What You Can Do
-- N8n
-- Workflow
-- Automation
-- Integration
+This workflow enables document workflow automation using **n8n** - the most popular workflow automation platform with 7800+ community templates. Chain document operations, integrate with 400+ apps, and build complex document pipelines.
 
 ## How to Use
+
 1. Describe what you want to accomplish
 2. Provide any required input data or files
 3. I'll execute the appropriate operations
@@ -21,6 +17,8 @@ Automate document workflows with n8n - 7800+ workflow templates
 - "Batch document processing with conditional logic"
 
 ## Domain Knowledge
+
+
 ### n8n Fundamentals
 
 n8n uses a node-based workflow approach:
@@ -92,13 +90,22 @@ docker run -it --rm \
   n8nio/n8n
 ```
 
-## Tips
+
+## Best Practices
+
 1. **Start with existing templates, customize as needed**
 2. **Use error handling nodes for reliability**
 3. **Store credentials securely with n8n's credential manager**
 4. **Test workflows with sample data before production**
 
-## Limitations
-- This is an AI assistant, not a replacement for professional expertise
-- Always verify important outputs independently
-- For high-stakes decisions, consult domain experts
+## Installation
+
+```bash
+# Install required dependencies
+pip install python-docx openpyxl python-pptx reportlab jinja2
+```
+
+## Resources
+
+- [n8n Repository](https://github.com/n8n-io/n8n)
+- [Claude Code Hub](https://github.com/claude-code/workflows)

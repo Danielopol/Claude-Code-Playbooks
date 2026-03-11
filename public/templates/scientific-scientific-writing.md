@@ -634,7 +634,7 @@ Adapt language, terminology, and conventions to match the specific scientific di
 4. Complete submission checklists
 5. Gather all required statements and forms
 
-## Integration with Other Scientific Skills
+## Integration with Other Scientific Workflows
 
 This skill works effectively with:
 - **Data analysis skills**: For generating results to report

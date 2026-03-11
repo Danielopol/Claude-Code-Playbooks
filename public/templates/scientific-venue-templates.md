@@ -310,7 +310,7 @@ Review checklist:
 - [ ] Author guidelines followed
 - [ ] Supplementary materials prepared (if needed)
 
-## Integration with Other Skills
+## Integration with Other Workflows
 
 This skill works seamlessly with other scientific skills:
 

@@ -26,38 +26,6 @@ This playbook creates a structured deployment workflow that:
 - Claude Code installed
 - A deployable project (web app, package, static site, etc.)
 - Deployment target configured (Vercel, Netlify, npm, Docker, etc.)
-
-## The CLAUDE.md Template
-
-Copy this into a `CLAUDE.md` file in your project:
-
-```markdown
-# Deploy Workflow Protocol
-
-## Activation
-
-When I say "/deploy", "deploy to [target]", or "release", activate this protocol.
-
-## Deployment Configuration
-
-```yaml
-# Customize for your project
-project_name: "my-project"
-deploy_targets:
-  production:
-    command: "vercel --prod"
-    url: "https://myapp.com"
-    requires_approval: true
-  staging:
-    command: "vercel"
-    url: "https://staging.myapp.com"
-    requires_approval: false
-  npm:
-    command: "npm publish"
-    requires_approval: true
-version_file: "package.json"  # or Cargo.toml, pyproject.toml, etc.
-```
-
 ## Deploy Pipeline
 
 ```

@@ -547,7 +547,7 @@ for i in range(0, len(inputs), CHUNK):
     gc.collect()  # Clean up between chunks
 ```
 
-## 🔗 Integration with Other Skills
+## 🔗 Integration with Other Workflows
 
 ### With `statsmodels`
 

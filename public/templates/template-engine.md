@@ -1,15 +1,11 @@
-# Document Template Engine
+# Template Engine
 
-## Goal
-Auto-fill document templates with data - mail merge for any format
+## Overview
 
-## What You Can Do
-- Template
-- Engine
-- Autofill
-- Docxtpl
+This workflow enables template-based document generation - define templates with placeholders, then automatically fill them with data. Works with Word, Excel, PowerPoint, and more.
 
 ## How to Use
+
 1. Describe what you want to accomplish
 2. Provide any required input data or files
 3. I'll execute the appropriate operations
@@ -21,6 +17,8 @@ Auto-fill document templates with data - mail merge for any format
 - "Auto-fill forms with user data"
 
 ## Domain Knowledge
+
+
 ### Template Syntax (Jinja2-based)
 
 ```
@@ -136,13 +134,22 @@ doc.render({
 doc.save("output.docx")
 ```
 
-## Tips
+
+## Best Practices
+
 1. **Use clear placeholder naming ({{client_name}})**
 2. **Validate data before rendering**
 3. **Handle missing data gracefully**
 4. **Keep templates version-controlled**
 
-## Limitations
-- This is an AI assistant, not a replacement for professional expertise
-- Always verify important outputs independently
-- For high-stakes decisions, consult domain experts
+## Installation
+
+```bash
+# Install required dependencies
+pip install python-docx openpyxl python-pptx reportlab jinja2
+```
+
+## Resources
+
+- [docxtpl / yumdocs Repository](https://github.com/elapouya/python-docxtpl)
+- [Claude Code Hub](https://github.com/claude-code/workflows)

@@ -379,7 +379,7 @@ body {
 
 ---
 
-## Integration with Other Skills
+## Integration with Other Workflows
 
 This skill works with:
 - **Scientific Schematics**: Generate all poster diagrams and flowcharts

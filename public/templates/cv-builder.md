@@ -1,15 +1,11 @@
-# CV & Resume Builder
+# CV Builder
 
-## Goal
->
+## Overview
 
-## What You Can Do
-- Cv
-- Resume
-- Builder
-- Generator
+This workflow enables creation of professional CVs/resumes from structured YAML using **rendercv**. Define your experience once, generate beautiful PDFs in multiple themes.
 
 ## How to Use
+
 1. Provide your CV information (experience, education, workflows)
 2. Choose a template/theme
 3. I'll generate YAML and render to PDF
@@ -21,6 +17,7 @@
 - "Build a technical resume highlighting projects"
 
 ## Domain Knowledge
+
 ### YAML Structure
 
 ```yaml
@@ -92,7 +89,67 @@ rendercv render cv.yaml
 # Output: rendercv_output/John_Doe_CV.pdf
 ```
 
-## Limitations
-- This is an AI assistant, not a replacement for professional expertise
-- Always verify important outputs independently
-- For high-stakes decisions, consult domain experts
+## Example
+
+```yaml
+cv:
+  name: Sarah Chen
+  location: New York, NY
+  email: sarah@email.com
+  phone: "+1-555-123-4567"
+  website: https://sarahchen.dev
+  social_networks:
+    - network: LinkedIn
+      username: sarahchen
+    - network: GitHub
+      username: sarahchen
+
+  sections:
+    summary:
+      - "Full-stack developer with 8 years of experience building scalable web applications. Passionate about clean code and user experience."
+
+    experience:
+      - company: Startup Inc
+        position: Lead Developer
+        location: New York, NY
+        start_date: 2021-03
+        end_date: present
+        highlights:
+          - "Architected microservices handling 1M+ requests/day"
+          - "Mentored 4 junior developers"
+          - "Reduced deployment time by 60% with CI/CD"
+
+      - company: Big Tech Co
+        position: Software Engineer
+        location: San Francisco, CA
+        start_date: 2018-06
+        end_date: 2021-02
+        highlights:
+          - "Built real-time analytics dashboard"
+          - "Optimized database queries, 3x faster"
+
+    education:
+      - institution: Stanford University
+        area: Computer Science
+        degree: MS
+        start_date: 2016
+        end_date: 2018
+
+    workflows:
+      - label: Languages
+        details: Python, TypeScript, Go, SQL
+      - label: Technologies
+        details: React, Node.js, PostgreSQL, AWS, Docker
+      - label: Practices
+        details: Agile, TDD, Code Review, CI/CD
+
+design:
+  theme: sb2nov
+  font_size: 10pt
+```
+
+## Resources
+
+- [rendercv Documentation](https://docs.rendercv.com/)
+- [GitHub Repository](https://github.com/sinaatalay/rendercv)
+- [Theme Gallery](https://docs.rendercv.com/user_guide/themes/)

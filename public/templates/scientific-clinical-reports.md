@@ -941,7 +941,7 @@ Validation scripts are available in the `scripts/` directory.
 
 For data presentation standards, see `references/data_presentation.md`.
 
-## Integration with Other Skills
+## Integration with Other Workflows
 
 This clinical reports skill integrates with:
 - **Scientific Writing**: For clear, professional medical writing

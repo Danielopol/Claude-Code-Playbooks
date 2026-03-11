@@ -888,7 +888,7 @@ Review treatment plans against the quality checklist (`quality_checklist.md`):
 - [ ] Emergency contacts provided
 - [ ] Transition planning addressed
 
-## Integration with Other Skills
+## Integration with Other Workflows
 
 ### Clinical Reports Integration
 

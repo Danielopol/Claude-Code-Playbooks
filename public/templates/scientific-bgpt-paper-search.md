@@ -61,7 +61,7 @@ The server returns structured results including:
 - **Free tier**: 50 searches per network, no API key required
 - **Paid**: $0.01 per result with an API key from [bgpt.pro/mcp](https://bgpt.pro/mcp)
 
-## Complementary Skills
+## Complementary Workflows
 
 Pairs well with:
 - `literature-review` — Use BGPT to gather structured data, then synthesize with literature-review workflows

@@ -1,15 +1,11 @@
-# HTML Presentation Builder
+# HTML Slides
 
-## Goal
->
+## Overview
 
-## What You Can Do
-- Html
-- Slides
-- Revealjs
-- Web
+This workflow enables creation of stunning HTML-based presentations using **reveal.js** - the web's most popular presentation framework. Create interactive, responsive slides with animations, code highlighting, speaker notes, and more.
 
 ## How to Use
+
 1. Describe the presentation you want to create
 2. Specify theme, transitions, and features needed
 3. I'll generate a reveal.js presentation
@@ -21,6 +17,7 @@
 - "Create slides with animations and transitions"
 
 ## Domain Knowledge
+
 ### reveal.js Basics
 
 ```html
@@ -176,7 +173,123 @@ Reveal.initialize({
 });
 ```
 
-## Limitations
-- This is an AI assistant, not a replacement for professional expertise
-- Always verify important outputs independently
-- For high-stakes decisions, consult domain experts
+## Examples
+
+### Example 1: Tech Talk
+```html
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>API Design Best Practices</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/theme/night.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/highlight/monokai.css">
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section data-background-gradient="linear-gradient(to bottom right, #1a1a2e, #16213e)">
+                <h1>API Design</h1>
+                <h3>Best Practices for 2024</h3>
+                <p><small>Engineering Team</small></p>
+            </section>
+            
+            <section>
+                <h2>Agenda</h2>
+                <ol>
+                    <li class="fragment">RESTful Principles</li>
+                    <li class="fragment">Authentication</li>
+                    <li class="fragment">Error Handling</li>
+                    <li class="fragment">Documentation</li>
+                </ol>
+            </section>
+            
+            <section>
+                <section>
+                    <h2>RESTful Principles</h2>
+                </section>
+                <section>
+                    <h3>Resource Naming</h3>
+                    <pre><code data-trim class="language-http">
+GET /users           # Collection
+GET /users/123       # Single resource
+POST /users          # Create
+PUT /users/123       # Update
+DELETE /users/123    # Delete
+                    </code></pre>
+                </section>
+            </section>
+            
+            <section>
+                <h2>Questions?</h2>
+                <p>api-team@company.com</p>
+            </section>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            plugins: [RevealHighlight]
+        });
+    </script>
+</body>
+</html>
+```
+
+### Example 2: Product Launch
+```html
+<!doctype html>
+<html>
+<head>
+    <title>Product Launch</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/theme/white.css">
+    <style>
+        .reveal h1 { color: #2d3748; }
+        .metric { font-size: 3em; color: #3182ce; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section data-background-color="#f7fafc">
+                <h1>Introducing</h1>
+                <h2 style="color: #3182ce;">ProductX 2.0</h2>
+            </section>
+            
+            <section>
+                <h2>The Problem</h2>
+                <p class="fragment">Teams waste <span class="metric">20%</span> of time on manual tasks</p>
+            </section>
+            
+            <section data-auto-animate>
+                <h2>Our Solution</h2>
+                <div data-id="box" style="background: #3182ce; padding: 20px;">
+                    AI-Powered Automation
+                </div>
+            </section>
+            
+            <section data-auto-animate>
+                <h2>Our Solution</h2>
+                <div data-id="box" style="background: #38a169; padding: 40px; width: 400px;">
+                    <p>AI-Powered Automation</p>
+                    <p>90% faster</p>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4/dist/reveal.js"></script>
+    <script>Reveal.initialize();</script>
+</body>
+</html>
+```
+
+## Resources
+
+- [reveal.js Documentation](https://revealjs.com/)
+- [GitHub Repository](https://github.com/hakimel/reveal.js)
+- [Demo Slides](https://revealjs.com/demo/)

@@ -2,24 +2,17 @@
 title: "Meeting Notes Structurer"
 description: ">"
 category: "communications"
-difficulty: "beginner"
+difficulty: "intermediate"
 timeToSetup: "10 minutes"
 author: "community"
 sourceUrl: "https://github.com/claude-office-skills/skills-hub/tree/main/meeting-notes"
 tags: ["meeting", "notes", "summary", "action-items"]
-createdAt: "2026-03-10"
+createdAt: "2026-03-11"
 ---
 
 ## What This Does
 
 This workflow transforms raw meeting notes, transcripts, or audio summaries into clear, structured documentation with action items, decisions, and key takeaways.
-
-**Use Cases:**
-- Converting messy handwritten notes to clean summaries
-- Processing meeting transcripts
-- Extracting action items and owners
-- Creating meeting minutes for distribution
-- Summarizing long discussions into key points
 
 ---
 
@@ -44,69 +37,3 @@ mv ~/Downloads/CLAUDE.md ~/Documents/MeetingNotes/
 cd ~/Documents/MeetingNotes
 claude
 ```
-
----
-
-## The CLAUDE.md Template
-
-```markdown
-# Meeting Notes Structurer
-
-## Goal
->
-
-## What You Can Do
-- Meeting
-- Notes
-- Summary
-- Action items
-
-## How to Use
-1. Paste your raw meeting notes, transcript, or description
-2. Tell me the meeting type (standup, project review, client call, etc.)
-3. Specify any required format or template
-4. I'll create structured notes with action items
-
-**Example prompts:**
-- "Organize these meeting notes and extract action items"
-- "Create formal meeting minutes from this transcript"
-- "Summarize the key decisions from our project review"
-- "Turn this brainstorm session into a structured document"
-
-## Output Format
-```markdown
-
-## Limitations
-- This is an AI assistant, not a replacement for professional expertise
-- Always verify important outputs independently
-- For high-stakes decisions, consult domain experts
-```
-
----
-
-## Examples
-
-### Example: Raw Notes to Structured Summary
-
-**Input:**
-```
-product meeting 3/15
-talked about launch timeline, sarah thinks we need 2 more weeks
-john mentioned the bug in checkout - high priority
-decided to push launch to april 1
-need to update stakeholders
-maria will fix the checkout bug by friday
-also discussed new feature requests from customers - will prioritize next sprint
-john to send customer feedback summary
-```
-
-**Output:**
-
----
-
-## Limitations
-
-- Cannot attend or record meetings
-- Accuracy depends on quality of input notes
-- May need clarification on ambiguous pronouns or acronyms
-- Cannot verify commitments or deadlines - review before distributing

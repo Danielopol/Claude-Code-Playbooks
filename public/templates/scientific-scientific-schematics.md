@@ -523,7 +523,7 @@ Load these files for comprehensive information on specific topics:
 - Science Figure Guidelines: https://www.science.org/content/page/instructions-preparing-initial-manuscript
 - CONSORT Diagram: http://www.consort-statement.org/consort-statement/flow-diagram
 
-## Integration with Other Skills
+## Integration with Other Workflows
 
 This skill works synergistically with:
 

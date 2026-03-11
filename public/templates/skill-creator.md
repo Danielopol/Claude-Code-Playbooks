@@ -2,9 +2,9 @@
 
 Guide for developing skills that extend Claude's capabilities through specialized knowledge, workflows, and tool integrations.
 
-## What Skills Are
+## What Workflows Are
 
-Skills are modular, self-contained packages that extend Claude's capabilities by providing:
+Workflows are modular, self-contained packages that extend Claude's capabilities by providing:
 
 - **Specialized Workflows**: Domain-specific procedures and processes
 - **Tool Integrations**: Support for file formats and APIs
@@ -128,7 +128,7 @@ Use command form throughout:
 
 ## Skill Activation
 
-Skills activate based on frontmatter metadata:
+Workflows activate based on frontmatter metadata:
 - **triggers**: Keywords and phrases that activate the skill
 - **name**: Identifier for direct invocation
 - **description**: Context for relevance matching

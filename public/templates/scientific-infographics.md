@@ -280,7 +280,7 @@ Best for: Personal branding, CVs, portfolio highlights, professional achievement
 
 ```bash
 python skills/infographics/scripts/generate_infographic.py \
-  "UX Designer resume: Skills - User Research 95%, Wireframing 90%, \
+  "UX Designer resume: Workflows - User Research 95%, Wireframing 90%, \
    Prototyping 85%. Experience - 2020-2022 Junior, 2022-2025 Senior" \
   -o figures/resume.png --type resume --style technology
 ```
@@ -527,7 +527,7 @@ For detailed guidance, load these reference files:
 
 ---
 
-## Integration with Other Skills
+## Integration with Other Workflows
 
 This skill works synergistically with:
 

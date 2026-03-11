@@ -165,7 +165,7 @@ If the script fails, read the error message and address the issue before retryin
 - For best results, use clear and detailed editing instructions
 - Both Gemini 3.1 Flash Image Preview and FLUX.2 Pro support image editing through OpenRouter
 
-## Integration with Other Skills
+## Integration with Other Workflows
 
 - **scientific-schematics**: Use for technical diagrams, flowcharts, circuits, pathways
 - **generate-image**: Use for photos, illustrations, artwork, visual concepts

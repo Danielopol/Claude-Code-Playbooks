@@ -167,9 +167,6 @@ function Footer() {
           <a href="https://neeed.directory/products/claude-code-playbooks?utm_source=claude-code-playbooks" target="_blank" rel="noopener">
             <Image src="https://neeed.directory/badges/neeed-badge-light.svg" alt="Featured on neeed.directory" width={139} height={32} unoptimized />
           </a>
-          <a href="https://launchigniter.com/product/claude-code-playbooks?ref=badge-claude-code-playbooks" target="_blank" rel="noopener">
-            <Image src="https://launchigniter.com/api/badge/claude-code-playbooks?theme=light" alt="Featured on LaunchIgniter" width={212} height={55} unoptimized />
-          </a>
         </div>
       </div>
     </footer>

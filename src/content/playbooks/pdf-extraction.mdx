@@ -37,3 +37,149 @@ mv ~/Downloads/CLAUDE.md ~/Documents/PdfExtraction/
 cd ~/Documents/PdfExtraction
 claude
 ```
+
+---
+
+## How to Use
+
+1. Provide the PDF file you want to extract from
+2. Specify what you need: text, tables, images, or metadata
+3. I'll generate pdfplumber code and execute it
+
+**Example prompts:**
+- "Extract all tables from this financial report"
+- "Get text from pages 5-10 of this document"
+- "Find and extract the invoice total from this PDF"
+- "Convert this PDF table to CSV/Excel"
+
+## Best Practices
+
+1. **Debug Visually**: Use `to_image()` to understand PDF structure
+2. **Tune Table Settings**: Adjust tolerances for your specific PDF
+3. **Handle Scanned PDFs**: Use OCR first (this workflow is for native text)
+4. **Process Page by Page**: For large PDFs, avoid loading all at once
+5. **Check for Text**: Some PDFs are images - verify text exists
+
+## Examples
+
+### Example 1: Financial Report Table Extraction
+```python
+import pdfplumber
+import pandas as pd
+
+def extract_financial_tables(pdf_path):
+    """Extract tables from financial report and save to Excel."""
+    
+    with pdfplumber.open(pdf_path) as pdf:
+        all_tables = []
+        
+        for page_num, page in enumerate(pdf.pages):
+            # Debug: save table visualization
+            im = page.to_image()
+            im.debug_tablefinder()
+            im.save(f'debug_page_{page_num+1}.png')
+            
+            # Extract tables
+            tables = page.extract_tables({
+                "vertical_strategy": "lines",
+                "horizontal_strategy": "lines",
+                "snap_tolerance": 5,
+            })
+            
+            for table in tables:
+                if table and len(table) > 1:
+                    # Clean data
+                    clean_table = []
+                    for row in table:
+                        clean_row = [cell.strip() if cell else '' for cell in row]
+                        clean_table.append(clean_row)
+                    
+                    df = pd.DataFrame(clean_table[1:], columns=clean_table[0])
+                    df['Source Page'] = page_num + 1
+                    all_tables.append(df)
+        
+        # Save to Excel with multiple sheets
+        with pd.ExcelWriter('extracted_tables.xlsx') as writer:
+            for i, df in enumerate(all_tables):
+                df.to_excel(writer, sheet_name=f'Table_{i+1}', index=False)
+        
+        return all_tables
+
+tables = extract_financial_tables('annual_report.pdf')
+print(f"Extracted {len(tables)} tables")
+```
+
+### Example 2: Invoice Data Extraction
+```python
+import pdfplumber
+import re
+from datetime import datetime
+
+def extract_invoice_data(pdf_path):
+    """Extract structured data from invoice PDF."""
+    
+    data = {
+        'invoice_number': None,
+        'date': None,
+        'total': None,
+        'line_items': []
+    }
+    
+    with pdfplumber.open(pdf_path) as pdf:
+        page = pdf.pages[0]
+        text = page.extract_text()
+        
+        # Extract invoice number
+        inv_match = re.search(r'Invoice\s*#?\s*:?\s*(\w+)', text, re.IGNORECASE)
+        if inv_match:
+            data['invoice_number'] = inv_match.group(1)
+        
+        # Extract date
+        date_match = re.search(r'Date\s*:?\s*(\d{1,2}[/-]\d{1,2}[/-]\d{2,4})', text)
+        if date_match:
+            data['date'] = date_match.group(1)
+        
+        # Extract total
+        total_match = re.search(r'Total\s*:?\s*\$?([\d,]+\.?\d*)', text, re.IGNORECASE)
+        if total_match:
+            data['total'] = float(total_match.group(1).replace(',', ''))
+        
+        # Extract line items from table
+        tables = page.extract_tables()
+        for table in tables:
+            if table and any('description' in str(row).lower() for row in table[:2]):
+                # Found line items table
+                for row in table[1:]:  # Skip header
+                    if row and len(row) >= 3:
+                        data['line_items'].append({
+                            'description': row[0],
+                            'quantity': row[1] if len(row) > 1 else None,
+                            'amount': row[-1]
+                        })
+    
+    return data
+
+invoice = extract_invoice_data('invoice.pdf')
+print(f"Invoice #{invoice['invoice_number']}")
+print(f"Total: ${invoice['total']}")
+```
+
+### Example 3: Resume/CV Parser
+
+## Limitations
+
+- Cannot extract from scanned/image PDFs (use OCR first)
+- Complex layouts may need manual tuning
+- Some PDF encryption types not supported
+- Embedded fonts may affect text extraction
+- No direct PDF editing capability
+
+## Installation
+
+```bash
+pip install pdfplumber
+
+# For image debugging (optional)
+pip install Pillow
+```
+

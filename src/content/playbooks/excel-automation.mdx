@@ -37,3 +37,140 @@ mv ~/Downloads/CLAUDE.md ~/Documents/ExcelAutomation/
 cd ~/Documents/ExcelAutomation
 claude
 ```
+
+---
+
+## How to Use
+
+1. Describe the Excel automation task you need
+2. Specify if you need live Excel interaction or file processing
+3. I'll generate xlwings code and execute it
+
+**Example prompts:**
+- "Update this live Excel dashboard with new data"
+- "Run this VBA macro and get the results"
+- "Create an Excel add-in for data validation"
+- "Automate monthly report generation with live charts"
+
+## Best Practices
+
+1. **Disable Screen Updating**: For batch operations
+2. **Use Arrays**: Read/write entire ranges, not cell-by-cell
+3. **Manual Calculation**: Turn off auto-calc during data loading
+4. **Close Connections**: Properly close workbooks when done
+5. **Error Handling**: Handle Excel not being installed
+
+## Examples
+
+### Example 1: Live Dashboard Update
+```python
+import xlwings as xw
+import pandas as pd
+from datetime import datetime
+
+# Connect to running Excel
+wb = xw.books.active
+dashboard = wb.sheets['Dashboard']
+data_sheet = wb.sheets['Data']
+
+# Fetch new data (simulated)
+new_data = pd.DataFrame({
+    'Date': pd.date_range('2024-01-01', periods=30),
+    'Sales': [1000 + i*50 for i in range(30)],
+    'Costs': [600 + i*30 for i in range(30)]
+})
+
+# Update data sheet
+data_sheet['A1'].value = new_data
+
+# Calculate profit
+data_sheet['D1'].value = 'Profit'
+data_sheet['D2'].value = '=B2-C2'
+data_sheet['D2'].expand('down').value = data_sheet['D2'].formula
+
+# Update KPIs on dashboard
+dashboard['B2'].value = new_data['Sales'].sum()
+dashboard['B3'].value = new_data['Costs'].sum()
+dashboard['B4'].value = new_data['Sales'].sum() - new_data['Costs'].sum()
+dashboard['A1'].value = f'Updated: {datetime.now().strftime("%Y-%m-%d %H:%M")}'
+
+# Refresh charts
+for chart in dashboard.charts:
+    chart.api.Refresh()
+
+print("Dashboard updated!")
+```
+
+### Example 2: Batch Processing Multiple Files
+```python
+import xlwings as xw
+from pathlib import Path
+
+def process_sales_files(folder_path, output_path):
+    """Consolidate multiple Excel files into one summary."""
+    
+    app = xw.App(visible=False)
+    app.screen_updating = False
+    
+    try:
+        # Create summary workbook
+        summary_wb = xw.Book()
+        summary_sheet = summary_wb.sheets[0]
+        summary_sheet.name = 'Consolidated'
+        
+        headers = ['File', 'Total Sales', 'Total Units', 'Avg Price']
+        summary_sheet['A1'].value = headers
+        
+        row = 2
+        for file in Path(folder_path).glob('*.xlsx'):
+            wb = app.books.open(str(file))
+            data_sheet = wb.sheets['Sales']
+            
+            # Extract summary
+            total_sales = data_sheet['B:B'].api.SpecialCells(11).Value  # xlCellTypeConstants
+            total_units = data_sheet['C:C'].api.SpecialCells(11).Value
+            
+            # Calculate and write
+            summary_sheet[f'A{row}'].value = file.name
+            summary_sheet[f'B{row}'].value = sum(total_sales) if isinstance(total_sales, (list, tuple)) else total_sales
+            summary_sheet[f'C{row}'].value = sum(total_units) if isinstance(total_units, (list, tuple)) else total_units
+            summary_sheet[f'D{row}'].value = f'=B{row}/C{row}'
+            
+            wb.close()
+            row += 1
+        
+        # Format summary
+        summary_sheet['A1:D1'].font.bold = True
+        summary_sheet['B:D'].number_format = '$#,##0.00'
+        summary_sheet['A:D'].autofit()
+        
+        summary_wb.save(output_path)
+        
+    finally:
+        app.quit()
+    
+    print(f"Consolidated {row-2} files to {output_path}")
+
+# Usage
+process_sales_files('/path/to/sales/', 'consolidated_sales.xlsx')
+```
+
+### Example 3: Excel Add-in with UDFs
+
+## Limitations
+
+- Requires Excel to be installed
+- Limited support on macOS for some features
+- Not suitable for server-side processing
+- VBA features require trust settings
+- Performance varies with Excel version
+
+## Installation
+
+```bash
+pip install xlwings
+
+# For add-in functionality
+xlwings addin install
+```
+

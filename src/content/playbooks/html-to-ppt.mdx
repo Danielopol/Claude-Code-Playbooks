@@ -37,3 +37,61 @@ mv ~/Downloads/CLAUDE.md ~/Documents/HtmlToPpt/
 cd ~/Documents/HtmlToPpt
 claude
 ```
+
+---
+
+## How to Use
+
+1. Provide Markdown content structured for slides
+2. Optionally specify a theme or custom styling
+3. I'll convert it to PowerPoint, PDF, or HTML slides
+
+**Example prompts:**
+- "Convert this markdown to a PowerPoint presentation"
+- "Create slides from this outline using Marp"
+- "Turn my notes into a presentation with the gaia theme"
+- "Generate a PDF slide deck from this markdown"
+
+## Best Practices
+
+1. **One Idea Per Slide**: Keep slides focused
+2. **Use Visual Hierarchy**: Consistent heading levels
+3. **Limit Text**: 6 bullets max per slide
+4. **Include Images**: Visual content enhances retention
+5. **Test Output**: Preview before final export
+
+## Examples
+
+### Example 1: Tech Presentation
+```markdown
+---
+marp: true
+theme: gaia
+class: lead
+paginate: true
+---
+
+# API Documentation
+```
+
+## Limitations
+
+- Complex animations not supported
+- Some PowerPoint-specific features unavailable
+- Custom fonts require CSS configuration
+- Video embedding limited
+- Speaker notes have basic support
+
+## Installation
+
+```bash
+# Using npm
+npm install -g @marp-team/marp-cli
+
+# Using Homebrew
+brew install marp-cli
+
+# Verify installation
+marp --version
+```
+

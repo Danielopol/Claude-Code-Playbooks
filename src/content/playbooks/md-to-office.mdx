@@ -37,3 +37,71 @@ mv ~/Downloads/CLAUDE.md ~/Documents/MdToOffice/
 cd ~/Documents/MdToOffice
 claude
 ```
+
+---
+
+## How to Use
+
+1. Provide the Markdown content or file
+2. Specify the target format (docx, pptx, pdf, etc.)
+3. Optionally provide a reference template for styling
+4. I'll convert using Pandoc with optimal settings
+
+**Example prompts:**
+- "Convert this README.md to a professional Word document"
+- "Turn my markdown notes into a PowerPoint presentation"
+- "Generate a PDF from this markdown with custom styling"
+- "Create a Word doc from this markdown using company template"
+
+## Best Practices
+
+1. **Use Templates**: Create a reference document for consistent branding
+2. **Structure Headers**: Use consistent heading levels (## for slides, # for sections)
+3. **Test Incrementally**: Convert small sections first to verify formatting
+4. **Include Metadata**: Use YAML frontmatter for document properties
+5. **Handle Images**: Use relative paths and specify dimensions
+
+## Examples
+
+### Example 1: Technical Documentation
+```python
+import subprocess
+
+# Create comprehensive markdown
+doc = """---
+title: "API Documentation"
+author: "Dev Team"
+date: "2024-01-15"
+toc: true
+toc-depth: 2
+---
+
+# Introduction
+
+This document describes the REST API for our service.
+```
+
+## Limitations
+
+- Complex Word formatting may not convert perfectly
+- PDF conversion requires LaTeX or wkhtmltopdf
+- PowerPoint animations not supported
+- Some advanced tables may need manual adjustment
+- Image positioning can be tricky
+
+## Installation
+
+```bash
+# macOS
+brew install pandoc
+
+# Ubuntu/Debian
+sudo apt-get install pandoc
+
+# Windows
+choco install pandoc
+
+# Python wrapper
+pip install pypandoc
+```
+

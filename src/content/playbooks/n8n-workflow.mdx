@@ -37,3 +37,32 @@ mv ~/Downloads/CLAUDE.md ~/Documents/N8nWorkflow/
 cd ~/Documents/N8nWorkflow
 claude
 ```
+
+---
+
+## How to Use
+
+1. Describe what you want to accomplish
+2. Provide any required input data or files
+3. I'll execute the appropriate operations
+
+**Example prompts:**
+- "Automate PDF → OCR → Translation → Email workflow"
+- "Watch folder for new contracts → Review → Notify Slack"
+- "Daily report generation from multiple data sources"
+- "Batch document processing with conditional logic"
+
+## Best Practices
+
+1. **Start with existing templates, customize as needed**
+2. **Use error handling nodes for reliability**
+3. **Store credentials securely with n8n's credential manager**
+4. **Test workflows with sample data before production**
+
+## Installation
+
+```bash
+# Install required dependencies
+pip install python-docx openpyxl python-pptx reportlab jinja2
+```
+

@@ -37,3 +37,54 @@ mv ~/Downloads/CLAUDE.md ~/Documents/ChangelogGenerator/
 cd ~/Documents/ChangelogGenerator
 claude
 ```
+
+---
+
+## How to Use
+
+### From Git Commits
+
+### From Feature List
+
+### From Diff/Changes
+
+## Output Format
+
+### Standard Changelog (Keep a Changelog)
+```markdown
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/),
+and this project adheres to [Semantic Versioning](https://semver.org/).
+```
+
+## Best Practices
+
+### Writing Good Entries
+✅ **Do**:
+- Write from user's perspective
+- Be specific about what changed
+- Include relevant issue/PR numbers
+- Group related changes
+
+❌ **Don't**:
+- Use technical jargon for user-facing notes
+- Include internal changes in public changelog
+- Be vague ("various fixes")
+- Include commit hashes in user docs
+
+### Organizing Changes
+1. **Impact first**: Most important changes at top
+2. **Group logically**: By feature area or type
+3. **Be consistent**: Same format throughout
+4. **Date everything**: Clear version dates
+
+## Limitations
+
+- Cannot access git repositories directly
+- Requires commit messages or change descriptions as input
+- Cannot verify semantic versioning automatically
+- Technical details should be verified by developers
+

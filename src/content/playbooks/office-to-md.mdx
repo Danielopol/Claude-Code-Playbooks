@@ -37,3 +37,140 @@ mv ~/Downloads/CLAUDE.md ~/Documents/OfficeToMd/
 cd ~/Documents/OfficeToMd
 claude
 ```
+
+---
+
+## How to Use
+
+1. Provide the Office file (Word, Excel, PowerPoint, PDF, etc.)
+2. Optionally specify conversion options
+3. I'll convert it to clean Markdown
+
+**Example prompts:**
+- "Convert this Word document to Markdown"
+- "Turn this PowerPoint into Markdown notes"
+- "Extract content from this PDF as Markdown"
+- "Convert this Excel file to Markdown tables"
+
+## Best Practices
+
+1. **Check Output Quality**: Review converted Markdown for accuracy
+2. **Handle Tables**: Complex tables may need manual adjustment
+3. **Preserve Structure**: Use consistent heading levels in source docs
+4. **Image Handling**: Consider using vision models for important images
+5. **Version Control**: Store converted Markdown in Git for tracking
+
+## Examples
+
+### Example 1: Convert Documentation Suite
+```python
+from markitdown import MarkItDown
+from pathlib import Path
+
+def convert_docs_to_wiki(docs_folder, wiki_folder):
+    """Convert all Office docs to markdown wiki structure."""
+    md = MarkItDown()
+    docs_path = Path(docs_folder)
+    wiki_path = Path(wiki_folder)
+    
+    # Create wiki structure
+    wiki_path.mkdir(exist_ok=True)
+    
+    # Create index
+    index_content = "# Documentation Index\n\n"
+    
+    for doc in sorted(docs_path.glob('**/*.docx')):
+        try:
+            result = md.convert(str(doc))
+            
+            # Create relative path in wiki
+            rel_path = doc.relative_to(docs_path)
+            output_file = wiki_path / rel_path.with_suffix('.md')
+            output_file.parent.mkdir(parents=True, exist_ok=True)
+            
+            # Write markdown
+            with open(output_file, 'w') as f:
+                f.write(result.text_content)
+            
+            # Add to index
+            link = str(rel_path.with_suffix('.md')).replace('\\', '/')
+            index_content += f"- [{doc.stem}]({link})\n"
+            
+            print(f"Converted: {doc.name}")
+            
+        except Exception as e:
+            print(f"Error: {doc.name} - {e}")
+    
+    # Write index
+    with open(wiki_path / 'index.md', 'w') as f:
+        f.write(index_content)
+
+convert_docs_to_wiki('./company_docs', './wiki')
+```
+
+### Example 2: Meeting Notes Processor
+```python
+from markitdown import MarkItDown
+import re
+from datetime import datetime
+
+def process_meeting_notes(pptx_path):
+    """Extract and structure meeting notes from PowerPoint."""
+    md = MarkItDown()
+    result = md.convert(pptx_path)
+    
+    # Parse the markdown
+    content = result.text_content
+    
+    # Extract sections
+    sections = {
+        'attendees': [],
+        'agenda': [],
+        'decisions': [],
+        'action_items': []
+    }
+    
+    current_section = None
+    
+    for line in content.split('\n'):
+        line_lower = line.lower()
+        
+        if 'attendee' in line_lower or 'participant' in line_lower:
+            current_section = 'attendees'
+        elif 'agenda' in line_lower:
+            current_section = 'agenda'
+        elif 'decision' in line_lower:
+            current_section = 'decisions'
+        elif 'action' in line_lower:
+            current_section = 'action_items'
+        elif line.strip().startswith(('-', '*', '•')) and current_section:
+            sections[current_section].append(line.strip()[1:].strip())
+    
+    # Generate structured output
+    output = f"""# Meeting Notes
+
+**Date:** {datetime.now().strftime('%Y-%m-%d')}
+**Source:** {pptx_path}
+```
+
+## Limitations
+
+- Complex formatting may be simplified
+- Images are not embedded (use vision model for descriptions)
+- Some table structures may not convert perfectly
+- Track changes in Word are not preserved
+- Comments may not be extracted
+
+## Installation
+
+```bash
+pip install markitdown
+
+# For image/audio processing
+pip install markitdown[all]
+
+# For specific features
+pip install markitdown[images]  # Image OCR
+pip install markitdown[audio]   # Audio transcription
+```
+

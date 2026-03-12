@@ -37,3 +37,64 @@ mv ~/Downloads/CLAUDE.md ~/Documents/FinancialModeling/
 cd ~/Documents/FinancialModeling
 claude
 ```
+
+---
+
+## How to Use
+
+### Step 1: Provide Historical Data
+
+I need 2-3 years of:
+- Income statement (revenue, COGS, operating expenses)
+- Balance sheet (assets, liabilities, equity)
+- Cash flow statement (optional but helpful)
+
+### Step 2: Define Projection Assumptions
+
+Key drivers:
+- Revenue growth rate
+- Gross margin
+- Operating expense ratios
+- Capex as % of revenue
+- Working capital days (DSO, DIO, DPO)
+
+### Step 3: Choose Model Scope
+
+- **Basic**: Income statement only
+- **Standard**: Income statement + balance sheet
+- **Full**: Complete 3-statement model with cash flow
+
+---
+
+## Output Format
+
+```markdown
+# Financial Model: [Company Name]
+
+**Projection Period**: [Years]
+**Base Year**: [Year]
+**Currency**: [USD/CNY/etc.]
+
+---
+```
+
+## Tips
+
+1. **Provide clean historical data** in a consistent format
+2. **Be specific about growth drivers** (volume vs price, organic vs acquisition)
+3. **Specify industry context** for appropriate benchmarks
+4. **Ask for scenario analysis** to understand range of outcomes
+5. **Request sensitivity tables** for key assumptions
+
+---
+
+## Limitations
+
+- Projections are only as good as the assumptions
+- Cannot model complex corporate structures
+- Does not account for one-time items automatically
+- Simplified tax calculations
+- Currency assumed constant (no FX modeling)
+
+---
+

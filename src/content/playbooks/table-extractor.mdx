@@ -37,3 +37,137 @@ mv ~/Downloads/CLAUDE.md ~/Documents/TableExtractor/
 cd ~/Documents/TableExtractor
 claude
 ```
+
+---
+
+## How to Use
+
+1. Provide the PDF containing tables
+2. Optionally specify pages or table detection method
+3. I'll extract tables as pandas DataFrames
+
+**Example prompts:**
+- "Extract all tables from this PDF"
+- "Get the table on page 5 of this report"
+- "Extract borderless tables from this document"
+- "Convert PDF tables to Excel format"
+
+## Best Practices
+
+1. **Try Both Methods**: Lattice for bordered, stream for borderless
+2. **Check Accuracy Score**: Above 90% is usually good
+3. **Use Visual Debugging**: Understand extraction results
+4. **Specify Areas**: For PDFs with multiple table types
+5. **Handle Headers**: First row often needs special treatment
+
+## Examples
+
+### Example 1: Financial Statement Extraction
+```python
+import camelot
+import pandas as pd
+
+def extract_financial_tables(pdf_path):
+    """Extract financial tables from annual report."""
+    
+    # Extract all tables
+    tables = camelot.read_pdf(pdf_path, pages='all', flavor='lattice')
+    
+    financial_data = {
+        'income_statement': None,
+        'balance_sheet': None,
+        'cash_flow': None,
+        'other_tables': []
+    }
+    
+    for table in tables:
+        df = table.df
+        text = df.to_string().lower()
+        
+        # Identify table type
+        if 'revenue' in text or 'sales' in text:
+            if 'operating income' in text or 'net income' in text:
+                financial_data['income_statement'] = df
+        elif 'asset' in text and 'liabilities' in text:
+            financial_data['balance_sheet'] = df
+        elif 'cash flow' in text or 'operating activities' in text:
+            financial_data['cash_flow'] = df
+        else:
+            financial_data['other_tables'].append({
+                'page': table.page,
+                'data': df,
+                'accuracy': table.accuracy
+            })
+    
+    return financial_data
+
+financials = extract_financial_tables('annual_report.pdf')
+if financials['income_statement'] is not None:
+    print("Income Statement found:")
+    print(financials['income_statement'])
+```
+
+### Example 2: Scientific Data Extraction
+```python
+import camelot
+import pandas as pd
+
+def extract_research_data(pdf_path, pages='all'):
+    """Extract data tables from research paper."""
+    
+    # Try lattice for bordered tables
+    tables = camelot.read_pdf(pdf_path, pages=pages, flavor='lattice')
+    
+    if not tables or all(t.accuracy < 70 for t in tables):
+        # Fall back to stream for borderless
+        tables = camelot.read_pdf(pdf_path, pages=pages, flavor='stream')
+    
+    extracted_data = []
+    
+    for table in tables:
+        df = table.df
+        
+        # Clean up the DataFrame
+        # Set first row as header if it looks like one
+        if not df.iloc[0].str.contains(r'\d').any():
+            df.columns = df.iloc[0]
+            df = df[1:]
+            df = df.reset_index(drop=True)
+        
+        extracted_data.append({
+            'page': table.page,
+            'accuracy': table.accuracy,
+            'data': df
+        })
+    
+    return extracted_data
+
+data = extract_research_data('research_paper.pdf')
+for i, item in enumerate(data):
+    print(f"Table {i+1} (Page {item['page']}, Accuracy: {item['accuracy']}%):")
+    print(item['data'].head())
+```
+
+### Example 3: Invoice Line Items
+
+## Limitations
+
+- Encrypted PDFs not supported
+- Image-based PDFs need OCR preprocessing
+- Very complex merged cells may need tuning
+- Rotated tables require preprocessing
+- Large PDFs may need page-by-page processing
+
+## Installation
+
+```bash
+pip install camelot-py[cv]
+
+# Additional dependencies
+# macOS
+brew install ghostscript tcl-tk
+
+# Ubuntu
+apt-get install ghostscript python3-tk
+```
+

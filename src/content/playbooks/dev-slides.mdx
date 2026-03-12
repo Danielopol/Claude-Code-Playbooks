@@ -37,3 +37,91 @@ mv ~/Downloads/CLAUDE.md ~/Documents/DevSlides/
 cd ~/Documents/DevSlides
 claude
 ```
+
+---
+
+## How to Use
+
+1. Describe your technical presentation needs
+2. I'll generate Slidev markdown with proper syntax
+3. Includes code blocks, diagrams, and Vue components
+
+**Example prompts:**
+- "Create a Vue.js workshop presentation"
+- "Build slides with live code execution"
+- "Make a technical talk with diagrams"
+- "Create developer onboarding slides"
+
+## Examples
+
+### Example: API Workshop
+```markdown
+---
+theme: seriph
+background: https://source.unsplash.com/collection/94734566/1920x1080
+class: text-center
+---
+
+# REST API Workshop
+
+Building Modern APIs with Node.js
+
+<div class="pt-12">
+  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer">
+    Press Space for next page <carbon:arrow-right />
+  </span>
+</div>
+
+---
+layout: two-cols
+---
+
+# What We'll Cover
+
+<v-clicks>
+
+- RESTful principles
+- Express.js basics
+- Authentication
+- Error handling
+- Testing
+
+</v-clicks>
+
+::right::
+
+\`\`\`ts
+// Preview
+const app = express()
+app.get('/api/users', getUsers)
+app.listen(3000)
+\`\`\`
+
+---
+
+# Live Demo
+
+\`\`\`ts {monaco-run}
+const users = [
+  { id: 1, name: 'Alice' },
+  { id: 2, name: 'Bob' }
+]
+
+console.log(JSON.stringify(users, null, 2))
+\`\`\`
+
+---
+layout: center
+---
+
+# Questions?
+
+[GitHub](https://github.com) · [Documentation](https://docs.example.com)
+```
+
+## Installation
+
+```bash
+npm init slidev@latest
+```
+

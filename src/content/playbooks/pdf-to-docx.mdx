@@ -37,3 +37,109 @@ mv ~/Downloads/CLAUDE.md ~/Documents/PdfToDocx/
 cd ~/Documents/PdfToDocx
 claude
 ```
+
+---
+
+## How to Use
+
+1. Provide the PDF file you want to convert
+2. Optionally specify pages or conversion options
+3. I'll convert it to an editable Word document
+
+**Example prompts:**
+- "Convert this PDF report to an editable Word document"
+- "Turn pages 1-5 of this PDF into Word format"
+- "Extract this scanned document as editable text"
+- "Convert this PDF contract to Word for editing"
+
+## Best Practices
+
+1. **Check PDF Type**: Native PDFs convert better than scanned
+2. **Preview First**: Test with a few pages before full conversion
+3. **Handle Tables**: Complex tables may need manual adjustment
+4. **Image Quality**: Images are extracted at original resolution
+5. **Font Handling**: Some fonts may substitute to system defaults
+
+## Examples
+
+### Example 1: Contract Conversion
+```python
+from pdf2docx import Converter
+import os
+
+def convert_contract(pdf_path):
+    """Convert contract PDF to editable Word with metadata."""
+    
+    # Define output path
+    base_name = os.path.splitext(pdf_path)[0]
+    output_path = f"{base_name}_editable.docx"
+    
+    # Convert
+    cv = Converter(pdf_path)
+    
+    # Check page count
+    page_count = len(cv.pages)
+    print(f"Processing {page_count} pages...")
+    
+    # Convert all pages
+    cv.convert(output_path)
+    cv.close()
+    
+    print(f"Created: {output_path}")
+    print(f"File size: {os.path.getsize(output_path) / 1024:.1f} KB")
+    
+    return output_path
+
+# Usage
+result = convert_contract('contract.pdf')
+```
+
+### Example 2: Selective Page Conversion
+```python
+from pdf2docx import Converter
+
+def convert_selected_pages(pdf_path, page_ranges, output_path):
+    """Convert specific page ranges to Word.
+    
+    page_ranges: List of tuples like [(1, 3), (5, 7)] for pages 1-3 and 5-7
+    """
+    cv = Converter(pdf_path)
+    
+    # Convert pages (0-indexed internally)
+    all_pages = []
+    for start, end in page_ranges:
+        all_pages.extend(range(start - 1, end))  # Convert to 0-indexed
+    
+    cv.convert(output_path, pages=all_pages)
+    cv.close()
+    
+    print(f"Converted pages: {page_ranges}")
+    return output_path
+
+# Convert pages 1-5 and 10-15
+convert_selected_pages(
+    'long_document.pdf',
+    [(1, 5), (10, 15)],
+    'selected_pages.docx'
+)
+```
+
+### Example 3: PDF Report to Editable Template
+
+## Limitations
+
+- Scanned PDFs require OCR preprocessing
+- Complex layouts may not convert perfectly
+- Some fonts may not be available
+- Watermarks are included in conversion
+- Protected/encrypted PDFs need password
+
+## Installation
+
+```bash
+pip install pdf2docx
+
+# For image handling
+pip install Pillow
+```
+

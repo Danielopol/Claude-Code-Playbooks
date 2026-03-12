@@ -37,3 +37,148 @@ mv ~/Downloads/CLAUDE.md ~/Documents/DocParser/
 cd ~/Documents/DocParser
 claude
 ```
+
+---
+
+## How to Use
+
+1. Provide the document to parse
+2. Specify what you want to extract (text, tables, figures, etc.)
+3. I'll parse it and return structured data
+
+**Example prompts:**
+- "Parse this PDF and extract all tables"
+- "Convert this academic paper to structured markdown"
+- "Extract figures and captions from this document"
+- "Parse this report preserving the document structure"
+
+## Best Practices
+
+1. **Use Appropriate Pipeline**: Configure for your document type
+2. **Handle Large Documents**: Process in chunks if needed
+3. **Verify Table Extraction**: Complex tables may need review
+4. **Check OCR Quality**: Enable OCR for scanned documents
+5. **Cache Results**: Store parsed documents for reuse
+
+## Examples
+
+### Example 1: Parse Financial Report
+```python
+from docling.document_converter import DocumentConverter
+
+def parse_financial_report(pdf_path):
+    """Extract structured data from financial report."""
+    
+    converter = DocumentConverter()
+    result = converter.convert(pdf_path)
+    doc = result.document
+    
+    financial_data = {
+        'income_statement': None,
+        'balance_sheet': None,
+        'cash_flow': None,
+        'notes': []
+    }
+    
+    # Extract tables
+    tables = []
+    for element in doc.iterate_items():
+        if element.type == 'table':
+            table_df = element.export_to_dataframe()
+            
+            # Identify table type
+            if 'revenue' in str(table_df).lower() or 'income' in str(table_df).lower():
+                financial_data['income_statement'] = table_df
+            elif 'asset' in str(table_df).lower() or 'liabilities' in str(table_df).lower():
+                financial_data['balance_sheet'] = table_df
+            elif 'cash' in str(table_df).lower():
+                financial_data['cash_flow'] = table_df
+            else:
+                tables.append(table_df)
+    
+    # Extract markdown for notes
+    financial_data['markdown'] = doc.export_to_markdown()
+    
+    return financial_data
+
+report = parse_financial_report('annual_report.pdf')
+print("Income Statement:")
+print(report['income_statement'])
+```
+
+### Example 2: Technical Documentation Parser
+```python
+from docling.document_converter import DocumentConverter
+
+def parse_technical_docs(doc_path):
+    """Parse technical documentation."""
+    
+    converter = DocumentConverter()
+    result = converter.convert(doc_path)
+    doc = result.document
+    
+    documentation = {
+        'title': None,
+        'version': None,
+        'sections': [],
+        'code_blocks': [],
+        'diagrams': []
+    }
+    
+    current_section = None
+    
+    for element in doc.iterate_items():
+        if element.type == 'title':
+            documentation['title'] = element.text
+        
+        elif element.type == 'heading':
+            current_section = {
+                'title': element.text,
+                'level': element.level if hasattr(element, 'level') else 1,
+                'content': []
+            }
+            documentation['sections'].append(current_section)
+        
+        elif element.type == 'code':
+            if current_section:
+                current_section['content'].append({
+                    'type': 'code',
+                    'content': element.text
+                })
+            documentation['code_blocks'].append(element.text)
+        
+        elif element.type == 'picture':
+            documentation['diagrams'].append({
+                'page': element.prov[0].page_no if element.prov else None,
+                'caption': element.caption if hasattr(element, 'caption') else None
+            })
+    
+    return documentation
+
+docs = parse_technical_docs('api_documentation.pdf')
+print(f"Title: {docs['title']}")
+print(f"Sections: {len(docs['sections'])}")
+```
+
+### Example 3: Contract Analysis
+
+## Limitations
+
+- Very large documents may require chunking
+- Handwritten content needs OCR preprocessing
+- Complex nested tables may need manual review
+- Some PDF types (encrypted) not supported
+- GPU recommended for best performance
+
+## Installation
+
+```bash
+pip install docling
+
+# For full functionality
+pip install docling[all]
+
+# For OCR support
+pip install docling[ocr]
+```
+

@@ -37,3 +37,134 @@ mv ~/Downloads/CLAUDE.md ~/Documents/LayoutAnalyzer/
 cd ~/Documents/LayoutAnalyzer
 claude
 ```
+
+---
+
+## How to Use
+
+1. Provide the document image or PDF
+2. Specify what layout elements to detect
+3. I'll analyze the structure and return detected regions
+
+**Example prompts:**
+- "Analyze the layout of this document page"
+- "Detect all tables and text blocks in this image"
+- "Determine the reading order for this PDF page"
+- "Find headings and paragraphs in this document"
+
+## Best Practices
+
+1. **Use High-Quality Images**: 150+ DPI for best results
+2. **Preprocess if Needed**: Deskew rotated documents
+3. **Validate Results**: Check confidence scores
+4. **Handle Multi-page**: Process pages individually
+5. **Combine with OCR**: Get text within detected regions
+
+## Examples
+
+### Example 1: Academic Paper Analysis
+```python
+from surya.layout import LayoutPredictor
+from surya.reading_order import ReadingOrderPredictor
+from pdf2image import convert_from_path
+
+def analyze_academic_paper(pdf_path):
+    """Analyze structure of academic paper."""
+    
+    images = convert_from_path(pdf_path)
+    
+    layout_predictor = LayoutPredictor()
+    order_predictor = ReadingOrderPredictor()
+    
+    paper_structure = {
+        'pages': [],
+        'element_counts': {
+            'Title': 0,
+            'Section-header': 0,
+            'Text': 0,
+            'Table': 0,
+            'Figure': 0,
+            'Formula': 0,
+            'Footnote': 0
+        }
+    }
+    
+    layout_results = layout_predictor(images)
+    order_results = order_predictor(images, layout_results)
+    
+    for page_num, (layout, order) in enumerate(zip(layout_results, order_results)):
+        page_structure = {
+            'page': page_num + 1,
+            'elements': []
+        }
+        
+        for element in order.ordered_bboxes:
+            page_structure['elements'].append({
+                'type': element.label,
+                'bbox': element.bbox,
+                'order': element.position
+            })
+            
+            # Count element types
+            if element.label in paper_structure['element_counts']:
+                paper_structure['element_counts'][element.label] += 1
+        
+        paper_structure['pages'].append(page_structure)
+    
+    return paper_structure
+
+paper = analyze_academic_paper('research_paper.pdf')
+print(f"Total tables: {paper['element_counts']['Table']}")
+print(f"Total figures: {paper['element_counts']['Figure']}")
+```
+
+### Example 2: Form Field Detection
+```python
+from surya.layout import LayoutPredictor
+from PIL import Image
+
+def detect_form_fields(image_path):
+    """Detect form fields and labels."""
+    
+    image = Image.open(image_path)
+    
+    layout_predictor = LayoutPredictor()
+    results = layout_predictor([image])
+    
+    form_fields = []
+    
+    for element in results[0].bboxes:
+        # Look for text elements that might be labels
+        if element.label == 'Text':
+            # Check if there's a box/line nearby (potential input field)
+            form_fields.append({
+                'type': 'potential_label',
+                'bbox': element.bbox,
+                'confidence': element.confidence
+            })
+    
+    return form_fields
+
+fields = detect_form_fields('form.png')
+print(f"Found {len(fields)} potential form elements")
+```
+
+### Example 3: Multi-column Article
+
+## Limitations
+
+- Handwritten layouts may be inaccurate
+- Very small text regions may be missed
+- Complex nested layouts challenging
+- GPU recommended for batch processing
+- Multi-language support varies
+
+## Installation
+
+```bash
+pip install surya-ocr
+
+# For PDF processing
+pip install pdf2image
+```
+

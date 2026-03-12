@@ -37,3 +37,61 @@ mv ~/Downloads/CLAUDE.md ~/Documents/ExpenseReport/
 cd ~/Documents/ExpenseReport
 claude
 ```
+
+---
+
+## How to Use
+
+1. Provide your expense information (receipts, transactions, or descriptions)
+2. Specify the purpose (reimbursement, tax prep, budget tracking)
+3. Tell me your expense categories or policies
+4. I'll create a structured expense report
+
+**Example prompts:**
+- "Create an expense report from these receipts for my business trip"
+- "Categorize and summarize my expenses for the month"
+- "Format these expenses for reimbursement"
+- "Help me organize my freelance business expenses for taxes"
+
+## Output Format
+
+```markdown
+# Expense Report
+
+**Period:** [Dates]
+**Total:** $X,XXX.XX
+```
+
+## Limitations
+
+- Cannot scan or read receipt images directly
+- Tax advice should be verified with a professional
+- Exchange rates should be verified for accuracy
+- Company policies may have specific requirements
+- Cannot submit reports to your expense system
+
+## Examples
+
+### Example: Quick Expense Organization
+
+**Input:**
+```
+uber to airport $45
+flight to NYC $380
+hotel 2 nights $420
+dinner with client john from acme $125
+coffee and breakfast $35
+uber to meetings $28
+lunch meeting $65
+return flight $395
+uber home $42
+```
+
+**Output:**
+
+# Travel Expense Report
+
+**Trip:** NYC Client Visit
+**Dates:** [Dates based on context]
+**Purpose:** Client meeting with Acme Corp
+

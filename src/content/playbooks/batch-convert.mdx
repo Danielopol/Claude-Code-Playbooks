@@ -37,3 +37,148 @@ mv ~/Downloads/CLAUDE.md ~/Documents/BatchConvert/
 cd ~/Documents/BatchConvert
 claude
 ```
+
+---
+
+## How to Use
+
+1. Specify the source folder or files
+2. Choose target format(s)
+3. Optionally configure conversion options
+4. I'll process all files with progress tracking
+
+**Example prompts:**
+- "Convert all PDFs in this folder to Word documents"
+- "Batch convert these markdown files to PDF and HTML"
+- "Process all Office files and convert to Markdown"
+- "Convert this folder of images to a single PDF"
+
+## Best Practices
+
+1. **Test Sample First**: Convert a few files before batch processing
+2. **Check Disk Space**: Ensure sufficient space for output
+3. **Use Parallel Processing**: Speed up with multiple workers
+4. **Handle Errors Gracefully**: Log failures, continue processing
+5. **Verify Output**: Spot-check converted files
+
+## Examples
+
+### Example 1: Documentation Export
+```python
+from pathlib import Path
+import json
+
+def export_documentation(docs_dir, export_dir):
+    """Export all documentation to multiple formats."""
+    
+    converter = DocumentConverter(max_workers=8)
+    docs_path = Path(docs_dir)
+    export_path = Path(export_dir)
+    
+    # Create format directories
+    for fmt in ['pdf', 'docx', 'html']:
+        (export_path / fmt).mkdir(parents=True, exist_ok=True)
+    
+    all_results = {}
+    
+    # Find all markdown files
+    md_files = list(docs_path.rglob('*.md'))
+    
+    for md_file in md_files:
+        file_results = {}
+        
+        for fmt in ['pdf', 'docx', 'html']:
+            output_dir = export_path / fmt
+            try:
+                output = converter.convert(md_file, fmt, output_dir)
+                file_results[fmt] = 'success'
+            except Exception as e:
+                file_results[fmt] = f'error: {e}'
+        
+        all_results[str(md_file)] = file_results
+        print(f"Processed: {md_file.name}")
+    
+    # Save report
+    with open(export_path / 'export_report.json', 'w') as f:
+        json.dump(all_results, f, indent=2)
+    
+    return all_results
+
+results = export_documentation('./docs', './exports')
+```
+
+### Example 2: Legacy Document Migration
+```python
+def migrate_legacy_docs(source_dir, target_dir):
+    """Migrate legacy documents to modern formats."""
+    
+    converter = DocumentConverter(max_workers=4)
+    
+    # Migration rules
+    migrations = [
+        ('*.doc', 'docx'),   # Old Word to new
+        ('*.xls', 'xlsx'),   # Old Excel to new
+        ('*.ppt', 'pptx'),   # Old PowerPoint to new
+        ('*.rtf', 'docx'),   # RTF to Word
+    ]
+    
+    source_path = Path(source_dir)
+    target_path = Path(target_dir)
+    target_path.mkdir(exist_ok=True)
+    
+    total_migrated = 0
+    errors = []
+    
+    for pattern, target_format in migrations:
+        files = list(source_path.glob(pattern))
+        
+        for file in files:
+            try:
+                # Use LibreOffice for legacy formats
+                subprocess.run([
+                    'soffice', '--headless',
+                    '--convert-to', target_format,
+                    '--outdir', str(target_path),
+                    str(file)
+                ], check=True)
+                
+                total_migrated += 1
+                print(f"Migrated: {file.name}")
+                
+            except Exception as e:
+                errors.append({'file': str(file), 'error': str(e)})
+    
+    print(f"\nMigration complete: {total_migrated} files")
+    print(f"Errors: {len(errors)}")
+    
+    return {'migrated': total_migrated, 'errors': errors}
+```
+
+### Example 3: Report Generation Pipeline
+
+## Limitations
+
+- Some format combinations not supported
+- Complex formatting may be lost in conversion
+- Large files may require more time
+- Some conversions need external tools (LibreOffice, Pandoc)
+- Quality varies by source document complexity
+
+## Installation
+
+```bash
+# Core dependencies
+pip install pdf2docx markitdown python-docx openpyxl
+
+# Pandoc (for MD conversions)
+brew install pandoc  # macOS
+apt install pandoc   # Ubuntu
+
+# Marp (for PPTX)
+npm install -g @marp-team/marp-cli
+
+# LibreOffice (for Office formats)
+brew install libreoffice  # macOS
+apt install libreoffice   # Ubuntu
+```
+

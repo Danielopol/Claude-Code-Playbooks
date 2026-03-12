@@ -37,3 +37,32 @@ mv ~/Downloads/CLAUDE.md ~/Documents/BatchProcessor/
 cd ~/Documents/BatchProcessor
 claude
 ```
+
+---
+
+## How to Use
+
+1. Describe what you want to accomplish
+2. Provide any required input data or files
+3. I'll execute the appropriate operations
+
+**Example prompts:**
+- "Convert 100 PDFs to Word documents"
+- "Extract text from all images in a folder"
+- "Batch rename and organize files"
+- "Mass update document headers/footers"
+
+## Best Practices
+
+1. **Use progress bars (tqdm) for user feedback**
+2. **Implement checkpointing for long jobs**
+3. **Set reasonable worker counts (CPU cores)**
+4. **Log failures for later review**
+
+## Installation
+
+```bash
+# Install required dependencies
+pip install python-docx openpyxl python-pptx reportlab jinja2
+```
+

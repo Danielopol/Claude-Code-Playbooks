@@ -84,10 +84,23 @@ Click **Download** above, then move the file...
 ...how to start using it...
 ```
 
+### 3. Enrich the MDX with template insights
+
+After creating the MDX and template files, scan the template (`public/templates/{slug}.md`) for useful contextual sections and add them to the MDX content. Look for:
+
+- **Tips** and **best practices** (e.g., "Tips for Best Results", "Pro Tips")
+- **Limitations** and **caveats** (e.g., "Known Limitations", "Important Notes")
+- **Examples** (e.g., example commands, sample inputs/outputs, use cases)
+- **Supported formats/platforms** (e.g., "Supported Languages", "Compatible Formats")
+- **Prerequisites details** (e.g., required tools with install commands, API keys needed)
+- **Troubleshooting** guidance
+
+Extract these passages and add them as additional sections in the MDX (after Quick Start), such as `## Tips & Best Practices`, `## Limitations`, `## Examples`, etc. Do NOT copy the entire template — only the informational sections that help users understand what to expect before downloading.
+
 ### Important rules for MDX content
 
 - **DO NOT** include a "The CLAUDE.md Template" section or embed the template content in the MDX file. The template is served separately from `public/templates/{slug}.md` via the Download/Copy buttons on the playbook page. Embedding it inline is redundant.
-- The MDX file should only contain: a "What This Does" overview, setup instructions (Quick Start), and optionally Tips, Examples, or Troubleshooting sections.
+- The MDX file should only contain: a "What This Does" overview, setup instructions (Quick Start), enrichment sections (Tips, Examples, Limitations extracted from the template), and optionally Troubleshooting.
 - The build system reads the template from `public/templates/{slug}.md`. It falls back to extracting from the first markdown code block in the MDX only if no template file exists — but prefer always creating the separate template file.
 
 ## Adding a Blog Post from URL

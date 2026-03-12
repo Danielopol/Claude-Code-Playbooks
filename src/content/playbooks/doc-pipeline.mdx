@@ -37,3 +37,32 @@ mv ~/Downloads/CLAUDE.md ~/Documents/DocPipeline/
 cd ~/Documents/DocPipeline
 claude
 ```
+
+---
+
+## How to Use
+
+1. Describe what you want to accomplish
+2. Provide any required input data or files
+3. I'll execute the appropriate operations
+
+**Example prompts:**
+- "PDF → Extract Text → Translate → Generate DOCX"
+- "Image → OCR → Summarize → Create Report"
+- "Excel → Analyze → Generate Charts → Create PPT"
+- "Multiple inputs → Merge → Format → Output"
+
+## Best Practices
+
+1. **Keep stages focused (single responsibility)**
+2. **Use intermediate outputs for debugging**
+3. **Implement stage-level error handling**
+4. **Make pipelines configurable via YAML/JSON**
+
+## Installation
+
+```bash
+# Install required dependencies
+pip install python-docx openpyxl python-pptx reportlab jinja2
+```
+

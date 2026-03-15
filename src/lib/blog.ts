@@ -283,6 +283,20 @@ export const blogPosts: BlogPost[] = [
     tags: ['cowork', 'desktop', 'beginner', 'tutorial', 'automation', 'workspace', 'context files'],
     createdAt: '2026-03-08',
   },
+  {
+    id: 'everything-claude-code-can-do-that-you-haven-t-tri',
+    title: 'Everything Claude Code Can Do That You Haven\'t Tried Yet',
+    description: 'A deep dive into five powerful but underused Claude Code features: Agent Skills, SessionStart Hooks, retroactive IaC with AWS CloudFormation, fixing context rot with GSD, and Google Workspace integration.',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '8 min read',
+    url: 'https://x.com/sharbel/status/2031372411283575012',
+    featured: true,
+    thumbnailType: 'agent',
+    thumbnailTitle: 'power features',
+    tags: ['agent skills', 'hooks', 'context rot', 'GSD', 'google workspace', 'AWS', 'CloudFormation', 'tips'],
+    createdAt: '2026-03-15',
+  },
 ];
 
 export function getAllBlogPosts(): BlogPost[] {

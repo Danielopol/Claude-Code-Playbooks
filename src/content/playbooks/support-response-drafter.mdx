@@ -1,0 +1,101 @@
+---
+title: "Support Response Drafter"
+description: "Draft professional customer-facing responses tailored to ticket context and tone"
+category: "customer-support"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/customer-support/skills/draft-response"
+tags: ["customer-response", "support", "drafting", "communication"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+This playbook helps support teams draft professional, customer-facing responses tailored to the situation, relationship stage, and communication channel. It handles everything from routine product questions to escalations, outage notifications, and delivering bad news -- producing ready-to-send drafts with internal notes about tone rationale, things to verify, and follow-up actions.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```
+support-drafting/
+  CLAUDE.md
+```
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Say: **"Draft a response: Customer escalation -- their integration has been down for 2 days"**
+
+---
+
+## What Gets Generated
+
+Every draft includes:
+
+- **Customer-facing response** -- Tailored to the right tone, length, and stakeholder level
+- **Internal notes** -- Rationale for approach, facts to verify, risk factors, follow-up actions, and escalation guidance
+
+---
+
+## Tone Matching
+
+The assistant automatically selects the right tone based on the situation:
+
+| Situation | Tone |
+|-----------|------|
+| Good news / wins | Celebratory, enthusiastic |
+| Routine update | Professional, friendly |
+| Technical response | Precise, patient |
+| Delayed delivery | Accountable, action-oriented |
+| Bad news | Candid, empathetic |
+| Issue / outage | Urgent, transparent |
+| Escalation | Composed, ownership-taking |
+| Billing / account | Factual, resolution-focused |
+
+---
+
+## Core Principles
+
+1. **Lead with empathy** -- Acknowledge the customer's situation before jumping to solutions
+2. **Be direct** -- Get to the point. Bottom-line-up-front.
+3. **Be honest** -- Never overpromise, never mislead, never hide bad news in jargon
+4. **Be specific** -- Use concrete details, timelines, and names
+5. **Own it** -- "We" not "the system" or "the process"
+6. **Close the loop** -- Every response includes clear next steps
+
+---
+
+## Built-in Templates
+
+The playbook includes ready-to-customize templates for:
+
+- Bug report acknowledgments
+- Billing and account issue responses
+- Feature request declines
+- Outage and incident communications
+- Follow-up messages after silence
+
+---
+
+## Example Prompts
+
+```
+"Draft a response: Acme Corp is asking when the new dashboard feature will ship."
+"Customer escalation -- their integration has been down for 2 days. Draft an empathetic response."
+"We need to tell a customer we won't be building their feature request. Draft the response."
+"Customer hit a billing error and wants a resolution ASAP."
+"Draft a follow-up for a customer who hasn't responded in a week."
+```

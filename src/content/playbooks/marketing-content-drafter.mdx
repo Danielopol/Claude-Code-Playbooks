@@ -1,0 +1,80 @@
+---
+title: "Marketing Content Drafter"
+description: "Draft blog posts, social media, email campaigns, landing pages, and case studies"
+category: "marketing-content"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/marketing/skills/draft-content"
+tags: ["content-creation", "blog", "social-media", "email", "copywriting"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+Drafts marketing content tailored to a specific content type, audience, and brand voice. Supports blog posts, social media posts (LinkedIn, Twitter/X, Instagram, Facebook), email newsletters, landing page copy, press releases, and case studies -- with platform-specific formatting and SEO recommendations.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```
+content-drafting/
+├── CLAUDE.md
+├── drafts/          # Generated content drafts
+├── brand-guide/     # Brand voice and style docs
+└── assets/          # Images and supporting materials
+```
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Say: **"Draft a blog post about improving developer productivity for engineering managers"**
+
+---
+
+## Supported Content Types
+
+| Type | Key Features |
+|------|-------------|
+| **Blog Post** | 2-3 headline options, SEO keywords, structured sections, CTA |
+| **Social Media** | Platform-specific formatting, hashtags, engagement prompts |
+| **Email Newsletter** | Subject line options, preview text, clear hierarchy |
+| **Landing Page** | Headline, value props, CTAs, FAQ suggestions, meta tags |
+| **Press Release** | Standard format, dateline, quote placeholders, boilerplate |
+| **Case Study** | Challenge/solution/results structure, metric prompts |
+
+---
+
+## SEO Considerations
+
+For web-facing content, the assistant automatically provides:
+- Primary keyword suggestion
+- Keyword placement recommendations (headline, first paragraph, subheadings)
+- Meta description (under 160 characters)
+- Internal and external linking opportunities
+- Image alt text notes
+
+---
+
+## Example Prompts
+
+```
+"Draft a blog post about improving developer productivity for engineering managers"
+"Write a LinkedIn post announcing our Series B funding"
+"Create an email newsletter for our monthly product update"
+"Write landing page copy for our free trial signup"
+"Draft a press release for our new partnership with Acme Corp"
+"Create a case study for how Company X reduced churn by 30%"
+```

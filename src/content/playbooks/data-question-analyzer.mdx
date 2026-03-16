@@ -1,0 +1,85 @@
+---
+title: "Data Question Analyzer"
+description: "Answer data questions ranging from quick lookups to formal analytical reports"
+category: "data-reporting"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/data/skills/analyze"
+tags: ["data-analysis", "reporting", "questions", "insights"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+Helps you answer data questions of any complexity -- from quick metric lookups to multi-dimensional trend analyses to formal reports for stakeholders. The assistant understands your question, gathers and validates data, performs the analysis, and presents findings in the appropriate format.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```
+my-data-project/
+├── CLAUDE.md
+├── data/          # Place CSV/Excel files here
+└── output/        # Analysis results go here
+```
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Say: **"How many new users signed up in December?"**
+
+---
+
+## How It Determines Complexity
+
+The assistant automatically classifies your question into one of three levels:
+
+- **Quick answer**: Single metric, simple filter, factual lookup
+- **Full analysis**: Multi-dimensional exploration, trend analysis, comparison
+- **Formal report**: Comprehensive investigation with methodology, caveats, and recommendations
+
+Each level produces progressively more detailed output, from a single number to a full report with executive summary and recommendations.
+
+---
+
+## Validation Checks
+
+Before presenting any results, the assistant runs through these checks:
+
+- **Row count sanity**: Does the number of records make sense?
+- **Null check**: Are there unexpected nulls that could skew results?
+- **Magnitude check**: Are the numbers in a reasonable range?
+- **Trend continuity**: Do time series have unexpected gaps?
+- **Aggregation logic**: Do subtotals sum to totals correctly?
+
+---
+
+## Tips
+
+- Be specific about time ranges, segments, or metrics when possible
+- If you know the table names, mention them to speed up the process
+- For complex questions, the assistant may break them into multiple queries
+- Results are always validated before presentation -- if something looks off, it will be flagged
+
+---
+
+## Example Prompts
+
+```
+"How many new users signed up in December?"
+"What's causing the increase in support ticket volume over the past 3 months? Break down by category and priority."
+"Prepare a data quality assessment of our customer table -- completeness, consistency, and any issues we should address."
+```

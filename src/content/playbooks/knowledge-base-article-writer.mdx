@@ -1,0 +1,97 @@
+---
+title: "Knowledge Base Article Writer"
+description: "Create publish-ready KB articles from resolved support issues and common questions"
+category: "customer-support"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/customer-support/skills/kb-article"
+tags: ["knowledge-base", "documentation", "support", "articles"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+This playbook turns resolved support tickets and common customer questions into publish-ready knowledge base articles. It selects the right article type (how-to, troubleshooting, FAQ, or known issue), structures content for searchability and self-service, and includes metadata, publishing notes, and review recommendations -- so your KB stays accurate and useful.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```
+kb-writing/
+  CLAUDE.md
+```
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Say: **"Write a KB article: How to configure SSO with Okta -- resolved this for 3 customers last month"**
+
+---
+
+## Article Types
+
+The assistant automatically selects the best format:
+
+| Type | Purpose | Use When |
+|------|---------|----------|
+| **How-to** | Step-by-step instructions | Customer needs to accomplish a task |
+| **Troubleshooting** | Diagnose and fix a problem | Customer is experiencing an error or issue |
+| **FAQ** | Quick answer to a common question | Question comes up frequently, answer is brief |
+| **Known Issue** | Document a bug with workaround | Active issue affecting multiple customers |
+
+---
+
+## Output Format
+
+Every generated article includes:
+
+- **Article content** -- Fully structured with headers, steps, and formatting
+- **Metadata** -- Title, type, category, tags, audience
+- **Publishing notes** -- Source ticket, overlapping articles, review needs, suggested review date
+
+---
+
+## Searchability Best Practices
+
+The assistant optimizes every article for findability:
+
+- Titles use customer language, not internal jargon
+- Opening sentences restate the problem in plain language
+- Exact error messages are included for copy-paste searching
+- Common synonyms are covered (delete/remove, export/download)
+- Articles are tagged by product area matching how customers think
+
+---
+
+## Tips
+
+- Every ticket that could have been a KB article represents a content gap
+- Test your articles by following the steps yourself before publishing
+- Keep articles focused: one problem, one solution
+- A wrong article is worse than no article -- maintain aggressively
+- Update quarterly: flag articles not touched in 6+ months for review
+
+---
+
+## Example Prompts
+
+```
+"Write a KB article from ticket #4521 -- customer couldn't export data over 10k rows."
+"Common question: how to set up webhook notifications. Create a how-to article."
+"Known issue: dashboard charts not loading on Safari 16. Document with workaround."
+"We keep getting asked about API rate limits. Draft a FAQ article."
+"Create a troubleshooting article for the 'Connection refused' error during data import."
+```

@@ -1,0 +1,76 @@
+---
+title: "Design Critique Reviewer"
+description: "Structured design feedback across usability, visual hierarchy, and consistency"
+category: "creative-design"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/design/skills/design-critique"
+tags: ["design-review", "critique", "usability", "ui-ux"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+Provides structured, professional design feedback across five key dimensions: first impression, usability, visual hierarchy, consistency, and accessibility. The assistant adapts its critique depth based on the design stage -- giving broad directional feedback for early explorations and detailed, specific fixes for final polish reviews.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```bash
+mkdir -p ~/Projects/design-critique
+mv ~/Downloads/CLAUDE.md ~/Projects/design-critique/
+```
+
+Add your design screenshots, Figma exports, or mockup images to the same folder.
+
+### Step 3: Start Working
+
+```bash
+cd ~/Projects/design-critique
+claude
+```
+
+Say: **"Review this design and give me structured feedback"**
+
+---
+
+## Critique Framework
+
+The review follows a structured framework covering five areas:
+
+1. **First Impression (2 seconds)** -- What draws the eye first? Is the purpose immediately clear?
+2. **Usability** -- Can users accomplish their goal? Are interactive elements obvious?
+3. **Visual Hierarchy** -- Is there a clear reading order? Are the right elements emphasized?
+4. **Consistency** -- Does it follow the design system? Are spacing, colors, and typography consistent?
+5. **Accessibility** -- Color contrast, touch target sizes, text readability
+
+---
+
+## Tips
+
+- **Share the context** -- Saying "This is a checkout flow for a B2B SaaS" produces far more relevant feedback than a bare screenshot.
+- **Specify your stage** -- Early exploration gets broad directional feedback. Final polish gets pixel-level detail.
+- **Ask for focus** -- Requesting "Just look at the navigation" gives you deeper analysis on one area rather than surface-level coverage of everything.
+- **Acknowledge feedback is specific, not prescriptive** -- The suggestions are starting points for design decisions, not mandates.
+
+---
+
+## Example Prompts
+
+```
+"Review this mockup and give me structured design feedback"
+"Critique this mobile onboarding flow -- focus on usability"
+"What's the visual hierarchy like on this landing page? What draws the eye first?"
+"This is a final polish review for our settings page. Check consistency and accessibility."
+"Compare these two design options and tell me which is stronger for conversion"
+```

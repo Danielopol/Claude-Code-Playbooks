@@ -1,0 +1,89 @@
+---
+title: "UX Copy Writer"
+description: "Write or review UX microcopy including error messages, CTAs, tooltips, and empty states"
+category: "creative-design"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/design/skills/ux-copy"
+tags: ["ux-writing", "microcopy", "ui-text", "error-messages", "cta"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+Writes and reviews UX microcopy for any interface context -- error messages, CTAs, empty states, tooltips, confirmation dialogs, loading states, and onboarding text. The assistant provides multiple copy options with different tones, explains the rationale behind each recommendation, and includes localization notes for translation teams.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```bash
+mkdir -p ~/Projects/ux-copy
+mv ~/Downloads/CLAUDE.md ~/Projects/ux-copy/
+```
+
+Optionally add screenshots or design files showing the UI context where copy is needed.
+
+### Step 3: Start Working
+
+```bash
+cd ~/Projects/ux-copy
+claude
+```
+
+Say: **"Write copy for a payment failure error message"**
+
+---
+
+## Copy Patterns
+
+The assistant follows established UX writing patterns:
+
+- **CTAs** -- Start with a verb, be specific ("Create account" not "Submit"), match the outcome to the label
+- **Error Messages** -- What happened + Why + How to fix
+- **Empty States** -- What this is + Why it's empty + How to start
+- **Confirmation Dialogs** -- Clear action ("Delete 3 files?"), consequences ("This can't be undone"), action-labeled buttons ("Delete files" / "Keep files")
+- **Tooltips** -- Concise, helpful, never obvious
+- **Loading States** -- Set expectations, reduce anxiety
+- **Onboarding** -- Progressive disclosure, one concept at a time
+
+---
+
+## Voice and Tone
+
+The assistant adapts tone to the context:
+
+- **Success** -- Celebratory but not over the top
+- **Error** -- Empathetic and helpful
+- **Warning** -- Clear and actionable
+- **Neutral** -- Informative and concise
+
+---
+
+## Tips
+
+- **Be specific about context** -- "Error message when payment fails on the checkout page" produces far better copy than just "error message."
+- **Share your brand voice** -- Saying "We're professional but warm" or "Our tone is playful and casual" helps the assistant match your style.
+- **Consider the user's emotional state** -- Error messages need empathy. Success messages can celebrate. The context matters.
+- **Mention character limits** -- If a button label can only be 20 characters, say so upfront.
+
+---
+
+## Example Prompts
+
+```
+"Write copy for a payment failure error message -- our tone is professional but empathetic"
+"What should this button say? It submits a support request."
+"Review this error message: 'An error has occurred. Please try again later.'"
+"Write empty state copy for a dashboard with no data yet"
+"Create onboarding tooltips for a new user seeing the project settings page for the first time"
+```

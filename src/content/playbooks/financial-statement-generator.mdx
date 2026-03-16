@@ -1,0 +1,91 @@
+---
+title: "Financial Statement Generator"
+description: "Generate P&L, balance sheet, and cash flow statements from financial data"
+category: "finance-accounting"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/finance/skills/financial-statements"
+tags: ["financial-statements", "p-and-l", "balance-sheet", "cash-flow"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+This playbook helps you generate formatted financial statements -- income statements, balance sheets, and cash flow statements -- with period-over-period comparison and variance analysis. It walks through gathering data, producing multi-column P&L layouts, calculating material variances, and summarizing key metrics. It also includes GAAP presentation requirements (ASC 220/210/230) and common period-end adjustments as reference material.
+
+**Important**: This workflow assists with financial statement preparation but does not provide financial advice. All statements should be reviewed by qualified financial professionals before use in reporting or filings.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```bash
+mkdir -p ~/Documents/FinancialStatements
+mv ~/Downloads/financial-statement-generator.md ~/Documents/FinancialStatements/CLAUDE.md
+```
+
+### Step 3: Prepare Your Data
+
+Have your trial balance, income statement data, or spreadsheet ready. You can paste data directly or upload a CSV/Excel file.
+
+### Step 4: Start Working
+
+```bash
+cd ~/Documents/FinancialStatements
+claude
+```
+
+Say: **"Generate a monthly P&L for 2024-12 with prior year comparison"**
+
+---
+
+## Supported Period Types
+
+- `monthly` -- Single month P&L with prior month and prior year month comparison
+- `quarterly` -- Quarter P&L with prior quarter and prior year quarter comparison
+- `annual` -- Full year P&L with prior year comparison
+- `ytd` -- Year-to-date P&L with prior year YTD comparison
+
+---
+
+## Variance Analysis
+
+The assistant automatically flags material variances using scaled thresholds:
+
+| Line Item Size | Dollar Threshold | Percentage Threshold |
+|---------------|-----------------|---------------------|
+| > $10M        | $500K           | 5%                  |
+| $1M - $10M    | $100K           | 10%                 |
+| < $1M         | $50K            | 15%                 |
+
+Each material variance is decomposed into drivers: volume/quantity, rate/price, mix, one-time items, timing, and currency effects.
+
+---
+
+## GAAP Reference
+
+The template includes presentation requirements for:
+- **Income Statement** (ASC 220 / IAS 1) -- revenue disaggregation, SBC classification, restructuring charges
+- **Balance Sheet** (ASC 210 / IAS 1) -- current/non-current classification, lease recognition (ASC 842)
+- **Cash Flow Statement** (ASC 230 / IAS 7) -- indirect method format, non-cash disclosure requirements
+
+---
+
+## Example Prompts
+
+```
+"Generate a monthly P&L for 2024-12 with prior year comparison"
+"Prepare a quarterly income statement for Q4 2024 vs Q3 2024 and Q4 2023"
+"Create a YTD P&L through June with budget variance analysis"
+"What are the material variances this quarter and what's driving them?"
+"Generate a balance sheet as of December 31, 2024"
+```

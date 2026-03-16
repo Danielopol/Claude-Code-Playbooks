@@ -1,0 +1,83 @@
+---
+title: "Compensation Benchmarker"
+description: "Compensation analysis, band placement, equity modeling, and market benchmarking"
+category: "hr-recruiting"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/human-resources/skills/comp-analysis"
+tags: ["compensation", "salary", "equity", "benchmarking", "hr"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+This playbook turns Claude into a compensation analysis assistant that benchmarks roles against market data, analyzes band placement across your team, models equity grants, and identifies outliers or retention risks. It provides percentile-based benchmarks (25th through 90th) for base salary, equity, and total compensation, with adjustments for location, company stage, and industry.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```bash
+mkdir -p ~/Documents/CompAnalysis
+mv ~/Downloads/compensation-benchmarker.md ~/Documents/CompAnalysis/CLAUDE.md
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/CompAnalysis
+claude
+```
+
+Say: **"What should we pay a Senior Software Engineer in San Francisco?"**
+
+---
+
+## Three Ways to Use It
+
+1. **Single role analysis** -- Ask about market rates for a specific role, level, and location
+2. **Upload comp data** -- Provide a CSV or paste your comp bands for band placement analysis and outlier detection
+3. **Equity modeling** -- Model refresh grants, new hire grants, or option valuations
+
+---
+
+## Compensation Framework
+
+The assistant considers all components of total compensation:
+
+- **Base salary** -- Cash compensation
+- **Equity** -- RSUs, stock options, or other equity instruments
+- **Bonus** -- Annual target bonus, signing bonus
+- **Benefits** -- Health, retirement, perks
+
+Key variables that affect benchmarks: role, level, location, company stage (startup vs. public), and industry.
+
+---
+
+## Tips
+
+- **Always specify location** -- SF vs. Austin vs. London produces very different benchmarks
+- **Think total comp** -- Base salary alone does not tell the full story; include equity and bonus
+- **Keep data confidential** -- Compensation data is sensitive; results stay in your conversation
+- **Note data freshness** -- The assistant will always call out the source and recency of benchmark data
+
+---
+
+## Example Prompts
+
+```
+"What should we pay a Senior Software Engineer in San Francisco?"
+"Is this offer of $180K base + 5000 RSUs competitive for a Staff PM in NYC?"
+"Model a refresh grant of 10K shares over 4 years at a $50 stock price"
+"Here's our comp data CSV — identify outliers and retention risks"
+"Compare our engineering bands to market for Series B companies"
+```

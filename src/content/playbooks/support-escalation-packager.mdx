@@ -1,0 +1,110 @@
+---
+title: "Support Escalation Packager"
+description: "Package support issues into structured escalation briefs for engineering or management"
+category: "customer-support"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/customer-support/skills/customer-escalation"
+tags: ["escalation", "support", "bug-reports", "engineering-handoff"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+This playbook packages support issues into structured escalation briefs ready for engineering, product, security, or leadership teams. It gathers context from tickets and internal discussions, assesses business impact with quantified dimensions (breadth, depth, revenue at risk), structures reproduction steps for bugs, determines the right escalation target, and produces a complete brief with clear asks and deadlines.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```
+support-escalations/
+  CLAUDE.md
+```
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Say: **"Escalate this: API returning 500 errors intermittently for Acme Corp"**
+
+---
+
+## Escalation Brief Format
+
+Every escalation produces a structured document including:
+
+- **Severity** -- Critical, High, or Medium with clear criteria
+- **Impact Assessment** -- Customers affected, workflow impact, revenue at risk, time in queue
+- **Issue Description** -- Clear, concise problem summary
+- **What's Been Tried** -- Troubleshooting steps and results
+- **Reproduction Steps** -- For bugs: step-by-step repro with environment details
+- **Customer Communication** -- Last update, expectations, and escalation risk
+- **What's Needed** -- Specific ask with deadline
+
+---
+
+## Escalation Tiers
+
+| Target | When |
+|--------|------|
+| **L2 Support** | Deeper investigation, specialized product knowledge |
+| **Engineering** | Confirmed bugs, infrastructure issues, code changes needed |
+| **Product** | Feature gaps, design decisions, workflow mismatches |
+| **Security** | Data exposure, unauthorized access, compliance concerns (bypasses normal tiers) |
+| **Leadership** | High-revenue churn risk, SLA breaches, cross-functional decisions, policy exceptions |
+
+---
+
+## When to Escalate
+
+Escalate when you encounter:
+- Confirmed bugs needing code fixes
+- Multiple customers reporting the same issue (3+)
+- Production systems down or data at risk
+- SLA breaches (imminent or occurred)
+- High-value customers threatening to churn
+- Issues beyond support's ability to diagnose
+
+---
+
+## Follow-up Cadence
+
+| Severity | Internal Follow-up | Customer Update |
+|----------|-------------------|-----------------|
+| Critical | Every 2 hours | Every 2-4 hours |
+| High | Every 4 hours | Every 4-8 hours |
+| Medium | Daily | Every 1-2 business days |
+
+---
+
+## Tips
+
+- Always quantify impact -- vague escalations get deprioritized
+- Include reproduction steps for bugs -- this is the number one thing engineering needs
+- Be clear about what you need: "investigate" vs. "fix" vs. "decide" are different asks
+- Set and communicate a deadline -- urgency without a deadline is ambiguous
+- Maintain ownership of the customer relationship even after escalating the technical issue
+
+---
+
+## Example Prompts
+
+```
+"Escalate this: API returning 500 errors intermittently for Acme Corp."
+"Data export is missing rows -- 3 customers reported this week. Package for engineering."
+"SSO login loop affecting all Enterprise customers. Create an escalation brief."
+"Customer threatening to churn over missing audit log feature -- escalate to product and leadership."
+"Package this bug for engineering: dashboard charts not loading, confirmed in Chrome and Firefox."
+```

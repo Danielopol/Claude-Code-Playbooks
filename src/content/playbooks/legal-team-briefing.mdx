@@ -1,0 +1,74 @@
+---
+title: "Legal Team Briefing"
+description: "Legal team briefings covering daily updates, topic deep-dives, or incident response"
+category: "legal-compliance"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/legal/skills/brief"
+tags: ["legal-briefing", "team-updates", "incident-response", "legal"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+Generates contextual briefings for legal teams in three modes: a daily summary of legal-relevant items across email, calendar, and contracts; a topic research brief on a specific legal question across internal sources; or a rapid incident brief for developing situations like data breaches or litigation threats.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```
+legal-briefings/
+├── CLAUDE.md
+├── briefs/          # Generated briefings
+├── sources/         # Reference documents
+└── templates/       # Custom brief templates
+```
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Say: **"Generate a daily legal brief for today"**
+
+---
+
+## Briefing Modes
+
+| Mode | Use Case | Output |
+|------|----------|--------|
+| **Daily Brief** | Start your day with a scan of legal-relevant items | Urgent items, contract pipeline, new requests, calendar |
+| **Topic Brief** | Research a specific legal question across internal sources | Summary, background, precedent, next steps |
+| **Incident Brief** | Rapid context for developing situations | Situation summary, timeline, immediate actions |
+
+---
+
+## Tips
+
+1. **Be specific with topic briefs** -- the more context you provide about the legal question, the more targeted the research will be
+2. **Speed matters for incidents** -- incident briefs prioritize rapid context over completeness; you can always request a deeper dive later
+3. **Note source gaps** -- the assistant will flag which sources were checked and which were unavailable so you know the completeness of the report
+4. **Briefs are not legal advice** -- all briefings should be reviewed by qualified legal professionals before being relied upon
+
+---
+
+## Example Prompts
+
+```
+"Generate a daily legal brief for today"
+"Brief me on our GDPR compliance posture across all contracts"
+"Incident brief: we received a data breach notification from a vendor"
+"Topic brief on our standard indemnification provisions"
+"What contracts are expiring this week?"
+```

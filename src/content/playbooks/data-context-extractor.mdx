@@ -1,0 +1,98 @@
+---
+title: "Data Context Extractor"
+description: "Extract company-specific data knowledge and generate tailored analysis templates"
+category: "data-reporting"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/data/skills/data-context-extractor"
+tags: ["data-context", "templates", "company-data", "metadata"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+Extracts company-specific data knowledge from analysts and generates tailored analysis templates. The assistant interviews you about your data warehouse -- entity definitions, metric calculations, common filters, and gotchas -- then produces structured reference documentation that helps any analyst write correct queries faster. Works in two modes: **Bootstrap** (create from scratch) and **Iteration** (add to existing context).
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```bash
+mkdir -p ~/Projects/data-context
+mv ~/Downloads/CLAUDE.md ~/Projects/data-context/
+```
+
+Optionally add any existing schema documentation, data dictionaries, or query examples.
+
+### Step 3: Start Working
+
+```bash
+cd ~/Projects/data-context
+claude
+```
+
+Say: **"Help me create a data context for our Snowflake warehouse"**
+
+---
+
+## Two Modes of Operation
+
+### Bootstrap Mode
+Creates a new data context from scratch. The assistant discovers your schemas, asks key questions about entities, metrics, and gotchas, then generates structured reference files covering table documentation, metric definitions, and entity relationships.
+
+### Iteration Mode
+Improves an existing context by adding new domain-specific knowledge. Load your existing documentation, identify the gap (new domain, missing metrics, undocumented relationships), and the assistant generates targeted updates.
+
+---
+
+## Core Questions Asked
+
+The assistant interviews you conversationally about:
+
+- **Entity Disambiguation** -- "When people say 'user' or 'customer', what exactly do they mean?" (Multiple entity types, relationships, linking IDs)
+- **Primary Identifiers** -- "What's the main identifier? Are there multiple IDs for the same entity?"
+- **Key Metrics** -- "What are the 2-3 metrics people ask about most? How is each calculated?" (Exact formulas, source tables, time period conventions)
+- **Data Hygiene** -- "What should ALWAYS be filtered out?" (Test data, fraud, internal users)
+- **Common Gotchas** -- "What mistakes do new analysts typically make with this data?"
+
+---
+
+## What Gets Generated
+
+The output includes structured reference documentation:
+
+- **Entity definitions** with relationships and ID mappings
+- **Metric calculations** with exact formulas, source tables, and caveats
+- **Table documentation** with column details, update frequency, and sample queries
+- **Standard filters** and exclusions to include in every query
+- **Domain-specific reference files** organized by business area
+
+---
+
+## Tips
+
+- **Start with Bootstrap mode** to create the initial context, then use Iteration mode to refine over time.
+- **Focus on the 3-5 most-queried tables first** -- you can always expand coverage later.
+- **Document gotchas early** -- these save analysts the most time and prevent the most common errors.
+- **Keep metric definitions precise** -- include the exact formula with column references, not just a description.
+
+---
+
+## Example Prompts
+
+```
+"Help me create a data context for our Snowflake warehouse"
+"Set up data analysis templates for our BigQuery environment"
+"Add context about our marketing data domain to the existing reference"
+"Update the context with our new revenue metric definitions"
+"Document the gotchas and common mistakes for our events table"
+```

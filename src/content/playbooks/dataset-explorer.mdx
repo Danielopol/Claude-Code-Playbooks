@@ -1,0 +1,88 @@
+---
+title: "Dataset Explorer"
+description: "Profile datasets to understand shape, quality, distributions, and key patterns"
+category: "data-reporting"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/data/skills/explore-data"
+tags: ["data-profiling", "exploration", "quality", "statistics"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+Profiles any dataset -- CSV, Excel, Parquet, or JSON -- to help you understand its shape, quality, and patterns before diving into analysis. The assistant classifies columns, calculates distributions, flags data quality issues, discovers relationships, and recommends follow-up analyses. Think of it as a comprehensive "first look" at any new data.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```bash
+mkdir -p ~/Projects/data-exploration
+mv ~/Downloads/CLAUDE.md ~/Projects/data-exploration/
+```
+
+Add your data files (CSV, Excel, Parquet, JSON) to the same folder.
+
+### Step 3: Start Working
+
+```bash
+cd ~/Projects/data-exploration
+claude
+```
+
+Say: **"Profile this dataset and tell me what's in it"**
+
+---
+
+## What Gets Analyzed
+
+The profiling covers every column in your dataset:
+
+- **All columns** -- Null rates, distinct counts, most/least common values
+- **Numeric columns** -- Min, max, mean, median, standard deviation, percentiles (p1 through p99), zero and negative counts
+- **String columns** -- Length statistics, empty strings, pattern analysis, case consistency
+- **Date columns** -- Date ranges, gaps in time series, distribution by month/week
+- **Boolean columns** -- True/false/null counts and ratios
+
+---
+
+## Quality Assessment
+
+The assistant flags potential data quality issues automatically:
+
+- **High null rates** -- Columns with over 5% nulls get a warning; over 20% gets an alert
+- **Suspicious values** -- Placeholder values like "N/A", "TBD", "test", or `999999`
+- **Cardinality surprises** -- Columns that should be high-cardinality but have few distinct values (or vice versa)
+- **Format inconsistencies** -- Mixed case, trailing whitespace, or "USA" vs "US" vs "United States"
+- **Business rule violations** -- Negative quantities, end dates before start dates, percentages over 100%
+
+---
+
+## Tips
+
+- For **very large files** (100M+ rows), the profiling will use sampling by default. Mention if you need exact counts.
+- This is ideal as a **first step** before any analysis -- get the lay of the land before writing specific queries.
+- The quality flags are **heuristic** -- not every flag is a real problem, but each is worth a quick look.
+- Ask for **relationship discovery** to find foreign key candidates and column hierarchies (e.g., country > state > city).
+
+---
+
+## Example Prompts
+
+```
+"Profile this dataset and tell me what's in it"
+"What's the data quality like in sales_data.csv? Flag any issues."
+"Show me the distributions for all numeric columns in this file"
+"What columns could I use to join this table with the users table?"
+"Explore this dataset and recommend 5 analyses I should run next"
+```

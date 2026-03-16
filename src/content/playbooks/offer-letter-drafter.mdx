@@ -1,0 +1,85 @@
+---
+title: "Offer Letter Drafter"
+description: "Draft offer letters with compensation details, equity terms, and benefits packages"
+category: "hr-recruiting"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/human-resources/skills/draft-offer"
+tags: ["offer-letter", "hiring", "compensation", "hr"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+This playbook helps you draft complete offer letters for new hires, including a structured compensation package table, employment terms, benefits summary, the full offer letter text, and negotiation guidance for the hiring manager. Provide the role details and compensation, and the assistant produces a ready-to-send offer.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```bash
+mkdir -p ~/Documents/OfferLetters
+mv ~/Downloads/offer-letter-drafter.md ~/Documents/OfferLetters/CLAUDE.md
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/OfferLetters
+claude
+```
+
+Say: **"Draft an offer letter for a Senior Software Engineer, L5, in New York"**
+
+---
+
+## What You Will Need
+
+- Role and title
+- Level (Junior, Mid, Senior, Staff, etc.)
+- Location (affects comp and benefits)
+- Compensation details (base salary, equity, signing bonus)
+- Start date
+- Hiring manager / reporting line
+
+If you are missing any details, the assistant will help you think through them.
+
+---
+
+## What Gets Generated
+
+1. **Compensation Package Table** -- Base salary, equity (with vesting schedule), signing bonus, target bonus, total first-year comp
+2. **Employment Terms** -- Start date, reporting line, location, employment type
+3. **Benefits Summary** -- Key highlights relevant to the candidate
+4. **Offer Letter Text** -- Complete, ready-to-customize letter
+5. **Hiring Manager Notes** -- Negotiation guidance, comp band context, and flags
+
+---
+
+## Tips
+
+- **Include total comp** -- Candidates compare the full package, not just base salary
+- **Be specific about equity** -- Include share count, valuation method, and vesting schedule
+- **Personalize the letter** -- Reference something from the interview process to make it warm
+- **Prepare for negotiation** -- The hiring manager notes section helps you anticipate counteroffers
+
+---
+
+## Example Prompts
+
+```
+"Draft an offer letter for a Senior Software Engineer, L5, in New York"
+"Create an offer for a Product Manager at $160K base + 3000 RSUs"
+"Write an offer letter for a remote Marketing Director starting March 1"
+"Prepare an offer with a $25K signing bonus and 4-year equity vesting"
+"Draft an offer and include negotiation guidance for the hiring manager"
+```

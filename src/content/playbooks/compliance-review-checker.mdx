@@ -1,0 +1,76 @@
+---
+title: "Compliance Review Checker"
+description: "Compliance review for proposed actions covering GDPR, CCPA, DPA, and privacy regulations"
+category: "legal-compliance"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/legal/skills/compliance-check"
+tags: ["compliance", "gdpr", "ccpa", "privacy", "data-protection"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+Runs a compliance check on a proposed action, product feature, or business initiative -- surfacing applicable regulations (GDPR, CCPA, HIPAA, and more), required approvals, risk areas, and recommended actions. Includes a full DPA review checklist and data subject request handling guidance.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```
+compliance-review/
+├── CLAUDE.md
+├── reviews/         # Completed compliance reviews
+├── policies/        # Internal policies and regulations
+└── checklists/      # DPA and compliance checklists
+```
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Say: **"Run a compliance check on our plan to process EU customer data in a US data center"**
+
+---
+
+## What Gets Checked
+
+| Area | Details |
+|------|---------|
+| **Applicable Regulations** | GDPR, CCPA/CPRA, HIPAA, LGPD, POPIA, PIPEDA, PIPL, UK GDPR |
+| **Requirements** | Mapped with Met / Not Met / Unknown status |
+| **Risk Areas** | Severity-rated with mitigation strategies |
+| **Approvals** | Who needs to sign off and why |
+| **DPA Review** | Full Article 28 checklist for data processing agreements |
+
+---
+
+## Tips
+
+1. **Be specific** -- describe the exact action you plan to take, not a vague category
+2. **Include the geography** -- compliance requirements vary dramatically by jurisdiction
+3. **Mention the data** -- specify what personal data is involved, as this drives most compliance requirements
+4. **Regulatory requirements change** -- always verify current requirements with authoritative sources
+
+---
+
+## Example Prompts
+
+```
+"Run a compliance check on our plan to process EU customer data in a US data center"
+"We want to launch a referral program with cash rewards -- what do we need?"
+"Check compliance for adding biometric authentication to our mobile app"
+"Marketing wants to use customer testimonials in ads -- any issues?"
+"Review this DPA for GDPR Article 28 compliance"
+```

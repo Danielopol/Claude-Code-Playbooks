@@ -1,0 +1,70 @@
+---
+title: "Sales Call Summarizer"
+description: "Process call notes and transcripts into structured summaries, action items, and follow-up emails"
+category: "sales-revenue"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/sales/skills/call-summary"
+tags: ["call-summary", "sales-calls", "action-items", "follow-up"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+Takes raw call notes, transcripts, or verbal descriptions of sales calls and produces structured internal summaries with key discussion points, customer priorities, objections, competitive intel, action items, and deal impact — plus a professional follow-up email draft.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```
+sales-calls/
+├── CLAUDE.md
+├── notes/          # Raw call notes/transcripts
+└── summaries/      # Generated summaries
+```
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Say: **"Summarize my call — had a discovery call with Acme Corp. Met with their VP Eng and CTO. They're evaluating us vs Competitor X."**
+
+---
+
+## Input Options
+
+- **Paste notes** — Bullet points, rough notes, stream of consciousness
+- **Paste a transcript** — Full transcript from your conferencing tool
+- **Describe the call** — Just tell what happened in your own words
+
+---
+
+## Tips
+
+- **More detail = better output** — Even rough notes help
+- **Name the attendees** — Helps structure the summary and assign action items
+- **Flag what matters** — "The big thing was..." helps prioritize
+- **Tell the deal stage** — Helps tailor the follow-up tone and next steps
+
+---
+
+## Example Prompts
+
+```
+"Summarize my call with Acme Corp"
+"Process these call notes into a summary and follow-up email"
+"Extract action items from this transcript"
+"Draft a follow-up email for my demo with TechStart"
+```

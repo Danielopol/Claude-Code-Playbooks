@@ -1,0 +1,79 @@
+---
+title: "Legal Risk Assessor"
+description: "Severity-by-likelihood risk framework with color-coded classification and mitigation plans"
+category: "legal-compliance"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/legal/skills/legal-risk-assessment"
+tags: ["risk-assessment", "legal-risk", "mitigation", "compliance"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+Evaluates and classifies legal risks using a structured severity-by-likelihood framework. Produces color-coded risk scores (GREEN/YELLOW/ORANGE/RED), detailed risk assessment memos, mitigation option analysis, and escalation recommendations -- including when to engage outside counsel.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```
+risk-assessment/
+├── CLAUDE.md
+├── assessments/     # Completed risk assessments
+├── register/        # Risk register entries
+└── memos/           # Risk memos for leadership
+```
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Say: **"Assess the legal risk of this vendor contract with uncapped indemnification"**
+
+---
+
+## Risk Classification
+
+| Score Range | Risk Level | Color | Action |
+|-------------|-----------|-------|--------|
+| 1-4 | Low Risk | GREEN | Accept, document, periodic review |
+| 5-9 | Medium Risk | YELLOW | Mitigate, assign owner, monitor monthly |
+| 10-15 | High Risk | ORANGE | Escalate to senior counsel, develop mitigation plan |
+| 16-25 | Critical Risk | RED | Immediate escalation, engage outside counsel |
+
+---
+
+## Risk Categories
+
+The assessor covers risks across these categories:
+- **Contract** -- liability exposure, indemnification, termination provisions
+- **Regulatory** -- compliance obligations, enforcement actions
+- **Litigation** -- threatened or active legal proceedings
+- **IP** -- infringement claims, patent disputes
+- **Data Privacy** -- breach exposure, cross-border transfers
+- **Employment** -- discrimination, wrongful termination claims
+- **Corporate** -- governance, fiduciary duties
+
+---
+
+## Example Prompts
+
+```
+"Assess the legal risk of this vendor contract with uncapped indemnification"
+"What is the risk level of processing employee biometric data in Illinois?"
+"Evaluate the risk exposure for our pending trademark dispute"
+"Create a risk register entry for the regulatory inquiry we received"
+"Should we engage outside counsel for this contract dispute?"
+```

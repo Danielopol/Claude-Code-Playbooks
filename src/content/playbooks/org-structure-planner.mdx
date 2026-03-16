@@ -1,0 +1,76 @@
+---
+title: "Org Structure Planner"
+description: "Headcount planning, org design, reporting structures, and team composition analysis"
+category: "hr-recruiting"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/human-resources/skills/org-planning"
+tags: ["org-design", "headcount", "planning", "team-structure"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+This playbook helps you plan organizational structure, headcount, and team design. It produces text-based org charts, headcount plans with cost modeling, and sequenced hiring roadmaps. It flags structural issues like single points of failure, excessive management overhead, or teams outside healthy size ranges.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```bash
+mkdir -p ~/Documents/OrgPlanning
+mv ~/Downloads/org-structure-planner.md ~/Documents/OrgPlanning/CLAUDE.md
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/OrgPlanning
+claude
+```
+
+Say: **"Help me plan headcount for the engineering team next quarter"**
+
+---
+
+## Planning Dimensions
+
+- **Headcount** -- How many people, in what roles, by when?
+- **Structure** -- Reporting lines, span of control, team boundaries
+- **Sequencing** -- Which hires are most critical and in what order?
+- **Budget** -- Headcount cost modeling and trade-offs
+
+---
+
+## Healthy Org Benchmarks
+
+| Metric | Healthy Range | Warning Sign |
+|--------|---------------|--------------|
+| Span of control | 5-8 direct reports | < 3 or > 12 |
+| Management layers | 4-6 for 500 people | Too many = slow decisions |
+| IC-to-manager ratio | 6:1 to 10:1 | < 4:1 = top-heavy |
+| Team size | 5-9 people | < 4 = isolated, > 12 = hard to manage |
+
+The assistant uses these benchmarks to flag structural issues in your current or proposed org design.
+
+---
+
+## Example Prompts
+
+```
+"Help me plan headcount for the engineering team next quarter"
+"We're growing from 50 to 100 — what should the org structure look like?"
+"Analyze this org chart for span of control issues"
+"Who should we hire next — another engineer or a PM?"
+"Model the cost of adding 5 engineers and 1 manager over 6 months"
+"We need to reorg the product team — suggest reporting structures"
+```

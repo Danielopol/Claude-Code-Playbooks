@@ -1,0 +1,73 @@
+---
+title: "Sales Daily Briefing"
+description: "Prioritized daily sales briefing with meetings, pipeline alerts, tasks, and recommended actions"
+category: "sales-revenue"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/sales/skills/daily-briefing"
+tags: ["daily-briefing", "sales", "pipeline", "priorities"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+Generates a prioritized daily sales briefing from your calendar, deals, and pipeline data. Surfaces your #1 priority, today's meetings with context and prep notes, pipeline alerts for at-risk deals, and a suggested action list. Also supports quick mode and end-of-day wrap-up summaries.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```
+sales-briefing/
+├── CLAUDE.md
+└── briefings/      # Daily briefing archive
+```
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Say: **"Brief me on my day — I have 4 meetings and 3 deals closing this week"**
+
+---
+
+## Modes
+
+| Mode | Trigger | Output |
+|------|---------|--------|
+| **Full Briefing** | "Brief me on my day" | Complete daily plan with meetings, alerts, actions |
+| **Quick Mode** | "Quick brief" or "TLDR my day" | Abbreviated 5-line summary |
+| **End of Day** | "Wrap up my day" | Completed items, tomorrow's focus, open loops |
+
+---
+
+## Priority Framework
+
+1. **URGENT** — Deal closing today/tomorrow not yet won
+2. **HIGH** — Meeting today with high-value opportunity
+3. **HIGH** — Unread email from decision-maker
+4. **MEDIUM** — Deal closing this week
+5. **MEDIUM** — Stale deal (7+ days no activity)
+6. **LOW** — Tasks due this week
+
+---
+
+## Example Prompts
+
+```
+"Brief me on my day"
+"Quick brief — what's my #1 priority?"
+"Wrap up my day — here's what happened..."
+"What deals need attention this week?"
+```

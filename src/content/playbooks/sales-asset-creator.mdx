@@ -1,0 +1,75 @@
+---
+title: "Sales Asset Creator"
+description: "Generate tailored sales assets including landing pages, slide decks, and one-pagers from deal context"
+category: "sales-revenue"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/sales/skills/create-an-asset"
+tags: ["sales-assets", "landing-pages", "decks", "one-pagers"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+Creates professional, personalized sales assets by gathering prospect context, researching their company, and building polished deliverables. Supports interactive landing pages, presentation decks, executive one-pagers, and workflow/architecture demos — all as self-contained HTML files.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```
+sales-assets/
+├── CLAUDE.md
+├── assets/         # Generated assets (HTML files)
+└── research/       # Prospect research
+```
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Say: **"Create a landing page for my Acme Corp deal — they're evaluating us for enterprise security"**
+
+---
+
+## Supported Formats
+
+| Format | Best For |
+|--------|----------|
+| **Interactive landing page** | Exec alignment, intros, value prop |
+| **Deck-style** | Formal meetings, large audiences |
+| **One-pager** | Leave-behinds, quick summaries |
+| **Workflow/Architecture demo** | Technical deep-dives, POC demos |
+
+---
+
+## Quality Checklist
+
+- Prospect company name spelled correctly throughout
+- Pain points accurately reflect input
+- No placeholder text remaining
+- Brand colors applied correctly
+- Tone matches audience
+- Feels tailored, not templated
+
+---
+
+## Example Prompts
+
+```
+"Create a landing page for my Acme Corp deal"
+"Build a one-pager for the VP of Engineering at TechStart"
+"Generate a deck for our enterprise security pitch to BigCo"
+"Create an architecture demo showing our integration flow"
+```

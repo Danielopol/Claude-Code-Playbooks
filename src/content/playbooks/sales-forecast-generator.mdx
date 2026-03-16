@@ -1,0 +1,83 @@
+---
+title: "Sales Forecast Generator"
+description: "Weighted sales forecast with best-case, likely, and worst-case scenario modeling"
+category: "sales-revenue"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/sales/skills/forecast"
+tags: ["sales-forecast", "pipeline", "revenue-projection", "scenarios"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+Generates weighted sales forecasts from your pipeline data. Produces three scenarios (best/likely/worst case), pipeline analysis by stage, commit vs. upside classification, risk flags for at-risk deals, gap analysis with specific recommendations, and coverage ratio assessment.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```
+sales-forecast/
+├── CLAUDE.md
+├── pipeline/       # CRM exports (CSV)
+└── forecasts/      # Generated forecasts
+```
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Say: **"Generate my Q1 forecast — my quota is $500K and I've closed $150K so far"**
+
+---
+
+## Input Options
+
+- **Upload a CSV** — Export from your CRM with deal name, amount, stage, close date
+- **Paste your deals** — "Acme Corp - $50K - Negotiation - closes Jan 31"
+- **Describe your territory** — "8 deals totaling $400K across negotiation, evaluation, and discovery"
+
+---
+
+## Default Stage Probabilities
+
+| Stage | Probability |
+|-------|-------------|
+| Closed Won | 100% |
+| Negotiation / Contract | 80% |
+| Proposal / Quote | 60% |
+| Evaluation / Demo | 40% |
+| Discovery / Qualification | 20% |
+| Prospecting / Lead | 10% |
+
+---
+
+## Tips
+
+- **Be honest about commit** — Only commit deals you'd bet on
+- **Update close dates** — Stale dates kill forecast accuracy
+- **Coverage matters** — 3x pipeline coverage is healthy; below 2x is risky
+- **Activity = signal** — No recent activity means higher risk than stage suggests
+
+---
+
+## Example Prompts
+
+```
+"Generate my Q1 forecast — quota is $500K, closed $150K so far"
+"Forecast this pipeline CSV for the quarter"
+"Which deals should I commit vs. upside?"
+"What's my gap to quota and how do I close it?"
+```

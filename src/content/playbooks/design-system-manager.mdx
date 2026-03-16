@@ -1,0 +1,85 @@
+---
+title: "Design System Manager"
+description: "Audit, document, or extend a design system with component guidelines and tokens"
+category: "creative-design"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/design/skills/design-system"
+tags: ["design-system", "components", "tokens", "documentation"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+Manages your design system through three modes: **audit** your existing system for naming inconsistencies and hardcoded values, **document** individual components with their variants, states, and accessibility notes, or **extend** the system by designing new patterns that fit within your existing conventions.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```bash
+mkdir -p ~/Projects/design-system
+mv ~/Downloads/CLAUDE.md ~/Projects/design-system/
+```
+
+Add your existing design system files, component code, or token definitions to the folder.
+
+### Step 3: Start Working
+
+```bash
+cd ~/Projects/design-system
+claude
+```
+
+Say: **"Audit my design system for consistency issues"**
+
+---
+
+## Three Modes of Operation
+
+### Audit Mode
+Run a full system audit to find naming inconsistencies, hardcoded values, missing documentation, and incomplete component state coverage. Produces a scored report with priority actions.
+
+### Document Mode
+Generate comprehensive documentation for a single component including variants, props, states, accessibility notes, and do's/don'ts with code examples.
+
+### Extend Mode
+Design a new component or pattern that fits within your existing system. Identifies related components, proposes an API, specifies tokens to use, and flags open questions for design review.
+
+---
+
+## What Gets Covered
+
+- **Design Tokens** -- Colors (brand, semantic, neutral), typography scale, spacing scale, borders, shadows, motion
+- **Components** -- Variants, states (default, hover, active, disabled, loading, error), sizes, behavior, accessibility
+- **Patterns** -- Forms, navigation, data display, feedback (toasts, modals, inline messages)
+
+---
+
+## Tips
+
+- **Start with an audit** -- Know where your system stands before deciding where to invest effort.
+- **Document as you build** -- It is easier to document a component while designing it than to retroactively catalog everything.
+- **Prioritize coverage over perfection** -- Having 80% of components documented is better than having 100% perfect documentation for only 10 components.
+- **Use tokens, not raw values** -- Always reference `spacing-md` rather than `16px` to keep the system maintainable.
+
+---
+
+## Example Prompts
+
+```
+"Audit my design system for naming inconsistencies and hardcoded values"
+"Document the Button component with all its variants, states, and accessibility notes"
+"Design a new DatePicker component that fits our existing system"
+"Check token coverage -- how many hardcoded colors and spacing values exist?"
+"Generate do's and don'ts guidelines for our Card component"
+```

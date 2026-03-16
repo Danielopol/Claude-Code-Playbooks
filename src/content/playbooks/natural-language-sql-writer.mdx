@@ -1,0 +1,91 @@
+---
+title: "Natural Language SQL Writer"
+description: "Write optimized SQL queries from plain English across multiple database dialects"
+category: "data-reporting"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/data/skills/write-query"
+tags: ["sql", "queries", "natural-language", "database"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+Translates plain English descriptions into optimized SQL queries for your specific database dialect. The assistant writes readable, performant queries using CTEs, proper JOIN types, and dialect-specific syntax. It supports PostgreSQL, Snowflake, BigQuery, Redshift, Databricks, MySQL, SQL Server, DuckDB, and SQLite.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```bash
+mkdir -p ~/Projects/sql-queries
+mv ~/Downloads/CLAUDE.md ~/Projects/sql-queries/
+```
+
+Optionally add schema documentation or sample data files to the folder.
+
+### Step 3: Start Working
+
+```bash
+cd ~/Projects/sql-queries
+claude
+```
+
+Say: **"Write a query to count orders by status for the last 30 days"**
+
+---
+
+## Supported Dialects
+
+- PostgreSQL (including Aurora, RDS, Supabase, Neon)
+- Snowflake
+- BigQuery (Google Cloud)
+- Redshift (Amazon)
+- Databricks SQL
+- MySQL (including Aurora MySQL, PlanetScale)
+- SQL Server (Microsoft)
+- DuckDB
+- SQLite
+
+Mention your dialect upfront to get the right syntax immediately.
+
+---
+
+## Query Best Practices Applied
+
+Every generated query follows these principles:
+
+- **CTEs for readability** -- One CTE per logical step, with descriptive names like `daily_signups` or `revenue_by_product`
+- **Performance-first** -- Filters pushed early, partition keys used, `SELECT *` avoided, appropriate JOIN types
+- **Commented logic** -- Non-obvious reasoning explained inline
+- **Clean formatting** -- Consistent indentation, meaningful table aliases, one clause per line
+
+---
+
+## Tips
+
+- **Mention your dialect upfront** -- "We use Snowflake" gets you correct syntax immediately without a follow-up question.
+- **Include table names if known** -- "Query the `orders` table joined with `customers`" saves a round trip.
+- **Specify if parameterized** -- For recurring queries, mention "make it parameterized for date range" to get reusable templates.
+- **Ask for performance notes** -- The assistant can highlight partition usage, expected cost, and potential bottlenecks.
+
+---
+
+## Example Prompts
+
+```
+"Count of orders by status for the last 30 days in PostgreSQL"
+"Cohort retention analysis -- group users by signup month, show activity at 1, 3, 6, and 12 months"
+"Top 100 users by event count in the last 7 days from a 500M row events table partitioned by date"
+"Write a Snowflake query to calculate monthly recurring revenue by product line"
+"Convert this BigQuery query to PostgreSQL syntax"
+```

@@ -1,0 +1,77 @@
+---
+title: "Design Handoff Generator"
+description: "Generate comprehensive developer handoff documentation from design files"
+category: "creative-design"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/design/skills/design-handoff"
+tags: ["design-handoff", "developer-docs", "specifications", "design-to-code"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+Generates comprehensive developer handoff documentation from your design files. The assistant produces structured specs covering layout measurements, design tokens, component props, interaction states, responsive breakpoints, edge cases, animation details, and accessibility notes -- everything a developer needs to implement a design without guessing.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```bash
+mkdir -p ~/Projects/design-handoff
+mv ~/Downloads/CLAUDE.md ~/Projects/design-handoff/
+```
+
+Add your design screenshots, Figma exports, or design spec images to the folder.
+
+### Step 3: Start Working
+
+```bash
+cd ~/Projects/design-handoff
+claude
+```
+
+Say: **"Generate handoff specs for this design"**
+
+---
+
+## What Gets Documented
+
+The handoff spec covers six areas:
+
+- **Visual Specifications** -- Exact measurements, design token references, responsive breakpoints, component variants
+- **Interaction Specifications** -- Click/tap behavior, hover states, transitions, gesture support
+- **Content Specifications** -- Character limits, truncation behavior, empty/loading/error states
+- **Edge Cases** -- Min/max content, international text, slow connections, missing data
+- **Accessibility** -- Focus order, ARIA labels, keyboard interactions, screen reader announcements
+- **Animation / Motion** -- Element triggers, descriptions, durations, and easing functions
+
+---
+
+## Tips
+
+- **Use tokens, not raw values** -- The assistant references design tokens like `spacing-md` instead of `16px`, keeping specs aligned with your design system.
+- **Specify the tech stack** -- Mentioning "We use React + Tailwind" produces implementation-relevant notes alongside the specs.
+- **Ask about edge cases** -- Prompting "What happens with 100 items?" or "What about very long names?" generates boundary condition specs developers appreciate.
+- **Describe the why** -- Adding context like "This collapses on mobile because users primarily use one-handed" helps developers make good judgment calls.
+
+---
+
+## Example Prompts
+
+```
+"Generate a handoff spec for this settings page design"
+"Create developer documentation for this checkout flow"
+"What are all the states and interactions for this form component?"
+"Spec out the responsive behavior for this dashboard layout"
+"Document the animation and transition details for this modal"
+```

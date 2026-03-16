@@ -1,0 +1,84 @@
+---
+title: "Account Reconciliation Assistant"
+description: "GL-to-subledger and bank reconciliation with variance identification"
+category: "finance-accounting"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/finance/skills/reconciliation"
+tags: ["reconciliation", "general-ledger", "bank-reconciliation", "accounting"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+This playbook provides a structured approach to account reconciliation -- comparing GL balances to subledgers, bank statements, or third-party data. It covers GL-to-subledger recs, bank reconciliations, and intercompany reconciliations, with frameworks for categorizing reconciling items, aging analysis, escalation thresholds, and best practices.
+
+**Important**: This workflow assists with reconciliation processes but does not provide financial advice. All reconciliations should be reviewed by qualified financial professionals before sign-off.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```bash
+mkdir -p ~/Documents/Reconciliation
+mv ~/Downloads/account-reconciliation-assistant.md ~/Documents/Reconciliation/CLAUDE.md
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/Reconciliation
+claude
+```
+
+Say: **"Reconcile the AR subledger to the GL control account for December"**
+
+---
+
+## Supported Reconciliation Types
+
+- **GL to Subledger** -- Compare control accounts (AR, AP, fixed assets, inventory, prepaids, accrued liabilities) to subledger detail
+- **Bank Reconciliation** -- Compare GL cash balance to bank statement with outstanding checks, deposits in transit, and unrecorded items
+- **Intercompany** -- Reconcile receivable/payable balances between related entities for consolidation
+
+---
+
+## Reconciling Item Categories
+
+| Category | Description | Action |
+|----------|-------------|--------|
+| Timing Differences | Normal processing delays (outstanding checks, deposits in transit) | Monitor -- will clear within 1-5 business days |
+| Adjustments Required | Unrecorded charges, errors, missing entries | Prepare adjusting journal entry |
+| Requires Investigation | Unidentified variances, disputed items, aged items | Investigate root cause, escalate if unresolved |
+
+---
+
+## Aging Thresholds
+
+| Age | Status | Action |
+|-----|--------|--------|
+| 0-30 days | Current | Monitor |
+| 31-60 days | Aging | Investigate |
+| 61-90 days | Overdue | Escalate to supervisor |
+| 90+ days | Stale | Escalate to management |
+
+---
+
+## Example Prompts
+
+```
+"Reconcile the AR subledger to the GL control account for December"
+"Perform a bank reconciliation for the operating account as of month-end"
+"Help me reconcile intercompany balances between Entity A and Entity B"
+"Categorize these reconciling items and identify which need journal entries"
+"What are the aged outstanding items over 60 days?"
+```

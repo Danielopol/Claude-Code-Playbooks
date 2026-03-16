@@ -1,0 +1,85 @@
+---
+title: "Activity Digest Generator"
+description: "Generate daily or weekly activity digests across all connected platforms"
+category: "productivity"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/enterprise-search/skills/digest"
+tags: ["digest", "summary", "activity-tracking", "productivity"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+This playbook turns Claude into a personal briefing assistant that scans all your connected platforms -- chat, email, cloud storage, project trackers, and more -- and generates a structured digest organized by topic. It surfaces action items, decisions, mentions, and document updates so you can catch up quickly after time away or start your day with a clear picture.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```bash
+mkdir -p ~/Documents/ActivityDigest
+mv ~/Downloads/activity-digest-generator.md ~/Documents/ActivityDigest/CLAUDE.md
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/ActivityDigest
+claude
+```
+
+Say: **"Give me a daily digest"**
+
+---
+
+## Time Window Options
+
+- `--daily` -- Last 24 hours (the default)
+- `--weekly` -- Last 7 days
+- `--since Monday` -- Custom start date
+- `--since 2026-01-20` -- Specific date
+
+---
+
+## Output Format
+
+The digest is organized by topic and project, not by source. It includes:
+
+1. **Action Items** -- Requests, tasks, and questions needing your response
+2. **Decisions Made** -- Conclusions reached across threads and emails
+3. **Topic Groups** -- Activity summaries merged across all sources
+4. **Mentions** -- Where you were referenced or discussed
+5. **Documents Updated** -- Recent changes to files you care about
+
+A summary line at the end gives you the counts at a glance.
+
+---
+
+## Tips
+
+- **Action items come first** -- they are the most actionable part of any digest
+- **Weekly digests prioritize significance** over completeness, so you get what matters without the noise
+- **Cross-source deduplication** means the same decision discussed in chat and email shows up only once
+- Works well even with just one connected source
+
+---
+
+## Example Prompts
+
+```
+"Give me a daily digest"
+"Weekly digest --since Monday"
+"What happened while I was out since last Thursday?"
+"Catch me up on everything from the past 48 hours"
+"Summarize activity --weekly"
+```

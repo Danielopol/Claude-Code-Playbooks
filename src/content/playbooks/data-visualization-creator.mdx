@@ -1,0 +1,91 @@
+---
+title: "Data Visualization Creator"
+description: "Create publication-quality data visualizations with matplotlib, plotly, or Chart.js"
+category: "data-reporting"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/data/skills/create-viz"
+tags: ["visualization", "matplotlib", "plotly", "charts", "graphs"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+Creates publication-quality data visualizations from your data using Python (matplotlib, seaborn, plotly). The assistant selects the right chart type for your data, applies professional styling with colorblind-friendly palettes, and produces charts ready for reports, presentations, or dashboards. It also provides the code so you can modify and reuse the visualizations.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```bash
+mkdir -p ~/Projects/data-viz
+mv ~/Downloads/CLAUDE.md ~/Projects/data-viz/
+```
+
+Add your data files (CSV, Excel, JSON) to the same folder.
+
+### Step 3: Start Working
+
+```bash
+cd ~/Projects/data-viz
+claude
+```
+
+Say: **"Create a chart showing monthly revenue trends from sales_data.csv"**
+
+---
+
+## Chart Type Selection Guide
+
+The assistant automatically recommends the right chart type based on your data:
+
+| Data Relationship | Recommended Chart |
+|---|---|
+| Trend over time | Line chart |
+| Comparison across categories | Bar chart |
+| Part-to-whole composition | Stacked bar or area chart |
+| Distribution of values | Histogram or box plot |
+| Correlation between variables | Scatter plot |
+| Ranking | Horizontal bar chart |
+| Matrix of relationships | Heatmap |
+| Geographic data | Choropleth map |
+
+---
+
+## Design Best Practices Applied
+
+- **Colorblind-friendly palettes** used by default
+- **Insight-driven titles** ("Revenue grew 23% YoY" instead of "Revenue by Month")
+- **Clean formatting** -- no chart junk, appropriate whitespace, readable axis labels
+- **Smart number formatting** -- currencies as `$1.2M`, percentages as `45.2%`, large numbers as `2.3K`
+- **Accurate scales** -- bar charts start at zero, consistent scales across comparison panels
+
+---
+
+## Tips
+
+- Request **"interactive"** to get plotly charts with hover, zoom, and filter capabilities
+- Specify **"presentation"** for larger fonts and higher contrast suitable for slides
+- You can request **multiple charts at once** (e.g., "create a 2x2 grid of charts showing quarterly metrics")
+- Charts are saved as PNG files to your current directory for easy inclusion in reports
+
+---
+
+## Example Prompts
+
+```
+"Show monthly revenue for the last 12 months as a line chart with the trend highlighted"
+"Create a horizontal bar chart ranking products by NPS score from this data"
+"Make a heatmap of order volume by day-of-week and hour from orders.csv"
+"Build an interactive scatter plot showing the correlation between spend and revenue"
+"Create a presentation-ready 2x2 grid: revenue, users, conversion rate, and churn by quarter"
+```

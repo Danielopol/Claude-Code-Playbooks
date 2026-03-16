@@ -1,0 +1,100 @@
+---
+title: "Ticket Triage System"
+description: "Categorize, prioritize, and route incoming support tickets automatically"
+category: "customer-support"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/customer-support/skills/ticket-triage"
+tags: ["tickets", "triage", "support", "routing", "prioritization"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+This playbook turns Claude into a ticket triage assistant that categorizes incoming support tickets by type (bug, how-to, billing, security, etc.), assigns P1-P4 priority based on impact and urgency, checks for duplicates and known issues, recommends routing to the right team, and drafts an initial customer response -- all in a structured, consistent format.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```
+support-triage/
+  CLAUDE.md
+```
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Say: **"Triage this ticket: Customer says their dashboard has been showing a blank page since this morning"**
+
+---
+
+## Triage Output Format
+
+Every triaged ticket produces a structured assessment including:
+
+- **Category** -- Primary and optional secondary classification (bug, how-to, feature request, billing, account, integration, security, data, performance)
+- **Priority** -- P1 (Critical) through P4 (Low) with justification
+- **Issue Summary** -- 2-3 sentence description of the customer experience
+- **Key Details** -- Customer info, impact scope, workaround availability, related tickets
+- **Routing Recommendation** -- Which team should handle this and why
+- **Suggested Initial Response** -- Draft customer-facing reply
+- **Internal Notes** -- Context for the agent picking up the ticket
+
+---
+
+## Priority Framework
+
+| Priority | Criteria | Response SLA |
+|----------|----------|-------------|
+| **P1 -- Critical** | Production down, data loss, security breach | 1 hour |
+| **P2 -- High** | Major feature broken, no workaround, many users | 4 hours |
+| **P3 -- Medium** | Partially broken, workaround available | 1 business day |
+| **P4 -- Low** | Cosmetic, feature request, general question | 2 business days |
+
+---
+
+## Routing Rules
+
+| Route to | When |
+|----------|------|
+| Tier 1 (frontline) | How-to questions, known issues, billing inquiries, password resets |
+| Tier 2 (senior) | Bugs requiring investigation, complex config, integration troubleshooting |
+| Engineering | Confirmed bugs needing code fixes, infrastructure issues |
+| Product | Feature requests with demand, design decisions |
+| Security | Data access concerns, vulnerability reports, compliance |
+| Billing/Finance | Refund requests, contract disputes |
+
+---
+
+## Tips
+
+- Categorize by root cause, not just the symptom described
+- When in doubt on priority, err higher -- it is easier to de-escalate than to recover from a missed SLA
+- Always check for duplicates and known issues before routing
+- Flag patterns -- repeated issues should be escalated even if individual tickets are low priority
+- "It used to work and now it doesn't" = Bug. "I want it to work differently" = Feature request
+
+---
+
+## Example Prompts
+
+```
+"Triage this ticket: Customer says their dashboard has been blank since this morning."
+"I was charged twice for my subscription this month -- triage this."
+"User can't connect their SSO, getting a 403 error on the callback URL."
+"Feature request: they want to export reports as PDF. Triage and route."
+"We're getting multiple reports of slow load times across all dashboards -- triage this."
+```

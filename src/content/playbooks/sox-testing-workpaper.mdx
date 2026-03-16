@@ -1,0 +1,106 @@
+---
+title: "SOX Testing Workpaper"
+description: "SOX sample selections, testing workpapers, and internal control assessments"
+category: "finance-accounting"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/finance/skills/sox-testing"
+tags: ["sox", "compliance", "audit", "internal-controls", "testing"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+This playbook helps you plan and execute SOX 404 testing for internal controls over financial reporting. It generates control matrices, calculates sample sizes based on control frequency and risk, creates sample selections, produces testing workpaper templates with pre-populated test steps, and provides a deficiency evaluation framework.
+
+**Important**: This workflow assists with SOX compliance processes but does not provide audit or legal advice. All testing workpapers and assessments should be reviewed by qualified financial professionals before use in audit documentation.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```bash
+mkdir -p ~/Documents/SOXTesting
+mv ~/Downloads/sox-testing-workpaper.md ~/Documents/SOXTesting/CLAUDE.md
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/SOXTesting
+claude
+```
+
+Say: **"Generate a testing workpaper for revenue recognition controls for Q4 2024"**
+
+---
+
+## Supported Control Areas
+
+- `revenue-recognition` -- Revenue cycle controls (order-to-cash)
+- `procure-to-pay` / `p2p` -- Procurement and AP controls
+- `payroll` -- Payroll processing and compensation controls
+- `financial-close` -- Period-end close and reporting controls
+- `treasury` -- Cash management and treasury controls
+- `fixed-assets` -- Capital asset lifecycle controls
+- `inventory` -- Inventory valuation and management controls
+- `itgc` -- IT general controls (access, change management, operations)
+- `entity-level` -- Entity-level and monitoring controls
+- `journal-entries` -- Journal entry processing controls
+
+---
+
+## Sample Size Guidelines
+
+| Control Frequency | Population (approx.) | Recommended Sample |
+|------------------|---------------------|-------------------|
+| Annual           | 1                   | 1                 |
+| Quarterly        | 4                   | 2                 |
+| Monthly          | 12                  | 2-4               |
+| Weekly           | 52                  | 5-15              |
+| Daily            | ~250                | 20-40             |
+| Per-transaction  | Varies              | 25-60             |
+
+Samples are adjusted for risk level, prior year results, and auditor reliance.
+
+---
+
+## Assertions (CEAVOP)
+
+- **C**ompleteness -- All transactions are recorded
+- **E**xistence/Occurrence -- Transactions actually occurred
+- **A**ccuracy -- Amounts are correctly recorded
+- **V**aluation -- Assets/liabilities are properly valued
+- **O**bligations/Rights -- Entity has rights to assets, obligations for liabilities
+- **P**resentation/Disclosure -- Properly classified and disclosed
+
+---
+
+## Deficiency Classification
+
+| Level | Definition |
+|-------|-----------|
+| Deficiency | Control does not prevent or detect misstatements on a timely basis |
+| Significant Deficiency | Important enough to merit attention by oversight bodies |
+| Material Weakness | Reasonable possibility of material misstatement not prevented/detected |
+
+---
+
+## Example Prompts
+
+```
+"Generate a testing workpaper for revenue recognition controls for Q4 2024"
+"Pull a sample of 25 items for the three-way match P2P control"
+"Create an ITGC access review testing template for 2024"
+"Evaluate this exception -- is it a deficiency or significant deficiency?"
+"Build the control matrix for financial close controls"
+```

@@ -1,0 +1,86 @@
+---
+title: "Instrument Data Converter"
+description: "Convert lab instrument files to Allotrope ASM format with automated validation"
+category: "bio-research"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/bio-research/skills/instrument-data-to-allotrope"
+tags: ["allotrope", "lab-instruments", "data-conversion", "bioinformatics"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+Converts instrument files from cell counters, spectrophotometers, plate readers, qPCR systems, and more into standardized Allotrope Simple Model (ASM) format. Supports native parsing via allotropy library, flexible fallback parsing, and PDF extraction — with validation against ASM schemas.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Install Dependencies
+
+```bash
+pip install allotropy pandas openpyxl pdfplumber
+```
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Say: **"Convert this cell counting data to Allotrope format"**
+
+---
+
+## Supported Instruments
+
+| Category | Instruments |
+|----------|-------------|
+| **Cell Counting** | Vi-CELL BLU, Vi-CELL XR, NucleoCounter |
+| **Spectrophotometry** | NanoDrop One/Eight/8000, Lunatic |
+| **Plate Readers** | SoftMax Pro, EnVision, Gen5, CLARIOstar |
+| **ELISA** | SoftMax Pro, BMG MARS, MSD Workbench |
+| **qPCR** | QuantStudio, Bio-Rad CFX |
+| **Chromatography** | Empower, Chromeleon |
+
+---
+
+## Output Formats
+
+- **ASM JSON** — Full semantic structure with ontology URIs (for LIMS, data lakes)
+- **Flattened CSV** — 2D tabular format (for Excel, quick analysis)
+- **Python parser code** — Standalone script for data engineer handoff
+
+---
+
+## Parsing Strategy
+
+1. **Native allotropy** (preferred) — Try allotropy library first for supported vendors
+2. **Flexible fallback** — Column name fuzzy matching, unit extraction from headers
+3. **PDF extraction** — Extract tables using pdfplumber, then apply fallback parsing
+
+---
+
+## Tips
+
+- Always validate ASM output before delivering — run the validation script
+- Separate raw measurements from calculated/derived values
+- When unsure about field mapping, ask for clarification rather than guessing
+- Check `references/supported_instruments.md` for the complete instrument list
+
+---
+
+## Example Prompts
+
+```
+"Convert this cell counting data to Allotrope format"
+"Parse this NanoDrop CSV and generate ASM JSON"
+"Flatten this ASM file into a CSV for Excel"
+"Generate a standalone parser script for Vi-CELL BLU files"
+```

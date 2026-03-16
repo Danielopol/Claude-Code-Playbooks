@@ -1,0 +1,72 @@
+---
+title: "Process Documentation Builder"
+description: "Document business processes with flowcharts, RACI matrices, and standard operating procedures"
+category: "operations-compliance"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/operations/skills/process-doc"
+tags: ["process-docs", "sop", "raci", "flowcharts", "documentation"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+Turns messy process descriptions into complete standard operating procedures (SOPs). Generates RACI matrices, process flows, detailed step-by-step instructions, exception handling, and metrics — all from a conversation about how work gets done.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```
+process-docs/
+├── CLAUDE.md
+├── sops/           # Generated SOPs
+└── diagrams/       # Process flow diagrams
+```
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Say: **"Document our employee offboarding process"**
+
+---
+
+## What Gets Produced
+
+- **Purpose & Scope** — Why the process exists and what it covers
+- **RACI Matrix** — Responsible, Accountable, Consulted, Informed for each step
+- **Process Flow** — Visual representation of the process
+- **Detailed Steps** — Who, when, how, and expected output for each step
+- **Exceptions** — Edge cases and how to handle them
+- **Metrics** — KPIs with targets and measurement methods
+
+---
+
+## Tips
+
+- **Start messy** — You don't need a perfect description. Just explain how it works today
+- **Include the exceptions** — "Usually we do X, but sometimes Y" is the most valuable part
+- **Name the people** — Knowing who does what today helps get the process right
+
+---
+
+## Example Prompts
+
+```
+"Document our employee offboarding process"
+"Create an SOP for our monthly financial close"
+"Build a process doc for handling customer refunds"
+"Document how we handle vendor onboarding"
+```

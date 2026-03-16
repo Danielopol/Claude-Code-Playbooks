@@ -1,0 +1,98 @@
+---
+title: "Nextflow Pipeline Runner"
+description: "Run nf-core bioinformatics pipelines for RNA-seq, WGS, and ATAC-seq analysis"
+category: "bio-research"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/bio-research/skills/nextflow-development"
+tags: ["nextflow", "nf-core", "rna-seq", "bioinformatics", "pipelines"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+This playbook helps bench scientists and researchers run nf-core bioinformatics pipelines (rnaseq, sarek, atacseq) on sequencing data without specialized bioinformatics training. It handles everything from acquiring public datasets from GEO/SRA, through environment setup, samplesheet creation, pipeline execution, and output verification -- giving you a structured, step-by-step workflow for differential expression, variant calling, or chromatin accessibility analysis.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```
+my-bioinformatics-project/
+  CLAUDE.md
+  fastq/          # Your FASTQ files (or will be downloaded)
+```
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Say: **"I have RNA-seq FASTQ files in the fastq/ directory. Help me run the nf-core rnaseq pipeline with the GRCh38 genome."**
+
+---
+
+## Workflow Overview
+
+The playbook follows a structured 7-step checklist:
+
+1. **Acquire Data** -- Download from GEO/SRA if using public datasets (skip for local files)
+2. **Environment Check** -- Verify Docker, Nextflow, and Java are properly installed
+3. **Select Pipeline** -- Choose rnaseq, sarek, or atacseq based on your data type
+4. **Run Test Profile** -- Validate your environment with a small test dataset
+5. **Create Samplesheet** -- Auto-generate or validate your sample metadata CSV
+6. **Configure & Run** -- Set genome, aligner, and resource limits, then execute
+7. **Verify Outputs** -- Check for successful completion and locate key result files
+
+---
+
+## Supported Pipelines
+
+| Data Type | Pipeline | Version | Goal |
+|-----------|----------|---------|------|
+| RNA-seq | `rnaseq` | 3.22.2 | Gene expression |
+| WGS/WES | `sarek` | 3.7.1 | Variant calling |
+| ATAC-seq | `atacseq` | 2.1.2 | Chromatin accessibility |
+
+---
+
+## Tips
+
+- Always run the test profile before processing real data to catch environment issues early
+- Use `-resume` to continue from checkpoints if a run fails partway through
+- For HPC environments, swap `-profile docker` for `-profile singularity`
+- Set resource limits (`--max_cpus`, `--max_memory`, `--max_time`) to match your machine
+
+---
+
+## Key Outputs
+
+**RNA-seq:** Gene count matrices and TPM values in `results/star_salmon/`
+
+**WGS/WES (Sarek):** VCF variant files in `results/variant_calling/`
+
+**ATAC-seq:** Peak calls in `results/macs2/narrowPeak/` and coverage tracks in `results/bwa/mergedLibrary/bigwig/`
+
+All pipelines produce a MultiQC report at `results/multiqc/multiqc_report.html`.
+
+---
+
+## Example Prompts
+
+```
+"I have RNA-seq FASTQ files in ./data/. Run the nf-core rnaseq pipeline with GRCh38."
+"Download GSE110004 from GEO and run differential expression analysis."
+"Check my environment and run the sarek test profile for variant calling."
+"Create a samplesheet from FASTQ files in ./fastq/ for the atacseq pipeline."
+"Resume my failed rnaseq pipeline run."
+```

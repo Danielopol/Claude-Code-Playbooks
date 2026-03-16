@@ -1,0 +1,100 @@
+---
+title: "Customer Research Assistant"
+description: "Multi-source research with confidence scoring for customer questions"
+category: "customer-support"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/customer-support/skills/customer-research"
+tags: ["customer-research", "support", "knowledge-base", "troubleshooting"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+This playbook turns Claude into a research assistant for customer support teams. Given a customer question, reported issue, or topic to investigate, it systematically searches across multiple source tiers (internal docs, CRM, support tickets, web resources), synthesizes findings into a structured brief with confidence scoring, and suggests next steps -- so you can respond to customers with accurate, well-sourced answers.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```
+support-research/
+  CLAUDE.md
+```
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Say: **"Research this customer question: Does our product support SSO with Okta?"**
+
+---
+
+## Research Types
+
+The assistant handles four types of research:
+
+1. **Customer Questions** -- Look up answers to specific product or feature questions
+2. **Issue Investigation** -- Check if a bug has been reported before and find known workarounds
+3. **Account Context** -- Review history with a specific customer or account
+4. **Topic Research** -- Gather background on a general support-related topic
+
+---
+
+## Confidence Scoring
+
+Every research finding includes a confidence level:
+
+| Confidence | Meaning | Source Type |
+|-----------|---------|-------------|
+| **High** | Confirmed by official docs, multiple sources corroborate | Internal docs, KB, policies |
+| **Medium-High** | Found in organizational sources, may be incomplete | CRM, support tickets, meeting notes |
+| **Medium** | Informal sources, may lack context | Chat, email, calendar |
+| **Low-Medium** | External sources, may not match your situation | Web, forums, third-party docs |
+| **Low** | Inferred from related info, clearly flagged | Analogies, best practices |
+
+---
+
+## Output Format
+
+Research briefs include:
+
+- **Answer** -- Clear, direct bottom-line answer
+- **Key Findings** -- Sourced findings with specific details
+- **Context and Nuance** -- Caveats, edge cases, additional context
+- **Sources** -- Attributed list of where information came from
+- **Gaps and Unknowns** -- What could not be confirmed
+- **Recommended Next Steps** -- Actions for customer response or further research
+
+---
+
+## Tips
+
+- Always cross-reference across sources -- do not stop at the first result
+- When sources disagree, present both perspectives and recommend how to resolve
+- Flag answers involving roadmap, pricing, legal, or security for review before sharing with customers
+- After completing research, suggest capturing findings in the knowledge base to reduce future duplicate effort
+- Be transparent about limitations when answers come from external sources only
+
+---
+
+## Example Prompts
+
+```
+"Research this: Does our product support SSO with Okta?"
+"Has this dashboard loading bug been reported before? What's the workaround?"
+"What did we tell Acme Corp last time they asked about API rate limits?"
+"Research best practices for webhook retry logic for our integration docs."
+"A customer is asking about GDPR compliance -- research our current stance and documentation."
+```

@@ -1,0 +1,97 @@
+---
+title: "Single-Cell RNA-seq QC"
+description: "Automated quality control for single-cell RNA-seq data with filtering and visualization"
+category: "bio-research"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/bio-research/skills/single-cell-rna-qc"
+tags: ["single-cell", "rna-seq", "quality-control", "bioinformatics"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+This playbook automates quality control for single-cell RNA-seq data following scverse best practices. It calculates QC metrics (count depth, gene detection, mitochondrial content), applies MAD-based outlier filtering, and generates comprehensive before/after visualizations -- giving you a clean, filtered dataset ready for downstream analysis like clustering and cell type annotation.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder with your data and the template:
+
+```
+my-scrna-project/
+  CLAUDE.md
+  data/
+    sample.h5ad    # or raw_feature_bc_matrix.h5
+```
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Say: **"Run QC on my single-cell RNA-seq data in data/sample.h5ad"**
+
+---
+
+## Two Approaches
+
+### Approach 1: Complete Pipeline (Recommended)
+
+A one-command solution for standard QC workflows. Handles metrics calculation, MAD-based filtering, gene filtering, and visualization generation automatically.
+
+### Approach 2: Modular Building Blocks
+
+For custom workflows where you need different thresholds for cell subsets, conditional filtering logic, or partial execution (metrics only, no filtering).
+
+---
+
+## Output Files
+
+The pipeline generates these files in the results directory:
+
+- `qc_metrics_before_filtering.png` -- Pre-filtering visualizations
+- `qc_filtering_thresholds.png` -- MAD-based threshold overlays
+- `qc_metrics_after_filtering.png` -- Post-filtering quality metrics
+- `*_filtered.h5ad` -- Clean dataset ready for downstream analysis
+- `*_with_qc.h5ad` -- Original data with QC annotations preserved
+
+---
+
+## Tips
+
+- Be permissive with filtering -- default thresholds retain most cells to avoid losing rare populations
+- Always review before/after plots to ensure filtering makes biological sense
+- Some tissues naturally have higher mitochondrial content (neurons, cardiomyocytes) -- adjust thresholds accordingly
+- Mitochondrial gene prefixes vary by species: `mt-` for mouse, `MT-` for human
+- QC parameters may need adjustment based on the specific experiment or tissue type
+
+---
+
+## Supported Formats
+
+| Format | Source | Extension |
+|--------|--------|-----------|
+| AnnData | scanpy/Python workflows | `.h5ad` |
+| 10X Genomics | Cell Ranger output | `.h5` |
+
+---
+
+## Example Prompts
+
+```
+"Run QC on my single-cell data in sample.h5ad with default settings."
+"Analyze the quality of my 10X Genomics h5 file and filter low-quality cells."
+"Calculate QC metrics only -- don't filter yet. I want to inspect the distributions first."
+"Run QC with a stricter mitochondrial threshold of 10% instead of the default."
+"Apply different QC thresholds for neurons vs other cell types in my dataset."
+```

@@ -26,7 +26,10 @@ export type Category =
   | 'media-production'
   | 'communications'
   | 'operations-compliance'
-  | 'data-reporting';
+  | 'data-reporting'
+  | 'customer-support'
+  | 'bio-research'
+  | 'product-management';
 
 export interface Playbook {
   slug: string;

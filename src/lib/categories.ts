@@ -208,6 +208,30 @@ export const categories: CategoryInfo[] = [
     icon: 'BarChart3',
     vertical: 'Data & Reporting',
   },
+  // Customer Support
+  {
+    id: 'customer-support',
+    name: 'Customer Support',
+    description: 'Ticket triage, escalation, KB articles, and response drafting',
+    icon: 'Headphones',
+    vertical: 'Customer Support',
+  },
+  // Science & Research
+  {
+    id: 'bio-research',
+    name: 'Bio Research',
+    description: 'Bioinformatics, lab data processing, and scientific workflows',
+    icon: 'Microscope',
+    vertical: 'Science & Research',
+  },
+  // Product Management
+  {
+    id: 'product-management',
+    name: 'Product Management',
+    description: 'Feature specs, metrics review, roadmaps, and product strategy',
+    icon: 'Package',
+    vertical: 'Product Management',
+  },
 ];
 
 export function getCategoryById(id: Category): CategoryInfo | undefined {
@@ -236,4 +260,7 @@ export const verticals = [
   'Communications',
   'Operations & Compliance',
   'Data & Reporting',
+  'Customer Support',
+  'Science & Research',
+  'Product Management',
 ];

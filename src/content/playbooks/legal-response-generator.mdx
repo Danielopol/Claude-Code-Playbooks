@@ -1,0 +1,80 @@
+---
+title: "Legal Response Generator"
+description: "Generate responses to legal inquiries including DSR, litigation hold, vendor, NDA, and subpoena"
+category: "legal-compliance"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/knowledge-work-plugins/tree/main/legal/skills/legal-response"
+tags: ["legal-response", "dsr", "litigation", "nda", "subpoena"]
+createdAt: "2026-03-15"
+---
+
+## What This Does
+
+Generates responses to common legal inquiries using structured templates with built-in escalation checks. Supports data subject requests (DSRs), litigation hold notices, vendor legal questions, NDA requests, subpoena responses, and insurance notifications. Automatically detects situations that require individualized counsel review instead of a templated response.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Set Up Your Project
+
+Create a project folder and place the template inside:
+
+```
+legal-responses/
+├── CLAUDE.md
+├── templates/       # Custom response templates
+├── drafts/          # Generated response drafts
+└── sent/            # Finalized responses
+```
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Say: **"Generate a DSR acknowledgment response for a GDPR erasure request"**
+
+---
+
+## Supported Response Types
+
+| Type | Use Case | Escalation Level |
+|------|----------|-----------------|
+| **Data Subject Request** | Access, deletion, correction, portability | Medium -- check for litigation holds |
+| **Litigation Hold** | Preservation notices to custodians | High -- always review scope |
+| **Vendor Question** | Contract status, amendments, compliance | Low-Medium |
+| **NDA Request** | Standard form, counterparty review, renewal | Low-Medium |
+| **Subpoena** | Acknowledgment, objection, compliance | High -- always requires counsel review |
+| **Insurance** | Claim notification, supplemental info | Medium |
+
+---
+
+## Escalation Triggers
+
+The assistant automatically checks for situations that should NOT use a templated response, including:
+
+- Matters involving potential litigation or regulatory investigation
+- Inquiries from regulators, government agencies, or law enforcement
+- Situations involving potential criminal liability
+- Cases with media attention or multiple conflicting jurisdictions
+- Data subject requests involving minors or special category data
+
+---
+
+## Example Prompts
+
+```
+"Generate a DSR acknowledgment response for a GDPR erasure request"
+"Create a litigation hold notice for the Acme Corp matter"
+"Draft an NDA cover letter for a mutual NDA with a new partner"
+"Respond to this vendor's question about our data processing practices"
+"Help me create a new response template for insurance claim notifications"
+```

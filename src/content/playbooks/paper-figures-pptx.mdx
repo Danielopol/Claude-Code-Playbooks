@@ -1,0 +1,105 @@
+---
+title: "Paper Figures to PowerPoint"
+description: "Extract all figures, tables, and equations from a research paper PDF and generate a polished PowerPoint deck automatically."
+category: "academic-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "RebeccaStevenson"
+sourceUrl: "https://github.com/RebeccaStevenson/skills_rebecca/tree/main/paper-figures-pptx"
+tags: ["powerpoint", "research-papers", "figures", "tables", "pdf", "academic", "presentations"]
+createdAt: "2026-03-20"
+---
+
+## What This Does
+
+Converts a research paper PDF into a PowerPoint presentation with one slide per figure, table, and equation. Uses [Marker](https://github.com/VikParuchuri/marker) for PDF-to-markdown conversion, then parses the output to build a polished 16:9 deck with a title slide (metadata, DOI, abstract) followed by content slides preserving document order.
+
+---
+
+## Quick Start
+
+### Step 1: Install Dependencies
+
+```bash
+pip install python-pptx Pillow matplotlib
+```
+
+You also need `marker_single` on your PATH for PDF conversion. See [Marker installation](https://github.com/VikParuchuri/marker).
+
+### Step 2: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file, then place it in your project folder along with the scripts from the [source repository](https://github.com/RebeccaStevenson/skills_rebecca/tree/main/paper-figures-pptx).
+
+### Step 3: Generate a Deck
+
+```bash
+claude
+```
+
+Say: **"Create a PowerPoint from this paper's figures"** and provide your PDF path.
+
+---
+
+## Slide Layout
+
+| Slide Type | Content |
+|------------|---------|
+| **Title** | Paper title, authors, APA citation, DOI, truncated abstract |
+| **Figure** | Figure image with heading (optional caption in experimental mode) |
+| **Table** | Table title + native PowerPoint table with header row styling |
+| **Equation** | Label + rendered LaTeX image in highlighted box + context paragraph |
+
+---
+
+## Two Ways to Run
+
+**From raw PDF (recommended):**
+
+```bash
+bash scripts/marker_output_to_pptx.sh \
+  --pdf-input /path/to/paper.pdf \
+  --marker-output /path/to/marker_output \
+  --output-dir /path/to/pptx_output
+```
+
+**From existing Marker output:**
+
+```bash
+bash scripts/marker_output_to_pptx.sh \
+  --marker-output /path/to/marker_output
+```
+
+---
+
+## Key Options
+
+| Flag | What It Does |
+|------|-------------|
+| `--all` | Generate decks for all papers in the output folder |
+| `--paper <name>` | Choose one specific paper |
+| `--with-captions` | Experimental: add extracted caption text to figure slides |
+| `--skip-tables` | Omit table slides |
+| `--skip-equations` | Omit equation slides |
+| `--marker-force` | Reprocess previously converted PDFs |
+| `--marker-use-llm` | Use LLM-enhanced extraction for better captions |
+
+---
+
+## Tips
+
+- **Caption quality varies** — the default figure-only mode is more reliable; use `--with-captions` experimentally
+- **Reprocess noisy PDFs** — use `--marker-use-llm` with `--force_ocr` for scanned papers with poor text extraction
+- **Check before generating** — verify figure count with `find "$OUT" -type f | rg '_page_[0-9]+_Figure_[0-9]+' | wc -l`
+- **Customize the look** — edit `generate_paper_pptx.py` constants for colors, fonts, and slide dimensions
+
+---
+
+## Example Prompts
+
+```
+"Create a PowerPoint from this paper's figures"
+"Extract all figures and tables from my PDF into slides"
+"Generate a presentation deck from my Marker output folder"
+"Make a figure deck from this paper, skip equations"
+"Reprocess this PDF with better OCR and generate slides"
+```

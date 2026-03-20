@@ -1,0 +1,83 @@
+---
+title: "AlphaXiv Paper Lookup"
+description: "Look up any arxiv paper via alphaxiv.org to get a structured AI-generated overview instead of parsing raw PDFs."
+category: "academic-research"
+difficulty: "beginner"
+timeToSetup: "2 minutes"
+author: "oliviscusAI"
+sourceUrl: "https://www.alphaxiv.org/skills/alphaxiv-paper-lookup/SKILL.md"
+tags: ["arxiv", "research-papers", "paper-summary", "academic", "alphaxiv"]
+createdAt: "2026-03-20"
+---
+
+## What This Does
+
+Lets Claude look up any arxiv paper through [alphaxiv.org](https://alphaxiv.org) to get a structured, AI-generated overview — no PDF parsing needed. Just provide an arxiv URL or paper ID, and it fetches a detailed analysis optimized for LLM consumption. Falls back to full paper text extraction when deeper detail is needed.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file.
+
+### Step 2: Place in Your Project
+
+Drop the template into any project folder where you work with research papers:
+
+```
+research/
+├── CLAUDE.md
+└── notes/          # Your paper notes
+```
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Say: **"Explain this paper: https://arxiv.org/abs/2401.12345"**
+
+---
+
+## Supported Input Formats
+
+| Input | Extracted ID |
+|-------|-------------|
+| `https://arxiv.org/abs/2401.12345` | `2401.12345` |
+| `https://arxiv.org/pdf/2401.12345` | `2401.12345` |
+| `https://alphaxiv.org/overview/2401.12345` | `2401.12345` |
+| `2401.12345v2` | `2401.12345v2` |
+| `2401.12345` | `2401.12345` |
+
+---
+
+## How It Works
+
+1. **Fetch the overview** — calls `alphaxiv.org/overview/{ID}.md` for a structured report
+2. **Fall back to full text** — if the overview lacks specific details, fetches `alphaxiv.org/abs/{ID}.md`
+3. **Last resort** — directs to the raw PDF at `arxiv.org/pdf/{ID}`
+
+No API keys or authentication required — all endpoints are public.
+
+---
+
+## Tips
+
+- The structured overview is usually sufficient — only fetch full text for specific equations, tables, or sections
+- Works with any arxiv paper ID format, including versioned IDs like `2401.12345v2`
+- If a report returns 404, the paper hasn't been processed by AlphaXiv yet
+
+---
+
+## Example Prompts
+
+```
+"Explain this paper: https://arxiv.org/abs/2401.12345"
+"Summarize the key contributions of 2401.12345"
+"What methods does this paper use? arxiv.org/abs/2401.12345"
+"Compare the results in 2401.12345 with 2312.67890"
+"What are the limitations discussed in this paper?"
+```

@@ -1,0 +1,102 @@
+---
+title: "Idea Catalyst"
+description: "Find cross-domain research inspiration by decomposing problems, searching other fields, and synthesizing transferable insights."
+category: "academic-research"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "pkargupta"
+sourceUrl: "https://github.com/pkargupta/idea_catalyst"
+tags: ["research", "cross-domain", "inspiration", "interdisciplinary", "literature-search", "idea-generation"]
+createdAt: "2026-03-20"
+---
+
+## What This Does
+
+Systematically finds transferable insights from other scientific domains for your research problem. Based on the [Idea Catalyst framework](https://arxiv.org/abs/2603.12226) (Kargupta et al., 2025), it decomposes your problem into questions, searches your domain and cross-domain literature via Semantic Scholar, then integrates and ranks inspirations by transferability.
+
+---
+
+## Quick Start
+
+### Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/pkargupta/idea_catalyst.git
+cd idea_catalyst
+pip install -r requirements.txt
+```
+
+### Step 2: Download the Template
+
+Click **Download** above to get the `CLAUDE.md` file and place it in the `idea_catalyst/` directory.
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Say: **"Find cross-domain inspiration for my research problem: [describe your challenge]"**
+
+---
+
+## The Four-Stage Pipeline
+
+| Stage | What Happens |
+|-------|-------------|
+| **1. Decompose** | Break research problem into targeted questions (technical, conceptual, methodological) |
+| **2. Target Search** | Search your domain's literature for current landscape and gaps |
+| **3. Cross-Domain Search** | Reformulate questions as domain-agnostic, search other fields |
+| **4. Integrate & Rank** | Synthesize cross-domain findings into ranked inspiration ideas |
+
+---
+
+## Prerequisites
+
+- Python 3.10+
+- [Semantic Scholar API key](https://www.semanticscholar.org/product/api) (free)
+- GPU recommended for local LLM inference (uses vLLM)
+- Dependencies: `torch`, `transformers`, `vllm`, `spacy`, `pandas`, `scikit-learn`
+
+---
+
+## Key Options
+
+| Flag | Description |
+|------|-------------|
+| `--model_name` | LLM for decomposition and synthesis (default: Qwen3-14B) |
+| `--max_papers_per_query` | Papers to retrieve per search query |
+| `--min_rel_threshold` | Minimum relevance score to keep (higher = fewer, better results) |
+| `--skip_if_exists` | Resume interrupted batch runs |
+
+---
+
+## Using Without the Pipeline
+
+You can use the Idea Catalyst thinking framework directly with Claude — no setup needed:
+
+1. **Describe your problem** — be specific about the research challenge
+2. **Decompose** — "Break this into 3-5 targeted research questions"
+3. **Cross-domain search** — "What fields outside [your domain] have solved similar problems?"
+4. **Synthesize** — "How could [concept from another field] adapt to my problem?"
+
+---
+
+## Tips
+
+- Start with a clear, specific problem statement — vague problems yield vague inspirations
+- Try multiple target domains — the best insights often come from unexpected fields
+- The `min_rel_threshold` controls quality vs. quantity: higher = fewer but more relevant
+- The dataset is derived from [CHIMERA](https://huggingface.co/datasets/noystl/Recombination-Pred) cross-domain inspiration relations
+
+---
+
+## Example Prompts
+
+```
+"Find cross-domain inspiration for improving transformer efficiency in NLP"
+"What can drug discovery learn from supply chain optimization?"
+"Decompose my research problem into cross-domain searchable questions"
+"Search biology and physics for analogies to my distributed systems challenge"
+"Rank these cross-domain ideas by transferability to my problem"
+```

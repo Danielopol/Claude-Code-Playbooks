@@ -1,6 +1,9 @@
 ---
 title: "Replication-First Coding"
 description: "When working with existing code or papers, match the original exactly before extending. Verify against gold standard numbers to catch silent bugs."
+seoHook: "You extended a published model and the results look wrong — but is it your extension or a bug in the base implementation? Without first replicating the original results exactly, you can't tell where your code diverges. Replication-first development catches silent bugs before they contaminate your novel work."
+targetAudience: "PhD students implementing algorithms from published papers, research engineers reproducing baseline results before extending models, computational scientists verifying numerical methods against known solutions, ML researchers replicating benchmark results as a foundation for new work, postdocs validating inherited codebases from previous lab members"
+exampleUseCase: "\"Replicate the results from this transformer paper before adding our modifications\" → Replication workflow: gold standard numbers extracted from the paper, implementation matching the original architecture exactly, verification tests comparing output to published results, documented discrepancies with root causes, and a clean branch point for your extensions"
 category: "academic-research"
 difficulty: "intermediate"
 timeToSetup: "10 minutes"

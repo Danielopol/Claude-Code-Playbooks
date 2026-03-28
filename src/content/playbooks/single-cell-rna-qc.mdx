@@ -1,6 +1,9 @@
 ---
 title: "Single-Cell RNA-seq QC"
 description: "Automated quality control for single-cell RNA-seq data with filtering and visualization"
+seoHook: "Bad cells with high mitochondrial content or low gene counts will corrupt your entire downstream analysis if not filtered early. This playbook automates single-cell RNA-seq quality control — detecting doublets, filtering low-quality cells, and generating QC visualizations before you proceed to clustering."
+targetAudience: "bioinformaticians running QC on 10X Chromium single-cell datasets before analysis, wet-lab biologists validating sequencing quality of their single-cell experiments, genomics core facility staff processing scRNA-seq data for multiple research groups, immunologists ensuring clean cell populations before differential expression analysis, computational biology students learning standard scRNA-seq QC workflows"
+exampleUseCase: "\"Run QC on our 10X scRNA-seq dataset and filter low-quality cells\" → scRNA-seq QC pipeline: per-cell metric calculation (gene counts, UMI counts, mitochondrial percentage), QC violin plots and scatter visualizations for threshold selection, doublet detection and removal, adaptive filtering based on distribution-derived thresholds, and clean count matrix export ready for normalization and clustering"
 category: "bio-research"
 difficulty: "advanced"
 timeToSetup: "10 minutes"

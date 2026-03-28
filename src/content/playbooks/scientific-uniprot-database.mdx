@@ -1,6 +1,9 @@
 ---
 title: "Scientific Uniprot Database"
 description: "Direct REST API access to UniProt. Protein searches, FASTA retrieval, ID mapping, Swiss-Prot/TrEMBL. For Python workflows with multiple databases, prefer bioservices (unified interface to 40+ services). Use this for direct HTTP/REST work or UniPro..."
+seoHook: "Manually downloading protein sequences and annotations from the UniProt website one-by-one doesn't scale when your study has thousands of targets. This workflow provides direct REST API access to UniProt for programmatic protein searches, FASTA retrieval, ID mapping, and batch queries across Swiss-Prot and TrEMBL."
+targetAudience: "structural biologists retrieving protein sequences and annotations for modeling studies, proteomics researchers mapping mass spectrometry identifiers to UniProt accessions, bioinformaticians building automated protein annotation pipelines, drug discovery scientists querying protein targets and functional domains, systems biologists integrating UniProt data with pathway and interaction databases"
+exampleUseCase: "\"Retrieve all human kinase proteins with their sequences and GO annotations\" → UniProt pipeline: keyword and taxonomy-filtered protein search via REST API, batch FASTA sequence download, functional annotation extraction (GO terms, domains, active sites), ID mapping between UniProt and PDB/Ensembl identifiers, and structured output as a queryable DataFrame"
 category: "academic-research"
 difficulty: "beginner"
 timeToSetup: "5 minutes"

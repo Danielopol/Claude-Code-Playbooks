@@ -1,6 +1,9 @@
 ---
 title: "Scientific Zarr Python"
 description: "Chunked N-D arrays for cloud storage. Compressed arrays, parallel I/O, S3/GCS integration, NumPy/Dask/Xarray compatible, for large-scale scientific computing pipelines."
+seoHook: "Your multi-terabyte climate simulation or genomics array is too large for a single machine and too slow to read from traditional file formats. Zarr stores chunked, compressed N-dimensional arrays with parallel I/O and native S3/GCS support — making cloud-based scientific computing fast and scalable."
+targetAudience: "climate scientists storing and querying petabyte-scale atmospheric simulation outputs, geospatial analysts working with large satellite imagery and raster data arrays, genomics researchers managing multi-dimensional variant or expression matrices, oceanographers processing global ocean model outputs across time and depth, ML engineers building cloud-native training data pipelines for large array datasets"
+exampleUseCase: "\"Store our 500GB climate model output on S3 with efficient regional subsetting\" → Zarr pipeline: chunked array creation with optimal chunk sizes for spatial and temporal access patterns, Blosc compression for 5-10x storage reduction, S3-backed store configuration with parallel uploads, Xarray-compatible metadata for coordinate-aware slicing, and demonstration of region-specific reads without downloading the full dataset"
 category: "developer-tools"
 difficulty: "intermediate"
 timeToSetup: "10 minutes"

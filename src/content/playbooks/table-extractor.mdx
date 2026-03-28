@@ -1,6 +1,9 @@
 ---
 title: "Table Extraction from Documents"
 description: "Extract tables from PDF documents with support for merged cells and multi-page layouts using camelot."
+seoHook: "Financial reports, research papers, and government filings have tables locked inside PDFs that you need in a spreadsheet — but copy-paste destroys the formatting. This playbook extracts tables from PDFs using Camelot with support for merged cells, multi-page layouts, and complex table structures."
+targetAudience: "data analysts extracting tabular data from PDF financial reports and regulatory filings, researchers pulling data tables from published scientific papers for meta-analysis, finance teams converting PDF bank statements and invoices into spreadsheet format, operations managers extracting pricing and inventory tables from vendor PDF catalogs, compliance teams digitizing tabular data from scanned audit documents"
+exampleUseCase: "\"Extract all tables from this 50-page annual report PDF\" → Table extraction pipeline: PDF page analysis detecting table boundaries and structure, Camelot extraction handling merged cells and multi-column layouts, per-table quality validation checking row/column alignment, output as clean pandas DataFrames or CSV files, and batch processing for multi-page tables spanning across page breaks"
 category: "data-reporting"
 difficulty: "beginner"
 timeToSetup: "10 minutes"

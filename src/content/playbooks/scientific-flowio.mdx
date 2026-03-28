@@ -1,6 +1,9 @@
 ---
 title: "Scientific Flowio"
 description: "Parse FCS (Flow Cytometry Standard) files v2.0-3.1. Extract events as NumPy arrays, read metadata/channels, convert to CSV/DataFrame, for flow cytometry data preprocessing."
+seoHook: "Your flow cytometer exports FCS files but your analysis tools expect CSV or DataFrames. FlowIO parses FCS files (v2.0-3.1) into NumPy arrays, preserving channel metadata and compensation matrices — the critical first step in any computational flow cytometry pipeline."
+targetAudience: "immunologists analyzing flow cytometry data programmatically, bioinformaticians building automated flow cytometry analysis pipelines, core facility staff processing high-throughput flow data, researchers integrating flow cytometry with other single-cell modalities, graduate students learning computational approaches to flow cytometry"
+exampleUseCase: "\"Parse and preprocess our 100 FCS files for downstream analysis\" → FlowIO pipeline: batch FCS file parsing with metadata extraction, channel identification and renaming, compensation matrix application, conversion to pandas DataFrames for analysis, quality control flagging for anomalous files, and structured output ready for gating or clustering"
 category: "academic-research"
 difficulty: "intermediate"
 timeToSetup: "10 minutes"

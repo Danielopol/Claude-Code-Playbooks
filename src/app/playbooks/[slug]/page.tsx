@@ -110,7 +110,9 @@ export async function generateMetadata({ params }: PlaybookPageProps): Promise<M
 
   return {
     title: `${playbook.title} | Claude Code Playbooks`,
-    description: playbook.description,
+    description: playbook.seoHook
+      ? `${playbook.seoHook} ${playbook.description}`
+      : playbook.description,
     alternates: {
       canonical: `/playbooks/${slug}`,
     },
@@ -315,6 +317,30 @@ export default async function PlaybookPage({ params }: PlaybookPageProps) {
             </div>
           )}
         </header>
+
+        {playbook.seoHook && (
+          <div className="mb-8 p-6 bg-gradient-to-r from-[#161b22] to-[#1c2333] rounded-lg border border-[#30363d]">
+            <p className="text-base text-[#e6edf3] leading-relaxed mb-4">
+              {playbook.seoHook}
+            </p>
+            {playbook.targetAudience && (
+              <p className="text-sm text-muted-foreground mb-3">
+                <span className="text-[#22d3ee] font-medium">Who it&apos;s for:</span>{' '}
+                {playbook.targetAudience}
+              </p>
+            )}
+            {playbook.exampleUseCase && (
+              <div className="mt-4 p-4 bg-[#0d1117] rounded border border-[#30363d]">
+                <p className="text-xs text-[#22d3ee] font-medium uppercase tracking-wide mb-2">
+                  Example
+                </p>
+                <p className="text-sm text-[#e6edf3] leading-relaxed">
+                  {playbook.exampleUseCase}
+                </p>
+              </div>
+            )}
+          </div>
+        )}
 
         {playbook.claudeMdTemplate && (
           <Card className="mb-8 bg-[#161b22] border-[#30363d]">

@@ -1,6 +1,9 @@
 ---
 title: "Scientific Imaging Data Commons"
 description: "Query and download public cancer imaging data from NCI Imaging Data Commons using idc-index. Use for accessing large-scale radiology (CT, MR, PET) and pathology datasets for AI training or research. No authentication required. Query by metadata, v..."
+seoHook: "Training a medical imaging AI model requires thousands of annotated CT, MRI, or pathology images — but curating datasets from hospital archives takes months of IRB approvals. NCI Imaging Data Commons provides free, pre-curated cancer imaging datasets with no authentication required, queryable by metadata for instant access to research-grade medical images."
+targetAudience: "medical imaging AI researchers building deep learning models for cancer detection, radiology researchers accessing large-scale CT and MRI datasets for algorithm development, computational pathology scientists working with digitized whole-slide images, clinical informatics teams benchmarking imaging algorithms against public datasets, graduate students in biomedical engineering needing training data for imaging projects"
+exampleUseCase: "\"Download lung CT scans from IDC for training our nodule detection model\" → IDC pipeline: metadata query for lung CT collections by modality and body part, filtered download of DICOM series matching size and annotation criteria, dataset organization by patient and study, annotation extraction for supervised training, and a structured dataset ready for PyTorch or TensorFlow data loaders"
 category: "academic-research"
 difficulty: "advanced"
 timeToSetup: "15 minutes"

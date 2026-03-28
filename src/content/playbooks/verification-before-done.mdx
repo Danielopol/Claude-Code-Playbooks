@@ -1,6 +1,9 @@
 ---
 title: "Verification Before Done"
 description: "Never report a task as complete without actually verifying it works. Compile, render, test, or check every output before saying 'done'."
+seoHook: "Claude says 'done' but the code doesn't compile, the file wasn't saved, or the test still fails — because it reported completion without actually checking. This playbook ensures Claude Code verifies every output by compiling, rendering, testing, or checking before marking any task as complete."
+targetAudience: "developers frustrated by Claude Code reporting success on tasks that actually have errors, engineering teams establishing quality gates for AI-assisted code generation, tech leads building reliable AI-assisted workflows that catch mistakes before merge, solo developers who can't always manually verify every Claude output, teams using Claude Code for critical tasks where unverified output causes downstream issues"
+exampleUseCase: "\"Make Claude always verify its work before saying it's done\" → Verification protocol: mandatory compilation check after code changes, test execution confirming all tests pass after modifications, file existence and content verification after file operations, visual rendering check for UI changes, and structured verification report showing what was checked and confirmed before task completion"
 category: "academic-research"
 difficulty: "beginner"
 timeToSetup: "5 minutes"

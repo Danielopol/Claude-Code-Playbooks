@@ -1,6 +1,9 @@
 ---
 title: "Scientific Tiledbvcf"
 description: "Efficient storage and retrieval of genomic variant data using TileDB. Scalable VCF/BCF ingestion, incremental sample addition, compressed storage, parallel queries, and export capabilities for population genomics."
+seoHook: "Your population genomics project has 100,000 VCF files that take hours to query and can't fit in a standard database. TileDB-VCF stores variant data in a compressed columnar format optimized for genomic queries — making region-based lookups across millions of samples nearly instantaneous."
+targetAudience: "population genomicists managing variant data from large-scale sequencing cohorts, biobank bioinformaticians building queryable genomic databases from thousands of VCF files, genomic data engineers designing scalable storage for variant call archives, clinical genomics teams needing fast variant queries across patient populations, computational biologists performing genome-wide analyses on population-scale data"
+exampleUseCase: "\"Ingest our 10,000 VCF files into TileDB and enable fast region queries\" → TileDB-VCF workflow: batch VCF/BCF ingestion with incremental sample addition, compressed columnar storage with massive space savings, parallel region-based queries across all samples, export to pandas DataFrame or VCF format, and a queryable variant database supporting interactive population genetics analysis"
 category: "academic-research"
 difficulty: "advanced"
 timeToSetup: "15 minutes"

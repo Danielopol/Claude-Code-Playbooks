@@ -35,6 +35,9 @@ export interface Playbook {
   slug: string;
   title: string;
   description: string;
+  seoHook?: string;
+  targetAudience?: string;
+  exampleUseCase?: string;
   category: Category;
   difficulty: Difficulty;
   timeToSetup: string;
@@ -50,6 +53,9 @@ export interface Playbook {
 export interface PlaybookFrontmatter {
   title: string;
   description: string;
+  seoHook?: string;
+  targetAudience?: string;
+  exampleUseCase?: string;
   category: Category;
   difficulty: Difficulty;
   timeToSetup: string;

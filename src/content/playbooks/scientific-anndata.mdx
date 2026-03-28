@@ -1,6 +1,9 @@
 ---
 title: "Scientific Anndata"
 description: "Data structure for annotated matrices in single-cell analysis. Use when working with .h5ad files or integrating with the scverse ecosystem. This is the data format skill—for analysis workflows use scanpy; for probabilistic models use scvi-tools; f..."
+seoHook: "Your single-cell RNA-seq experiment generated data for 50,000 cells across 20,000 genes — and now you need to store, annotate, subset, and share it without losing metadata or breaking compatibility with scanpy. AnnData is the standard data structure for the scverse ecosystem, but getting the annotations, layers, and obs/var right from the start saves hours of debugging later."
+targetAudience: "single-cell biologists working with scRNA-seq and scATAC-seq data, bioinformaticians building reproducible single-cell analysis pipelines, PhD students learning the scverse ecosystem for their thesis research, computational biology labs standardizing data formats across projects, researchers integrating multiple single-cell datasets for atlas-scale analysis"
+exampleUseCase: "\"Load and annotate my 10X scRNA-seq data into AnnData format\" → AnnData workflow: h5ad file creation with proper sparse matrix storage, cell metadata annotation in obs, gene metadata in var, multiple data layers (raw counts, normalized, scaled), dimensionality reductions in obsm, and export compatible with scanpy and scvi-tools"
 category: "academic-research"
 difficulty: "intermediate"
 timeToSetup: "10 minutes"

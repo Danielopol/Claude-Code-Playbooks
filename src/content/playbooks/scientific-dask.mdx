@@ -1,6 +1,9 @@
 ---
 title: "Scientific Dask"
 description: "Distributed computing for larger-than-RAM pandas/NumPy workflows. Use when you need to scale existing pandas/NumPy code beyond memory or across clusters. Best for parallel file processing, distributed ML, integration with existing pandas code. For..."
+seoHook: "Your pandas DataFrame is 50GB and Python crashes with a MemoryError every time you try to load it. Dask lets you scale your existing pandas and NumPy code to datasets larger than RAM — same API, parallel execution, optional cluster scaling — without rewriting your analysis in Spark or switching languages."
+targetAudience: "data scientists working with datasets that exceed available RAM, bioinformaticians processing large genomic datasets locally, analysts scaling pandas workflows to multi-file datasets, ML engineers parallelizing feature engineering on large datasets, researchers who know pandas but need to process terabyte-scale data"
+exampleUseCase: "\"Process our 200GB log dataset using Dask instead of pandas\" → Dask pipeline: lazy DataFrame loading with partitioned file reading, parallel aggregation and groupby operations matching your existing pandas code, memory-efficient joins across large tables, distributed computation with progress monitoring, and output export in partitioned parquet format"
 category: "data-reporting"
 difficulty: "intermediate"
 timeToSetup: "10 minutes"

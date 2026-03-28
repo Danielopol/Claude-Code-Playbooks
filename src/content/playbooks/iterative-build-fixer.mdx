@@ -1,6 +1,9 @@
 ---
 title: "Iterative Build & Fix Loop"
 description: "Run builds in a loop that automatically detects errors, fixes them, and re-runs until the build succeeds. Works with any build system: npm, cargo, go, make, gradle, and more."
+seoHook: "Build fails. You read the error, fix it, rebuild. New error. Fix, rebuild. Another error. This build-read-fix cycle can go 15 rounds before it compiles — and each round is the same tedious process of reading output, finding the line, and making the change."
+targetAudience: "developers dealing with cascading build errors, teams migrating codebases with hundreds of compilation failures, anyone upgrading dependencies that break the build, developers working in strictly-typed languages with verbose error output, CI pipeline maintainers fixing broken builds"
+exampleUseCase: "\"Fix all TypeScript build errors in this project after upgrading to v5\" → Automated loop: runs tsc, parses 47 type errors, fixes them one by one, re-runs build after each fix, handles cascading errors — compiles successfully after 12 iterations, zero manual intervention"
 category: "academic-research"
 difficulty: "intermediate"
 timeToSetup: "10 minutes"

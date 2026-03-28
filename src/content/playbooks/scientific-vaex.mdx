@@ -1,6 +1,9 @@
 ---
 title: "Scientific Vaex"
 description: "Use this skill for processing and analyzing large tabular datasets (billions of rows) that exceed available RAM. Vaex excels at out-of-core DataFrame operations, lazy evaluation, fast aggregations, efficient visualization of big data, and machine ..."
+seoHook: "Your dataset has billions of rows and pandas crashes with out-of-memory errors every time you try to load it. Vaex processes billion-row DataFrames without loading them into RAM — using memory-mapped files, lazy evaluation, and columnar computation to deliver fast aggregations and visualizations on commodity hardware."
+targetAudience: "data engineers processing billion-row log files and event streams that exceed RAM, astronomers analyzing large survey catalogs like Gaia with billions of stellar observations, geospatial analysts working with massive GPS trace or sensor datasets, quantitative analysts exploring tick-level financial data spanning years, ML engineers performing feature engineering on datasets too large for pandas"
+exampleUseCase: "\"Analyze our 2 billion row clickstream dataset on a 32GB machine\" → Vaex pipeline: memory-mapped HDF5 file loading with zero RAM overhead, lazy column expressions for feature engineering, fast grouped aggregations (mean, count, percentiles) by user segment, interactive histogram and heatmap visualization of behavioral patterns, and filtered export to Parquet for downstream modeling"
 category: "data-reporting"
 difficulty: "intermediate"
 timeToSetup: "10 minutes"

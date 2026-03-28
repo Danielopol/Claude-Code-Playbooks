@@ -18,7 +18,7 @@ npm run lint    # Run ESLint
 
 ### Content System
 - Playbooks are MDX files in `src/content/playbooks/`
-- Each playbook has YAML frontmatter defining: title, description, category, difficulty, timeToSetup, author, tags, createdAt
+- Each playbook has YAML frontmatter defining: title, description, seoHook, targetAudience, exampleUseCase, category, difficulty, timeToSetup, author, tags, createdAt
 - `src/lib/playbooks.ts` reads MDX files at build time using `gray-matter` and extracts CLAUDE.md templates from code blocks
 - Categories are defined in `src/lib/categories.ts` with 9 categories across 7 verticals
 
@@ -55,6 +55,9 @@ Create `src/content/playbooks/{slug}.mdx` where `{slug}` matches the template fi
 ---
 title: "Playbook Title"
 description: "Short description"
+seoHook: "A compelling 1-2 sentence hook explaining the problem this playbook solves — written to engage the reader emotionally or practically."
+targetAudience: "persona1, persona2, persona3"
+exampleUseCase: "\"Example user prompt\" → What the playbook produces in response"
 category: "file-organization"  # Must match a Category type
 difficulty: "beginner"         # beginner | intermediate | advanced
 timeToSetup: "5 minutes"
@@ -83,6 +86,14 @@ Click **Download** above, then move the file...
 
 ...how to start using it...
 ```
+
+### Required: SEO Hook, Target Audience & Example Use Case
+
+Every playbook **must** include these three frontmatter fields. They render as a prominent section on the playbook page (between the tags and the CLAUDE.md Template download):
+
+- **`seoHook`**: A compelling 1-2 sentence hook that describes the problem this playbook solves. Write it to resonate emotionally or practically with the target user. Example: `"Finding the right papers in a sea of millions of publications is like searching for needles in a haystack — and missing one key study can undermine your entire thesis or research project."`
+- **`targetAudience`**: A comma-separated list of personas who benefit from this playbook. Displayed as "**Who it's for:** ...". Example: `"graduate students, research assistants, professors, science journalists, systematic reviewers"`
+- **`exampleUseCase`**: A concrete before → after example showing what a user might ask and what the playbook produces. Use the format `"user prompt" → result description`. Example: `"\"Find recent papers on transformer architectures for protein folding\" → Curated list of 15 high-impact papers with relevance scores, methodology summaries, and key findings synthesized"`
 
 ### 3. Enrich the MDX with template insights
 

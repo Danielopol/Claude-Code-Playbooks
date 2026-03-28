@@ -1,6 +1,9 @@
 ---
 title: "Smart Contract Audit"
 description: "Audit smart contract changes with a structured, actionable report covering security, access control, reentrancy, and MEV exposure."
+seoHook: "A single missed vulnerability in a Solidity contract can drain millions in minutes — and manual code review often misses subtle reentrancy or access control flaws. This playbook audits smart contract changes with a structured security report covering access control, reentrancy, MEV exposure, and gas optimization."
+targetAudience: "Solidity developers reviewing contract changes before deployment to mainnet, DeFi protocol teams auditing upgradeable proxy contracts for security regressions, blockchain security researchers identifying vulnerability patterns in smart contracts, Web3 startup CTOs ensuring contract security before launch, audit firms using automated pre-screening before manual deep-dive reviews"
+exampleUseCase: "\"Audit our updated staking contract before deploying to mainnet\" → Smart contract audit pipeline: diff analysis of changed functions and state variables, reentrancy vulnerability scan on external calls, access control verification for privileged functions, MEV exposure assessment for sandwich attack vectors, gas optimization recommendations, and go/no-go deployment recommendation with severity-rated findings"
 category: "developer-tools"
 difficulty: "advanced"
 timeToSetup: "5 minutes"

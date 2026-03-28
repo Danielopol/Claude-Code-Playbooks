@@ -1,6 +1,9 @@
 ---
 title: "Scientific Get Available Resources"
 description: "This skill should be used at the start of any computationally intensive scientific task to detect and report available system resources (CPU cores, GPUs, memory, disk space). It creates a JSON file with resource information and strategic recommend..."
+seoHook: "You're about to launch a computationally intensive analysis but don't know if your machine has enough GPU memory, CPU cores, or disk space to handle it. Detecting system resources upfront prevents out-of-memory crashes mid-run and lets you choose optimal parallelization settings before committing to hours of compute."
+targetAudience: "computational scientists configuring resource-intensive analysis pipelines, bioinformaticians optimizing workflows for available GPU and CPU resources, ML engineers determining batch sizes based on available memory, HPC users planning job submissions across heterogeneous compute nodes, data scientists sizing their analysis before running overnight jobs"
+exampleUseCase: "\"Check what resources are available before running our genomics pipeline\" → Resource report: CPU core count and architecture, GPU model and VRAM, available RAM and disk space, strategic recommendations for parallelization settings, and a JSON config file tuned to your hardware for optimal pipeline performance"
 category: "developer-tools"
 difficulty: "beginner"
 timeToSetup: "5 minutes"

@@ -1,6 +1,9 @@
 ---
 title: "Adversarial QA Loop"
 description: "Use a Critic + Fixer pattern where one agent finds issues (read-only) and another fixes them, with re-audits until quality passes. Prevents Claude from approving its own work."
+seoHook: "AI-generated code and content often looks right but hides subtle bugs and logical errors. The problem? The same AI that created it will say 'looks good' when asked to review its own work."
+targetAudience: "software engineers, QA engineers, technical leads, AI application developers, development team managers"
+exampleUseCase: "\"Review and fix the authentication module\" → Critic agent finds 4 security issues and 2 logic bugs, Fixer agent patches each one, Critic re-audits until all pass — zero self-approval bias"
 category: "academic-research"
 difficulty: "intermediate"
 timeToSetup: "10 minutes"

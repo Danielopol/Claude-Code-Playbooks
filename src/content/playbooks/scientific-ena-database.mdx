@@ -1,6 +1,9 @@
 ---
 title: "Scientific Ena Database"
 description: "Access European Nucleotide Archive via API/FTP. Retrieve DNA/RNA sequences, raw reads (FASTQ), genome assemblies by accession, for genomics and bioinformatics pipelines. Supports multiple formats."
+seoHook: "The raw sequencing data for a published study is deposited in ENA but downloading the right FASTQ files from the right experiment requires navigating accession hierarchies and FTP directories. Programmatic ENA access lets you query by study, sample, or experiment accession and batch-download sequences for reanalysis."
+targetAudience: "bioinformaticians downloading public sequencing data for reanalysis, genomics researchers accessing raw reads from published studies, metagenomics scientists querying environmental sequencing datasets, comparative genomics teams downloading genome assemblies across species, pipeline developers building automated data retrieval from public archives"
+exampleUseCase: "\"Download all RNA-seq FASTQ files from this published study's ENA accession\" → ENA retrieval: study metadata extraction, sample-to-run mapping for all experiments, batch FASTQ download with checksums, file organization by sample and run, and metadata table linking clinical annotations to downloaded files"
 category: "academic-research"
 difficulty: "beginner"
 timeToSetup: "5 minutes"

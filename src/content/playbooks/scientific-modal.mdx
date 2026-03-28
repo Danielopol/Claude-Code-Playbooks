@@ -1,6 +1,9 @@
 ---
 title: "Scientific Modal"
 description: "Run Python code in the cloud with serverless containers, GPUs, and autoscaling. Use when deploying ML models, running batch processing jobs, scheduling compute-intensive tasks, or serving APIs that require GPU acceleration or dynamic scaling."
+seoHook: "Your ML training job needs A100 GPUs but your local machine only has a laptop GPU — and setting up cloud infrastructure takes days of DevOps. Modal lets you run Python code on serverless GPUs with a single decorator, scaling from zero to hundreds of GPUs without touching Docker, Kubernetes, or cloud consoles."
+targetAudience: "ML engineers deploying GPU-intensive training and inference without managing infrastructure, computational scientists running batch processing jobs that exceed local compute capacity, AI researchers serving model endpoints with automatic scaling, bioinformaticians running compute-heavy genomics pipelines in the cloud, data scientists scheduling periodic GPU workloads without maintaining always-on instances"
+exampleUseCase: "\"Deploy our protein structure prediction model to Modal with GPU acceleration\" → Modal deployment: function wrapping with @app.function decorator and GPU specification, container image definition with scientific dependencies, serverless endpoint creation for inference API, batch job scheduling for large-scale predictions, and autoscaling configuration that spins down to zero when idle"
 category: "developer-tools"
 difficulty: "advanced"
 timeToSetup: "15 minutes"

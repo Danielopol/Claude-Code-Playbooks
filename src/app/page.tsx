@@ -154,6 +154,13 @@ export default async function HomePage({ searchParams }: HomePageProps) {
               GitHub
             </Link>
             <Link
+              href="/getting-started"
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-[#22c55e] bg-[#22c55e]/10 text-sm font-semibold text-[#22c55e] hover:bg-[#22c55e] hover:text-[#0d1117] transition-all"
+            >
+              <Sparkles className="h-4 w-4" />
+              Getting Started
+            </Link>
+            <Link
               href="/latest"
               className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-[#f97316] bg-[#f97316]/10 text-sm font-semibold text-[#f97316] hover:bg-[#f97316] hover:text-[#0d1117] transition-all"
             >

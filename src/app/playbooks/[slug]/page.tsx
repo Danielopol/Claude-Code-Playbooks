@@ -356,7 +356,9 @@ export default async function PlaybookPage({ params }: PlaybookPageProps) {
                 </div>
               </div>
               <p className="text-sm text-muted-foreground mt-2">
-                Download this file and place it in your project folder to get started.
+                <a href="/getting-started" className="text-[#22d3ee] hover:underline font-medium">New here? 3-minute setup guide &rarr;</a>
+                {' '}<span className="text-muted-foreground/50">|</span>{' '}
+                Already set up? Copy the template below.
               </p>
             </CardHeader>
             <CardContent className="pt-4">

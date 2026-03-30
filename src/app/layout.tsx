@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { JetBrains_Mono, Press_Start_2P } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Github, Home, BookOpen, Rss, Phone, Mail } from 'lucide-react';
+import { Github, Home, BookOpen, Rss, Phone, Mail, Users } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
 import './globals.css';
 
@@ -75,6 +75,13 @@ function Header() {
           >
             <BookOpen className="h-4 w-4" />
             <span>Browse</span>
+          </Link>
+          <Link
+            href="/for"
+            className="flex items-center gap-1.5 text-muted-foreground hover:text-[#22d3ee] transition-colors"
+          >
+            <Users className="h-4 w-4" />
+            <span>For You</span>
           </Link>
           <Link
             href="/blog"

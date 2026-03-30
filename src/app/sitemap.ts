@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { personas } from '@/lib/personas';
 
 interface Playbook {
   slug: string;
@@ -80,6 +81,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/getting-started`,
+      lastModified: new Date('2026-03-28'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/latest`,
       lastModified: latestPlaybookDate,
       changeFrequency: 'weekly',
@@ -120,6 +127,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
   });
 
+  // Persona pages (/for/[persona])
+  const personaIndexPage: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/for`,
+      lastModified: latestPlaybookDate,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+  ];
+
+  const personaPages: MetadataRoute.Sitemap = personas.map((persona) => ({
+    url: `${baseUrl}/for/${persona.id}`,
+    lastModified: latestPlaybookDate,
+    changeFrequency: 'weekly' as const,
+    priority: 0.7,
+  }));
+
   // Playbook pages
   const playbookPages: MetadataRoute.Sitemap = playbooks.map((playbook) => ({
     url: `${baseUrl}/playbooks/${playbook.slug}`,
@@ -128,5 +152,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...categoryPages, ...playbookPages];
+  return [...staticPages, ...categoryPages, ...personaIndexPage, ...personaPages, ...playbookPages];
 }

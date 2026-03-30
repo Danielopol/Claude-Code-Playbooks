@@ -128,6 +128,11 @@ export function getPlaybooksByCategory(category: Category): Playbook[] {
   return getAllPlaybooks().filter((p) => p.category === category);
 }
 
+export function getPlaybooksByCategories(categories: Category[]): Playbook[] {
+  const categorySet = new Set(categories);
+  return getAllPlaybooks().filter((p) => categorySet.has(p.category));
+}
+
 export function getPlaybooksByDifficulty(difficulty: Difficulty): Playbook[] {
   return getAllPlaybooks().filter((p) => p.difficulty === difficulty);
 }

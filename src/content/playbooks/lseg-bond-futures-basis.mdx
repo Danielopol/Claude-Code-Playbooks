@@ -1,0 +1,75 @@
+---
+title: "Bond Futures Basis Analysis (LSEG)"
+description: "Analyze bond futures basis by pricing futures, identifying cheapest-to-deliver bonds, and comparing implied repo rates to assess basis trading opportunities using LSEG data tools."
+seoHook: "Bond futures basis trades require juggling futures pricing, CTD identification, conversion factors, and implied repo calculations across multiple data sources — one missed input and the entire trade thesis falls apart."
+targetAudience: "fixed income traders, basis traders, government bond market makers, quantitative analysts"
+exampleUseCase: "\"Analyze the basis on the US 10Y Treasury future\" → CTD identification, gross/net basis calculation, implied repo vs market repo comparison, historical percentile context, and a long/short/neutral trade recommendation"
+category: "trading-markets"
+difficulty: "advanced"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["LSEG", "trading", "bond-futures", "basis-trading", "fixed-income", "CTD", "implied-repo"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Automates the full bond futures basis analysis workflow: pricing the futures contract to identify the cheapest-to-deliver (CTD) bond, pricing the CTD separately, computing gross basis, carry, net basis (BNOC), and implied repo rate, then overlaying yield curve context and historical data. It chains LSEG MCP tools together so you get a complete basis trade assessment in a single conversation.
+
+The skill handles the multi-step data routing — futures pricing, cash bond analytics, yield curves, and historical tracking — and synthesizes everything into structured tables with a clear rich/cheap/fair verdict.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/bond-futures-basis
+cd ~/bond-futures-basis
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+
+Launch Claude Code and try these prompts:
+
+```
+Analyze the basis on the US 10Y Treasury future (TYA)
+```
+
+```
+Identify the CTD bond for the Euro-Bund future and compute the net basis
+```
+
+```
+Compare implied repo rates across the delivery basket for the 5Y Treasury future
+```
+
+## Tool Chaining Workflow
+
+The analysis follows a structured six-step pipeline:
+
+1. **Price the Future** — Call `bond_future_price` to get fair price, CTD identification, delivery basket, and contract DV01
+2. **Price the CTD Bond** — Call `bond_price` for clean/dirty price, yield, duration, and DV01
+3. **Compute Basis Metrics** — Calculate gross basis, carry, net basis, and implied repo rate
+4. **Yield Curve Context** — Use `interest_rate_curve` for short-end rate as repo proxy
+5. **Historical Context** — Use `tscc_historical_pricing_summaries` for 3M trend, volatility, and percentile
+6. **Sovereign Credit (optional)** — Check `credit_curve` for credit-driven basis distortions
+
+## Key Concepts
+
+- **Gross Basis**: Cash price minus (futures price x conversion factor). The raw difference between cash and futures.
+- **Net Basis (BNOC)**: Gross basis minus carry. Represents the embedded delivery option value.
+- **Implied Repo Rate**: The financing rate implied by the basis. Compare to market repo to determine if futures are rich or cheap.
+- **CTD Bond**: The bond in the delivery basket that is cheapest to deliver — drives futures pricing and basis dynamics.
+
+## Tips for Best Results
+
+- Always start with a specific contract RIC (e.g., TYA for 10Y Treasury) for unambiguous futures identification
+- The implied repo vs market repo comparison is the most actionable signal — a positive spread suggests futures are cheap
+- Use the historical percentile context to avoid entering basis trades at extreme levels
+- For cross-market basis comparisons, run the workflow for multiple contracts and compare net basis percentiles

@@ -1,0 +1,72 @@
+---
+title: "Deal Screening Memo"
+description: "Quickly screen inbound deal flow — CIMs, teasers, and broker materials — against your fund's investment criteria with a structured pass/fail framework."
+seoHook: "Your inbox has 10 new CIMs this week and you need to decide which ones deserve a first call — spending hours on every teaser is not an option, but missing a good deal because you skimmed too fast is worse."
+targetAudience: "PE associates, vice presidents, deal sourcing analysts, principals"
+exampleUseCase: "\"Screen this CIM against our fund criteria\" → One-page screening memo with extracted deal facts, pass/fail criteria table, bull/bear case, verdict (Pass / Further Diligence / Hard Pass), and key questions for a first call"
+category: "private-equity"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["private equity", "deal screening", "CIM review", "deal flow", "investment criteria"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Extracts key deal metrics from CIMs, teasers, and broker materials, runs them through a structured pass/fail framework against your fund's investment criteria, and outputs a one-page screening memo with a clear verdict.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a folder for your deal screening and place the downloaded template inside as `CLAUDE.md`.
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+
+```
+"Screen this CIM against our fund criteria"
+"Should we look at this deal? Here's the teaser."
+"Triage these three inbound teasers"
+```
+
+## What Gets Extracted
+
+From each CIM or teaser, the playbook pulls:
+
+- Company name, location, sector/subsector
+- Revenue, EBITDA, margins, growth rate
+- Deal type (platform, add-on, recap, minority, carve-out)
+- Asking price / valuation multiple
+- Seller motivation
+- Management continuity (rolling or exiting)
+- Customer concentration risk
+- Obvious red flags
+
+## Screening Framework
+
+Each deal is scored against criteria including:
+
+| Criterion | Examples |
+|-----------|---------|
+| Revenue range | $20-100M |
+| EBITDA range | $5-25M |
+| EBITDA margin | >15% |
+| Growth profile | Stable or growing |
+| Sector fit | Within fund thesis |
+| Valuation | 6-10x EBITDA |
+| Customer concentration | Top customer <20% |
+
+## Tips & Best Practices
+
+- Speed matters — screening should take minutes, not hours
+- Be direct about red flags. Do not bury concerns in caveats
+- If financials seem inconsistent or incomplete, flag it explicitly
+- Ask for the fund's criteria upfront if this is the first screening — and save them for future deals
+- The output is a clear verdict: **Pass**, **Further Diligence**, or **Hard Pass**

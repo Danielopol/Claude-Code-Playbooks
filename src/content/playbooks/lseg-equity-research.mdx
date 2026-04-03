@@ -1,0 +1,74 @@
+---
+title: "Equity Research Snapshot (LSEG)"
+description: "Generate comprehensive equity research snapshots combining IBES analyst consensus estimates, company fundamentals, historical prices, and macroeconomic context using LSEG data tools."
+seoHook: "Building a proper equity research note means pulling consensus estimates, multi-year financials, price history, and macro data from separate sources — then somehow synthesizing it all into a coherent investment thesis before the opportunity moves."
+targetAudience: "equity research analysts, portfolio managers, buy-side analysts, investment bankers"
+exampleUseCase: "\"Build a research snapshot for AAPL\" → Consensus EPS/revenue estimates with dispersion, 3-year financials trend, forward P/E vs history, macro backdrop assessment, and a structured bull/bear thesis with conviction level"
+category: "trading-markets"
+difficulty: "advanced"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["LSEG", "trading", "equity-research", "consensus-estimates", "fundamentals", "IBES", "valuation"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Automates the equity research snapshot workflow by chaining LSEG MCP tools: pulling IBES consensus estimates (EPS, revenue, EBITDA), retrieving multi-year company fundamentals for ratio analysis, computing price performance and beta from historical data, and overlaying macroeconomic context. The output is a structured research note with standardized tables and an investment thesis.
+
+The key question the skill helps answer: where might consensus be wrong? By presenting estimates alongside fundamentals trends, valuation metrics, and the macro backdrop, it surfaces the data you need to form a differentiated view.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/equity-research
+cd ~/equity-research
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+
+Launch Claude Code and try these prompts:
+
+```
+Build a research snapshot for MSFT including consensus estimates and 3-year fundamentals
+```
+
+```
+Compare consensus estimates for AAPL vs GOOGL — where is analyst dispersion highest?
+```
+
+```
+What is the macro backdrop for European bank stocks right now?
+```
+
+## Output Sections
+
+The research note follows a structured format:
+
+1. **Consensus Estimates** — FY1/FY2 EPS, revenue, EBITDA with analyst count and dispersion
+2. **Financials Summary** — 3-year revenue, margins, ROE, leverage trends
+3. **Valuation Summary** — Forward P/E, EV/EBITDA, dividend yield with sector context
+4. **Investment Thesis** — Buy/hold/sell recommendation, fair value range, bull/bear cases, catalysts, conviction level
+
+## Available MCP Tools
+
+- **`qa_ibes_consensus`** — IBES analyst consensus: median/mean estimates, analyst count, high/low range, dispersion
+- **`qa_company_fundamentals`** — Income statement, balance sheet, cash flow for historical ratio analysis
+- **`qa_historical_equity_price`** — OHLCV, total returns, and beta
+- **`qa_macroeconomic`** — GDP, CPI, unemployment, PMI for economic backdrop
+
+## Tips for Best Results
+
+- Start with the consensus snapshot to frame market expectations before diving into fundamentals
+- High analyst dispersion signals uncertainty — these are often the most interesting research opportunities
+- Use the macro context to assess whether sector tailwinds/headwinds are priced into consensus
+- For cross-company comparisons, run the workflow for multiple tickers and compare valuation multiples side by side
+- The forward P/E vs historical average is a quick sanity check on whether the market is pricing growth or contraction

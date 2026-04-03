@@ -1,0 +1,78 @@
+---
+title: "Fixed Income Portfolio Review (LSEG)"
+description: "Review fixed income portfolios by pricing multiple bonds, analyzing cashflow waterfalls, running scenario stress tests, and computing portfolio-level duration, DV01, and composition breakdowns."
+seoHook: "Reviewing a fixed income portfolio means pricing every bond, computing weighted-average metrics, projecting cashflows, and stress testing across rate scenarios — a process that takes hours manually and risks aggregation errors at every step."
+targetAudience: "portfolio managers, fixed income traders, risk managers, investment analysts"
+exampleUseCase: "\"Review my bond portfolio: [list of ISINs with notionals]\" → Portfolio-level yield, duration, DV01, sector/rating/maturity breakdowns, quarterly cashflow waterfall, and scenario P&L from -200bp to +200bp with top risk contributors identified"
+category: "trading-markets"
+difficulty: "advanced"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["LSEG", "trading", "portfolio-management", "fixed-income", "risk-analysis", "scenario-analysis", "bonds"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Chains LSEG MCP tools to deliver a complete fixed income portfolio review. It prices all holdings in batch, computes market-value weighted portfolio metrics (yield, duration, DV01, convexity), enriches with reference data for composition analysis (sector, rating, maturity, currency breakdowns), projects cashflows into a quarterly waterfall, and runs scenario stress tests across standard rate shocks.
+
+The output frames everything relative to a benchmark when available, making it immediately useful for portfolio positioning decisions.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/fi-portfolio-review
+cd ~/fi-portfolio-review
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+
+Launch Claude Code and try these prompts:
+
+```
+Review this bond portfolio: US91282CJL54 ($5M), US912810TV08 ($3M), US91282CHV72 ($2M)
+```
+
+```
+Show me the cashflow waterfall for my portfolio over the next 4 quarters
+```
+
+```
+Stress test my portfolio with rate shocks from -200bp to +200bp and identify the top risk contributors
+```
+
+## Analysis Pipeline
+
+The review follows a seven-step workflow:
+
+1. **Price All Bonds** — Batch pricing via `bond_price` for yield, duration, DV01, spread per bond
+2. **Aggregate Metrics** — Market-value weighted portfolio yield, duration, DV01, convexity
+3. **Reference Data** — `yieldbook_bond_reference` for sector, rating, maturity, currency breakdowns
+4. **Cashflow Projections** — `yieldbook_cashflow` aggregated into a quarterly waterfall
+5. **Scenario Stress Test** — `yieldbook_scenario` with -200bp to +200bp shocks
+6. **Curve Context** — `interest_rate_curve` for spread-to-curve analysis
+7. **Synthesis** — Complete review with composition, cashflows, and scenario P&L
+
+## Available MCP Tools
+
+- **`bond_price`** — Batch bond pricing with comma-separated identifiers
+- **`yieldbook_bond_reference`** — Issuer, coupon, maturity, rating, sector, call provisions
+- **`yieldbook_cashflow`** — Future coupon and principal payment schedules
+- **`yieldbook_scenario`** — Price/yield under parallel rate shifts
+- **`fixed_income_risk_analytics`** — OAS, effective duration, key rate durations for optionable bonds
+
+## Tips for Best Results
+
+- Provide ISINs with notional amounts for accurate market-value weighting
+- Use comma-separated identifiers in `bond_price` for efficient batch pricing
+- The scenario P&L table with top/bottom contributors is the most actionable output for risk management
+- Flag cashflow concentration periods — quarters with large principal returns need reinvestment planning
+- For portfolios with callable bonds, request `fixed_income_risk_analytics` for OAS-based duration instead of modified duration

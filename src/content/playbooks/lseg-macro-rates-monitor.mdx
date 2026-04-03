@@ -1,0 +1,85 @@
+---
+title: "Macroeconomic and Rates Monitor (LSEG)"
+description: "Build macroeconomic and rates dashboards combining GDP, inflation, yield curves, inflation breakevens, swap spreads, and real rate decomposition to assess cycle position and financial conditions."
+seoHook: "Understanding where we are in the economic cycle requires synthesizing GDP, inflation, employment, yield curves, real rates, and swap spreads from multiple sources — and by the time you pull it all together manually, the data has already moved."
+targetAudience: "macro strategists, rates traders, portfolio managers, economists, fixed income analysts"
+exampleUseCase: "\"Build a US macro and rates dashboard\" → GDP/CPI/unemployment/PMI summary with cycle signals, yield curve snapshot with 2s10s slope, real rate decomposition, swap spread table, and an overall assessment of the macro-rates regime"
+category: "trading-markets"
+difficulty: "advanced"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["LSEG", "trading", "macro", "rates", "yield-curve", "inflation", "swap-spreads", "economics"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Chains LSEG MCP tools to build a comprehensive macroeconomic and rates dashboard. It pulls macro indicators (GDP, CPI, unemployment, PMI), snapshots the yield curve with slope analysis, decomposes nominal rates into real rates and inflation breakevens, computes swap spreads to assess financial conditions, and synthesizes everything into a narrative about cycle position, policy outlook, and risk regime.
+
+The skill answers four questions simultaneously: Where are we in the cycle? What is the central bank doing? What does the bond market signal? Are financial conditions tightening or easing?
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/macro-rates-monitor
+cd ~/macro-rates-monitor
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+
+Launch Claude Code and try these prompts:
+
+```
+Build a US macro and rates dashboard with yield curve, real rates, and swap spreads
+```
+
+```
+Compare the macro-rates regime in the US vs Eurozone — which is more restrictive?
+```
+
+```
+What is the yield curve shape telling us about recession risk? Include 2s10s and 3M-10Y slopes
+```
+
+## Dashboard Components
+
+The monitor produces five interconnected sections:
+
+1. **Macro Summary** — GDP growth, core inflation, unemployment, PMI with cycle signals
+2. **Yield Curve Snapshot** — Yields at standard tenors, 2s10s and 3M-10Y slopes, curve shape classification
+3. **Real Rate Decomposition** — Nominal minus breakeven at 5Y and 10Y, accommodative vs restrictive assessment
+4. **Swap Spread Table** — Swap rate minus government yield at 2Y, 5Y, 10Y, financial conditions signal
+5. **Overall Assessment** — 2-3 sentence synthesis of cycle position, policy outlook, and key risks
+
+## Macro Search Patterns
+
+When querying macroeconomic data, use these wildcard patterns:
+
+- **US:** `US*GDP*`, `US*CPI*`, `US*PCE*`, `US*UNEMP*`
+- **Eurozone:** `EZ*GDP*`, `EZ*HICP*`
+- **UK:** `UK*GDP*`, `UK*CPI*`
+- Prefer seasonally adjusted series. Monthly for most indicators; GDP is quarterly.
+
+## Available MCP Tools
+
+- **`qa_macroeconomic`** — GDP, CPI, PCE, unemployment, payrolls, PMI, retail sales across countries
+- **`interest_rate_curve`** — Government and swap yield curves for curve shape analysis
+- **`inflation_curve`** — Inflation breakeven curves and real yields
+- **`ir_swap`** — Swap rates by tenor and currency for swap spread computation
+- **`tscc_historical_pricing_summaries`** — Historical yield data for trend context
+
+## Tips for Best Results
+
+- Start with the macro summary to establish the cycle context before diving into rates
+- The 2s10s slope and 3M-10Y slope often give different signals — present both for a complete picture
+- Real rates above 1-2% are generally considered restrictive; below 0% is accommodative
+- Elevated swap spreads (especially at the front end) can signal funding stress in the banking system
+- Run the dashboard for multiple countries to compare relative monetary policy stances

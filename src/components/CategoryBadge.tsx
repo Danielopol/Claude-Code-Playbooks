@@ -37,6 +37,11 @@ const categoryColors: Record<Category, string> = {
   'customer-support': 'bg-[#06b6d4]/15 text-[#06b6d4] border-[#06b6d4]/30',
   'bio-research': 'bg-[#34d399]/15 text-[#34d399] border-[#34d399]/30',
   'product-management': 'bg-[#818cf8]/15 text-[#818cf8] border-[#818cf8]/30',
+  'equity-research': 'bg-[#059669]/15 text-[#059669] border-[#059669]/30',
+  'investment-banking': 'bg-[#7c3aed]/15 text-[#7c3aed] border-[#7c3aed]/30',
+  'private-equity': 'bg-[#be185d]/15 text-[#be185d] border-[#be185d]/30',
+  'wealth-management': 'bg-[#0d9488]/15 text-[#0d9488] border-[#0d9488]/30',
+  'trading-markets': 'bg-[#dc2626]/15 text-[#dc2626] border-[#dc2626]/30',
 };
 
 export function CategoryBadge({ category, className }: CategoryBadgeProps) {

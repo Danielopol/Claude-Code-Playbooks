@@ -1,0 +1,86 @@
+---
+title: "Swap Curve Strategy Analysis (LSEG)"
+description: "Analyze interest rate swap curves by pricing swaps at multiple tenors, overlaying government and inflation curves, computing swap spreads, and identifying steepener, flattener, and butterfly trade opportunities."
+seoHook: "Interest rate swap curve trades require building the full curve, computing spreads vs government bonds, decomposing real rates, and sizing DV01-neutral positions — a multi-step process where small errors in any leg invalidate the entire trade recommendation."
+targetAudience: "rates traders, swap traders, macro strategists, portfolio managers, quantitative analysts"
+exampleUseCase: "\"Analyze the USD swap curve and identify curve trade opportunities\" → Full swap curve with government yield overlay, swap spreads at each tenor, real rate decomposition, 2s10s/5s30s slopes, butterfly metrics, and DV01-neutral trade recommendations with carry and roll-down estimates"
+category: "trading-markets"
+difficulty: "advanced"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["LSEG", "trading", "swaps", "interest-rates", "curve-trading", "steepener", "flattener", "rates-strategy"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Chains LSEG MCP tools to deliver a complete swap curve strategy analysis. It builds the full swap curve across standard tenors, overlays the government yield curve to compute swap spreads, adds inflation breakevens for real rate decomposition, computes curve metrics (2s10s slope, 5s30s slope, 2s5s10s butterfly), and generates trade recommendations with DV01-neutral sizing and carry/roll-down estimates.
+
+The skill handles the multi-source data routing and the arithmetic — you get a structured analysis that moves directly from data to trade recommendations.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/swap-curve-strategy
+cd ~/swap-curve-strategy
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+
+Launch Claude Code and try these prompts:
+
+```
+Analyze the USD swap curve and identify curve trade opportunities
+```
+
+```
+Compare EUR and GBP swap curves — where are the relative value opportunities?
+```
+
+```
+Is the 2s10s steepener or flattener more attractive right now in USD swaps? Include carry and roll-down
+```
+
+## Analysis Pipeline
+
+The strategy analysis follows six steps:
+
+1. **Discover Swap Templates** — `ir_swap` in list mode to find available indices and tenors
+2. **Build Swap Curve** — Price at 2Y, 5Y, 7Y, 10Y, 20Y, 30Y with par swap rate and DV01
+3. **Overlay Government Curve** — Compute swap spread at each tenor
+4. **Inflation Decomposition** — Real rate = nominal swap rate minus inflation breakeven
+5. **Curve Metrics** — 2s10s slope, 5s30s slope, 2s5s10s butterfly, curve shape classification
+6. **Trade Recommendations** — DV01-neutral sizing, carry/roll-down estimates, targets, and stop-losses
+
+## Curve Trade Structures
+
+| Trade | When to Use |
+|-------|------------|
+| **2s10s Steepener** | Curve is historically flat, policy easing expected |
+| **2s10s Flattener** | Curve is historically steep, policy tightening expected |
+| **5s30s Steepener** | Long-end underperforming, term premium rising |
+| **2s5s10s Butterfly** | Belly is rich/cheap vs wings, mean-reversion expected |
+
+## Available MCP Tools
+
+- **`ir_swap`** — Swap pricing with par rate, DV01, NPV at specific tenors
+- **`interest_rate_curve`** — Government yield curves for swap spread computation
+- **`inflation_curve`** — Inflation breakeven curves for real rate decomposition
+- **`tscc_historical_pricing_summaries`** — Historical data for curve slope context
+- **`qa_macroeconomic`** — Economic data to assess consistency with curve signals
+
+## Tips for Best Results
+
+- Always include DV01-neutral sizing — unbalanced curve trades have unwanted directional exposure
+- Carry and roll-down estimates are critical: a steepener that bleeds carry for 3 months needs a large curve move to break even
+- The 2s5s10s butterfly is often the most contrarian signal — when the belly is rich, it tends to mean-revert
+- Compare swap spreads across tenors for signs of funding stress (front-end widening) vs credit stress (belly/long-end widening)
+- Cross-currency swap curve comparisons reveal relative monetary policy expectations

@@ -1,0 +1,62 @@
+---
+title: "S&P Global Earnings Preview Generator"
+description: "Generate concise 4-5 page equity research earnings previews for any public company using S&P Capital IQ data via Kensho MCP."
+seoHook: "Earnings season means scrambling to produce previews for a dozen companies in a week. Each one takes hours of pulling transcripts, checking estimates, running comps, and formatting. This skill automates the entire research-to-report pipeline using S&P Capital IQ data."
+targetAudience: "equity research analysts, buy-side portfolio managers, sell-side associates, investment banking analysts, institutional sales teams"
+exampleUseCase: "\"Generate an earnings preview for NVDA\" → Professional 4-5 page HTML report with transcript analysis, competitor comps, consensus estimates, valuation multiples, and fully sourced appendix with clickable references"
+category: "finance-accounting"
+difficulty: "advanced"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["S&P Global", "earnings", "equity-research", "capital-iq", "kensho", "financial-analysis"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Generates a professional equity research earnings preview for a single company. The skill orchestrates an 8-phase research workflow -- pulling earnings transcripts, competitor data, consensus estimates, and financial metrics from S&P Capital IQ via Kensho MCP -- then compiles everything into a self-contained HTML report targeting 4-5 printed pages with dense figures, management quotes, and fully hyperlinked source references.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+```bash
+mkdir -p ~/earnings-preview
+```
+
+### Step 2: Download the Template
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+```bash
+cd ~/earnings-preview
+claude
+```
+Say: **"Generate an earnings preview for AAPL"**
+
+---
+
+## Research Phases
+
+| Phase | What It Does |
+|-------|-------------|
+| **1. Company Profile** | Identifies the company, fiscal quarter, and sets up intermediate file storage |
+| **2. Transcript Analysis** | Pulls and analyzes the most recent earnings call transcript |
+| **3. Competitor Analysis** | Builds a peer comparison with valuation multiples |
+| **4. News & Estimates** | Gathers consensus estimates and sector intelligence via Kensho |
+| **5. Financial Data** | Collects revenue, margins, EPS, and segment breakdowns |
+| **6. Verification** | Cross-checks all calculations and intermediate results |
+| **7. HTML Report** | Generates the formatted report with hyperlinked sources |
+| **8. Output** | Saves the final HTML file |
+
+---
+
+## Important Notes
+
+- **Data sources are strictly limited** to S&P Capital IQ (kfinance MCP) and Kensho Grounding (search). No web searches or external data allowed.
+- All valuation ratios are labeled as LTM (Last Twelve Months) or NTM (Next Twelve Months) -- never "trailing" or "forward."
+- Every number in the report is a clickable hyperlink to its source in the appendix.
+- Management quotes must be verbatim from the transcript -- no paraphrasing in blockquotes.
+- Intermediate data is saved to `/tmp/earnings-preview/` to protect against context window compression.
+- Requires S&P Capital IQ MCP server and Kensho Grounding MCP server to be configured.

@@ -1,0 +1,86 @@
+---
+title: "Option Volatility Analysis (LSEG)"
+description: "Analyze option volatility by combining vol surface data, option pricing with Greeks, and historical prices to assess implied vs realized volatility and identify mispriced options."
+seoHook: "Knowing whether options are cheap or expensive requires comparing the implied volatility surface to realized vol across multiple time windows — a multi-source analysis that most traders approximate instead of computing properly."
+targetAudience: "options traders, volatility traders, derivatives analysts, quantitative analysts, portfolio managers"
+exampleUseCase: "\"Analyze the vol surface for SPX options\" → ATM vol term structure, 25-delta risk reversals and butterflies, Greeks for specific strikes, implied vs realized vol comparison across 20d/60d/90d windows, and a vol regime assessment with strategy recommendations"
+category: "trading-markets"
+difficulty: "advanced"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["LSEG", "trading", "options", "volatility", "Greeks", "vol-surface", "derivatives"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Chains LSEG MCP tools to deliver a complete option volatility analysis. It pulls the full implied volatility surface (ATM vol, risk reversals, butterflies across tenors), prices specific options with full Greeks, retrieves historical prices to compute realized volatility, and compares implied to realized to determine the vol premium. The vol premium — implied minus realized — is the key metric for whether options are rich or cheap.
+
+The skill works for both equity/index options (via `equity_vol_surface`) and FX options (via `fx_vol_surface`), adapting the analysis framework to each asset class.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/option-vol-analysis
+cd ~/option-vol-analysis
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+
+Launch Claude Code and try these prompts:
+
+```
+Analyze the vol surface for SPX options — is implied vol rich or cheap vs realized?
+```
+
+```
+Price a 3-month ATM call on AAPL and show me all Greeks
+```
+
+```
+Compare the vol surface shape for EURUSD vs USDJPY — which has more skew?
+```
+
+## Analysis Framework
+
+The volatility analysis follows a structured pipeline:
+
+1. **Vol Surface Snapshot** — ATM vol term structure, 25-delta risk reversals (skew), butterflies (smile curvature)
+2. **Template Discovery** — Available option types, expiries, and strikes for the underlying
+3. **Option Pricing** — Premium, delta, gamma, vega, theta for specific contracts
+4. **Realized Vol Computation** — Close-to-close realized vol over 20-day, 60-day, and 90-day windows
+5. **Implied vs Realized Comparison** — Vol premium at each window with rich/cheap signal
+
+## Key Concepts
+
+| Metric | What It Tells You |
+|--------|------------------|
+| **ATM Vol** | Market's expectation of future volatility at a given tenor |
+| **25-delta Risk Reversal** | Skew direction — negative means puts are more expensive than calls (downside fear) |
+| **Butterfly** | Smile curvature — elevated values signal the market expects tail moves |
+| **Vol Premium (IV - RV)** | Whether options are rich (positive) or cheap (negative) vs recent history |
+
+## Available MCP Tools
+
+- **`equity_vol_surface`** — Implied vol surface for equities/indices by strike/delta and expiry
+- **`fx_vol_surface`** — Implied vol surface for FX pairs in delta space
+- **`option_value`** — Price individual options with full Greeks
+- **`option_template_list`** — Discover available expiries and strikes
+- **`tscc_historical_pricing_summaries`** — Historical OHLC for realized vol computation
+- **`qa_historical_equity_price`** — Alternative historical price source
+
+## Tips for Best Results
+
+- Always start from the vol surface for the big picture before pricing individual options
+- Use RIC format for equity vol surfaces (e.g., `.SPX@RIC`) and RICROOT for futures (e.g., `ES@RICROOT`)
+- The 20-day realized vol vs 1M implied vol comparison is the most responsive signal for short-term trading
+- A steep vol term structure (higher long-dated vol) suggests the market expects current calm to end
+- Elevated butterflies across the surface signal a regime where tail hedges are in demand — proceed with caution on short vol strategies

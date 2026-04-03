@@ -1,0 +1,99 @@
+---
+title: "Wealth Management Portfolio Rebalance"
+description: "Analyze portfolio allocation drift and generate tax-aware rebalancing trade recommendations across multiple account types."
+seoHook: "Portfolio drift creeps in silently -- a strong equity run pushes allocations out of band, but rebalancing across taxable and tax-advantaged accounts without triggering unnecessary capital gains or wash sale violations requires careful coordination that spreadsheets make tedious and error-prone."
+targetAudience: "wealth managers, financial advisors, private bankers, family office managers"
+exampleUseCase: "\"Rebalance the Garcia household across all accounts\" → Drift analysis showing 4 asset classes outside IPS bands, 12 recommended trades prioritizing tax-advantaged accounts first, $0 estimated short-term gains, and a before/after allocation comparison"
+category: "wealth-management"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "anthropic"
+sourceUrl: "https://github.com/anthropics/financial-services-plugins/tree/main/wealth-management/skills/portfolio-rebalance"
+tags: ["wealth management", "portfolio rebalancing", "asset allocation", "tax-aware trading"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+This playbook analyzes portfolio allocation drift against Investment Policy Statement (IPS) targets and generates rebalancing trade recommendations. It considers tax implications, transaction costs, wash sale rules, and asset location optimization across taxable, IRA, Roth, and 401(k) accounts to minimize tax drag while bringing allocations back within target bands.
+
+**Important**: This workflow assists with rebalancing analysis but does not provide financial advice. All trade recommendations should be reviewed by qualified professionals before execution.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/PortfolioRebalance
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+```bash
+mv ~/Downloads/wm-portfolio-rebalance.md ~/Documents/PortfolioRebalance/CLAUDE.md
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/PortfolioRebalance
+claude
+```
+
+Try these prompts:
+
+```
+"Analyze allocation drift for the Thompson household"
+"Generate rebalancing trades for my IRA and taxable accounts"
+"Check if any positions exceed the 5% rebalancing band"
+```
+
+---
+
+## Tax-Aware Rebalancing Rules
+
+The playbook follows these priorities to minimize tax impact:
+
+1. **Rebalance in tax-advantaged accounts first** -- IRA and Roth trades have no tax consequences
+2. **Avoid short-term gains in taxable accounts** -- Selling positions held less than a year triggers ordinary income rates
+3. **Harvest losses opportunistically** -- If rebalancing requires selling a position at a loss, capture the tax benefit
+4. **Watch wash sale rules** -- 30-day window applies across all household accounts
+5. **Use new contributions** -- Direct incoming cash to underweight asset classes instead of trading
+
+---
+
+## Asset Location Optimization
+
+The playbook also reviews whether assets are held in the optimal account type:
+
+| Account Type | Best For | Reason |
+|-------------|----------|--------|
+| Tax-deferred (IRA/401k) | Bonds, REITs, high-turnover funds | Highest tax drag assets sheltered from current taxation |
+| Roth | Highest expected growth assets | Tax-free growth maximizes the Roth advantage |
+| Taxable | Tax-efficient equity (index funds, ETFs, munis) | Low turnover and qualified dividends minimize tax drag |
+
+---
+
+## Best Practices
+
+- **Don't over-rebalance**: Small drift within bands is fine -- rebalancing has costs (taxes, transaction fees, tracking error)
+- **Calculate the breakeven**: In taxable accounts, tax costs can outweigh rebalancing benefits
+- **Check pending cash flows**: Contributions, withdrawals, and RMDs may naturally correct drift without trading
+- **Client-specific restrictions**: Check for ESG constraints, concentrated stock restrictions, or lockup periods
+- **Document everything**: Record the rationale for every trade for compliance records
+- **Household coordination**: Wash sale rules apply across all accounts -- coordinate trades across the entire household
+
+---
+
+## Example Prompts
+
+```
+"Analyze drift across all accounts and flag anything outside the 3% band"
+"Generate a tax-efficient rebalancing plan for a household with taxable and Roth accounts"
+"What's the estimated tax impact of rebalancing the taxable account?"
+"Should I rebalance or wait for the next contribution to correct the drift?"
+```

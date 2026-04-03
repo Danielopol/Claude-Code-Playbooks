@@ -29,7 +29,12 @@ export type Category =
   | 'data-reporting'
   | 'customer-support'
   | 'bio-research'
-  | 'product-management';
+  | 'product-management'
+  | 'equity-research'
+  | 'investment-banking'
+  | 'private-equity'
+  | 'wealth-management'
+  | 'trading-markets';
 
 export interface Playbook {
   slug: string;

@@ -1,0 +1,66 @@
+---
+title: "Presentation Deck Number Refresh"
+description: "Update numbers across an existing presentation deck — quarterly refreshes, earnings updates, comp rolls, and rebased market data — while preserving all formatting."
+seoHook: "Updating a 30-slide deck with new quarterly numbers means hunting down every instance of the old figures across text boxes, tables, chart data, footnotes, and axis labels — miss one and you have a deck that contradicts itself in front of a client."
+targetAudience: "investment banking analysts, equity research associates, management consultants, FP&A professionals, anyone maintaining recurring presentations"
+exampleUseCase: "\"Update this pitch deck with Q4 numbers — revenue changed from $485M to $512M and EBITDA from $120M to $135M\" → All 11 instances updated across 8 slides, with flagged derived values (stale growth rates, market share figures) for user review"
+category: "finance-accounting"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["deck refresh", "presentation update", "PowerPoint", "quarterly update", "number replacement"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Updates numbers across an existing presentation deck while preserving all formatting. Handles quarterly refreshes, earnings updates, comp rolls, and rebased market data. Finds every instance of old values — including variant formats like "$485M", "$0.485B", "$485,000,000", and embedded references in footnotes and chart axes — and presents a complete change plan for approval before editing.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a folder for your deck refresh work and place the downloaded template inside as `CLAUDE.md`.
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+
+```
+"Update this deck with Q4 numbers — revenue is now $512M, EBITDA is $135M"
+"Refresh the comps in this pitch deck with current market data"
+"Roll this quarterly presentation forward — here are the new figures"
+```
+
+## How It Works
+
+The refresh follows four phases:
+
+1. **Get the data** — Confirm the old-to-new number mapping and whether derived numbers (growth rates, percentages) should be recalculated
+2. **Read everything, find everything** — Scan every slide for all instances, including variant formats across text boxes, tables, chart data, labels, footnotes, and speaker notes
+3. **Present the plan, get approval** — Show the full change list before any edits, including flagged derived values that may be stale
+4. **Execute, preserve, report** — Make the smallest possible edit for each change, preserving all existing formatting
+
+## Where Numbers Hide
+
+- Text boxes (obvious)
+- Table cells
+- Chart data labels and axis labels
+- Chart source data (the numbers driving the bars, not just labels)
+- Footnotes, source lines, small print
+- Speaker notes
+
+## What Makes This Different
+
+This is not a simple find-and-replace. The tool catches second-order effects: if revenue changes from $485M to $512M, it flags that the "+15% YoY" growth rate next to it is now stale, and that the "12% market share" on another slide may have been computed from the old revenue figure. These derived values are flagged for user decision — never silently changed or silently left incorrect.
+
+## Tips & Best Practices
+
+- **Always confirm the mapping** before any edits — a "$512M" mapped to revenue when the user meant gross profit is a quiet disaster
+- **Decide on derived numbers upfront** — should growth rates, market share percentages, and YoY comparisons be recalculated or left alone?
+- **Watch for overflow** — a number that gets longer ("$485M" to "$1,205M") might overflow its text box or push table columns
+- **Match the deck's style** — if the deck uses "$MM" and your mapping says "$M", match the deck convention

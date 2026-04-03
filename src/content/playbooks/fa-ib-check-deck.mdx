@@ -1,0 +1,66 @@
+---
+title: "Investment Banking Deck Quality Checker"
+description: "Comprehensive QC review of pitch decks and client presentations covering number consistency, data-narrative alignment, language polish, and visual formatting."
+seoHook: "Sending a pitch deck with conflicting numbers on different slides — or a chart that contradicts the narrative two pages earlier — is the kind of mistake that erodes client trust instantly and is almost impossible to catch on a fifth read-through at midnight."
+targetAudience: "investment banking analysts, associates, VPs, management consultants, anyone preparing client-ready financial presentations"
+exampleUseCase: "\"Check this pitch deck before we send it to the client\" → Severity-rated QC report: 2 Critical issues (revenue mismatch between slides 3 and 15, chart data contradicting narrative), 4 Important issues (missing source citations, terminology inconsistency), 3 Minor issues (font size drift, date format)"
+category: "finance-accounting"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["deck review", "quality control", "pitch deck", "investment banking", "presentation QC", "client materials"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Performs comprehensive quality control on investment banking presentations across four dimensions: number consistency across slides, data-narrative alignment, language polish against IB standards, and visual/formatting QC. Produces a severity-rated report that separates client-delivery blockers from polish items.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a folder for your deck review and place the downloaded template inside as `CLAUDE.md`.
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+
+```
+"Check this pitch deck for number consistency and errors before client delivery"
+"QC this management presentation — reconcile figures across all slides"
+"Final review pass on this CIM — is it client-ready?"
+```
+
+## Four QC Dimensions
+
+### 1. Number Consistency
+Normalizes units ($500M vs $500MM vs $500,000,000), categorizes values by type (revenue, EBITDA, multiples, margins), and flags conflicting values across slides. Also verifies calculations, unit style consistency, and time period alignment (FY vs LTM vs quarterly).
+
+### 2. Data-Narrative Alignment
+Maps claims to supporting data. Catches cases where someone edited a chart but forgot the narrative — "declining margins" with a chart showing margins going up, or "#1 player" claims that the revenue data does not support.
+
+### 3. Language Polish
+Scans for anything that breaks IB register: casual phrasing ("pretty good", "a lot of"), contractions, exclamation points, vague quantifiers without numbers, and inconsistent terminology for the same concept.
+
+### 4. Visual and Formatting QC
+Checks for missing chart source citations, missing axis labels, typography inconsistencies, number formatting drift (1,000 vs 1K), date format drift, and footnote/disclaimer gaps.
+
+## Severity Levels
+
+| Level | Definition | Example |
+|-------|-----------|---------|
+| **Critical** | Number mismatches, factual errors, data contradicting narrative. Blocks client delivery. | Revenue shows $500M on slide 3 but $485M on slide 15 |
+| **Important** | Language issues, missing sources, terminology drift. Should fix. | Chart missing source citation |
+| **Minor** | Font sizes, spacing, date formats. Polish items. | Inconsistent date format across slides |
+
+## Tips & Best Practices
+
+- This is a **read-and-report** workflow — no edits are made to the deck, only findings reported
+- The tool catches issues that manual review typically misses: variant number formats, stale derived values, and chart data that does not match the narrative
+- Run this as a final pass after all content edits are complete
+- "No number inconsistencies found" is a finding, not an absence of one — the report explicitly confirms clean areas

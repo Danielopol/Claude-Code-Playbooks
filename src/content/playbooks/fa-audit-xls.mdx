@@ -1,0 +1,61 @@
+---
+title: "Spreadsheet and Financial Model Auditor"
+description: "Systematically audit spreadsheets and financial models for formula errors, broken linkages, logic issues, and reasonableness problems with severity-based reporting."
+seoHook: "A single wrong cell reference in a financial model can silently produce incorrect valuations, broken balance sheets, and flawed investment decisions — and manual review almost always misses something buried in hundreds of interconnected formulas."
+targetAudience: "financial analysts, investment banking associates, FP&A teams, auditors, controllers, anyone reviewing Excel-based financial models"
+exampleUseCase: "\"Audit this DCF model for errors\" → Structured audit report with severity-rated findings (Critical/Warning/Info), cell-level error locations, and specific fix recommendations"
+category: "finance-accounting"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["spreadsheet audit", "financial model review", "Excel QC", "formula validation", "error checking"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Performs a systematic audit of spreadsheets and financial models across five phases: model inventory, formula-level checks, model integrity validation, logic and reasonableness testing, and cross-model consistency. Produces a severity-based audit report with specific cell references and fix recommendations.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a folder for your audit work and place the downloaded template inside as `CLAUDE.md`.
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+
+```
+"Audit this 3-statement model for formula errors and broken linkages"
+"Check this DCF for balance sheet balancing issues and circular references"
+"Review this LBO model — focus on the debt schedule and returns calculations"
+```
+
+## Audit Phases
+
+1. **Model Inventory** — Catalog tabs, inputs, outputs, and data flow
+2. **Formula-Level Checks** — Hard-coded overrides, inconsistent formulas, broken references, mixed units
+3. **Model Integrity** — Balance sheet balancing, cash tie-outs, retained earnings rollforward, revenue builds
+4. **Logic & Reasonableness** — Negative revenue, margin spikes, cash going negative, perpetuity growth vs WACC
+5. **Cross-Model Consistency** — Revenue alignment across DCF/comps, share count consistency, discount rate consistency
+
+## Severity Definitions
+
+| Level | Definition | Action Required |
+|-------|-----------|-----------------|
+| **Critical** | Model produces incorrect output. Financial impact or broken linkage. | Must fix before any use. |
+| **Warning** | Potential issue that may affect accuracy or indicates questionable assumptions. | Review and fix or document justification. |
+| **Info** | Style, best practice, or minor observation. No direct impact on output. | Fix if time permits. |
+
+## Tips & Best Practices
+
+- **Trace precedents and dependents** for every key output cell using Excel's Ctrl+[ and Trace Dependents tools
+- **Test extremes**: Set key inputs to 0, very large numbers, and negative numbers to see if the model handles edge cases
+- **Spot-check against source data**: For historical periods, compare model values to actual filings (10-K, 10-Q)
+- **Use a clean copy**: Audit on a separate copy so you can mark it up without altering the working version
+- **Document everything**: Even items that pass should be noted as "checked and confirmed"

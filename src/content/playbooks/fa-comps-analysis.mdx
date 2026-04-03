@@ -1,0 +1,70 @@
+---
+title: "Comparable Company Analysis Builder"
+description: "Build institutional-grade comparable company analyses in Excel with operating metrics, valuation multiples, quartile statistics, implied valuation, and professional formatting."
+seoHook: "Building a proper comps analysis means gathering consistent data across 8-15 companies, calculating dozens of multiples, handling outliers, and bridging from enterprise value to implied share price — one inconsistent data point or wrong denominator can throw off the entire valuation range."
+targetAudience: "investment banking analysts, equity research associates, corporate development teams, private equity analysts, valuation professionals"
+exampleUseCase: "\"Build a comps analysis for Salesforce with 10 SaaS peers\" → Excel workbook with market data, operating metrics, growth and margin analysis, EV/Revenue, EV/EBITDA, P/E multiples (LTM and NTM), statistics (mean, median, quartiles), and implied valuation range with football field chart"
+category: "finance-accounting"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["comparable companies", "comps analysis", "valuation multiples", "equity valuation", "investment banking"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Builds institutional-grade comparable company analyses in Excel with a complete workflow: peer group selection, market data gathering, operating metrics, growth and margin analysis, valuation multiples (EV/Revenue, EV/EBITDA, P/E, and more), statistical analysis with quartiles, implied valuation bridging, and a summary football field chart.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a folder for your comps analysis and place the downloaded template inside as `CLAUDE.md`.
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+
+```
+"Build a comps analysis for Snowflake with 10 cloud data peers"
+"Create a comparable company analysis for Nike — include athletic wear and footwear companies"
+"Comps table for a mid-cap fintech — include implied valuation at median multiples"
+```
+
+## Output Sections
+
+| Section | Description |
+|---------|-------------|
+| Header | Company names, tickers, share prices, dates |
+| Market Data | Diluted shares, market cap, EV bridge |
+| Operating Metrics | Revenue, EBITDA, EBIT, Net Income (historical + projected) |
+| Growth & Margins | Revenue growth, EBITDA growth, gross/EBITDA/operating margins |
+| Valuation Multiples | EV/Revenue, EV/EBITDA, P/E, EV/EBIT (LTM + NTM) |
+| Statistics | Mean, Median, 25th/75th percentile, High, Low |
+| Implied Valuation | Apply peer multiples to target for EV-to-equity bridge |
+
+## Industry-Specific Metrics
+
+The template includes guidance for industry-specific multiples: SaaS (EV/ARR, Rule of 40, NRR), Banks (P/TBV, ROE, NIM), REITs (P/FFO, Cap Rate), Retail (EV/Store, Same-Store Sales), Healthcare (EV/Subscriber), and more.
+
+## Quality Checklist
+
+- All share prices as of the same date
+- Diluted share counts use treasury stock method consistently
+- Enterprise value calculation includes all components (Debt, Cash, Preferred, Minority Interest)
+- EBITDA adjustments applied consistently across all comps
+- NM (not meaningful) shown for negative denominators instead of misleading numbers
+- Implied valuation bridges correctly from EV to equity value to per-share
+
+## Tips & Best Practices
+
+- **Select 8-15 comparable companies** based on industry, business model, size, geography, and growth profile
+- **Document inclusion/exclusion rationale** for each peer
+- **Exclude outliers** from statistics (multiples > 2 standard deviations from mean) but keep them in the table with a footnote
+- **Use median over mean** — it is less sensitive to outliers
+- **Calculate multiples for LTM and NTM** to show both historical and forward-looking valuations

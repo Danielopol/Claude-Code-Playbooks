@@ -1,0 +1,107 @@
+---
+title: "Wealth Management Financial Plan Builder"
+description: "Build or update comprehensive financial plans covering retirement projections, education funding, estate planning, cash flow analysis, and scenario modeling."
+seoHook: "Building a comprehensive financial plan means juggling retirement projections, education funding, estate planning, tax optimization, and insurance analysis -- and a plan that only works in the base case gives clients false confidence when life throws curveballs."
+targetAudience: "wealth managers, financial advisors, private bankers, family office managers"
+exampleUseCase: "\"Build a financial plan for the Patel family -- both age 45, two kids, targeting retirement at 62\" → 20-page plan with cash flow projections, Monte Carlo retirement analysis, 529 funding schedule, estate tax exposure summary, insurance gap analysis, and six stress-test scenarios"
+category: "wealth-management"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "anthropic"
+sourceUrl: "https://github.com/anthropics/financial-services-plugins/tree/main/wealth-management/skills/financial-plan"
+tags: ["wealth management", "financial planning", "retirement", "estate planning", "cash flow"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+This playbook builds or updates comprehensive financial plans covering all major planning areas: cash flow analysis, retirement projections with Monte Carlo simulations, education funding, estate planning, risk management, and scenario modeling. It produces structured output suitable for new client onboarding, annual plan reviews, or "what if" analysis.
+
+**Important**: This workflow assists with financial plan development but does not provide financial advice. All plans should be reviewed by qualified financial professionals before presenting to clients.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/FinancialPlans
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+```bash
+mv ~/Downloads/wm-financial-plan.md ~/Documents/FinancialPlans/CLAUDE.md
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/FinancialPlans
+claude
+```
+
+Try these prompts:
+
+```
+"Build a retirement plan for a couple age 55 targeting retirement at 65"
+"Can the Johnsons retire two years early if they reduce spending by 15%?"
+"Create a 529 funding analysis for three children ages 2, 5, and 8"
+```
+
+---
+
+## Plan Coverage Areas
+
+### Cash Flow Analysis
+Annual projections of income, taxes, expenses, and savings with inflation adjustments. Models where savings are directed (pre-tax, Roth, taxable).
+
+### Retirement Projections
+Accumulation and distribution phase modeling, including Monte Carlo simulations targeting >85% probability of success. Covers Social Security timing (ages 62, 67, 70), RMDs, and sustainable withdrawal rates.
+
+### Education Funding
+529 balance tracking, target funding levels (public vs. private), required monthly savings, and financial aid considerations.
+
+### Estate Planning
+Estate value projections, tax exposure (federal and state), trust structures, gifting strategy, charitable plans, and beneficiary review.
+
+### Risk Management
+Life insurance needs analysis, disability coverage adequacy, long-term care planning, and umbrella liability.
+
+---
+
+## Scenario Modeling
+
+The plan includes stress-testing across key scenarios:
+
+- **Base case** -- Current trajectory
+- **Early retirement** -- Retire 2 years early
+- **Market downturn** -- 20% drop in Year 1
+- **Higher spending** -- 20% increase in annual expenses
+- **Longevity risk** -- One spouse lives to 95
+- **Long-term care event** -- Extended care costs
+
+---
+
+## Best Practices
+
+- **Living document**: Review and update annually or after major life events (job change, inheritance, health event)
+- **Conservative assumptions**: Overestimating returns gives false confidence -- be realistic
+- **Tax planning matters**: Model tax implications of every recommendation; tax savings can rival investment returns
+- **Social Security timing**: This is one of the biggest levers -- always model multiple start ages
+- **Stress-test everything**: A plan that only works in the base case is not a good plan
+- **Compliance**: Ensure recommendations align with suitability and fiduciary standards
+
+---
+
+## Example Prompts
+
+```
+"Build a financial plan for new clients -- married couple, age 50, $2M portfolio"
+"Update the retirement projection assuming a 20% market correction in year one"
+"Model Roth conversion strategies for a client in a low-income bridge year"
+"What happens to the plan if we fund private college for all three kids?"
+```

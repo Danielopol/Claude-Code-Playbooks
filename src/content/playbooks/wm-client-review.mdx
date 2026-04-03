@@ -1,0 +1,100 @@
+---
+title: "Wealth Management Client Review Prep"
+description: "Prepare for client review meetings with portfolio performance summaries, allocation analysis, talking points, and action items in a concise meeting-ready format."
+seoHook: "Preparing for client review meetings means scrambling to pull performance data, check allocation drift, review last meeting's notes, and build an agenda -- often the night before, when you should be rehearsing your talking points instead."
+targetAudience: "wealth managers, financial advisors, private bankers, family office managers"
+exampleUseCase: "\"Prep for quarterly review with the Martinez household\" → One-page meeting summary with performance vs. benchmarks, allocation drift flags, talking points agenda, proactive recommendations for tax-loss harvesting and Roth conversion, and clear action items"
+category: "wealth-management"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "anthropic"
+sourceUrl: "https://github.com/anthropics/financial-services-plugins/tree/main/wealth-management/skills/client-review"
+tags: ["wealth management", "client meetings", "portfolio review", "meeting prep"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+This playbook prepares comprehensive meeting materials for client review sessions -- quarterly reviews, annual checkups, or ad-hoc meetings. It pulls together portfolio performance, allocation drift analysis, a structured meeting agenda with talking points, proactive recommendations, and clear action items, all in a concise, meeting-ready format.
+
+**Important**: This workflow assists with meeting preparation but does not provide financial advice. All recommendations should be reviewed by qualified professionals before presenting to clients.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/ClientReviews
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+```bash
+mv ~/Downloads/wm-client-review.md ~/Documents/ClientReviews/CLAUDE.md
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/ClientReviews
+claude
+```
+
+Try these prompts:
+
+```
+"Prep for quarterly review with the Johnson household"
+"Meeting prep for Sarah Chen -- annual review"
+"Prepare talking points for a client meeting about portfolio underperformance"
+```
+
+---
+
+## Meeting Agenda Framework
+
+The generated meeting prep follows a structured 25-30 minute agenda:
+
+1. **Market overview** (2-3 min) -- Brief macro context and outlook
+2. **Portfolio performance** (5 min) -- Returns vs. benchmarks with attribution
+3. **Allocation review** (5 min) -- Drift analysis and rebalancing needs
+4. **Planning updates** (5-10 min) -- Life changes, income needs, tax situation, estate planning
+5. **Action items** (5 min) -- Clear next steps with dates
+
+---
+
+## Proactive Recommendations
+
+The playbook surfaces recommendations based on the review data:
+
+- Rebalancing trades when drift exceeds IPS thresholds
+- Tax-loss harvesting opportunities in taxable accounts
+- Cash deployment or withdrawal planning
+- Roth conversion opportunities
+- Beneficiary updates or estate planning needs
+- Insurance review (life, disability, long-term care)
+
+---
+
+## Best Practices
+
+- **Know your client**: Review notes from the last meeting before preparing
+- **Lead with their concerns**: Address what the client cares about, not just what you want to present
+- **Address underperformance directly**: If performance was bad, don't hide or spin it
+- **End with clear action items**: Every meeting should conclude with specific next steps and dates
+- **Document everything**: Record meeting notes and any changes to the IPS
+- **Compliance**: Ensure all materials are compliant with firm policies and regulatory requirements
+
+---
+
+## Example Prompts
+
+```
+"Prep for quarterly review with the Johnson household"
+"Generate a meeting agenda for an annual review with a pre-retirement client"
+"What proactive recommendations should I bring to the Williams meeting?"
+"Create a one-page review summary highlighting allocation drift"
+```

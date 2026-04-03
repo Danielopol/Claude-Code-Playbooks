@@ -1,0 +1,113 @@
+---
+title: "Company Strip Profile Generator"
+description: "Create concise one-page company profiles for M&A buyer lists with financial summary, strategic rationale, and M&A activity tracking."
+seoHook: "When building a buyer list with 40 potential acquirers, the deal team needs a quick way to assess each one -- a well-structured strip profile puts the key financials, strategic rationale, and M&A track record on a single page."
+targetAudience: "investment banking analysts, associates, vice presidents, managing directors"
+exampleUseCase: "\"Create strip profiles for the top 10 strategic buyers on our buyer list\" → Ten one-page company profiles with quadrant layout covering company overview, business positioning, key financials, and recent M&A activity"
+category: "investment-banking"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["strip profile", "company profile", "M&A", "buyer list"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+This playbook creates professional one-page company strip profiles for pitch books, deal materials, and buyer list presentations. Each profile packs maximum information density into a structured layout covering company overview, business positioning, key financials (revenue, EBITDA, margins, valuation multiples), ownership, and recent M&A activity.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a folder for your deal workspace and place the downloaded template inside as `CLAUDE.md`.
+
+```bash
+mkdir -p ~/Documents/StripProfiles
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+```bash
+mv ~/Downloads/ib-strip-profile.md ~/Documents/StripProfiles/CLAUDE.md
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/StripProfiles
+claude
+```
+
+Try prompts like:
+
+```
+"Create a strip profile for Danaher Corporation"
+"Build one-page profiles for the top 5 buyers on our list"
+"Generate a multi-slide strip profile with detailed financial analysis for Thermo Fisher"
+"Create a single-slide profile focused on M&A activity for Honeywell"
+```
+
+---
+
+## Profile Layout
+
+The standard strip profile uses a four-quadrant layout on a single slide:
+
+| Quadrant | Contents |
+|----------|----------|
+| Company Overview (top-left) | HQ, founded, employees, CEO, market cap, ticker, industry |
+| Business & Positioning (top-right) | Revenue drivers, products, market share, competitive moat, customer count |
+| Key Financials (bottom-left) | Revenue, EBITDA, margins, growth, valuation multiples (3-year history) |
+| Recent Developments (bottom-right) | Ownership, recent M&A, news, catalysts |
+
+---
+
+## Required Data Points
+
+| Category | Metrics |
+|----------|---------|
+| Financials | Revenue, EBITDA, margins (%), EPS, FCF for 3 years |
+| Valuation | Market cap, EV, EV/Revenue, EV/EBITDA, P/E |
+| Growth | YoY growth rates (%) |
+| Ownership | Top 5 shareholders with % ownership |
+| Segments | Product mix and/or geographic mix (% breakdown) |
+
+---
+
+## Information Density Tips
+
+- **Combine related facts**: "HQ: Austin, TX; Founded: 2003; 140K employees"
+- **Always include numbers**: "$50B revenue" not "large revenue"
+- **Add context**: "EBITDA margin: 25% (vs. 18% industry avg)"
+- **Include YoY changes**: "Revenue: $125M (+28% YoY)"
+- **Use percentages**: "Enterprise: 62% of revenue"
+
+A busy executive should understand the entire company story in 30 seconds.
+
+---
+
+## Tips and Best Practices
+
+- Use **4:3 aspect ratio** for standard IB pitch book format
+- Keep consistent scaling throughout -- use $mm or $bn, not mixed
+- Cite all data sources in footnotes
+- No placeholder text -- every field should contain actual data
+- For multi-slide profiles, follow the flow: Overview then Financial Analysis then Leadership
+- Verify all financial data against public filings or CapIQ/FactSet
+
+---
+
+## Example Prompts
+
+```
+"Create strip profiles for all Tier 1 strategic buyers"
+"Build a 3-slide deep-dive profile for our top acquisition candidate"
+"Generate a comparison page showing strip profiles side by side for 4 buyers"
+"Update the Honeywell strip profile with Q4 earnings data"
+"Add M&A transaction history for the last 3 years to each profile"
+```

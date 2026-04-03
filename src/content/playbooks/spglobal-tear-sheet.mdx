@@ -1,0 +1,57 @@
+---
+title: "S&P Global Company Tear Sheet Generator"
+description: "Generate professional company tear sheets and one-pagers using S&P Capital IQ data, tailored to equity research, M&A, corporate development, or sales audiences."
+seoHook: "Building a company tear sheet means toggling between a dozen Capital IQ screens, copying numbers into a template, and hoping nothing is stale by the time you present it. This skill pulls live data and formats a polished, audience-specific one-pager in minutes."
+targetAudience: "equity research analysts, investment banking associates, corporate development professionals, sales and business development teams, M&A deal teams"
+exampleUseCase: "\"Create a tear sheet for Snowflake for our M&A team\" → Professional DOCX company one-pager with financials, valuation, ownership, and competitive positioning tailored for investment banking audience"
+category: "finance-accounting"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["S&P Global", "tear-sheet", "company-profile", "capital-iq", "financial-analysis", "M&A"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Generates professional company tear sheets using live S&P Capital IQ data via the Kensho LLM-ready API MCP server. Supports four audience types -- equity research, investment banking/M&A, corporate development, and sales/business development -- with each producing a differently structured one-pager. Works for both public and private companies.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+```bash
+mkdir -p ~/tear-sheets
+```
+
+### Step 2: Download the Template
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+```bash
+cd ~/tear-sheets
+claude
+```
+Say: **"Generate a tear sheet for Stripe for our corporate development team"**
+
+---
+
+## Audience Types
+
+| Audience | Focus Areas |
+|----------|-------------|
+| **Equity Research** | Valuation multiples, consensus estimates, earnings trends |
+| **Investment Banking / M&A** | Enterprise value, deal comps, ownership structure |
+| **Corporate Development** | Strategic fit, competitive positioning, acquisition rationale |
+| **Sales / BD** | Company overview, decision makers, budget signals |
+
+---
+
+## Important Notes
+
+- If the user does not specify an audience type, the skill will ask before proceeding.
+- All derived metrics (EV/Revenue, margins, growth rates) are calculated with explicit intermediate steps and verified.
+- Intermediate data files are saved to protect against context window compression.
+- Output format is DOCX with professional formatting and consistent styling.
+- Requires S&P Capital IQ MCP server and Kensho LLM-ready API MCP server to be configured.

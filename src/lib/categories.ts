@@ -232,6 +232,42 @@ export const categories: CategoryInfo[] = [
     icon: 'Package',
     vertical: 'Product Management',
   },
+  // Financial Services
+  {
+    id: 'equity-research',
+    name: 'Equity Research',
+    description: 'Earnings analysis, sector overviews, coverage initiation, and investment thesis tracking',
+    icon: 'TrendingUp',
+    vertical: 'Financial Services',
+  },
+  {
+    id: 'investment-banking',
+    name: 'Investment Banking',
+    description: 'Deal execution, pitch decks, CIMs, merger models, and buyer lists',
+    icon: 'Building',
+    vertical: 'Financial Services',
+  },
+  {
+    id: 'private-equity',
+    name: 'Private Equity',
+    description: 'Deal sourcing, due diligence, IC memos, portfolio monitoring, and value creation',
+    icon: 'Landmark',
+    vertical: 'Financial Services',
+  },
+  {
+    id: 'wealth-management',
+    name: 'Wealth Management',
+    description: 'Client reports, financial planning, portfolio rebalancing, and tax optimization',
+    icon: 'Wallet',
+    vertical: 'Financial Services',
+  },
+  {
+    id: 'trading-markets',
+    name: 'Trading & Markets',
+    description: 'Fixed income, FX, options, macro analysis, and quantitative trading strategies',
+    icon: 'BarChart3',
+    vertical: 'Financial Services',
+  },
 ];
 
 export function getCategoryById(id: Category): CategoryInfo | undefined {
@@ -263,4 +299,5 @@ export const verticals = [
   'Customer Support',
   'Science & Research',
   'Product Management',
+  'Financial Services',
 ];

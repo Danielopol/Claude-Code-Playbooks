@@ -1,0 +1,66 @@
+---
+title: "Portfolio AI Readiness Assessment"
+description: "Scan your portfolio for the highest-leverage AI opportunities and rank where to deploy operating-partner time across companies."
+seoHook: "Every portfolio company says they want to 'do AI' — but most don't know where to start, and operating partners can't be everywhere at once. This playbook ranks AI opportunities across your entire portfolio by dollar impact, speed to value, and probability of success."
+targetAudience: "PE operating partners, portfolio operations teams, managing directors, value creation leads"
+exampleUseCase: "\"Run an AI readiness scan across our 12 portfolio companies\" → Ranked action list with estimated EBITDA impact, go/wait gates per company, replay opportunities across the portfolio, and a one-page summary for the next quarterly review"
+category: "private-equity"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["private equity", "AI readiness", "portfolio operations", "value creation", "operating partner"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Ingests quarterly updates and financials across multiple portfolio companies, identifies quick-win AI opportunities at each, and stacks them into a single ranked action list. Designed for quarterly portfolio reviews, annual planning, or deciding which companies get AI investment first.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a folder for your portfolio AI assessment and place the downloaded template inside as `CLAUDE.md`.
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+
+```
+"Run an AI readiness scan across our portfolio companies"
+"Which portcos are ready for AI? Here are the quarterly updates."
+"Rank AI quick wins across the portfolio by EBITDA impact"
+```
+
+## What Gets Evaluated
+
+Each company is scored against three gate questions:
+
+1. **Is the data there?** Can they produce a clean input without a 6-month data project first?
+2. **Is there an owner?** Someone on the management team who will drive this, not just "support" it.
+3. **Can we pilot in 30 days?** One team, one workflow, off-the-shelf tooling.
+
+All three yes means **Go**. Any no means **Wait** with a note on what unblocks it.
+
+## Where AI Typically Hits Hardest
+
+- **Back Office** (fastest to pilot): Invoice processing, contract abstraction, month-end close
+- **Revenue / Front Office**: RFP drafts, sales call summaries, support ticket triage, quoting
+- **Operations** (sector-dependent): SOP generation, scheduling, code review
+
+## Tips & Best Practices
+
+- **Rank by dollars, not excitement.** A boring AP automation that saves $400k beats a flashy chatbot every time.
+- **Off-the-shelf first.** Custom builds are slow and fragile for companies without engineering depth.
+- **Hold period drives urgency.** A company 12 months from exit needs something that shows up in LTM EBITDA for the CIM — or skip it entirely.
+- **Look for replays.** The highest-leverage move in a portfolio is running one successful play at multiple companies.
+
+## Limitations
+
+- The binding constraint is almost always data quality, not models. If a company cannot produce a clean customer list, AI is not the first project.
+- A quick win with no internal owner dies in 90 days. If no one on the management team wants it, mark it Wait regardless of the dollar size.
+- Failed pilots are signal. If management already tried something and it didn't stick, find out why before proposing the same thing again.

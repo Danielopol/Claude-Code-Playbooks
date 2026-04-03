@@ -1,0 +1,120 @@
+---
+title: "Wealth Management Tax-Loss Harvesting"
+description: "Identify tax-loss harvesting opportunities across taxable accounts with replacement security suggestions and wash sale window tracking."
+seoHook: "Tax-loss harvesting can save clients thousands annually, but manually scanning positions for unrealized losses, finding non-identical replacement securities, and tracking 30-day wash sale windows across every account in the household turns a valuable strategy into a compliance minefield."
+targetAudience: "wealth managers, financial advisors, private bankers, family office managers"
+exampleUseCase: "\"Scan the Davis taxable accounts for tax-loss harvesting opportunities\" → 7 harvest candidates totaling $42,000 in unrealized losses, replacement securities for each position, wash sale window calendar, and estimated $12,600 tax savings at the 30% marginal rate"
+category: "wealth-management"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "anthropic"
+sourceUrl: "https://github.com/anthropics/financial-services-plugins/tree/main/wealth-management/skills/tax-loss-harvesting"
+tags: ["wealth management", "tax-loss harvesting", "tax optimization", "wash sale rules"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+This playbook identifies tax-loss harvesting opportunities across taxable accounts. It scans positions for unrealized losses, prioritizes candidates by tax benefit, suggests replacement securities that maintain market exposure without triggering wash sale violations, and tracks the 30-day wash sale window across all household accounts including retirement accounts and DRIPs.
+
+**Important**: This workflow assists with tax-loss harvesting analysis but does not provide tax or financial advice. All harvesting decisions should be reviewed by qualified tax and investment professionals before execution.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/TaxLossHarvesting
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+```bash
+mv ~/Downloads/wm-tax-loss-harvesting.md ~/Documents/TaxLossHarvesting/CLAUDE.md
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/TaxLossHarvesting
+claude
+```
+
+Try these prompts:
+
+```
+"Scan for tax-loss harvesting opportunities in the taxable accounts"
+"What's the estimated tax savings if we harvest all available losses?"
+"Find replacement securities for positions with unrealized losses over $5,000"
+```
+
+---
+
+## Harvesting Priority Order
+
+Candidates are prioritized for maximum tax benefit:
+
+1. **Largest absolute loss** -- Biggest dollar savings first
+2. **Short-term losses** -- These offset short-term gains taxed at ordinary income rates (up to 37%)
+3. **Largest percentage loss** -- Positions down the most are less likely to recover quickly, making them better harvest candidates
+
+---
+
+## Replacement Security Strategy
+
+Each harvested position is replaced with a similar-but-not-identical security to maintain market exposure:
+
+| Example Sell | Example Replacement | Rationale |
+|-------------|-------------------|-----------|
+| SPDR S&P 500 (SPY) | iShares Core S&P 500 (IVV) | Same index, different fund family -- minimal tracking error |
+| Vanguard Total Intl (VXUS) | iShares MSCI ACWI ex-US (ACWX) | Similar exposure, different index -- low tracking error |
+| Individual stock | Sector ETF | Broader exposure, no wash sale risk -- moderate tracking error |
+
+---
+
+## Wash Sale Rules
+
+The playbook enforces strict wash sale compliance:
+
+- **30-day lookback**: Did you buy substantially identical securities in the last 30 days?
+- **30-day forward**: Block repurchase of the same security for 30 days after selling
+- **All household accounts**: Check taxable, IRA, Roth, and spouse accounts
+- **DRIP check**: Dividend reinvestment plans can inadvertently trigger wash sales
+- **Violation consequence**: Disallowed loss AND adjusted cost basis -- a double penalty
+
+---
+
+## Tax Savings Math
+
+| Category | How It Helps |
+|----------|-------------|
+| Short-term losses | Offset short-term gains at ordinary income rates (up to 37%) |
+| Long-term losses | Offset long-term gains at capital gains rates (15-20%) |
+| Net loss deduction | Up to $3,000 per year deducted against ordinary income |
+| Excess losses | Carry forward to future tax years indefinitely |
+
+---
+
+## Best Practices
+
+- **Year-end is prime season** but opportunities exist throughout the year -- don't wait until December
+- **December urgency**: Mutual fund capital gains distributions can create additional harvesting needs
+- **Cost basis awareness**: Harvesting resets cost basis lower, which means more gains realized later -- weigh the tradeoff
+- **Not every loss is worth harvesting**: Transaction costs and tracking error from replacement securities are real costs
+- **Coordinate across accounts**: Including retirement accounts, which can trigger wash sales even though the loss occurs in a taxable account
+- **Document everything**: Thorough records are essential for tax reporting and compliance
+
+---
+
+## Example Prompts
+
+```
+"Scan all taxable accounts for unrealized losses over $1,000"
+"What replacement ETFs can I use for these harvested positions?"
+"Build a wash sale tracking calendar for December harvesting trades"
+"Calculate the tax savings from harvesting $50,000 in long-term losses at a 23.8% rate"
+```

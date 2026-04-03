@@ -1,0 +1,72 @@
+---
+title: "LBO Model Builder for Private Equity"
+description: "Build leveraged buyout models in Excel with Sources & Uses, operating projections, debt schedules, returns analysis (IRR/MOIC), and sensitivity tables following investment banking standards."
+seoHook: "Building an LBO model requires getting the debt waterfall, cash sweeps, and returns calculations exactly right — one wrong cell reference in the interest calculation creates a circular reference that silently breaks the entire model."
+targetAudience: "private equity analysts, investment banking analysts, leveraged finance professionals, corporate development teams, M&A advisors"
+exampleUseCase: "\"Build an LBO model for a $500M acquisition at 6x EBITDA with 60% leverage\" → Professional Excel workbook with Sources & Uses, 5-year operating model, debt schedule with waterfall paydown, IRR/MOIC returns analysis, and 5x5 sensitivity tables on entry multiple and leverage"
+category: "finance-accounting"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["LBO", "leveraged buyout", "private equity", "financial modeling", "IRR", "MOIC", "debt schedule"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Builds investment banking-quality LBO (Leveraged Buyout) models in Excel by filling templates with correct formulas, proper formatting, and validated calculations. Covers Sources & Uses, operating model projections, multi-tranche debt schedules with cash sweep logic, returns analysis (IRR and MOIC), and sensitivity tables.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a folder for your LBO model and place the downloaded template inside as `CLAUDE.md`.
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+
+```
+"Build an LBO model for a $500M acquisition at 6x EBITDA entry multiple"
+"Create an LBO with 3 debt tranches — senior secured, mezzanine, and sub debt"
+"LBO analysis for a take-private — assume 60/40 debt-equity split with 5-year hold"
+```
+
+## Model Structure
+
+The LBO model is built section by section with user verification at each checkpoint:
+
+1. **Sources & Uses** — Transaction sizing, debt and equity split, fees
+2. **Operating Model** — Revenue projections, margins, EBITDA buildup
+3. **Debt Schedule** — Multi-tranche with mandatory amortization and cash sweep
+4. **Returns Analysis** — IRR and MOIC calculations with proper cash flow signs
+5. **Sensitivity Tables** — 5x5 or 7x7 grids varying entry multiple, exit multiple, and leverage
+
+## Formula Color Conventions
+
+| Color | Meaning |
+|-------|---------|
+| Blue (0000FF) | Hardcoded inputs |
+| Black (000000) | Formulas with calculations |
+| Purple (800080) | Links to cells on the same tab |
+| Green (008000) | Links to cells on different tabs |
+
+## Common Pitfalls to Avoid
+
+- **Circular references in interest**: Use beginning-of-period balance for interest calculations, not ending balance
+- **Negative debt balances**: Use MAX/MIN functions to prevent paying down more debt than exists
+- **IRR sign errors**: Investment cash flows must be negative, proceeds must be positive
+- **Sensitivity tables showing identical values**: Ensure formulas use mixed references ($A5 for row input, B$4 for column input)
+- **Sources not equaling Uses**: One item must be the "plug" (balancing figure) calculated as the difference
+
+## Tips & Best Practices
+
+- **Work section by section** — complete one section, verify with the user, then proceed to the next
+- **Sensitivity tables use odd dimensions** (5x5 or 7x7) so there is a true center cell representing the base case
+- **The center cell of every sensitivity table must match the model's actual output** — this is the proof the table is wired correctly
+- **Every calculation must be an Excel formula** — never compute values externally and hardcode results
+- **Follow the template's sign convention consistently** throughout the entire model

@@ -1,0 +1,99 @@
+---
+title: "Investment Banking Deal Tracker"
+description: "Track multiple live M&A deals with milestones, deadlines, action items, and weekly review summaries for managing a deal pipeline."
+seoHook: "When you are juggling five live deals across different stages, it is only a matter of time before a missed deadline or forgotten follow-up derails a process -- unless you have a system to keep everything visible."
+targetAudience: "investment banking analysts, associates, vice presidents, managing directors"
+exampleUseCase: "\"Set up tracking for Project Atlas, a sell-side mandate in the marketing phase\" → Deal tracker with 17 milestones from engagement through close, action items with owners and due dates, and a weekly review summary template"
+category: "investment-banking"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["deal tracking", "M&A", "pipeline management", "project management"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+This playbook helps you track multiple live M&A deals with milestones, deadlines, action items, and status updates. It maintains a pipeline view across your book of business and generates weekly deal review summaries so nothing falls through the cracks.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a folder for your deal workspace and place the downloaded template inside as `CLAUDE.md`.
+
+```bash
+mkdir -p ~/Documents/DealTracker
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+```bash
+mv ~/Downloads/ib-deal-tracker.md ~/Documents/DealTracker/CLAUDE.md
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/DealTracker
+claude
+```
+
+Try prompts like:
+
+```
+"Set up a new deal: Project Atlas, sell-side, $200M EV, currently in marketing phase"
+"What milestones are coming up in the next two weeks across all deals?"
+"Generate a weekly deal review summary for the Monday partner meeting"
+"Add an action item: finalize CIM draft, owned by Sarah, due Friday"
+```
+
+---
+
+## Deal Stages
+
+The tracker follows the standard M&A sell-side process:
+
+| Stage | Description |
+|-------|-------------|
+| Pre-mandate | Pitching, engagement letter negotiation |
+| Engaged | Engagement letter signed, preparing materials |
+| Marketing | Teaser and CIM distribution, NDA execution |
+| IOI | First-round indications of interest |
+| Diligence | Management meetings, data room, buyer diligence |
+| Final Bids | Second-round binding offers |
+| Signing | Purchase agreement negotiation and execution |
+| Close | Regulatory approvals, closing conditions, funding |
+
+---
+
+## Milestone Tracking
+
+Each deal tracks 17 standard milestones from engagement letter through close, with target date, actual date, status (On Track / At Risk / Delayed / Complete), and notes.
+
+---
+
+## Tips and Best Practices
+
+- **Update weekly at minimum** -- stale trackers are worse than no tracker
+- **Flag slipping milestones early** -- early warning prevents surprises in partner meetings
+- **Action items need owners and due dates** -- tasks without accountability do not get done
+- **Keep the pipeline view clean** -- archive closed and dead deals separately
+- **Track buyer feedback** -- patterns in feedback inform strategy adjustments mid-process
+- **Use the weekly review format** for Monday morning deal meetings: one-line status, key developments, upcoming milestones, blockers, and next week's action items
+
+---
+
+## Example Prompts
+
+```
+"Set up tracking for three new mandates we signed this week"
+"Show me all deals at risk with missed milestones"
+"Generate the weekly pipeline summary for the group head"
+"Move Project Summit from IOI to Diligence stage and update milestones"
+"What action items are overdue across all active deals?"
+```

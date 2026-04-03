@@ -1,0 +1,103 @@
+---
+title: "Merger Model & Accretion/Dilution Analysis"
+description: "Build M&A merger models with pro forma EPS analysis, synergy sensitivities, purchase price allocation, and breakeven calculations."
+seoHook: "The board wants to know one thing before approving an acquisition: is this deal accretive or dilutive to earnings -- and the answer depends on assumptions that need to be modeled across dozens of scenarios."
+targetAudience: "investment banking analysts, associates, vice presidents, managing directors"
+exampleUseCase: "\"Build a merger model for Company A acquiring Company B at a 25% premium\" → Complete accretion/dilution analysis with sources and uses, pro forma EPS for Years 1-3, sensitivity tables across synergy levels and premiums, and breakeven synergy calculation"
+category: "investment-banking"
+difficulty: "advanced"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["merger model", "M&A", "accretion dilution", "financial modeling"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+This playbook builds accretion/dilution analysis for M&A transactions. It models the pro forma EPS impact of a proposed acquisition, including purchase price analysis, sources and uses of funds, synergy assumptions with phase-in timelines, and sensitivity analysis across key variables like premium, synergy levels, and cash/stock mix.
+
+**Important**: Merger models involve significant assumptions. All outputs should be reviewed by senior deal team members and validated against market data before inclusion in pitch materials or board presentations.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a folder for your deal workspace and place the downloaded template inside as `CLAUDE.md`.
+
+```bash
+mkdir -p ~/Documents/MergerModel-ProjectOmega
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+```bash
+mv ~/Downloads/ib-merger-model.md ~/Documents/MergerModel-ProjectOmega/CLAUDE.md
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/MergerModel-ProjectOmega
+claude
+```
+
+Try prompts like:
+
+```
+"Build a merger model for AcquirerCo buying TargetCo at a 25% premium, 50/50 cash and stock"
+"Run a sensitivity table: accretion/dilution vs synergies ($0-100M) and premium (15-30%)"
+"Calculate breakeven synergies for the deal to be EPS-neutral in Year 1"
+"Show sources and uses assuming $500M new debt and $200M cash on hand"
+```
+
+---
+
+## Model Components
+
+| Component | Purpose |
+|-----------|---------|
+| Purchase Price Analysis | Offer price, premium, implied multiples (EV/EBITDA, P/E) |
+| Sources & Uses | How the deal is funded vs. where the money goes |
+| Pro Forma EPS | Year 1-3 standalone vs. combined EPS with all adjustments |
+| Sensitivity Analysis | Accretion/dilution across synergy levels, premiums, and cash/stock mix |
+| Breakeven Synergies | Minimum synergies for EPS neutrality in Year 1 |
+
+---
+
+## Key Adjustments in Pro Forma EPS
+
+The model captures these items when calculating pro forma net income:
+
+- **Target net income** added to acquirer
+- **Synergies (after tax)** phased in over time (typically 25-50% Year 1, 75% Year 2, 100% Year 3)
+- **Foregone interest on cash** used in the transaction (after tax)
+- **New debt interest expense** on acquisition financing (after tax)
+- **Intangible amortization** from purchase price allocation (after tax, affects GAAP EPS)
+- **New shares issued** in stock consideration (dilutes per-share metrics)
+
+---
+
+## Tips and Best Practices
+
+- Always show both **GAAP and adjusted (cash) EPS** where relevant -- intangible amortization makes many deals look dilutive on GAAP but accretive on cash EPS
+- **Stock deals**: Use the acquirer's current share price for the exchange ratio and note dilution from new shares
+- **Synergy phase-in is critical** -- Year 1 is often only 25-50% of run-rate synergies
+- Do not forget **foregone interest income** on cash used and **new interest expense** on debt raised
+- Tax rate on synergies and interest adjustments should match the acquirer's **marginal tax rate**
+- Include **purchase price allocation** -- goodwill and intangible amortization matter for GAAP EPS
+
+---
+
+## Example Prompts
+
+```
+"Model a 100% cash deal funded with $1B in new term loans at 6% interest"
+"What happens to accretion/dilution if we shift to 75% stock / 25% cash?"
+"Run a 5x5 sensitivity table: premium (15-35%) vs synergies ($25-125M)"
+"Calculate the implied goodwill and intangible amortization schedule"
+"Compare Year 1 GAAP EPS vs cash EPS impact of the deal"
+```

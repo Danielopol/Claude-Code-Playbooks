@@ -1,0 +1,70 @@
+---
+title: "Portfolio Company Monitoring Dashboard"
+description: "Track portfolio company performance against plan with automated KPI extraction, variance analysis, and covenant compliance monitoring."
+seoHook: "When you have 15 portfolio companies each sending monthly financials in different formats, synthesizing performance against plan and catching covenant risks before your lenders do is a time sink that compounds every month."
+targetAudience: "PE portfolio operations, operating partners, deal team leads, CFOs, board members"
+exampleUseCase: "\"Review AcmeCo's monthly financial package against plan\" → Executive summary with green/yellow/red KPI flags, actual vs. budget variance table, covenant compliance status, trend charts, and questions for management"
+category: "private-equity"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["private equity", "portfolio monitoring", "KPI tracking", "covenant compliance", "board reporting"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Ingests monthly or quarterly financial packages (Excel, PDF, or CSV), extracts KPIs, flags variances to budget, checks covenant compliance, and produces a concise board-ready summary. Supports trend analysis across multiple reporting periods.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a folder for your portfolio monitoring and place the downloaded template inside as `CLAUDE.md`. Add the company's financial package to the same folder.
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+
+```
+"Review this monthly financial package against plan"
+"How is AcmeCo performing vs. budget this quarter?"
+"Check covenant compliance — here are the financials and credit agreement"
+```
+
+## KPIs Tracked
+
+**Financial:**
+- Revenue vs. budget ($ and %)
+- EBITDA and EBITDA margin vs. budget
+- Cash balance and net debt
+- Leverage ratio (Net Debt / LTM EBITDA)
+- Interest coverage ratio
+- Capex vs. budget
+- Free cash flow
+
+**Operational (sector-dependent):**
+- Customer count / revenue per customer
+- Employee headcount / revenue per employee
+- Backlog / pipeline
+- Churn / retention rates
+
+## Flagging System
+
+| Status | Criteria |
+|--------|----------|
+| Green | Within 5% of plan |
+| Yellow | 5-15% below plan — flag for discussion |
+| Red | >15% below plan or covenant breach risk — immediate attention |
+
+## Tips & Best Practices
+
+- Always ask for the budget/plan to compare against if not provided
+- Do not assume sector-specific KPIs — ask what matters for this company
+- If covenant levels are not known, ask for the credit agreement terms
+- Output should be board-ready — concise, factual, no fluff
+- When multiple periods are provided, trend analysis shows whether performance is accelerating, decelerating, or stable

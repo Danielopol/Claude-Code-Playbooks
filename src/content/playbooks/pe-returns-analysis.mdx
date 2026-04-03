@@ -1,0 +1,75 @@
+---
+title: "PE Returns Analysis & Sensitivity Tables"
+description: "Build IRR/MOIC sensitivity tables across entry multiple, leverage, exit multiple, growth, and hold period scenarios for PE deal evaluation."
+seoHook: "Before you present a deal to the investment committee, you need to stress-test returns across dozens of scenarios — entry multiple, leverage, exit multiple, growth rate, hold period — and a single spreadsheet error in the returns math can kill your credibility."
+targetAudience: "PE associates, vice presidents, financial modelers, deal team analysts"
+exampleUseCase: "\"Model returns at 8x entry, 4x leverage, 10% EBITDA growth, exit at 10x in 5 years\" → Base case returns with IRR/MOIC, returns attribution waterfall, 2-way sensitivity matrices, and bull/base/bear scenario comparison"
+category: "private-equity"
+difficulty: "advanced"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["private equity", "returns analysis", "IRR", "MOIC", "sensitivity analysis", "LBO"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Builds quick IRR/MOIC calculations with full sensitivity tables for PE deal evaluation. Models returns across entry multiple, leverage, exit multiple, EBITDA growth, and hold period scenarios. Produces IC-ready returns exhibits with attribution waterfall and scenario analysis.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a folder for your returns analysis and place the downloaded template inside as `CLAUDE.md`.
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+
+```
+"Model returns at 8x entry, 4x leverage, exit at 10x in 5 years"
+"Build an IRR sensitivity table for this deal"
+"What's the return if we pay 9x and exit at 8x?"
+```
+
+## What Gets Calculated
+
+**Base Case Returns:**
+- Entry EV, equity invested, exit EBITDA, exit EV, exit equity value
+- MOIC and IRR
+- Cash-on-cash return
+
+**Returns Attribution Waterfall:**
+- EBITDA growth contribution
+- Multiple expansion/contraction contribution
+- Debt paydown contribution
+- Fee/expense drag
+
+**Sensitivity Tables (2-way matrices):**
+- Entry Multiple vs. Exit Multiple
+- EBITDA Growth vs. Exit Multiple
+- Leverage vs. Exit Multiple
+- Hold Period vs. Exit Multiple
+
+**Scenario Analysis:**
+- Bull, Base, and Bear cases with revenue CAGR, exit margin, exit multiple, MOIC, and IRR
+
+## Key Formulas
+
+- **MOIC** = Exit Equity Value / Equity Invested
+- **IRR** = solve for r where Equity Invested x (1 + r)^n = Exit Equity Value
+- **Growth attribution**: (Exit EBITDA - Entry EBITDA) x Exit Multiple / Equity
+- **Multiple attribution**: (Exit Multiple - Entry Multiple) x Entry EBITDA / Equity
+- **Leverage attribution**: Debt paydown over hold period / Equity
+
+## Tips & Best Practices
+
+- Always show returns both gross and net of fees/carry where applicable
+- Management rollover and co-invest change the equity check — ask if relevant
+- Dividend recaps or interim distributions affect IRR significantly — include if planned
+- Do not forget transaction costs (typically 2-4% of EV) — they reduce Day 1 equity value
+- Tax considerations (asset vs. stock deal, 338(h)(10) election) can materially affect after-tax returns

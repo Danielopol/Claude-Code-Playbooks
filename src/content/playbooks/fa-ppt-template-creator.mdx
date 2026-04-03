@@ -1,0 +1,68 @@
+---
+title: "PowerPoint Template Skill Creator"
+description: "Turn a branded PowerPoint template into a reusable skill that can generate on-brand presentations programmatically, with precise placeholder mapping and layout documentation."
+seoHook: "Every organization has a PowerPoint template, but using it programmatically means reverse-engineering placeholder positions, content boundaries, and layout rules — getting any of these wrong produces slides with overlapping text and broken formatting."
+targetAudience: "financial analysts, management consultants, operations teams, presentation designers, anyone who generates recurring branded presentations"
+exampleUseCase: "\"Turn our corporate PPT template into a reusable skill\" → Packaged skill with template analysis (layouts, placeholders, content boundaries), SKILL.md with complete code examples for cover slides, content slides, and multi-column layouts, plus a validated sample presentation"
+category: "finance-accounting"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["PowerPoint", "presentation template", "automation", "branded decks", "slide generation"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Turns a user-provided PowerPoint template (.pptx or .potx) into a reusable skill that can generate on-brand presentations programmatically. Analyzes the template's layouts, placeholders, and content boundaries, then packages everything into a self-contained skill with complete documentation and code examples.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a folder for your template skill work and place the downloaded template inside as `CLAUDE.md`.
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+
+```
+"Turn our corporate PowerPoint template into a reusable presentation skill"
+"Analyze this branded deck template and create a skill that generates slides from it"
+"Package this PPT template so I can generate quarterly board decks programmatically"
+```
+
+## What Gets Created
+
+The generated skill includes:
+- `assets/template.pptx` — the bundled template file
+- `SKILL.md` — complete, self-contained instructions with layout documentation, placeholder mapping, content area boundaries, and working code examples
+
+## Template Analysis
+
+The tool extracts precise measurements from every layout in the template:
+- **Placeholder positions** — exact x, y, width, height for titles, subtitles, footers, content areas
+- **Content area boundaries** — the safe zone for custom shapes, tables, and charts (between subtitle and footer)
+- **Layout inventory** — which layouts exist and what each is best used for (cover, content, two-column, etc.)
+
+## Key Rules for Generated Skills
+
+- **Template bundled in assets/** — the .pptx file travels with the skill
+- **Self-contained SKILL.md** — all instructions embedded, no external references needed
+- **No manual bullet characters** — use `paragraph.level` for hierarchy; the slide master handles formatting
+- **Delete existing slides first** — always clear slides before adding new ones
+- **Document placeholders by idx** — placeholder index values are template-specific and must be mapped precisely
+
+## Tips & Best Practices
+
+- **Finding the true content start**: The content area does not always start immediately after the subtitle placeholder — look for OBJECT placeholders (type 7) to determine where content should actually begin
+- **Test with a sample presentation**: Always generate a sample deck to validate that the skill produces correctly formatted slides before distributing it
+- **Content boundaries matter**: Custom content (textboxes, tables, charts) must stay within documented boundaries to avoid overlapping with template placeholders
+
+## Dependencies
+
+- Python (python-pptx) for template analysis and presentation generation

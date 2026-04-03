@@ -1,0 +1,70 @@
+---
+title: "3-Statement Financial Model Builder"
+description: "Build integrated 3-statement financial models with proper cross-statement linkages, scenario analysis, and professional formatting in Excel."
+seoHook: "Building a fully linked 3-statement model from scratch means getting dozens of cross-statement references exactly right — one broken link between the income statement and cash flow statement can silently cascade errors through every projection year."
+targetAudience: "financial analysts, investment banking associates, FP&A professionals, equity research analysts, corporate finance teams"
+exampleUseCase: "\"Build a 3-statement model for Nike with 5-year projections\" → Integrated Excel workbook with Income Statement, Balance Sheet, Cash Flow Statement, Debt Schedule, Working Capital, D&A Schedule, Scenarios tab, and Ratios dashboard — all cross-linked with formula-driven projections"
+category: "finance-accounting"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["financial modeling", "3-statement model", "income statement", "balance sheet", "cash flow", "scenario analysis"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Builds and populates integrated 3-statement financial models (Income Statement, Balance Sheet, Cash Flow Statement) with proper cross-statement linkages, scenario analysis, and professional formatting. The model includes supporting schedules for debt, working capital, and depreciation, plus a ratios dashboard and scenario toggle.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a folder for your financial model and place the downloaded template inside as `CLAUDE.md`.
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+
+```
+"Build a 3-statement model for Apple with 5-year projections"
+"Create an integrated financial model for Tesla using historical data from 2021-2024"
+"Build a 3-statement model with base, upside, and downside scenarios for Microsoft"
+```
+
+## Model Architecture
+
+The model produces a 10-tab Excel workbook: Cover, Assumptions, Income Statement, Balance Sheet, Cash Flow Statement, Debt Schedule, Working Capital, Depreciation & Amortization, Ratios & Output, and Scenarios. All tabs are interconnected with formula-driven linkages.
+
+**Critical linkage points:**
+- Net Income flows from IS to BS (Retained Earnings) and to CFS (top line)
+- D&A flows to IS (expense) and CFS (add-back)
+- CapEx flows from CFS to BS (PP&E rollforward)
+- Working Capital changes flow from BS to CFS
+- Debt issuance/repayment flows from Debt Schedule to CFS and BS
+- Cash ending balance on CFS must equal Cash on BS
+
+## Formatting Standards
+
+| Color | Meaning |
+|-------|---------|
+| Blue font | Hard-coded input / assumption |
+| Black font | Formula / calculated cell |
+| Green font | Link to another tab |
+| Red font | Error check or warning |
+
+## Validation Checks
+
+The model includes built-in validation: BS balance check (must equal zero), cash tie-out between CFS and BS, retained earnings rollforward, debt schedule ties, D&A ties, working capital ties, and reasonableness checks on tax rates, revenue growth, and margins.
+
+## Tips & Best Practices
+
+- Always place assumptions in blue font on a dedicated Assumptions tab — no hard-coded numbers in formula cells
+- Use a scenario toggle (1 = Base, 2 = Upside, 3 = Downside) with CHOOSE or INDEX functions
+- Place the Balance Check prominently with conditional formatting (green if zero, red if non-zero)
+- For the debt schedule, use beginning balance for interest calculations to avoid circular references
+- Historical years go on the left, projected years on the right, with a clear separator between them

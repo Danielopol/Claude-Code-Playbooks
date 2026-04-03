@@ -1,0 +1,118 @@
+---
+title: "IB Pitch Deck Template Populator"
+description: "Populate investment banking pitch deck templates with financial data, ensuring number consistency, proper formatting, and institutional presentation standards."
+seoHook: "Populating a pitch deck template with live deal data means hours of copy-paste between Excel and PowerPoint, manually checking that the same revenue figure matches across 15 slides -- and one inconsistency can undermine your credibility in the room."
+targetAudience: "investment banking analysts, associates, vice presidents, managing directors"
+exampleUseCase: "\"Populate this pitch deck template with data from our source Excel file\" → Completed pitch deck with all placeholder sections filled, numbers cross-checked across slides, tables formatted as proper objects, and professional presentation standards applied"
+category: "investment-banking"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["pitch deck", "PowerPoint", "investment banking", "presentation"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+This playbook populates investment banking pitch deck templates with financial data from source files (Excel, CSV, PDF). It follows a 5-phase workflow -- data extraction, content mapping, template population, validation, and final verification -- to ensure number consistency, proper formatting, and institutional presentation standards across every slide.
+
+**Note**: This is for populating existing templates with data, not for creating presentations from scratch.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a folder for your deal workspace and place the downloaded template inside as `CLAUDE.md`.
+
+```bash
+mkdir -p ~/Documents/PitchDeck-ProjectNova
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+```bash
+mv ~/Downloads/ib-pitch-deck.md ~/Documents/PitchDeck-ProjectNova/CLAUDE.md
+```
+
+### Step 3: Add Your Files
+
+Place these in the same folder:
+- PowerPoint template (.pptx) to be populated
+- Source data files (Excel, CSV, PDF)
+- Any reference files mentioned in the template (formatting standards, slide templates, etc.)
+
+### Step 4: Start Working
+
+```bash
+cd ~/Documents/PitchDeck-ProjectNova
+claude
+```
+
+Try prompts like:
+
+```
+"Populate this pitch deck template with data from the source Excel file"
+"Fill in the market overview slides using the industry report PDF"
+"Update all financial tables to reflect the latest Q4 numbers"
+"Validate that revenue figures are consistent across all slides"
+```
+
+---
+
+## 5-Phase Workflow
+
+| Phase | Purpose |
+|-------|---------|
+| 1. Data Extraction | Extract and validate data from source materials |
+| 2. Content Mapping | Map source data to template placeholder sections |
+| 3. Template Population | Fill slides with data, apply formatting |
+| 4. Validation Loop | Convert to images, check, fix, repeat (up to 3 cycles) |
+| 5. Final Verification | Run quality checklist before delivery |
+
+---
+
+## Critical Anti-Patterns to Avoid
+
+- **Do not populate data INTO colored placeholder boxes** -- the placeholder tells you what content goes there; replace it with properly formatted content
+- **Do not create text-based tables** using pipes or tabs -- always use actual PowerPoint table objects
+- **Do not inherit placeholder contrast** -- production slides typically use dark text on light backgrounds
+
+---
+
+## Formatting Standards
+
+| Element | Typical Size | Style |
+|---------|-------------|-------|
+| Slide title | 40-48pt | Bold |
+| Section header | 14-16pt | Regular |
+| Body text | 11-14pt | Regular |
+| Table header | 10-12pt | Bold |
+| Table body | 9-11pt | Regular |
+| Footnotes | 8-9pt | Italic |
+
+---
+
+## Tips and Best Practices
+
+- **Always back up the original template** before making any modifications
+- **Cross-slide consistency** is critical -- the same metric must show the same number on every slide where it appears
+- **Tables must be actual table objects**, never pipe-separated or tab-separated text
+- **Validate visually** by converting slides to images after population
+- The final file should be reviewed in Microsoft PowerPoint before distribution, as LibreOffice rendering may differ
+- Include source citations in slide footnotes for all data points
+
+---
+
+## Example Prompts
+
+```
+"Populate the situation overview slide with the company description and key metrics"
+"Fill in the comparable companies table from the comps Excel sheet"
+"Update the football field valuation slide with the latest ranges"
+"Check all slides for number consistency and flag any mismatches"
+"Format the financial summary table to match the template styling"
+```

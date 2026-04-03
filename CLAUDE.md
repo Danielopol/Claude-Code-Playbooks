@@ -108,6 +108,16 @@ After creating the MDX and template files, scan the template (`public/templates/
 
 Extract these passages and add them as additional sections in the MDX (after Quick Start), such as `## Tips & Best Practices`, `## Limitations`, `## Examples`, etc. Do NOT copy the entire template — only the informational sections that help users understand what to expect before downloading.
 
+### 4. Update personas for the "For You" page
+
+After creating a new playbook, check if its `category` is already covered by a persona in `src/lib/personas.ts`. If not:
+
+1. **If an existing persona is a natural fit**, add the category to that persona's `categories` array.
+2. **If a new persona is needed** (e.g., a new professional vertical with 5+ playbooks), add a new entry to the `personas` array following the existing format — with `id`, `name`, `title`, `description`, `seoDescription`, `icon`, and `categories`.
+3. **If the category already appears in a persona's `categories` array**, no changes are needed.
+
+Every category used by playbooks should appear in at least one persona's `categories` array so the playbooks are discoverable on `/for/[persona]` pages.
+
 ### Important rules for MDX content
 
 - **DO NOT** include a "The CLAUDE.md Template" section or embed the template content in the MDX file. The template is served separately from `public/templates/{slug}.md` via the Download/Copy buttons on the playbook page. Embedding it inline is redundant.

@@ -1,0 +1,119 @@
+---
+title: "Financial Data Pack Builder"
+description: "Transform financial data from CIMs, SEC filings, and other sources into standardized Excel workbooks ready for investment committee review."
+seoHook: "Building a data pack means hours of copying numbers from PDFs into Excel, reformatting tables, normalizing adjustments, and praying you did not transpose a digit -- one wrong number can derail an investment committee presentation."
+targetAudience: "investment banking analysts, associates, vice presidents, managing directors"
+exampleUseCase: "\"Build a data pack from this CIM for our industrial services target\" → 8-tab Excel workbook with executive summary, historical financials, balance sheet, cash flow, operating metrics, segment performance, market analysis, and investment highlights with formula-based calculations and professional formatting"
+category: "investment-banking"
+difficulty: "advanced"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["data pack", "financial analysis", "due diligence", "Excel"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+This playbook transforms financial data from CIMs, SEC filings, offering memorandums, and other source documents into standardized, professional Excel workbooks ready for investment committee review. It enforces a consistent 8-tab structure, formula-based calculations, proper formatting conventions, and a rigorous quality checklist to ensure every number traces back to its source.
+
+**Important**: All financial data should be verified against original source documents. This workflow assists with structuring and formatting but does not replace professional financial analysis.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a folder for your deal workspace and place the downloaded template inside as `CLAUDE.md`.
+
+```bash
+mkdir -p ~/Documents/DataPack-ProjectAlpha
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+```bash
+mv ~/Downloads/ib-datapack-builder.md ~/Documents/DataPack-ProjectAlpha/CLAUDE.md
+```
+
+### Step 3: Add Source Documents
+
+Place your source materials in the same folder:
+- CIM or offering memorandum (PDF)
+- SEC filings (10-K, 10-Q)
+- Management presentations
+- Any supplemental financial data
+
+### Step 4: Start Working
+
+```bash
+cd ~/Documents/DataPack-ProjectAlpha
+claude
+```
+
+Try prompts like:
+
+```
+"Build a data pack from this CIM for our target company"
+"Extract the historical income statement from the 10-K filing"
+"Create the operating metrics tab with store count, revenue per store, and same-store growth"
+"Build an EBITDA normalization schedule with add-backs for restructuring and SBC"
+```
+
+---
+
+## Standard 8-Tab Structure
+
+| Tab | Purpose | Key Contents |
+|-----|---------|--------------|
+| Executive Summary | One-page overview | Company overview, investment highlights, financial snapshot |
+| Historical Financials | Income statement | Revenue breakdown, COGS, gross profit, opex, EBITDA, net income |
+| Balance Sheet | Financial position | Assets, liabilities, equity with verification that A = L + E |
+| Cash Flow | Cash generation | Operating, investing, financing cash flows |
+| Operating Metrics | Non-financial KPIs | Units, customers, locations, productivity metrics |
+| Segment Performance | Business unit detail | Revenue and profitability by segment |
+| Market Analysis | Industry context | Market size, competitive landscape, benchmarks |
+| Investment Highlights | Thesis summary | Strengths, growth opportunities, risk factors |
+
+---
+
+## Formatting Rules
+
+| Data Type | Format | Example |
+|-----------|--------|---------|
+| Financial data (currency) | $#,##0.0 | $125.5 |
+| Operational data (counts) | #,##0 (no $) | 1,250 |
+| Percentages | 0.0% | 15.0% |
+| Years | Text format | 2023A, 2024E |
+| Negatives | Parentheses | $(15.0) |
+
+**Font color conventions**: Blue text for hardcoded inputs, black text for formulas, green text for cross-tab links.
+
+---
+
+## Quality Checklist
+
+Before delivering any data pack, verify:
+
+- Every number traces to a source document with page reference
+- All calculations are formula-based (no hardcoded values)
+- Balance sheet balances: Assets = Liabilities + Equity
+- Cash flow ties to balance sheet changes
+- Years display without commas (2024 not 2,024)
+- No formula errors (#REF!, #VALUE!, #DIV/0!)
+- Consistent formatting across all tabs
+- Single underline above subtotals, double underline below totals
+
+---
+
+## Example Prompts
+
+```
+"Build a complete data pack from this CIM PDF"
+"Extract and normalize the last 5 years of financials from this 10-K"
+"Create a base case with 10% revenue growth haircut to management projections"
+"Add an EBITDA bridge showing reported to adjusted EBITDA with add-backs"
+"Build the operating metrics tab for a SaaS company with ARR, churn, and NRR"
+```

@@ -1,0 +1,90 @@
+---
+title: "Wealth Management Client Report Generator"
+description: "Generate professional client-facing performance reports with portfolio returns, allocation breakdowns, and market commentary for quarterly or annual distribution."
+seoHook: "Assembling quarterly client reports means hours of pulling data from multiple systems, formatting tables, writing market commentary, and ensuring every number ties out -- all while the deadline looms and clients expect polished, branded deliverables."
+targetAudience: "wealth managers, financial advisors, private bankers, family office managers"
+exampleUseCase: "\"Generate a Q4 performance report for the Johnson household\" → Branded 10-page PDF with household and per-account returns vs. benchmarks, allocation pie charts, holdings detail, market commentary, activity summary, and planning notes"
+category: "wealth-management"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "anthropic"
+sourceUrl: "https://github.com/anthropics/financial-services-plugins/tree/main/wealth-management/skills/client-report"
+tags: ["wealth management", "client reports", "portfolio performance", "quarterly reports"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+This playbook generates professional, client-facing performance reports covering portfolio returns, asset allocation breakdowns, holdings detail, market commentary, and planning notes. It produces structured output suitable for quarterly or annual distribution to clients, with firm branding and compliance-ready disclaimers.
+
+**Important**: This workflow assists with report generation but does not provide financial advice. All reports should be reviewed by qualified professionals and compliance before distribution.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/ClientReports
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+```bash
+mv ~/Downloads/wm-client-report.md ~/Documents/ClientReports/CLAUDE.md
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/ClientReports
+claude
+```
+
+Try these prompts:
+
+```
+"Generate a Q4 performance report for the Smith household"
+"Create an annual client statement for John and Jane Doe"
+"Build a quarterly report comparing portfolio returns to the 60/40 benchmark"
+```
+
+---
+
+## Report Structure
+
+The generated report follows a professional 8-12 page structure:
+
+1. **Cover page** -- Client name, reporting period, firm logo
+2. **Executive summary** -- 1-page high-level overview
+3. **Performance summary** -- Household and per-account returns vs. benchmarks (QTD, YTD, 1-Year, 3-Year, 5-Year, ITD)
+4. **Allocation overview** -- Current allocation with visual charts and benchmark comparison
+5. **Holdings detail** -- Individual security positions with returns
+6. **Market commentary** -- Tailored to client sophistication level
+7. **Activity summary** -- Trades, contributions, withdrawals, dividends, fees
+8. **Planning notes** -- Goal progress, recommendations, next review date
+9. **Disclosures and disclaimers**
+
+---
+
+## Best Practices
+
+- **Performance calculation**: Always calculate net of fees unless client or compliance specifically requires gross
+- **Benchmark selection**: Use the benchmark from the Investment Policy Statement (IPS), not whichever benchmark looks most favorable
+- **Client-appropriate detail**: Some clients want every holding listed; others prefer a one-page summary. Match the level of detail to the client
+- **Consistency**: Reports should be consistent across clients -- use a standard template so nothing gets missed
+- **Compliance**: Review for compliance approval before first distribution of any new template format
+
+---
+
+## Example Prompts
+
+```
+"Generate a quarterly performance report for the Anderson household benchmarked to the S&P 500"
+"Create a year-end client statement including tax lot detail for the taxable account"
+"Build a one-page executive summary report for our annual review meeting"
+"Draft market commentary for Q1 suitable for a retail client audience"
+```

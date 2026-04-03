@@ -1,0 +1,78 @@
+---
+title: "Bond Relative Value Analysis (LSEG)"
+description: "Perform relative value analysis on bonds by combining pricing, yield curve context, credit spreads, and scenario stress testing to assess whether bonds are rich, cheap, or fair."
+seoHook: "Determining whether a bond is genuinely cheap or just risky requires decomposing its spread into rate, credit, and residual components across multiple data sources — a process that is tedious to do manually and easy to get wrong."
+targetAudience: "fixed income traders, credit analysts, portfolio managers, quantitative analysts"
+exampleUseCase: "\"Is the Apple 2030 bond rich or cheap vs its credit curve?\" → Spread decomposition showing G-spread, credit curve spread, and residual, plus scenario P&L under rate shocks and a clear buy/hold/avoid recommendation"
+category: "trading-markets"
+difficulty: "advanced"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["LSEG", "trading", "bonds", "relative-value", "credit-spreads", "fixed-income", "scenario-analysis"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Chains LSEG MCP tools to deliver a complete bond relative value assessment. It prices the target bond, pulls the risk-free curve and credit curve to decompose the total spread into its components, runs scenario stress tests with parallel rate shifts, and optionally adds historical context. The output tells you whether a bond's residual spread — what remains after accounting for rates and credit — signals richness or cheapness.
+
+This is the workflow institutional fixed income desks use daily, automated into a structured conversation.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/bond-relative-value
+cd ~/bond-relative-value
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+
+Launch Claude Code and try these prompts:
+
+```
+Analyze the relative value of US91282CJL54 (ISIN) vs the Treasury curve
+```
+
+```
+Compare these two corporate bonds for relative value: [ISIN1] vs [ISIN2]
+```
+
+```
+Run a scenario analysis on my bond position with -100bp to +100bp rate shocks
+```
+
+## Spread Decomposition Framework
+
+The analysis breaks total spread into three layers:
+
+| Component | What It Measures |
+|-----------|-----------------|
+| **G-spread** | Total spread over the government curve (rates risk) |
+| **Credit curve spread** | Fair credit spread for issuer type and maturity |
+| **Residual spread** | Liquidity, technicals, and mispricing (the actionable signal) |
+
+A positive residual means the bond pays more than its credit risk warrants — potentially cheap. A negative residual means it pays less — potentially rich.
+
+## Available MCP Tools
+
+- **`bond_price`** — Price bonds with yield, Z-spread, duration, convexity, DV01. Accepts ISIN, RIC, or CUSIP.
+- **`interest_rate_curve`** — Government and swap yield curves for G-spread calculation
+- **`credit_curve`** — Credit spread curves by issuer type for credit component isolation
+- **`yieldbook_scenario`** — Parallel rate shift scenario analysis for stress testing
+- **`fixed_income_risk_analytics`** — OAS, effective duration, key rate durations for callable bonds
+
+## Tips for Best Results
+
+- Use ISIN identifiers for unambiguous bond identification across markets
+- The residual spread is your primary signal — G-spread and credit spread are context
+- Always run scenarios to confirm your view holds under different rate environments
+- For callable bonds, use `fixed_income_risk_analytics` for OAS instead of Z-spread
+- Historical Z-score context (where current spread sits vs 1Y history) adds conviction to the recommendation

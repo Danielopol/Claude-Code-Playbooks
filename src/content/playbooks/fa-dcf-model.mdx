@@ -1,0 +1,66 @@
+---
+title: "DCF Model Builder for Equity Valuation"
+description: "Create institutional-quality discounted cash flow models with WACC calculations, sensitivity analysis, and professional Excel output for equity valuation."
+seoHook: "Building a defensible DCF model requires getting dozens of assumptions right — from revenue projections and margin trajectories to WACC components and terminal value methodology — and a single misstep in the discount rate or growth assumption can swing the valuation by billions."
+targetAudience: "investment banking analysts, equity research analysts, corporate development teams, private equity professionals, valuation specialists"
+exampleUseCase: "\"Build a DCF model for Microsoft with 10-year projections\" → Professional Excel workbook with unlevered free cash flow projections, WACC buildup, terminal value (both perpetuity growth and exit multiple methods), sensitivity tables, implied share price, and executive summary"
+category: "finance-accounting"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["DCF", "discounted cash flow", "equity valuation", "WACC", "terminal value", "financial modeling"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Creates institutional-quality DCF (Discounted Cash Flow) models for equity valuation following investment banking standards. Retrieves financial data, builds comprehensive cash flow projections with proper WACC calculations, performs sensitivity analysis, and outputs a professional Excel model with an executive summary.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a folder for your DCF analysis and place the downloaded template inside as `CLAUDE.md`.
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+
+```
+"Build a DCF model for Apple with a 10-year projection period"
+"Create a discounted cash flow analysis for Tesla — use both perpetuity growth and exit multiple terminal values"
+"DCF valuation for Amazon with sensitivity on WACC and terminal growth rate"
+```
+
+## Model Components
+
+The DCF model includes:
+- **Unlevered Free Cash Flow projections** with detailed revenue, margin, and CapEx assumptions
+- **WACC buildup** with cost of equity (CAPM), cost of debt, and capital structure weights
+- **Terminal value** calculated via both perpetuity growth method and exit multiple method
+- **Sensitivity analysis** tables varying WACC and terminal growth rate / exit multiple
+- **Implied share price** with equity bridge (Enterprise Value to Equity Value)
+
+## Key Constraints
+
+- Every calculation is an Excel formula — never hardcoded computed values
+- Terminal growth rate must not exceed WACC (the model validates this)
+- All formulas use proper cell references so the model updates dynamically when assumptions change
+- Sensitivity tables use odd dimensions (5x5 or 7x7) with the base case at the center cell
+
+## Tips & Best Practices
+
+- **Use formula-driven cells throughout** — the model must be dynamic and update when any input changes
+- **Break circular references** by using beginning-of-period balances for interest calculations
+- **Cross-check terminal value** — it typically represents 60-80% of total enterprise value; if it is outside this range, revisit assumptions
+- **Run both terminal value methods** (perpetuity growth and exit multiple) and compare results for reasonableness
+- **Sensitivity tables should show different values in every cell** — if values are identical, the formulas are not properly linked to the varying inputs
+
+## Dependencies
+
+- Python (openpyxl) for Excel file generation
+- Financial data from SEC filings or analyst reports

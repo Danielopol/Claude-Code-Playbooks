@@ -1,0 +1,76 @@
+---
+title: "FX Carry Trade Analysis (LSEG)"
+description: "Evaluate FX carry trade opportunities by combining spot rates, forward points, interest rate differentials, volatility surfaces, and historical price trends to compute carry-to-vol ratios."
+seoHook: "FX carry trades look simple on paper — earn the rate differential — but without analyzing the full forward curve, volatility surface, and historical spot trends together, you are flying blind on the risk side of the equation."
+targetAudience: "FX traders, macro strategists, portfolio managers, quantitative analysts"
+exampleUseCase: "\"Evaluate the carry trade opportunity in USDJPY\" → Carry profile across 1M/3M/6M/1Y tenors, carry-to-vol ratios, vol surface skew signals, historical spot context, and a trade recommendation with conviction level"
+category: "trading-markets"
+difficulty: "advanced"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["LSEG", "trading", "FX", "carry-trade", "volatility", "forward-curve", "currency"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Chains LSEG MCP tools to deliver a complete FX carry trade assessment. It pulls the spot rate, maps the full forward curve to compute annualized carry at each tenor, overlays the volatility surface to calculate carry-to-vol ratios, and checks historical spot trends for directional context. The carry-to-vol ratio — annualized carry divided by ATM implied vol — is the key metric for risk-adjusted attractiveness.
+
+Carry trades are inherently short-volatility positions. This skill ensures you see both sides of the trade: the carry you earn and the vol risk you bear.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/fx-carry-trade
+cd ~/fx-carry-trade
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+
+Launch Claude Code and try these prompts:
+
+```
+Evaluate the carry trade opportunity in USDJPY across all standard tenors
+```
+
+```
+Compare carry-to-vol ratios for AUDUSD, NZDUSD, and USDBRL — which has the best risk-adjusted carry?
+```
+
+```
+What does the vol surface skew tell me about downside risk in USDMXN carry?
+```
+
+## Key Metrics
+
+| Metric | What It Tells You |
+|--------|------------------|
+| **Annualized Carry** | The interest rate differential expressed as an annual percentage |
+| **Carry-to-Vol Ratio** | Risk-adjusted carry — higher is better, below 0.5 is generally unattractive |
+| **25-delta Risk Reversal** | Skew in the vol surface — negative means puts are bid (downside protection is expensive) |
+| **Butterfly** | Tail risk pricing — elevated butterflies signal the market expects large moves |
+
+## Available MCP Tools
+
+- **`fx_spot_price`** — Current spot rate with bid/ask spread as a liquidity indicator
+- **`fx_forward_price`** — Forward rate at a specific tenor for carry computation
+- **`fx_forward_curve`** — Full forward curve to map carry term structure
+- **`fx_vol_surface`** — ATM vol, risk reversals, and butterflies by expiry
+- **`tscc_historical_pricing_summaries`** — Historical spot data for realized vol and trend analysis
+- **`interest_rate_curve`** — Yield curves by currency to understand the rate differential
+
+## Tips for Best Results
+
+- The carry-to-vol ratio is more important than raw carry — a high-carry pair with high vol may be a worse trade than a moderate-carry pair with low vol
+- Check the 25-delta risk reversal: a strongly negative RR means the market is pricing in depreciation risk for the high-yielder
+- Rising implied vol is the primary risk signal for carry trades — monitor vol trends, not just levels
+- Use the full forward curve to find the sweet-spot tenor — the best carry-to-vol ratio is rarely at the longest tenor
+- Historical spot range context helps assess whether you are entering at favorable or unfavorable levels

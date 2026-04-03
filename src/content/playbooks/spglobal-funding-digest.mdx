@@ -1,0 +1,57 @@
+---
+title: "S&P Global Weekly Funding Digest"
+description: "Generate a polished one-page PowerPoint slide summarizing key takeaways from recent funding rounds and capital markets activity across watched sectors."
+seoHook: "Staying on top of deal flow across your coverage universe means checking multiple sources every week and manually compiling transaction data into a presentable format. This skill pulls funding round data directly from S&P Capital IQ and produces a board-ready PPTX digest slide automatically."
+targetAudience: "venture capital analysts, investment banking associates, corporate development teams, sector coverage analysts, capital markets professionals"
+exampleUseCase: "\"Give me a funding digest for AI infrastructure companies this week\" → Professional single-slide PPTX with key takeaways, valuation data, round details, and Capital IQ deal links"
+category: "finance-accounting"
+difficulty: "advanced"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["S&P Global", "funding", "deal-flow", "capital-iq", "venture-capital", "capital-markets"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Compiles recent funding rounds and capital markets activity into a polished one-page PowerPoint slide. The skill resolves entity identifiers, pulls funding data from S&P Capital IQ, validates results across multiple fallback strategies, and formats everything into a professional PPTX with key takeaways, valuation data, and direct Capital IQ deal links.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+```bash
+mkdir -p ~/funding-digest
+```
+
+### Step 2: Download the Template
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+```bash
+cd ~/funding-digest
+claude
+```
+Say: **"Generate a funding digest for fintech companies over the past two weeks"**
+
+---
+
+## Workflow Overview
+
+| Step | What It Does |
+|------|-------------|
+| **Coverage & Period** | Establishes which sectors/companies to track and the time window |
+| **Company Universe** | Builds and validates the entity list with S&P identifiers |
+| **Funding Rounds** | Pulls round data with fallback strategies for empty results |
+| **Analysis** | Identifies key trends, largest rounds, and notable investors |
+| **PPTX Output** | Formats into a professional single-slide PowerPoint |
+
+---
+
+## Important Notes
+
+- Uses nested skills for entity resolution -- subsidiaries have no funding rounds, so it resolves to parent companies automatically.
+- The `role` parameter is critical when querying funding data -- investor vs. target company changes the results entirely.
+- Empty results trigger fallback strategies (rephrased queries, broader date ranges) before reporting "no data."
+- Requires S&P Capital IQ MCP server to be configured.

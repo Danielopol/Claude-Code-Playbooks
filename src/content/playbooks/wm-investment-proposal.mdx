@@ -1,0 +1,97 @@
+---
+title: "Wealth Management Investment Proposal"
+description: "Create professional investment proposals for prospective clients covering your firm's approach, proposed allocation, expected outcomes, and fee structure."
+seoHook: "Pitching a new client means crafting a proposal that feels genuinely personalized -- not a templated deck with their name swapped in -- while covering your firm's philosophy, a tailored allocation strategy, realistic projections, and a clear transition plan that addresses their fear of switching advisors."
+targetAudience: "wealth managers, financial advisors, private bankers, family office managers"
+exampleUseCase: "\"Create an investment proposal for a tech executive with $5M in concentrated stock\" → 15-slide branded presentation with firm overview, personalized needs summary, diversification strategy addressing the concentrated position, Monte Carlo projections, transparent fee comparison, and a 90-day transition plan"
+category: "wealth-management"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "anthropic"
+sourceUrl: "https://github.com/anthropics/financial-services-plugins/tree/main/wealth-management/skills/investment-proposal"
+tags: ["wealth management", "investment proposal", "client acquisition", "prospect pitch"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+This playbook creates professional investment proposals for prospective clients. It structures a complete pitch covering your firm's approach, the prospect's specific needs, a proposed investment strategy with allocation rationale, projected outcomes, fee transparency, and a clear onboarding plan. The output is designed to feel personalized, not templated.
+
+**Important**: This workflow assists with proposal creation but does not provide financial advice. All proposals should be reviewed by compliance before presenting to prospects.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/InvestmentProposals
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+```bash
+mv ~/Downloads/wm-investment-proposal.md ~/Documents/InvestmentProposals/CLAUDE.md
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/InvestmentProposals
+claude
+```
+
+Try these prompts:
+
+```
+"Create an investment proposal for a retiring couple with $3M in 401(k) assets"
+"Build a prospect pitch for a business owner comparing us to robo-advisors"
+"Draft a proposal addressing a concentrated stock position in AAPL"
+```
+
+---
+
+## Proposal Structure
+
+The generated proposal follows a six-section format:
+
+1. **About Our Firm** (1 page) -- Overview, philosophy, team, service model
+2. **Understanding Your Needs** (1 page) -- Restated goals and concerns showing you listened
+3. **Proposed Investment Strategy** (2-3 pages) -- Asset allocation, vehicles, tax-aware strategy with rationale
+4. **Expected Outcomes** (1-2 pages) -- Growth scenarios, Monte Carlo projections, risk metrics
+5. **Fee Structure** (1 page) -- Transparent schedule, all-in cost, industry comparison
+6. **Getting Started** (1 page) -- Account opening, transfer timeline, 90-day plan
+
+---
+
+## Customization Tips
+
+- **Match the tone**: Corporate executive vs. small business owner vs. retiree -- each needs different language
+- **Concentrated stock**: If the prospect has a large single-stock position, address it directly with a diversification strategy
+- **Robo-advisor comparison**: Emphasize planning depth, relationship value, and tax optimization that robo platforms cannot match
+- **Price sensitivity**: Lead with total value and outcomes, not just fees
+- **Transition concerns**: Clients fear the disruption of switching advisors -- a clear transition plan with timeline reduces this friction
+
+---
+
+## Best Practices
+
+- **Personalize everything**: Reference their specific situation, goals, and concerns throughout
+- **Set realistic expectations**: Don't oversell performance -- emphasize process and risk management
+- **Include disclaimers**: Projections are hypothetical, past performance does not guarantee future results
+- **Follow up fast**: Send the proposal within 48 hours with a clear next step
+- **Compliance review**: All proposals must be reviewed before presenting to prospects
+
+---
+
+## Example Prompts
+
+```
+"Create a proposal for a prospect with $2M currently self-directed at Schwab"
+"Build a pitch deck for a dual-income couple in their 40s focused on early retirement"
+"Draft a fee comparison showing our value vs. a 1% AUM competitor"
+"Prepare a transition plan section for a client moving from another RIA"
+```

@@ -1,0 +1,75 @@
+---
+title: "Spreadsheet Data Cleaner"
+description: "Detect and fix messy spreadsheet data including whitespace issues, inconsistent casing, numbers stored as text, date problems, duplicates, and encoding issues."
+seoHook: "Messy spreadsheet data — inconsistent formatting, numbers stored as text, duplicate rows, garbled characters — turns a simple analysis into hours of manual cleanup before you can even start the real work."
+targetAudience: "financial analysts, data analysts, operations teams, FP&A professionals, accountants, anyone working with imported or consolidated spreadsheet data"
+exampleUseCase: "\"Clean this customer data export — fix the formatting issues and remove duplicates\" → Cleaned spreadsheet with trimmed whitespace, standardized dates, converted numbers, deduplicated rows, and a summary report of all changes made"
+category: "finance-accounting"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "anthropic"
+tags: ["data cleaning", "spreadsheet", "Excel", "data quality", "deduplication", "formatting"]
+createdAt: "2026-03-31"
+---
+
+## What This Does
+
+Provides a systematic workflow for cleaning messy spreadsheet data. Detects and fixes whitespace issues, inconsistent casing, numbers stored as text, date format problems, duplicates, blank cells, mixed-type columns, and encoding issues — all with user approval before applying changes.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a folder for your data cleaning work and place the downloaded template inside as `CLAUDE.md`.
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Start Working
+
+```
+"Clean this sales data — standardize the date formats and fix the text issues"
+"Remove duplicates and fix inconsistent company names in this spreadsheet"
+"This financial data has numbers stored as text — convert them and clean up the formatting"
+```
+
+## Cleaning Order
+
+Fixes are applied in a specific order to avoid cascading issues:
+
+1. **Encoding fixes** — Fix character encoding first since it affects all text operations
+2. **Whitespace** — TRIM and CLEAN all text cells
+3. **Casing standardization** — Title Case for names, UPPER for codes, etc.
+4. **Number conversion** — Convert numbers-as-text to actual numbers
+5. **Date standardization** — Convert all dates to ISO 8601 (YYYY-MM-DD)
+6. **Category consolidation** — Merge inconsistent labels ("USA" / "US" / "United States")
+7. **Duplicate removal** — Remove exact duplicates; flag near-duplicates for review
+8. **Blank handling** — Fill, flag, or remove blanks based on context
+
+## What Gets Detected
+
+| Check | Example |
+|-------|---------|
+| Leading/trailing whitespace | "  John Smith  " |
+| Numbers as text | Numeric values with text formatting |
+| Date inconsistencies | "01/15/2024" vs "2024-01-15" vs "Jan 15, 2024" |
+| Inconsistent categories | "USA", "US", "United States", "U.S." |
+| Duplicates | Exact and near-duplicate rows |
+| Special characters | Non-printable characters, BOM markers |
+| Outliers | Values far outside expected range |
+
+## Tips & Best Practices
+
+- **Always back up** your original data before running any cleaning operations
+- **Provide context**: Tell the assistant what each column represents so it can apply appropriate cleaning rules
+- **Specify preferred formats**: Date format, casing preferences, category names
+- **Flag columns to skip**: Some columns should not be cleaned (free-text notes, unique IDs with leading zeros)
+- **Set a materiality threshold**: For large datasets, focus on issues affecting more than 1% of rows first
+- **Iterate**: Run a first pass for critical issues, review, then run a second pass for refinements
+
+## Handling Specific Data Types
+
+The template includes specialized handling for phone numbers (strip non-numeric, standardize format), email addresses (lowercase, validate format, catch common typos like "gmial.com"), addresses (standardize abbreviations), and currency values (remove symbols, convert to numeric).

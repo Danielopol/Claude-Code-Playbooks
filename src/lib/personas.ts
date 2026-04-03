@@ -243,6 +243,57 @@ export const personas: PersonaInfo[] = [
     icon: 'Headphones',
     categories: ['customer-support', 'communications', 'knowledge-management'],
   },
+  // Financial Services personas — 55 playbooks across 5 categories
+  // 19 playbook matches (equity-research + finance-accounting)
+  {
+    id: 'equity-research-analysts',
+    name: 'Equity Research Analysts',
+    title: 'AI Tools for Equity Research Analysts',
+    description: 'Draft morning notes, build earnings models, initiate coverage, and track investment theses.',
+    seoDescription: 'Claude Code playbooks for equity research analysts — earnings analysis, sector overviews, coverage initiation, model updates, morning notes, and thesis tracking with AI.',
+    icon: 'TrendingUp',
+    categories: ['equity-research', 'finance-accounting', 'data-reporting'],
+  },
+  // 19 playbook matches (investment-banking + finance-accounting)
+  {
+    id: 'investment-bankers',
+    name: 'Investment Bankers',
+    title: 'AI Tools for Investment Bankers',
+    description: 'Build pitch decks, CIMs, merger models, buyer lists, and manage deal execution workflows.',
+    seoDescription: 'Claude Code playbooks for investment bankers — pitch decks, CIMs, merger models, LBO models, DCF valuation, buyer lists, and deal process management with AI.',
+    icon: 'Building',
+    categories: ['investment-banking', 'finance-accounting', 'executive-strategy'],
+  },
+  // 10 playbook matches
+  {
+    id: 'private-equity',
+    name: 'Private Equity Professionals',
+    title: 'AI Tools for Private Equity Professionals',
+    description: 'Screen deals, run due diligence, draft IC memos, and build value creation plans.',
+    seoDescription: 'Claude Code playbooks for private equity professionals — deal sourcing, due diligence, IC memos, portfolio monitoring, returns analysis, and value creation planning with AI.',
+    icon: 'Landmark',
+    categories: ['private-equity', 'finance-accounting', 'executive-strategy'],
+  },
+  // 6 playbook matches
+  {
+    id: 'wealth-managers',
+    name: 'Wealth Managers & Advisors',
+    title: 'AI Tools for Wealth Managers & Advisors',
+    description: 'Generate client reports, build financial plans, rebalance portfolios, and optimize tax strategies.',
+    seoDescription: 'Claude Code playbooks for wealth managers and financial advisors — client reporting, financial planning, portfolio rebalancing, investment proposals, and tax-loss harvesting with AI.',
+    icon: 'Wallet',
+    categories: ['wealth-management', 'finance-accounting', 'finance'],
+  },
+  // 8 playbook matches
+  {
+    id: 'traders',
+    name: 'Traders & Quant Analysts',
+    title: 'AI Tools for Traders & Quant Analysts',
+    description: 'Analyze fixed income, FX, options volatility, and build systematic trading strategies.',
+    seoDescription: 'Claude Code playbooks for traders and quantitative analysts — bond relative value, FX carry trade, options volatility, swap curves, macro rates monitoring, and portfolio analysis with AI.',
+    icon: 'BarChart3',
+    categories: ['trading-markets', 'data-reporting', 'finance-accounting'],
+  },
 ];
 
 export function getPersonaById(id: string): PersonaInfo | undefined {

@@ -150,3 +150,93 @@ When the user provides a blog post URL:
 3. This updates both `src/Blog.xlsx` and regenerates `src/lib/blog.ts`.
 
 To regenerate `blog.ts` from Excel without adding a new post: `npm run blog:sync`
+
+## Adding an Internal Blog Post (hosted on the site)
+
+Internal blog posts are real React pages at `src/app/blog/<slug>/page.tsx`. They open as full pages on the site instead of linking externally, which boosts SEO.
+
+### 1. Add metadata to `src/lib/blog-internal.ts`
+
+Add an entry to the `internalBlogPosts` array:
+
+```ts
+{
+  id: 'my-post-slug',
+  slug: 'my-post-slug',
+  title: 'My Blog Post Title',
+  description: 'A concise 1-2 sentence summary.',
+  category: 'guide',           // agent | mcp | tutorial | guide | news
+  difficulty: 'intermediate',  // basic | intermediate | advanced
+  readingTime: '8 min read',
+  featured: false,
+  thumbnailType: 'default',    // agent | mcp | template | skill | default
+  thumbnailTitle: 'Short Label',
+  tags: ['tag1', 'tag2'],
+  createdAt: '2026-04-04',
+  author: 'Author Name',       // optional
+},
+```
+
+### 2. Create the page
+
+Create `src/app/blog/my-post-slug/page.tsx`:
+
+```tsx
+import { Metadata } from 'next';
+import { BlogPostLayout } from '@/components/BlogPostLayout';
+
+export const metadata: Metadata = {
+  title: 'My Blog Post Title | Claude Code Playbooks Blog',
+  description: 'A concise 1-2 sentence summary.',
+  alternates: { canonical: '/blog/my-post-slug' },
+  openGraph: {
+    title: 'My Blog Post Title',
+    description: 'A concise 1-2 sentence summary.',
+    url: 'https://www.claudecodehq.com/blog/my-post-slug',
+    type: 'article',
+  },
+};
+
+export default function MyPostPage() {
+  return (
+    <BlogPostLayout
+      title="My Blog Post Title"
+      description="A concise 1-2 sentence summary."
+      category="guide"
+      difficulty="intermediate"
+      readingTime="8 min read"
+      createdAt="2026-04-04"
+      tags={['tag1', 'tag2']}
+      author="Author Name"
+      slug="my-post-slug"
+    >
+      {/* Write your blog post as normal JSX */}
+      <h2 className="text-2xl font-semibold text-foreground mt-10 mb-4 border-b border-[#30363d] pb-2">
+        Section Heading
+      </h2>
+      <p>
+        Your blog post content here. Use any React components, images, or layouts you want.
+      </p>
+    </BlogPostLayout>
+  );
+}
+```
+
+### 3. How it works
+
+- The slug in `blog-internal.ts` must match the folder name under `src/app/blog/`
+- Internal posts are automatically merged with external posts in the blog listing
+- Internal posts open on the site; external posts still open in a new tab
+- The `BlogPostLayout` component provides consistent header, metadata, JSON-LD, and footer
+- The body is regular JSX — full freedom for components, images, embeds, etc.
+
+### Key differences from external posts
+
+| | External (Excel) | Internal (TSX page) |
+|---|---|---|
+| Storage | `src/Blog.xlsx` → `src/lib/blog.ts` | `src/app/blog/<slug>/page.tsx` |
+| Listing metadata | `src/lib/blog.ts` (auto-generated) | `src/lib/blog-internal.ts` (manual) |
+| Opens | New tab (external URL) | `/blog/<slug>` on site |
+| Content | None (link only) | Full React page |
+| Add method | `npm run blog:add` | Create page + add metadata |
+| SEO benefit | Links away | Full page indexed by search engines |

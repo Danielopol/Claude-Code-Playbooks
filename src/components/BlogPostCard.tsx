@@ -37,11 +37,14 @@ interface BlogPostCardProps {
 }
 
 export function BlogPostCard({ post, variant = 'carousel' }: BlogPostCardProps) {
+  const isInternal = !!post.slug;
+  const href = isInternal ? `/blog/${post.slug}` : (post.url || '#');
+  const linkProps = isInternal ? {} : { target: '_blank' as const, rel: 'noopener noreferrer' };
+
   return (
     <Link
-      href={post.url}
-      target="_blank"
-      rel="noopener noreferrer"
+      href={href}
+      {...linkProps}
       className={`group block ${variant === 'carousel' ? 'flex-shrink-0 w-[280px]' : 'w-full'}`}
     >
       <div className="relative bg-[#161b22] border border-[#30363d] rounded-lg overflow-hidden hover:border-[#f97316] transition-colors">

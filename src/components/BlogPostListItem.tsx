@@ -53,11 +53,14 @@ interface BlogPostListItemProps {
 }
 
 export function BlogPostListItem({ post }: BlogPostListItemProps) {
+  const isInternal = !!post.slug;
+  const href = isInternal ? `/blog/${post.slug}` : (post.url || '#');
+  const linkProps = isInternal ? {} : { target: '_blank' as const, rel: 'noopener noreferrer' };
+
   return (
     <Link
-      href={post.url}
-      target="_blank"
-      rel="noopener noreferrer"
+      href={href}
+      {...linkProps}
       className="group block"
     >
       <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 p-4 bg-[#161b22] border border-[#30363d] rounded-lg hover:border-[#f97316] transition-colors">

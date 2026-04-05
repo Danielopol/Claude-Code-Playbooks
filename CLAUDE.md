@@ -62,6 +62,7 @@ category: "file-organization"  # Must match a Category type
 difficulty: "beginner"         # beginner | intermediate | advanced
 timeToSetup: "5 minutes"
 author: "community"
+sourceUrl: "https://..."       # URL where the playbook content originated (if provided)
 tags: ["tag1", "tag2"]
 createdAt: "2026-01-09"
 ---
@@ -120,6 +121,7 @@ Every category used by playbooks should appear in at least one persona's `catego
 
 ### Important rules for MDX content
 
+- **Source URL is required when a URL is provided.** If the user provides a URL as the source for a playbook (a gist, repo, blog post, etc.), you MUST add `sourceUrl: "the-url"` to the MDX frontmatter. This renders a "Source" button on the playbook page linking to the original content. Never omit it when the origin URL is known.
 - **DO NOT** include a "The CLAUDE.md Template" section or embed the template content in the MDX file. The template is served separately from `public/templates/{slug}.md` via the Download/Copy buttons on the playbook page. Embedding it inline is redundant.
 - The MDX file should only contain: a "What This Does" overview, setup instructions (Quick Start), enrichment sections (Tips, Examples, Limitations extracted from the template), and optionally Troubleshooting.
 - The build system reads the template from `public/templates/{slug}.md`. It falls back to extracting from the first markdown code block in the MDX only if no template file exists — but prefer always creating the separate template file.

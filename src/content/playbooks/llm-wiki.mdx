@@ -1,0 +1,99 @@
+---
+title: "LLM Wiki — Personal Knowledge Base"
+description: "Build a persistent, LLM-maintained wiki that compiles, cross-references, and synthesizes knowledge from your raw sources."
+seoHook: "RAG rediscovers knowledge from scratch every time you ask. What if your LLM actually built and maintained a real wiki — compiling sources once, cross-referencing everything, and getting smarter with every document you add?"
+targetAudience: "researchers, PKM enthusiasts, Obsidian power users, knowledge workers, writers with large reference libraries, anyone building a personal knowledge base"
+exampleUseCase: "\"Ingest this 40-page AI safety paper\" → Summary page created, 3 entity pages updated, 2 new concept pages generated, 12 cross-references added to existing wiki, 1 contradiction flagged with a prior source"
+category: "knowledge-management"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f"
+tags: ["wiki", "knowledge-base", "second-brain", "PKM", "research", "obsidian", "cross-referencing", "synthesis"]
+createdAt: "2026-04-05"
+---
+
+## What This Does
+
+Turns your LLM into a wiki curator. Instead of using RAG to re-derive answers from raw documents every time, this playbook has Claude **incrementally build a persistent wiki** — a structured collection of interlinked markdown files that sits between you and your raw sources. Every time you add a new source, Claude reads it, creates summary pages, updates entity and concept pages, adds cross-references, and flags contradictions. Knowledge compounds over time rather than being rediscovered from scratch.
+
+Inspired by Andrej Karpathy's [LLM Wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f).
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Project Folder
+
+```
+my-wiki/
+├── CLAUDE.md          ← download the template here
+├── sources/           ← drop your raw documents here
+│   ├── articles/
+│   ├── papers/
+│   └── data/
+└── wiki/              ← Claude builds this automatically
+    ├── index.md
+    └── log.md
+```
+
+Create the `sources/` and `wiki/` directories. Add empty `wiki/index.md` and `wiki/log.md` files.
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project folder as `CLAUDE.md`.
+
+### Step 3: Add Your First Sources
+
+Drop articles, papers, notes, or data files into `sources/`. Then open Claude Code and say:
+
+```
+Ingest all files in sources/
+```
+
+Claude will process each source — creating summaries, entity pages, concept pages, and cross-references.
+
+### Step 4: Start Querying
+
+```
+"What do I know about [topic]?"
+"Compare [X] and [Y]"
+"What are the gaps in my knowledge about [area]?"
+```
+
+Good answers get filed back into the wiki as exploration pages, so your queries compound over time.
+
+---
+
+## How It Works
+
+The system has three layers:
+
+- **Raw sources** — immutable documents you curate (articles, papers, data). Claude reads but never modifies these.
+- **The wiki** — markdown files Claude owns entirely: summaries, entity pages, concept pages, comparisons, synthesis. Claude creates, updates, and cross-references these.
+- **Special files** — `index.md` (content catalog) and `log.md` (chronological operation log) keep everything navigable.
+
+### Three Core Operations
+
+| Operation | What it does |
+|-----------|-------------|
+| **Ingest** | Process a new source → create summary, update entities/concepts, add cross-references, flag contradictions |
+| **Query** | Ask questions → synthesize answers from wiki pages with citations, file good answers back as new pages |
+| **Lint** | Health-check → find contradictions, orphan pages, missing cross-references, knowledge gaps |
+
+---
+
+## Tips & Best Practices
+
+- **Obsidian Web Clipper** converts web articles to markdown — fastest way to get sources into your collection.
+- **Obsidian graph view** visualizes your wiki — spot hubs, clusters, and orphan pages at a glance.
+- **Use git** for version history. The wiki is just a folder of markdown files, so branching and collaboration come free.
+- **Lint periodically.** Ask Claude to health-check the wiki every few weeks to catch stale claims and missing connections.
+- **File answers back.** When Claude gives you a great synthesis, say "file this into the wiki" so it compounds.
+- For large wikis, consider [qmd](https://github.com/tobi/qmd) for local hybrid BM25/vector search with LLM re-ranking.
+
+## Why This Works
+
+The tedious part of maintaining a knowledge base is bookkeeping — updating cross-references, keeping summaries current, flagging contradictions, maintaining consistency. Humans abandon wikis because maintenance burden grows faster than value. LLMs don't get bored, don't forget cross-references, and can touch fifteen files in one pass. The wiki stays maintained because maintenance cost drops to near zero.
+
+You curate sources, direct analysis, and ask good questions. Claude handles everything else.

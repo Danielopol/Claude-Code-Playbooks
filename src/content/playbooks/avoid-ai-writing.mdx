@@ -1,0 +1,96 @@
+---
+title: "AI Writing Pattern Remover"
+description: "Audit and rewrite content to remove AI-isms that make text sound machine-generated"
+seoHook: "Your AI-assisted content reads like every other AI-assisted content. Readers can spot it in seconds, and so can AI detection tools. The tells aren't just word choices like 'delve' and 'leverage' — they're structural patterns baked into how AI writes."
+targetAudience: "content marketers publishing AI-assisted articles, founders writing investor updates, bloggers who use AI drafts, communications teams reviewing AI-generated copy, freelance writers cleaning up AI output"
+exampleUseCase: "\"Audit this blog post for AI writing patterns\" → Flagged 14 AI-isms across vocabulary (delve, leverage, robust), structure (uniform paragraphs, rule-of-three), and formatting (em dash overuse, bold abuse) with a clean rewrite and diff summary"
+category: "research-writing"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Conor Bronsdon"
+sourceUrl: "https://github.com/conorbronsdon/avoid-ai-writing/blob/main/SKILL.md"
+tags: ["writing", "editing", "ai-detection", "content", "voice"]
+createdAt: "2026-04-08"
+---
+
+## What This Does
+
+Scans your writing for patterns that signal AI-generated text, then either flags them (detect mode) or rewrites the content to fix them (rewrite mode). Goes beyond simple word swaps to catch structural patterns like uniform paragraph length, synonym cycling, and significance inflation that AI detection tools weight heavily.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/AIWritingAudit
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/AIWritingAudit/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/AIWritingAudit
+claude
+```
+
+Drop your draft into the folder and ask Claude to audit it, or paste text directly.
+
+---
+
+## Two Modes
+
+**Rewrite mode** (default) audits, rewrites, shows a diff, then runs a second pass to catch anything that slipped through. Use this when you want clean output fast.
+
+**Detect mode** flags AI patterns without changing anything. Say "detect," "audit only," or "just flag" to activate it. Use this when you want to decide what to fix yourself, or when reviewing published content you don't want altered.
+
+---
+
+## What It Catches
+
+The playbook organizes AI writing patterns into a priority system:
+
+**P0 (credibility killers)** — Chatbot artifacts ("I hope this helps!"), cutoff disclaimers ("As of my last update"), vague attributions ("Experts believe"), and significance inflation on routine events.
+
+**P1 (obvious AI smell)** — Flagged vocabulary across three tiers (always-replace words like "delve" and "leverage," cluster flags like "harness" + "navigate" in the same paragraph, and density flags for overused words like "significant"). Also catches template phrases, "let's" openers, synonym cycling, formulaic openings, bold overuse, and em dash frequency.
+
+**P2 (stylistic polish)** — Generic conclusions, compulsive rule-of-three, uniform paragraph length, copula avoidance ("serves as" instead of "is"), and filler transitions.
+
+---
+
+## Context Profiles
+
+The template adjusts strictness based on content type. Specify a profile or let it auto-detect:
+
+- **blog** (default) — All rules at full strength
+- **linkedin** — Relaxed formatting rules, lists are fine
+- **technical-blog** — Technical terms like "robust" and "ecosystem" get a pass
+- **investor-email** — Extra strict on promotional language and inflation
+- **docs** — Clarity over voice, relaxed on structure
+- **casual** — Only catches P0 credibility killers
+
+---
+
+## Tips
+
+- For a quick pass, ask for "P0 and P1 only" to skip stylistic polish
+- The three-tier word system prevents false positives: common words like "significant" are only flagged when they saturate the text, not on sight
+- Structure matters more than vocabulary for AI detection. Fixing every flagged word but leaving uniform paragraph lengths won't fool detection tools
+- When writing *about* AI patterns (like a tutorial), quoted examples are automatically exempt from flagging
+- If the original writing is already strong, the template says so and makes minimal cuts rather than over-editing
+
+---
+
+## Limitations
+
+- Cannot verify factual claims or statistics referenced in the text
+- Word replacements are suggestions, not mandates. Context matters, and the right word is sometimes the flagged word
+- Detection mode identifies patterns but can't guarantee a text will pass any specific AI detection tool
+- Works best on English prose. Patterns may differ in other languages

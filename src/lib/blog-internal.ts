@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: '10-ways-ai-personal-assistant',
+    slug: '10-ways-ai-personal-assistant',
+    title: '10 Ways to Use AI as Your Personal Assistant (With Copy-Paste Prompts)',
+    description: 'Actionable prompts you can copy and paste right now to turn Claude Code into a personal assistant that handles your morning briefing, email triage, travel planning, and more.',
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '10 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'AI Assistant',
+    tags: ['AI personal assistant', 'AI productivity prompts', 'Claude Code prompts', 'productivity', 'automation', 'personal assistant', 'copy-paste prompts'],
+    createdAt: '2026-04-09',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-code-vs-chatgpt-vs-gemini',
     slug: 'claude-code-vs-chatgpt-vs-gemini',
     title: 'Claude Code vs ChatGPT vs Gemini: Which AI Coding Tool Should You Use?',

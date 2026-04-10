@@ -1,0 +1,123 @@
+---
+title: "Last 30 Days Social Research"
+description: "Research any topic across Reddit, X, YouTube, TikTok, Instagram, Hacker News, and Polymarket with multi-query social search"
+seoHook: "When you need to know what people are actually saying about a topic right now, searching one platform at a time takes forever and gives you a fragmented picture. This skill searches Reddit, X, YouTube, TikTok, Instagram, Hacker News, Polymarket, and the web in a single pass and synthesizes everything into one briefing."
+targetAudience: "marketers tracking brand sentiment, product managers researching competitors, journalists monitoring breaking stories, content creators spotting trends, founders validating ideas, anyone who needs to know what the internet thinks about something right now"
+exampleUseCase: "\"last30days AI video tools\" → Synthesized briefing pulling 30 Reddit threads (12K upvotes), 22 X posts (8K likes), 6 YouTube videos with transcripts, TikTok demos, and Polymarket predictions, with ranked recommendations, key patterns, and source-attributed quotes"
+category: "market-research"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "mvanhorn"
+sourceUrl: "https://github.com/mvanhorn/last30days-skill/blob/main/SKILL.md"
+tags: ["research", "social-media", "reddit", "twitter", "youtube", "tiktok", "trends", "competitive-intelligence"]
+createdAt: "2026-04-09"
+---
+
+## What This Does
+
+Searches Reddit, X/Twitter, YouTube, TikTok, Instagram, Hacker News, Polymarket, and the web simultaneously for any topic you give it. Resolves relevant handles, subreddits, and hashtags automatically, then runs multi-query searches across all platforms. The results are synthesized into a single briefing with source-attributed quotes, engagement stats, key patterns, and actionable insights.
+
+Supports five query types: recommendations ("best X"), comparisons ("X vs Y"), news, prompting techniques, and general research. Each type gets a tailored output format.
+
+---
+
+## Quick Start
+
+### Step 1: Clone the Repository
+
+The skill requires bundled Python scripts, so you need the full repo:
+
+```bash
+git clone https://github.com/mvanhorn/last30days-skill.git ~/.claude/skills/last30days
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then place it in your project:
+```bash
+mv ~/Downloads/CLAUDE.md ~/your-project/
+```
+
+Or use the skill directly from the cloned repo.
+
+### Step 3: Run Your First Search
+
+```bash
+cd ~/your-project
+claude
+```
+
+Then ask: "Research AI video tools across social media" or use the skill command format.
+
+---
+
+## Requirements
+
+- **Python 3.12+** (required)
+- **yt-dlp** (recommended, for YouTube search and transcripts): `pip install yt-dlp`
+- **gh CLI** (optional, for GitHub search): `brew install gh`
+
+### API Keys (all optional, skill works without them)
+
+The skill works out of the box with Reddit, Hacker News, Polymarket, and GitHub. Additional platforms unlock progressively:
+
+| Source | How to unlock | Cost |
+|--------|--------------|------|
+| Reddit (threads + comments) | No setup needed | Free |
+| Hacker News | No setup needed | Free |
+| Polymarket | No setup needed | Free |
+| GitHub | Install `gh` CLI | Free |
+| X/Twitter | Browser cookies (auto-detected) or xAI API key | Free |
+| YouTube | Install yt-dlp | Free |
+| TikTok + Instagram | ScrapeCreators API key | 10K free calls |
+| Bluesky | App password from bsky.app | Free |
+| Web search | Brave API key | 2K free queries/month |
+| Perplexity Sonar | OpenRouter API key | ~$0.02/run |
+
+Keys are stored in `~/.config/last30days/.env`. The first-run wizard walks you through setup.
+
+---
+
+## What You Get Back
+
+Every research run produces:
+
+1. **Pre-research intelligence** — auto-resolves X handles, subreddits, TikTok hashtags, and YouTube channels for your topic
+2. **Multi-platform search results** — Reddit threads with top comments, X posts with engagement, YouTube videos with transcript highlights, TikTok/Instagram captions, HN stories, Polymarket odds
+3. **Synthesized briefing** — key findings organized by theme (not by platform), with source-attributed quotes and engagement metrics
+4. **Stats dashboard** — exact counts of threads, posts, videos, views, likes, and top voices across all platforms
+5. **Raw data saved** — full results saved to `~/Documents/Last30Days/` for reference
+
+After the briefing, Claude stays in "expert mode" and can answer follow-up questions, go deeper on subtopics, or write prompts based on what it learned.
+
+---
+
+## Query Types
+
+- **Recommendations**: "best noise cancelling headphones" → ranked list with mention counts and source attribution
+- **Comparisons**: "Loom vs Tella" → side-by-side with community sentiment, strengths/weaknesses, and a verdict
+- **News**: "what's happening with OpenAI" → current events synthesized from social + web
+- **Prompting**: "AI video prompts for Midjourney" → techniques and copy-paste prompts from what the community actually uses
+- **General**: "remote work culture" → broad synthesis of what people are discussing
+
+---
+
+## Tips
+
+- Add context to your query for better results: "best CRM for solo founders" beats "best CRM"
+- Use `--quick` for faster results with fewer sources, `--deep` for exhaustive research
+- Use `--days=7` for a weekly roundup or `--days=90` for a quarterly view
+- For comparisons, the skill searches both entities individually AND head-to-head in a single pass
+- Polymarket odds are weighted heavily when available since real money on outcomes cuts through opinion
+- After research completes, ask follow-up questions without re-running the search. Claude remembers everything it found
+
+---
+
+## Limitations
+
+- Requires Python 3.12+ and works best with yt-dlp installed
+- X/Twitter search requires either browser cookies or an xAI API key
+- TikTok and Instagram require a ScrapeCreators API key (free tier: 10K calls)
+- Research quality scales with how many sources are configured. Zero-config mode (Reddit + HN + Polymarket) gives ~40% coverage; full setup gives ~100%
+- Cannot access private or paywalled content
+- Calorie and token costs vary by depth: quick runs are near-free, deep research with Perplexity Sonar costs ~$0.90/query

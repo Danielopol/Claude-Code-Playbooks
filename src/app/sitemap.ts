@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { personas } from '@/lib/personas';
+import { internalBlogPosts } from '@/lib/blog-internal';
 
 interface Playbook {
   slug: string;
@@ -152,5 +153,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticPages, ...categoryPages, ...personaIndexPage, ...personaPages, ...playbookPages];
+  // Internal blog post pages
+  const blogPostPages: MetadataRoute.Sitemap = internalBlogPosts.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: new Date(post.createdAt),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...categoryPages, ...personaIndexPage, ...personaPages, ...playbookPages, ...blogPostPages];
 }

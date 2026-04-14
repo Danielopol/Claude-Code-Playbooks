@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'how-to-build-an-ai-agent-from-scratch',
+    slug: 'how-to-build-an-ai-agent-from-scratch',
+    title: 'How to Build an AI Agent from Scratch: A Step-by-Step Guide',
+    description: 'A practical, end-to-end walkthrough for building your first AI agent — from defining its goal and picking the right model to giving it tools, memory, and the ability to run in parallel.',
+    category: 'tutorial',
+    difficulty: 'intermediate',
+    readingTime: '14 min read',
+    featured: true,
+    thumbnailType: 'agent',
+    thumbnailTitle: 'Build an Agent',
+    tags: ['build AI agent', 'AI agent tutorial', 'create AI agent', 'Claude Code', 'MCP', 'agents', 'tutorial'],
+    createdAt: '2026-04-14',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: '10-ways-ai-personal-assistant',
     slug: '10-ways-ai-personal-assistant',
     title: '10 Ways to Use AI as Your Personal Assistant (With Copy-Paste Prompts)',

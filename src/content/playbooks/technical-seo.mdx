@@ -1,0 +1,134 @@
+---
+title: "Technical Seo"
+description: "Deep technical SEO analysis."
+seoHook: "Marketing teams lose hours to ad-hoc, inconsistent technical seo work — Deep technical SEO analysis. Use when: optimizing crawlability, Core Web Vitals, rendering, redirects, or sitemaps. This playbook turns the process into a repeatable, brand-aware workflow."
+targetAudience: "SEO specialists, content marketers, technical SEO leads, growth marketers"
+exampleUseCase: "\"Run /technical-seo for our brand\" → Technical Seo workflow output with brand context, structured inputs captured, process steps executed, and a complete deliverable ready for review."
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://github.com/indranilbanerjee/digital-marketing-pro/blob/main/skills/technical-seo/SKILL.md"
+tags: ["technical", "seo"]
+createdAt: "2026-04-14"
+---
+
+## What This Does
+
+Deep technical SEO analysis.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a dedicated folder for this workflow (e.g. `~/marketing/technical-seo`).
+
+### Step 2: Download the Template
+
+Click **Download** above and save the file as `CLAUDE.md` in that folder.
+
+### Step 3: Run the Workflow
+
+Open the folder in Claude Code and describe your goal. Claude will prompt you for any missing inputs, follow the structured process, and produce a complete deliverable.
+
+---
+
+## Inputs You'll Need
+
+Claude will prompt for the brand context, objective, and any asset references needed to produce the deliverable.
+
+## How It Works
+
+**Primary Workflow: Technical SEO Audit & Optimization**
+
+1. **Site Health Snapshot**
+   - Pull current Core Web Vitals from CrUX or PageSpeed Insights (LCP, INP, CLS for mobile and desktop)
+   - Review Google Search Console index coverage report (valid, excluded, error, warning counts)
+   - Check for manual actions or security issues in GSC
+   - Note current crawl stats (pages crawled per day, average response time, crawl errors)
+   - Baseline: Document current organic traffic, indexed page count, and ranking positions for target keywords
+
+2. **Crawlability Analysis**
+   - Review robots.txt for blocking issues (critical resources, CSS/JS, important directories)
+   - Validate XML sitemap (well-formed, all important pages included, no non-indexable URLs, within 50K URL / 50MB limit)
+   - Assess crawl budget allocation (are crawlers spending time on low-value pages?)
+   - Check for crawl traps (infinite calendar pagination, session IDs in URLs, faceted navigation generating millions of URLs)
+   - Verify Googlebot can access all critical resources (CSS, JS, images needed for rendering)
+
+3. **Indexation Review**
+   - Audit canonical tags across page templates (self-referencing, cross-domain, parameterized URLs)
+   - Check for conflicting directives (canonical pointing to page A while noindex is set)
+   - Review meta robots directives across templates
+   - Identify index bloat (thin content, tag pages, internal search results, parameter variations)
+   - Verify pagination handling (paginated series, rel=canonical on component pages)
+   - Check for unintended noindex tags (common after staging-to-production migration)
+
+4. **Site Architecture Assessment**
+   - Map URL structure and identify depth issues (critical pages beyond 3 clicks from homepage)
+   - Analyze internal linking patterns (pages with high/low internal link counts, orphan pages)
+   - Evaluate information architecture (logical grouping, topic clusters, content silos)
+   - Review navigation structure (header, footer, sidebar, breadcrumbs)
+   - Check URL format consistency (trailing slashes, case sensitivity, parameter handling)
+
+5. **Page Speed Deep Dive**
+   - **LCP optimization**: Identify the LCP element, check server response time (TTFB < 800ms), audit render-blocking resources, verify image optimization (format, size, lazy loading, preload for above-fold)
+   - **INP optimization**: Identify long tasks (> 50ms), audit event handlers, check for main thread blocking, review third-party script impact
+   - **CLS optimization**: Check for images/iframes without explicit dimensions, dynamic content injection above the fold, web font loading causing layout shift, ad slot reservations
+   - Audit third-party scripts for performance impact (tag managers, analytics, chat widgets, A/B testing tools)
+   - Review caching headers (Cache-Control, ETag, Expires) and CDN configuration
+
+6. **Mobile-First Compliance Check**
+   - Verify content parity between mobile and desktop rendered versions
+   - Check for mobile-specific rendering issues (viewport configuration, touch targets, font sizes)
+   - Test mobile page speed separately (mobile networks have higher latency)
+   - Review structured data presence on mobile version (must match desktop)
+   - Check for lazy-loaded content that Googlebot might miss on mobile
+
+7. **JavaScript SEO Evaluation**
+   - Determine rendering strategy (CSR, SSR, SSG, ISR, hybrid)
+   - Test Googlebot rendering using URL Inspection tool (rendered HTML vs raw HTML)
+   - Check if critical content and links require JavaScript to render
+   - Assess JavaScript crawl budget impact (render queue delays)
+   - Review client-side routing and its impact on crawlability
+   - Verify meta tags and canonicals are in the server-rendered HTML (not injected by JS)
+
+8. **Redirect Chain Audit**
+   - Identify redirect chains (more than 1 hop) and redirect loops
+   - Check for mixed 301/302 usage (302s that should be 301s)
+   - Audit HTTPS redirect implementation (HTTP to HTTPS, www to non-www or vice versa)
+   - Verify redirects from old URLs after any past migrations
+   - Assess redirect response time impact on crawl efficiency
+
+9. **Structured Data Validation**
+   - Audit existing schema markup for errors and warnings (Google Rich Results Test)
+   - Identify missing schema opportunities based on content types
+   - Validate JSON-LD syntax and nesting
+   - Check for rich result eligibility (FAQ, HowTo, Product, Review, Breadcrumb, etc.)
+   - Verify schema matches visible on-page content (no hidden/misleading markup)
+
+10. **International SEO Review** (if applicable)
+    - Validate hreflang implementation (self-referencing tags, x-default, return links)
+    - Check for hreflang conflicts with canonical tags
+    - Verify geotargeting settings in Google Search Console
+    - Assess URL structure for international versions
+    - Review content localization vs translation quality signals
+
+11. **Security Assessment**
+    - Verify full HTTPS implementation (no mixed content)
+    - Check HSTS header presence and configuration
+    - Review security headers (CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy)
+    - Verify SSL certificate validity and chain
+    - Check for exposed sensitive files (wp-config.php, .env, .git)
+
+12. **Prioritized Recommendation Plan**
+    - Score each finding by impact (high/medium/low) and effort (quick win/medium/major project)
+    - Create an impact/effort matrix to visualize priority
+    - Group recommendations into: Immediate fixes (0-48 hours), Short-term wins (1-2 weeks), Medium-term projects (2-8 weeks), Long-term strategic initiatives (2-6 months)
+    - Estimate traffic recovery or growth potential for each fix category
+    - Provide implementation specs for the top 5 highest-priority items
+
+## What You Get
+
+A complete, brand-aligned deliverable ready to review, share, or hand off to execution.

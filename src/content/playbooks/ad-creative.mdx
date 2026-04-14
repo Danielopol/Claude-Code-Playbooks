@@ -1,0 +1,69 @@
+---
+title: "Ad Creative"
+description: "Generate platform-specific ad copy."
+seoHook: "Marketing teams lose hours to ad-hoc, inconsistent ad creative work — Generate platform-specific ad copy. Use when: Google RSA, Meta, LinkedIn, TikTok ad variations with quality scoring. This playbook turns the process into a repeatable, brand-aware workflow."
+targetAudience: "paid media managers, performance marketers, media buyers, growth marketers"
+exampleUseCase: "\"Run /ad-creative for our brand\" → Ad Creative workflow output with brand context, structured inputs captured, process steps executed, and a complete deliverable ready for review."
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://github.com/indranilbanerjee/digital-marketing-pro/blob/main/skills/ad-creative/SKILL.md"
+tags: ["creative"]
+createdAt: "2026-04-14"
+---
+
+## What This Does
+
+Generate high-performing ad copy variations tailored to specific platforms and formats. Each variation is scored for quality and compliance, with recommendations for testing strategy.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a dedicated folder for this workflow (e.g. `~/marketing/ad-creative`).
+
+### Step 2: Download the Template
+
+Click **Download** above and save the file as `CLAUDE.md` in that folder.
+
+### Step 3: Run the Workflow
+
+Open the folder in Claude Code and describe your goal. Claude will prompt you for any missing inputs, follow the structured process, and produce a complete deliverable.
+
+---
+
+## Inputs You'll Need
+
+The user must provide (or will be prompted for):
+
+- **Product/service**: What is being advertised
+- **Platform(s)**: Google Ads, Meta (Facebook/Instagram), LinkedIn, TikTok, X, Pinterest
+- **Ad format**: RSA, single image, carousel, video script, story, etc.
+- **Campaign objective**: Awareness, traffic, leads, conversions, app installs
+- **Target audience**: Who the ads are for
+- **Key offer/CTA**: Promotion, value prop, or desired action
+- **Landing page URL**: Where the ad will drive traffic (optional)
+
+## How It Works
+
+1. **Load brand context**: Read `~/.claude-marketing/brands/_active-brand.json` for the active slug, then load `~/.claude-marketing/brands/{slug}/profile.json`. Apply brand voice, compliance rules for target markets (`skills/context-engine/compliance-rules.md`), and industry context. **Also check for guidelines** at `~/.claude-marketing/brands/{slug}/guidelines/_manifest.json` — if present, load restrictions and relevant category files. Check for custom templates at `~/.claude-marketing/brands/{slug}/templates/`. Check for agency SOPs at `~/.claude-marketing/sops/`. If no brand exists, ask: "Set up a brand first (/dm:brand-setup)?" — or proceed with defaults.
+2. Identify platform-specific constraints: character limits, format requirements, policy restrictions
+3. Generate 3-5 ad copy variations per platform, each with a distinct angle (benefit, urgency, social proof, curiosity, direct)
+4. Score each variation on: brand alignment, clarity, emotional impact, CTA strength, policy compliance
+5. Flag any potential policy violations (restricted claims, prohibited language)
+6. Recommend A/B testing groupings and priority order
+7. If landing page URL is provided, check message match between ad and page
+
+## What You Get
+
+Per platform, a set of ad copy variations including:
+
+- Headlines, descriptions, and CTAs formatted to platform specifications
+- Quality score (1-10) with reasoning per variation
+- Policy compliance check with flagged issues
+- A/B testing recommendation with hypothesis for each test
+- Message match assessment (if landing page provided)
+- Creative direction notes for visual/video assets

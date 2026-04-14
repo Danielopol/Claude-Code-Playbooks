@@ -1,0 +1,135 @@
+---
+title: "Analytics Insights"
+description: "Analyze marketing performance."
+seoHook: "Marketing teams lose hours to ad-hoc, inconsistent analytics insights work — Analyze marketing performance. Use when: KPI frameworks, attribution modeling, anomaly investigation, measurement strategy. This playbook turns the process into a repeatable, brand-aware workflow."
+targetAudience: "marketing analysts, growth analysts, BI leads"
+exampleUseCase: "\"Run /analytics-insights for our brand\" → Analytics Insights workflow output with brand context, structured inputs captured, process steps executed, and a complete deliverable ready for review."
+category: "data-reporting"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://github.com/indranilbanerjee/digital-marketing-pro/blob/main/skills/analytics-insights/SKILL.md"
+tags: ["analytics", "insights"]
+createdAt: "2026-04-14"
+---
+
+## What This Does
+
+Analyze marketing performance.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a dedicated folder for this workflow (e.g. `~/marketing/analytics-insights`).
+
+### Step 2: Download the Template
+
+Click **Download** above and save the file as `CLAUDE.md` in that folder.
+
+### Step 3: Run the Workflow
+
+Open the folder in Claude Code and describe your goal. Claude will prompt you for any missing inputs, follow the structured process, and produce a complete deliverable.
+
+---
+
+## Inputs You'll Need
+
+Claude will prompt for the brand context, objective, and any asset references needed to produce the deliverable.
+
+## How It Works
+
+**Primary Workflow: Measurement Framework & Reporting**
+
+1. **Business Context & Goal Alignment**
+   - Classify the business model and maturity stage
+   - Identify the north star metric (the single metric most tied to business value)
+   - Map business goals to marketing objectives to tactical metrics (KPI tree)
+   - Determine reporting audience and their decision-making needs
+
+2. **KPI Tree Construction**
+   - Start with the top-level business goal (revenue, growth, profitability)
+   - Break into marketing contribution metrics (marketing-sourced revenue, CAC, LTV)
+   - Decompose into channel-level metrics (channel CPA, ROAS, conversion rate)
+   - Add leading indicators (traffic, engagement, pipeline, MQLs)
+   - For each KPI, define:
+     - **Definition**: Exactly how it is calculated (no ambiguity)
+     - **Source**: Where the data comes from
+     - **Benchmark**: Target or industry benchmark
+     - **Cadence**: How often it is reviewed
+     - **Owner**: Who is responsible for this metric
+   - Limit the framework to 15-25 KPIs total — more causes metric fatigue and diluted focus
+
+3. **Reporting Template Design**
+   - **Weekly Snapshot** (for marketing team):
+     - Key metrics vs. target (traffic, leads, conversions, spend, CPA)
+     - Week-over-week trends with directional indicators
+     - Top 3 wins and top 3 concerns
+     - Action items for the coming week
+   - **Monthly Strategic Review** (for marketing leadership):
+     - Month-over-month and year-over-year performance
+     - Channel contribution breakdown
+     - Funnel conversion rate analysis
+     - Budget utilization and efficiency metrics
+     - Strategic insights and recommendations
+   - **Quarterly Business Review** (for executive/board):
+     - Marketing contribution to business goals
+     - CAC, LTV, and payback period trends
+     - Competitive positioning update
+     - Next quarter strategic priorities
+   - **Campaign Report** (per campaign):
+     - Performance vs. pre-defined KPIs
+     - Channel-by-channel analysis
+     - Creative and audience performance
+     - Learnings and recommendations
+
+4. **Anomaly Investigation Protocol**
+   When a user reports a sudden metric change, follow this diagnostic sequence:
+
+   - **Step 1: Verify the Data**
+     - Is the tracking code still firing correctly?
+     - Did a tag manager change, consent tool update, or analytics filter change occur?
+     - Check for platform outages or reporting delays
+     - If data is corrupted, fix tracking first — do not analyze bad data
+
+   - **Step 2: Define the Anomaly Precisely**
+     - Which metric changed? By how much? Over what time period?
+     - Is it all traffic or a specific segment (channel, device, geography, page)?
+     - Did it happen suddenly or gradually?
+
+   - **Step 3: Check External Factors**
+     - Google algorithm update (check SEMrush Sensor, MozCast)
+     - Industry news or seasonal patterns
+     - Competitor activity changes
+     - Platform policy or feature changes
+
+   - **Step 4: Check Internal Factors**
+     - Website changes (deployments, URL changes, redirects)
+     - Content changes (published, removed, or modified)
+     - Campaign changes (launched, paused, budget shifted)
+     - Technical issues (site speed, server errors, mobile rendering)
+
+   - **Step 5: Isolate and Diagnose**
+     - Cross-reference the anomaly with the identified factors
+     - Determine the most likely root cause
+     - Estimate the impact and expected recovery timeline
+     - Recommend corrective actions
+
+5. **Privacy-First Measurement Architecture**
+   - Audit current measurement for privacy compliance gaps
+   - Design a measurement stack that works without third-party cookies:
+     - Server-side tracking for owned touchpoints
+     - First-party data enrichment strategy
+     - Privacy-compliant consent management
+     - Platform-native conversion APIs (Meta CAPI, Google Enhanced Conversions)
+     - Modeled conversions for attribution gaps
+     - Marketing mix modeling for channel-level effectiveness
+     - Incrementality testing for causal validation
+   - Create a transition plan from current state to privacy-first architecture
+   - Account for iOS ATT impact on iOS-heavy audience segments
+
+## What You Get
+
+A complete, brand-aligned deliverable ready to review, share, or hand off to execution.

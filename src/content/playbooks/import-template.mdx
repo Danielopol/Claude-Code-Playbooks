@@ -1,0 +1,92 @@
+---
+title: "Import Template"
+description: "Import deliverable templates."
+seoHook: "Marketing teams lose hours to ad-hoc, inconsistent import template work — Import deliverable templates. Use when: adding proposal formats, report structures, or brief templates. This playbook turns the process into a repeatable, brand-aware workflow."
+targetAudience: "digital marketers, marketing managers, growth marketers"
+exampleUseCase: "\"Run /import-template for our brand\" → Import Template workflow output with brand context, structured inputs captured, process steps executed, and a complete deliverable ready for review."
+category: "productivity"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://github.com/indranilbanerjee/digital-marketing-pro/blob/main/skills/import-template/SKILL.md"
+tags: ["import", "template"]
+createdAt: "2026-04-14"
+---
+
+## What This Does
+
+Import deliverable templates that define the output format for plugin commands. Templates specify section structure, content requirements, and formatting rules for proposals, reports, briefs, presentations, and other marketing deliverables.
+
+When a command like `/dm:performance-report` runs, it checks for a custom template first. If one exists, the output follows the template format instead of the default.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a dedicated folder for this workflow (e.g. `~/marketing/import-template`).
+
+### Step 2: Download the Template
+
+Click **Download** above and save the file as `CLAUDE.md` in that folder.
+
+### Step 3: Run the Workflow
+
+Open the folder in Claude Code and describe your goal. Claude will prompt you for any missing inputs, follow the structured process, and produce a complete deliverable.
+
+---
+
+## Inputs You'll Need
+
+The user provides:
+
+- **Template content**: Pasted template structure, section headings, or format specifications
+- **Template name**: What this template is for (e.g., "proposal", "performance-report", "content-brief", "campaign-plan")
+- **Description** (optional): When to use this template
+
+If the user doesn't provide a name, infer it from the content structure.
+
+## How It Works
+
+1. **Load brand context**: Read `~/.claude-marketing/brands/_active-brand.json` for the active slug, then load `~/.claude-marketing/brands/{slug}/profile.json`. Apply brand voice, compliance rules for target markets (`skills/context-engine/compliance-rules.md`), and industry context. **Also check for existing guidelines** at `~/.claude-marketing/brands/{slug}/guidelines/_manifest.json` — if present, load restrictions and relevant category files. Check for custom templates at `~/.claude-marketing/brands/{slug}/templates/`. Check for agency SOPs at `~/.claude-marketing/sops/`. If no brand exists, ask: "Set up a brand first (/dm:brand-setup)?" — or proceed with defaults.
+
+2. **Analyze the template structure**:
+   - Identify section headings and hierarchy
+   - Note content requirements per section (length, data points, format)
+   - Identify placeholder markers for dynamic content
+   - Detect format preferences (bullet vs. narrative, data-heavy vs. summary)
+
+3. **Structure into a reusable template**:
+   - Preserve all section headings and ordering
+   - Add content guidance comments (what goes in each section)
+   - Mark which sections are required vs. optional
+   - Include format notes (max length, style requirements)
+   - Add placeholder syntax: `{{variable_name}}` for dynamic content
+
+4. **Map to commands** — Identify which plugin commands should use this template:
+   - Template named "performance-report" → `/dm:performance-report`
+   - Template named "proposal" → campaign plan outputs
+   - Template named "content-brief" → `/dm:content-brief`
+   - Custom templates can be referenced by any module
+
+5. **Check for existing templates** — If a template with this name already exists:
+   - Show the current template
+   - Ask: replace (overwrite) or keep both (rename new one)
+
+6. **Save the template**:
+   - Save using `guidelines-manager.py --brand {slug} --action save-template --name {name}`
+   - Or write directly to `~/.claude-marketing/brands/{slug}/templates/{name}.md`
+   - Update the template manifest with name and description
+
+7. **Confirm and explain usage**:
+   - Show which commands will use this template
+   - Explain that the template applies to this brand only
+   - Note: agency-wide templates can be duplicated across brands
+
+## What You Get
+
+- Confirmation with template name and section count
+- Preview of the structured template
+- List of commands that will use this template
+- Suggestion: "Next time you run `/dm:{matching-command}`, the output will follow this template format."

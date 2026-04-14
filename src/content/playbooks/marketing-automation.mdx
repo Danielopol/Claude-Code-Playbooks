@@ -1,0 +1,96 @@
+---
+title: "Marketing Automation"
+description: "Design marketing automation workflows."
+seoHook: "Marketing teams lose hours to ad-hoc, inconsistent marketing automation work — Design marketing automation workflows. Use when: building lead scoring, nurture sequences, drip campaigns, or behavioral triggers. This playbook turns the process into a repeatable, brand-aware workflow."
+targetAudience: "competitive intelligence analysts, strategists, marketing leaders"
+exampleUseCase: "\"Run /marketing-automation for our brand\" → Marketing Automation workflow output with brand context, structured inputs captured, process steps executed, and a complete deliverable ready for review."
+category: "productivity"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://github.com/indranilbanerjee/digital-marketing-pro/blob/main/skills/marketing-automation/SKILL.md"
+tags: ["marketing", "automation"]
+createdAt: "2026-04-14"
+---
+
+## What This Does
+
+Design marketing automation workflows.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a dedicated folder for this workflow (e.g. `~/marketing/marketing-automation`).
+
+### Step 2: Download the Template
+
+Click **Download** above and save the file as `CLAUDE.md` in that folder.
+
+### Step 3: Run the Workflow
+
+Open the folder in Claude Code and describe your goal. Claude will prompt you for any missing inputs, follow the structured process, and produce a complete deliverable.
+
+---
+
+## Inputs You'll Need
+
+Claude will prompt for the brand context, objective, and any asset references needed to produce the deliverable.
+
+## How It Works
+
+**Primary Workflow: Automation Strategy & Build**
+
+1. **Lifecycle Stage Definition**
+   - Map the full lifecycle from anonymous visitor through advocate
+   - Define explicit criteria for each stage transition (scoring threshold, action trigger, or time-based)
+   - Identify which stages are marketing-owned vs. sales-owned
+   - Establish SLAs for stage transitions (e.g., MQL-to-SQL response time)
+
+2. **Lead Scoring Model Design**
+   - Build explicit scoring based on demographic/firmographic fit
+   - Layer implicit scoring from behavioral engagement signals
+   - Add negative scoring for disqualifiers and inactivity decay
+   - Set MQL and SQL thresholds with the sales team
+   - Define the handoff process and feedback loop for scoring accuracy
+
+3. **Workflow Architecture**
+   - Map all required automation workflows (welcome, nurture, scoring, handoff, re-engagement, etc.)
+   - For each workflow, define: trigger, entry criteria, steps, branching logic, wait times, exit conditions, and success metric
+   - Design cross-channel coordination rules (when to email vs. SMS vs. push)
+   - Build suppression and frequency capping logic to prevent over-communication
+
+4. **Nurture Sequence Design**
+   - Map content to each lifecycle stage and persona
+   - Design cadence and timing based on business model (B2B vs. B2C) and industry benchmarks
+   - Layer personalization: name, company, industry, behavior-based content blocks, stage-appropriate messaging
+   - Define exit triggers (converted, unsubscribed, disqualified, moved to different sequence)
+   - Plan A/B tests within sequences (subject lines, send times, content variants)
+
+5. **Implementation & Testing**
+   - Build workflows in the MAP with proper naming conventions
+   - Test every branch path with sample contacts before activation
+   - Verify integrations fire correctly (CRM sync, scoring updates, handoff notifications)
+   - Confirm suppression rules prevent conflicts between active workflows
+   - Set up monitoring alerts for error rates and unexpected drops in flow completion
+
+6. **Optimization & Reporting**
+   - Define KPIs per workflow (completion rate, conversion rate, time-to-convert, engagement rate)
+   - Build reporting dashboard for automation program performance
+   - Establish review cadence (weekly for active campaigns, monthly for scoring model accuracy)
+   - Document learnings and feed back into workflow refinement
+
+**Secondary Workflow: Automation Audit & Optimization**
+
+1. Pull inventory of all active workflows, their trigger conditions, and current performance
+2. Identify zombie workflows (active but no contacts entering), underperformers (low completion or conversion), and conflicts (overlapping triggers or suppression gaps)
+3. Audit lead scoring accuracy by comparing score-to-conversion correlation
+4. Review data hygiene (duplicate rates, field completeness, decay)
+5. Assess deliverability health (bounce rates, spam complaints, authentication status)
+6. Prioritize fixes by revenue impact and implementation effort
+
+## What You Get
+
+A complete, brand-aligned deliverable ready to review, share, or hand off to execution.

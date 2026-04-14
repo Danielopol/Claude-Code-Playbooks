@@ -1,0 +1,80 @@
+---
+title: "Programmatic Seo"
+description: "Plan programmatic SEO pages."
+seoHook: "Marketing teams lose hours to ad-hoc, inconsistent programmatic seo work — Plan programmatic SEO pages. Use when: building template engines, URL patterns, thin content safeguards, or quality gates. This playbook turns the process into a repeatable, brand-aware workflow."
+targetAudience: "SEO specialists, content marketers, technical SEO leads, growth marketers"
+exampleUseCase: "\"Run /programmatic-seo for our brand\" → Programmatic Seo workflow output with brand context, structured inputs captured, process steps executed, and a complete deliverable ready for review."
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://github.com/indranilbanerjee/digital-marketing-pro/blob/main/skills/programmatic-seo/SKILL.md"
+tags: ["programmatic", "seo"]
+createdAt: "2026-04-14"
+---
+
+## What This Does
+
+Plan and audit SEO pages generated at scale from structured data sources (databases, APIs, CSV/JSON files). Enforces quality gates to prevent thin content penalties, index bloat, and Google's Scaled Content Abuse policy.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a dedicated folder for this workflow (e.g. `~/marketing/programmatic-seo`).
+
+### Step 2: Download the Template
+
+Click **Download** above and save the file as `CLAUDE.md` in that folder.
+
+### Step 3: Run the Workflow
+
+Open the folder in Claude Code and describe your goal. Claude will prompt you for any missing inputs, follow the structured process, and produce a complete deliverable.
+
+---
+
+## Inputs You'll Need
+
+The user must provide (or will be prompted for):
+
+- **URL or data source**: Existing programmatic pages to audit, or data source details for planning
+- **Page type**: What kind of pages are being generated (location, product, integration, glossary, template, tool)
+- **Data source**: CSV/JSON files, API endpoints, database queries — or existing pages to analyze
+- **Target scale**: How many pages will be generated
+- **Current status**: New build or auditing existing programmatic pages
+
+## How It Works
+
+1. **Load brand context**: Read `~/.claude-marketing/brands/_active-brand.json` for the active slug, then load `~/.claude-marketing/brands/{slug}/profile.json`. Apply industry context and compliance rules. Check for brand guidelines at `~/.claude-marketing/brands/{slug}/guidelines/_manifest.json`.
+2. **Data source assessment**: Evaluate the data powering programmatic pages — row count, column uniqueness, missing values, duplicate detection (>80% field overlap), data freshness
+3. **Template engine planning**: Design templates that produce genuinely unique pages — variable injection points, content blocks (static vs dynamic), conditional logic, supplementary content. Validate each page passes the "standalone value test"
+4. **URL pattern strategy**: Design URL hierarchy — lowercase hyphenated slugs, logical structure, uniqueness enforcement, under 100 characters, consistent trailing slash
+5. **Internal linking automation**: Hub/spoke model, related items (3-5 per page), breadcrumbs with BreadcrumbList schema, cross-linking by shared attributes, varied anchor text
+6. **Thin content safeguard check**: Apply quality gates (see below)
+7. **Canonical strategy**: Self-referencing canonicals, parameter handling, pagination strategy, manual page priority
+8. **Sitemap integration**: Auto-generate entries, split at 50K URLs, `<lastmod>` from actual data timestamps, exclude noindexed pages
+9. **Index bloat prevention**: Noindex low-value pages, pagination handling, faceted navigation canonicalization, crawl budget monitoring for 10K+ pages
+10. **Score and report**: Score each dimension, produce prioritized action plan
+
+## What You Get
+
+A structured programmatic SEO assessment containing:
+
+### Programmatic SEO Score: XX/100
+
+| Category | Status | Score |
+|----------|--------|-------|
+| Data Quality | score | /100 |
+| Template Uniqueness | score | /100 |
+| URL Structure | score | /100 |
+| Internal Linking | score | /100 |
+| Thin Content Risk | score | /100 |
+| Index Management | score | /100 |
+
+- Critical issues (fix immediately)
+- High priority (fix within 1 week)
+- Medium priority (fix within 1 month)
+- Recommendations: data source improvements, template modifications, URL pattern adjustments, quality gate compliance actions
+- Progressive rollout plan with batch sizes and monitoring checkpoints

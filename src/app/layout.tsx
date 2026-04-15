@@ -165,6 +165,9 @@ function Footer() {
           <a href="https://neeed.directory/products/claude-code-playbooks?utm_source=claude-code-playbooks" target="_blank" rel="noopener">
             <Image src="https://neeed.directory/badges/neeed-badge-light.svg" alt="Featured on neeed.directory" width={139} height={32} unoptimized />
           </a>
+          <a href="https://www.foundrlist.com/product/claudecodeplaybooks?utm_source=badge&utm_medium=embed" target="_blank" rel="noopener">
+            <Image src="https://www.foundrlist.com/api/badge/claudecodeplaybooks" alt="Featured on FoundrList" width={150} height={48} unoptimized />
+          </a>
         </div>
       </div>
     </footer>

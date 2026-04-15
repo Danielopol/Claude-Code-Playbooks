@@ -1,0 +1,58 @@
+---
+title: "LLM Coding Guardrails"
+description: "Four behavioral guidelines that reduce the most common Claude coding mistakes: silent assumptions, overcomplication, scope creep, and vague success criteria."
+seoHook: "Claude confidently ships 200 lines when 50 would do, refactors code you didn't ask it to touch, and declares 'done' before verifying anything works — these four rules put a stop to it."
+targetAudience: "software engineers, tech leads, senior developers, staff engineers, engineering managers using Claude Code daily"
+exampleUseCase: "\"Add input validation to the signup form\" → Claude states assumptions, asks about edge cases, writes a failing test, adds the minimum validation to pass it, and stops — no adjacent refactors, no speculative config flags"
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "2 minutes"
+author: "community"
+sourceUrl: "https://github.com/forrestchang/andrej-karpathy-skills/blob/main/CLAUDE.md"
+tags: ["claude-md", "guardrails", "code-quality", "best-practices", "prompting"]
+createdAt: "2026-04-15"
+---
+
+## What This Does
+
+Drops four behavioral rules into your project's CLAUDE.md that target the failure modes Claude exhibits most often in coding tasks:
+
+1. **Think Before Coding** — surface assumptions and ambiguity instead of silently picking an interpretation
+2. **Simplicity First** — no speculative abstractions, no unrequested features, no error handling for impossible cases
+3. **Surgical Changes** — edit only what the task requires; don't "improve" adjacent code
+4. **Goal-Driven Execution** — translate tasks into verifiable success criteria and loop until met
+
+The guidelines bias toward caution over speed — use judgment on trivial tasks.
+
+---
+
+## Quick Start
+
+### Step 1: Download the template
+
+Click **Download** above to grab the CLAUDE.md content.
+
+### Step 2: Merge into your project's CLAUDE.md
+
+Append the four sections to the existing CLAUDE.md at your repo root, or drop it in as-is if you don't have one yet. It composes cleanly with project-specific instructions.
+
+### Step 3: Observe the diffs
+
+You should notice: smaller diffs, fewer unrelated changes, clarifying questions arriving before implementation instead of after a rewrite.
+
+## Tips
+
+- **Keep it near the top of CLAUDE.md.** Behavioral rules work best when loaded early in context.
+- **Customize rule 4 with your test commands.** Replace generic "write a test" language with the actual command (`npm test`, `pytest -k`, etc.) for better loop execution.
+- **Pair with a test-first workflow.** Rule 4 assumes tests exist or can be written — weak on codebases without any test harness.
+
+## When to Skip These Rules
+
+The source notes explicitly: *for trivial tasks, use judgment*. One-line fixes, typos, or throwaway scripts don't need a five-step verification plan. The guardrails earn their weight on multi-file changes, ambiguous requests, and work in unfamiliar codebases.
+
+## Signals It's Working
+
+- Diffs touch only lines that trace to the request
+- Clarifying questions arrive before the first edit, not after a rewrite
+- Fewer "I also cleaned up X while I was there" moments
+- Multi-step tasks come with a numbered plan and per-step verification checks

@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'complete-guide-to-mcp-servers',
+    slug: 'complete-guide-to-mcp-servers',
+    title: 'The Complete Guide to MCP Servers: What They Are and How to Build One',
+    description: 'Everything you need to know about the Model Context Protocol — what MCP servers are, why they matter, and a step-by-step walkthrough for building your own.',
+    category: 'mcp',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'mcp',
+    thumbnailTitle: 'MCP Guide',
+    tags: ['MCP server', 'model context protocol', 'MCP tutorial', 'Claude Code', 'agents', 'tools', 'integration'],
+    createdAt: '2026-04-16',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'how-to-build-an-ai-agent-from-scratch',
     slug: 'how-to-build-an-ai-agent-from-scratch',
     title: 'How to Build an AI Agent from Scratch: A Step-by-Step Guide',

@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'ai-financial-modeling-dcf-lbo-3-statement',
+    slug: 'ai-financial-modeling-dcf-lbo-3-statement',
+    title: 'How to Use AI for Financial Modeling: DCF, LBO, and 3-Statement Models',
+    description: 'A practical guide for finance professionals on using AI to build, audit, and iterate on DCF valuations, LBO models, and fully linked 3-statement models — faster than spreadsheet-first workflows.',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '15 min read',
+    featured: true,
+    thumbnailType: 'template',
+    thumbnailTitle: 'AI Finance',
+    tags: ['AI financial modeling', 'AI DCF model', 'AI for finance', 'LBO model', '3-statement model', 'investment banking', 'valuation', 'Claude Code'],
+    createdAt: '2026-04-18',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'complete-guide-to-mcp-servers',
     slug: 'complete-guide-to-mcp-servers',
     title: 'The Complete Guide to MCP Servers: What They Are and How to Build One',

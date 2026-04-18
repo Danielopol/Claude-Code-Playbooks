@@ -1,0 +1,126 @@
+---
+title: "DeepTutor: Agent-Native AI Tutoring"
+description: "Set up DeepTutor — a self-hosted AI tutoring platform with RAG knowledge bases, multi-agent problem solving, quiz generation, deep research, and persistent TutorBot agents you can run from CLI or browser."
+seoHook: "Uploading a textbook to ChatGPT gives you a Q&A bot. DeepTutor gives you a persistent tutor with its own memory, personality, and knowledge base — one that generates quizzes, runs multi-agent research, animates math, and shows up on your schedule even when you don't."
+targetAudience: "students, self-learners, researchers, educators, anyone studying technical material with PDFs and papers"
+exampleUseCase: "\"Set up a physics tutor with my textbook\" → RAG knowledge base from ch1-ch12 PDFs, Socratic TutorBot that probes with questions, quiz generation on thermodynamics, deep research on attention mechanisms — all from the CLI"
+category: "education"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://github.com/HKUDS/DeepTutor"
+tags: ["tutoring", "RAG", "knowledge-base", "quiz-generation", "deep-research", "TutorBot", "self-hosted", "CLI"]
+createdAt: "2026-04-18"
+---
+
+## What This Does
+
+DeepTutor is a self-hosted AI tutoring platform from HKU's Data Intelligence Lab. You upload your documents (PDFs, Markdown, text), build RAG-ready knowledge bases, and interact through five unified modes:
+
+- **Chat** — tool-augmented conversation with RAG, web search, code execution, reasoning, and paper search
+- **Deep Solve** — multi-agent problem solving with plan/investigate/solve/verify steps and source citations
+- **Quiz Generation** — grounded assessments generated from your knowledge base
+- **Deep Research** — parallel research agents across RAG, web, and academic papers producing cited reports
+- **Math Animator** — visual math animations powered by Manim
+
+Everything runs from a CLI or a Next.js web UI. The CLAUDE.md template gives Claude Code the full CLI skill so it can configure, manage, and use DeepTutor autonomously.
+
+---
+
+## Quick Start
+
+### Step 1: Install DeepTutor
+
+```bash
+git clone https://github.com/HKUDS/DeepTutor.git
+cd DeepTutor
+conda create -n deeptutor python=3.11 && conda activate deeptutor
+pip install -e ".[server]"
+```
+
+### Step 2: Run the setup tour
+
+```bash
+python scripts/start_tour.py
+```
+
+This walks you through LLM, embedding, and search provider configuration interactively. Supports OpenAI, Anthropic, Gemini, DeepSeek, Ollama, and 25+ other providers.
+
+### Step 3: Download the CLAUDE.md skill
+
+Click **Download** above to grab the CLI skill, then drop it into your DeepTutor project root as `CLAUDE.md`. Claude Code can now operate DeepTutor autonomously.
+
+### Step 4: Build a knowledge base and start learning
+
+```bash
+deeptutor kb create physics --doc ch1.pdf --doc ch2.pdf
+deeptutor chat --kb physics --tool rag --tool web_search
+```
+
+Or launch the web UI at `http://localhost:3782`.
+
+## Key Capabilities
+
+### TutorBot — Persistent Autonomous Tutors
+
+Not chatbots — autonomous agents with their own memory, personality, and workspace. Each evolves with you.
+
+```bash
+deeptutor bot create math-tutor --persona "Socratic math teacher who uses probing questions"
+deeptutor bot create writing-coach --persona "Patient, detail-oriented writing mentor"
+```
+
+TutorBots support proactive heartbeat (scheduled check-ins), skill learning (add new abilities via skill files), and multi-channel presence (Telegram, Discord, Slack, email).
+
+### Knowledge Hub
+
+Upload PDFs, Markdown, and text files. Documents actively power every conversation, quiz, and research session — not passive storage.
+
+```bash
+deeptutor kb create my-kb --doc textbook.pdf
+deeptutor kb add my-kb --docs-dir ./papers/
+deeptutor kb search my-kb "gradient descent"
+```
+
+### Persistent Memory
+
+DeepTutor builds a learner profile: what you've studied, how you learn, your goals. Shared across all features and TutorBots, refined with every interaction.
+
+## Typical Workflows
+
+**Generate quizzes from your materials:**
+```bash
+deeptutor run deep_question "Thermodynamics" --kb physics --config num_questions=5
+```
+
+**Multi-agent problem solving:**
+```bash
+deeptutor run deep_solve "Prove that the square root of 2 is irrational" --tool reason
+```
+
+**Deep research with citations:**
+```bash
+deeptutor run deep_research "Attention mechanisms in transformers" --kb papers
+```
+
+**Visualize math concepts:**
+```bash
+deeptutor run math_animator "Visualize a Fourier series"
+```
+
+## Deployment Options
+
+- **Local** — `python scripts/start_tour.py` (recommended for first-time)
+- **Docker** — `docker compose -f docker-compose.ghcr.yml up -d` (no local Python/Node needed)
+- **CLI-only** — `pip install -e ".[cli]"` (no web frontend)
+
+## Supported Providers
+
+30+ LLM providers (OpenAI, Anthropic, Gemini, DeepSeek, Ollama, vLLM, LM Studio, and more), 7 embedding providers, and 6 web search providers including self-hosted SearXNG and DuckDuckGo (no API key needed).
+
+## Tips
+
+- **Start with the setup tour** — it handles `.env` configuration interactively, with live connection testing
+- **Use `--format json`** for pipeline integration — structured output for AI agents and automation
+- **Set a default KB** with `deeptutor kb set-default` so you don't need `--kb` on every command
+- **REPL slash commands** let you switch capabilities, tools, and knowledge bases mid-conversation without restarting

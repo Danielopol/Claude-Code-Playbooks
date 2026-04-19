@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'ai-contract-review',
+    slug: 'ai-contract-review',
+    title: 'AI Contract Review: How to Analyze Legal Documents in Minutes',
+    description: 'A practical guide to using AI for contract review — how to analyze legal documents in minutes, flag risky clauses, redline against your standard terms, and run bulk due diligence across hundreds of contracts.',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'template',
+    thumbnailTitle: 'AI Contracts',
+    tags: ['AI contract review', 'AI legal document analysis', 'contract redlining', 'due diligence', 'legal tech', 'risk analysis', 'Claude Code'],
+    createdAt: '2026-04-19',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'ai-financial-modeling-dcf-lbo-3-statement',
     slug: 'ai-financial-modeling-dcf-lbo-3-statement',
     title: 'How to Use AI for Financial Modeling: DCF, LBO, and 3-Statement Models',

@@ -1,0 +1,152 @@
+---
+title: "Personalized Syllabus"
+description: "Deeply study a thinker, book, or topic with a reading plan tailored to your existing expertise — Claude builds the syllabus, routes every new concept through what you already know, and sits alongside you as an interactive interlocutor while you read the primary texts."
+seoHook: "A university course has one syllabus for everyone. But you're not the median student — you arrive with a specific background, specific questions, and specific time. This playbook builds a reading plan tuned to you: ordered texts, themes to track, and explicit bridges from what you already know to what you're about to learn. Then it serves as a knowledgeable colleague while you read the originals — infinite patience, no office hours, broad adjacent-literature knowledge, and the willingness to push back."
+targetAudience: "academics learning a new field adjacent to their expertise, professionals making mid-career pivots who need to rapidly absorb a canon, graduate students preparing for qualifying exams in areas outside their specialty, autodidacts going deep on a thinker or topic over a weekend or a semester, writers and journalists researching a subject they'll need to discuss with domain experts, anyone who has ever tried to read a dense primary text alone and wished for a knowledgeable colleague to read alongside"
+exampleUseCase: "\"I'm a macroeconomist with a strong background in game theory and signaling, and I want to deeply understand Erving Goffman over a weekend (~10–12 hours)\" → Personalized study plan with Goffman's primary texts ordered and time-budgeted, key themes to track per reading, an explicit connection map (e.g. expressions given/given-off ↔ Spence signaling with the mapping's limits), starter Q&A prompts, and an interactive companion mode for when you hit a passage you want to discuss"
+category: "education"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://x.com/JesusFerna7026/status/2036774895057592358"
+tags: ["learning", "study-plan", "autodidact", "reading", "interactive-learning", "personalization", "academic", "cross-disciplinary"]
+createdAt: "2026-04-19"
+---
+
+## What This Does
+
+Builds a study plan for a specific thinker, book, or topic that is **routed through what you already know**. Instead of a generic syllabus, you get: an ordered reading sequence timed to your available hours, explicit bridges from concepts in your existing expertise to the new material (and where those bridges break), a set of questions to hold in mind while you read, and a Q&A companion mode for when you hit passages that confuse you or want to connect to adjacent literatures.
+
+The workflow does not replace reading the primary texts. That's the point. You sit with the books. Claude sits alongside you — choosing what to read, drawing connections to your background, pushing back when your reading is imprecise, and pointing to adjacent work when you want to go wider.
+
+Inspired by [Jesús Fernández-Villaverde's Goffman study workflow](https://x.com/JesusFerna7026/status/2036774895057592358): a macroeconomist who deeply studied a sociologist over a weekend by having Claude build a plan that explicitly connected Goffman's "expressions given off" to Spence-style signaling models.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Study Folder
+
+```bash
+mkdir -p ~/Documents/study-goffman   # or whatever you're studying
+```
+
+Use a folder name that describes what you're studying. You'll be writing intake notes, study plans, and session notes here.
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/study-goffman/
+```
+
+### Step 3: Run Claude Code
+
+```bash
+cd ~/Documents/study-goffman
+claude
+```
+
+Claude will greet you with the **Phase 1 intake questions**. Answer them in detail. The plan's quality depends almost entirely on how specific you are about:
+
+- Your existing background (fields, thinkers you know well, prior courses)
+- Why you're studying this specific thing
+- How much time you actually have
+- What "successful understanding" looks like for you
+
+### Step 4: Read the Primary Texts
+
+Claude will produce `study-plan.md` with an ordered reading sequence and a **connection map** linking new concepts to what you already know. Your job is to actually read the texts. Summaries are for orientation, not substitution.
+
+### Step 5: Come Back for Q&A While You Read
+
+When you hit a passage that's unclear, a concept that seems related to something you already know, or a question about how this thinker connects to adjacent literatures, return to Claude Code and ask. It re-reads your intake and study plan at the start of every session so it remembers who it's talking to.
+
+---
+
+## The Three Phases
+
+### Phase 1: Intake
+
+Eight questions that shape everything downstream. The most important one is **"what's your existing background?"** — the more specific you are (fields, specific thinkers, prior work), the sharper the connection map becomes.
+
+### Phase 2: The Study Plan
+
+Produces `study-plan.md` with:
+
+- **Plan summary** — total hours, session cadence, primary and supplementary texts, explicit scope cuts
+- **Reading sequence** — what to read, estimated time, why it's next, themes to track, questions to hold
+- **Connection map** — the core personalization: each major concept mapped onto something from your background, with *where the mapping breaks down* named explicitly
+- **Q&A prompts** — 10–15 starter questions to provoke exchanges while you read
+- **End deliverable** — what you'll produce at the end to demonstrate understanding (essay, presentation, teaching note, research memo)
+
+### Phase 3: Interactive Q&A
+
+The longest and most valuable phase. You read. You come to Claude with questions. It responds in the right mode:
+
+- **Clarification** — for passages you didn't understand
+- **Connection** — for mapping to your background (precisely, with limits named)
+- **Adjacent literature** — for "how does this relate to [nearby thinker]?"
+- **Critical pushback** — when you're defending a reading, Claude steelmans the opposing view
+- **Limits of formalization** — for "has this been formalized, and where hasn't it?"
+
+At the end of each session, Claude offers to write `session-notes/YYYY-MM-DD.md` capturing what was discussed, open questions, and reading progress.
+
+### Phase 4 (bonus): Synthesis
+
+When you finish the reading, Claude helps produce the end deliverable you defined up front — an essay, a presentation outline, a teaching note — drawing on your session notes and intake so the synthesis sounds like *yours*, not a generic summary.
+
+---
+
+## Why Personalization Matters
+
+A standard syllabus is built for the median student in the class. If you're a macroeconomist reading Goffman, a physicist reading Kuhn, a lawyer reading Foucault, or a founder reading Clausewitz — the median student's syllabus is not for you.
+
+The connection map is where this earns its keep. Instead of a bullet list of "key concepts," you get:
+
+> **Concept** (in the author's own terms)
+> **Maps onto**: [Something from your background, cited specifically]
+> **Where it breaks**: [Every analogy has limits — they're named]
+> **In its own terms**: [So you don't collapse the new concept into the familiar one]
+
+This is the thing a course cannot do, and it's why the workflow works.
+
+---
+
+## Operating Rules Claude Follows
+
+- **You do the reading.** Claude doesn't paraphrase primary texts in ways that let you skip them. Summaries come with a note: "This is for orientation — the original has nuance you'll miss here."
+- **Specificity over fluency.** Editions, page numbers, exact terms. Vague brilliance is the failure mode.
+- **Calibrated uncertainty.** In specialized literatures Claude will sometimes be wrong. It says so when unsure and doesn't fabricate citations.
+- **No generic study advice.** "Space out your reading" is worthless. Guidance is specific to this material.
+- **Pushback is expected.** If your reading is imprecise, Claude says so. Knowledgeable colleagues disagree.
+
+---
+
+## Tips
+
+- **Spend real time on the intake.** Half an hour on intake produces a dramatically better plan than five minutes.
+- **Name the editions and translations.** For thinkers with multiple editions, this matters — Claude will match page references to your copy.
+- **Define the end deliverable up front.** Reading with a destination produces better attention than reading in general.
+- **Use session notes.** They compound. The synthesis at the end is much better when it has a trail of conversations to draw on.
+- **Do not skip the primary texts.** The value of this workflow collapses if you let Claude summarize instead of reading. Goffman is a remarkable writer — no summary captures the depth of his observations. That is true of every serious thinker.
+
+---
+
+## Troubleshooting
+
+**The connection map feels shallow**
+Your intake probably wasn't specific enough. Tell Claude: "Rebuild the connection map — here are three more specific things from my background..." with concrete thinker/theorem/paper references. The map will sharpen.
+
+**Claude is being too agreeable**
+Say: "Push back harder. Where is my reading of this passage imprecise or incomplete?" Steelmanning opposing views is in the template but only activates on request or when Claude detects a confident but imprecise claim.
+
+**I'm running out of time**
+Tell Claude your new time budget. It will produce a revised plan that cuts to the essential texts and themes.
+
+**I want to go wider than the original plan**
+Ask: "Given what I've learned so far, what should I read next — a) deeper into this thinker, b) closer adjacent thinkers, c) formalizations in my own field?" Claude will branch the plan.
+
+**I hit a passage I can't get past**
+Quote the passage (or cite the page) and say "I don't understand this." Claude will explain, cite the specific passage back, and ground the explanation in what comes before and after.

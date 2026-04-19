@@ -1,0 +1,144 @@
+---
+title: "Bookkeeping & Tax Prep Workspace"
+description: "Point Claude at a folder of W-2s, 1099s, bank statements, and receipts — get back an organized archive, a master bookkeeping spreadsheet, a tax summary with refund estimate, and a one-page accountant briefing."
+seoHook: "Tax season usually means a shoebox of PDFs, CSVs, and receipts with inconsistent names, missing totals, and no clear answer to 'what do I owe?' This playbook turns that pile into a CPA-ready workspace in one session — organized folders, a bookkeeping spreadsheet, a tax summary, and a one-page briefing your preparer can actually use."
+targetAudience: "freelancers and 1099 contractors preparing their own books, small business owners and sole proprietors getting ready for tax season, self-employed professionals who hand messy folders to their CPA every year, side-hustlers juggling W-2 income with 1099 work, anyone who has ever spent a weekend reconciling bank statements against invoices before an accountant appointment"
+exampleUseCase: "\"Help me set up a bookkeeping workspace for my taxes\" → Folder sorted by year and category, Context.md briefing summarizing filing status and income sources, master bookkeeping CSV (Income / Expenses / Write-Off Analysis / Home Office / Reconciliation tabs), tax summary with federal + SE tax estimates and credit check, strategy review with missed deductions and retirement contribution headroom, and a one-page accountant briefing with open questions flagged"
+category: "finance-accounting"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://x.com/JJEnglert/status/2041901304725774805"
+tags: ["taxes", "bookkeeping", "finance", "accounting", "cpa-prep", "1099", "write-offs", "home-office", "p-and-l"]
+createdAt: "2026-04-19"
+---
+
+## What This Does
+
+Turns a pile of tax source documents into a CPA-ready workspace in one session. Claude reads every file in the folder, organizes it by year and category, writes a briefing document so it can help you efficiently across sessions, builds a master bookkeeping spreadsheet from your raw bank CSVs, estimates your federal and self-employment tax, flags missed deductions, catches discrepancies between 1099s and bank deposits, and produces a one-page briefing to hand your accountant at the appointment.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Taxes Folder
+
+```bash
+mkdir -p ~/Documents/Taxes
+```
+
+Dump all your source documents into it — W-2s, 1099s, bank statements, credit card CSVs, mortgage 1098, business P&L, receipts. Don't worry about organization; that's Claude's first job.
+
+If you have last year's filed return, drop it in too. Claude uses it for YoY comparison and to catch anything that changed dramatically.
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Taxes/
+```
+
+### Step 3: Run Claude Code
+
+```bash
+cd ~/Documents/Taxes
+claude
+```
+
+Then say:
+
+> "Help me set up a bookkeeping workspace for my taxes. Organize the documents I've uploaded into a logical folder structure. Then create a Context.md file by reading through my documents and pulling out my filing status, income sources, business entities, tax preparer info, key numbers, and open questions. After that, help me build a plan for what documents I still need to gather and what working documents we should create together to prepare for filing. Make sure to include a CSV file showing my P&L for the year, with an expenses tab categorizing all of my write-offs, and an income tab showing my various sources of income."
+
+Claude will summarize what it found, propose a plan, and wait for your approval before moving any files.
+
+---
+
+## What You Get
+
+| Output | Location | Purpose |
+|--------|----------|---------|
+| Organized folder tree | `Taxes/{YEAR}/...` | Income, Expenses, Banking, Property, Prior-Year-Return, Working-Documents |
+| Context.md | `Taxes/{YEAR}/Context.md` | Briefing doc Claude re-reads every session — filing status, income sources, key numbers, open questions |
+| Master bookkeeping spreadsheet | `Working-Documents/bookkeeping.csv` | Income tab, Expenses tab, Write-Off Analysis, Home Office, Reconciliation |
+| Tax summary | `Working-Documents/tax-summary.md` | AGI estimate, standard vs itemized, federal + SE tax, credits to check, refund/balance-due estimate |
+| Strategy review | `Working-Documents/strategy-review.md` | Missed deductions, retirement contribution headroom, entity-structure flags, next-year improvements |
+| Accountant briefing | `Working-Documents/accountant-briefing.md` | One-page summary to hand your CPA at the appointment |
+| Discrepancy checklist | `Working-Documents/checklist.md` | 1099s that don't match deposits, missing documents, questions to resolve |
+
+---
+
+## The Context.md Pattern
+
+The key to making this workflow fast across multiple sessions is `Context.md`. Claude writes it once after reading your documents, then re-reads it at the start of every new session so it doesn't have to re-discover your filing status, income sources, and key numbers.
+
+Think of Context.md as a briefing you'd hand a new assistant on their first day — everything they need to be useful without asking you questions you've already answered.
+
+If you drop in last year's return, Claude uses it as a reference example. That's how it learns your filing style, which schedules you typically use, and what "normal" looks like so it can flag anomalies.
+
+---
+
+## Home Office Deduction
+
+Claude computes both methods side-by-side:
+
+- **Simplified method**: $5/sqft, capped at 300 sqft (max $1,500)
+- **Actual-expense method**: business-use percentage × (utilities + rent/mortgage interest + repairs + depreciation)
+
+It recommends whichever produces the larger deduction and shows its work so your preparer can verify.
+
+---
+
+## Handling the Messy Stuff
+
+Claude is designed to deal with the reality of tax prep, not a clean textbook case:
+
+- **Mixed formats** — PDFs, CSVs, images of receipts, spreadsheets, screenshots
+- **Inconsistent naming** — `scan_042.pdf`, `IMG_4521.jpg`, `amazon (3).pdf` all get renamed to a consistent convention
+- **Missing documents** — added to `checklist.md` with a note on where to find them
+- **Discrepancies** — if a 1099-NEC says $18,500 and your bank shows $16,200 deposited from that client, it's flagged for reconciliation
+- **Duplicates** — identified but not deleted; you decide
+
+---
+
+## Year-over-Year Comparison
+
+Drop last year's filed return into `Prior-Year-Return/` and Claude builds a YoY table comparing gross income, AGI, taxable income, total tax, and per-category deductions. Anything that moved more than 25% gets a short note explaining why (pulled from the current year's documents).
+
+---
+
+## Privacy & Safety
+
+- **Never writes SSNs** to any file. Masks account numbers to last-4.
+- **Local only** — everything stays in your folder. No data leaves your machine unless you ask Claude to send it somewhere.
+- **Not tax advice** — every output is labeled as a draft for a licensed preparer to review.
+- **Idempotent** — running the setup again updates files rather than duplicating them.
+
+---
+
+## Tips
+
+- **Run early in tax season.** The checklist will tell you what's missing with time to track it down.
+- **Drop last year's return in before starting.** The YoY comparison is much more useful when Claude has a reference.
+- **For business expenses, include credit card CSVs.** Claude categorizes transactions and reconciles against receipts.
+- **After your CPA appointment, update Context.md.** Next year's session picks up where this one left off.
+- **Ask for the accountant briefing last.** It references the other working documents, so those need to be accurate first.
+
+---
+
+## Troubleshooting
+
+**Claude moved a file to the wrong category**
+Tell it: "Move {filename} to {correct folder}" — it updates the bookkeeping spreadsheet to match.
+
+**A number in the bookkeeping spreadsheet doesn't match my bank**
+Every row cites a source file. Ask: "Show me where the $X figure on row N came from." Claude walks you back to the exact document.
+
+**1099 amounts don't match deposits**
+This is a feature, not a bug — it's flagged on the discrepancy checklist. Common causes: payment processor fees, checks deposited in a different year, or a client who issued a 1099 for an incorrect amount.
+
+**I don't have a business — can I still use this?**
+Yes. Skip the Expenses/Business folder and business entity sections. The W-2 + deductions + credits parts still work.
+
+**Scanned PDF can't be read**
+If the PDF is image-only without OCR, Claude can still often read it as an image. If not, it'll flag it in the checklist and ask you for the key numbers.

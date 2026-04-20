@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'automate-invoice-processing-ai',
+    slug: 'automate-invoice-processing-ai',
+    title: 'How to Automate Invoice Processing with AI (Save 10+ Hours/Week)',
+    description: 'A practical guide to automating invoice processing with AI — generate, send, track, and reconcile invoices end-to-end. Cut 10+ hours a week out of your finance workflow.',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'template',
+    thumbnailTitle: 'Invoice Auto',
+    tags: ['automate invoice processing', 'AI invoice automation', 'invoice generator', 'accounts receivable', 'finance automation', 'bookkeeping', 'Claude Code'],
+    createdAt: '2026-04-20',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'ai-contract-review',
     slug: 'ai-contract-review',
     title: 'AI Contract Review: How to Analyze Legal Documents in Minutes',

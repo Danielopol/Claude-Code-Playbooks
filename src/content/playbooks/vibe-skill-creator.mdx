@@ -1,0 +1,183 @@
+---
+title: "Vibe Skill Creator"
+description: "Build world-class Claude skills through a guided 10-step conversation — explore where Claude fails by default, research the domain, draft, self-critique, test on a real scenario, and iterate until the skill actually improves output."
+seoHook: "Most Claude skills are mediocre because people don't know what good looks like. They read like documentation, list procedures instead of principles, skip anti-patterns, and never get tested on a real scenario. This playbook is the opposite — a 10-step conversational process that produces skills that sound like domain experts, teach WHY techniques work, and demonstrably beat Claude's default output."
+targetAudience: "prompt engineers and AI tinkerers building reusable Claude skills, founders and operators packaging domain expertise (copywriting, outreach, design) as shareable skills, product teams standardizing high-quality Claude outputs across their organization, consultants productizing their craft into skills they can sell or share, anyone who has written a skill that felt comprehensive but produced worse output than Claude's default"
+exampleUseCase: "\"Help me build a skill for cold outreach to sell services\" → 10-step conversation: scope the domain (cold outreach specifically, not general sales), produce a default cold email together and identify what's wrong with it, research experts (Alex Berman, Josh Braun, Will Allred) and anti-patterns, synthesize principles with WHY (short beats long, give before ask), draft skill in expert voice, self-critique against voice/principles/anti-pattern/example/focus checks, iterate, test on a real scenario (AI automation → law firm), finalize in optimal structure, optionally build references folder"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "boringmarketer"
+sourceUrl: "https://gist.github.com/boringmarketer/b17e82c4a3bf4a58c859e3e2a6e02545"
+tags: ["skills", "claude", "meta", "prompt-engineering", "methodology", "self-critique", "expertise-transfer"]
+createdAt: "2026-04-20"
+---
+
+## What This Does
+
+Turns "help me build a skill" into a structured 10-step conversation that actually produces a high-quality skill — one that reads like a domain expert wrote it, teaches principles with their WHY, explicitly names anti-patterns, shows real before/after examples, and has been tested against a real scenario before being declared done.
+
+The key insight: **most skills fail because they read like documentation.** A skill for copywriting should sound like a copywriter. A skill for cold outreach should sound like someone who actually sends cold emails. A skill that reads like a wiki article won't change Claude's output.
+
+This playbook is a CLAUDE.md that embeds the methodology. You drop it in a folder, run Claude Code, say *"help me build a skill for [your domain]"*, and Claude walks you through exploration → research → drafting → critique → testing → iteration.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Skill-Building Folder
+
+```bash
+mkdir -p ~/Projects/skill-workshop
+```
+
+You'll use this as a workshop. Each skill you build here can later be copied to `~/.claude/skills/<name>/SKILL.md` (personal) or `.claude/skills/<name>/SKILL.md` inside a project (team-shared).
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Projects/skill-workshop/
+```
+
+### Step 3: Run Claude Code
+
+```bash
+cd ~/Projects/skill-workshop
+claude
+```
+
+Then say:
+
+> "Help me build a skill for [your domain]. Guide me through the process — explore where you fail by default, research the domain, then help me build a skill that actually improves your output."
+
+Claude will open with the Step 1 scoping questions. Answer them specifically. The quality of the skill is set in the first 10 minutes of conversation.
+
+---
+
+## The 10 Steps
+
+```
+1. UNDERSTAND  → What skill? What problem?
+2. EXPLORE     → See where Claude fails without guidance
+3. RESEARCH    → Go deep on the domain (web search / subagent)
+4. SYNTHESIZE  → Extract principles from research
+5. DRAFT       → Write initial skill
+6. CRITIQUE    → Review against quality criteria
+7. ITERATE     → Fix gaps, get feedback
+8. TEST        → Use on a real scenario
+9. FINALIZE    → Structure properly
+10. REFERENCE  → Build deep expertise docs (if needed)
+```
+
+Each step sets up the next. The most commonly skipped are **Explore** (seeing Claude's default failure) and **Test** (using the skill on a real case before finalizing). This workflow refuses to skip them.
+
+---
+
+## The Four Core Truths
+
+The whole methodology rests on these. The CLAUDE.md repeats them at the top so Claude holds them throughout:
+
+1. **Expertise transfer, not instructions.** A skill should make Claude *think* like an expert, not follow rules. "The headline does 80% of the work" beats "Step 1: Write a headline."
+2. **Flow, not friction.** Flow skills produce output directly. Friction skills create intermediate documents (research reports, frameworks) that dilute the final output. More information ≠ better output.
+3. **Voice matches domain.** A copywriting skill sounds like a copywriter. A cold outreach skill sounds like someone who actually sends cold emails. If it reads like documentation, it is wrong.
+4. **Focused beats comprehensive.** "Cold outreach for selling services" beats "all sales communication." Every section must earn its place. Ruthlessly constrain scope.
+
+---
+
+## Why Exploration Matters (Step 2)
+
+Most skill-building conversations skip straight to "let's write the skill." This workflow doesn't. Before anything else, you produce the output *without any special guidance* — just to see exactly how Claude fails by default.
+
+Example from the original cold-outreach skill build: Claude's default output was a generic, 150-word, me-focused cold email with a hard 15-minute-call CTA. Identifying those specific failure modes told the builders *exactly* what the skill needed to override. Without that step, you're guessing.
+
+---
+
+## Self-Critique Is the Skill's Teeth
+
+Step 6 is non-optional. After drafting, the workflow forces Claude to honestly check the draft against five rubrics:
+
+- **Voice** — expert or documentation?
+- **Principles** — are we explaining WHY?
+- **Anti-patterns** — are they explicit?
+- **Examples** — are the before/afters concrete and visceral?
+- **Focus** — does every section earn its place?
+
+Claude presents the self-critique to you honestly — what's working, what's weak, priority fixes — rather than pretending the first draft is done.
+
+---
+
+## Skills vs Subagents
+
+A common confusion this workflow resolves:
+
+| Use Case | Better As |
+|----------|-----------|
+| "Write cold outreach" | Skill (execution) |
+| "Research cold outreach best practices" | Subagent (analysis) |
+| "Create SEO content" | Skill |
+| "Analyze competitor positioning" | Subagent |
+
+**Skills execute. Subagents research.** If the user wants direct output, build a skill. If they want analysis that informs later output, build a subagent (or use one during Step 3 research of the skill-building process).
+
+---
+
+## When to Build Reference Material
+
+Some skills are self-contained (cold outreach fits in ~480 lines). Others need deep reference material because the domain has too much expertise for one file.
+
+| Skill Type | References Needed? |
+|------------|-------------------|
+| Focused domain (outreach, lead magnets) | Usually no — self-contained |
+| Deep expertise (visual design, copywriting) | Yes — vocabulary, examples, psychology |
+| Tool-heavy (image gen, video) | Yes — model IDs, prompts, specs |
+| Multi-format (content atomizer) | Yes — platform-specific rules |
+
+Step 10 walks you through building references as separate files (`references/visual-intelligence.md`, etc.) or embedding them after a divider in a single file for easier distribution.
+
+---
+
+## Tips
+
+- **Be specific in Step 1.** "Email marketing" is too broad. "Cold outreach for selling services to B2B founders" is focused. Narrow scope = better skill.
+- **Do not skip Step 2.** Producing the default (bad) output is uncomfortable but essential. It's the ground truth the skill has to beat.
+- **Use a subagent for Step 3 research** if you have Claude Code. Deep research in parallel with the main conversation produces much stronger synthesis.
+- **Test on a real scenario in Step 8.** A fake test ("imagine I'm a…") doesn't count. Use an actual client, product, or situation so the output pressure is real.
+- **Ship when the test produces demonstrably better output than Step 2.** Not when it "feels done." The comparison is the quality gate.
+
+---
+
+## Anti-Patterns (What This Workflow Fights Against)
+
+Ten patterns the methodology explicitly prevents:
+
+1. **Documentation voice** — reads like a wiki article instead of an expert
+2. **Procedure over principle** — step-by-step instructions that don't transfer thinking
+3. **Comprehensive coverage** — tries to cover everything, dilutes focus
+4. **Missing anti-patterns** — doesn't name what to avoid
+5. **Friction creation** — intermediate research documents that obligate incorporation
+6. **Theoretical examples** — fake before/afters that don't demonstrate principles viscerally
+7. **No testing** — declared done without ever being used on a real scenario
+8. **Generic tool references** — "use web search" instead of "use WebSearch with this specific query pattern"
+9. **Just-in-case sections** — content added for completeness rather than output improvement
+10. **No WHY** — lists what to do without explaining the psychology or data behind it
+
+---
+
+## Troubleshooting
+
+**Claude is jumping straight to drafting**
+Say: "Stop. We haven't done Step 2 yet. Produce the default output first so we know what we're fixing." The CLAUDE.md expects the phases in order — if Claude skips ahead, redirect.
+
+**The draft reads like documentation**
+Say: "Rewrite this in the voice of an actual [copywriter / designer / closer / whatever the domain is]. Cut the neutral tone. Have a point of view." Voice is the hardest thing to get right on the first draft.
+
+**The skill passed self-critique but the test output isn't better**
+Go back to Step 6. Something is missing — usually anti-patterns or a specific principle that explains *why* Claude's default is wrong. Identify the exact gap by comparing Step 2 and Step 8 outputs line-by-line.
+
+**I don't know what good looks like in this domain**
+Do Step 3 research first, *before* Step 1. Find expert examples, foundational frameworks, and real case studies. You can't scope a skill if you can't recognize excellence in the domain.
+
+**The skill is over 500 lines**
+Split it: core skill in `SKILL.md`, deep material in `references/`. If any reference file would be read by Claude only occasionally, that's a clean split. If everything is always needed, you probably haven't constrained scope enough — go back to Step 1.

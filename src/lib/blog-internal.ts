@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'ultimate-ai-seo-strategy',
+    slug: 'ultimate-ai-seo-strategy',
+    title: 'The Ultimate AI SEO Strategy: From Keyword Research to Rank Tracking',
+    description: 'An end-to-end AI SEO strategy — AI keyword research, AI content optimization, topic cluster planning, authority building, and rank tracking — powered by purpose-built Claude Code playbooks.',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '16 min read',
+    featured: true,
+    thumbnailType: 'template',
+    thumbnailTitle: 'AI SEO',
+    tags: ['AI SEO strategy', 'AI keyword research', 'AI content optimization', 'topic clusters', 'link building', 'rank tracking', 'organic traffic', 'Claude Code'],
+    createdAt: '2026-04-21',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'automate-invoice-processing-ai',
     slug: 'automate-invoice-processing-ai',
     title: 'How to Automate Invoice Processing with AI (Save 10+ Hours/Week)',

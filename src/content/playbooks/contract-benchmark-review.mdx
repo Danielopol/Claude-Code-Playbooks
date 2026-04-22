@@ -1,0 +1,163 @@
+---
+title: "Market-Benchmarked Contract Review"
+description: "Review contracts against CUAD's 41 risk categories and market-standard benchmarks. Generates risk analysis, redline suggestions, and negotiation priorities for NDAs, SaaS, M&A, and broker agreements."
+seoHook: "A vendor sends you a 40-page SaaS agreement with a 3-month liability cap. Is that normal? Is it negotiable? What should you ask for instead? Without knowing the market standard, you're negotiating blind — and paying lawyers to tell you what's typical burns hours you don't have."
+targetAudience: "in-house counsel running first-pass reviews, startup founders signing vendor and investor agreements, procurement managers handling high-volume contracts, M&A associates on deal teams, finance operators reviewing payment and merchant agreements, paralegals supporting contract workflows"
+exampleUseCase: "\"Review this SaaS agreement — I'm the customer\" → Pre-signing alerts for blank fields, red flag quick scan, risk analysis with 🔴/🟡/🟢 severity, market-standard comparisons (\"3-month cap vs. 12-month standard\"), redline language, missing provisions, and a ranked negotiation priority list"
+category: "legal-compliance"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/evolsb/claude-legal-skill/blob/main/skill.md"
+tags: ["contract", "review", "redline", "cuad", "nda", "saas", "m-and-a", "legal", "benchmarks"]
+createdAt: "2026-04-22"
+---
+
+## What This Does
+
+Reviews legal contracts against CUAD's 41 risk categories, ContractEval benchmarks, and LegalBench standards. For any NDA, SaaS agreement, payment/merchant contract, M&A document, or broker agreement, it produces a structured review with pre-signing alerts, a red-flag quick scan, risk analysis tagged by severity, market-standard comparisons, redline language, missing provisions, and a ranked negotiation priority list.
+
+It's built around the idea that "risky" depends on which side of the table you're on — it asks your position (customer, vendor, buyer, seller, licensor, licensee, receiving/disclosing party) and flags counterparty-favorable terms accordingly.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/ContractReview
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/ContractReview/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/ContractReview
+claude
+```
+
+Drop your contract (PDF, DOCX, or pasted text) into the folder and ask Claude to review it.
+
+---
+
+## How to Use
+
+### Step 1: Share the Contract and Your Position
+
+Tell Claude:
+- **Document type** (NDA, SaaS/MSA, payment/merchant, M&A, broker/finder, etc.)
+- **Your position** (customer, vendor, buyer, seller, licensor, licensee, receiving party, disclosing party)
+- **Power dynamic** (startup vs. enterprise, standard form vs. negotiated, regulated industry)
+- **Jurisdiction** (governing law matters for enforceability)
+
+### Step 2: Pre-Review Checklist
+
+Before analyzing, Claude checks for:
+- Blank fields ("$____", "TBD", "[amount]")
+- Missing referenced exhibits/schedules
+- Draft vs. executed status
+- Truncation or missing pages
+
+### Step 3: Review Output
+
+You get a structured markdown report:
+1. **Pre-Signing Alerts** — blanks, missing exhibits
+2. **Executive Summary**
+3. **Key Terms** table
+4. **Red Flags Quick Scan** (liability cap, uncapped indemnification, unilateral amendment, offshore jurisdiction, etc.)
+5. **Risk Analysis** by severity (🔴 Critical / 🟡 Important / 🟢 Acceptable) with market benchmarks, negotiability, and redline language
+6. **Missing Provisions** with suggested language
+7. **Internal Consistency Issues**
+8. **Negotiation Priority** ranked list
+
+---
+
+## Red Flags It Catches
+
+The quick-scan checks these before deep analysis:
+
+- Liability cap below 6 months' fees
+- Uncapped indemnification
+- "As-is" warranty disclaimers with no recourse
+- Unilateral suspension without notice
+- Unilateral amendment rights
+- No termination for convenience
+- Perpetual obligations (broker tails, long non-competes)
+- Offshore jurisdictions (BVI, Cayman) — expensive to enforce
+- Pre-signed conflict waivers
+- "Sole discretion" language favoring counterparty
+- Class action waiver + mandatory arbitration combo
+- Asymmetric assignment rights
+
+---
+
+## Document Type Checklists
+
+Deep-dive checklists for each common contract type:
+
+- **NDA** — direction, definition scope, term, residuals clause, standstill, no-contact, compelled disclosure, injunctive relief
+- **SaaS/MSA** — liability cap, uptime SLA, suspension rights, data ownership, data export, price increases, auto-renewal, subprocessors, insurance
+- **Payment/Merchant** — reserve/holdback, chargeback liability, network rules, auto-debit authority, settlement timing, PCI compliance
+- **M&A** — purchase price mix, earnout mechanics, escrow, rep survival, indemnification cap, basket type, sandbagging, non-compete, working capital, MAC definition
+- **Finder/Broker** — fee percentage, fee calculation, "covered buyer" definition, tail period, exclusivity, minimum fee, BD registration
+
+---
+
+## Market Standard Benchmarks
+
+Instead of guessing, the skill compares every term to documented market norms:
+
+| Provision | Standard | Yellow Flag | Red Flag |
+|-----------|----------|-------------|----------|
+| Liability cap | 12 months' fees | 6–11 months | <6 months |
+| Non-compete duration | 1–2 years | 3–4 years | 5+ years |
+| Auto-renewal notice | 90+ days | 60–89 days | <60 days |
+| Rep survival (M&A) | 12–18 months | 24–30 months | 36+ months |
+| Escrow (M&A) | 10–15% for 12–18 mo | 15–20% for 18–24 mo | >20% or >24 mo |
+| Fee tail (broker) | 12–18 months | 24 months | Perpetual |
+| SLA uptime | 99.9% with credits | 99.5% | No SLA |
+| Data export | 90 days, standard format | 30 days | None |
+| Price increase cap | CPI or 5% annual | 10% annual | Uncapped |
+| Cure period | 30 days | 15 days | None |
+
+Full benchmark table is in the template.
+
+---
+
+## Negotiability Guide
+
+Every redline suggestion is tagged with how likely it is to get accepted:
+
+- **High** — usually accepted (mutual termination, cure periods, data export)
+- **Medium** — depends on leverage (liability cap increases, price caps)
+- **Low** — rarely changed (payment network rules, regulatory terms)
+- **None** — non-negotiable (card network mandates, banking regs)
+
+Paired with power-dynamic factors: large customer + small vendor = more leverage; startup + enterprise vendor = less; sole-source = less; regulated terms = none.
+
+---
+
+## Jurisdiction Notes
+
+- **Non-competes**: void in CA, ND, OK, MN; reasonableness test elsewhere
+- **Choice of law**: Delaware (corp-friendly, predictable), NY (financial/sophisticated), CA (employee-friendly), BVI/Cayman (offshore red flag)
+- **Arbitration**: AAA/JAMS (standard US), SIAC/LCIA (international, expensive); mandatory + class waiver limits remedies
+
+---
+
+## Limitations
+
+- This is informational, not legal advice — for material terms, have qualified counsel review
+- Not tax advice — flagged but not opined on
+- Jurisdiction enforceability varies and changes over time
+- Only references text actually in the document (no hallucinated clauses)
+- For high-stakes contracts (M&A, financing, litigation exposure), always engage an attorney
+- If a contract is already executed, the review is informational only — you can't redline what's signed

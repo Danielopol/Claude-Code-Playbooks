@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'repurpose-blog-post-ai',
+    slug: 'repurpose-blog-post-ai',
+    title: 'How to Repurpose One Blog Post into 10 Pieces of Content Using AI',
+    description: 'A practical framework for AI content repurposing — take one long-form blog post and multiply it into 10+ platform-native pieces across X, LinkedIn, Instagram, YouTube, and newsletters.',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'template',
+    thumbnailTitle: 'Content 10x',
+    tags: ['AI content repurposing', 'repurpose blog post', 'content multiplication', 'social media automation', 'content strategy', 'cross-platform publishing', 'Claude Code'],
+    createdAt: '2026-04-22',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'ultimate-ai-seo-strategy',
     slug: 'ultimate-ai-seo-strategy',
     title: 'The Ultimate AI SEO Strategy: From Keyword Research to Rank Tracking',

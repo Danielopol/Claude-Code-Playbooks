@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'ai-cold-email-that-gets-replies',
+    slug: 'ai-cold-email-that-gets-replies',
+    title: 'AI Cold Email That Actually Gets Replies: Templates and Automation',
+    description: 'A practical guide to AI cold email that actually gets replies — proven templates, personalization frameworks, multi-touch sequence design, and the playbooks to automate the whole outreach workflow.',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '14 min read',
+    featured: true,
+    thumbnailType: 'template',
+    thumbnailTitle: 'Cold Email',
+    tags: ['AI cold email', 'AI email outreach', 'cold email templates', 'sales outreach', 'personalization', 'email sequences', 'prospecting', 'Claude Code'],
+    createdAt: '2026-04-23',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'repurpose-blog-post-ai',
     slug: 'repurpose-blog-post-ai',
     title: 'How to Repurpose One Blog Post into 10 Pieces of Content Using AI',

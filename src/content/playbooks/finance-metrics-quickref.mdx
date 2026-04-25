@@ -1,0 +1,73 @@
+---
+title: "SaaS Finance Metrics Quick Reference"
+description: "Cheat sheet for 25+ SaaS metrics: formulas, benchmarks, red flags, and decision frameworks for feature investment, channel scaling, pricing changes, and business health."
+seoHook: "You're in a board prep meeting and someone asks \"what's a good Magic Number?\" or \"what's NRR again?\" and you need the answer in 30 seconds, not a blog post. A scannable reference across revenue, unit economics, capital efficiency, and efficiency ratios — formulas, benchmarks, red flags, and decision rules all in one place."
+targetAudience: "PMs prepping for reviews, RevOps and finance partners checking formulas mid-analysis, founders preparing investor updates, operators refreshing metric benchmarks, product leaders diagnosing business health"
+exampleUseCase: "\"What's a healthy LTV:CAC and how do I know if we should scale paid social?\" → Framework 2 channel-scaling decision + specific metrics (LTV:CAC >3:1, payback <18mo, NRR by channel, Magic Number >0.75) + red flag thresholds + comparison rules"
+category: "product-management"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/finance-metrics-quickref"
+tags: ["saas-metrics", "unit-economics", "benchmarks", "reference", "finance", "formulas"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Fast lookup for SaaS finance metrics: formula, good benchmark, red flag, action to take. Organized by category (revenue & growth, unit economics, capital efficiency, efficiency ratios) plus four decision frameworks (feature investment, channel scaling, pricing changes, business health by stage).
+
+Not a teaching tool. A scannable reference for speed — use deep-dive skills (`saas-revenue-growth-metrics`, `saas-economics-efficiency-metrics`) to learn.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/FinanceRef
+mv ~/Downloads/CLAUDE.md ~/Documents/FinanceRef/
+cd ~/Documents/FinanceRef
+claude
+```
+
+Ask any metric question ("What's NRR?", "What's a healthy payback period for SMB?") and Claude pulls the formula, benchmark, and red flag from the reference table.
+
+---
+
+## Four Decision Frameworks
+
+| Framework | Key Metrics | Core Question |
+|-----------|-------------|---------------|
+| **Build a Feature?** | Revenue, Gross Margin, LTV, Contribution Margin | Is ROI >3x or LTV impact >10x? |
+| **Scale a Channel?** | CAC, LTV:CAC, Payback, Magic Number, NRR by channel | Is LTV:CAC >3:1 AND Payback <18mo? |
+| **Change Pricing?** | ARPU, Churn, NRR, CAC Payback | Net positive after churn risk? |
+| **Business Health?** | Growth %, NRR, LTV:CAC, Rule of 40, Magic Number | Stage-appropriate metrics hit? |
+
+---
+
+## Business Health by Stage
+
+**Early (Pre-$10M ARR):** Growth >50% YoY, LTV:CAC >3:1, Gross Margin >70%, Runway >12 mo
+**Growth ($10M-$50M ARR):** Growth >40%, NRR >100%, Rule of 40 >40, Magic Number >0.75
+**Scale ($50M+ ARR):** Growth >25%, NRR >110%, Rule of 40 >40, Profit Margin >10%
+
+---
+
+## Tips & Best Practices
+
+- **Use cohort-level, not blended.** Company averages hide degrading cohorts.
+- **Always pair Quick Ratio with Churn.** High new MRR can mask a leaky bucket.
+- **Check payback in months, not LTV:CAC alone.** LTV:CAC 5:1 with 36-month payback is still a cash trap.
+- **Benchmarks vary by stage.** "Good" for a $2M ARR company is different from "good" for $50M.
+- **Pick a decision question first.** Tracking 25 metrics without a question = analysis paralysis.
+
+---
+
+## Common Pitfalls
+
+- Using blended averages instead of cohort/channel/segment
+- Scaling acquisition when retention is quietly deteriorating
+- Treating high LTV:CAC as sufficient (ignoring payback and runway)
+- Comparing benchmarks across mismatched stages
+- Raising prices on ARPU math alone (no churn/contraction modeling)
+- Tracking metrics without a specific decision they inform

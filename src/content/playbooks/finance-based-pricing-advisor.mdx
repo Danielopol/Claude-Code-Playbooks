@@ -1,0 +1,74 @@
+---
+title: "Finance-Based Pricing Advisor"
+description: "Evaluate pricing changes (increases, tiers, add-ons, discounts) using ARPU, conversion, churn risk, NRR, and CAC payback math — before you ship the change."
+seoHook: "Someone in leadership said \"let's raise prices 20%\" and the revenue math looks great — but nobody modeled the churn spike that wipes out the gains. Four-question financial lens turns pricing changes into defensible go/no-go calls with supporting math, sensitivity analysis, and a grandfathering strategy."
+targetAudience: "PMs evaluating pricing changes, RevOps leaders sizing monetization moves, founders debating price hikes, finance partners pressure-testing pricing memos, growth leads designing tier architecture"
+exampleUseCase: "\"Should we raise prices 30% for all existing customers next quarter?\" → ARPU lift +$75K MRR vs. churn-driven loss -$9.75K MRR (5%→8%) + grandfathering alternative + 'fix retention first' verdict with specific churn threshold to revisit"
+category: "product-management"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/finance-based-pricing-advisor"
+tags: ["pricing", "monetization", "arpu", "churn", "saas-metrics", "unit-economics"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Walks through 4 adaptive questions — change type, expected impact, current baseline, recommendation — and delivers one of 4 patterns: Implement Broadly, Test First (A/B), Modify Approach, or Don't Change. Every recommendation includes math: ARPU lift, churn-driven revenue loss, net MRR impact, CAC payback change.
+
+Not value-based pricing design. A financial impact lens for pricing changes you're already considering.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/PricingAdvisor
+mv ~/Downloads/CLAUDE.md ~/Documents/PricingAdvisor/
+cd ~/Documents/PricingAdvisor
+claude
+```
+
+Provide the proposed change, current pricing (ARPU, tiers, churn, conversion), and business context (MRR, CAC, NRR). Claude walks through 4 questions and delivers the recommendation with sensitivity analysis.
+
+---
+
+## Pricing Change Types
+
+- **Direct monetization** — Price increase, new premium tier, paid add-on, usage-based pricing
+- **Discount strategies** — Annual prepay, volume, promotional
+- **Packaging changes** — Bundling, unbundling, pricing metric shift (seats → usage)
+
+---
+
+## Four Recommendation Patterns
+
+| Pattern | Trigger | Output |
+|---------|---------|--------|
+| **Implement Broadly** | >10% ARPU lift, <5% churn risk | Math + grandfathering plan + monitoring thresholds |
+| **Test First (A/B)** | Uncertain impact, moderate risk, large base | Cohort design + duration + decision criteria |
+| **Modify Approach** | Original has risk, better alternative | Smaller increase / grandfather-only / segment-based pricing |
+| **Don't Change** | Net negative or marginal, high churn risk | Reject + what would change + retention-first alternative |
+
+---
+
+## Tips & Best Practices
+
+- **Grandfather existing customers.** Raise prices for new only — protects base from retaliatory churn.
+- **Model conservative + base + optimistic.** Churn impact is always uncertain — don't plan around a point estimate.
+- **Calculate net MRR impact, not gross.** +$75K MRR from price lift minus -$9.75K from accelerated churn is the number that matters.
+- **Factor CAC payback.** Higher ARPU + lower conversion can make payback worse, not better.
+- **Communicate 30-60 days in advance.** Surprise pricing changes drive churn more than the pricing itself.
+
+---
+
+## Common Pitfalls
+
+- Ignoring churn impact (raise 30%, model zero churn response)
+- Applying changes to all customers without grandfathering
+- A/B testing with 10 customers (no statistical power)
+- Raising prices without corresponding value communication
+- Copycat pricing based on what a competitor did
+- Heavy annual discounts (>15%) that destroy LTV for cash flow
+- Forgetting the expansion revenue alternative (land and expand)

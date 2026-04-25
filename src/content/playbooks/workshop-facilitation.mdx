@@ -1,0 +1,72 @@
+---
+title: "Workshop Facilitation Protocol"
+description: "Canonical multi-turn facilitation pattern for interactive PM workshops and advisors — one question per turn, progress labels, entry modes, and decision-point recommendations."
+seoHook: "Your interactive workshop turned into a 20-question wall of text and the user bailed. Multi-turn facilitation needs structure: one question per turn, visible progress (\"Q3/8\"), an entry mode the user picks (Guided / Context dump / Best guess), and recommendations only at decision points. Apply this protocol on top of any workshop skill and the conversation feels guided instead of grueling."
+targetAudience: "Skill authors building interactive workshops, PM coaches running guided sessions, AI agent designers establishing consistent facilitation behavior"
+exampleUseCase: "\"Add facilitation to my positioning workshop\" → Heads-up (10 min, 8 Qs) → Entry mode picker (Guided/Context dump/Best guess) → Q1/8 with quick-select options → progress labels each turn → numbered recommendations at synthesis points only"
+category: "product-management"
+difficulty: "intermediate"
+timeToSetup: "varies by workshop"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/workshop-facilitation"
+tags: ["facilitation", "workshop", "interactive-skills", "agent-design", "ux-protocol"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Defines the 12-step facilitation contract every interactive skill should follow: heads-up + entry mode picker, one-question-per-turn, progress labels, quick-select answers with multi-select parsing, decision-point recommendations only, interruption-safe flow, and best-guess assumptions tracking.
+
+Pairs with all `*-workshop` and `*-advisor` skills as the source of truth for interaction behavior.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/Facilitation
+mv ~/Downloads/CLAUDE.md ~/Documents/Facilitation/
+cd ~/Documents/Facilitation
+claude
+```
+
+Reference this protocol from any interactive skill's CLAUDE.md. Domain skills define content; this defines flow.
+
+---
+
+## The 12-Step Contract
+
+| Step | Behavior |
+|------|----------|
+| 1 | Heads-up: time + question count |
+| 2 | Entry mode picker (Guided / Context dump / Best guess) |
+| 3-4 | One plain-language question per turn |
+| 5 | Progress labels (Context Qx/N, Scoring Qx/N) |
+| 6 | Follow-ups only when material |
+| 7 | Numbered quick-select with "Other (specify)" + multi-select parsing |
+| 8 | Recommendations ONLY at decision points |
+| 9 | Accept numeric or custom; synthesize |
+| 10 | Meta-question interrupt: answer + restate + resume |
+| 11 | Stop/pause: halt + wait |
+| 12 | End: summary + decisions + assumptions list |
+
+---
+
+## Tips & Best Practices
+
+- **One question per turn.** Two = a wall of text.
+- **Progress every turn.** "Q3/8" beats silence.
+- **Recommendations only at decision points.** After every answer = interaction drag.
+- **Parse loosely.** Accept "1", "#1", "1,3", "1 and 3", or free text.
+- **Best-guess mode requires an Assumptions list.** Otherwise the user can't validate.
+
+---
+
+## Common Pitfalls
+
+- Stacking multiple questions in one turn
+- Numbered recommendations after every reply
+- Cryptic shorthand instead of plain-language prompts
+- No visible progress
+- Ignoring multi-select or custom answers
+- Best-guess outputs without "Assumptions to Validate"

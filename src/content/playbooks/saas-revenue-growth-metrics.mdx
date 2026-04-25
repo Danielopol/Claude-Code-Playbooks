@@ -1,0 +1,64 @@
+---
+title: "SaaS Revenue & Growth Metrics"
+description: "PM reference for revenue + retention metrics — MRR/ARR, ARPU/ARPA, ACV, churn (logo + revenue), NRR, expansion, quick ratio — with cohort analysis and 10 most common pitfalls."
+seoHook: "Your blended churn is 3% — and your most recent cohort retains 58% at 6 months while older cohorts hit 85%. Blended metrics lie. PMF is eroding right under your dashboard, and you'll only see it when the curve flattens. The cure is cohort analysis, separate logo and revenue churn, and breaking NRR into its actual components."
+targetAudience: "PMs building metrics dashboards, founders preparing fundraise materials, exec teams diagnosing growth slowdowns, retention leads investigating cohort degradation"
+exampleUseCase: "\"Calculate MRR, churn, NRR for our board deck\" → MRR $2M (+10% MoM), Logo churn 2%, Revenue churn 1.5%, NRR 115% (expansion-driven), Quick Ratio 5.0 → Verdict: healthy + scale acquisition. Plus cohort table showing whether newer cohorts retain better"
+category: "product-management"
+difficulty: "intermediate"
+timeToSetup: "30-60 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/saas-revenue-growth-metrics"
+tags: ["saas-metrics", "mrr", "arr", "churn", "nrr", "cohort-analysis", "retention"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Calculates revenue (MRR/ARR/ARPU/ARPA/ACV) and retention (logo + revenue churn, NRR, expansion, quick ratio) with explicit formulas, benchmarks, and pitfalls. Forces cohort analysis to surface blended-metric blind spots. Includes compounding churn math (3% monthly ≠ 36% annual).
+
+Pairs with `saas-economics-efficiency-metrics`, `finance-metrics-quickref`, and `finance-based-pricing-advisor`.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/SaaSRevenueMetrics
+mv ~/Downloads/CLAUDE.md ~/Documents/SaaSRevenueMetrics/
+cd ~/Documents/SaaSRevenueMetrics
+claude
+```
+
+Provide MRR components (new/expansion/churned/contracted), customer counts by segment, and cohort data. Claude calculates the full metric set, flags concentration risk, and surfaces cohort degradation.
+
+---
+
+## The Two Metric Families
+
+| Family | Key Metrics |
+|--------|-------------|
+| **Revenue** | Revenue, ARPU, ARPA, ACV, MRR/ARR, Gross vs. Net |
+| **Retention & Expansion** | Logo Churn, Revenue Churn, NRR, Expansion, Quick Ratio |
+
+Plus **Revenue Mix** and **Cohort Analysis** as required diagnostic frameworks.
+
+---
+
+## Tips & Best Practices
+
+- **Track logo churn AND revenue churn.** If revenue churn > logo churn, you're losing big customers.
+- **Cohort-or-it-didn't-happen.** Blended metrics lie when newer cohorts perform differently than old.
+- **Break down NRR.** Expansion-driven >120% is healthy; >100% from low churn alone is fragile.
+- **Use compounding-churn formula.** 3% monthly = 31% annual, not 36%.
+- **Calculate ARPU/ARPA by segment.** Blended averages ($10 SMB + $1000 Enterprise) are useless.
+
+---
+
+## Common Pitfalls
+
+- Confusing revenue with profit
+- ARPU "growth" from losing small customers
+- Ignoring cohort degradation (PMF eroding silently)
+- Treating monthly churn as 12 × monthly (ignores compounding)
+- Celebrating gross revenue while net contracts via discounting

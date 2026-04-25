@@ -1,0 +1,67 @@
+---
+title: "Press Release (Amazon Working Backwards)"
+description: "Write a customer-perspective press release before building — Amazon's Working Backwards forcing function for clarity. If you can't write a compelling PR, the idea may be weak."
+seoHook: "Amazon's product reviews don't start with code — they start with a press release written before anyone builds anything. If the PR isn't compelling, the idea isn't. \"Revolutionary new platform with AI\" doesn't pass. \"Cuts invoice processing from 8 hours to 10 minutes for SMB owners\" does. The exercise is the value."
+targetAudience: "PMs aligning stakeholders before build, founders pitching new products, product leads testing if a concept resonates, exec teams making go/no-go calls"
+exampleUseCase: "\"Write a Working Backwards press release for our invoice automation product\" → Headline: \"Acme Launches SmartInvoice to Cut Processing Time by 60%\" + Problem: \"SMBs spend 8 hours/month on manual entry\" + Solution: \"Automated extraction and approvals\" + Beta data: \"Saved 5 hours/month average\""
+category: "product-management"
+difficulty: "intermediate"
+timeToSetup: "60 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/press-release"
+tags: ["press-release", "working-backwards", "amazon", "vision", "alignment", "pr-faq"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Walks through Amazon's Working Backwards press release format — headline, problem, solution, leader quote, supporting details, boilerplate, CTA — with quality checks at each step (specific? benefit-focused? validated? jargon-free?).
+
+Pairs with `problem-statement`, `positioning-statement`, `proto-persona`, and `jobs-to-be-done`.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/PressRelease
+mv ~/Downloads/CLAUDE.md ~/Documents/PressRelease/
+cd ~/Documents/PressRelease
+claude
+```
+
+Provide product description, target persona, problem statement, key benefits, and competitive context. Claude drafts a full PR and stress-tests against the "so what?" test.
+
+---
+
+## The Format
+
+| Section | Length | Purpose |
+|---------|--------|---------|
+| **Headline** | 1 line | Clear, benefit-focused |
+| **Dateline + Intro** | 2-3 sentences | What/who/key benefit |
+| **Problem** | 1 paragraph | Specific, validated |
+| **Solution** | 1 paragraph + quote | Outcome-first, customer empathy |
+| **Supporting details** | 1 paragraph | Data, additional benefits |
+| **Boilerplate** | 2-3 sentences | Company background |
+| **CTA + Media** | 2 lines | How to learn more |
+
+---
+
+## Tips & Best Practices
+
+- **Outcomes, not features.** "Reduces processing 60%" beats "uses OCR."
+- **Specific problems.** "8 hours/month manual entry" beats "inefficiency."
+- **Validate with data.** Beta results, customer quotes, research — not aspirations.
+- **Customer-empathy quotes.** "Owners shouldn't spend weekends on invoices" beats "we're excited to innovate."
+- **Pass the "so what?" test.** If a target customer says "so what?", you haven't articulated value.
+
+---
+
+## Common Pitfalls
+
+- Feature list disguised as benefits ("includes AI, ML, OCR")
+- Vague problem statement ("solves inefficiency")
+- Jargon-heavy language ("leverages ML to optimize enterprise workflows")
+- Generic exec quote ("we're excited to bring innovation")
+- No data or validation backing claims

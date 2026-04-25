@@ -1,0 +1,63 @@
+---
+title: "Problem Framing Canvas (MITRE)"
+description: "Run MITRE's three-phase canvas — Look Inward (your biases), Look Outward (who's affected and who's left out), Reframe (problem + How Might We) — to solve the right problem before solutions."
+seoHook: "Your team has a \"churn problem\" and three solutions in the backlog already. Stop. The MITRE Problem Framing Canvas asks: who's been left out of this conversation? Who benefits when the problem exists? What are you assuming that you haven't validated? Reframe before you build, because the wrong problem is the most expensive thing to solve."
+targetAudience: "PMs starting discovery, UX leads challenging assumptions, founders avoiding solution-first thinking, teams aligning on problem definition before PRDs"
+exampleUseCase: "\"Run a Problem Framing Canvas for our 60% onboarding drop-off\" → Look Inward (we assume users are technical) + Look Outward (solopreneurs without IT, left out) + Reframe (\"How might we guide non-technical users with plain-language prompts as we aim to increase activation 40%→70%\")"
+category: "product-management"
+difficulty: "intermediate"
+timeToSetup: "60-90 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/problem-framing-canvas"
+tags: ["problem-framing", "discovery", "mitre", "how-might-we", "equity", "design-thinking"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Walks through MITRE's three-phase canvas with 8 structured questions: 3 inward (symptoms, blockers, biases), 3 outward (who/where/when, who else, who's left out), 2 reframe (restated problem, HMW). Outputs an equity-driven problem statement and actionable How Might We statement.
+
+Pairs with `problem-statement` (formalize), `opportunity-solution-tree` (generate solutions from HMW), and `discovery-interview-prep` (validate).
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/ProblemFramingCanvas
+mv ~/Downloads/CLAUDE.md ~/Documents/ProblemFramingCanvas/
+cd ~/Documents/ProblemFramingCanvas
+claude
+```
+
+Provide initial problem framing, symptoms, existing research, and stakeholder context. Claude facilitates the 8-question flow and outputs a complete canvas plus HMW statement.
+
+---
+
+## The Three Phases
+
+| Phase | Questions | Purpose |
+|-------|-----------|---------|
+| **Look Inward** | What is the problem? Why unsolved? How are we part of it? | Surface assumptions and biases |
+| **Look Outward** | Who experiences it? Who else has it / doesn't? Who's left out / benefits? | Broaden perspective beyond your team |
+| **Reframe** | Restated problem + How Might We? | Actionable framing |
+
+---
+
+## Tips & Best Practices
+
+- **Facilitate, don't solo.** A canvas filled by one PM still has all that PM's biases.
+- **Force the "who's left out" question.** This is where equity-driven framing differs from generic problem-solving.
+- **Always ask "who benefits when the problem exists."** Surfaces political dynamics and resistance.
+- **Keep the HMW broad.** "How might we add a mobile app" constrains the solution space; "how might we enable mobile-first users to access core workflows" opens it.
+- **Reframe is iterative.** Read the restated problem aloud; if it sounds generic, go back to Phase 2.
+
+---
+
+## Common Pitfalls
+
+- Skipping Look Inward (assuming you're neutral)
+- Filling out the canvas alone (no diverse perspectives = same biases)
+- Generic reframed problem ("improve user experience")
+- HMW too narrow (specifies solution instead of opening solution space)
+- Ignoring "who loses if this is solved" (miss political resistance)

@@ -1,0 +1,65 @@
+---
+title: "User Story Mapping Workshop"
+description: "Facilitated 5-question Jeff Patton story mapping workshop — backbone activities, prioritized tasks, walking-skeleton MVP, and 3 release slices for end-to-end incremental delivery."
+seoHook: "Your backlog is a flat 200-item list and your team can't tell the MVP from the polish. Flat lists kill incremental delivery — engineers complete \"Activity 1\" while the user can't get end-to-end value for 6 months. A story map fixes this: backbone across the top (workflow), tasks descending (priority), and a walking skeleton that ships thin slices across all activities at once."
+targetAudience: "PMs running discovery workshops, engineering leads aligning sprints to user value, design teams visualizing flow, founders planning MVP scope"
+exampleUseCase: "\"Map our e-commerce checkout MVP\" → Backbone: Browse → Cart → Review → Ship → Pay → Confirm → Email → 5 tasks each by priority → R1 Walking Skeleton (basic flow only) → R2 (search, promo codes) → R3 (recommendations, gift options)"
+category: "product-management"
+difficulty: "intermediate"
+timeToSetup: "90-120 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/user-story-mapping-workshop"
+tags: ["story-mapping", "jeff-patton", "workshop", "mvp", "release-planning", "walking-skeleton"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Adaptive 5-question workshop (scope → users → backbone → tasks → release slices) that produces a complete 2D story map plus 3 release slices anchored on a walking skeleton. Forces horizontal user-workflow narrative instead of vertical feature lists.
+
+Pairs with `user-story-mapping`, `user-story`, `proto-persona`, and `jobs-to-be-done`.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/StoryMapWorkshop
+mv ~/Downloads/CLAUDE.md ~/Documents/StoryMapWorkshop/
+cd ~/Documents/StoryMapWorkshop
+claude
+```
+
+Provide product or feature scope, target users, and any existing backlog. Claude facilitates the 5 questions, generates backbone + tasks, and proposes 3 release slices.
+
+---
+
+## The Workshop Flow
+
+| Phase | Question | Output |
+|-------|----------|--------|
+| 1 | Scope | Product, feature area, journey, or redesign |
+| 2 | Users | Single, multiple-shared, multiple-distinct, or roles |
+| 3 | Backbone | 5-8 activities left-to-right in workflow order |
+| 4 | Tasks | 3-5 per activity, top-to-bottom by priority |
+| 5 | Release Slices | R1 (walking skeleton), R2 (enhanced), R3 (polish) |
+
+---
+
+## Tips & Best Practices
+
+- **Backbone = user workflow, not architecture.** Never "Frontend → Backend → DB."
+- **Walking skeleton ships first.** Top row across ALL activities — end-to-end value, simplest version.
+- **3-5 tasks per activity.** More than 7 means you're over-detailing too early.
+- **Display the map physically.** Information radiator > Jira ticket.
+- **Map collaboratively.** PM solo-mapping then "presenting" defeats the purpose.
+
+---
+
+## Common Pitfalls
+
+- Flat list in 2D clothing (no horizontal workflow)
+- Technical layers as backbone
+- "Feature-complete" waterfall release plan
+- Over-detailing edge cases before backbone is stable
+- Map locked in a tool nobody opens daily

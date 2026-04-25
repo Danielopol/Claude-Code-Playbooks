@@ -1,0 +1,76 @@
+---
+title: "Proof of Life (PoL) Probe"
+description: "Define and document a lightweight, disposable validation artifact designed to surface harsh truths before expensive development — the artifact template that pairs with pol-probe-advisor."
+seoHook: "Your prototype has three weeks of dev time in it, a real database, and a staging environment — and you haven't deleted anything yet. That's not a probe, that's a half-built product. A PoL probe has a disposal date, a single hypothesis, and a stinging success criterion that makes you wince if you fail. Reconnaissance, not MVP."
+targetAudience: "PMs documenting validation artifacts, UX leads running discovery sprints, founders avoiding prototype theater, teams committing to disposable experiments, engineers allocating spike time"
+exampleUseCase: "\"Document a PoL probe for testing 3-field onboarding vs. 8-field\" → Hypothesis + risk + probe type (Task-Focused) + 10 waitlist users + success criteria (8+ complete <2min / <6 or >5min fail) + tools (Maze + Loom) + 5-day timeline + disposal plan"
+category: "product-management"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/pol-probe"
+tags: ["validation", "prototyping", "discovery", "pol-probe", "lean", "experiments"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Template for documenting a Proof of Life probe with 5 essential characteristics (lightweight, disposable, narrow scope, brutally honest, tiny & focused), explicit disposal plan, and falsifiable success/fail criteria.
+
+Pairs with `pol-probe-advisor` (decision tree for which probe type) and `discovery-process` (where probes live in the cycle).
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/PolProbe
+mv ~/Downloads/CLAUDE.md ~/Documents/PolProbe/
+cd ~/Documents/PolProbe
+claude
+```
+
+Provide hypothesis, risk, timeline, and chosen probe type. Claude produces the fully filled template with success criteria, tools, and disposal plan.
+
+---
+
+## The 5 Essential Characteristics
+
+| Characteristic | Meaning |
+|----------------|---------|
+| **Lightweight** | Hours/days, not weeks |
+| **Disposable** | Planned for deletion, not scaling |
+| **Narrow Scope** | One hypothesis, one risk |
+| **Brutally Honest** | Harsh truths, not vanity metrics |
+| **Tiny & Focused** | Reconnaissance, never MVP |
+
+If your probe feels too polished to delete, it's prototype theater.
+
+---
+
+## PoL Probe vs. MVP
+
+- **PoL Probe:** Hours-days, disposable, tests IF you should build
+- **MVP:** Weeks-months, iterated, ships what you build
+
+Probes are pre-MVP reconnaissance.
+
+---
+
+## Tips & Best Practices
+
+- **Set disposal date before building.** Without one, the probe becomes a product.
+- **Write success/fail/learn criteria before building.** "We'll know it when we see it" = no truth.
+- **One probe, one hypothesis.** Bundle 3 questions = ambiguous results.
+- **Choose method AFTER hypothesis.** Tools-first biases toward what you can build, not what you need to learn.
+- **Celebrate the jank.** Frankensoft is the point — a clean probe defeats its purpose.
+
+---
+
+## Common Pitfalls
+
+- Running broad "will users like this?" tests (not falsifiable)
+- Treating the probe like a proto-MVP and refusing to delete it
+- Vanity metrics that avoid uncomfortable truth
+- No pre-defined failure threshold before testing starts
+- Choosing tools before defining the hypothesis

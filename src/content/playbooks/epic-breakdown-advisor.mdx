@@ -1,0 +1,89 @@
+---
+title: "Epic Breakdown Advisor (Humanizing Work)"
+description: "Break epics into user stories using the Humanizing Work methodology — INVEST validation, 9 splitting patterns applied sequentially, and evaluation criteria that expose low-value work."
+seoHook: "Your epic is \"Manage user profiles,\" estimated at 3 weeks, and the team is arguing about whether to split it by screen, by layer, or by user type. The Humanizing Work methodology answers that: INVEST first, then walk 9 patterns in order, then evaluate the split for whether it reveals work you can kill. The word \"manage\" alone tells you the pattern."
+targetAudience: "PMs splitting epics before sprint planning, scrum masters coaching story-splitting, tech leads who keep getting backlog items sized as 8-day monsters, agile coaches teaching vertical slicing, PM/eng pairs in backlog refinement"
+exampleUseCase: "\"Help me split this onboarding epic — it's estimated at 12 days and we need to sprint it\" → INVEST check + apply Pattern 1 (workflow) with thin end-to-end slices + each story covers full flow with increasing sophistication + split evaluation flags low-usage steps to deprioritize + final 4 stories at 2-3 days each"
+category: "product-management"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/epic-breakdown-advisor"
+tags: ["user-stories", "backlog-refinement", "sprint-planning", "humanizing-work", "vertical-slicing", "invest"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Walks through Richard Lawrence's **Humanizing Work** story-splitting methodology: INVEST validation → apply 9 splitting patterns sequentially → evaluate splits for waste-elimination and size equality. Produces vertical slices (end-to-end value), not horizontal slices (technical layers).
+
+Not arbitrary slicing. A systematic, flowchart-driven process.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/EpicBreakdown
+mv ~/Downloads/CLAUDE.md ~/Documents/EpicBreakdown/
+cd ~/Documents/EpicBreakdown
+claude
+```
+
+Paste your epic (title, description, acceptance criteria, persona, rough estimate). Claude validates INVEST, applies patterns in order, and delivers the breakdown.
+
+---
+
+## The 9 Patterns (Applied in Order)
+
+| # | Pattern | Signal | Example |
+|---|---------|--------|---------|
+| 1 | **Workflow Steps** | Multi-step process | Thin end-to-end slices, not step-by-step |
+| 2 | **Operations (CRUD)** | Word "manage" | Create/Read/Update/Delete stories |
+| 3 | **Business Rule Variations** | Different rules per segment | One story per rule |
+| 4 | **Data Variations** | Different data types | Just-in-time additions |
+| 5 | **Data Entry Methods** | Fancy UI | Simple input → sophisticated UI later |
+| 6 | **Major Effort** | Infrastructure build | First implementation + trivial additions |
+| 7 | **Simple/Complex** | Has optional complexity | Core simplest + variations |
+| 8 | **Defer Performance** | Non-functional requirements | Make it work → make it fast |
+| 9 | **Break Out a Spike** | High uncertainty | Time-box investigation, then restart |
+
+---
+
+## Pre-Split INVEST Check
+
+Before splitting, verify (except "Small"):
+- **Independent** — No blocking dependencies
+- **Negotiable** — Collaborative discovery, not prescriptive spec
+- **Valuable** — Observable user value (if NO: STOP, reframe)
+- **Estimable** — Team can size
+- **Testable** — Concrete acceptance criteria
+
+---
+
+## Split Evaluation (Step 3)
+
+1. **Does this reveal low-value work to kill or defer?** Good splits expose the 80/20.
+2. **Are stories equally sized?** Equal sizes give the PO prioritization flexibility.
+
+If neither → try a different pattern.
+
+---
+
+## Tips & Best Practices
+
+- **Vertical slices always.** "Build API" + "Build UI" fails — neither delivers value. Each story touches all layers.
+- **Pattern 1 done right = thin end-to-end.** Story 1 is full workflow with simplest path; Stories 2+ add sophistication.
+- **The word "manage" is diagnostic.** It signals CRUD — split by operation.
+- **After splitting, re-check story sizes.** If any > 5 days, restart Pattern 1 for that story.
+- **Cynefin matters.** Complex domain = 1–2 learning stories, not exhaustive enumeration.
+
+---
+
+## Common Pitfalls
+
+- Skipping INVEST validation and splitting technical tasks as if they were stories
+- Step-by-step splits that don't deliver end-to-end value
+- Horizontal (layer-based) slicing that masquerades as vertical
+- Forcing a pattern that doesn't fit instead of moving to the next
+- Not re-splitting stories that are still too large after one pass

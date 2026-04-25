@@ -1,0 +1,68 @@
+---
+title: "User Story Splitting (8 Patterns)"
+description: "Break epics and oversized stories into independently deliverable slices using the Lawrence & Green 8-pattern framework — workflow, business rules, data, AC complexity, major effort, dependencies, DevOps, TADs."
+seoHook: "Your team committed to a 21-point story called \"manage team members\" — and three weeks later it's still \"in progress\" because you bundled invite, remove, and role-update into one ticket. Stories with 5+ When/Then pairs aren't stories; they're epics in disguise. The 8-pattern framework gives you a deterministic way to split — each piece independently testable, deliverable, and small enough to actually finish."
+targetAudience: "PMs grooming backlogs, scrum masters facilitating refinement, engineering leads breaking down epics, BAs sizing work for sprints"
+exampleUseCase: "\"Split: manage team members (invite, remove, update roles)\" → Pattern 4 (AC complexity) → 3 stories: \"invite via email,\" \"remove member,\" \"update role\" — each with single Given/When/Then, each independently shippable in a sprint"
+category: "product-management"
+difficulty: "intermediate"
+timeToSetup: "30-45 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/user-story-splitting"
+tags: ["user-stories", "story-splitting", "agile", "backlog-refinement", "invest"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Walks through 8 splitting patterns in order (workflow → business rules → data → AC complexity → major effort → external deps → DevOps → TADs), stops at the first match, and rewrites each split as a complete Mike Cohn + Gherkin story. Validates against INVEST criteria.
+
+Pairs with `user-story`, `epic-hypothesis`, and `jobs-to-be-done`.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/StorySplitting
+mv ~/Downloads/CLAUDE.md ~/Documents/StorySplitting/
+cd ~/Documents/StorySplitting
+claude
+```
+
+Paste the oversized story (with current acceptance criteria). Claude identifies the splitting pattern, generates split stories, and validates each.
+
+---
+
+## The 8 Patterns
+
+| # | Pattern | Trigger |
+|---|---------|---------|
+| 1 | Workflow steps | Sequential user journey |
+| 2 | Business rule variations | Different rules per scenario |
+| 3 | Data variations | Different data types/inputs |
+| 4 | AC complexity | Multiple When/Then pairs (most common) |
+| 5 | Major effort | Technical milestones |
+| 6 | External dependencies | Multiple APIs / third parties |
+| 7 | DevOps steps | Deployment / infrastructure phases |
+| 8 | Tiny Acts of Discovery | Experiments to unpack unknowns |
+
+---
+
+## Tips & Best Practices
+
+- **Walk patterns in order.** Stop at the first match — don't shop for the "best" pattern.
+- **Pattern 4 catches most cases.** If you see 3+ When/Then pairs, split along them.
+- **Each split must deliver user value.** No "front-end story" + "back-end story."
+- **Validate INVEST.** Independent, Negotiable, Valuable, Estimable, Small, Testable.
+- **TADs are experiments, not stories.** Use them when no pattern applies.
+
+---
+
+## Common Pitfalls
+
+- Horizontal slicing (UI / API / DB as separate stories)
+- Over-splitting tiny stories (adds overhead)
+- Meaningless "first half / second half" splits
+- Creating hard dependencies between splits
+- Same "so that" on every split (task decomposition in disguise)

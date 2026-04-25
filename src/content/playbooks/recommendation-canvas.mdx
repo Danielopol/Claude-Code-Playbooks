@@ -1,0 +1,70 @@
+---
+title: "Recommendation Canvas (AI Product)"
+description: "10-component canvas for evaluating AI product proposals — business + customer outcomes, hypothesis with tiny experiments, PESTEL risks, value justification, SMART metrics, and next steps."
+seoHook: "Your AI feature pitch is \"we'll add an AI assistant.\" Your CFO is asking what it's worth and what could go wrong. The Recommendation Canvas gives both: business outcome (\"reduce churn 25%\"), customer outcome (\"save 5 hours/month\"), validated hypothesis, PESTEL risks (yes, including GDPR), SMART metrics, and what to test before committing engineering. Decision-grade, not slide-deck-grade."
+targetAudience: "PMs proposing AI features, founders pitching AI products to investors, product leaders evaluating AI investments, exec teams making go/no-go calls on high-uncertainty bets"
+exampleUseCase: "\"Build a Recommendation Canvas for AI invoice reminders\" → Business Outcome (20% MRR from freelancers) + Hypothesis (\"If we provide AI reminders for freelance designers, then we reduce follow-up time 70%\") + PESTEL (GDPR for email patterns) + 3 experiments + SMART metrics + 5 next steps"
+category: "product-management"
+difficulty: "advanced"
+timeToSetup: "90-120 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/recommendation-canvas"
+tags: ["ai-product", "canvas", "recommendation", "pestel", "hypothesis", "exec-pitch"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Walks through 10 sections (business outcome → product outcome → problem → hypothesis → positioning → assumptions → PESTEL → value justification → SMART metrics → next steps). Built specifically for AI features where uncertainty is high and execs want explicit risk framing.
+
+Pairs with `problem-statement`, `epic-hypothesis`, `positioning-statement`, `proto-persona`, and `pestel-analysis`.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/RecommendationCanvas
+mv ~/Downloads/CLAUDE.md ~/Documents/RecommendationCanvas/
+cd ~/Documents/RecommendationCanvas
+claude
+```
+
+Provide problem context, target persona, market intel, and business constraints. Claude drafts the full 10-section canvas with PESTEL risks and SMART metrics.
+
+---
+
+## The 10 Sections
+
+| # | Section | Output |
+|---|---------|--------|
+| **1** | Business Outcome | [Direction] [Metric] [Outcome] [Context] |
+| **2** | Product Outcome | Customer POV outcome |
+| **3** | Problem Statement | Persona narrative |
+| **4** | Solution Hypothesis | If/Then + experiments + Proof-of-Life |
+| **5** | Positioning | Value prop + differentiation |
+| **6** | Assumptions & Unknowns | Explicit list to validate |
+| **7** | PESTEL Risks | Investigate + Monitor |
+| **8** | Value Justification | C-level convincing |
+| **9** | Success Metrics | SMART |
+| **10** | What's Next | 5 strategic steps |
+
+---
+
+## Tips & Best Practices
+
+- **Business + customer outcomes both required.** One without the other is incomplete.
+- **Hypothesis = bet, not commitment.** Frame as "if we... then we will..." with experiments to validate.
+- **PESTEL specificity matters.** "Regulations might change" is theater. "GDPR for storing email timing patterns requires legal review" is actionable.
+- **Tiny Acts of Discovery before engineering.** 2-week prototype + 10 users beats 3-month build for a hypothesis.
+- **Proof-of-Life criteria upfront.** Define quant + qual signals before testing, not after.
+
+---
+
+## Common Pitfalls
+
+- Vague outcomes ("improve UX," "increase revenue")
+- Solution-first problem framing ("we need AI X")
+- Skipping Tiny Acts of Discovery (hypothesis straight to roadmap)
+- Generic PESTEL risks ("regulations might change")
+- Value justification without data or dollar amounts

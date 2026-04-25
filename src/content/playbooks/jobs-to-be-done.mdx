@@ -1,0 +1,63 @@
+---
+title: "Jobs-to-be-Done (JTBD)"
+description: "Map customer jobs (functional, social, emotional), pains, and gains — a structured lens for discovery, positioning, and roadmap prioritization that looks beyond feature requests to real motivations."
+seoHook: "Your customers don't want your product — they want the job done. But when you ask what they want, they give you a feature list, and you end up building Slack clones and email filters that nobody loves. JTBD breaks the need into functional, social, and emotional layers so you can see what customers are actually hiring for."
+targetAudience: "PMs running discovery, UX researchers mapping needs, founders validating PMF, marketers crafting positioning, teams reframing existing features around real jobs"
+exampleUseCase: "\"Explore JTBD for our expense-tracking tool with freelancers\" → Functional jobs (track deductible expenses, file quarterly taxes) + Social (look organized to accountant) + Emotional (feel confident, avoid audit anxiety) + ranked pains + prioritized gains"
+category: "product-management"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/jobs-to-be-done"
+tags: ["jtbd", "discovery", "customer-research", "value-proposition", "positioning"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Structured exploration of customer needs across three layers: **jobs** (functional, social, emotional), **pains** (challenges, costliness, mistakes, unresolved problems), and **gains** (expectations, savings, adoption factors, life improvement). Built on Christensen's JTBD theory and Osterwalder's Value Proposition Canvas.
+
+Pairs with `proto-persona`, `problem-statement`, and `positioning-statement`. Feed JTBD outputs into Lean UX hypotheses and epic framing.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/JTBD
+mv ~/Downloads/CLAUDE.md ~/Documents/JTBD/
+cd ~/Documents/JTBD
+claude
+```
+
+Provide target segment, situation/context, and what customers currently use (including workarounds). Claude walks through functional/social/emotional jobs, then pains, then gains — with research-grounded quality checks.
+
+---
+
+## The Three Layers
+
+| Layer | Ask | Example |
+|-------|-----|---------|
+| **Functional** | "What tasks are you trying to complete?" | Reconcile monthly expenses for tax filing |
+| **Social** | "How do you want to be perceived?" | Appear responsive and reliable to clients |
+| **Emotional** | "What state do you want to achieve/avoid?" | Feel confident I'm not missing details |
+
+---
+
+## Tips & Best Practices
+
+- **Verb-driven jobs.** "Send," "analyze," "coordinate" — not "use email."
+- **Solution-agnostic.** "Communicate with remote teammates" not "use Slack."
+- **Audience-specific social jobs.** Boss, clients, peers — name the audience.
+- **Positive + negative emotional jobs.** Both what they seek ("feel in control") and avoid ("avoid embarrassment").
+- **Rank pains by intensity.** Ask "if we solved one pain, which would have the biggest impact?"
+
+---
+
+## Common Pitfalls
+
+- Confusing jobs with solutions ("I need Slack" is not a job — ask "why?" five times)
+- Generic jobs ("be more productive" — dig into which tasks and why)
+- Only documenting functional jobs (missing social/emotional motivators)
+- Fabricating JTBD from assumptions (use switch interviews)
+- Treating all pains as equal (no prioritization → no decision)

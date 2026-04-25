@@ -1,0 +1,63 @@
+---
+title: "User Story (Mike Cohn + Gherkin)"
+description: "Translate user needs into testable, outcome-focused user stories combining Mike Cohn's \"As a / I want / so that\" with Gherkin Given/When/Then acceptance criteria."
+seoHook: "Your sprint board has 30 \"As a user, I want to click the save button so that I can save my work\" tickets — and engineering still ships features QA can't verify. \"As a user\" is a tell that you skipped the persona; restated actions in \"so that\" are a tell that you skipped the why. The fix is specific personas, real motivations, and Given/When/Then criteria a tester can actually execute."
+targetAudience: "PMs writing backlog items, BAs translating requirements, engineering teams adopting INVEST, QA building test cases from stories"
+exampleUseCase: "\"Write a story for Google login\" → \"As a trial user / I want to log in with Google / so that I can access the app without creating a new password\" → Given login page, Given Google account → When I click Sign in with Google and authorize → Then I'm redirected to onboarding"
+category: "product-management"
+difficulty: "beginner"
+timeToSetup: "15-30 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/user-story"
+tags: ["user-story", "mike-cohn", "gherkin", "acceptance-criteria", "invest"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Generates Mike Cohn-format user stories paired with Gherkin Given/When/Then acceptance criteria, then validates against INVEST and "When/Then aligns with want/so-that" rules. Includes optional Python helper to scaffold a stub from CLI inputs.
+
+Pairs with `user-story-splitting`, `proto-persona`, `problem-statement`, and `epic-hypothesis`.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/UserStories
+mv ~/Downloads/CLAUDE.md ~/Documents/UserStories/
+cd ~/Documents/UserStories
+claude
+```
+
+Provide persona, action, and outcome (plus context). Claude writes a full story with Given/When/Then and flags whether it should be split.
+
+---
+
+## The Format
+
+| Section | Fields |
+|---------|--------|
+| **Use Case** | As a / I want to / so that |
+| **Acceptance Criteria** | Scenario / Given(s) / When / Then |
+| **Summary** | Memorable, value-focused title |
+
+---
+
+## Tips & Best Practices
+
+- **Specific personas.** "Trial user" beats "user."
+- **"I want to" = action.** Not the feature you're building.
+- **"So that" = real motivation.** Not a restated action.
+- **One When + one Then.** Multiple = the story should be split.
+- **Testable Then.** "Page loads in under 2s" beats "feels faster."
+
+---
+
+## Common Pitfalls
+
+- Engineering tasks pretending to be user stories
+- "As a user" applied to every persona
+- "So that I can save" right after "I want to save"
+- 3+ When/Then pairs jammed into one story
+- Acceptance criteria nobody can test ("better UX")

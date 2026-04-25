@@ -1,0 +1,70 @@
+---
+title: "SaaS Business Health Diagnostic"
+description: "Diagnose SaaS business health across growth, retention, unit economics, and capital efficiency. Identify red flags by urgency and get a prioritized action plan with stage-specific benchmarks."
+seoHook: "Revenue is growing 50% YoY but you're burning cash fast and the board meeting is in two weeks. Is your business healthy, moderate, concerning, or in existential crisis? Single-metric check-ins miss the systemic picture — and by the time lagging indicators flash red, it's late."
+targetAudience: "CPOs and founders preparing for board meetings, operators running QBRs, finance leads prepping fundraising materials, Heads of Product assessing PMF and scaling readiness, new execs needing a 90-day business health read"
+exampleUseCase: "\"Our growth is strong but we're burning cash — assess our business health before the Series A board meeting\" → Full scorecard across 4 dimensions, red flags categorized Critical/High/Medium, root cause analysis on the primary issue, 30/90-day action plan with expected revenue impact, and stage-specific benchmark comparison"
+category: "product-management"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/business-health-diagnostic"
+tags: ["saas", "metrics", "unit-economics", "board-prep", "fundraising", "benchmarks", "rule-of-40"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Diagnoses SaaS business health holistically across four dimensions — Growth & Retention, Unit Economics, Capital Efficiency, and Strategic Position — and produces a scorecard, categorized red flags, root cause analysis, and a prioritized action plan calibrated to your stage (Early, Growth, or Scale).
+
+Not a single-metric check. Connects revenue, retention, economics, and efficiency to reveal systemic issues and opportunities.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/BusinessHealth
+mv ~/Downloads/CLAUDE.md ~/Documents/BusinessHealth/
+cd ~/Documents/BusinessHealth
+claude
+```
+
+Provide metrics across the four dimensions (you can say "unknown" where you don't have data) plus stage and business model. Claude returns a diagnosis + action plan.
+
+---
+
+## Stage-Specific Benchmarks
+
+| Stage | Growth | NRR | LTV:CAC | Rule of 40 | Runway |
+|-------|--------|-----|---------|-----------|--------|
+| **Early (<$10M ARR)** | >50% YoY | — | >3:1 | — | >12 mo |
+| **Growth ($10-50M)** | >40% YoY | >100% | >3:1 | >40 | — |
+| **Scale ($50M+)** | >25% YoY | >110% | >3:1 | >40 | Profitable |
+
+---
+
+## Four Diagnostic Patterns
+
+- **Healthy** — All dimensions meet benchmarks. Scale what's working, expand within base, improve efficiency.
+- **Moderate (Fixable Issues)** — 1-2 dimensions problematic. Root cause analysis + 30/90-day plan. Don't scale acquisition until retention is fixed.
+- **Concerning (Urgent Action)** — Multiple critical red flags. 90-day survival plan: triage → stop the bleeding → stabilize.
+- **Critical (Existential Crisis)** — Runway <3 months or multiple critical failures. Emergency actions this week.
+
+---
+
+## Red Flags Quick Reference
+
+- **Critical:** Runway <6mo, LTV:CAC <1.5:1, NRR <90%, Magic Number <0.3, cohort degradation
+- **High Priority:** Rule of 40 <25, Payback >24mo, Gross margin <60%, >50% revenue concentration in top 10
+- **Medium:** NRR 90-100% flat, Magic Number 0.3-0.5, Churn stable but >5% monthly
+
+---
+
+## Common Pitfalls
+
+- Celebrating single metrics while ignoring the rest (growth alone doesn't pay bills)
+- Using stage-agnostic benchmarks (early-stage burn ≠ scale-stage burn)
+- Tracking only lagging indicators (by the time churn flashes red, it's late)
+- Not acting on red flags fast enough — problems compound
+- Trying to fix everything at once — pick the top 1-3 and sequence them

@@ -1,0 +1,65 @@
+---
+title: "Roadmap Planning"
+description: "Build an outcome-driven roadmap across 5 phases (gather inputs → define epics → prioritize → sequence → communicate) with hypotheses, RICE scores, and stakeholder alignment."
+seoHook: "Your roadmap is a list of features grouped by quarter. Engineering builds them. Nothing moves on the OKRs. That's not a roadmap — it's a wishlist with dates. A real roadmap connects each epic to a hypothesis, a business outcome, and a metric — and shows execs why X was prioritized over Y. Then survives the first stakeholder challenge."
+targetAudience: "PMs running quarterly/annual planning, product leads sequencing across teams, founders translating strategy into execution, exec teams demanding outcome-driven roadmaps"
+exampleUseCase: "\"Plan our Q1-Q3 roadmap from 15 competing initiatives\" → Phase 1 inputs (3 OKRs, 4 customer problems) → Phase 2 (10 epics with hypotheses + RICE) → Phase 3 (top 10 ranked) → Phase 4 (Now/Next/Later sequenced) → Phase 5 (45-min exec presentation + refinements)"
+category: "product-management"
+difficulty: "intermediate"
+timeToSetup: "1-2 weeks"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/roadmap-planning"
+tags: ["roadmap", "planning", "prioritization", "rice", "now-next-later", "strategy"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Orchestrates 5 phases (inputs → epics → prioritize → sequence → communicate) over 1-2 weeks. Each epic gets a hypothesis, success metric, effort estimate, and business-outcome tag. RICE scoring, dependency mapping, and stakeholder alignment built in.
+
+Pairs with `epic-hypothesis`, `prioritization-advisor`, `product-strategy-session`, and `discovery-process`.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/RoadmapPlanning
+mv ~/Downloads/CLAUDE.md ~/Documents/RoadmapPlanning/
+cd ~/Documents/RoadmapPlanning
+claude
+```
+
+Provide OKRs, validated customer problems, technical constraints, and stakeholder requests. Claude orchestrates the 5 phases and produces a published roadmap.
+
+---
+
+## The 5 Phases
+
+| Phase | Time | Output |
+|-------|------|--------|
+| **1. Gather Inputs** | Day 1-2 | OKRs + problems + tech + stakeholder requests |
+| **2. Define Initiatives** | Day 3-4 | 10-15 epic hypotheses with effort + outcome tags |
+| **3. Prioritize** | Day 5 | RICE-ranked top 10 epics |
+| **4. Sequence** | Day 6-7 | Now/Next/Later or Q1/Q2/Q3 with dependencies |
+| **5. Communicate** | Week 2 | Presentation + feedback + published roadmap |
+
+---
+
+## Tips & Best Practices
+
+- **Frame epics as hypotheses, not features.** "Guided onboarding will increase activation 40%→60%" beats "build onboarding checklist."
+- **Tag every epic with a business outcome.** If it doesn't ladder to an OKR, question it.
+- **Strategic overrides are okay.** RICE is input, not output — Enterprise SSO might score lower but matter more.
+- **Communicate flexibility.** "Subject to change based on learning" prevents commitment-vs-plan confusion.
+- **What's NOT on the roadmap matters.** Stakeholders trust you more when you explicitly name what didn't make the cut and why.
+
+---
+
+## Common Pitfalls
+
+- Feature list with no hypothesis or success metric
+- HiPPO prioritization (no transparent framework)
+- Roadmap treated as a contract instead of a plan
+- No dependency mapping → Q2 work blocked by Q1 slippage
+- Solo PM creates roadmap and presents it as finished

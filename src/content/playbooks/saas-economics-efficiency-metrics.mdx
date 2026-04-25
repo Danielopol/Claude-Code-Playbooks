@@ -1,0 +1,63 @@
+---
+title: "SaaS Economics & Efficiency Metrics"
+description: "PM-focused reference for unit economics (CAC, LTV, payback, contribution margin) + capital efficiency (burn, runway, OpEx) + ratios (Rule of 40, magic number) — with cash-trap pitfalls."
+seoHook: "Your deck shows LTV:CAC of 6:1 — and your runway is 9 months while payback is 36. Congrats: you have a cash trap. The ratio looked great because it ignored time. SaaS economics aren't one number — they're a system, and the worst failures come from celebrating LTV without checking payback, scaling S&M with a 0.3 magic number, or confusing gross margin with contribution margin."
+targetAudience: "PMs preparing board decks, founders evaluating fundraise readiness, exec teams deciding scale-vs-optimize, pricing leaders modeling ROI"
+exampleUseCase: "\"Evaluate our SaaS unit economics before scaling paid acquisition\" → Calculate CAC ($8K), LTV ($40K, margin-weighted), LTV:CAC (5:1), Payback (10mo), Rule of 40 (55), Magic Number (0.9) → Decision: scale aggressively. Plus segment breakdown showing SMB vs. Enterprise differences"
+category: "product-management"
+difficulty: "advanced"
+timeToSetup: "30-60 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/saas-economics-efficiency-metrics"
+tags: ["saas-metrics", "unit-economics", "cac", "ltv", "rule-of-40", "burn-rate", "fundraising"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Walks through 3 metric families (unit economics, capital efficiency, efficiency ratios) with formulas, benchmarks, and cash-trap pitfalls. Calculates LTV with margin-and-churn formula (not naive ARPU × lifetime). Pairs LTV:CAC with payback period to avoid the most common SaaS misread.
+
+Pairs with `saas-revenue-growth-metrics`, `finance-metrics-quickref`, and `finance-based-pricing-advisor`.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/SaaSEconomics
+mv ~/Downloads/CLAUDE.md ~/Documents/SaaSEconomics/
+cd ~/Documents/SaaSEconomics
+claude
+```
+
+Provide revenue, COGS, S&M spend, customer count, churn rate, cash balance, monthly burn. Claude calculates the full metric set and flags cash traps, scaling readiness, and optimization priorities.
+
+---
+
+## The Three Metric Families
+
+| Family | Key Metrics | Decision |
+|--------|-------------|----------|
+| **Unit Economics** | Gross Margin, CAC, LTV, LTV:CAC, Payback, Contribution Margin | Is each customer profitable? |
+| **Capital Efficiency** | Burn, Runway, OpEx, Net Income | Can we sustain growth? |
+| **Efficiency Ratios** | Rule of 40, Magic Number, Operating Leverage | Are we balancing growth + profit? |
+
+---
+
+## Tips & Best Practices
+
+- **LTV:CAC + payback together — always.** 6:1 with 36mo payback is a cash trap.
+- **Use margin-and-churn LTV.** Naive `ARPU × lifetime` overstates by 20-40%.
+- **Segment everything.** Blended SMB+Enterprise hides which segment kills you.
+- **Magic Number gates S&M scaling.** <0.5 = fix the engine before adding fuel.
+- **Rule of 40 is balance, not survival.** Pair with burn rate and runway.
+
+---
+
+## Common Pitfalls
+
+- High LTV celebrated without checking payback (the cash trap)
+- LTV calculated without gross margin (inflates 20-40%)
+- Scaling S&M when magic number is <0.5
+- Comparing channel CACs without payback periods
+- Confusing gross margin with contribution margin

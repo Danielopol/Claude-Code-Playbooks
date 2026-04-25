@@ -1,0 +1,68 @@
+---
+title: "PRD Development"
+description: "Build a structured PRD that connects problem, users, solution, and success criteria across 8 phases — from scattered Slack threads to engineering-ready document for major initiatives."
+seoHook: "Your team is two weeks into building, and engineering is asking \"what about international users?\" while design is asking \"is this dismissable?\" and the CEO is asking \"why this and not the other thing?\" That's not an engineering problem — it's a missing PRD. A real PRD answers seven questions before code starts and saves you the rebuild."
+targetAudience: "PMs writing PRDs for major features, product leads aligning cross-functional teams, founders documenting initiatives, engineering managers needing handoff context"
+exampleUseCase: "\"Write a PRD for guided onboarding to fix our 60% drop-off\" → 8-phase walkthrough: exec summary, problem (60% drop-off + customer quotes), personas (Solo Sam), strategy (Q1 churn OKR), solution (3-step checklist), metrics (40%→60% activation), stories with acceptance criteria, out of scope"
+category: "product-management"
+difficulty: "intermediate"
+timeToSetup: "2-3 days"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/prd-development"
+tags: ["prd", "requirements", "documentation", "alignment", "discovery"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Orchestrates 8 phases of PRD creation — exec summary, problem statement, personas, strategic context, solution overview, success metrics, user stories, out of scope — over 2-4 days. Calls component skills (`problem-statement`, `proto-persona`, `epic-hypothesis`, `user-story`) at each phase.
+
+Anti-pattern: PRD as waterfall spec. This is a living document for alignment, not a frozen contract.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/PRD
+mv ~/Downloads/CLAUDE.md ~/Documents/PRD/
+cd ~/Documents/PRD
+claude
+```
+
+Provide discovery insights, persona research, business goals, and competitive context. Claude orchestrates the 8-phase workflow and outputs a complete PRD.
+
+---
+
+## The 8 Phases
+
+| Phase | Time | Output |
+|-------|------|--------|
+| **1. Executive Summary** | 30 min | One paragraph (problem + solution + impact) |
+| **2. Problem Statement** | 60 min | Who/what/why/evidence |
+| **3. Target Users** | 30 min | Primary + secondary personas |
+| **4. Strategic Context** | 45 min | OKRs, market, competition, why now |
+| **5. Solution Overview** | 60 min | High-level description (not pixel spec) |
+| **6. Success Metrics** | 30 min | Primary + secondary + guardrails |
+| **7. User Stories** | 90-120 min | Epic hypothesis + stories with acceptance criteria |
+| **8. Scope & Dependencies** | 30 min | Out of scope, dependencies, risks, open questions |
+
+---
+
+## Tips & Best Practices
+
+- **Write the exec summary first, refine it last.** Forces clarity upfront, captures lessons at the end.
+- **Evidence in the problem statement.** Customer quotes + analytics + support tickets — not "we believe."
+- **Solution overview is high-level.** Don't spec UI in the PRD. Let design own pixels.
+- **Always define a primary metric.** Without it, you can't know if the feature succeeded.
+- **Document out of scope explicitly.** Prevents scope creep and stakeholder surprise.
+
+---
+
+## Common Pitfalls
+
+- PRD written in isolation, presented as finished doc (no buy-in)
+- "We believe users have this problem" with no data
+- Pixel-level UI spec that removes design collaboration
+- No success metrics defined upfront
+- No "out of scope" section, leading to scope creep

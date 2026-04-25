@@ -1,0 +1,81 @@
+---
+title: "Feature Investment Advisor"
+description: "Evaluate whether to build a feature using revenue connection, cost structure, ROI, and strategic value. Delivers build / build-strategic / don't-build / build-later recommendations with supporting math."
+seoHook: "Someone in the roadmap meeting just said \"this feature will generate $1M!\" — and you're the only one doing the math on COGS, adoption, payback, and opportunity cost. Financial lens on feature investment turns gut-feel prioritization into defensible decisions, and tells you when \"strategic value\" is an excuse versus a real moat."
+targetAudience: "PMs defending roadmap decisions with numbers, Heads of Product evaluating expensive feature bets, finance partners reviewing product investment cases, founders choosing between add-on revenue and retention features, RevOps leaders assessing monetization ideas"
+exampleUseCase: "\"Should we build SSO for mid-market customers this quarter?\" → Revenue connection (retention for enterprise pipeline) + cost structure (dev $120K, ongoing $2K/mo) + ROI calculation with LTV impact + strategic value (30% of pipeline requires it) → Build for strategic reasons with monitoring plan and 6-month re-evaluation criteria"
+category: "product-management"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/feature-investment-advisor"
+tags: ["feature-prioritization", "roi", "unit-economics", "ltv", "financial-modeling", "investment-decisions"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Walks through 4 adaptive questions — revenue connection, cost structure, constraints, recommendation — and delivers one of 4 patterns: Build Now (strong ROI), Build Strategic (weak financial but high strategic value), Don't Build (poor ROI), or Build Later (validate first). Every recommendation includes supporting math: revenue projections, contribution margin, payback period, sensitivity analysis.
+
+Not a generic prioritization framework. A financial lens that complements RICE, value-vs-effort, and customer research.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/FeatureInvestment
+mv ~/Downloads/CLAUDE.md ~/Documents/FeatureInvestment/
+cd ~/Documents/FeatureInvestment
+claude
+```
+
+Provide the feature, your current metrics (MRR, ARPU, churn, margin), and dev cost estimate. Claude walks through the 4 questions and delivers the recommendation with numbers.
+
+---
+
+## Four Revenue Paths
+
+1. **Direct monetization** — Customer Base × Adoption × Price
+2. **Retention improvement** — Lifetime increase × Base × ARPU × Margin
+3. **Conversion improvement** — Trial Users × Conversion Lift × ARPU
+4. **Expansion enabler** — Base × Expansion Rate × ARPU Increase
+
+---
+
+## Four Recommendation Patterns
+
+| Pattern | Trigger | Output |
+|---------|---------|--------|
+| **Build Now** | ROI >3:1 direct, or LTV >10:1 retention | Math + MVP plan + success metrics |
+| **Build Strategic** | Weak ROI + high moat/platform/compliance value | Build with monitoring + 6-month re-eval |
+| **Don't Build** | ROI <1:1, margin-diluting, no strategic value | Reject + alternatives + what-would-change thresholds |
+| **Build Later** | Highly uncertain assumptions | Validation plan + decision criteria + timeline |
+
+---
+
+## When to Use vs. Skip
+
+**Use:** Expensive features (>1 eng-month), quantifiable revenue/retention impact, build/buy/partner, defending to stakeholders.
+
+**Skip:** Table stakes (competitive parity required), purely qualitative, problem not yet validated, feature <1 week.
+
+---
+
+## Tips & Best Practices
+
+- **Always use contribution margin, not revenue.** $1M revenue at 20% margin = $200K profit.
+- **Check payback period against customer lifetime.** 36-month payback with 24-month average lifetime = you never recover.
+- **Be conservative on adoption.** 10-20% for add-ons. Validate with willingness-to-pay research.
+- **Compare to backlog, not to zero.** 2:1 ROI sounds okay until the 10:1 alternative waits in backlog.
+- **Define "strategic" precisely.** Moat / platform enabler / compliance — not a vague vibe.
+
+---
+
+## Common Pitfalls
+
+- Confusing revenue with profit (ignoring COGS and margin)
+- Overestimating adoption (100% of customers won't use a paid add-on)
+- Building without validating the underlying churn reason or demand
+- Using "strategic value" as an excuse for features that can't justify their own ROI
+- Celebrating vanity metrics (engagement) instead of tying features to revenue or retention

@@ -1,0 +1,71 @@
+---
+title: "Customer Journey Mapping Workshop"
+description: "Run a 5-question adaptive workshop to build a customer journey map — actor, scenario, phases, actions/emotions, and prioritized opportunities — that aligns cross-functional teams around real pain points."
+seoHook: "You gathered research, but the team still argues about where customers actually struggle. A 5-question adaptive workshop turns that argument into a shared map: one persona, one scenario, phases with emotions attached, and opportunities ranked by evidence — not opinion."
+targetAudience: "PMs facilitating discovery workshops, CX designers mapping end-to-end experiences, Heads of CS investigating churn, product leads needing cross-functional alignment before roadmapping, UX researchers synthesizing interview findings into a shared artifact"
+exampleUseCase: "\"Help me run a journey mapping workshop for new customer onboarding\" → Adaptive 5-question flow → Actor + scenario + 6 phases + per-phase actions/thoughts/emotions/pain-points + 5-7 prioritized opportunities with evidence, impact rating, and proposed solutions"
+category: "product-management"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/customer-journey-mapping-workshop"
+tags: ["customer-journey", "workshop-facilitation", "discovery", "pain-points", "opportunities", "cross-functional"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Facilitates a 5-question adaptive workshop that builds a customer journey map from scratch — actor (persona), scenario/goal, 4-6 journey phases, per-phase actions/thoughts/emotions/pain-points, and 5-7 opportunities ranked by impact with supporting evidence.
+
+Built on NNGroup's framework. Pairs with `workshop-facilitation` for one-question-at-a-time interaction, numbered options, and pause/resume.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/JourneyWorkshop
+mv ~/Downloads/CLAUDE.md ~/Documents/JourneyWorkshop/
+cd ~/Documents/JourneyWorkshop
+claude
+```
+
+Paste your context (interviews, support tickets, analytics, personas) and describe the customer experience. Claude runs the 5 questions and delivers the full map.
+
+---
+
+## Five Key Components
+
+1. **Actor** — A specific persona anchoring the map
+2. **Scenario + Expectations** — Situational context and goals
+3. **Journey Phases** — 4-6 high-level stages (discover, try, buy, use, support)
+4. **Actions, Mindsets, Emotions** — User behaviors, thoughts, feelings per phase
+5. **Opportunities** — Prioritized improvement insights with evidence
+
+---
+
+## What This Is NOT
+
+- **Not a service blueprint** — Journey maps are customer-perspective; blueprints map internal operations
+- **Not a user story map** — Journey maps support discovery; story maps support implementation
+- **Not an experience map** — Journey maps target specific users and products; experience maps explore broader human behaviors
+
+---
+
+## Tips & Best Practices
+
+- **Gather context first.** Paste interviews, churn data, analytics, NPS — the richer the input, the sharper the map.
+- **Map from customer POV.** Not "lead → qualified → demo → closed" (that's your sales funnel). Use "discovers problem → researches → tries → adopts."
+- **One persona per map.** If you have multiple personas, create separate maps — don't merge.
+- **Rank opportunities by evidence.** HIGH/MEDIUM/LOW based on frequency, drop-off data, and emotional intensity — not gut feel.
+- **Facilitate cross-functionally.** PM + design + engineering + support together builds shared mental model.
+
+---
+
+## Common Pitfalls
+
+- Mapping sales process instead of customer experience
+- Actions only, no emotions or pain points — misses where experience breaks
+- Too many personas in one map — becomes generic
+- 20 unranked opportunities → paralysis; rank by impact with evidence
+- PM creates map solo → no shared understanding → map doesn't drive decisions

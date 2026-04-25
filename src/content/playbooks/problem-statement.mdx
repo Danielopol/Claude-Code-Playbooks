@@ -1,0 +1,67 @@
+---
+title: "Problem Statement (User-Centered)"
+description: "Write an empathy-driven problem statement (I am / Trying to / But / Because / Which makes me feel) that frames product work around user outcomes — not feature requests or business symptoms."
+seoHook: "Your problem statement is \"users need a better dashboard.\" That's a feature wishlist. A real problem statement names a person, what they're trying to accomplish, what's blocking them, why, and how it feels — and produces a one-sentence summary that makes stakeholders nod. \"Users want efficiency\" doesn't ship. \"Sarah spends 8 hours/month manually chasing invoices\" does."
+targetAudience: "PMs framing discovery, founders aligning teams on real problems, UX leads avoiding solution-first thinking, engineering leaders needing user context"
+exampleUseCase: "\"Frame a problem statement for our 60% onboarding drop-off\" → I am a non-technical SMB owner / Trying to start using the product / But the dashboard is empty and jargon-heavy / Because there's no guided flow / Which makes me feel overwhelmed and abandon → \"SMB owners need a guided first session because empty dashboards cause 60% to abandon within 24 hours.\""
+category: "product-management"
+difficulty: "beginner"
+timeToSetup: "30 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/problem-statement"
+tags: ["problem-statement", "discovery", "empathy", "framing", "jtbd"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Walks through the I am / Trying to / But / Because / Which makes me feel framework with quality checks at each box — plus context/constraints and a one-sentence synthesis. Forces user-centered framing instead of feature requests or business-metric problems disguised as user problems.
+
+Pairs with `proto-persona` (defines "I am"), `jobs-to-be-done` (informs "Trying to"/"But"), and feeds into `positioning-statement`, `user-story`, PRDs.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/ProblemStatement
+mv ~/Downloads/CLAUDE.md ~/Documents/ProblemStatement/
+cd ~/Documents/ProblemStatement
+claude
+```
+
+Provide user research (quotes, behaviors, pains), persona context, and constraints. Claude drafts the narrative and stress-tests for solution smuggling, vague personas, and fabricated emotions.
+
+---
+
+## The Five Boxes
+
+| Box | Purpose |
+|-----|---------|
+| **I am** | Specific persona (not "busy professionals") |
+| **Trying to** | Desired outcome (not a task) |
+| **But** | Real barriers (not inconveniences) |
+| **Because** | Root cause (not a symptom) |
+| **Which makes me feel** | Real emotions from research (not marketing copy) |
+
+Plus **Context & Constraints** and a **Final Problem Statement** in one sentence.
+
+---
+
+## Tips & Best Practices
+
+- **Specific personas only.** "Sales rep managing 50+ leads in spreadsheets" beats "busy professional."
+- **"Trying to" = outcome, not task.** "Make data-driven decisions faster" beats "use the dashboard."
+- **Keep asking "why"** until you hit root cause. "UI is confusing" is a symptom.
+- **Real emotions only.** Use actual interview quotes — "frustrated," "overwhelmed," "stuck" — not "delighted" or "empowered."
+- **One-sentence synthesis** must pass the meeting test: stakeholders nod, don't ask clarifying questions.
+
+---
+
+## Common Pitfalls
+
+- "The problem is we lack feature X" (solution smuggling)
+- "Our churn rate is too high" (business problem, not user problem)
+- "Busy professionals want better tools" (generic persona, vague pain)
+- "Because the UI is confusing" (symptom, not root cause)
+- "Makes me feel empowered" (fake emotion, marketing copy)

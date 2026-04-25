@@ -1,0 +1,64 @@
+---
+title: "Prioritization Framework Advisor"
+description: "Pick the right prioritization framework (RICE, ICE, Value/Effort, Kano, Buy-a-Feature) based on product stage, team context, decision needs, and data availability — avoid framework whiplash."
+seoHook: "Your team adopted RICE last quarter, and now you're spending 30 minutes per ticket arguing about Reach numbers you can't actually measure. RICE isn't bad — it's wrong for your stage. Pre-PMF needs ICE. Misaligned stakeholders need Buy-a-Feature. Strategic bets need Kano. There's no \"best\" framework — only the wrong one for your situation."
+targetAudience: "PMs choosing first prioritization framework, product leads switching from broken process, founders aligning stakeholders, engineering managers ending HiPPO debates"
+exampleUseCase: "\"We have 100+ backlog items, no usage data yet, and we're pre-PMF\" → Recommendation: ICE or Value/Effort (not RICE — no Reach data; speed > rigor) + 4-step implementation + alternative + pitfalls + reassess triggers"
+category: "product-management"
+difficulty: "intermediate"
+timeToSetup: "30 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/prioritization-advisor"
+tags: ["prioritization", "frameworks", "rice", "ice", "kano", "decision-making"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Asks 4 adaptive questions (stage / team / decision need / data) and recommends from RICE, ICE, Value/Effort, Weighted Scoring, Kano, Opportunity Scoring, Buy-a-Feature, MoSCoW, Cost of Delay, Impact Mapping, or Story Mapping. Outputs implementation steps, example scoring, and an alternative for hedging.
+
+Pairs with `user-story` (output of prioritization), `epic-hypothesis`, and `recommendation-canvas`.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/PrioritizationAdvisor
+mv ~/Downloads/CLAUDE.md ~/Documents/PrioritizationAdvisor/
+cd ~/Documents/PrioritizationAdvisor
+claude
+```
+
+Provide product stage, team context, primary decision-making challenge, and data availability. Claude recommends the right framework with implementation guidance.
+
+---
+
+## The 4 Questions
+
+| Question | Drives |
+|----------|--------|
+| **Product stage** (pre-PMF / scaling / mature / multi-product) | Speed vs. rigor tradeoff |
+| **Team context** (small / aligned / misaligned / large org) | Process weight + consensus needs |
+| **Decision-making need** (filtering / alignment / data-driven / tradeoffs) | Framework type |
+| **Data availability** (minimal / some / rich) | Scoring sophistication |
+
+---
+
+## Tips & Best Practices
+
+- **Match framework to stage, not preference.** Pre-PMF doesn't need RICE; mature products shouldn't run on ICE.
+- **Commit for 6-12 months.** Switching every quarter creates whiplash and erodes trust.
+- **Score collaboratively.** PM-only scoring lacks buy-in; engineering + design must participate.
+- **Override scores when strategic.** Frameworks are inputs, not automation. PM judgment wins ties.
+- **Reassess triggers.** Stage change, team reorg, stakeholder shift = reassess. Otherwise leave alone.
+
+---
+
+## Common Pitfalls
+
+- Pre-PMF startup using weighted scoring with 10 criteria (overhead kills speed)
+- Switching frameworks every quarter (no consistency, lost trust)
+- Treating scores as gospel ("8000 vs. 7999 means A wins")
+- Solo PM scoring with no design/eng input
+- No framework at all → HiPPO (Highest Paid Person's Opinion) wins

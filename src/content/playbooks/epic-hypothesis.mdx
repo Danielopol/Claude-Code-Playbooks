@@ -1,0 +1,71 @@
+---
+title: "Epic Hypothesis (Lean UX)"
+description: "Frame epics as falsifiable if/then hypotheses with tiny discovery experiments and 2-4 week validation measures — so you can kill bad ideas before committing engineering."
+seoHook: "You wrote the epic as \"Build a dashboard with five charts,\" sized it at 8 weeks, and the CEO already told the board you're shipping it. That's not an epic — that's a commitment you'll regret. A hypothesis says: if we do X for this persona, we expect outcome Y, and we'll test it with a prototype in two weeks."
+targetAudience: "PMs framing major initiatives, product leads managing uncertainty, teams running Lean UX or continuous discovery, PMs who keep getting asked to \"validate\" features they've already built, founders avoiding premature commitment"
+exampleUseCase: "\"Frame our upcoming Slack integration as an epic hypothesis\" → If/then statement (integration for trial users → 20% activation lift) + 3 tiny experiments (Figma prototype, concierge Slack DMs to 10 users, landing page CTA) + 4-week validation measures (activation rate, qualitative \"saved me time\" quotes) + decision criteria for build/pivot/kill"
+category: "product-management"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/epic-hypothesis"
+tags: ["lean-ux", "hypothesis-driven", "discovery", "experiments", "epic-framing", "validation"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Converts an epic into a testable if/then hypothesis with lightweight validation experiments and 2-4 week success measures. Forces explicit assumptions ("we believe X") and falsifiable outcomes ("we know it's valid if Y"), so you can kill bad bets before full engineering commitment.
+
+Built on Tim Herbig's Lean UX hypothesis format. Pairs with `problem-statement`, `proto-persona`, `jobs-to-be-done`, and `user-story-splitting`.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/EpicHypothesis
+mv ~/Downloads/CLAUDE.md ~/Documents/EpicHypothesis/
+cd ~/Documents/EpicHypothesis
+claude
+```
+
+Provide the epic idea, target persona, existing discovery evidence. Claude drafts the hypothesis, suggests tiny experiments, and defines validation measures.
+
+---
+
+## The Three-Part Structure
+
+1. **If/Then Hypothesis** — If we [action] for [persona], then we will [outcome]
+2. **Tiny Acts of Discovery** — 2-3 lightweight experiments (prototype, concierge, landing page, Wizard of Oz)
+3. **Validation Measures** — Within [2-4 weeks] we observe [quantitative + qualitative outcomes]
+
+---
+
+## Experiment Types
+
+- **Prototype + user testing** — Clickable mockup with 5-10 users
+- **Concierge test** — Manually deliver feature for 10 users
+- **Landing page test** — Describe feature, measure interest/signups
+- **Wizard of Oz** — Present as automated, deliver manually
+- **A/B test** — Test minimal version against control
+
+---
+
+## Tips & Best Practices
+
+- **"Then we will" must be an outcome, not an output.** "Users will have notifications" is output. "Users will respond 50% faster" is outcome.
+- **Falsifiable measures only.** If every result confirms the hypothesis, you didn't test it.
+- **2-4 week validation window.** Longer windows mean you've already built the thing.
+- **Kill cheerfully.** Invalidated hypotheses are saves, not failures.
+- **Don't frame post-commitment as hypothesis.** If the CEO already said yes, you're not testing — you're theater-performing.
+
+---
+
+## Common Pitfalls
+
+- Hypothesis is actually a feature spec ("build a dashboard")
+- Skipping experiments and going straight to full build
+- Vague success criteria ("users are happy") that can't be falsified
+- 6-month validation windows where you've already built the thing
+- Treating epics as commitments, then running experiments as theater

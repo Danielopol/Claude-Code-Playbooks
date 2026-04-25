@@ -1,0 +1,63 @@
+---
+title: "TAM/SAM/SOM Calculator"
+description: "Calculate Total Addressable Market, Serviceable Available Market, and Serviceable Obtainable Market with explicit assumptions, citations, and 1-3 year projections — defensible market sizing for investors, execs, and PMF validation."
+seoHook: "Your pitch deck says \"$50B market\" with no source — and the first investor question torpedoes the meeting. Market size without citations is just a guess wearing a tuxedo. The cure is TAM-SAM-SOM with population counts, real data sources (Census, IBISWorld, Statista), and a SOM that's 1-15% of SAM, not 100%."
+targetAudience: "PMs preparing investor decks, founders sizing markets pre-seed/Series A, exec teams validating new product lines, BizOps leads building business cases"
+exampleUseCase: "\"Size the market for a SmartInvoice tool for US freelancers\" → TAM: 60M freelancers × $300 ARPA = $18B → SAM: 12M with active client billing × $300 = $3.6B → SOM: 5% in Year 3 = $180M, 600K customers — with Census/BLS/Statista citations and competition assumptions"
+category: "product-management"
+difficulty: "intermediate"
+timeToSetup: "60-90 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/tam-sam-som-calculator"
+tags: ["market-sizing", "tam-sam-som", "investor-deck", "business-case", "pmf"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Walks through 4 adaptive questions (problem space → geography → industry segment → customer profile) then generates a citation-backed TAM/SAM/SOM analysis with population estimates, market size calculations, and 1-3 year SOM projections. Includes optional Python helper script for deterministic math.
+
+Pairs with `positioning-statement`, `problem-statement`, and `recommendation-canvas`.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/MarketSizing
+mv ~/Downloads/CLAUDE.md ~/Documents/MarketSizing/
+cd ~/Documents/MarketSizing
+claude
+```
+
+Provide product context (your website copy, or a competitor analog) plus geography. Claude asks 4 adaptive questions and produces a citation-backed analysis.
+
+---
+
+## The Three Tiers
+
+| Tier | Definition | Typical Range |
+|------|-----------|---------------|
+| **TAM** | If you captured 100% of demand | Total industry size |
+| **SAM** | Realistically targetable segment | 5-30% of TAM |
+| **SOM** | Capturable in 1-3 years | 1-15% of SAM |
+
+---
+
+## Tips & Best Practices
+
+- **Cite every number.** Census, BLS, IBISWorld, Statista, Gartner — with URLs.
+- **Population AND dollars.** "$1.2B" without "60K customers" can't drive a sales plan.
+- **SOM ≠ SAM.** A SOM that equals SAM is a tell that you skipped competition analysis.
+- **Ground SOM in GTM capacity.** "50% Year 1" with no sales team is fiction.
+- **Reassess annually.** Markets shift; old TAM/SAM/SOM rots.
+
+---
+
+## Common Pitfalls
+
+- TAM without citations ("the market is huge")
+- SOM = SAM (assumes 100% capture, zero competition)
+- Only dollars, no customer counts
+- Static numbers from 3 years ago
+- SOM that ignores sales/marketing capacity

@@ -1,0 +1,65 @@
+---
+title: "User Story Mapping (Component)"
+description: "Hierarchical story map template — segment → persona → narrative → activities → steps → tasks — left-to-right user journey with vertical priority for MVP planning and gap identification."
+seoHook: "You handed engineering a 200-item Jira backlog and asked them to \"figure out the MVP.\" Flat lists hide the journey: engineers can't see which 20 items deliver end-to-end value vs. polish. A story map breaks work into activities → steps → tasks, prioritizes vertically, and makes the MVP a visible row across the top instead of a guess."
+targetAudience: "PMs structuring backlogs, design leads visualizing flow, engineering leads scoping MVP, BAs translating workflows into work"
+exampleUseCase: "\"Map a freelance designer's project workflow\" → Activities: Negotiate → Execute → Deliver → Invoice → Tasks beneath each (review brief, draft proposal, etc.) → Vertical release lines drawn at MVP / R2 / Future"
+category: "product-management"
+difficulty: "intermediate"
+timeToSetup: "60-90 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/user-story-mapping"
+tags: ["story-mapping", "jeff-patton", "backlog", "mvp", "user-journey"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Provides the structured template for a Jeff Patton-style story map — segment, persona, narrative (JTBD-style), 3-5 activities (backbone), 3-5 steps each, 5-7 tasks each, prioritized vertically with release lines. Use as the artifact; pair with `user-story-mapping-workshop` for a facilitated session.
+
+Pairs with `proto-persona`, `jobs-to-be-done`, `user-story`, and `problem-statement`.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/StoryMap
+mv ~/Downloads/CLAUDE.md ~/Documents/StoryMap/
+cd ~/Documents/StoryMap
+claude
+```
+
+Provide segment, persona, and the user's high-level goal. Claude generates the full hierarchical map and proposes release lines.
+
+---
+
+## The Hierarchy
+
+| Level | Count | Description |
+|-------|-------|-------------|
+| **Activity** | 3-5 | Sequential user actions (backbone) |
+| **Step** | 3-5/activity | Specific user actions within an activity |
+| **Task** | 5-7/step | Granular work to complete a step |
+
+Vertical priority: top = MVP, middle = R2, bottom = future.
+
+---
+
+## Tips & Best Practices
+
+- **Activities are user actions, not features.** "Monitor progress" beats "Use the dashboard."
+- **3-5 activities total.** More means you're mixing activities with steps.
+- **Tasks must be specific.** "Do the thing" → "Enter client email in 'Bill To' field."
+- **Draw release lines.** No lines = no MVP clarity.
+- **Map collaboratively.** PM-only mapping kills shared ownership.
+
+---
+
+## Common Pitfalls
+
+- Activities written as features ("Use the dashboard")
+- 10+ activities in the backbone (over-decomposition)
+- Vague tasks that can't be estimated
+- Single priority tier (no MVP vs. future split)
+- Solo PM creating the map then "presenting" it

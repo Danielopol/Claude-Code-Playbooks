@@ -1,0 +1,88 @@
+---
+title: "Context Engineering Advisor"
+description: "Diagnose whether you're doing context stuffing (volume without intent) or context engineering (structure for attention). Build memory architecture, define context boundaries, and implement the Research → Plan → Reset → Implement cycle."
+seoHook: "You pasted the entire PRD, all the user interviews, and last quarter's meeting notes into Claude — and the response is still vague and hedged. That's not a prompt problem. It's an architecture problem: volume ≠ quality, and context windows aren't free."
+targetAudience: "PMs whose AI outputs feel mediocre despite stuffing huge context, AI engineers designing agent workflows, product leaders building AI-powered features, anyone burning tokens without seeing accuracy gains, teams with agent chains that pass everything downstream"
+exampleUseCase: "\"My AI outputs are mediocre even though I'm giving it lots of information — diagnose what's wrong\" → Run 5 diagnostic questions, produce a Context Manifest (persist vs. retrieve vs. exclude), design two-layer memory architecture, and apply Research→Plan→Reset→Implement to eliminate context rot"
+category: "product-management"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/context-engineering-advisor"
+tags: ["ai-agents", "context-engineering", "rag", "memory-architecture", "prompt-engineering", "llm-design"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Diagnoses whether your AI workflows are doing "context stuffing" (jamming volume without intent) or "context engineering" (shaping structure for attention). Identifies context boundaries, builds a two-layer memory architecture, and implements the Research→Plan→Reset→Implement cycle to prevent context rot.
+
+Not prompt engineering — information architecture design.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/ContextEngineering
+mv ~/Downloads/CLAUDE.md ~/Documents/ContextEngineering/
+cd ~/Documents/ContextEngineering
+claude
+```
+
+Describe your current AI workflow and symptoms. Claude walks you through the 5 diagnostic questions and produces a Context Manifest + action plan.
+
+---
+
+## The 5 Diagnostic Questions
+
+1. What specific decision does this support?
+2. Can retrieval replace persistence?
+3. Who owns the context boundary?
+4. What fails if we exclude this?
+5. Are we fixing structure or avoiding it?
+
+If you can't answer #1 or #4, delete the context.
+
+---
+
+## The Research → Plan → Reset → Implement Cycle
+
+1. **Research** — chaotic context allowed, gather broadly
+2. **Plan** — synthesize into a high-density SPEC.md
+3. **Reset** — **clear the entire context window**
+4. **Implement** — fresh session using only the plan
+
+This is the fix for context rot. Skipping the Reset is why agents "lose the thread" on long tasks.
+
+---
+
+## Five Markers of Context Stuffing
+
+- Reflexively expanding context windows
+- Persisting everything "just in case"
+- Chaining agents without boundaries
+- Adding evaluations to mask inconsistency
+- Normalized retries ("it works if you run it 3 times")
+
+Accuracy drops below 20% past ~32k tokens. Using RAG with 25% of available tokens preserves 95% accuracy.
+
+---
+
+## Tips & Best Practices
+
+- **Treat tokens as scarce.** "Infinite context" marketing doesn't match engineering reality.
+- **Retrieve with intent, not completeness.** If information is referenced in <20% of interactions, retrieve it; don't persist it.
+- **Assign a context boundary owner.** Without one, context grows indefinitely.
+- **Run quarterly context audits.** Re-apply the 5 diagnostic questions.
+- **If you're retrying prompts 3+ times, don't tune the prompt — fix the structure.**
+
+---
+
+## Common Pitfalls
+
+- Believing more tokens = better outputs (they don't past ~32k)
+- Normalizing retries instead of restructuring
+- Passing full context between chained agents
+- Mixing always-needed and episodic context in the same layer
+- Skipping the Reset phase and letting context rot poison implementation

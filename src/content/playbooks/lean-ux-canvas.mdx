@@ -1,0 +1,78 @@
+---
+title: "Lean UX Canvas (v2)"
+description: "Jeff Gothelf's 8-box one-page tool for framing work around the business problem, not the solution — surface assumptions, write testable hypotheses, and plan the smallest experiment before committing to build."
+seoHook: "Your stakeholders already picked the solution — and your job is to \"validate\" it while engineering sprints are being planned. That's not product work, that's ceremony. The Lean UX Canvas pushes the conversation back upstream: what changed in the world, what's the riskiest assumption, what's the smallest test we can run before this becomes a 6-month build."
+targetAudience: "PMs running discovery, UX leads facilitating problem-framing workshops, teams starting new initiatives, founders running MVP sprints, product leaders reframing committed projects"
+exampleUseCase: "\"Fill out a Lean UX Canvas for our mobile checkout conversion problem\" → 8 boxes (business problem → outcomes → users → benefits → solutions → hypotheses → riskiest assumption → experiment) with one-tap checkout, autofill, guest mode alternatives + Wizard-of-Oz validation plan"
+category: "product-management"
+difficulty: "intermediate"
+timeToSetup: "20 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/lean-ux-canvas"
+tags: ["lean-ux", "discovery", "hypothesis-driven", "workshop", "problem-framing", "experiments"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Walks through 8 canvas boxes in sequence: **Business Problem → Business Outcomes → Users → User Outcomes & Benefits → Solutions → Hypotheses → Learn First → Experiments**. Each box has quality checks, examples, and challenge prompts for common failure modes.
+
+Built on Jeff Gothelf's Lean UX Canvas v2. Pairs with `problem-statement`, `proto-persona`, `jobs-to-be-done`, `epic-hypothesis`, and `pol-probe-advisor` for experiment selection.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/LeanUX
+mv ~/Downloads/CLAUDE.md ~/Documents/LeanUX/
+cd ~/Documents/LeanUX
+claude
+```
+
+Provide the initiative (brief, stakeholder memo, or description). Claude walks through all 8 boxes, challenges vague answers, and delivers a complete canvas with experiment plan.
+
+---
+
+## The 8 Boxes
+
+| # | Box | Core Question |
+|---|-----|---------------|
+| 1 | Business Problem | What changed in the world? |
+| 2 | Business Outcomes | What measurable behavior change = success? |
+| 3 | Users | Which persona first? |
+| 4 | User Outcomes & Benefits | Why would users seek this? |
+| 5 | Solutions | What might work? (3+ options, not commitments) |
+| 6 | Hypotheses | "We believe [outcome] if [user] attains [benefit] with [solution]" |
+| 7 | Learn First | What's the riskiest assumption right now? |
+| 8 | Experiments | Smallest test to validate/invalidate? |
+
+---
+
+## Key Distinction: Box 2 vs. Box 4
+
+- **Box 2 (Business Outcomes)** — Metrics, behavior change: "Mobile conversion 45% → 60%"
+- **Box 4 (User Outcomes & Benefits)** — Emotions, empathy: "Avoid embarrassment of failed checkout"
+
+Confusing these is the single most common canvas failure.
+
+---
+
+## Tips & Best Practices
+
+- **Force 3+ solutions in Box 5.** One solution = stakeholders already decided.
+- **Early on, prioritize value risk over feasibility.** Don't build a feasible thing users don't want.
+- **If your experiment takes >2 weeks, break it down.** Canvas is about learning speed.
+- **Re-visit the canvas after each experiment.** Update hypotheses; pick next riskiest assumption.
+- **Prioritize the riskiest assumption, not the easiest to test.**
+
+---
+
+## Common Pitfalls
+
+- Starting with solutions, not problems (Box 1 says "build X")
+- Vague outcomes ("increase revenue" with no behavior change metric)
+- Too-broad users ("all users" prevents targeted experiments)
+- Confusing Box 2 (metrics) with Box 4 (empathy)
+- Listing only one solution in Box 5
+- Skipping experiments — "we'll build it and see"

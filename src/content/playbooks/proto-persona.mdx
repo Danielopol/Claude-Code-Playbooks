@@ -1,0 +1,69 @@
+---
+title: "Proto-Persona"
+description: "Create a lightweight, hypothesis-driven persona in hours from existing research, market signals, and team knowledge — a working customer profile before deeper validation."
+seoHook: "Your stakeholder deck has \"Manager Mike, 30-45, lives in SF, has a dog\" — and that demographic snapshot tells you nothing about whether he'd use your product. A proto-persona is a hypothesis: behavioral, quote-driven, with explicit \"assumption — validate\" tags. Good enough to align the team in a day. Not so polished you forget to validate it."
+targetAudience: "PMs aligning teams pre-research, UX leads kicking off design, founders without deep customer knowledge yet, product teams identifying research gaps"
+exampleUseCase: "\"Create a proto-persona for our analytics tool's primary user\" → Manager Mike (Director, mid-sized SaaS) + quotes + pains (10 hrs/week in meetings) + trying to (deliver 2 weeks ahead) + decision authority ($10k budget, exec approval above) + [ASSUMPTION—VALIDATE] tags"
+category: "product-management"
+difficulty: "beginner"
+timeToSetup: "60 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/proto-persona"
+tags: ["persona", "discovery", "research", "lean-ux", "customer-profile"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Walks through name → bio → quotes → pains → trying-to-accomplish → goals → decision authority → influencers → beliefs, with `[ASSUMPTION—VALIDATE]` tags for everything not backed by research. Outputs a hypothesis-driven persona that aligns teams quickly without pretending to be validated research.
+
+Pairs with `problem-statement`, `jobs-to-be-done`, `positioning-statement`, and `user-story`.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/ProtoPersona
+mv ~/Downloads/CLAUDE.md ~/Documents/ProtoPersona/
+cd ~/Documents/ProtoPersona
+claude
+```
+
+Provide whatever context you have — interview snippets, support tickets, sales call notes, market reports. Claude drafts the persona and tags assumptions for validation.
+
+---
+
+## The Sections
+
+| Section | Purpose |
+|---------|---------|
+| **Name** | Alliterative, memorable |
+| **Bio & Demographics** | Only behavior-relevant details |
+| **Quotes** | Reveal mindset (real or `[PLACEHOLDER]`) |
+| **Pains** | Specific, related to your product space |
+| **Trying to accomplish** | Observable outcomes |
+| **Goals** | Short + long term, personal + professional |
+| **Decision Authority** | Buying power + approval levels |
+| **Influencers** | Who shapes their decisions |
+| **Beliefs & Attitudes** | Affect adoption |
+
+---
+
+## Tips & Best Practices
+
+- **Behavior over demographics.** "Active in 5 Slack communities" beats "lives in NYC."
+- **Tag assumptions.** `[ASSUMPTION—VALIDATE]` keeps the team honest about what's a guess.
+- **Start with 1-2.** Primary + secondary. Adding more before validating creates analysis paralysis.
+- **Real quotes only.** Or mark placeholder. Fake quotes ("I love delight!") create fake empathy.
+- **Plan to graduate.** A proto-persona that's never updated is a fossil. Validate, evolve, or replace.
+
+---
+
+## Common Pitfalls
+
+- Demographic snapshot with no behavioral context
+- Treating proto-persona as validated fact
+- Building 10 personas before validating any
+- Fabricated quotes that sound like marketing copy
+- Never updating the persona as research comes in

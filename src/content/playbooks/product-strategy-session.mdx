@@ -1,0 +1,68 @@
+---
+title: "Product Strategy Session"
+description: "End-to-end product strategy workflow orchestrating positioning, problem framing, discovery, prioritization, and roadmap across 6 phases over 2-4 weeks — with explicit decision points."
+seoHook: "Your last \"strategy offsite\" produced 47 sticky notes, three competing roadmaps, and a doc nobody opens. Strategy isn't a 2-day workshop — it's a structured 2-4 week process with positioning, problem validation, solution exploration, prioritization, and execution planning. With decision points. So you don't run all 6 phases when 3 would have done."
+targetAudience: "PMs running annual/quarterly planning, founders defining strategy from scratch, product leaders repositioning, exec teams aligning on direction"
+exampleUseCase: "\"Run a product strategy session for our SMB analytics tool\" → Week 1 positioning + problem framing → Week 2 solution exploration + roadmap → Week 3 stakeholder alignment + press release → Week 4 epic breakdown + sprint planning"
+category: "product-management"
+difficulty: "advanced"
+timeToSetup: "2-4 weeks"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/product-strategy-session"
+tags: ["strategy", "workflow", "discovery", "roadmap", "planning", "positioning"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Orchestrates 15+ component and interactive skills across 6 phases (positioning → problem framing → solution → prioritization → alignment → execution). Includes 3 explicit decision points so you don't waste cycles on low-uncertainty work, and time-boxes the entire session to 2-4 weeks.
+
+Pairs with every PM playbook downstream — `positioning-workshop`, `problem-framing-canvas`, `opportunity-solution-tree`, `prioritization-advisor`, `epic-breakdown-advisor`, `user-story`.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/ProductStrategy
+mv ~/Downloads/CLAUDE.md ~/Documents/ProductStrategy/
+cd ~/Documents/ProductStrategy
+claude
+```
+
+Provide product context, exec sponsorship status, and known constraints. Claude orchestrates the 6 phases and prompts you at each decision point.
+
+---
+
+## The 6 Phases
+
+| Phase | Week | Focus | Key Skills |
+|-------|------|-------|------------|
+| **1. Positioning & Market** | 1 | Who, problem, differentiation | `positioning-workshop`, `proto-persona`, `jobs-to-be-done` |
+| **2. Problem Framing** | 1 | Frame + validate | `problem-framing-canvas`, `problem-statement` |
+| **3. Solution Exploration** | 2 | Opportunities + epics | `opportunity-solution-tree`, `epic-hypothesis` |
+| **4. Prioritization** | 2 | Framework + sequence | `prioritization-advisor` |
+| **5. Stakeholder Alignment** | 3 | Present + refine | `press-release` (optional) |
+| **6. Execution Planning** | 4 | Stories + sprints | `epic-breakdown-advisor`, `user-story` |
+
+**3 decision points:** validate customer context (Phase 1→2), validate problem (Phase 2→3), test solutions (Phase 3→4).
+
+---
+
+## Tips & Best Practices
+
+- **Secure exec sponsorship before starting.** Without it, Phase 5 fails and the strategy doesn't get resourced.
+- **Cross-functional from Day 1.** Design, eng, sales, CS in workshops — not just final review.
+- **Use decision points.** Don't run all 6 phases blindly; if problem is already validated, skip extra discovery.
+- **Time-box ruthlessly.** 4-week max. Strategy becomes execution avoidance if it drags.
+- **Document each phase output.** The artifacts (positioning statement, problem statement, prioritized epics) feed PRDs, sprints, and onboarding docs.
+
+---
+
+## Common Pitfalls
+
+- Skipping problem validation between Phase 2 and 3
+- Solo PM exercise (no eng/design/sales in workshops)
+- No exec commitment for Phase 5 presentation
+- Running all 6 phases blindly when decision points say to skip
+- 6-week strategy session that never reaches execution

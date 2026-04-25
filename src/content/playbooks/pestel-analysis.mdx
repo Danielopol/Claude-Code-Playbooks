@@ -1,0 +1,66 @@
+---
+title: "PESTEL Analysis"
+description: "Systematic macro-environmental analysis across Political, Economic, Social, Technological, Environmental, and Legal factors — for market entry, strategic planning, and risk assessment."
+seoHook: "You're writing next year's strategy, and your only macro frame is \"the economy is uncertain.\" That's not an analysis — that's a vibe. PESTEL forces the six specific forces you control for: is the EU AI Act about to obsolete your product, are exchange rates killing your EU pricing, and is remote work the tailwind you're ignoring?"
+targetAudience: "PMs entering new markets, strategy leads running annual planning, founders pitching to investors, product leaders assessing regulatory risk, teams doing 3-5 year roadmaps"
+exampleUseCase: "\"Run PESTEL for our AI invoice automation launching in EU\" → Political (AI Act transparency requirements) + Economic (digital services tax, Euro weakness) + Social (remote freelancer growth) + Tech (LLM advances) + Environmental (B Corp sustainability demand) + Legal (GDPR compliance) → top 3 opportunities, threats, and strategic recommendations"
+category: "product-management"
+difficulty: "intermediate"
+timeToSetup: "30 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/pestel-analysis"
+tags: ["pestel", "strategy", "market-analysis", "risk-assessment", "planning", "external-factors"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Structured analysis across six external factor categories (Political, Economic, Social, Technological, Environmental, Legal), each with specific prompts, real-world examples, and quality checks. Synthesizes into **Top Opportunities**, **Top Threats**, and **Strategic Recommendations** with actions.
+
+Built on Aguilar's 1967 PEST framework extended to PESTEL. Pairs with `recommendation-canvas`, `positioning-statement`, and `problem-statement`.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/PESTEL
+mv ~/Downloads/CLAUDE.md ~/Documents/PESTEL/
+cd ~/Documents/PESTEL
+claude
+```
+
+Provide product, geographic scope, time horizon, and available market research. Claude walks through all six factors and synthesizes actionable insights.
+
+---
+
+## The Six Factors
+
+| Factor | Focus | Example |
+|--------|-------|---------|
+| **Political** | Policies, stability, trade, taxation | EU AI Act transparency requirement |
+| **Economic** | Growth, inflation, exchange, spending | Euro weakness vs. Dollar → regional pricing |
+| **Social** | Demographics, culture, lifestyle | Remote work boom expands freelancer market |
+| **Technological** | Advancements, R&D, automation | LLMs enable better invoice extraction |
+| **Environmental** | Climate, sustainability, resources | B Corps prefer carbon-neutral vendors |
+| **Legal** | Compliance, IP, employment, safety | GDPR data residency for EU customers |
+
+---
+
+## Tips & Best Practices
+
+- **Product-specific, not generic.** "EU AI Act requires transparency → our invoice automation must explain recommendations" beats "regulations exist."
+- **Cite sources.** "SMB sector growing 5% (US Census 2025)" beats "economy strong."
+- **Be honest about low-impact factors.** If climate change doesn't affect your SaaS, say so — don't force relevance.
+- **Synthesize into actions.** Long factor lists without "Top Opportunities / Threats / Recommendations" = dead-end analysis.
+- **Review annually.** PESTEL goes stale as regulations and markets shift.
+
+---
+
+## Common Pitfalls
+
+- Generic analysis without product-specific impact
+- Forcing relevance where factor has minimal effect
+- No data sources (vague claims, low credibility)
+- Long list of factors with no strategic synthesis
+- Treating it as a one-time exercise

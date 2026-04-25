@@ -1,0 +1,84 @@
+---
+title: "Acquisition Channel Advisor"
+description: "Evaluate acquisition channels using unit economics, customer quality, and scalability. Decide whether to scale, test, or kill each channel with finance-backed reasoning."
+seoHook: "You're spending $50K/month on paid ads with a low CAC — but are those customers actually sticking around? And if you double the budget, will efficiency survive? Most channel decisions get made on vibes, not unit economics."
+targetAudience: "product managers deciding go-to-market budgets, growth leads comparing channel mix, startup founders evaluating PLG vs. sales-led, marketing directors allocating spend across paid, content, outbound, and events"
+exampleUseCase: "\"Should we keep investing in paid LinkedIn ads for enterprise leads?\" → Structured evaluation: unit economics (LTV:CAC, payback), customer quality (cohort retention, NRR by channel), scalability (Magic Number, volume, CAC trend), and a scale/test-optimize/kill/invest-to-learn recommendation with specific next steps"
+category: "product-management"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/acquisition-channel-advisor"
+tags: ["growth", "channels", "unit-economics", "cac", "ltv", "saas", "go-to-market"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Guides product managers through evaluating whether to scale, test, or kill an acquisition channel based on unit economics (CAC, LTV, payback), customer quality (retention, NRR), and scalability (Magic Number, volume potential). Produces a finance-backed recommendation with specific next steps.
+
+This is a financial lens for channel evaluation — it helps you avoid scaling unprofitable channels or killing channels with fixable problems.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/ChannelAdvisor
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/ChannelAdvisor/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/ChannelAdvisor
+claude
+```
+
+Tell Claude which channel you're evaluating, then answer its questions about channel spend, CAC, LTV, retention, and scalability.
+
+---
+
+## Decision Matrix
+
+| LTV:CAC | Payback | Customer Quality | Scalability | Decision |
+|---------|---------|------------------|-------------|----------|
+| >3:1 | <12mo | Good retention | High volume | **Scale aggressively** |
+| 2-3:1 | 12-18mo | Average retention | Medium volume | **Test & optimize** |
+| <2:1 | >18mo | Poor retention | Low volume | **Kill or fix** |
+
+---
+
+## Four Recommendation Patterns
+
+- **Scale Aggressively** — Strong unit economics + scalability. Increase budget 50-100% monthly.
+- **Test & Optimize** — Marginal economics, fixable. Diagnose the root cause (CAC, LTV, targeting, conversion) and fix for 4-8 weeks before scaling.
+- **Kill or Pause** — LTV:CAC <1.5:1 with no path to improvement. Reallocate to top performers.
+- **Invest to Learn** — Strategic channel with poor short-term economics (enterprise, brand building). Cap spend, track leading indicators, re-evaluate quarterly.
+
+---
+
+## Tips & Best Practices
+
+- **Don't scale broken channels.** Fix unit economics first. Pouring money into inefficient channels accelerates failure.
+- **Track CAC, LTV, and retention by channel** — not just blended. Bad channels hide in averages.
+- **Pair LTV:CAC with payback** — 3:1 with 8-month payback beats 6:1 with 36-month payback (cash trap).
+- **Give channels 3-6 months and 100+ customers before evaluating** — short-term noise misleads.
+- **Test incrementality with holdout groups** — especially for retargeting, where conversions would happen anyway.
+
+---
+
+## Common Pitfalls
+
+- Celebrating vanity metrics (signups, clicks, impressions) instead of paid customers
+- Optimizing CAC alone instead of LTV:CAC ratio (cheap customers who churn are worse than expensive ones who stay)
+- Averaging CAC across channels and missing the outliers
+- Letting "strategic channels" burn cash indefinitely without a timeline
+- Over-relying on a single channel (>50% of acquisition = algorithm/competition risk)

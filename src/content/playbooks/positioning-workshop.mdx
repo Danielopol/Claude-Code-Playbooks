@@ -1,0 +1,67 @@
+---
+title: "Positioning Workshop"
+description: "Run a structured 5-question discovery (target → need → category → benefit → differentiation) that outputs a Geoffrey Moore positioning statement — not a brainstorm, a forcing function for hard choices."
+seoHook: "Your last positioning workshop ended with a tagline and a vibe — \"empower modern teams to do more.\" Six months later, marketing, sales, and product each describe the product differently and the deck sounds like every competitor's. A positioning workshop isn't a brainstorm — it's a structured discovery that asks the same five questions and forces real answers, including \"unlike whom\" and \"how do we prove it.\""
+targetAudience: "PMs running positioning sessions, founders aligning stakeholders, marketing leads sharpening messaging, sales enablement defining competitive narrative"
+exampleUseCase: "\"Run a positioning workshop for our B2B automation tool\" → Target: SMB owners (10-50 emp) / Need: 10+ hours/week manual work / Category: workflow automation / Benefit: 10hr→1hr / Differentiation: Unlike Zapier (technical setup) we provide visual no-code workflows"
+category: "product-management"
+difficulty: "intermediate"
+timeToSetup: "90 minutes"
+author: "community"
+sourceUrl: "https://github.com/deanpeters/Product-Manager-Skills/tree/main/skills/positioning-workshop"
+tags: ["positioning", "workshop", "strategy", "messaging", "differentiation", "geoffrey-moore"]
+createdAt: "2026-04-24"
+---
+
+## What This Does
+
+Walks through 5 adaptive questions (target → need → category → benefit → differentiation) and outputs a Geoffrey Moore positioning statement plus a one-sentence summary. Each question offers 3-4 enumerated options grounded in your context (B2B/B2C, SMB/enterprise, new/repositioning).
+
+Pairs with `positioning-statement` (output format), `proto-persona`, `jobs-to-be-done`, and `problem-statement`. Feeds into `press-release` and PRD messaging.
+
+---
+
+## Quick Start
+
+```bash
+mkdir -p ~/Documents/PositioningWorkshop
+mv ~/Downloads/CLAUDE.md ~/Documents/PositioningWorkshop/
+cd ~/Documents/PositioningWorkshop
+claude
+```
+
+Provide product context (website copy, marketing materials, competitor messaging). Claude facilitates the 5-question flow and outputs a complete positioning statement.
+
+---
+
+## The Flow
+
+| Phase | Question | Output |
+|-------|----------|--------|
+| **0** | Gather context (website, testimonials, competitive intel) | Grounding material |
+| **1** | Who's your target customer? | Specific segment |
+| **2** | What underserved need? | JTBD-style pain |
+| **3** | What category? | Buyer mental file |
+| **4** | What benefit/outcome? | Measurable result |
+| **5** | Who's the competitor? | Real alternative + differentiation |
+| **Output** | Geoffrey Moore statement | For/that need/is a/that + Unlike/provides |
+
+---
+
+## Tips & Best Practices
+
+- **Use real artifacts.** Paste your website copy, sales objections, competitor pages — don't workshop in a vacuum.
+- **Resist consensus.** Positioning forces hard choices; "let's serve both segments" is the failure mode.
+- **Outcome-only benefits.** "Has AI" is a feature; "makes decisions 3x faster" is positioning.
+- **Name the real competitor.** Excel/spreadsheets/email threads are often the actual alternative — not the competitor you wish you fought.
+- **Read aloud to customers.** If they don't say "yes that's me," go back to Q1 or Q2.
+
+---
+
+## Common Pitfalls
+
+- "For everyone" or "for businesses" — invisible to all
+- Solution-first answers ("we need better dashboards" instead of root need)
+- Category creation without budget for category education
+- Feature-list differentiation ("unlike competitors, we have AI")
+- Solo PM workshop with no customer validation

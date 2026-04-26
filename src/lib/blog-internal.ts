@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'deep-research-with-ai',
+    slug: 'deep-research-with-ai',
+    title: 'How to Do Deep Research with AI: A Framework for Thorough Analysis',
+    description: 'A practical framework for deep research with AI — question decomposition, multi-source synthesis, contradiction detection, and how to produce reports that surface real insight rather than surface-level summaries.',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '15 min read',
+    featured: true,
+    thumbnailType: 'template',
+    thumbnailTitle: 'Deep Research',
+    tags: ['AI research', 'deep research with AI', 'AI research assistant', 'research synthesis', 'literature review', 'multi-source analysis', 'Claude Code'],
+    createdAt: '2026-04-26',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'ai-cold-email-that-gets-replies',
     slug: 'ai-cold-email-that-gets-replies',
     title: 'AI Cold Email That Actually Gets Replies: Templates and Automation',

@@ -1,0 +1,96 @@
+---
+title: "Who Built This Before Me"
+description: "Check whether your project, tool, library, or product idea has already been built — before you invest a weekend or a quarter in it."
+seoHook: "You're about to build something. So was the person three years ago who shipped it, the team last quarter that abandoned it, and the open-source project that already does 80% of what you're imagining. Find out which one you're competing with before you write a line of code."
+targetAudience: "indie hackers, side-project builders, startup founders scoping ideas, engineers deciding build-vs-buy, OSS maintainers, product managers evaluating new initiatives"
+exampleUseCase: "\"I want to build a tool that auto-generates database migrations from API schemas\" → Prior-art report with direct matches (Alembic, Prisma), adjacent tools, common architectural patterns, an honest differentiator analysis, and a clear verdict: build it, fork, contribute, use existing, or investigate why prior attempts failed"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "iagochavarry"
+sourceUrl: "https://github.com/iagochavarry/who-built-this-before-me"
+tags: ["prior-art", "research", "side-projects", "build-vs-buy", "competitive-analysis", "skill"]
+createdAt: "2026-04-27"
+---
+
+## What This Does
+
+Most ideas have been tried. Some are solved well, some are solved badly, some failed for instructive reasons, and a few are genuinely open. This skill figures out which bucket your idea falls into and tells you plainly — so you don't burn a weekend (or a quarter) reinventing something that already exists.
+
+It triggers automatically whenever you describe something you're thinking of building ("I want to build…", "I'm thinking of making…", "should I build X…"), runs a structured prior-art search across GitHub, Hacker News, Product Hunt, package registries, and domain-specific venues, and delivers one of five verdicts: **Build it**, **Fork/extend**, **Contribute upstream**, **Use existing**, or **Investigate first**.
+
+---
+
+## Quick Start
+
+### Step 1: Download the Template
+
+Click **Download** above to grab the skill file, then save it as `SKILL.md` (or `CLAUDE.md` for project-level use) in your project or skills directory.
+
+### Step 2: Drop It Where Claude Code Will Load It
+
+For a Claude Code skill, place the file in your skills directory (e.g. `~/.claude/skills/who-built-this-before-me/SKILL.md`). For a single-project use, paste the contents into your project's `CLAUDE.md`.
+
+### Step 3: Describe an Idea
+
+Just tell Claude what you're thinking of building:
+
+```
+I want to build a CLI that diffs two OpenAPI specs and flags breaking changes
+```
+
+Claude will restate the idea, generate 6–10 vocabulary framings, run targeted searches across the right registries, cluster findings into direct/adjacent/partial/abandoned buckets, extract standard patterns, benchmark your angle honestly, and end with a one-line verdict and next step.
+
+---
+
+## How It Works
+
+The skill follows an 8-step core loop:
+
+1. **Restate** the idea in one sentence and confirm with you.
+2. **Generate vocabulary** — 6–10 framings from distinct vantage points (builder, user, academic, infrastructure, adjacent community) before searching, so queries don't all hit the same semantic cluster.
+3. **Search where builders publish** — GitHub, Hacker News (Show HN), Product Hunt, PyPI/npm/crates.io, Hugging Face, arXiv, plus domain-specific venues.
+4. **Trace one layer down** on every direct match — the project you found may be a thin wrapper over the real incumbent.
+5. **Cluster** findings into Direct / Adjacent / Partial / Abandoned.
+6. **Extract standard patterns** — what shows up repeatedly across matches.
+7. **Benchmark your angle** honestly. Name the real differentiator, or admit there isn't one.
+8. **Deliver a verdict** — one of five, with a concrete next step.
+
+Budget: ≤10 total search queries.
+
+## Output Format
+
+Every run produces a short markdown report with these sections:
+
+- **The idea, restated** (one sentence)
+- **The landscape** (table grouped by bucket — max 3 rows per bucket)
+- **Standard patterns** (3–6 bullets)
+- **Differentiator analysis** (one honest paragraph)
+- **Verdict** — Build it / Fork X / Contribute to Y / Use Z / Investigate first
+
+The whole report fits on one screen unless the landscape is unusually rich.
+
+## Tips & Best Practices
+
+- **Be specific about the constraint that makes your idea distinctive.** "Migration tool" is too vague; "migration tool that reads OpenAPI specs and emits reversible Postgres migrations" gives the skill something to benchmark against.
+- **Don't fight the verdict if it says "use existing".** That's the skill working — it just saved you a quarter.
+- **Treat "Investigate first" as a green light to read closed issues and post-mortems**, not a red light. The most useful prior art is often a project that died.
+- **Re-run after pivots.** A small framing change ("for SQL" vs "for Prisma") can completely change the landscape.
+
+## What This Skill Avoids
+
+- **Inventing competitors.** If the search comes up empty after real effort, it says "no direct prior art found" and tells you where it looked.
+- **Padded verdicts.** No "it depends, here are considerations…" — the skill picks one verdict.
+- **Stopping at the first match.** Finding one tool doesn't mean the idea is dead; it means you now know the baseline.
+- **Diplomatic hedging.** You asked for a reality check. It gives one.
+
+## Example Verdicts (Tone Reference)
+
+**Already built, use it:**
+> **Verdict: Use existing — Alembic.** Your idea is exactly what Alembic does, and it's been the standard for a decade. Your YAML twist is real but small; it's a fork, not a new project.
+
+**Genuine gap:**
+> **Verdict: Build it.** Three adjacent tools exist but none do API-schema-first migrations with rollback safety checks. The closest (prisma-migrate) is tied to Prisma. Real gap.
+
+**Someone tried, it died:**
+> **Verdict: Investigate first.** schema-forge (2021, archived) did almost exactly this with 1.2k stars but no commits in 3 years. Read the closed issues before rebuilding.

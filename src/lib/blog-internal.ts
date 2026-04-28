@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'ai-data-analysis-csv-to-insights',
+    slug: 'ai-data-analysis-csv-to-insights',
+    title: 'AI Data Analysis: How to Go from Raw CSV to Insights in Minutes',
+    description: 'A practical guide to AI data analysis — how to profile a new dataset, ask plain-English questions of your CSVs, build presentation-ready dashboards, and run end-to-end analysis pipelines without knowing formulas or Python.',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'template',
+    thumbnailTitle: 'AI Data',
+    tags: ['AI data analysis', 'analyze CSV with AI', 'AI data insights', 'data visualization', 'CSV analysis', 'business intelligence', 'Claude Code'],
+    createdAt: '2026-04-28',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'deep-research-with-ai',
     slug: 'deep-research-with-ai',
     title: 'How to Do Deep Research with AI: A Framework for Thorough Analysis',

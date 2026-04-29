@@ -1,0 +1,88 @@
+---
+title: "Humanizer"
+description: "Remove AI writing patterns from any text to make it sound natural, specific, and human."
+seoHook: "AI-generated text has tells — and readers notice them even when they can't name them. The Humanizer systematically strips 29 documented AI writing patterns and replaces them with the specific details, varied rhythm, and genuine voice that actually make writing worth reading."
+targetAudience: "writers, content marketers, editors, bloggers, copywriters, founders, anyone publishing AI-assisted content"
+exampleUseCase: "\"Humanize this product announcement\" → Rewritten draft with AI patterns removed, a brief audit of remaining tells, and a final version with real voice and specific details"
+category: "research-writing"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "community"
+sourceUrl: "https://github.com/blader/humanizer"
+tags: ["writing", "editing", "ai-detection", "content", "humanize"]
+createdAt: "2026-04-29"
+---
+
+## What This Does
+
+The Humanizer is a writing editor that identifies and removes AI-generated text patterns — then goes further by injecting actual voice and personality. It's based on Wikipedia's "Signs of AI Writing" guide, maintained by WikiProject AI Cleanup, which catalogues patterns observed across thousands of instances of AI-generated text.
+
+The workflow is a three-pass process: a draft rewrite removing the patterns, a self-critique pass asking "what still makes this obviously AI-generated?", and a final revision that addresses whatever remains. The result is writing that sounds like a person actually thought about it.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a folder for your writing project (e.g. `~/writing/blog-post`).
+
+### Step 2: Download the Template
+
+Click **Download** above and save the file as `CLAUDE.md` in that folder.
+
+### Step 3: Paste Your Text
+
+Open the folder in Claude Code and paste the text you want humanized. Optionally include a sample of your own writing for voice matching:
+
+```
+Humanize this text. Here's a sample of my writing for voice matching: [your sample]
+
+[text to humanize]
+```
+
+Claude will run the three-pass process and return a draft rewrite, a brief audit of remaining AI tells, and a final version.
+
+---
+
+## The 29 AI Writing Patterns
+
+The template covers patterns across five categories:
+
+**Content patterns** — inflated significance language ("pivotal moment", "enduring testament"), vague attributions ("experts argue", "industry observers"), promotional filler ("nestled", "breathtaking", "vibrant"), and formulaic challenges sections.
+
+**Language & grammar** — overused AI vocabulary (delve, showcase, interplay, tapestry, underscore), copula avoidance ("serves as" instead of "is"), negative parallelisms ("it's not just X, it's Y"), synonym cycling, rule-of-three forcing, false ranges, and passive voice without a subject.
+
+**Style** — em dash overuse, boldfaced inline terms, bullet points with bolded headers, title case in headings, emojis in non-conversational content, and curly quotation marks.
+
+**Communication artifacts** — chatbot phrases ("I hope this helps", "let me know"), knowledge-cutoff disclaimers, and sycophantic openers ("Great question!").
+
+**Filler & hedging** — filler phrases ("in order to", "at this point in time"), excessive hedging, generic positive conclusions, hyphenated word-pair overuse, persuasive authority tropes ("at its core", "the real question is"), signposting ("let's dive in"), and fragmented headers.
+
+---
+
+## Voice Matching
+
+The template includes an optional voice calibration step. Provide a sample of your own previous writing and Claude will analyze it before rewriting — matching your sentence length patterns, word choice level, punctuation habits, and recurring phrases rather than producing generic "clean" output.
+
+Without a sample, it falls back to a natural, varied, opinionated default voice: specific details over vague claims, first person when appropriate, mixed sentence rhythm, and genuine reactions rather than neutral reporting.
+
+---
+
+## Tips & Best Practices
+
+**The audit step is the key step.** The three-pass process isn't busywork — the self-critique question ("What makes this obviously AI-generated?") consistently catches things the first pass misses. Don't skip it.
+
+**Sterile writing is also a tell.** Technically clean text that has no opinions, uniform sentence length, and reads like a press release is still obviously AI-generated. The template explicitly addresses "soulless writing" as its own category.
+
+**Voice matching beats generic cleanup.** If you have a few paragraphs of your own writing, provide them. The difference between "AI patterns removed" and "actually sounds like you" is significant.
+
+**Paste context, not just text.** The more the template knows about your audience, tone, and purpose, the better the rewrite. A one-line note ("this is a product announcement for developers, keep it dry") makes a big difference.
+
+---
+
+## Limitations
+
+The template removes patterns, but it can't manufacture facts. If the AI-generated text used vague attributions ("experts say") because the underlying information is genuinely vague, the humanized version will either need real sources or will trim those claims. That's a feature — not a bug.
+
+Works best on text that was AI-drafted and needs editing, not on text that needs fact-checking or research. It's an editing tool, not a research tool.

@@ -1,0 +1,106 @@
+---
+title: "LLM Council"
+description: "Run any decision through 5 independent AI advisors who analyze, peer-review each other, and synthesize a final verdict."
+seoHook: "You ask one AI a question, you get one answer — and no way to know if it's great or mid. The LLM Council fixes this by running your hardest decisions through 5 independent advisors, a blind peer-review round, and a chairman synthesis that tells you exactly where the perspectives converge, where they clash, and what you should actually do."
+targetAudience: "founders, solopreneurs, product managers, strategists, executives, consultants, anyone facing high-stakes decisions"
+exampleUseCase: "\"Council this: should I launch a $297 course or a $97 workshop first?\" → Full council report with 5 advisor perspectives, peer review highlights, and a chairman verdict with one concrete next step"
+category: "executive-strategy"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://x.com/charliejhills/status/2049140787200528725"
+tags: ["decision-making", "strategy", "multi-agent", "advisory", "council"]
+createdAt: "2026-04-29"
+---
+
+## What This Does
+
+The LLM Council is a structured multi-perspective decision framework inspired by Andrej Karpathy's methodology. Instead of asking one AI for one answer, it routes your question through five independent advisors — each thinking from a fundamentally different angle — then runs a blind peer-review round, and finally synthesizes everything into a chairman's verdict.
+
+The output is a visual HTML report and a full Markdown transcript. The report shows where advisors agreed, where they clashed, what blind spots the peer review surfaced, a clear recommendation, and one concrete next step.
+
+Use it for decisions where being wrong is expensive: pricing, positioning, pivots, hiring, product direction, copy critique, launch strategy.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a folder for the decision you want to council (e.g., `~/decisions/launch-strategy`).
+
+### Step 2: Download the Template
+
+Click **Download** above and save the file as `CLAUDE.md` in that folder.
+
+### Step 3: Open in Claude Code and Run
+
+Open the folder in Claude Code and type your decision. Use any trigger phrase:
+
+- `Council this: [your decision]`
+- `War room this: [your question]`
+- `Pressure-test this: [your idea]`
+- `Run the council on: [your dilemma]`
+
+Claude will frame the question, spawn all 5 advisors in parallel, run the peer review round, synthesize a chairman's verdict, and save two files — an HTML report and a Markdown transcript — in your project folder.
+
+---
+
+## The Five Advisors
+
+Each advisor represents a distinct thinking style that naturally creates tension with the others:
+
+**The Contrarian** assumes the idea has a fatal flaw and tries to find it. Not a pessimist — the advisor who saves you from a bad deal by asking the questions you're avoiding.
+
+**The First Principles Thinker** strips away assumptions and rebuilds the problem from the ground up. Often the most valuable output is "you're asking the wrong question entirely."
+
+**The Expansionist** hunts for upside everyone else is missing — bigger plays, adjacent opportunities, undervalued angles. Ignores risk entirely (that's the Contrarian's job).
+
+**The Outsider** has zero context about you, your field, or your history. Catches the curse of knowledge: things obvious to you that are confusing to everyone else. The most underrated advisor.
+
+**The Executor** only cares about one thing: can this actually be done, and what's the fastest path? Asks "what do you do Monday morning?" for every idea.
+
+The natural tensions — Contrarian vs. Expansionist (downside vs. upside), First Principles vs. Executor (rethink everything vs. just do it) — are what make the synthesis valuable.
+
+---
+
+## What You Get
+
+Two files saved to your project folder after each council session:
+
+**`council-report-[timestamp].html`** — A clean, scannable visual report with the chairman's verdict prominently displayed, an agreement/disagreement breakdown across advisors, and collapsible sections for each advisor's full response and peer review highlights.
+
+**`council-transcript-[timestamp].md`** — The full council record: original question, framed question, all 5 advisor responses, all 5 peer reviews (with the anonymization mapping revealed), and the chairman's complete synthesis.
+
+---
+
+## Tips & Best Practices
+
+**Good council questions** have genuine uncertainty and high cost-of-error:
+- "Should I launch a $97 workshop or a $497 course?"
+- "Which of these 3 positioning angles is strongest?"
+- "I'm thinking of pivoting from X to Y. Am I crazy?"
+- "Here's my landing page copy. What's weak?"
+
+**Bad council questions** have one right answer or no real decision:
+- "What's the capital of France?" — factual, no perspectives needed
+- "Write me a tweet" — creation task, not a judgment call
+- "Summarize this article" — processing task
+
+**Add context to your workspace.** The council reads any `CLAUDE.md`, `memory/` folder, or files you reference before framing the question. The richer the context, the more specific and grounded the advisor responses. A CLAUDE.md with your business stage, audience, and recent results will dramatically outperform a cold council session.
+
+**The chairman can disagree with the majority.** If 4 out of 5 advisors say "do it" but the one dissenter has the strongest reasoning, the chairman will side with the dissenter and explain why. Trust the synthesis, not the vote count.
+
+**Re-council after changes.** Previous transcripts are saved in your folder. If you revise your strategy and want to re-run, the council can reference what changed and how the thinking evolved.
+
+---
+
+## How the Peer Review Works
+
+After all 5 advisors respond, their answers are anonymized (shuffled to Response A–E) and each advisor reviews the full set. Each reviewer answers:
+
+1. Which response is the strongest, and why?
+2. Which response has the biggest blind spot?
+3. What did ALL five responses miss?
+
+This is the step that makes the council more than "ask 5 times." Blind review eliminates deference to known thinking styles. The "what did everyone miss" question consistently surfaces the most actionable insight — the thing that only becomes visible when you're looking at all perspectives at once.

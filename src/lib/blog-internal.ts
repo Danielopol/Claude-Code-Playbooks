@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'beginners-guide-to-claude-skills',
+    slug: 'beginners-guide-to-claude-skills',
+    title: "The Beginner's Guide to Claude Skills: What They Are and How to Get Started",
+    description: "A friendly introduction to Claude Skills — what they are, how they work, and how to use your first one in under five minutes. Includes three beginner-friendly examples for organizing files, writing blog posts, and analyzing your spending.",
+    category: 'tutorial',
+    difficulty: 'basic',
+    readingTime: '10 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Claude Skills',
+    tags: ['claude skills', 'what are claude skills', 'claude skills tutorial', 'Claude Code', 'beginner', 'CLAUDE.md', 'playbooks'],
+    createdAt: '2026-04-30',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'ai-data-analysis-csv-to-insights',
     slug: 'ai-data-analysis-csv-to-insights',
     title: 'AI Data Analysis: How to Go from Raw CSV to Insights in Minutes',

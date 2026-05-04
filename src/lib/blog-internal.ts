@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-small-business',
+    slug: 'claude-skills-small-business',
+    title: '7 Claude Skills Every Small Business Owner Should Set Up (No Coding Required)',
+    description: 'Seven Claude Skills that pay for themselves quickly — brand guidelines, business plans, contract review, budget analysis, ad copy, competitive intelligence, and more. No coding, no technical background, just results.',
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Small Business',
+    tags: ['claude skills small business', 'claude skills no coding', 'claude skills for business', 'AI for small business', 'Claude Code', 'business automation'],
+    createdAt: '2026-05-04',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'beginners-guide-to-claude-skills',
     slug: 'beginners-guide-to-claude-skills',
     title: "The Beginner's Guide to Claude Skills: What They Are and How to Get Started",

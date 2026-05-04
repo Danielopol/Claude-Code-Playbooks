@@ -1,0 +1,120 @@
+---
+title: "Book-to-Skill Converter"
+description: "Convert any technical PDF or EPUB into a structured Claude Code skill — extracting named frameworks, principles, techniques, and anti-patterns into a reusable knowledge base with on-demand chapter files."
+seoHook: "You bought the book, highlighted half of it, and forgot the frameworks two weeks later. Re-reading isn't the answer — turning the book into a skill Claude can call up while you work is. Frameworks become callable, glossary becomes searchable, chapters load on demand."
+targetAudience: "knowledge workers building personal knowledge bases, researchers, lifelong learners, engineers who study reference books, anyone who reads non-fiction and wants the ideas to stick"
+exampleUseCase: "\"Turn this Designing Data-Intensive Applications PDF into a skill\" → SKILL.md with core frameworks (replication, partitioning, consistency models), 12 chapter summaries loaded on demand, glossary, patterns, and cheatsheet — total ~25K tokens, callable as /ddia replication"
+category: "knowledge-management"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "virgiliojr94"
+sourceUrl: "https://github.com/virgiliojr94/book-to-skill/blob/master/SKILL.md"
+tags: ["skill", "pdf", "epub", "knowledge-base", "frameworks", "study", "reference"]
+createdAt: "2026-05-04"
+---
+
+## What This Does
+
+Turns a PDF or EPUB book into a Claude Code skill: a structured, on-demand knowledge base instead of a one-shot summary. The skill extracts the author's named frameworks, mental models, principles, techniques, and anti-patterns — preserving exact terminology — and packages them as a `SKILL.md` plus per-chapter files, a glossary, a patterns reference, and a cheatsheet.
+
+The point is not to replace reading. The point is to make the structure callable while you work, so frameworks like "The 5 Whys" or "PICO" stay one slash command away.
+
+## The Problem
+
+Books crystallize years of expertise into named frameworks, but the format fights retention. Linear chapters bury reusable structure under prose. Highlights pile up in apps you never reopen. Two weeks after finishing, you remember the vibe but not the framework — and definitely not the precise formulation that made it useful.
+
+Generic AI summaries make this worse. They flatten "The 5 Whys" into "ask why multiple times" and lose the precision that made the framework worth learning. You end up with a book report instead of a toolkit.
+
+## The Fix
+
+This playbook converts a book into a layered skill structure designed for retrieval, not narrative:
+
+- **`SKILL.md`** — front-loaded with the author's most important frameworks (~2,000 tokens). Compaction-safe.
+- **`chapters/ch<NN>-<slug>.md`** — one file per chapter, 800–1,200 tokens each, loaded only when the topic is queried.
+- **`glossary.md`** — every significant term, alphabetical, with chapter back-references.
+- **`patterns.md`** — concrete techniques with when-to-use, how, and trade-offs.
+- **`cheatsheet.md`** — decision tables and quick-reference rules.
+
+Three modes: full conversion (default), analyze-only (preview frameworks before generating), and generate-from-prior-analysis. A pre-flight cost estimate runs before any generation so you know the token spend up front.
+
+## Quick Start
+
+1. Install the skill into your Claude home:
+
+```bash
+mkdir -p ~/.claude/skills/book-to-skill/scripts
+```
+
+2. Download the template above and save it as `~/.claude/skills/book-to-skill/SKILL.md`.
+
+3. Add the extraction script at `~/.claude/skills/book-to-skill/scripts/extract.py` (a small Python script that reads the PDF or EPUB into `/tmp/book_skill_work/full_text.txt` and writes `metadata.json`). The skill expects `pdftotext` available for PDFs and standard EPUB unzip for EPUBs.
+
+4. Launch Claude Code in any working directory and invoke:
+
+```
+/book-to-skill /path/to/book.pdf
+```
+
+5. Confirm the cost estimate, answer the purpose question, pick a skill name, and let the skill generate the full knowledge base under `~/.claude/skills/<your-book-skill>/`.
+
+6. Use the new skill any time:
+
+```
+/<your-book-skill>                 → load core frameworks
+/<your-book-skill> <topic>         → find and explain a topic
+/<your-book-skill> ch05            → dive into a specific chapter
+```
+
+## Example Commands
+
+```
+"/book-to-skill ~/Downloads/influence-cialdini.pdf cialdini-influence"
+→ Full conversion with explicit skill slug
+
+"/book-to-skill ~/books/thinking-in-systems.epub"
+→ Skill proposes name options (meadows-systems vs thinking-in-systems)
+
+"/book-to-skill ~/papers/ddia.pdf — analyze only"
+→ Extraction report only: frameworks, principles, techniques. No files written.
+
+"/cialdini-influence reciprocity"
+→ Loads ch02 on reciprocity and answers from the chapter
+
+"/ddia ch07"
+→ Loads chapter 7 (transactions) on demand
+```
+
+## Tips
+
+- **Use analyze-only first for unfamiliar books.** It costs a fraction of full conversion and lets you sanity-check whether the extracted frameworks match what you remember.
+- **Pick author-concept slugs over title slugs** when the book has a strong methodological identity (`cialdini-influence`, `meadows-systems`). They are easier to recall as commands.
+- **Front-load `SKILL.md`.** Compaction truncates from the end, so the most important frameworks must come first. The template enforces this with a 4,000-token body cap and Core Frameworks at the top.
+- **Keep chapter files dense.** 800–1,200 tokens forces synthesis. A 5,000-token chapter file that copies the book is worse than a 1,000-token file that captures the structure.
+- **Preserve exact framework names.** "The 5 Whys" is not interchangeable with "ask why repeatedly." The whole point of a skill is precise retrieval.
+- **Topic index does the routing.** When you ask `/book-skill <topic>`, Claude uses the topic index in `SKILL.md` to find the right chapter file. A weak topic index breaks the skill.
+
+## Limitations
+
+- **Extraction quality depends on the source.** Scanned PDFs without OCR will fail. Heavily formatted EPUBs (lots of footnotes, sidebars) may produce noisy text that needs cleanup.
+- **Token cost scales with book length.** A 600-page reference book generates 25K–40K output tokens for the skill files. Use the pre-flight estimate before committing.
+- **Books without strong structure (memoirs, narrative non-fiction)** convert poorly. The skill is optimized for books with named frameworks — technical books, business frameworks, methodology guides.
+- **Never copy raw book text.** The skill is designed to synthesize, not transcribe. If your output looks like quoted excerpts, the chapter files are too long.
+- **Disable model invocation is on by default** (`disable-model-invocation: true`). The skill runs deterministic extraction first; the model only synthesizes the structure. Do not turn this off unless you understand the cost implications.
+
+## Troubleshooting
+
+**Problem**: `pdftotext` produces garbled or empty text
+
+**Solution**: The PDF likely needs OCR. Run `ocrmypdf input.pdf output.pdf` first, then point `/book-to-skill` at the OCR output. For locked or DRM-protected PDFs, the skill cannot proceed — that is by design.
+
+**Problem**: The chapter index in `SKILL.md` only shows 2–3 chapters for a long book
+
+**Solution**: Step 3 chapter detection failed. The book likely uses a non-standard structure (Part I / Part II rather than numbered chapters, or all `<h1>` elements without numbers). Re-run in analyze-only mode and feed the analysis back via Mode 3 with explicit chapter boundaries.
+
+**Problem**: `SKILL.md` is over 4,000 tokens and gets truncated by compaction
+
+**Solution**: Move detail out of Core Frameworks into chapter files. The Core section is for the 6–10 most important frameworks only. Everything else lives in chapters and is loaded on demand.
+
+**Problem**: Topic queries don't find the right chapter
+
+**Solution**: The topic index in `SKILL.md` is too sparse. Add aliases — for example, `**Eventual consistency** → ch05, ch09` and `**BASE** → ch05` if the book uses both terms. The index is alphabetical and supports multiple chapter pointers per term.

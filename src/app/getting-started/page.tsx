@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 export const metadata: Metadata = {
   title: 'Getting Started | Claude Code Playbooks',
   description: 'Install Claude Code on Windows in under 3 minutes. Step-by-step guide for complete beginners — no coding experience needed.',
+  alternates: { canonical: '/getting-started' },
   openGraph: {
     title: 'Getting Started with Claude Code Playbooks',
     description: 'Install Claude Code on Windows in under 3 minutes. Step-by-step guide for beginners.',

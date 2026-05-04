@@ -3,6 +3,16 @@ import createMDX from '@next/mdx';
 
 const nextConfig: NextConfig = {
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'claudecodehq.com' }],
+        destination: 'https://www.claudecodehq.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 const withMDX = createMDX({

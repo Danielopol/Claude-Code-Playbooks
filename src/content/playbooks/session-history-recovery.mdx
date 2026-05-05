@@ -1,78 +1,156 @@
 ---
-title: "Claude Code Session History Recovery"
-description: "Lost code from a previous Claude Code session? Search and recover code snippets, file changes, and solutions from your Claude Code chat history. Never lose work again."
-seoHook: "You accidentally closed a Claude Code session and that perfect code solution is gone — or is it? This playbook searches your Claude Code chat history files to recover lost code snippets, file changes, and solutions from previous sessions."
+title: "View & Recover Claude Code Session History"
+description: "Claude Code saves full session history in ~/.claude/ — learn how to search terminal logs, recover lost code, and find past solutions with this free guide."
+seoHook: "Every Claude Code session — the code it wrote, files it changed, commands it ran — is automatically saved to ~/.claude/ on your machine. This playbook shows you exactly how to navigate that history, search by date or keyword, and recover any snippet of work you thought was gone."
 targetAudience: "developers who lost code changes when a Claude Code session ended unexpectedly, programmers wanting to find a specific solution Claude generated in a past conversation, team members recovering Claude-generated code that was never committed to version control, power users building searchable archives of their Claude Code interaction history, developers debugging issues by reviewing what Claude changed in previous sessions"
 exampleUseCase: "\"Find the database migration code Claude wrote for me last Tuesday\" → Recovery pipeline: scan Claude Code session history files (~/.claude/) for matching timeframe, search conversation logs for code blocks and file modifications, extract and reconstruct the specific code changes, present recovered snippets with file paths and context, and optionally re-apply the changes to current project"
 category: "file-organization"
 difficulty: "beginner"
 timeToSetup: "5 minutes"
 author: "community"
-tags: ["session-history", "chat-history", "recovery", "code-recovery", "claude-code", "lost-code", "backup"]
+tags: ["session-history", "terminal-session-history", "chat-history", "recovery", "code-recovery", "claude-code", "lost-code", "view-session-history", "session-log"]
 featured: false
 createdAt: "2026-01-25"
 ---
 
 ## What This Does
 
-Helps you find and recover work from past Claude Code sessions. Search for code snippets, file changes, solutions, or commands you forgot to save.
+Every Claude Code session — including all code written, files changed, and commands run — is automatically saved to a local directory on your machine. This playbook gives Claude Code a structured way to navigate that history, search it by date or keyword, and extract specific pieces of work you need to recover.
 
-## Prerequisites
+---
 
-- Claude Code installed
-- Previous sessions to search
-- Some memory of what you're looking for
+## Where Claude Code Stores Session History
 
-## Setup Instructions
+Claude Code saves every session as a JSON file containing the full conversation, tool calls, and responses.
+
+**macOS / Linux:**
+```
+~/.claude/projects/[project-hash]/sessions/
+```
+
+**Windows:**
+```
+%USERPROFILE%\.claude\projects\[project-hash]\sessions\
+```
+
+Each session file includes:
+- Complete conversation history
+- All tool calls (file reads, writes, edits)
+- All bash commands that were run
+- Timestamps for every action
+
+---
+
+## Quick Start
 
 ### Step 1: Download the Template
 
-Download the CLAUDE.md template below for reference.
+Click **Download** above and place the `CLAUDE.md` file in any working folder, then open Claude Code in that folder.
 
-### Step 2: Gather Clues
+### Step 2: Describe What You're Looking For
 
-Think about:
-- When (approximately) you did the work
+Give Claude as much context as you can:
+- When (approximately) the work happened
 - What files were involved
 - Keywords from the conversation
 - The problem you were solving
 
-### Step 3: Search History
+### Step 3: Search and Recover
 
-Start searching:
+Start with a broad search and narrow down:
 
 ```
 Find the session where I created [file/solution]
 ```
 
-## Example Usage
+```
+What did I work on last Tuesday?
+```
 
 ```
-"What did I work on yesterday?"
-"Find code that [description]"
-"Search for my solution to [problem]"
-"List sessions for [project]"
-"Export code from that session"
+Search for code that handles [description]
 ```
+
+---
 
 ## Search Strategies
 
-- **By date**: "What did I do last Tuesday?"
-- **By content**: "Find the function that..."
-- **By file**: "When did I create..."
-- **By problem**: "That bug I fixed with..."
+**By date:**
+```
+What did I work on yesterday?
+Find sessions from this week
+Show me everything I did on [specific date]
+```
 
-## Recovery Types
+**By content:**
+```
+Find the function that handles authentication
+Search for sessions mentioning [library name]
+Find where I fixed the [error message]
+```
 
-- Code snippets and functions
-- File creation history
-- Commands that were run
-- Solutions that worked
-- Configurations made
+**By file:**
+```
+When did I create utils.ts?
+Find sessions where I modified package.json
+Which session created the database schema?
+```
 
-## Best Practices
+**By problem:**
+```
+Find that bug I fixed with the API timeout
+Search for my solution to the CORS error
+Find the caching implementation I wrote
+```
 
-1. **Save important work** - Don't rely on history alone
-2. **Use descriptive names** - Makes searching easier
-3. **Note what you're solving** - Future context helps
-4. **Regular exports** - For critical solutions
+---
+
+## Common Recovery Scenarios
+
+### Recovering a Config File
+
+If you need to find configuration you set up in a previous session:
+
+```
+Search for sessions containing config file patterns (.json, .yaml, .env)
+Look for Write tool calls that created settings files
+Find where I configured [service name]
+```
+
+### Recovering a Script
+
+```
+Find sessions where I created a bash script
+Search for sessions with automation or cron keywords
+Find the script that processed [input/output description]
+```
+
+### Recovering a Bug Fix
+
+```
+Search for sessions containing [the error message]
+Find where I fixed the bug in [file name]
+Look for Edit tool calls on [file] with fix-related context
+```
+
+---
+
+## Session Export Options
+
+Once you locate the session, you can export:
+
+- **Full export** — complete conversation, all tool calls, all responses
+- **Code only** — extract just the code blocks written
+- **File changes only** — show only what was created or modified
+- **Commands only** — list all bash commands that were run
+- **Solutions summary** — key decisions and problems solved
+
+---
+
+## Tips for Making Sessions Findable in the Future
+
+1. **Save important work immediately** — copy critical code to committed files, don't rely on history alone
+2. **Use descriptive file names** — makes keyword search far more effective
+3. **Mention project names** — give Claude context about which project you're in
+4. **Note what problem you're solving** — future searches by problem description are the most reliable
+5. **Export key sessions** — for critical solutions, export a markdown summary to your notes

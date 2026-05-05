@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-for-writers',
+    slug: 'claude-skills-for-writers',
+    title: 'Claude Skills for Writers: Automate Research, Drafting, and Publishing',
+    description: 'A practical guide to Claude writing skills — five playbooks that handle the parts of writing that eat your time without touching the parts that require your voice: ideation, drafting, distribution, cleanup, and fiction continuity.',
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Writers',
+    tags: ['claude skills for writers', 'claude writing skills', 'claude content creation', 'AI writing workflow', 'content automation', 'Claude Code', 'writing productivity'],
+    createdAt: '2026-05-05',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-small-business',
     slug: 'claude-skills-small-business',
     title: '7 Claude Skills Every Small Business Owner Should Set Up (No Coding Required)',

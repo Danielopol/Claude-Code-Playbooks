@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-n8n-workflow-anthropic-readpdf',
+    slug: 'claude-n8n-workflow-anthropic-readpdf',
+    title: 'How to Use Claude with n8n: readPDF, Anthropic Nodes, and Workflow Automation',
+    description: 'Step-by-step guide to wiring Claude into n8n using the n8n-nodes-base.anthropic and n8n-nodes-base.readpdf nodes — with full JSON workflow examples.',
+    category: 'tutorial',
+    difficulty: 'intermediate',
+    readingTime: '14 min read',
+    featured: true,
+    thumbnailType: 'agent',
+    thumbnailTitle: 'n8n + Claude',
+    tags: ['n8n Claude', 'n8n-nodes-base.anthropic', 'n8n-nodes-base.readpdf', 'n8n workflow automation', 'Claude API n8n', 'read PDF n8n', 'n8n AI workflow'],
+    createdAt: '2026-05-07',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-for-writers',
     slug: 'claude-skills-for-writers',
     title: 'Claude Skills for Writers: Automate Research, Drafting, and Publishing',

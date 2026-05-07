@@ -1,0 +1,147 @@
+---
+title: "Skill Autoresearch Optimizer"
+description: "Autonomously optimize any Claude Code skill by running it dozens of times, scoring outputs against binary evals, and mutating the prompt until quality climbs."
+seoHook: "Most skills work 70% of the time — the other 30% you get garbage. Rewriting from scratch rarely fixes it. This playbook turns Claude into an autonomous research loop that runs your skill repeatedly, scores every output against binary evals, mutates the prompt one change at a time, and keeps only the changes that move the score."
+targetAudience: "skill authors shipping reusable Claude Code skills, prompt engineers tuning production prompts, platform teams maintaining shared skill libraries, AI tinkerers running self-improvement experiments, researchers benchmarking prompt mutations against eval suites"
+exampleUseCase: "\"Run autoresearch on my diagram-generator skill — test it on 5 different diagram prompts and check that text is legible, colors are pastel, and there are no numbered steps\" → Baseline 32/40 (80%) → 5 experiments later 39/40 (97.5%), with a live dashboard, results.tsv log, changelog of every mutation, and the improved SKILL.md saved in place"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "Ole Lehmann"
+sourceUrl: "https://github.com/olelehmann1337/autoresearch-skill/blob/main/SKILL.md"
+tags: ["skills", "evals", "optimization", "autoresearch", "prompt-engineering", "self-improvement"]
+createdAt: "2026-05-07"
+---
+
+## What This Does
+
+Adapts Andrej Karpathy's autoresearch methodology — autonomous experimentation loops — to Claude Code skill prompts. You point it at an existing SKILL.md, define 3–6 binary pass/fail evals, and Claude runs the skill repeatedly, mutates the prompt one change at a time, keeps wins, discards the rest, and writes a complete research log you can resume later.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Working Folder
+
+```bash
+mkdir -p ~/Projects/skill-autoresearch
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move it into the folder:
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Projects/skill-autoresearch/
+```
+
+### Step 3: Run It
+
+```bash
+cd ~/Projects/skill-autoresearch
+claude
+```
+
+Then say: **"Run autoresearch on `<path to SKILL.md>` — here are my test inputs and eval criteria…"**
+
+---
+
+## Before You Start: Six Inputs to Confirm
+
+| # | Input | Notes |
+|---|-------|-------|
+| 1 | Target skill path | Exact path to the SKILL.md you want to optimize |
+| 2 | Test inputs | 3–5 prompts that cover different use cases (avoid overfitting) |
+| 3 | Eval criteria | 3–6 binary yes/no checks that define a "good" output |
+| 4 | Runs per experiment | Default 5 — more runs = more reliable but slower/costlier |
+| 5 | Run interval | Default every 2 minutes |
+| 6 | Budget cap | Optional max number of cycles |
+
+---
+
+## The Loop
+
+1. **Analyze failures** — which evals are failing most, and why
+2. **Form ONE hypothesis** — never change five things at once
+3. **Mutate SKILL.md** with a single targeted edit
+4. **Run the skill N times** with the same test inputs
+5. **Score** every output against every eval
+6. **Keep or discard** — improvements stay, ties and regressions revert
+7. **Log to changelog** — every experiment, kept or not
+8. **Repeat** until 95%+ pass rate for 3 cycles, budget cap, or user stop
+
+---
+
+## Output Files
+
+```
+autoresearch-[skill-name]/
+├── dashboard.html       # live browser dashboard (auto-refreshes)
+├── results.json         # data powering the dashboard
+├── results.tsv          # score log for every experiment
+├── changelog.md         # detailed mutation log
+└── SKILL.md.baseline    # original skill before optimization
+```
+
+The improved SKILL.md is saved back to its original location.
+
+---
+
+## Writing Good Evals
+
+- **Binary only.** Yes or no. No 1–7 scales — they compound variability and give unreliable signals.
+- **Specific enough to be consistent.** "Is the text readable?" is too vague. "Are all words spelled correctly with no truncated sentences?" is testable.
+- **Not so narrow the skill games them.** "Fewer than 200 words" will optimize for brevity at the expense of everything else.
+- **Stay between 3 and 6.** More than that and the skill starts parroting eval criteria instead of improving.
+
+---
+
+## Good vs Bad Mutations
+
+**Good:**
+- Add a specific instruction that addresses the most common failure
+- Reword an ambiguous directive to be explicit
+- Add an anti-pattern ("Do NOT do X") for a recurring mistake
+- Move a buried instruction higher (priority = position)
+- Add or improve a worked example
+- Remove an instruction that's causing over-optimization
+
+**Bad:**
+- Rewriting the entire skill from scratch
+- Adding 10 rules at once
+- Making the skill longer with no specific reason
+- Vague instructions like "make it better" or "be more creative"
+
+---
+
+## Worked Example: Diagram Generator
+
+| Exp | Status | Score | Change |
+|-----|--------|-------|--------|
+| 0 | baseline | 32/40 (80%) | original skill |
+| 1 | KEEP | 35/40 (87.5%) | added "NEVER include step numbers or ordinals" |
+| 2 | DISCARD | 34/40 | enforced 14px min font — colors regressed |
+| 3 | KEEP | 37/40 (92.5%) | replaced "pastel" with specific hex codes |
+| 4 | DISCARD | 37/40 | added neon-color anti-pattern — already solved |
+| 5 | KEEP | 39/40 (97.5%) | added a worked example diagram |
+
+Five experiments, three kept, two discarded, +17.5 percentage points.
+
+---
+
+## Tips
+
+- **Always establish the baseline before mutating.** If you can't measure the starting point, you can't claim improvement.
+- **One change per experiment.** Bundling mutations destroys the signal.
+- **Re-read failing outputs when you run dry on ideas** — patterns hide in the failures, not in the prompt.
+- **Subtraction is a valid mutation.** Removing an over-firing instruction often beats adding more.
+- **If you hit 95% but the actual quality didn't improve — the evals are bad, not the skill.** Rewrite the evals.
+- **Don't pause between experiments.** The user may be away. Run autonomously until stopped or budget hit.
+
+---
+
+## Limitations
+
+- Skills with very subjective outputs (creative writing, design taste) are hard to evaluate with binary checks — design evals carefully.
+- Each experiment runs the skill N times, so cost scales with `experiments × runs × skill complexity`. Set a budget cap if that matters.
+- The optimizer can overfit to the specific test inputs. Use 3–5 varied prompts, and re-test on held-out inputs after the run.

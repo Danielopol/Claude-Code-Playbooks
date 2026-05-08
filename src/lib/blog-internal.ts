@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'what-is-a-deep-research-assistant',
+    slug: 'what-is-a-deep-research-assistant',
+    title: 'What is a Deep Research Assistant? (Definition + Use Cases)',
+    description: 'A clear definition of deep research assistants — what they are, how they differ from basic AI search, and the specific use cases where they save the most time: multi-source synthesis, literature reviews, and complex multi-part questions.',
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '11 min read',
+    featured: true,
+    thumbnailType: 'template',
+    thumbnailTitle: 'Deep Research',
+    tags: ['deep research assistant', 'what is a deep research assistant', 'AI research assistant', 'AI research', 'deep research with AI', 'research synthesis', 'Claude Code'],
+    createdAt: '2026-05-08',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-n8n-workflow-anthropic-readpdf',
     slug: 'claude-n8n-workflow-anthropic-readpdf',
     title: 'How to Use Claude with n8n: readPDF, Anthropic Nodes, and Workflow Automation',

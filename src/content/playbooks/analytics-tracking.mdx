@@ -1,0 +1,70 @@
+---
+title: "Analytics Tracking"
+description: "Set up GA4, GTM, and event tracking that actually informs decisions — not vanity metrics."
+seoHook: "Most teams have analytics installed but no answers. Events fire inconsistently, naming conventions drift, and nobody trusts the numbers. A clean tracking plan turns analytics from a graveyard of dashboards into a tool that drives marketing decisions."
+targetAudience: "marketing operations, growth marketers, product managers, founders setting up GA4 and GTM, analytics implementers"
+exampleUseCase: "\"Build a tracking plan for our SaaS marketing site\" → Object-action event taxonomy, GA4 + GTM implementation guide, UTM strategy, validation checklist, and a tracking plan document ready to hand to engineering"
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "community"
+sourceUrl: "https://github.com/coreyhaines31/marketingskills/blob/main/skills/analytics-tracking/SKILL.md"
+tags: ["analytics", "ga4", "gtm", "tracking"]
+createdAt: "2026-05-08"
+---
+
+## What This Does
+
+Helps you design and implement a tracking plan grounded in business decisions — choosing the right events, naming them consistently, configuring GA4 and GTM, validating the implementation, and setting up UTM conventions that survive contact with reality.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Create a dedicated folder for this workflow (e.g. `~/marketing/analytics-tracking`).
+
+### Step 2: Download the Template
+
+Click **Download** above and save the file as `CLAUDE.md` in that folder.
+
+### Step 3: Run the Workflow
+
+Open the folder in Claude Code and describe what you need to measure. Claude will work backwards from the decisions to a clean event schema.
+
+---
+
+## Inputs You'll Need
+
+- **Business context** — what decisions will this data inform; what are the key conversions
+- **Current state** — what tracking exists, what tools are in use
+- **Tech stack** — site/app platform, dev resources, privacy/compliance requirements
+- **Tools** — GA4, Mixpanel, Amplitude, PostHog, Segment
+
+## How It Works
+
+1. Start with the questions you need answered, then work backwards to events
+2. Apply object-action naming conventions (`signup_completed`, `cta_clicked`)
+3. Define essential events for marketing site and product/app, with standard properties
+4. Configure GA4 (property, data stream, enhanced measurement, custom events, conversions)
+5. Set up GTM container with tags, triggers, variables, and a clean data layer
+6. Define UTM conventions and document them in a single source of truth
+7. Validate with DebugView, GTM Preview Mode, and a tag-firing checklist
+
+## What You Get
+
+- Tracking plan document with event names, descriptions, properties, and triggers
+- GA4 implementation guide and gtag.js examples
+- GTM container structure with data layer pattern
+- UTM parameter strategy with naming rules
+- Debugging and validation checklist
+- Privacy and consent considerations (cookie consent, IP anonymization, consent mode)
+
+## Tips & Best Practices
+
+- **Track for decisions, not data** — every event should inform an action. Quality over quantity.
+- **Be specific in event names** — `cta_hero_clicked` beats generic `button_clicked`
+- **Keep context in properties, not event names** — easier to filter, easier to evolve
+- **Avoid PII in analytics properties** — bake privacy in from day one
+- **Validate before publishing** — DebugView and GTM Preview catch most issues in 5 minutes

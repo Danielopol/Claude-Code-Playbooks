@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'best-claude-seo-analysis-tools-2026',
+    slug: 'best-claude-seo-analysis-tools-2026',
+    title: 'Best Claude SEO Analysis Tools in 2026',
+    description: 'The best Claude SEO analysis tools in 2026 — keyword research, content auditing, authority building, technical SEO, local SEO, and content gap analysis. Each playbook compared by use case so you pick the right one.',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '14 min read',
+    featured: true,
+    thumbnailType: 'template',
+    thumbnailTitle: 'SEO Tools',
+    tags: ['Claude SEO tools', 'best SEO analysis tools 2026', 'AI SEO tools', 'Claude Code SEO', 'SEO automation', 'keyword research AI', 'content audit AI', 'Claude Code'],
+    createdAt: '2026-05-09',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'what-is-a-deep-research-assistant',
     slug: 'what-is-a-deep-research-assistant',
     title: 'What is a Deep Research Assistant? (Definition + Use Cases)',

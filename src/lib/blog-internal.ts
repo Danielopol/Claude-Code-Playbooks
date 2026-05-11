@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'how-to-view-claude-code-session-history',
+    slug: 'how-to-view-claude-code-session-history',
+    title: 'How to View Claude Code Terminal Session History',
+    description: 'A complete guide to viewing Claude Code session history — where logs are stored, how to search past sessions by date or keyword, how to recover lost code, and four playbooks that make session management effortless.',
+    category: 'tutorial',
+    difficulty: 'basic',
+    readingTime: '11 min read',
+    featured: true,
+    thumbnailType: 'default',
+    thumbnailTitle: 'Session History',
+    tags: ['view Claude Code session history', 'Claude Code terminal history', 'Claude Code session logs', 'recover Claude Code history', 'claude session history', '~/.claude', 'Claude Code'],
+    createdAt: '2026-05-10',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'best-claude-seo-analysis-tools-2026',
     slug: 'best-claude-seo-analysis-tools-2026',
     title: 'Best Claude SEO Analysis Tools in 2026',

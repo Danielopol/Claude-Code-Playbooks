@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'best-keyword-rank-trackers-claude-code',
+    slug: 'best-keyword-rank-trackers-claude-code',
+    title: 'Best Keyword Rank Trackers for Claude Code Projects',
+    description: 'A practical comparison of the best keyword rank trackers in 2026 — evaluated specifically for Claude Code users who need to close the loop from rank data to optimized content. Includes how Claude Code playbooks plug into each tool.',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'template',
+    thumbnailTitle: 'Rank Trackers',
+    tags: ['keyword rank tracker', 'best rank tracking tools 2026', 'SEO rank tracking', 'Claude Code SEO', 'rank monitoring', 'keyword position tracking', 'AI SEO tools', 'Claude Code'],
+    createdAt: '2026-05-12',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'how-to-view-claude-code-session-history',
     slug: 'how-to-view-claude-code-session-history',
     title: 'How to View Claude Code Terminal Session History',

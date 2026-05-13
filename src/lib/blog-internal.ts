@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'automate-invoice-processing-ai-step-by-step',
+    slug: 'automate-invoice-processing-ai-step-by-step',
+    title: 'How to Automate Invoice Processing with AI (Step-by-Step)',
+    description: 'A step-by-step guide to automating invoice processing with AI — from setup to fully hands-free generation, sending, tracking, and reconciliation using Claude Code.',
+    category: 'tutorial',
+    difficulty: 'intermediate',
+    readingTime: '14 min read',
+    featured: true,
+    thumbnailType: 'template',
+    thumbnailTitle: 'Invoice Auto',
+    tags: ['automate invoice processing', 'AI invoice automation', 'invoice automation step by step', 'Claude Code invoicing', 'invoice generator AI', 'accounts receivable automation', 'finance automation', 'Claude Code'],
+    createdAt: '2026-05-13',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'best-keyword-rank-trackers-claude-code',
     slug: 'best-keyword-rank-trackers-claude-code',
     title: 'Best Keyword Rank Trackers for Claude Code Projects',

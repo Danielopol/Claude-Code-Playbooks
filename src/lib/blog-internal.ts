@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-freelancers',
+    slug: 'claude-skills-freelancers',
+    title: 'Claude Skills for Freelancers: Automate the Work That Doesn\'t Pay',
+    description: 'Five Claude Skills every freelancer should set up — covering the admin work that eats your billable hours: content, cold email, proposals, contract review, and invoicing.',
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '11 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Freelancers',
+    tags: ['claude skills freelancers', 'claude freelance automation', 'ai skills for freelancers', 'freelance admin automation', 'freelance productivity', 'automate freelance work', 'Claude Code'],
+    createdAt: '2026-05-14',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'automate-invoice-processing-ai-step-by-step',
     slug: 'automate-invoice-processing-ai-step-by-step',
     title: 'How to Automate Invoice Processing with AI (Step-by-Step)',

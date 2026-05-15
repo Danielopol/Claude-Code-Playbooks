@@ -1,0 +1,131 @@
+---
+title: "Minto Pyramid: Structure Any Draft or Idea"
+description: "Apply Barbara Minto's Pyramid Principle to any draft — extracts your one-sentence answer, diagnoses MECE argument gaps, and delivers a visual restructuring plan as a color-coded HTML artifact."
+seoHook: "Most documents bury the main point in paragraph three and hope the reader figures it out — the Minto Pyramid forces the answer up front, exposes logic gaps before they embarrass you, and turns a rambling draft into a document that actually persuades."
+targetAudience: "management consultants, strategy analysts, executives, communications managers, business writers, MBA students, policy analysts, technical leads writing decision docs"
+exampleUseCase: "\"Minto this memo\" → Color-coded pyramid revealing the answer buried in paragraph 4, two overlapping arguments collapsed into one, a missing evidence gap flagged in red, and an exact replacement opener sentence"
+category: "communications"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "olelehmann1337/claude-skills"
+sourceUrl: "https://github.com/olelehmann1337/claude-skills/tree/main/skills/minto"
+tags: ["minto", "pyramid-principle", "writing", "structure", "mece", "communication", "persuasion", "logic"]
+createdAt: "2026-05-15"
+---
+
+## What This Does
+
+Applies Barbara Minto's Pyramid Principle to any draft or raw idea. It extracts a three-level pyramid (one-sentence answer, 2–4 MECE supporting arguments, one piece of concrete evidence per argument), runs a structural diagnosis, and delivers the results as a visual HTML artifact saved to your working directory.
+
+The HTML file shows the full pyramid as a color-coded hierarchy, provides an exact replacement opener, and lists a numbered restructuring plan with specific paragraph-level actions. Evidence nodes are color-coded: blue for strong (concrete, named, specific) and red for weak or missing. Chat gets a link and a 2–4 line summary — the HTML holds everything else.
+
+This runs in two modes depending on what you feed it:
+
+- **Existing draft** — extracts the pyramid from what you wrote, maps each argument to specific paragraphs, identifies dead-weight sections, and tells you what to cut, move, or rewrite.
+- **Raw idea** — builds the pyramid from scratch and delivers a recommended skeleton to draft from, with the opener and evidence targets you need to find.
+
+---
+
+## Quick Start
+
+### Step 1: Create a project folder
+
+```bash
+mkdir ~/minto-drafts
+cd ~/minto-drafts
+```
+
+Or navigate to any folder where you keep drafts and documents.
+
+### Step 2: Download and place the template
+
+Click **Download** above and save the file to that folder as `CLAUDE.md`.
+
+### Step 3: Launch Claude Code
+
+```bash
+claude
+```
+
+### Step 4: Trigger the skill on a draft or idea
+
+Paste your draft into the conversation, then use one of the trigger phrases:
+
+```
+minto this
+run minto
+apply minto
+pyramid this
+build the pyramid
+answer-first this
+structure this as a pyramid
+```
+
+Or paste a raw idea and say "minto this" — no existing draft required.
+
+The skill saves an HTML file to your working directory and responds with a link plus a short summary of the biggest structural issue found.
+
+---
+
+## Trigger Phrases
+
+**Mandatory triggers** (always activate the skill):
+
+```
+minto this
+run minto
+apply minto
+minto-ify
+pyramid this
+build the pyramid
+pyramid principle this
+answer-first this
+structure this as a pyramid
+```
+
+**Strong triggers** (activate when the context is clearly structural):
+
+```
+what is the takeaway
+is this MECE
+does this hold up logically
+pressure-test this
+give me the one-sentence answer
+```
+
+---
+
+## What the HTML Artifact Contains
+
+The output file (`minto-pyramid-{topic}.html`) has three sections:
+
+**The Pyramid** — a visual hierarchy with three tiers:
+- Top: the one-sentence answer (black box)
+- Middle: 2–4 argument nodes (amber/yellow)
+- Bottom: one evidence node per argument, color-coded blue (strong) or red (weak/missing)
+
+**Your Opener** — the exact sentence the draft should lead with, plus a note explaining why it beats the current opener. Principle pieces get an answer-first opener; case study pieces lead with the concrete.
+
+**Restructuring Plan** — numbered, paragraph-level actions: move the claim, merge the overlapping sections, cut the dead weight, find the missing evidence, sharpen the weak argument. Each step is specific enough to execute without reinterpretation.
+
+---
+
+## Tips & Best Practices
+
+- **Run Minto before any other writing or editing skill.** Voice, format, and platform choices are downstream concerns. Get the structure sound first, then style.
+- **Feed it the full draft, not a summary.** The skill maps arguments to specific paragraphs in your draft. A summary loses the location data the restructuring plan depends on.
+- **If "minto this" returns a question, answer it.** When the target is ambiguous (two drafts in the conversation, a vague topic), the skill asks one clarifying question before proceeding. Resolve it and it continues.
+- **Paste evidence into the conversation if you have it.** The skill uses evidence you provide before flagging gaps. If you have the stat or the named example already, include it when you trigger the skill.
+- **Use it on slide decks and presentations too.** Paste the slide titles and bullet points as text. The pyramid logic applies to any structured argument, not just prose.
+- **Three arguments is the sweet spot.** If your idea seems to need five, the answer is probably too broad. The skill will push back on Level 1 before generating more than four arguments.
+
+---
+
+## Limitations
+
+- **No full rewriting.** The skill delivers a restructuring plan, not a rewritten draft. Executing the plan is your job (or a downstream writing skill's job).
+- **Evidence fabrication is never done.** If an argument lacks concrete evidence and none was provided in the conversation, the skill flags the gap and tells you what type of evidence to find. It does not invent sources, stats, or quotes.
+- **No format or platform recommendations.** The skill diagnoses structure and logic. It will not suggest whether the content should be a memo, a thread, a slide deck, or a blog post.
+- **HTML is saved to the working directory.** In Claude Code, the artifact lands in the directory where you launched `claude`. Open it in a browser to see the full visual output.
+- **Raw ideas without a clear claim may stall.** If the idea cannot be compressed to a one-sentence contestable claim, the skill stops and tells you what is blocking the compression. Resolve that first.
+- **No voice or style work.** Structure and logic only. Voice, tone, and phrasing are explicitly out of scope for this skill.

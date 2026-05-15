@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-vs-chatgpt-plugins',
+    slug: 'claude-skills-vs-chatgpt-plugins',
+    title: 'Claude Skills vs ChatGPT Plugins: Which AI Automation Actually Works in 2026?',
+    description: 'An honest comparison of Claude Skills and ChatGPT Plugins across real automation use cases — agent building, browser tasks, and calendar workflows. Which platform actually delivers in 2026?',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'agent',
+    thumbnailTitle: 'Claude vs GPT',
+    tags: ['claude skills vs chatgpt plugins', 'claude vs chatgpt automation', 'best ai skills', 'chatgpt plugins 2026', 'claude code vs chatgpt', 'AI automation comparison', 'Claude Code'],
+    createdAt: '2026-05-15',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-freelancers',
     slug: 'claude-skills-freelancers',
     title: 'Claude Skills for Freelancers: Automate the Work That Doesn\'t Pay',

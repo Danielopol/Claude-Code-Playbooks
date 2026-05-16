@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'build-claude-skills-no-code',
+    slug: 'build-claude-skills-no-code',
+    title: 'How to Build Your Own Claude Skills Without Writing a Single Line of Code',
+    description: 'A plain-English guide to building custom Claude Skills using only a text file — no coding required. Includes five real examples with copy-paste CLAUDE.md snippets you can customize today.',
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Build Skills',
+    tags: ['build claude skills', 'custom claude skills', 'no-code claude skills', 'CLAUDE.md', 'Claude Code', 'no-code AI', 'AI automation'],
+    createdAt: '2026-05-16',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-vs-chatgpt-plugins',
     slug: 'claude-skills-vs-chatgpt-plugins',
     title: 'Claude Skills vs ChatGPT Plugins: Which AI Automation Actually Works in 2026?',

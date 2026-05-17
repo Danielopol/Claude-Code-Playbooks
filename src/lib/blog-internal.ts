@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-productivity-second-brain',
+    slug: 'claude-skills-productivity-second-brain',
+    title: 'Claude Skills for Personal Productivity: Build Your AI Second Brain',
+    description: 'How to use Claude Skills as an AI-powered second brain — capturing ideas, managing goals, running life reviews, and surfacing patterns from your own notes and history. Five playbooks for the productivity-obsessed.',
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Second Brain',
+    tags: ['claude skills productivity', 'claude personal assistant skills', 'claude second brain', 'AI second brain', 'personal productivity', 'Claude Code', 'CLAUDE.md'],
+    createdAt: '2026-05-17',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'build-claude-skills-no-code',
     slug: 'build-claude-skills-no-code',
     title: 'How to Build Your Own Claude Skills Without Writing a Single Line of Code',

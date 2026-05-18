@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-replace-saas-tools',
+    slug: 'claude-skills-replace-saas-tools',
+    title: '10 Claude Skills That Replace $1,000/Month in SaaS Tools',
+    description: 'Ten Claude Skills that replace the SaaS tools solopreneurs and small teams pay $800–$1,200/month for — budgeting, contracts, CRM, SEO, invoicing, and more. Honest cost comparisons included.',
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '14 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Replace SaaS',
+    tags: ['claude skills replace saas', 'ai replace saas tools', 'claude skills save money', 'saas alternatives', 'solopreneur tools', 'Claude Code', 'ai productivity'],
+    createdAt: '2026-05-18',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-productivity-second-brain',
     slug: 'claude-skills-productivity-second-brain',
     title: 'Claude Skills for Personal Productivity: Build Your AI Second Brain',

@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-job-seekers',
+    slug: 'claude-skills-job-seekers',
+    title: 'Claude Skills for Job Seekers: Resumes, Cover Letters, and Interview Prep',
+    description: 'How to use Claude Skills throughout your job search — tailoring resumes, writing cover letters that get read, researching companies and salary ranges, and preparing for interviews. No coding required.',
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Job Search',
+    tags: ['claude skills job search', 'claude resume help', 'claude cover letter', 'job search AI', 'interview prep AI', 'Claude Code', 'career tools'],
+    createdAt: '2026-05-19',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-replace-saas-tools',
     slug: 'claude-skills-replace-saas-tools',
     title: '10 Claude Skills That Replace $1,000/Month in SaaS Tools',

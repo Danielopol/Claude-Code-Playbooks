@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-marketing-teams',
+    slug: 'claude-skills-marketing-teams',
+    title: 'Claude Skills for Marketing Teams: From Ad Copy to Campaign Analysis',
+    description: 'How marketing teams use Claude Skills to produce on-brand ad copy at scale, plan campaigns faster, analyze competitor ads, repurpose content across channels, and measure performance — all with consistent brand voice.',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Marketing',
+    tags: ['claude skills marketing', 'claude marketing automation', 'claude skills for marketers', 'AI marketing', 'ad copy AI', 'campaign planning AI', 'Claude Code'],
+    createdAt: '2026-05-20',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-job-seekers',
     slug: 'claude-skills-job-seekers',
     title: 'Claude Skills for Job Seekers: Resumes, Cover Letters, and Interview Prep',

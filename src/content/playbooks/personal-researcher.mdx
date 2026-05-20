@@ -1,0 +1,94 @@
+---
+title: "Personal Research Analyst"
+description: "Deliver structured, sourced, six-section research briefings every time — executive summary, key findings with citations, context, conflicting views, implications, and a ranked source list."
+seoHook: "Raw information is everywhere; structured intelligence you can act on is rare — a personal research system is what separates people who consume content from people who make decisions with it."
+targetAudience: "analysts, executives, consultants, investors, journalists, policy analysts, strategists, researchers, anyone who makes decisions based on external information"
+exampleUseCase: "\"Research the current state of B2B SaaS pricing strategies\" → 5-sentence executive summary, 8 sourced key findings with dates, essential context, conflicting expert views, 4 role-specific implications, and a ranked source list with credibility flags"
+category: "research-writing"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "aiedge_"
+sourceUrl: "https://x.com/aiedge_"
+tags: ["research", "analyst", "intelligence", "sourcing", "reports", "decision-making", "briefings"]
+createdAt: "2026-05-20"
+---
+
+## What This Does
+
+Tells Claude exactly how you want information structured, sourced, and delivered so every research output arrives in a consistent, actionable format. No more loosely organized summaries or unsourced claims — every brief follows a six-section structure: executive summary, key findings with citations, context, conflicting views, implications, and a source list with credibility flags.
+
+You configure it once with your role, research areas, and audience, and Claude applies that context to every research request. The quality rules are enforced on every output: no fabricated sources, no generic filler, no padding, no unsourced statistics. If the topic has changed significantly in the last 30 days, Claude flags it at the top.
+
+Works for financial research, competitor analysis, technology landscape reviews, news monitoring, and any domain where structured intelligence beats a pile of search results.
+
+---
+
+## Quick Start
+
+### Step 1: Create a research folder
+
+```bash
+mkdir ~/research
+cd ~/research
+```
+
+### Step 2: Download and place the template
+
+Click **Download** above and save the file as `CLAUDE.md` in that folder.
+
+### Step 3: Fill in your research context
+
+Open `CLAUDE.md` and replace the bracketed fields:
+
+- **Role** — your job and why you need research (e.g. "VC analyst evaluating early-stage SaaS companies")
+- **Industries and topics** — the domains you research most often (e.g. "B2B SaaS, AI infrastructure, enterprise software pricing")
+- **Audience** — who reads your research output (yourself, a team, clients, investors)
+- **Connected tools** — active connectors (web access, Google Drive, Notion, etc.)
+
+### Step 4: Launch Claude Code
+
+```bash
+claude
+```
+
+### Step 5: Request research
+
+```
+Research [topic]
+Give me a brief on [subject]
+What is the current state of [domain]
+```
+
+Claude delivers the six-section format and flags anything contested, outdated, or unverifiable.
+
+---
+
+## Output Format
+
+Every research brief follows this structure:
+
+1. **Executive Summary** — 3 to 5 sentences. The most important thing to know, useful on its own.
+2. **Key Findings** — 5 to 10 sourced bullet points, prioritized by recency and relevance. Findings older than 12 months are flagged.
+3. **Context and Background** — 3 to 5 bullet points of non-obvious context that changes how you interpret the findings.
+4. **Conflicting Views** — credible perspectives that contradict the key findings. If the topic is genuinely uncontested, that is stated clearly.
+5. **Implications and Opportunities** — 3 to 5 specific, role-relevant actions, decisions, or things to watch.
+6. **Sources** — every source ranked by relevance with publication, title, and date. Paywalled sources and low-credibility sources are flagged.
+
+---
+
+## Tips & Best Practices
+
+- **Specify your role as precisely as possible.** "VC analyst evaluating infrastructure startups" produces sharper implications than "investor." The implication section is where the precision pays off.
+- **Use for competitor research.** Feed the template a competitor name and ask for a brief. The conflicting views section naturally captures where analysts and customers disagree about that company.
+- **Request output as a PDF.** The original author's preferred output format is PDF. Add "output this as a PDF" to your research request when you want a shareable deliverable.
+- **Narrow broad topics before asking.** If the topic is too broad, Claude will narrow it and tell you what angle it focused on. You can steer that narrowing by including a sentence like "focus on the enterprise segment, not SMB."
+- **The source list is a research accelerator.** The ranked source list with credibility flags is useful as a starting point for deeper reading. Save the source lists from your most valuable briefs.
+
+---
+
+## Limitations
+
+- **Source availability depends on web access.** Without a connected web tool, Claude draws on training data, which may not include the most recent developments. For time-sensitive research, connect a web search tool first.
+- **Claude will not fabricate sources.** If it cannot find sufficient credible sources for a topic, it tells you before producing a low-quality output. This is correct behavior — a brief with fabricated citations would be worse than no brief.
+- **Implication quality scales with context.** The more specific your role and industry fields, the more relevant the implications section. Generic context produces generic implications.
+- **Length is matched to complexity.** Simple topics come in under 400 words. Complex topics run up to 800. Do not expect a uniform length across different research requests.

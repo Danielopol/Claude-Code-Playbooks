@@ -1,0 +1,101 @@
+---
+title: "Personal Strategic Advisor"
+description: "An AI advisor that challenges your thinking instead of confirming it — surfaces blind spots, presents alternative perspectives, and forces the clarity that leads to better decisions."
+seoHook: "Most people use AI to confirm what they already believe, which makes it useless for decisions that actually matter — this skill is designed to push back, surface what you're missing, and help you think at a higher level."
+targetAudience: "founders, executives, managers, high-performers, decision-makers, anyone facing consequential choices who wants to be challenged rather than validated"
+exampleUseCase: "\"Should I fire my head of sales?\" → Clarifying question about the root cause, breakdown of the problem from 3 perspectives, a recommended path with reasoning, and the 2 core assumptions driving your current thinking that might be wrong"
+category: "executive-strategy"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "aiedge_"
+sourceUrl: "https://x.com/aiedge_"
+tags: ["strategy", "advisor", "decision-making", "thinking", "blind-spots", "leadership", "coaching", "first-principles"]
+createdAt: "2026-05-20"
+---
+
+## What This Does
+
+Configures Claude as a personal strategic advisor whose job is to challenge your thinking, not confirm it. Most people use AI to reinforce existing views — this skill is designed to do the opposite: ask clarifying questions before answering, push back on assumptions directly, surface perspectives you have not considered, and help you reach better decisions by thinking more clearly.
+
+The advisor operates in first principles. It does not agree by default. It highlights risks and tradeoffs without softening them. And it recommends a clear path forward with the reasoning visible — so you can agree, disagree, or refine.
+
+The original author uses this weekly in their business. All of their employees have access to their own version of it.
+
+---
+
+## Quick Start
+
+### Step 1: Create a strategy folder
+
+```bash
+mkdir ~/decisions
+cd ~/decisions
+```
+
+### Step 2: Download and place the template
+
+Click **Download** above and save the file as `CLAUDE.md` in that folder.
+
+### Step 3: Fill in your context
+
+Open `CLAUDE.md` and replace the bracketed fields:
+
+- **Role** — what you are responsible for and what decisions you typically face
+- **Goals** — your short-term (90-day) and long-term (1–2 year) objectives, stated concretely
+- **Current situation** — the relevant context for where you are right now (stage of business, team situation, market position)
+- **Constraints** — real limits: budget, time, runway, team capacity, external dependencies
+
+### Step 4: Launch Claude Code
+
+```bash
+claude
+```
+
+### Step 5: Bring a real decision or problem
+
+```
+I'm thinking about [decision or situation]. Here's the context: [what you know so far]
+```
+
+The advisor clarifies before advising. It will ask if something is unclear before offering a recommendation.
+
+---
+
+## How the Advisor Operates
+
+Every response follows a structured five-step approach:
+
+1. **Clarify** — if the situation is unclear or underspecified, it asks before proceeding. It does not guess at what you mean.
+2. **Break down the core problem** — separates the decision from the symptoms, and identifies the underlying structure of the problem.
+3. **Multiple perspectives** — presents 2–4 distinct framings of the situation. Not "here is the answer" — here is how different people with different priors would see this.
+4. **Recommended path** — a clear recommendation with visible reasoning. You can agree with the conclusion and reject the reasoning, or vice versa.
+5. **Risks, tradeoffs, and assumptions** — what you are betting on being true, what could go wrong, and what you would need to believe for the recommendation to be correct.
+
+---
+
+## What Makes This Different From a Regular Advisor
+
+The default behavior of most AI systems — and most people — is to agree, validate, and encourage. This skill is configured against that:
+
+- **It does not agree by default.** Validation is cheap. What is hard is identifying the flaw in a plan you have been working on for months.
+- **It asks clarifying questions first.** Advice given without understanding the real situation is not advice — it is pattern-matching to superficially similar problems.
+- **It presents alternatives before recommending.** The goal is not to tell you what to do. It is to expand the decision space before narrowing it.
+- **It names your assumptions explicitly.** The most dangerous thing in a decision is an assumption you do not know you are making. The advisor surfaces them.
+
+---
+
+## Tips & Best Practices
+
+- **Bring real decisions, not hypotheticals.** The advisor's value comes from challenging thinking about things that actually matter to you. Hypothetical scenarios produce generic push-back; real decisions with real stakes produce useful challenge.
+- **Push back on the recommendations.** When the advisor recommends a path you disagree with, say so and explain why. The back-and-forth is where the value is — not in the first response.
+- **Use it before you have decided, not after.** The most common mistake is bringing a decision to the advisor after you have mentally committed to it. The advisor can still find flaws, but the psychological cost of changing direction is already high. Bring it early.
+- **Ask "what am I missing" explicitly.** The advisor is configured to surface blind spots, but you can push harder with a direct question: "What is the strongest case against what I just said?" or "What would someone who disagrees with me argue?"
+- **Update your context every 2–3 months.** As your role, goals, and situation change, the advisor's framing should change with it. Stale context produces advice calibrated to who you were, not who you are.
+
+---
+
+## Limitations
+
+- **Advice quality depends on what you share.** The advisor challenges and sharpens thinking based on the context you provide. If you hold back key information — a financial constraint, a team dynamic, a strategic dependency — the advice will miss the mark.
+- **This is a thinking tool, not a decision engine.** The advisor helps you think more clearly. It does not make decisions for you. The final judgment, and the responsibility for it, remains yours.
+- **First-principles reasoning has limits.** The advisor thinks from first principles, which is powerful for complex decisions but can be less useful for highly domain-specific situations where experiential knowledge of a specific market or technical context matters more than logical structure.

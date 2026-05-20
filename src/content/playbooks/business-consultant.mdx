@@ -1,0 +1,92 @@
+---
+title: "Business & Role Consultant"
+description: "Get strategic advice calibrated to your exact role, business model, stage, and constraints — identifies leverage points, recommends concrete actions, and highlights risks and tradeoffs."
+seoHook: "Generic business advice from AI is useless — the only strategic counsel worth having is locked to your specific role, stage, and constraints, and it compounds the more context you give it."
+targetAudience: "founders, executives, business owners, managers, operators, solopreneurs at any stage of business"
+exampleUseCase: "\"Should I raise prices this quarter?\" → Leverage-point analysis specific to your business model and stage, 3 concrete strategic actions with tradeoffs, risks of acting vs. waiting, and the one assumption you should pressure-test first"
+category: "executive-strategy"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "aiedge_"
+sourceUrl: "https://x.com/aiedge_"
+tags: ["strategy", "business", "consulting", "advisor", "decisions", "operations", "growth", "leverage"]
+createdAt: "2026-05-20"
+---
+
+## What This Does
+
+Configures Claude as a business strategy advisor that gives advice specific to your actual situation — not general frameworks, not generic best practices. You fill in your role, industry, business model, current stage, goals, and constraints, and every strategic conversation that follows is grounded in that context.
+
+The advisor operates with a consistent framework: clarify the situation, identify key leverage points, recommend concrete actions with reasoning, and surface risks and alternatives. It thinks like an operator, not a theorist — focused on what drives results and how to execute.
+
+The original author's advice: update the context fields every 2–3 months so the advisor stays current as your business evolves.
+
+---
+
+## Quick Start
+
+### Step 1: Create a strategy folder
+
+```bash
+mkdir ~/strategy
+cd ~/strategy
+```
+
+### Step 2: Download and place the template
+
+Click **Download** above and save the file as `CLAUDE.md` in that folder.
+
+### Step 3: Fill in your business context
+
+Open `CLAUDE.md` and replace the bracketed fields. Be specific — the advisor is only as sharp as the context you give it:
+
+- **Role** — your actual title and what you own (e.g. "CEO of a 12-person B2B SaaS company, responsible for growth and product strategy")
+- **Industry** — your sector and competitive environment
+- **Business model** — how you make money, specifically (e.g. "annual contracts, $15k ACV, 80% renewal rate")
+- **Current stage** — where you are: pre-revenue, early, growth, or scale
+- **Goals** — short-term (next 90 days) and long-term (1–2 years) — be concrete
+- **Constraints** — real limits: budget, team size, time, runway, market timing
+
+### Step 4: Launch Claude Code
+
+```bash
+claude
+```
+
+### Step 5: Ask your strategic question
+
+```
+Should I [decision you're weighing]?
+What's the highest-leverage thing I can do this quarter?
+Help me think through [situation or challenge]
+```
+
+---
+
+## What the Advisor Delivers
+
+Every response follows the same five-step structure:
+
+1. **Clarify** — if the situation needs more context before advice is useful, it asks first
+2. **Leverage points** — the 2–3 factors that most determine the outcome of this decision
+3. **Strategic actions** — concrete recommendations with reasons, not vague guidance
+4. **Why they matter** — the causal logic connecting the action to the outcome
+5. **Risks and alternatives** — what could go wrong, what you'd be giving up, what the alternative paths look like
+
+---
+
+## Tips & Best Practices
+
+- **The more specific your context, the sharper the advice.** "B2B SaaS company at $500k ARR trying to grow to $2M" produces better leverage analysis than "tech startup." Precision at setup pays dividends on every subsequent question.
+- **Update every 2–3 months.** Your stage, goals, and constraints change. A stale template produces advice calibrated to a version of your business that no longer exists. Build a habit of updating it when your situation meaningfully shifts.
+- **Use it for recurring decisions, not just one-offs.** The compounding value of this skill comes from context accumulation. The more you work with it over time, the more the advisor understands your patterns, your market, and your constraints.
+- **Ask it to challenge your reasoning explicitly.** The advisor is configured to challenge assumptions when needed — but you can push harder by asking: "What's the strongest argument against this decision?" or "What am I not seeing here?"
+- **Pair with the Strategic Advisor playbook for bigger decisions.** The Business Consultant is oriented toward execution and leverage. For higher-stakes decisions where you need deeper questioning of premises, use the Strategic Advisor playbook alongside it.
+
+---
+
+## Limitations
+
+- **Advice is only as good as the context.** If your business model description is incomplete or your goals are vague, the advice will be general. The template is a starting point — specificity is your job.
+- **This is a thinking tool, not a decision engine.** The advisor surfaces leverage points and tradeoffs — it does not make decisions for you. Use it to clarify your thinking, not to outsource it.
+- **No market data without connectors.** The advisor works with the context you provide. For advice grounded in live market data, competitor pricing, or industry benchmarks, connect a web search tool or paste the relevant data into the conversation.

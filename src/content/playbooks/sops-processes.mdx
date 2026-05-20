@@ -1,0 +1,101 @@
+---
+title: "SOPs & Process Executor"
+description: "Document your standard operating procedures once and let Claude execute them exactly, every time — no re-explaining, no missed steps, no improvisation."
+seoHook: "Every time you explain a repeatable process from scratch, you're paying a productivity tax that compounds — documented SOPs make your most important workflows executable on demand without you being in the room."
+targetAudience: "business owners, COOs, operations managers, team leads, founders, solopreneurs who run on repeatable systems"
+exampleUseCase: "\"Run the client onboarding SOP\" → Claude executes every step in order, confirms completions, flags the one item needing human review, and outputs a summary of what was done and what comes next"
+category: "operations-compliance"
+difficulty: "intermediate"
+timeToSetup: "20 minutes"
+author: "aiedge_"
+sourceUrl: "https://x.com/aiedge_"
+tags: ["sop", "processes", "operations", "automation", "business-systems", "workflows", "productivity"]
+createdAt: "2026-05-20"
+---
+
+## What This Does
+
+Trains Claude on your exact standard operating procedures so every repeatable task gets executed the same way, every time. You document your SOPs once in the template — each with a trigger, an ordered step list, an output definition, and rules — and Claude follows them exactly: no improvisation, no shortcuts, no assumptions.
+
+The template supports as many SOPs as you need. At the end of every completed process, Claude confirms which steps ran, what the output was, and flags anything that needs human review. If you ask for a process that has no SOP, Claude tells you and asks if you want to build one.
+
+The original author connects this to a Notion database and CRM so Claude can read live SOP documents in real time.
+
+---
+
+## Quick Start
+
+### Step 1: Create a project folder
+
+```bash
+mkdir ~/business-ops
+cd ~/business-ops
+```
+
+### Step 2: Download and place the template
+
+Click **Download** above and save the file as `CLAUDE.md` in that folder.
+
+### Step 3: Fill in your business context
+
+Open `CLAUDE.md` and complete the business context section:
+
+- **Name** and **business description** — who you are and what the business does
+- **Team structure** — solo, small team, specific department
+- **Tools we use** — your core stack (Notion, Slack, Gmail, CRM, project management tool)
+- **Connected tools** — any active connectors
+
+### Step 4: Document your SOPs
+
+For each repeatable process, add an entry in the SOP format:
+
+```
+SOP: [Process name]
+Trigger: [what kicks this off — a message, a new lead, a recurring date]
+Steps:
+1. [Specific action — be exact, not general]
+2. [Next action]
+3. [Next action]
+Output: [what the finished result looks like]
+Rules: [anything that must never happen in this process]
+```
+
+Start with your 3 highest-frequency processes. Add more over time.
+
+### Step 5: Launch Claude Code and trigger a process
+
+```bash
+claude
+```
+
+```
+Run the [process name] SOP
+```
+
+---
+
+## SOP Documentation Tips
+
+**Be specific at the step level.** "Handle the email" is not a step. "Reply to the email within 4 hours using the template in /templates/client-reply.md, CC the account manager, and log the interaction in the CRM under the client record" is a step.
+
+**Define the trigger precisely.** Vague triggers produce ambiguous execution. "When a new lead comes in" is vague. "When a new contact is added to the CRM with status = New Lead" is a trigger Claude can act on consistently.
+
+**Define the output.** Every SOP should state what done looks like. Without a clear output definition, there is no way to confirm the process completed correctly.
+
+---
+
+## Tips & Best Practices
+
+- **Start with 3 SOPs, not 20.** Document your three highest-frequency processes first. Get them running cleanly before adding more. Trying to document everything at once produces a messy template.
+- **Connect to your Notion or CRM for live docs.** If your SOPs live in Notion, connect Notion as a tool and reference the document in the SOP steps. Claude can read the current version in real time, which means you only maintain one source of truth.
+- **Let Claude suggest new SOPs.** The template instructs Claude to flag when you repeatedly ask for the same thing without a documented SOP. Pay attention to these flags — they identify processes worth systematizing.
+- **Update every 2–3 months.** Business processes change. A stale SOP produces incorrect outputs. Put a recurring reminder on your calendar to review the template quarterly.
+- **Add a "rules" field to every SOP.** The rules field is where you put guardrails: "never send an external email without my review," "always CC the finance team," "do not proceed if the contract is not signed." These prevent costly mistakes.
+
+---
+
+## Limitations
+
+- **Claude cannot take actions on external tools without connectors.** To actually send emails, update a CRM, or post to Slack, the relevant tool must be connected. Without connectors, Claude walks through the steps and tells you what to do — it does not do it.
+- **Step quality determines execution quality.** Vague steps produce vague execution. The more specific each step, the more reliably the process runs.
+- **Novel situations require judgment.** Claude follows the SOP as written. If a situation arises that the SOP does not cover, Claude stops and asks. This is correct behavior, not a failure.

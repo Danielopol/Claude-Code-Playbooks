@@ -1,0 +1,104 @@
+---
+title: "AI Prompt Builder"
+description: "Turn rough ideas into optimized, high-performance prompts for any AI model — eliminates ambiguity, adds the right context, and structures output expectations so you get better results on the first try."
+seoHook: "Most people blame the model when outputs are mediocre — the real bottleneck is the prompt, and fixing it upstream eliminates the back-and-forth that kills productivity and produces better results on the first attempt."
+targetAudience: "knowledge workers, developers, marketers, analysts, writers, anyone who uses Claude, ChatGPT, or Gemini daily and wants consistently better outputs"
+exampleUseCase: "\"I want to build a prompt to analyze competitor pricing\" → A fully structured prompt with role definition, step-by-step instructions, output format specification, constraints, and an example — ready to paste and fire"
+category: "productivity"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "aiedge_"
+sourceUrl: "https://x.com/aiedge_"
+tags: ["prompts", "prompt-engineering", "ai", "chatgpt", "claude", "gemini", "productivity", "workflow"]
+createdAt: "2026-05-20"
+---
+
+## What This Does
+
+Turns rough ideas and vague goals into structured, high-performance prompts for any AI model — Claude, ChatGPT, Gemini, or others. You describe what you want to achieve, add relevant context, and specify the output format you need. The skill removes ambiguity, adds the structural elements that AI systems respond best to (role definition, step-by-step instructions, constraints, output format), and returns a complete, optimized prompt ready to use.
+
+The original author uses this whenever they feel friction with AI outputs: instead of endlessly tweaking responses, they generate a better prompt first. Better input, better output, less back-and-forth.
+
+---
+
+## Quick Start
+
+### Step 1: Create a prompts folder
+
+```bash
+mkdir ~/prompts
+cd ~/prompts
+```
+
+### Step 2: Download and place the template
+
+Click **Download** above and save the file as `CLAUDE.md` in that folder.
+
+### Step 3: Launch Claude Code
+
+```bash
+claude
+```
+
+### Step 4: Describe what you want
+
+```
+Build me a prompt to [goal]. Context: [relevant background]. Output should be [format/style/constraints]. Model: [optional — Claude, GPT, etc.]
+```
+
+Claude returns a complete, optimized prompt with role definition, instructions, output format, and constraints — ready to paste into any AI system.
+
+---
+
+## What Goes Into an Optimized Prompt
+
+The skill builds prompts with four structural elements:
+
+**Role definition** — tells the AI what expert perspective to adopt. "You are a senior financial analyst" produces different outputs than "you are an assistant."
+
+**Step-by-step instructions** — for tasks with multiple stages, explicit sequencing prevents the AI from taking shortcuts or missing steps.
+
+**Output format** — specifies exactly what the response should look like: length, structure, formatting, sections, and any examples of what good output looks like.
+
+**Constraints** — what the AI should not do, what to avoid, and what guardrails to observe. Constraints are often more important than positive instructions.
+
+---
+
+## Example Uses
+
+```
+Build me a prompt to write LinkedIn posts about SaaS growth.
+Context: I'm a founder with 8 years in B2B sales.
+Output: 3-paragraph posts, first-person, no bullet points, no em dashes.
+Model: Claude.
+```
+
+```
+Build me a prompt to analyze a competitor's pricing page.
+Context: I run a project management tool in the SMB market.
+Output: Structured comparison with strategy implications.
+```
+
+```
+Build me a prompt to summarize investor update emails.
+Context: I send these monthly to 40 angels and VCs.
+Output: 5 bullet points, under 150 words, decision-focused.
+```
+
+---
+
+## Tips & Best Practices
+
+- **Use this as a meta-layer, not a replacement for prompting.** The prompt builder is most valuable when you find yourself re-running the same type of request repeatedly with inconsistent results. Build a strong prompt once, save it, reuse it.
+- **Save your best prompts in a library.** Create a `/prompts` folder in your project and save every prompt the builder produces. Over time, you build a personal prompt library tuned to your work.
+- **Include a model specification when output format matters.** Claude, GPT-4, and Gemini have different strengths and formatting behaviors. If you specify the model, the builder tunes the prompt for that system's tendencies.
+- **Start with the goal, not the format.** Describe what outcome you want before specifying format. The builder is better at inferring format from goal than inferring goal from format.
+- **Iterate: build, test, refine.** Run the generated prompt, note where the output falls short, tell the builder what was missing, and ask for a revised version. Two rounds usually produces a highly reliable prompt.
+
+---
+
+## Limitations
+
+- **Prompts require testing.** The builder produces a strong structural starting point, not a guaranteed perfect prompt. Test the output against your actual use case and refine.
+- **Complex multi-step workflows need more specification.** For agentic tasks or long multi-step workflows, you will need to provide more detail about the intermediate steps and decision points. The builder works best on single-purpose prompts.
+- **Model-specific optimization is approximate.** The builder adjusts for stated model preferences, but deep model-specific tuning (like specific Claude XML tag conventions or GPT system prompt formatting) may require manual refinement.

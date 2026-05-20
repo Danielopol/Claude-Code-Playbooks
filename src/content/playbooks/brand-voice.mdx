@@ -1,0 +1,86 @@
+---
+title: "Personal Brand Voice"
+description: "Load your tone, style, and vocabulary into Claude so every piece of content it writes sounds exactly like you — not like a generic AI assistant."
+seoHook: "AI-generated content is everywhere and it all sounds the same — the writers and creators who stand out are the ones who've taught their AI to disappear into their voice instead of replacing it."
+targetAudience: "content creators, founders, LinkedIn writers, newsletter operators, X/Twitter writers, marketers, solopreneurs, personal brand builders"
+exampleUseCase: "\"Write a LinkedIn post about why most onboarding fails\" → A post in your exact voice — sentence rhythm, vocabulary, banned phrases excluded, and perspective matching your best previous work"
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "aiedge_"
+sourceUrl: "https://x.com/aiedge_"
+tags: ["voice", "brand", "content", "writing", "style", "linkedin", "twitter", "newsletter", "personal-brand"]
+createdAt: "2026-05-20"
+---
+
+## What This Does
+
+Loads everything Claude needs to know about your tone, style, and voice into a single CLAUDE.md template. Once configured, every piece of content Claude writes — posts, threads, newsletter sections, article drafts — runs through a built-in self-check before delivery: does this sound like you, or like a generic AI?
+
+The template covers your identity (name, brand, platform, audience), your voice (tone, sentence structure, vocabulary, banned phrases), your content philosophy (what you stand for, what you never do), and 2–3 examples of your best work for calibration.
+
+This skill also works in Manus, Perplexity, and any AI platform that supports Skills.
+
+---
+
+## Quick Start
+
+### Step 1: Create a content project folder
+
+```bash
+mkdir ~/brand-voice
+cd ~/brand-voice
+```
+
+Or navigate to an existing folder where you draft content.
+
+### Step 2: Download and place the template
+
+Click **Download** above and save the file as `CLAUDE.md` in that folder.
+
+### Step 3: Fill in the template — this is the work
+
+Open `CLAUDE.md` and replace every `[bracketed field]`. The voice section is the most important part:
+
+- **Tone** — how you want to come across (e.g. "direct and confident, never arrogant, conversational not academic")
+- **Sentence structure** — how you write sentences (e.g. "short. One idea per sentence. No run-ons.")
+- **Vocabulary** — words and phrases you use regularly
+- **Phrases I never use** — your banned list (filler words, AI slop, corporate-speak)
+- **Formatting rules** — platform-specific constraints (e.g. "no em dashes on LinkedIn, no bullet points in X threads")
+- **Perspective** — point of view style (e.g. "always first-person, always from direct experience, never hypothetical")
+
+Then paste 2–3 examples of your best existing content at the bottom. The more calibration examples you give, the better the output.
+
+### Step 4: Launch Claude Code
+
+```bash
+claude
+```
+
+### Step 5: Request content in your voice
+
+```
+Write a LinkedIn post about [topic]
+Draft a newsletter intro for [subject]
+Write a thread about [idea]
+```
+
+Claude runs the built-in quality checklist after every output: tone match, banned phrase check, sentence-level value check, and "would you actually say this" test.
+
+---
+
+## Tips & Best Practices
+
+- **The banned phrases list is your most powerful field.** Collect your own personal blocklist over time — every time Claude produces something that sounds off, identify the phrase and add it. The list compounds.
+- **Paste examples of your actual best work, not average work.** The calibration examples are the reference Claude uses to gauge whether output matches your standard. Average examples produce average outputs.
+- **Specify platform per request.** The template sets your defaults, but you can override for a specific platform on each request: "Write this as an X thread" vs. "Write this as a LinkedIn post" produces appropriately different formatting even with the same voice.
+- **Update examples every few months.** Your voice evolves. Replace the calibration examples with more recent work periodically to keep outputs current.
+- **Add your absolute best piece as example 1.** Claude weights the first example most heavily. Make it count.
+
+---
+
+## Limitations
+
+- **Setup time scales with how much you write.** A detailed, specific template takes 20–30 minutes to fill in properly. Sparse brackets produce generic output — the template is only as good as what you put into it.
+- **Voice calibration is approximate.** Claude will get close to your voice, not identical. For very distinctive styles, expect to refine outputs before publishing. Over time, your banned phrases list and examples tighten the gap.
+- **Platform-specific nuance requires explicit instructions.** If you write very differently on X vs. LinkedIn, consider creating separate template variants with different formatting rules for each platform.

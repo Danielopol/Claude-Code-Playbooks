@@ -1,0 +1,95 @@
+---
+title: "Morning Brief Analyst"
+description: "Turn Claude into your personal morning analyst — delivers a structured daily brief covering industry news, priority tasks, calendar context, and urgent inbox items in under 400 words."
+seoHook: "Starting every day without a clear picture of what actually matters is how reactive work swallows your morning — a morning brief forces the signal you need to the top before the noise does."
+targetAudience: "executives, managers, founders, solo operators, professionals with heavy calendars, remote workers who start the day without office cues"
+exampleUseCase: "\"Give me my morning brief\" → 4 industry developments with sources, day-at-a-glance from calendar and Slack, one overlooked item worth attention, and 2 urgent inbox items — all under 400 words"
+category: "productivity"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "aiedge_"
+sourceUrl: "https://x.com/aiedge_"
+tags: ["morning-routine", "briefing", "productivity", "news", "calendar", "inbox", "daily-brief"]
+createdAt: "2026-05-20"
+---
+
+## What This Does
+
+Turns Claude into a personal morning analyst that delivers one structured brief every time you trigger it. The output covers what happened in your industry overnight, what your day looks like, one thing you might have missed, and any urgent items from your inbox or messages — all under 400 words with no filler.
+
+You fill in the bracketed fields once (your role, topics of interest, connected tools), and the brief stays calibrated to what you actually care about. Pair it with connected tools like Gmail, Slack, or Calendar for live data, or run it without connectors and feed context manually.
+
+---
+
+## Quick Start
+
+### Step 1: Create a project folder
+
+```bash
+mkdir ~/morning-brief
+cd ~/morning-brief
+```
+
+### Step 2: Download and place the template
+
+Click **Download** above and save the file as `CLAUDE.md` in that folder.
+
+### Step 3: Fill in the bracketed fields
+
+Open `CLAUDE.md` and replace every `[bracketed field]` with your actual context:
+
+- **My role** — your job title and what you're responsible for
+- **My industry and topics of interest** — the domains you track daily (e.g. "B2B SaaS, AI tooling, growth marketing")
+- **Connected tools** — which connectors are active (Gmail, Calendar, Slack, Notion, etc.) — or write "none" if you're running without connectors
+
+### Step 4: Launch Claude Code
+
+```bash
+claude
+```
+
+### Step 5: Trigger your brief
+
+```
+give me my morning brief
+```
+
+Or simply: `morning brief`
+
+---
+
+## Using with Connected Tools
+
+When connectors are active, Claude reads live data — your actual calendar for today, unread emails, Slack messages — and folds that into the brief automatically.
+
+Connect the tools you use most before triggering the brief:
+- **Gmail / Outlook** — surfaces urgent inbox items and flags anything needing a response
+- **Google Calendar** — generates the day-at-a-glance section with meeting prep context
+- **Slack** — scans for messages that need your attention
+
+Without connectors, paste relevant context into the conversation before triggering: paste your agenda, forward an email thread, or drop in a Slack summary.
+
+---
+
+## Scheduling as a Daily Task
+
+The original author's advice: use this as a scheduled task so the brief is waiting for you every morning without requiring a manual trigger. In Cowork, set it as a recurring task for your preferred start time.
+
+In Claude Code, you can add a cron-style invocation or trigger it as part of a startup script.
+
+---
+
+## Tips & Best Practices
+
+- **Fill in the brackets specifically, not generically.** "B2B SaaS pricing and competitive intelligence" produces a sharper brief than "technology." The more specific your topics of interest, the more useful the industry developments section.
+- **The 400-word cap is intentional.** If outputs run longer, explicitly tell Claude "stay under 400 words — cut mercilessly." Enforcing the limit is what keeps the brief scannable.
+- **Update the context every few weeks.** As your priorities shift, your role description and topics of interest should shift too. A stale brief is a low-value brief.
+- **Add a "focus for this week" field.** Many users add a fifth custom field to the template — a short note on their current top priority. This helps the "one thing worth my attention today" section stay relevant.
+
+---
+
+## Limitations
+
+- **Without connectors, live data requires manual input.** Claude cannot pull your actual calendar or inbox unless a connector is active. Paste context into the conversation if you are running without connected tools.
+- **Industry news requires web access.** The developments section relies on Claude's knowledge and any connected web sources. Without web access, the section draws from training data, which may not reflect the last 24 hours.
+- **The brief is only as sharp as the brackets.** Vague role descriptions and broad topic lists produce generic output. Specificity is the only lever you have.

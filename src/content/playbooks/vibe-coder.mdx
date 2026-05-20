@@ -1,0 +1,112 @@
+---
+title: "Vibe Coder: Idea to Prototype"
+description: "Describe what you want to build and get clean, working code with a simple approach explanation, setup instructions, and optional improvements — optimized for shipping over perfecting."
+seoHook: "The gap between having an idea and having a working prototype used to require a developer and a sprint — now it requires a clear description and a willingness to ship before it's perfect."
+targetAudience: "founders, product managers, marketers, designers, non-technical builders, developers who want to move fast without overengineering"
+exampleUseCase: "\"I want to build a CSV uploader that emails a summary\" → A simple approach explanation, clean working Python code, step-by-step setup instructions, and 3 clearly separated optional improvements to add later"
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "aiedge_"
+sourceUrl: "https://x.com/aiedge_"
+tags: ["coding", "prototype", "vibe-coding", "shipping", "python", "javascript", "builder", "no-code"]
+createdAt: "2026-05-20"
+---
+
+## What This Does
+
+Turns a plain-language description of what you want to build into working, minimal code — with an explanation of the approach, step-by-step setup instructions, and optional improvements clearly separated so you know what to add later.
+
+The skill prioritizes simplicity and speed over architectural perfection. It uses widely supported tools, writes clean readable code, and explains only what is necessary. If something is ambiguous before coding starts, it asks one clarifying question — then ships.
+
+The original author's team uses this to go from idea to prototype as quickly as possible. Trigger it by saying "I want to build [idea]."
+
+---
+
+## Quick Start
+
+### Step 1: Create a project folder
+
+```bash
+mkdir ~/builds
+cd ~/builds
+```
+
+### Step 2: Download and place the template
+
+Click **Download** above and save the file as `CLAUDE.md` in that folder.
+
+### Step 3: Launch Claude Code
+
+```bash
+claude
+```
+
+### Step 4: Describe what you want to build
+
+```
+I want to build [describe your idea]
+```
+
+Optionally add:
+- **Stack** — language or framework preference (e.g. "Python", "Next.js", "vanilla JS")
+- **Constraints** — time, complexity, or tool limits (e.g. "no external APIs", "must run locally")
+
+Claude explains the approach, writes the code, and lists setup steps. Optional improvements appear in a clearly separated section so the core deliverable is not cluttered.
+
+---
+
+## What Gets Generated
+
+Every response follows the same four-part structure:
+
+1. **Simple explanation of approach** — 2–4 sentences on what the code does and why this approach was chosen. Written for someone who will read the code, not just run it.
+
+2. **Working code** — clean, minimal, readable. No unnecessary abstractions, no over-engineered structure. Prioritizes getting something running over getting something perfect.
+
+3. **Step-by-step setup instructions** — install dependencies, set environment variables, run the thing. Written to be followed without interpretation.
+
+4. **Optional improvements** — clearly separated from the core output. These are enhancements you can add later when the core is working: error handling, logging, additional features, performance improvements.
+
+---
+
+## Example Prompts
+
+```
+I want to build a script that reads a CSV of email addresses and sends each one a personalized welcome email via SendGrid.
+Stack: Python
+```
+
+```
+I want to build a simple web dashboard that shows GitHub repo stats for my organization.
+Stack: vanilla JS, no frameworks
+Constraints: no backend, just a static page
+```
+
+```
+I want to build a Slack bot that posts a daily summary of new GitHub issues to a channel.
+```
+
+```
+I want to build a tool that takes a folder of images and resizes them all to 1200px wide and exports to a new folder.
+Stack: Python
+```
+
+---
+
+## Tips & Best Practices
+
+- **Describe the outcome, not the implementation.** "I want to build a tool that takes a folder of PDFs and extracts all email addresses into a CSV" is better than "I want to build a Python script using pdfplumber." Let the coder choose the implementation — describe what you need it to do.
+- **Start with the simplest version.** Ask for the minimal working version first. Once it runs, ask for specific improvements. Trying to specify everything upfront slows the process and produces more complex initial code.
+- **Specify constraints that matter.** If you need it to run locally without an API key, or must use a specific library, say so. Constraints that are not stated will be assumed away.
+- **The optional improvements section is a backlog.** Treat it as a list of next iterations. Work through them one at a time after the core is running, not all at once.
+- **Use it for automation scripts, not just apps.** The skill works equally well for small automation scripts (renaming files, processing data, sending reports) as for larger applications. Automation scripts are often the highest-value use case.
+
+---
+
+## Limitations
+
+- **Working code is not production-ready code.** The output prioritizes getting something running. Production use requires additional work: error handling, security review, testing, and code review.
+- **Complex systems require scoping.** Very large or architecturally complex builds will need to be broken into smaller scoped requests. Ask for one component at a time.
+- **Stack preferences matter.** Without a stack specification, Claude picks the most widely supported option for the task. If you have a strong preference, state it upfront — changing stacks mid-build is disruptive.
+- **External APIs require credentials.** If the build uses a third-party API, you will need your own API keys. The setup instructions will tell you where to put them, but obtaining them is your responsibility.

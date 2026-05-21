@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'ai-private-equity-investment-banking',
+    slug: 'ai-private-equity-investment-banking',
+    title: 'AI for Private Equity and Investment Banking: The Complete Toolkit',
+    description: 'How PE and IB professionals use Claude Skills across the full deal cycle — deal sourcing and screening, CIM and pitch deck production, IC memos, returns analysis, and portfolio monitoring. Built for practitioners.',
+    category: 'guide',
+    difficulty: 'advanced',
+    readingTime: '15 min read',
+    featured: true,
+    thumbnailType: 'template',
+    thumbnailTitle: 'PE / IB',
+    tags: ['AI private equity', 'AI investment banking', 'AI deal sourcing', 'PE deal screening', 'IB pitch deck AI', 'IC memo AI', 'Claude Code finance'],
+    createdAt: '2026-05-21',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-marketing-teams',
     slug: 'claude-skills-marketing-teams',
     title: 'Claude Skills for Marketing Teams: From Ad Copy to Campaign Analysis',

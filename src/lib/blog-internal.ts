@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-executive-ai-chief-of-staff',
+    slug: 'claude-skills-executive-ai-chief-of-staff',
+    title: 'Claude Skills for Executives: How to Build an AI Chief of Staff in 2026',
+    description: 'How executives use Claude Skills to build an AI chief of staff — daily briefings, priority management, decision frameworks, and strategic advisory. Your inbox is 6 apps. Your priorities live in your head. Claude Skills unify both.',
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'agent',
+    thumbnailTitle: 'AI CoS',
+    tags: ['claude skills executive', 'ai chief of staff', 'claude skills for ceos', 'ai executive assistant', 'executive productivity', 'Claude Code', 'CEO tools'],
+    createdAt: '2026-05-22',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'ai-private-equity-investment-banking',
     slug: 'ai-private-equity-investment-banking',
     title: 'AI for Private Equity and Investment Banking: The Complete Toolkit',

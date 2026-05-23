@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'ai-life-automation-audit-find-hours',
+    slug: 'ai-life-automation-audit-find-hours',
+    title: 'The AI Life Automation Audit: Use Claude Skills to Find 5+ Hours a Week',
+    description: 'A step-by-step audit for finding the 5+ hours a week hiding in your repetitive tasks — email, scheduling, files, and meetings — and the Claude Skills to automate each one.',
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'template',
+    thumbnailTitle: 'Time Audit',
+    tags: ['ai life automation audit', 'claude skills life automation', 'automate your life with ai', 'productivity automation', 'Claude Code', 'time saving', 'AI productivity'],
+    createdAt: '2026-05-23',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-executive-ai-chief-of-staff',
     slug: 'claude-skills-executive-ai-chief-of-staff',
     title: 'Claude Skills for Executives: How to Build an AI Chief of Staff in 2026',

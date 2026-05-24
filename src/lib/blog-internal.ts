@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'build-personal-llm-wiki-claude-skills',
+    slug: 'build-personal-llm-wiki-claude-skills',
+    title: 'How to Build a Personal LLM Wiki with Claude Skills (Your Own AI Knowledge Base)',
+    description: "What an LLM Wiki is, why it's different from Obsidian or Notion, and how to build one using Claude Skills — so your AI assistant always has the context it needs to give you useful answers.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'template',
+    thumbnailTitle: 'LLM Wiki',
+    tags: ['llm wiki', 'personal knowledge base ai', 'claude skills knowledge base', 'build llm wiki', 'AI second brain', 'Claude Code', 'personal wiki AI'],
+    createdAt: '2026-05-24',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'ai-life-automation-audit-find-hours',
     slug: 'ai-life-automation-audit-find-hours',
     title: 'The AI Life Automation Audit: Use Claude Skills to Find 5+ Hours a Week',

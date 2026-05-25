@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-solopreneurs',
+    slug: 'claude-skills-solopreneurs',
+    title: 'Claude Skills for Solopreneurs: Run a One-Person Business with AI in 2026',
+    description: 'How solopreneurs use Claude Skills as a full AI operating system — strategy, business development, client operations, and finance — without hiring a team. Practical playbooks for every business function.',
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '14 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Solopreneur',
+    tags: ['claude skills solopreneur', 'ai for solopreneurs', 'one-person business ai', 'solopreneur ai tools', 'solo business automation', 'Claude Code', 'freelance AI'],
+    createdAt: '2026-05-25',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'build-personal-llm-wiki-claude-skills',
     slug: 'build-personal-llm-wiki-claude-skills',
     title: 'How to Build a Personal LLM Wiki with Claude Skills (Your Own AI Knowledge Base)',

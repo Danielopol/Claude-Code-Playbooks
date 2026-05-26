@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-for-designers',
+    slug: 'claude-skills-for-designers',
+    title: 'Claude Skills for Designers: From Brief to Mockup in Minutes (No Design Team Required)',
+    description: 'Four Claude Skills that cover the full design workflow — visual art, design systems, brand guidelines, and data visualization — so founders and solopreneurs can produce professional output without a design team.',
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Designers',
+    tags: ['claude skills for designers', 'ai design assistant claude', 'canvas design ai', 'ai ui designer', 'brand guidelines AI', 'design without a team', 'Claude Code'],
+    createdAt: '2026-05-26',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-solopreneurs',
     slug: 'claude-skills-solopreneurs',
     title: 'Claude Skills for Solopreneurs: Run a One-Person Business with AI in 2026',

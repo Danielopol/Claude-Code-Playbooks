@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'ai-content-curation-engine-claude-skills',
+    slug: 'ai-content-curation-engine-claude-skills',
+    title: 'How to Build an AI Content Curation Engine with Claude Skills',
+    description: 'How to go from scattered bookmarks to a structured AI content curation engine using four Claude Skills — proactive collection, pattern analysis, audience mining, and editorial synthesis.',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Curation',
+    tags: ['ai content curation', 'claude skills content curation', 'automate content curation', 'ai editorial workflow', 'content swipe file', 'Claude Code'],
+    createdAt: '2026-05-27',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-for-designers',
     slug: 'claude-skills-for-designers',
     title: 'Claude Skills for Designers: From Brief to Mockup in Minutes (No Design Team Required)',

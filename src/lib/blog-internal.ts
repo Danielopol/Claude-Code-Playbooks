@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-vs-claude-agents',
+    slug: 'claude-skills-vs-claude-agents',
+    title: "Claude Skills vs. Claude Agents: What's the Difference and When to Use Each",
+    description: 'A plain-English explanation of Claude Skills vs Claude Agents — what each one is, how they differ, and a clear decision framework for when to use a skill, an agent, or both together.',
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'agent',
+    thumbnailTitle: 'Skills vs Agents',
+    tags: ['claude skills vs claude agents', 'claude agents explained', 'what are claude agents', 'claude skills difference', 'Claude Code', 'AI agents'],
+    createdAt: '2026-05-27',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'ai-content-curation-engine-claude-skills',
     slug: 'ai-content-curation-engine-claude-skills',
     title: 'How to Build an AI Content Curation Engine with Claude Skills',

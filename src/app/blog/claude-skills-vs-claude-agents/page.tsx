@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     description: 'What are Claude agents, how do they differ from Claude skills, and when should you use each? A clear, jargon-free breakdown with a decision framework.',
     url: 'https://www.claudecodehq.com/blog/claude-skills-vs-claude-agents',
     type: 'article',
-    publishedTime: '2026-05-27',
+    publishedTime: '2026-05-28',
     images: [{ url: 'https://www.claudecodehq.com/og-image.jpg', width: 1200, height: 630 }],
   },
   twitter: {
@@ -56,7 +56,7 @@ export default function ClaudeSkillsVsClaudeAgentsPage() {
       category="guide"
       difficulty="basic"
       readingTime="12 min read"
-      createdAt="2026-05-27"
+      createdAt="2026-05-28"
       tags={[
         'claude skills vs claude agents',
         'claude agents explained',

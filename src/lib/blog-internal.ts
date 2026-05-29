@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-academic-research',
+    slug: 'claude-skills-academic-research',
+    title: 'Claude Skills for Academic Research: From Literature Review to Published Insight',
+    description: 'A concrete, four-stage research workflow built on Claude Skills — discover papers, screen and organize the evidence, synthesize findings into a thematic review, and draft a defensible argument. Built for the way researchers actually work.',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '14 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Academic Research',
+    tags: ['claude skills academic research', 'ai academic research assistant', 'ai literature review', 'ai research tool', 'literature review', 'research synthesis', 'Claude Code'],
+    createdAt: '2026-05-29',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-vs-claude-agents',
     slug: 'claude-skills-vs-claude-agents',
     title: "Claude Skills vs. Claude Agents: What's the Difference and When to Use Each",
@@ -21,7 +36,7 @@ export const internalBlogPosts: BlogPost[] = [
     thumbnailType: 'agent',
     thumbnailTitle: 'Skills vs Agents',
     tags: ['claude skills vs claude agents', 'claude agents explained', 'what are claude agents', 'claude skills difference', 'Claude Code', 'AI agents'],
-    createdAt: '2026-05-27',
+    createdAt: '2026-05-28',
     author: 'Claude Code Playbooks',
   },
   {

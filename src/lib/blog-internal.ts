@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-creative-directors',
+    slug: 'claude-skills-creative-directors',
+    title: 'Claude Skills for Creative Directors: Manage a Design System with AI',
+    description: 'How creative directors use four Claude Skills to run a design system end to end — defining the aesthetic, codifying brand guidelines, auditing brand health, and enforcing consistency across every deliverable. Leadership leverage, not just faster output.',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '14 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Creative Director',
+    tags: ['claude skills creative director', 'ai design system', 'ai creative director', 'brand management ai', 'design system', 'brand consistency', 'Claude Code'],
+    createdAt: '2026-05-30',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-academic-research',
     slug: 'claude-skills-academic-research',
     title: 'Claude Skills for Academic Research: From Literature Review to Published Insight',

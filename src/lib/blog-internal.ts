@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'write-like-a-human-claude-skills',
+    slug: 'write-like-a-human-claude-skills',
+    title: 'How to Write Like a Human Using Claude Skills (Avoid the AI Writing Trap)',
+    description: 'AI writing reads like AI because it writes like everyone. This guide shows how to use Claude Skills to teach AI how YOU write — researching with real sources, drafting in your voice, and auditing out the tells — so your content sounds human and passes AI detection.',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Write Human',
+    tags: ['avoid ai writing', 'claude skills writing human', 'ai writing that sounds human', 'not detected ai writing', 'human-sounding AI', 'AI writing patterns', 'Claude Code'],
+    createdAt: '2026-05-31',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-creative-directors',
     slug: 'claude-skills-creative-directors',
     title: 'Claude Skills for Creative Directors: Manage a Design System with AI',

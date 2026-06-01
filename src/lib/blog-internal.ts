@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-editorial-library',
+    slug: 'claude-skills-editorial-library',
+    title: 'Claude Skills for Your Editorial Library: Never Lose a Great Idea Again',
+    description: 'How content creators use four Claude Skills to build an editorial library that actually works — collecting what performs, mining audience ideas, synthesizing notes into insight, and turning the best ideas into published drafts. No more graveyard bookmarks.',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Editorial Lib',
+    tags: ['ai editorial library', 'claude skills content library', 'ai content organization', 'editorial system ai', 'content swipe file', 'content ideas', 'Claude Code'],
+    createdAt: '2026-06-01',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'write-like-a-human-claude-skills',
     slug: 'write-like-a-human-claude-skills',
     title: 'How to Write Like a Human Using Claude Skills (Avoid the AI Writing Trap)',

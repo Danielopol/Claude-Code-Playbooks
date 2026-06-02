@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-twitter-growth',
+    slug: 'claude-skills-twitter-growth',
+    title: 'Claude Skills for Twitter/X Growth: Build a Creator System That Runs Overnight',
+    description: 'How creators use four Claude Skills to build a Twitter/X growth system that works while they sleep — a milestone-based growth plan, a content engine for 30 days of posts, automatic repurposing from long-form, and campaigns that tie it all together.',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '14 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'X Growth',
+    tags: ['claude skills twitter growth', 'ai twitter strategy', 'x growth system ai', 'ai content creator twitter', 'twitter growth', 'social media automation', 'Claude Code'],
+    createdAt: '2026-06-02',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-editorial-library',
     slug: 'claude-skills-editorial-library',
     title: 'Claude Skills for Your Editorial Library: Never Lose a Great Idea Again',

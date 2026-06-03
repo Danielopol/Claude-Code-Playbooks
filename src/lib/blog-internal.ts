@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-product-managers',
+    slug: 'claude-skills-product-managers',
+    title: 'Claude Skills for Product Managers: Run Agile Sprints with AI (No More Status Meetings)',
+    description: 'How PMs use four Claude Skills to replace coordination overhead with async intelligence — sprint planning and user stories without the Monday ritual, change requests with built-in impact analysis, strategic frameworks on demand, and living competitor profiles that answer the "what\'s the competition doing?" question before it\'s asked.',
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '14 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'PM Tools',
+    tags: ['claude skills product manager', 'ai agile product management', 'ai sprint planning', 'claude pm tools', 'product management AI', 'agile AI', 'Claude Code'],
+    createdAt: '2026-06-03',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-twitter-growth',
     slug: 'claude-skills-twitter-growth',
     title: 'Claude Skills for Twitter/X Growth: Build a Creator System That Runs Overnight',

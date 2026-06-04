@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-adhd',
+    slug: 'claude-skills-adhd',
+    title: 'Claude Skills for ADHD: The AI Focus System That Actually Works',
+    description: "Why most productivity tools fail people with ADHD — and how four Claude Skills work the way the ADHD brain actually does: breaking paralysis into one clear start, capturing scattered thoughts into a queryable second brain, turning goals into 30-day dopamine scaffolding, and doing the honest life audit you've been avoiding.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'ADHD Focus',
+    tags: ['claude skills adhd', 'ai adhd productivity', 'adhd task manager ai', 'claude adhd focus', 'ADHD productivity', 'neurodivergent tools', 'Claude Code'],
+    createdAt: '2026-06-04',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-product-managers',
     slug: 'claude-skills-product-managers',
     title: 'Claude Skills for Product Managers: Run Agile Sprints with AI (No More Status Meetings)',

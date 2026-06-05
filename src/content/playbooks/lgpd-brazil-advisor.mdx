@@ -1,0 +1,96 @@
+---
+title: "LGPD (Brazil) Compliance Advisor"
+description: "Run LGPD gap assessments, choose legal bases, handle sensitive data and data-subject rights, plan DPO appointment and ANPD breach notification, and draft Brazilian privacy policies and DPIAs."
+seoHook: "Brazil's LGPD mirrors GDPR but answers to its own regulator, the ANPD — with fines up to 2% of revenue (R$50M per violation). If you process the data of anyone in Brazil, \"we follow GDPR\" doesn't automatically cover you."
+targetAudience: "companies processing personal data of people in Brazil, privacy and legal teams expanding into LATAM, DPOs (encarregados) standing up an LGPD program, teams comparing GDPR and LGPD obligations, founders launching Brazilian operations"
+exampleUseCase: "\"Run an LGPD gap assessment and map our legal bases for processing\" → A prioritized gap report, legal-basis mapping per activity, an ANPD breach-notification procedure, and a Brazil-specific privacy policy draft"
+category: "legal-compliance"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/lgpd"
+tags: ["LGPD", "Brazil", "privacy", "ANPD", "data-protection", "DPIA"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into an LGPD (Lei Geral de Proteção de Dados, Law 13,709/2018) compliance advisor for Brazil. It runs gap assessments, maps legal bases for processing, handles sensitive data and data-subject rights, plans DPO (encarregado) appointment and ANPD breach notification, drafts privacy policies and DPIAs for Brazilian operations, designs consent management, and compares LGPD with GDPR.
+
+---
+
+## The Problem
+
+LGPD looks like GDPR but has its own legal bases, its own regulator (ANPD), and its own enforcement and penalty regime (fines up to 2% of Brazilian revenue, capped at R$50M per violation). Companies assume GDPR compliance carries over and miss Brazil-specific requirements: ANPD breach notification, local DPO expectations, distinct legal bases, and international-transfer rules out of Brazil.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/LGPD-Compliance
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/LGPD-Compliance/
+```
+
+### Step 3: Add Context (Optional)
+
+Add your data inventory, GDPR documentation, vendor list, or current privacy policy.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/LGPD-Compliance
+claude
+```
+
+### Step 5: Start
+
+Say: **"Run an LGPD gap assessment for our Brazilian operations."**
+
+---
+
+## Example Commands
+
+```
+"Run an LGPD gap assessment"
+"Map a legal basis to each of our processing activities"
+"How do we handle sensitive data under LGPD?"
+"Build a data-subject rights fulfillment workflow"
+"Create an ANPD breach-notification procedure"
+"Do we need to appoint an encarregado, and what are their duties?"
+"Draft a privacy policy for our Brazilian operations"
+"Compare our LGPD and GDPR obligations and flag the differences"
+```
+
+---
+
+## What You Get
+
+| Output | Contents |
+|--------|----------|
+| **Gap Assessment** | Article-level findings with risk priorities |
+| **Legal-Basis Map** | The right basis per processing activity |
+| **Rights Workflows** | Access, correction, deletion, portability, and more |
+| **ANPD Breach Procedure** | Notification timeline and templates |
+| **Documents** | Privacy policy, DPIA, consent framework |
+
+---
+
+## Tips
+
+- **Don't assume GDPR coverage** — map LGPD legal bases explicitly; they differ.
+- **Plan ANPD notification** before an incident forces it.
+- **Localize the policy** — Portuguese-language, Brazil-specific disclosures matter.
+
+---
+
+## Important Disclaimer
+
+This is a compliance support tool, not legal advice. LGPD interpretation evolves with ANPD rulemaking. Have qualified Brazilian privacy counsel review outputs before relying on them.

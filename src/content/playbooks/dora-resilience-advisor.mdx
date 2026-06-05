@@ -1,0 +1,96 @@
+---
+title: "DORA Resilience Advisor"
+description: "Meet DORA (Regulation (EU) 2022/2554) for EU financial entities — ICT risk frameworks, incident classification and reporting, TLPT, third-party risk, the Register of Information, and contractual provisions."
+seoHook: "DORA is now in force, and EU financial entities must prove digital operational resilience — ICT risk frameworks, incident reporting on the clock, threat-led pen testing, and a Register of Information for every ICT provider. Supervisors are already asking."
+targetAudience: "EU banks, insurers, investment firms, and other financial entities, ICT risk and resilience teams, vendor-risk managers building a Register of Information, teams preparing for TLPT, compliance leads handling incident reporting"
+exampleUseCase: "\"Run a DORA gap analysis and build our ICT third-party Register of Information\" → A gap report across the DORA pillars, an ICT risk framework outline, an incident-classification and reporting process, and a Register of Information structure"
+category: "operations-compliance"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/dora"
+tags: ["DORA", "operational-resilience", "ICT-risk", "financial-services", "TLPT", "third-party-risk"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into a DORA (Digital Operational Resilience Act, Regulation (EU) 2022/2554) advisor for EU financial entities. It covers ICT risk management frameworks (Art. 6), ICT incident classification and reporting (Art. 17), threat-led penetration testing (Art. 26 TLPT), ICT third-party risk management and contractual provisions (Arts. 28-30), the Register of Information (CIR 2024/2956), ICT concentration risk, oversight of critical ICT third-party providers, the simplified framework, gap analysis, and DORA-vs-NIS2 comparison.
+
+---
+
+## The Problem
+
+DORA is broad and prescriptive: a formal ICT risk framework, classified incident reporting on regulatory timelines, periodic threat-led penetration testing, and rigorous third-party risk management — including a Register of Information covering every ICT provider and specific contractual clauses. Financial entities that treated resilience informally now have to evidence it against RTS/ITS detail.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/DORA
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/DORA/
+```
+
+### Step 3: Add Context (Optional)
+
+Add your ICT vendor list, incident process, and existing resilience or risk documentation.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/DORA
+claude
+```
+
+### Step 5: Start
+
+Say: **"Run a DORA gap analysis and outline our ICT risk management framework."**
+
+---
+
+## Example Commands
+
+```
+"Run a DORA gap analysis across all the pillars"
+"Outline our Art. 6 ICT risk management framework"
+"Build an incident classification and Art. 17 reporting process"
+"Explain TLPT (Art. 26) and who must perform it"
+"Structure our Register of Information (CIR 2024/2956)"
+"Review our ICT provider contracts against Art. 30 provisions"
+"Assess ICT concentration risk across our vendors"
+"Compare DORA and NIS2 obligations for our entity"
+```
+
+---
+
+## What You Get
+
+| Output | Contents |
+|--------|----------|
+| **Gap Analysis** | Findings across the DORA pillars |
+| **ICT Risk Framework** | Structure aligned to Art. 6 |
+| **Incident Process** | Classification and reporting timelines |
+| **Register of Information** | Template aligned to CIR 2024/2956 |
+| **Contract Review** | Art. 30 contractual-provision checks |
+
+---
+
+## Tips
+
+- **Build the Register early** — it underpins third-party risk and oversight.
+- **Operationalize incident classification** — reporting clocks start fast.
+- **Scope TLPT** — only some entities must perform it; confirm whether you do.
+
+---
+
+## Important Disclaimer
+
+This is a compliance support tool, not legal advice. DORA obligations are detailed in RTS/ITS and supervisory guidance. Have qualified financial-regulatory counsel review outputs before relying on them.

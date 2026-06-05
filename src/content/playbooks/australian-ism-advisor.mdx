@@ -1,0 +1,95 @@
+---
+title: "Australian ISM Advisor"
+description: "Apply the Australian Government Information Security Manual — control selection, gap analysis, system authorisation, IRAP assessment prep, classification scoping, and ASD/Essential Eight alignment."
+seoHook: "Selling to or working within Australian government means the ISM — hundreds of ASD controls, classification markings from OFFICIAL to TOP SECRET, and IRAP assessment. \"We're ISO 27001 certified\" doesn't substitute for ISM control selection."
+targetAudience: "Australian government entities and their suppliers, security teams scoping PROTECTED systems, compliance leads preparing for IRAP assessment, teams handling system authorisation, anyone mapping Essential Eight to the ISM"
+exampleUseCase: "\"Scope our PROTECTED system and run an ISM gap analysis\" → A classification-and-control-applicability analysis, an ISM gap report, a system-authorisation outline, and IRAP-assessment preparation guidance"
+category: "operations-compliance"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/ism"
+tags: ["ISM", "ASD", "Australian-government", "IRAP", "Essential-Eight", "classification"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into an Australian Government Information Security Manual (ISM) advisor for government entities and their supply chains. It handles ISM control selection, gap analysis, system authorisation, IRAP assessment preparation, security documentation, and ASD compliance — including classification scoping (OFFICIAL/PROTECTED/SECRET/TOP SECRET), control applicability markings, security objectives, and Essential Eight vs. ISM alignment.
+
+---
+
+## The Problem
+
+The ISM is the baseline for Australian government information security, and it's distinct from international standards: ASD-defined controls, classification-driven applicability, and a system-authorisation process backed by IRAP assessment. Suppliers and entities often assume ISO 27001 carries over, then discover ISM control selection, documentation, and authorisation are a separate body of work.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/Australian-ISM
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Australian-ISM/
+```
+
+### Step 3: Add Context (Optional)
+
+Describe your system, its classification level, and any existing security documentation.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/Australian-ISM
+claude
+```
+
+### Step 5: Start
+
+Say: **"Scope our PROTECTED system and run an ISM gap analysis."**
+
+---
+
+## Example Commands
+
+```
+"Scope our system classification and the applicable ISM controls"
+"Run an ISM gap analysis"
+"Outline the system-authorisation process for us"
+"Prepare us for an IRAP assessment — what's required?"
+"Map the Essential Eight to ISM controls"
+"Which controls apply at PROTECTED vs. SECRET?"
+"Draft the security documentation the ISM expects"
+```
+
+---
+
+## What You Get
+
+| Output | Contents |
+|--------|----------|
+| **Classification & Applicability** | Level and applicable controls |
+| **Gap Analysis** | Findings against selected ISM controls |
+| **Authorisation Outline** | System-authorisation process |
+| **IRAP Prep** | Assessment-readiness guidance |
+| **Essential Eight Map** | Alignment to ISM controls |
+
+---
+
+## Tips
+
+- **Classify the system first** — it drives control applicability.
+- **Treat ISM as separate from ISO 27001** — reuse evidence, but select ISM controls explicitly.
+- **Plan for IRAP** — authorisation hinges on it.
+
+---
+
+## Important Disclaimer
+
+This is a compliance support tool, not an IRAP assessment or authorisation. Have qualified ISM/IRAP professionals review outputs before relying on them.

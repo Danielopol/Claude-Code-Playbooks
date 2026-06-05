@@ -1,0 +1,96 @@
+---
+title: "NIST SP 800-53 Advisor"
+description: "Select and tailor NIST SP 800-53 Rev 5 controls — all 20 families, Low/Moderate/High baselines, FIPS 199/200 categorization, overlays, privacy and supply-chain controls, RMF integration, and control narratives."
+seoHook: "Federal systems live and die by NIST SP 800-53 — 20 control families, three baselines, and FIPS 199 categorization that drives everything. Pick the wrong baseline or write weak control narratives and your ATO stalls."
+targetAudience: "teams pursuing FISMA or RMF authorization, security engineers writing control narratives, CSPs supporting FedRAMP via 800-53, compliance leads selecting and tailoring baselines, anyone categorizing a system under FIPS 199/200"
+exampleUseCase: "\"Categorize our system under FIPS 199 and select the Moderate baseline with tailoring\" → A FIPS 199/200 categorization, baseline selection, a tailored control set with overlays, and draft control narratives"
+category: "operations-compliance"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/nist-800-53"
+tags: ["NIST-800-53", "FISMA", "RMF", "controls", "federal", "baselines"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into a NIST SP 800-53 Rev 5 advisor. It covers all 20 control families (AC, AT, AU, CA, CM, CP, IA, IR, MA, MP, PE, PL, PM, PS, PT, RA, SA, SC, SI, SR), Low/Moderate/High baseline selection, FIPS 199/200 system categorization, control tailoring and overlays, the privacy (PT) and supply-chain (SR) families, assessment procedures (SP 800-53A), OSCAL, RMF integration (SP 800-37), and mapping to FedRAMP, FISMA, CMMC 2.0, and ISO 27001 — including help writing control narratives.
+
+---
+
+## The Problem
+
+SP 800-53 is comprehensive to the point of overwhelming. The work isn't just knowing the controls — it's categorizing the system correctly under FIPS 199, selecting and tailoring the right baseline, justifying overlays, and writing control narratives an assessor will accept. Errors here ripple into FedRAMP, FISMA, and CMMC efforts downstream.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/NIST-800-53
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/NIST-800-53/
+```
+
+### Step 3: Add Context (Optional)
+
+Describe the system, its data types and impact, and any existing categorization or control documentation.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/NIST-800-53
+claude
+```
+
+### Step 5: Start
+
+Say: **"Categorize our system under FIPS 199 and select a tailored Moderate baseline."**
+
+---
+
+## Example Commands
+
+```
+"Run a FIPS 199/200 categorization for our system"
+"Select the right baseline (Low/Moderate/High) and justify it"
+"Tailor the baseline and recommend overlays"
+"Explain the controls in the AC and AU families for us"
+"Write a control narrative for AC-2 / AU-6 / IR-4"
+"What do the PT (privacy) and SR (supply chain) families require?"
+"Map our 800-53 controls to FedRAMP, CMMC, and ISO 27001"
+"How does this feed the RMF steps under SP 800-37?"
+```
+
+---
+
+## What You Get
+
+| Output | Contents |
+|--------|----------|
+| **System Categorization** | FIPS 199/200 impact determination |
+| **Baseline Selection** | Low/Moderate/High with tailoring |
+| **Tailored Control Set** | Controls, enhancements, and overlays |
+| **Control Narratives** | Draft implementation statements |
+| **Framework Mapping** | Crosswalk to FedRAMP, FISMA, CMMC, ISO 27001 |
+
+---
+
+## Tips
+
+- **Categorize carefully** — FIPS 199 drives the baseline and everything after.
+- **Document tailoring decisions** — assessors want the rationale.
+- **Reuse narratives** across FedRAMP, FISMA, and CMMC where controls overlap.
+
+---
+
+## Important Disclaimer
+
+This is a security control planning tool, not an assessment or authorization. Have qualified security and assessment professionals review categorization, tailoring, and narratives before relying on them.

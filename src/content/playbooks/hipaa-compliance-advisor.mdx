@@ -1,0 +1,94 @@
+---
+title: "HIPAA Compliance Advisor"
+description: "Review systems and documents for HIPAA compliance, draft privacy notices, BAAs, and policies, run security risk assessments, and get technical-safeguard guidance for PHI/ePHI."
+seoHook: "If your software touches PHI, HIPAA's Privacy, Security, and Breach Notification Rules all apply at once — and \"we use encryption\" is not a risk analysis. One unencrypted laptop or missing BAA can become a six- or seven-figure OCR settlement."
+targetAudience: "developers building healthcare software, compliance officers at covered entities and business associates, startups handling patient data for the first time, security teams running risk assessments, anyone drafting BAAs or breach-notification letters"
+exampleUseCase: "\"Review our patient-data service for HIPAA technical safeguards and run a security risk assessment\" → Findings mapped to the Security Rule, a risk-analysis matrix, encryption/access/audit recommendations, and a BAA template"
+category: "legal-compliance"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/hipaa-compliance"
+tags: ["HIPAA", "PHI", "healthcare", "security-rule", "BAA", "privacy"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into a HIPAA compliance assistant for healthcare and software contexts. It reviews systems and documents for compliance, drafts privacy notices, HIPAA policies, consent forms, BAAs, and breach-notification letters, performs security risk assessments, and gives developers concrete technical-safeguard guidance (encryption, access controls, audit logs) across the Privacy Rule, Security Rule, and Breach Notification Rule.
+
+---
+
+## The Problem
+
+HIPAA spans administrative, physical, and technical safeguards, and applies to both covered entities and their business associates. Developers ship features that store or transmit ePHI without a documented risk analysis. BAAs go unsigned or contain non-compliant terms. Breach-notification deadlines demand a plan most teams build only after an incident. The Security Rule requires a real, ongoing risk assessment — not a checkbox.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/HIPAA-Compliance
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/HIPAA-Compliance/
+```
+
+### Step 3: Add Context (Optional)
+
+Add source code, architecture notes, existing policies, or vendor agreements so reviews reflect your real environment.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/HIPAA-Compliance
+claude
+```
+
+### Step 5: Start
+
+Say: **"Run a HIPAA Security Rule risk assessment for our patient-records service."**
+
+---
+
+## Example Commands
+
+```
+"Is this HIPAA compliant?" (paste code that handles PHI)
+"Run a Security Rule risk assessment for our application"
+"What technical safeguards do we need for ePHI in transit and at rest?"
+"Draft a Business Associate Agreement"
+"Write a Notice of Privacy Practices"
+"Create a breach-notification letter and decision workflow"
+"Review our access-control and audit-logging design against HIPAA"
+```
+
+---
+
+## What You Get
+
+| Output | Contents |
+|--------|----------|
+| **Compliance Review** | Findings across Privacy, Security, and Breach rules |
+| **Risk Assessment** | Threat/vulnerability matrix with likelihood, impact, and safeguards |
+| **Technical Guidance** | Encryption, access control, and audit-log recommendations |
+| **Documents** | BAA, Notice of Privacy Practices, policies, breach letters |
+
+---
+
+## Tips
+
+- **Document the risk analysis** — OCR expects a written, ongoing assessment, not a one-time scan.
+- **Get BAAs in place** before any vendor touches PHI.
+- **Separate PHI from de-identified data** in your architecture and your prompts.
+
+---
+
+## Important Disclaimer
+
+This is a compliance support tool, not legal or medical-legal advice. HIPAA obligations depend on your role (covered entity vs. business associate) and specific data flows. Have qualified healthcare-privacy counsel review outputs before relying on them.

@@ -1,0 +1,95 @@
+---
+title: "SWIFT CSP Advisor"
+description: "Meet the SWIFT Customer Security Programme — CSCF v2025 controls, architecture-type scoping (A1-A4/B), mandatory vs. advisory controls, KYC-SA attestation, and independent-assessment readiness."
+seoHook: "Every SWIFT user has to attest annually against the Customer Security Controls Framework — and an inaccurate attestation or a missed mandatory control is a counterparty-visible risk. Your architecture type decides which of the 31 controls apply."
+targetAudience: "banks and financial institutions on the SWIFT network, payment-operations and security teams, compliance leads handling KYC-SA attestation, teams preparing for independent assessment, anyone scoping SWIFT architecture types"
+exampleUseCase: "\"Determine our SWIFT architecture type and run a CSCF gap assessment\" → An A1-A4/B architecture determination, an applicable-controls list, a mandatory-vs-advisory gap report, and attestation-and-assessment readiness guidance"
+category: "operations-compliance"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/swift-csp"
+tags: ["SWIFT", "CSP", "CSCF", "payments", "financial-services", "attestation"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into a SWIFT Customer Security Programme (CSP) advisor covering the Customer Security Controls Framework (CSCF v2025). It scopes SWIFT architecture types (A1/A2/A3/A4/B), distinguishes mandatory vs. advisory controls, guides the KYC-SA portal attestation, addresses the secure zone and secure-flow zone, MFA for operators, and messaging security, and prepares teams for independent assessment across the 31 controls and three objectives: Secure Your Environment, Know and Limit Access, Detect and Respond.
+
+---
+
+## The Problem
+
+SWIFT requires an accurate annual attestation against the CSCF, independently assessed. Which controls apply depends on your architecture type, the framework changes yearly, and the distinction between mandatory and advisory controls matters for both compliance and counterparty trust. An incorrect attestation is a reputational and operational risk.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/SWIFT-CSP
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/SWIFT-CSP/
+```
+
+### Step 3: Add Context (Optional)
+
+Describe your SWIFT connectivity (connector, interface, service bureau), architecture, and current controls.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/SWIFT-CSP
+claude
+```
+
+### Step 5: Start
+
+Say: **"Determine our SWIFT architecture type and run a CSCF gap assessment."**
+
+---
+
+## Example Commands
+
+```
+"Which SWIFT architecture type are we (A1/A2/A3/A4/B)?"
+"List the controls that apply to our architecture"
+"Run a mandatory vs. advisory CSCF gap assessment"
+"Explain the secure zone and secure-flow zone requirements"
+"What MFA and access controls do operators need?"
+"Prepare us for independent assessment — what evidence is required?"
+"Walk us through the KYC-SA attestation"
+```
+
+---
+
+## What You Get
+
+| Output | Contents |
+|--------|----------|
+| **Architecture Determination** | A1-A4/B type with rationale |
+| **Applicable Controls** | The CSCF controls that apply to you |
+| **Gap Assessment** | Mandatory and advisory findings |
+| **Attestation Guidance** | KYC-SA portal walkthrough |
+| **Assessment Readiness** | Evidence checklist for independent review |
+
+---
+
+## Tips
+
+- **Confirm architecture type first** — it scopes which controls apply.
+- **Treat advisory controls seriously** — many become mandatory over time.
+- **Attest accurately** — counterparties can see your attestation status.
+
+---
+
+## Important Disclaimer
+
+This is a compliance support tool, not an independent assessment. SWIFT attestation requires independent assessment per CSP rules. Have qualified assessors review outputs before relying on them.

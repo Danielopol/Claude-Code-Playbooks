@@ -1,0 +1,96 @@
+---
+title: "FedRAMP Authorization Advisor"
+description: "Navigate the full FedRAMP lifecycle — impact levels, system boundary, SSP/SAP/SAR/POA&M, 800-53 controls, 3PAO assessments, continuous monitoring, and readiness for ATO."
+seoHook: "Selling cloud to the federal government means FedRAMP — and the SSP, SAP, SAR, and POA&M alone can run thousands of pages. Miss the system boundary or an impact level and your Authority to Operate slips by quarters."
+targetAudience: "cloud service providers pursuing FedRAMP, security and compliance teams preparing for an ATO, engineers defining a system boundary, teams working with a 3PAO, anyone producing SSP/SAP/SAR/POA&M documents"
+exampleUseCase: "\"Assess our FedRAMP readiness at the Moderate impact level and outline our SSP\" → A readiness assessment, impact-level confirmation, a system-boundary definition, an SSP outline, and a POA&M structure"
+category: "operations-compliance"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/fedramp"
+tags: ["FedRAMP", "ATO", "cloud-security", "NIST-800-53", "3PAO", "federal"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into a FedRAMP authorization advisor covering the full lifecycle from readiness through continuous monitoring. It addresses impact levels (Low, Moderate, High, LI-SaaS), system boundary definition, the core document types (SSP, SAP, SAR, POA&M, CIS/CRM workbooks), NIST SP 800-53 controls, 3PAO assessments, continuous monitoring (ConMon), gap assessments, architecture reviews, FedRAMP 20x, and OSCAL.
+
+---
+
+## The Problem
+
+FedRAMP is one of the most document-intensive compliance programs there is. The System Security Plan alone is enormous, the assessment (SAP/SAR) and POA&M processes are exacting, and the system boundary and impact-level decisions made early determine the entire scope. Mistakes mean rework, delayed ATOs, and expensive 3PAO cycles.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/FedRAMP
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/FedRAMP/
+```
+
+### Step 3: Add Context (Optional)
+
+Describe your cloud architecture, data types, deployment model, and any existing security documentation.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/FedRAMP
+claude
+```
+
+### Step 5: Start
+
+Say: **"Assess our FedRAMP readiness at the Moderate impact level."**
+
+---
+
+## Example Commands
+
+```
+"Which FedRAMP impact level applies to us (Low/Moderate/High/LI-SaaS)?"
+"Help us define the system boundary"
+"Outline our System Security Plan (SSP)"
+"Explain the SAP and SAR and what a 3PAO will assess"
+"Structure our POA&M and prioritize the findings"
+"Run a FedRAMP readiness gap assessment"
+"Set up a continuous monitoring (ConMon) program"
+"What is FedRAMP 20x and how does OSCAL fit in?"
+```
+
+---
+
+## What You Get
+
+| Output | Contents |
+|--------|----------|
+| **Readiness Assessment** | Gaps against FedRAMP requirements |
+| **Impact-Level Determination** | The right level with rationale |
+| **System Boundary** | Scoped boundary definition |
+| **Document Outlines** | SSP, SAP, SAR, POA&M structure |
+| **ConMon Plan** | Continuous monitoring approach |
+
+---
+
+## Tips
+
+- **Nail the boundary and impact level first** — they scope the whole authorization.
+- **Build the SSP iteratively** — control narratives are where teams stall.
+- **Keep the POA&M current** — it's central to assessment and ConMon.
+
+---
+
+## Important Disclaimer
+
+This is a compliance support tool, not an assessment or authorization. FedRAMP authorization requires an accredited 3PAO and an authorizing official. Have qualified professionals review outputs before relying on them.

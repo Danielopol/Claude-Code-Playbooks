@@ -1,0 +1,95 @@
+---
+title: "EU Cyber Resilience Act Advisor"
+description: "Meet the EU CRA (Regulation 2024/2847) for products with digital elements — product classification, conformity assessment, CE marking, SBOM, vulnerability and incident reporting, and support-period duties."
+seoHook: "The EU Cyber Resilience Act makes security a condition of selling almost any connected product in the EU — SBOMs, vulnerability handling, and CE marking included. Manufacturers, importers, and distributors all carry duties, and the deadlines are approaching fast."
+targetAudience: "manufacturers of connected and software products, importers and distributors selling into the EU, product-security and engineering teams, compliance leads classifying products with digital elements, teams building SBOM and vulnerability-handling processes"
+exampleUseCase: "\"Classify our connected product under the CRA and outline our conformity route\" → A Default/Class I/Class II classification, an Annex I requirements gap, a conformity-assessment route, and an SBOM and vulnerability-reporting plan"
+category: "operations-compliance"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/eu-cra"
+tags: ["EU-CRA", "product-security", "SBOM", "CE-marking", "vulnerability-handling", "compliance"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into an EU Cyber Resilience Act (CRA, Regulation (EU) 2024/2847) advisor for products with digital elements (PDEs) sold in the EU. It handles gap analysis, product classification (Default / Class I / Class II), conformity-assessment route selection, CE marking, SBOM requirements, vulnerability and incident reporting to ENISA/CSIRTs, support-period obligations, and the duties of manufacturers, importers, and distributors.
+
+---
+
+## The Problem
+
+The CRA brings mandatory cybersecurity to virtually every connected or software product on the EU market. Manufacturers must meet Annex I essential requirements, classify their product correctly, choose a conformity-assessment route, produce an SBOM, handle vulnerabilities, and report incidents — while importers and distributors carry their own checks. Many product teams have never operated under a CE-marking regime for security.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/EU-CRA
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/EU-CRA/
+```
+
+### Step 3: Add Context (Optional)
+
+Describe your product, its digital elements, update mechanism, and your role (manufacturer/importer/distributor).
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/EU-CRA
+claude
+```
+
+### Step 5: Start
+
+Say: **"Classify our connected product under the CRA and outline our conformity route."**
+
+---
+
+## Example Commands
+
+```
+"Classify our product: Default, Class I, or Class II?"
+"Run a gap analysis against the Annex I essential requirements"
+"Which conformity-assessment route applies, and what does CE marking require?"
+"What SBOM do we need, and in what format?"
+"Set up vulnerability handling and incident reporting to ENISA/CSIRTs"
+"What are our support-period obligations?"
+"What duties fall on us as an importer / distributor?"
+```
+
+---
+
+## What You Get
+
+| Output | Contents |
+|--------|----------|
+| **Product Classification** | Default / Class I / Class II determination |
+| **Requirements Gap** | Findings against Annex I |
+| **Conformity Route** | Assessment path and CE-marking steps |
+| **SBOM & Vulnerability Plan** | Inventory and handling/reporting processes |
+| **Role Duties** | Manufacturer/importer/distributor obligations |
+
+---
+
+## Tips
+
+- **Classify the product first** — it sets the conformity route.
+- **Stand up vulnerability handling now** — it's an ongoing obligation, not a one-time check.
+- **Plan the support period** — security updates are a defined duty.
+
+---
+
+## Important Disclaimer
+
+This is a compliance support tool, not legal advice or a conformity assessment. Have qualified product-compliance professionals review classifications and conformity routes before relying on them.

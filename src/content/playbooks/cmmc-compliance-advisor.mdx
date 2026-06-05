@@ -1,0 +1,96 @@
+---
+title: "CMMC 2.0 Compliance Advisor"
+description: "Prepare for CMMC 2.0 — Level 1/2/3 scoping, NIST SP 800-171 practices, CUI and FCI protection, SSP and POA&M, SPRS scoring, self-assessment, and C3PAO/DIBCAC readiness for DoD contracts."
+seoHook: "No CMMC, no DoD contract. Defense primes are flowing down requirements now, and a wrong CUI scope or a low SPRS score can cost you the award. Self-attestation alone no longer cuts it at Level 2."
+targetAudience: "defense contractors and subcontractors in the DIB, compliance teams pursuing CMMC Level 1/2/3, security leads scoping CUI and FCI, primes managing flow-down requirements, anyone building an SSP, POA&M, or SPRS score"
+exampleUseCase: "\"Scope our CUI environment and assess us against CMMC Level 2\" → A CUI/FCI scoping analysis, a NIST 800-171 practice gap assessment, an SSP and POA&M outline, and an SPRS score estimate"
+category: "operations-compliance"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/cmmc"
+tags: ["CMMC", "NIST-800-171", "CUI", "defense", "DFARS", "SPRS"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into a CMMC 2.0 advisor for US defense contractors and subcontractors in the Defense Industrial Base (DIB). It covers CMMC Levels 1, 2, and 3, NIST SP 800-171, CUI and FCI protection and scoping, the System Security Plan (SSP), Plan of Action & Milestones (POA&M), SPRS scoring, self-assessment, C3PAO assessments, DIBCAC audits, gap analysis and readiness, and the requirements under DFARS 252.204-7012 and 7021 — including prime contractor flow-down.
+
+---
+
+## The Problem
+
+CMMC ties cybersecurity to eligibility for DoD work, so the stakes are contractual. The hard parts are scoping what's actually CUI vs. FCI, honestly assessing against the NIST 800-171 practices, computing a defensible SPRS score, and producing an SSP and POA&M that hold up to a C3PAO or DIBCAC. Get scoping wrong and you either over-spend or fail.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/CMMC
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/CMMC/
+```
+
+### Step 3: Add Context (Optional)
+
+Describe your contracts, where CUI/FCI lives, your network architecture, and any existing 800-171 documentation.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/CMMC
+claude
+```
+
+### Step 5: Start
+
+Say: **"Scope our CUI environment and assess us against CMMC Level 2."**
+
+---
+
+## Example Commands
+
+```
+"Which CMMC level applies to our contracts (1/2/3)?"
+"Scope our CUI and FCI — what's in and out of the assessment boundary?"
+"Run a NIST 800-171 practice gap assessment"
+"Estimate our SPRS score and show how to improve it"
+"Outline our System Security Plan (SSP)"
+"Structure a POA&M for our open practices"
+"Are we ready for a C3PAO assessment or DIBCAC audit?"
+"Explain DFARS 252.204-7012 and 7021 flow-down for our subcontractors"
+```
+
+---
+
+## What You Get
+
+| Output | Contents |
+|--------|----------|
+| **Level Determination** | The CMMC level your contracts require |
+| **CUI/FCI Scoping** | Assessment boundary with rationale |
+| **Practice Gap Assessment** | Findings against NIST 800-171 |
+| **SPRS Score Estimate** | Score and improvement path |
+| **SSP & POA&M** | Document outlines and structure |
+
+---
+
+## Tips
+
+- **Scope CUI precisely** — it's the single biggest driver of cost and risk.
+- **Make the SPRS score defensible** — document how each practice is met.
+- **Manage flow-down** — primes are responsible for subcontractor requirements.
+
+---
+
+## Important Disclaimer
+
+This is a compliance support tool, not a certified assessment. CMMC Level 2/3 certification requires a C3PAO or DIBCAC. Have qualified professionals review scoping, scoring, and documentation before relying on them.

@@ -1,0 +1,96 @@
+---
+title: "PCI DSS Advisor"
+description: "Scope your cardholder data environment, pick the right SAQ, work through the 12 PCI DSS v4.0.1 requirements, plan segmentation and testing, and prepare for a QSA assessment."
+seoHook: "If you touch payment cards, PCI DSS v4.0.1 applies — and the fastest way to fail is to scope your cardholder data environment wrong or pick the wrong SAQ. The new v4 requirements are now mandatory, not future-dated."
+targetAudience: "merchants and service providers handling card data, engineering teams scoping a cardholder data environment, compliance officers choosing an SAQ, teams preparing for a QSA or ASV scan, anyone adapting to PCI DSS v4.0"
+exampleUseCase: "\"Scope our cardholder data environment and tell me which SAQ applies\" → A CDE scoping analysis, the correct SAQ type, a requirement-by-requirement gap report, and a segmentation and testing plan"
+category: "operations-compliance"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/pci-compliance"
+tags: ["PCI-DSS", "payments", "cardholder-data", "SAQ", "QSA", "compliance"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into a PCI DSS compliance advisor covering v4.0.1 (current) and v4.0. It scopes the cardholder data environment (CDE), selects the right SAQ type (A, A-EP, B, B-IP, C, C-VT, P2PE, D), works through all 12 PCI DSS requirements, addresses network segmentation, penetration testing, tokenisation, and PAN encryption, explains merchant and service-provider levels, covers the v4.0 changes, and prepares teams for QSA assessments, ASV scans, ROC, and AOC.
+
+---
+
+## The Problem
+
+PCI scope is where most teams go wrong: pull too much into the CDE and the burden explodes; scope it wrong and you fail. Choosing the correct SAQ, meeting the 12 requirements, and adapting to the now-mandatory v4.0 changes (including new authentication and testing requirements) is a lot of detail — and a QSA will find the gaps you missed.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/PCI-DSS
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/PCI-DSS/
+```
+
+### Step 3: Add Context (Optional)
+
+Describe how card data flows through your systems, your payment integrations, and your network architecture.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/PCI-DSS
+claude
+```
+
+### Step 5: Start
+
+Say: **"Scope our cardholder data environment and tell me which SAQ applies."**
+
+---
+
+## Example Commands
+
+```
+"Scope our cardholder data environment"
+"Which SAQ type applies to us?"
+"Run a gap analysis across the 12 PCI DSS requirements"
+"What changed in PCI DSS v4.0 that we need to act on?"
+"How should we segment the network to reduce CDE scope?"
+"What penetration testing and ASV scanning do we need?"
+"Prepare us for a QSA assessment — what evidence will they want?"
+"Explain our merchant level and reporting obligations"
+```
+
+---
+
+## What You Get
+
+| Output | Contents |
+|--------|----------|
+| **CDE Scoping** | What's in and out of scope, with rationale |
+| **SAQ Selection** | The correct questionnaire for your setup |
+| **Requirement Gap Report** | Findings across all 12 requirements |
+| **Segmentation Plan** | How to shrink and protect the CDE |
+| **Assessment Prep** | Evidence and readiness for QSA/ASV |
+
+---
+
+## Tips
+
+- **Minimize the CDE** — the less card data you store and touch, the simpler compliance gets.
+- **Get the SAQ right** — it determines which requirements apply.
+- **Treat v4.0 changes as live** — several are now mandatory, not future-dated.
+
+---
+
+## Important Disclaimer
+
+This is a compliance support tool, not a QSA assessment. Validation may require a Qualified Security Assessor or approved scanning vendor. Have qualified professionals review outputs before relying on them.

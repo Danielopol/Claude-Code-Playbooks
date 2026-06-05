@@ -1,0 +1,95 @@
+---
+title: "ITAR Compliance Advisor"
+description: "Navigate ITAR (22 CFR 120-130) — USML jurisdiction, DDTC registration, export licenses (DSP-5/73/94), TAAs/MLAs, brokering, deemed exports, technology control plans, and voluntary disclosures."
+seoHook: "ITAR violations carry criminal penalties and multi-million-dollar fines per occurrence — and a foreign national reading a controlled drawing can be an unlicensed \"deemed export.\" Getting USML jurisdiction and licensing right is not optional for defense work."
+targetAudience: "US defense contractors, exporters, and manufacturers, export-control and trade-compliance officers, engineering teams handling technical data on a USML item, companies determining ITAR vs. EAR jurisdiction, teams building a Technology Control Plan"
+exampleUseCase: "\"Is our product ITAR-controlled, and what license do we need to share technical data with a foreign supplier?\" → A jurisdiction determination, USML category scoping, the right license/agreement path, and a deemed-export and TCP plan"
+category: "legal-compliance"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/itar"
+tags: ["ITAR", "export-control", "USML", "DDTC", "defense", "compliance"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into an ITAR compliance advisor for US defense contractors, exporters, and manufacturers. It covers 22 CFR Parts 120-130: United States Munitions List (USML) scoping, DDTC registration, export license applications (DSP-5/73/94), Technical Assistance Agreements (TAA), Manufacturing License Agreements (MLA), brokering (Part 129), deemed-export rules for foreign nationals, technology control plans, voluntary disclosures, violation mitigation, and ITAR-vs-EAR jurisdiction determination.
+
+---
+
+## The Problem
+
+ITAR jurisdiction is unforgiving: classify an item or its technical data wrong and you can commit a criminal violation simply by emailing a drawing or letting a foreign-national employee read it. The license and agreement landscape (DSP-5, TAA, MLA, brokering) is intricate, and deemed-export rules trip up companies that never thought of themselves as "exporters."
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/ITAR-Compliance
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/ITAR-Compliance/
+```
+
+### Step 3: Add Context (Optional)
+
+Add product specs, technical-data descriptions, supplier/customer locations, and personnel nationalities.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/ITAR-Compliance
+claude
+```
+
+### Step 5: Start
+
+Say: **"Determine whether our product is ITAR-controlled and scope the USML category."**
+
+---
+
+## Example Commands
+
+```
+"Is this item ITAR or EAR? Walk the order of review."
+"Scope the USML category for our product and its technical data"
+"Do we need to register with DDTC, and how?"
+"Which license applies — DSP-5, TAA, or MLA?"
+"Assess deemed-export risk for our foreign-national engineers"
+"Draft a Technology Control Plan outline"
+"How do we file a voluntary disclosure and mitigate a violation?"
+```
+
+---
+
+## What You Get
+
+| Output | Contents |
+|--------|----------|
+| **Jurisdiction Determination** | ITAR vs. EAR order-of-review analysis |
+| **USML Scoping** | Category and paragraph mapping |
+| **Licensing Path** | DSP-5 / TAA / MLA / brokering guidance |
+| **Deemed-Export Plan** | Foreign-national access controls and TCP outline |
+| **Disclosure Strategy** | Voluntary disclosure and mitigation steps |
+
+---
+
+## Tips
+
+- **Start with jurisdiction** — ITAR vs. EAR drives everything downstream.
+- **Treat technical data like the hardware** — emails, drawings, and source can all be exports.
+- **Manage deemed exports** — foreign-national access often needs a license.
+
+---
+
+## Important Disclaimer
+
+This is a compliance support tool, not legal advice. ITAR violations carry severe civil and criminal penalties. Have qualified export-control counsel review jurisdiction and licensing determinations before acting.

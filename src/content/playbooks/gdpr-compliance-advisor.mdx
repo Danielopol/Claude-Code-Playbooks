@@ -1,0 +1,98 @@
+---
+title: "GDPR Compliance Advisor"
+description: "Audit code and systems for GDPR violations, draft privacy policies and DPAs, answer GDPR questions with article citations, and review data flows and PII handling."
+seoHook: "Your codebase logs IP addresses, your analytics fire before consent, and your privacy policy hasn't been touched since launch. GDPR fines reach 4% of global revenue — and a single mishandled data-subject request can trigger an audit you're not ready for."
+targetAudience: "engineering teams shipping features that touch personal data, DPOs and privacy officers, startups serving EU/UK customers for the first time, legal teams drafting DPAs and privacy notices, founders who copied a privacy policy and never looked back"
+exampleUseCase: "\"Audit this user-tracking module for GDPR issues and draft a compliant privacy notice\" → Line-by-line findings with article references, a remediation list, and a ready-to-edit privacy notice plus DPA template"
+category: "legal-compliance"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/gdpr-compliance"
+tags: ["GDPR", "privacy", "data-protection", "DPA", "consent", "PII"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into an expert GDPR compliance assistant covering four core workflows: (1) auditing code and systems for GDPR violations, (2) drafting GDPR-compliant documents like privacy policies, Data Processing Agreements (DPAs), and consent notices, (3) answering GDPR questions with authoritative article citations, and (4) reviewing data flows and PII handling practices. Every answer ties back to specific GDPR articles and recitals, and flags items that need legal review.
+
+---
+
+## The Problem
+
+GDPR touches almost every system that stores a name, email, or IP address — but compliance lives in the details. Engineers ship logging, analytics, and third-party integrations without knowing which lawful basis applies. Privacy policies are copied and never reflect actual processing. Consent banners fire trackers before the user clicks. Data-subject requests arrive and nobody knows where the data lives. By the time a regulator or enterprise customer asks, the gaps are expensive to close.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/GDPR-Compliance
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move `CLAUDE.md` into the folder:
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/GDPR-Compliance/
+```
+
+### Step 3: Add Your Material (Optional)
+
+Drop in source code, your current privacy policy, vendor agreements, or a data-flow description so the audit is grounded in your real setup.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/GDPR-Compliance
+claude
+```
+
+### Step 5: Start
+
+Say: **"Audit my application for GDPR compliance and list violations by article."**
+
+---
+
+## Example Commands
+
+```
+"Is this GDPR compliant?" (paste a function that handles user data)
+"Audit our data flows and PII handling for GDPR gaps"
+"Draft a GDPR-compliant privacy policy for a B2B SaaS product"
+"Write a Data Processing Agreement we can send to a sub-processor"
+"What lawful basis applies to product analytics?"
+"Build a consent notice and cookie banner that meets GDPR + ePrivacy"
+"Create a DSAR workflow for access, erasure, and portability requests"
+"Review this cross-border transfer for Chapter V compliance"
+```
+
+---
+
+## What You Get
+
+| Workflow | Output |
+|----------|--------|
+| **Code/System Audit** | Violations mapped to specific articles, severity, and remediation steps |
+| **Document Drafting** | Privacy policies, DPAs, consent notices with `[ACTION REQUIRED]` placeholders |
+| **Q&A with Citations** | Answers grounded in GDPR articles and recitals |
+| **Data-Flow Review** | PII inventory, lawful basis per activity, transfer-risk flags |
+
+---
+
+## Tips
+
+- **Give it real artifacts.** Pasted code, your actual policy, or a vendor list yields far sharper findings than abstract questions.
+- **State your lawful bases.** Tell Claude whether you rely on consent, contract, or legitimate interest for each activity.
+- **Layer in ePrivacy** for cookies and electronic communications alongside GDPR.
+- **Re-audit on change.** Run it again whenever you add a vendor, SDK, or data flow.
+
+---
+
+## Important Disclaimer
+
+This is a compliance drafting and review tool, not legal advice. GDPR involves legal judgments that vary by jurisdiction and processing activity. Have a qualified data protection lawyer or your DPO review outputs before relying on them. Fines can reach 4% of annual global turnover or €20 million.

@@ -1,0 +1,95 @@
+---
+title: "CIS Controls v8 Advisor"
+description: "Scope Implementation Groups (IG1/IG2/IG3), run safeguard-level gap assessments across the CIS Top 18, prioritize cyber hygiene, and map CIS Controls to NIST CSF, ISO 27001, SOC 2, and CMMC."
+seoHook: "Security frameworks are overwhelming when you don't know where to start. The CIS Controls v8 give you a prioritized, safeguard-level path — but only if you scope the right Implementation Group and don't try to boil the ocean."
+targetAudience: "security teams establishing a baseline, IT leaders at organizations of any size, teams prioritizing cyber hygiene on a budget, compliance leads mapping CIS to other frameworks, MSPs standing up client security programs"
+exampleUseCase: "\"Scope our Implementation Group and run a CIS Controls gap assessment\" → IG1/IG2/IG3 scoping, a safeguard-level gap report across the 18 controls, a prioritized roadmap, and a crosswalk to NIST CSF and ISO 27001"
+category: "operations-compliance"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/cis-controls"
+tags: ["CIS-Controls", "cyber-hygiene", "security", "implementation-groups", "NIST-CSF", "baseline"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into a CIS Controls v8 (CIS Top 18) advisor. It scopes Implementation Groups (IG1/IG2/IG3), runs safeguard-level gap assessments, gives implementation guidance across all 18 controls — from asset and software inventory through access control, vulnerability management, audit logging, malware defenses, incident response, and penetration testing — and maps CIS Controls to NIST CSF, ISO 27001, SOC 2, and CMMC.
+
+---
+
+## The Problem
+
+Most teams know they need to "do security" but drown in frameworks. The CIS Controls solve the prioritization problem with Implementation Groups and concrete safeguards — but you still have to pick the right IG for your size and risk, assess honestly at the safeguard level, and sequence the work so the highest-value cyber hygiene happens first.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/CIS-Controls
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/CIS-Controls/
+```
+
+### Step 3: Add Context (Optional)
+
+Describe your environment: org size, asset and software inventory state, and existing tooling.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/CIS-Controls
+claude
+```
+
+### Step 5: Start
+
+Say: **"Scope our Implementation Group and run a CIS Controls gap assessment."**
+
+---
+
+## Example Commands
+
+```
+"Which Implementation Group (IG1/IG2/IG3) fits our organization?"
+"Run a safeguard-level gap assessment across the CIS Top 18"
+"Give implementation guidance for Control 1 and 2 (asset/software inventory)"
+"Prioritize our cyber-hygiene roadmap"
+"Map the CIS Controls to NIST CSF and ISO 27001"
+"What does Control 8 (audit log management) require at IG1?"
+"Build a 90-day plan for the highest-impact safeguards"
+```
+
+---
+
+## What You Get
+
+| Output | Contents |
+|--------|----------|
+| **IG Scoping** | The right Implementation Group and why |
+| **Gap Assessment** | Safeguard-level findings across 18 controls |
+| **Implementation Guidance** | Concrete steps per control |
+| **Prioritized Roadmap** | Sequenced cyber-hygiene plan |
+| **Framework Mapping** | Crosswalk to NIST CSF, ISO 27001, SOC 2, CMMC |
+
+---
+
+## Tips
+
+- **Pick the right IG** — IG1 is essential hygiene; don't over-scope a small team.
+- **Start with inventory** — Controls 1 and 2 enable everything else.
+- **Use the mappings** — CIS work counts toward NIST CSF, ISO 27001, and more.
+
+---
+
+## Important Disclaimer
+
+This is a security planning and assessment tool, not a certification. Have qualified security professionals review scoping and assessments before relying on them.

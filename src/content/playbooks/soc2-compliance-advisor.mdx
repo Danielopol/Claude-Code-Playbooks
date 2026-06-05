@@ -1,0 +1,95 @@
+---
+title: "SOC 2 Compliance Advisor"
+description: "Prepare for SOC 2 across all five Trust Services Criteria — gap analysis, policy writing, control documentation, audit-evidence prep, and vendor-risk questionnaires for Type 1 and Type 2."
+seoHook: "A prospect just asked for your SOC 2 report and the deal is on hold until you have one. Between Trust Services Criteria, control documentation, and a year of evidence, \"we take security seriously\" isn't going to close it."
+targetAudience: "startups facing their first SOC 2 audit, security and compliance teams maintaining a program, founders responding to \"send us your SOC 2\", teams writing policies and collecting evidence, anyone preparing for a Type 1 or Type 2 audit"
+exampleUseCase: "\"Run a SOC 2 gap analysis for a Type 2 report covering Security and Availability\" → A RAG-rated gap report across CC1-CC9 and A1, a remediation plan, draft policies, and an evidence checklist"
+category: "operations-compliance"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/soc2"
+tags: ["SOC-2", "trust-services-criteria", "audit", "security", "compliance", "evidence"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into a SOC 2 compliance assistant covering all five Trust Services Criteria — Security/Common Criteria (CC1-CC9), Availability (A1), Confidentiality (C1), Processing Integrity (PI1), and Privacy (P1-P8). It runs gap analysis and readiness assessments, writes policies and procedures, documents controls, prepares audit evidence, and handles vendor-risk questionnaires for both Type 1 and Type 2 reports, at any maturity level.
+
+---
+
+## The Problem
+
+SOC 2 is the report enterprise buyers ask for, but it's a moving target: which criteria to include beyond mandatory Security, Type 1 vs. Type 2, what counts as a control, and how to prove it with evidence over a monitoring period. First-timers waste weeks on the wrong things; the most common gaps — undocumented policies, no risk assessment, missing access reviews, untested incident response — are predictable but easy to overlook.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/SOC2
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/SOC2/
+```
+
+### Step 3: Add Context (Optional)
+
+Add existing policies, a description of your system boundary, and your tooling (SSO, logging, ticketing, etc.).
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/SOC2
+claude
+```
+
+### Step 5: Start
+
+Say: **"Run a SOC 2 gap analysis for a Type 2 report covering Security and Availability."**
+
+---
+
+## Example Commands
+
+```
+"Run a SOC 2 gap analysis / readiness check"
+"Which Trust Services Criteria should we include beyond Security?"
+"Write an information security policy" (or change management, incident response, etc.)
+"Document the controls for CC6 logical and physical access"
+"Build an audit-evidence checklist for a Type 2 period"
+"Help us answer this customer security questionnaire"
+"Create a remediation plan for our red and amber gaps"
+```
+
+---
+
+## What You Get
+
+| Output | Contents |
+|--------|----------|
+| **Gap Analysis** | RAG status per criterion with remediation entries |
+| **Policies** | Ready-to-edit security and operational policies |
+| **Control Documentation** | Per-criterion control descriptions |
+| **Evidence Checklist** | What auditors will ask for and how to collect it |
+| **Vendor-Risk Answers** | Questionnaire responses grounded in your controls |
+
+---
+
+## Tips
+
+- **Choose Type 1 vs. Type 2 deliberately** — Type 2 needs a monitoring period of evidence.
+- **Scope the system boundary first** — it defines everything in the report.
+- **Automate evidence** where you can — access reviews and logs are the usual pain points.
+
+---
+
+## Important Disclaimer
+
+This is a compliance support tool, not an audit or attestation. A SOC 2 report must be issued by a licensed CPA firm. Have qualified professionals review outputs before relying on them.

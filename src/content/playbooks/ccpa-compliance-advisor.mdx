@@ -1,0 +1,95 @@
+---
+title: "CCPA / CPRA Compliance Advisor"
+description: "Assess CCPA/CPRA business thresholds, build consumer-rights workflows, draft privacy notices, classify service providers vs. third parties, and run gap assessments for California privacy."
+seoHook: "Selling to Californians means CCPA and CPRA apply the moment you cross a revenue or data threshold — and \"Do Not Sell or Share My Personal Information\" isn't optional. Get the classification wrong and the CPPA's new enforcement arm is now actively issuing penalties."
+targetAudience: "privacy and legal teams at consumer businesses, startups crossing the CCPA revenue/data thresholds, marketing and adtech teams handling \"sale\" and \"sharing\" of data, compliance officers mapping consumer-rights requests, anyone targeting California residents"
+exampleUseCase: "\"Do we fall under CCPA, and what consumer-rights workflows do we need?\" → Threshold analysis, a build-out of access/delete/correct/opt-out workflows, an SPI-handling plan, and a gap report with priorities"
+category: "legal-compliance"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/ccpa"
+tags: ["CCPA", "CPRA", "privacy", "California", "consumer-rights", "opt-out"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into a California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA) advisor. It runs business-threshold analysis, designs consumer-rights fulfillment workflows (access, delete, correct, opt-out of sale/sharing, limit use of SPI), drafts privacy notices, classifies service providers vs. contractors vs. third parties, plans sensitive personal information (SPI) handling and opt-out mechanisms, and produces gap assessments — including comparisons to GDPR.
+
+---
+
+## The Problem
+
+CCPA/CPRA applies based on thresholds most teams never formally check, and the obligations hinge on subtle distinctions: is your vendor a "service provider" or a "third party"? Does your ad pixel count as "sharing"? Which data is "sensitive personal information"? Getting these wrong means missing required opt-out links, mishandling consumer requests, and exposing the business to CPPA enforcement and statutory penalties.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/CCPA-Compliance
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/CCPA-Compliance/
+```
+
+### Step 3: Add Context (Optional)
+
+Add your data inventory, vendor list, current privacy policy, or a description of your data sales/sharing.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/CCPA-Compliance
+claude
+```
+
+### Step 5: Start
+
+Say: **"Run a CCPA/CPRA threshold analysis and tell me which obligations apply to us."**
+
+---
+
+## Example Commands
+
+```
+"Do we meet the CCPA business thresholds?"
+"Build consumer-rights workflows for access, delete, correct, and opt-out"
+"Classify these vendors as service provider, contractor, or third party"
+"Draft a CCPA/CPRA-compliant privacy notice with the required disclosures"
+"What counts as sensitive personal information and how do we let users limit it?"
+"Design our 'Do Not Sell or Share' opt-out mechanism"
+"Compare our CCPA posture to GDPR and find the gaps"
+```
+
+---
+
+## What You Get
+
+| Output | Contents |
+|--------|----------|
+| **Threshold Analysis** | Whether CCPA/CPRA applies and why |
+| **Rights Workflows** | Step-by-step access, delete, correct, opt-out, limit-SPI processes |
+| **Vendor Classification** | Service provider vs. contractor vs. third party with contract implications |
+| **Privacy Notice** | Required disclosures and consumer-rights language |
+| **Gap Report** | Prioritized remediation, GDPR comparison |
+
+---
+
+## Tips
+
+- **Map data sales and sharing first** — most CCPA risk lives in adtech and analytics integrations.
+- **Nail vendor classification** — it determines your contract terms and opt-out scope.
+- **Treat SPI separately** — it has its own "limit the use" right.
+
+---
+
+## Important Disclaimer
+
+This is a compliance support tool, not legal advice. CCPA/CPRA interpretation evolves with CPPA rulemaking and enforcement. Have qualified California privacy counsel review outputs before relying on them.

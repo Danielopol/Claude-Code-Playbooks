@@ -1,0 +1,96 @@
+---
+title: "EAR Export Compliance Advisor"
+description: "Classify items under the EAR (15 CFR 730-774) — ECCN/CCL determination, EAR99, Country Chart license analysis, license exceptions, end-user controls, deemed exports, FDPR, de minimis, and ECP design."
+seoHook: "Most companies assume export controls don't apply to them — until a dual-use item, an Entity List customer, or a foreign-national engineer triggers the EAR. BIS penalties run into the millions per violation, and \"I didn't know the ECCN\" is not a defense."
+targetAudience: "exporters and manufacturers of dual-use items, trade-compliance and legal teams, engineering teams handling controlled technology, companies screening end-users against the Entity List, teams designing an Export Compliance Program"
+exampleUseCase: "\"Classify our product's ECCN and tell me if a license is required to ship to this country\" → ECCN determination across the CCL, Country Chart analysis, applicable license exceptions, and end-user screening guidance"
+category: "legal-compliance"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/ear"
+tags: ["EAR", "export-control", "ECCN", "BIS", "dual-use", "compliance"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into an Export Administration Regulations (EAR, 15 CFR 730-774) compliance advisor. It handles ECCN classification across all 10 CCL categories and 5 product groups, EAR99 determination, jurisdiction analysis (EAR vs. ITAR order of review), Country Chart license analysis, all license exceptions (LVS, GBS, TMP, RPL, TSU, ENC, and more), end-user/end-use controls (Entity List, Denied Persons, Unverified, MEU), deemed exports, the Foreign Direct Product Rule (FDPR), de minimis thresholds, the 10 General Prohibitions, SNAP-R applications, voluntary self-disclosure, and Export Compliance Program (ECP) design.
+
+---
+
+## The Problem
+
+The EAR reaches far more companies than they expect: dual-use hardware, software, and technology can require licenses depending on the item, destination, end-user, and end-use. ECCN classification is technical, the Country Chart logic is non-obvious, and end-user screening, deemed exports, and the FDPR add layers most teams aren't equipped to handle — until BIS comes asking.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/EAR-Compliance
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/EAR-Compliance/
+```
+
+### Step 3: Add Context (Optional)
+
+Add product specifications, technology descriptions, destination countries, and customer/end-user details.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/EAR-Compliance
+claude
+```
+
+### Step 5: Start
+
+Say: **"Classify our product's ECCN and run a license-requirement analysis."**
+
+---
+
+## Example Commands
+
+```
+"Is this EAR or ITAR? Walk the order of review."
+"Determine the ECCN for our product, or confirm EAR99"
+"Run a Country Chart analysis for shipping to [country]"
+"Which license exception applies — LVS, GBS, ENC, TSU?"
+"Screen this end-user against the Entity List and related lists"
+"Assess deemed-export risk for our foreign-national staff"
+"Does the Foreign Direct Product Rule or de minimis apply?"
+"Design an Export Compliance Program for our company"
+```
+
+---
+
+## What You Get
+
+| Output | Contents |
+|--------|----------|
+| **ECCN Classification** | CCL category/product-group determination or EAR99 |
+| **License Analysis** | Country Chart logic and license requirement |
+| **Exception Mapping** | Applicable license exceptions and conditions |
+| **End-User Screening** | Entity List and restricted-party guidance |
+| **ECP Design** | Export Compliance Program structure |
+
+---
+
+## Tips
+
+- **Classify before you ship** — ECCN drives the entire license analysis.
+- **Screen every end-user** — restricted-party lists change frequently.
+- **Watch deemed exports and the FDPR** — they catch "domestic-only" companies.
+
+---
+
+## Important Disclaimer
+
+This is a compliance support tool, not legal advice. EAR violations carry significant penalties. Have qualified export-control counsel review ECCN and licensing determinations before acting.

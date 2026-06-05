@@ -1,0 +1,95 @@
+---
+title: "NIST AI RMF Advisor"
+description: "Apply the NIST AI Risk Management Framework (AI RMF 1.0) across its four functions — GOVERN, MAP, MEASURE, MANAGE — to assess AI risk, build profiles, and operationalize trustworthy AI."
+seoHook: "Everyone wants \"trustworthy AI,\" but trust has to be measured and managed. The NIST AI RMF gives you the structure — GOVERN, MAP, MEASURE, MANAGE — to turn AI risk from a slide into a program."
+targetAudience: "AI governance and risk teams, ML engineers operationalizing responsible AI, organizations building AI risk profiles, compliance leads aligning AI RMF with the EU AI Act and ISO 42001, anyone assessing AI bias, reliability, or safety"
+exampleUseCase: "\"Run an AI risk assessment for our model using the NIST AI RMF\" → A GOVERN/MAP/MEASURE/MANAGE walkthrough, a risk profile across trustworthiness characteristics, measurement guidance, and a management plan"
+category: "operations-compliance"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/nist-ai-rmf"
+tags: ["NIST-AI-RMF", "AI-risk", "trustworthy-AI", "governance", "responsible-AI", "assessment"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into a NIST AI Risk Management Framework (AI RMF 1.0) advisor covering all four functions: GOVERN, MAP, MEASURE, and MANAGE. It guides AI risk assessment, builds AI risk profiles, applies the AI RMF Playbook, addresses trustworthiness characteristics (validity, reliability, safety, security, accountability, explainability, privacy, fairness/bias), supports AI incident response, and maps to the EU AI Act, ISO 42001, and NIST CSF.
+
+---
+
+## The Problem
+
+AI risk is real but abstract until you give it structure. Teams can list concerns — bias, reliability, explainability — but struggle to govern them as a program: who's accountable, which risks are mapped to which systems, how trustworthiness is measured, and how risks are managed over the lifecycle. The AI RMF provides that structure, if you know how to apply it.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/NIST-AI-RMF
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/NIST-AI-RMF/
+```
+
+### Step 3: Add Context (Optional)
+
+Describe your AI system, its context of use, data, and the decisions it informs.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/NIST-AI-RMF
+claude
+```
+
+### Step 5: Start
+
+Say: **"Run an AI risk assessment for our model using the NIST AI RMF."**
+
+---
+
+## Example Commands
+
+```
+"Walk us through GOVERN, MAP, MEASURE, MANAGE for our AI system"
+"Build an AI risk profile across the trustworthiness characteristics"
+"Help us set up AI governance — roles, policies, accountability"
+"Map the risks of our use case (the MAP function)"
+"How do we measure bias, reliability, and explainability?"
+"Design an AI incident response process"
+"Map our AI RMF work to the EU AI Act and ISO 42001"
+```
+
+---
+
+## What You Get
+
+| Output | Contents |
+|--------|----------|
+| **Risk Assessment** | Function-by-function walkthrough |
+| **Risk Profile** | Trustworthiness characteristics assessed |
+| **Governance Plan** | Roles, policies, and accountability |
+| **Measurement Guidance** | How to quantify and monitor AI risk |
+| **Framework Mapping** | Crosswalk to EU AI Act, ISO 42001, CSF |
+
+---
+
+## Tips
+
+- **Start with GOVERN** — accountability and policy make the other functions stick.
+- **Tie risks to context of use** — the same model carries different risks in different uses.
+- **Reuse across frameworks** — AI RMF work feeds ISO 42001 and EU AI Act readiness.
+
+---
+
+## Important Disclaimer
+
+This is an AI risk planning tool, not legal advice or a certification. Have qualified governance and risk professionals review assessments before relying on them.

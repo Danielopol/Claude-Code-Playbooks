@@ -1,0 +1,96 @@
+---
+title: "TSA Cybersecurity Compliance Advisor"
+description: "Meet TSA Security Directives for pipelines, rail, and transit — Cyber Risk Management Program, CIP/COIP/CAP plans, Critical Cyber Systems, OT/IT segmentation, Cybersecurity Coordinator, and CISA reporting."
+seoHook: "If you operate a pipeline, railroad, or transit system, TSA Security Directives now mandate a cyber program — Critical Cyber Systems, OT/IT segmentation, incident reporting to CISA, and a named Cybersecurity Coordinator. The 2024 NPRM is making it permanent."
+targetAudience: "critical-infrastructure owners and operators in transportation, OT/ICS security teams for pipelines and rail, compliance leads building a CIP/COIP, teams reporting incidents to CISA, anyone subject to TSA Security Directives"
+exampleUseCase: "\"Tell me if we're covered by TSA directives and outline our Cybersecurity Implementation Plan\" → A coverage determination, a CIP/COIP outline, Critical Cyber System identification, an OT/IT segmentation plan, and a CISA incident-reporting process"
+category: "operations-compliance"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/tsa-compliance"
+tags: ["TSA", "critical-infrastructure", "OT-security", "pipeline", "rail", "CISA"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into a TSA cybersecurity compliance advisor for critical-infrastructure owners and operators. It covers the TSA Security Directives for pipelines, freight railroads, passenger rail, public transit, and bus operators; the Cyber Risk Management Program (CRMP); the Cybersecurity Implementation Plan (CIP), Cybersecurity Operational Implementation Plan (COIP), and Cybersecurity Assessment Plan (CAP); incident reporting to CISA; the Cybersecurity Coordinator designation; Critical Cyber Systems (CCS); OT/IT network segmentation; the November 2024 NPRM; and the SD Pipeline-2021, SD 1580-21-01 (freight rail), and SD 1582-21-01 (transit/passenger rail) series.
+
+---
+
+## The Problem
+
+TSA's cybersecurity directives turned transportation cyber from voluntary to mandatory, with prescriptive requirements: identify Critical Cyber Systems, segment OT from IT, build and maintain a CIP/COIP, designate a Cybersecurity Coordinator, and report incidents to CISA on tight timelines. OT environments make this harder, and the 2024 NPRM is moving these from directives toward a permanent rule.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/TSA-Cyber
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/TSA-Cyber/
+```
+
+### Step 3: Add Context (Optional)
+
+Describe your operations (mode and size), OT/ICS environment, and any existing security plans.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/TSA-Cyber
+claude
+```
+
+### Step 5: Start
+
+Say: **"Are we covered by TSA directives, and what do we need to do?"**
+
+---
+
+## Example Commands
+
+```
+"Are we covered by TSA Security Directives, and which ones?"
+"Outline our Cybersecurity Implementation Plan (CIP)"
+"Help us identify our Critical Cyber Systems"
+"Design OT/IT network segmentation that meets the directives"
+"Build a CISA incident-reporting process and timeline"
+"What are the duties of the Cybersecurity Coordinator?"
+"Structure a Cybersecurity Assessment Plan (CAP)"
+"What does the November 2024 NPRM change for us?"
+```
+
+---
+
+## What You Get
+
+| Output | Contents |
+|--------|----------|
+| **Coverage Determination** | Which directives apply to your operations |
+| **CIP / COIP Outline** | Implementation plan structure |
+| **Critical Cyber Systems** | Identification and scoping |
+| **Segmentation Plan** | OT/IT separation approach |
+| **CISA Reporting Process** | Incident workflow and timelines |
+
+---
+
+## Tips
+
+- **Identify Critical Cyber Systems first** — they scope your obligations.
+- **Prioritize OT/IT segmentation** — it's central to the directives.
+- **Pre-build CISA reporting** — timelines are tight once an incident hits.
+
+---
+
+## Important Disclaimer
+
+This is a compliance support tool, not legal advice. TSA directives are specific to covered entities and evolve via amendments and rulemaking. Have qualified counsel and OT-security professionals review outputs before relying on them.

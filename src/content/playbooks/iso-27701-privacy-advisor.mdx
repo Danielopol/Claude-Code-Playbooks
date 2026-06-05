@@ -1,0 +1,96 @@
+---
+title: "ISO 27701 Privacy Advisor"
+description: "Build and certify a Privacy Information Management System (PIMS) under ISO/IEC 27701 — controller/processor controls, privacy SoA, privacy risk assessment, DPIA, and GDPR alignment."
+seoHook: "ISO 27701 turns your privacy program into a certifiable management system — but the Annex A controller and processor controls, the privacy Statement of Applicability, and the 2019-to-2025 transition trip up teams that only know ISO 27001."
+targetAudience: "privacy and security teams extending an ISMS into a PIMS, organizations pursuing ISO 27701 certification, DPOs aligning ISO 27701 with GDPR, teams handling the 2019-to-2025 transition, controllers and processors mapping their privacy controls"
+exampleUseCase: "\"Run an ISO 27701 gap assessment and build our privacy Statement of Applicability\" → A gap report across Annex A.1/A.2 controls, a privacy SoA, a privacy risk assessment, and a GDPR-alignment map"
+category: "legal-compliance"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/iso27701"
+tags: ["ISO-27701", "PIMS", "privacy", "GDPR", "certification", "DPIA"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into an ISO/IEC 27701 Privacy Information Management System (PIMS) advisor (covering both the 2025 and 2019 versions). It runs gap assessments, builds the privacy Statement of Applicability, performs privacy risk assessments and DPIAs, addresses PII controller and processor obligations, applies Annex A.1 (controller), A.2 (processor), and A.3 (shared) controls, supports privacy-by-design, maps ISO 27701 to GDPR, handles the 2019-to-2025 transition, and guides certification — including standalone PIMS without ISO 27001.
+
+---
+
+## The Problem
+
+ISO 27701 extends an ISMS into privacy, but the additions are substantial: a separate privacy SoA, controller vs. processor control sets, privacy risk assessment methodology, and a transition between standard versions. Teams comfortable with ISO 27001 underestimate the privacy-specific controls and the work to map them cleanly to GDPR obligations.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/ISO-27701
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/ISO-27701/
+```
+
+### Step 3: Add Context (Optional)
+
+Add your ISO 27001 SoA, existing privacy documentation, and a description of your controller/processor roles.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/ISO-27701
+claude
+```
+
+### Step 5: Start
+
+Say: **"Run an ISO 27701 gap assessment and build our privacy SoA."**
+
+---
+
+## Example Commands
+
+```
+"Run an ISO 27701 gap assessment"
+"Build a privacy Statement of Applicability"
+"Which Annex A.1 controller and A.2 processor controls apply to us?"
+"Perform a privacy risk assessment and DPIA"
+"Map ISO 27701 controls to GDPR articles"
+"Plan our transition from ISO 27701:2019 to :2025"
+"Can we implement a standalone PIMS without ISO 27001?"
+"Build a certification-readiness checklist"
+```
+
+---
+
+## What You Get
+
+| Output | Contents |
+|--------|----------|
+| **Gap Assessment** | Findings across PIMS requirements and Annex A controls |
+| **Privacy SoA** | Statement of Applicability for privacy controls |
+| **Risk Assessment / DPIA** | Privacy risk methodology and assessment |
+| **GDPR Map** | Crosswalk from ISO 27701 controls to GDPR |
+| **Certification Plan** | Readiness checklist and transition guidance |
+
+---
+
+## Tips
+
+- **Reuse your ISMS** — ISO 27701 builds on ISO 27001; don't start from scratch.
+- **Split controller vs. processor controls** — they're different Annex A sets.
+- **Map to GDPR early** — certification value comes from demonstrable alignment.
+
+---
+
+## Important Disclaimer
+
+This is a compliance support tool, not legal advice or a certification audit. Certification requires an accredited body. Have qualified privacy and audit professionals review outputs before relying on them.

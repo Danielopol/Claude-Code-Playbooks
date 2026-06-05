@@ -1,0 +1,96 @@
+---
+title: "NIS2 Directive Advisor"
+description: "Classify essential vs. important entities under EU NIS2, apply Art. 21 risk-management measures, meet Art. 23 incident-reporting timelines, address governance and supply-chain security, and align with ISO 27001."
+seoHook: "NIS2 widened the net dramatically — thousands of \"essential\" and \"important\" entities across the EU now face mandatory risk measures, 24-hour incident alerts, and personal liability for management. Many in scope still don't know they're covered."
+targetAudience: "organizations newly in scope of NIS2, security and compliance teams classifying their entity, leadership accountable under Art. 20 governance, vendor-risk teams handling supply-chain security, anyone aligning NIS2 with ISO 27001"
+exampleUseCase: "\"Classify our entity under NIS2 and assess us against the Art. 21 measures\" → An essential/important classification, an Art. 21 gap assessment, an incident-reporting process for the 24h/72h/1-month timeline, and an ISO 27001 alignment map"
+category: "operations-compliance"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/nis2"
+tags: ["NIS2", "EU", "cybersecurity", "incident-reporting", "supply-chain", "ISO-27001"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into an EU NIS2 Directive (Directive (EU) 2022/2555) advisor for essential and important entities. It handles entity classification, the Art. 21 risk-management measures, the Art. 23 incident-reporting timelines (24h early warning / 72h notification / 1-month report), Art. 20 governance obligations, supply-chain security (Art. 26), gap assessments, policy drafting, ISO 27001 alignment, and penalty-exposure analysis — including the supervisory differences between essential and important entities.
+
+---
+
+## The Problem
+
+NIS2 massively expanded scope, and many organizations don't realize they're now "essential" or "important" entities with binding obligations: documented risk-management measures, strict incident-reporting timelines, supply-chain security, and management accountability that can carry personal liability. Transposition varies by member state, adding to the confusion.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/NIS2
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/NIS2/
+```
+
+### Step 3: Add Context (Optional)
+
+Describe your sector, size, services, and any existing security documentation (e.g., an ISO 27001 SoA).
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/NIS2
+claude
+```
+
+### Step 5: Start
+
+Say: **"Classify our entity under NIS2 and assess us against the Art. 21 measures."**
+
+---
+
+## Example Commands
+
+```
+"Are we an essential or important entity under NIS2?"
+"Run a gap assessment against the Art. 21 risk-management measures"
+"Build an incident-reporting process for the 24h / 72h / 1-month timeline"
+"What governance obligations does Art. 20 place on management?"
+"Address supply-chain security under Art. 26"
+"Draft the security policies NIS2 expects"
+"Map our NIS2 measures to ISO 27001"
+"What is our penalty exposure, and how does it differ by entity type?"
+```
+
+---
+
+## What You Get
+
+| Output | Contents |
+|--------|----------|
+| **Entity Classification** | Essential vs. important, with reasoning |
+| **Art. 21 Gap Assessment** | Findings across the risk-management measures |
+| **Incident Process** | 24h/72h/1-month reporting workflow |
+| **Governance Brief** | Management obligations under Art. 20 |
+| **ISO 27001 Map** | Crosswalk to reuse existing controls |
+
+---
+
+## Tips
+
+- **Confirm scope first** — many in-scope entities don't realize they're covered.
+- **Pre-build incident reporting** — the 24-hour early warning is tight.
+- **Brief management** — Art. 20 puts accountability at the top.
+
+---
+
+## Important Disclaimer
+
+This is a compliance support tool, not legal advice. NIS2 is transposed into national law with member-state variation. Have qualified counsel in your jurisdiction review outputs before relying on them.

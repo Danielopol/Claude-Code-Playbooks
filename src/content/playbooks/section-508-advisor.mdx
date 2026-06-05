@@ -1,0 +1,96 @@
+---
+title: "Section 508 Accessibility Advisor"
+description: "Meet US federal ICT accessibility under Section 508 — WCAG 2.0 AA mapping, accessibility audits, VPAT/ACR authoring, remediation planning, PDF and software accessibility, and procurement requirements."
+seoHook: "Federal ICT has to be accessible under Section 508 — and procurement officers now ask for a VPAT before they buy. An inaccessible product or a weak Accessibility Conformance Report can lose the contract."
+targetAudience: "vendors selling ICT to US federal agencies, accessibility and engineering teams, teams authoring VPATs and ACRs, compliance leads planning remediation, anyone auditing web, software, or PDF accessibility for government"
+exampleUseCase: "\"Audit our web app for Section 508 and draft a VPAT\" → A WCAG 2.0 AA audit mapped to the Revised 508 Standards, prioritized findings, a remediation plan, and a draft Accessibility Conformance Report"
+category: "operations-compliance"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/section-508"
+tags: ["Section-508", "accessibility", "WCAG", "VPAT", "federal", "remediation"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into a Section 508 compliance advisor for US federal ICT accessibility. It covers the Revised Section 508 Standards (2018), WCAG 2.0 Level AA mapping, accessibility audits, VPAT and Accessibility Conformance Report (ACR) authoring, remediation planning, PDF/web/software/mobile accessibility, federal procurement requirements, contractor obligations, undue-burden exceptions, assistive-technology compatibility, and testing methodologies built on the four POUR principles.
+
+---
+
+## The Problem
+
+Section 508 makes accessibility a procurement gate for federal ICT — and the Revised Standards incorporate WCAG 2.0 AA. Vendors need to audit honestly, produce a credible VPAT/ACR, and plan remediation, while engineers need concrete, testable criteria rather than vague "make it accessible" guidance. A weak conformance report stalls the sale.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/Section-508
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Section-508/
+```
+
+### Step 3: Add Context (Optional)
+
+Add URLs, code, documents, or a description of the ICT you need to evaluate.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/Section-508
+claude
+```
+
+### Step 5: Start
+
+Say: **"Audit our web app against Section 508 and draft a VPAT."**
+
+---
+
+## Example Commands
+
+```
+"Audit this page / app against the Revised Section 508 Standards"
+"Map our findings to WCAG 2.0 Level AA"
+"Draft a VPAT / Accessibility Conformance Report"
+"Build a prioritized remediation plan"
+"How do we make this PDF accessible?"
+"Check assistive-technology compatibility (screen readers, keyboard)"
+"What are our contractor obligations and procurement requirements?"
+"When does the undue-burden exception apply, and how is it documented?"
+```
+
+---
+
+## What You Get
+
+| Output | Contents |
+|--------|----------|
+| **Accessibility Audit** | Findings against 508 / WCAG 2.0 AA |
+| **VPAT / ACR** | Draft conformance report |
+| **Remediation Plan** | Prioritized fixes with criteria |
+| **PDF/Software Guidance** | Format-specific accessibility steps |
+| **Procurement Brief** | Contractor obligations and exceptions |
+
+---
+
+## Tips
+
+- **Map every finding to a success criterion** — testable beats subjective.
+- **Make the VPAT honest** — overstated conformance is a procurement risk.
+- **Don't forget PDFs and documents** — they're in scope, not just web pages.
+
+---
+
+## Important Disclaimer
+
+This is an accessibility support tool, not a legal determination or formal conformance certification. Have qualified accessibility professionals validate audits and VPATs before relying on them.

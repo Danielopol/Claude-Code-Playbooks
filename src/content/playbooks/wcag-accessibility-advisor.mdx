@@ -1,0 +1,96 @@
+---
+title: "WCAG Accessibility Advisor"
+description: "Audit and fix digital accessibility against WCAG 2.0/2.1/2.2 — success criteria, A/AA/AAA conformance, POUR principles, ARIA patterns, contrast and keyboard issues, accessibility statements, and legal mapping."
+seoHook: "Accessibility lawsuits and the European Accessibility Act have made WCAG conformance a business requirement, not a nice-to-have. But \"make it accessible\" is useless without mapping to specific success criteria you can actually test and fix."
+targetAudience: "frontend developers and designers, accessibility leads auditing products, teams targeting WCAG 2.1/2.2 AA, compliance leads mapping WCAG to laws (EAA, ADA, Section 508), anyone writing an accessibility statement"
+exampleUseCase: "\"Audit this component for WCAG 2.2 AA and tell me how to fix the issues\" → A success-criterion-by-criterion audit, prioritized findings, concrete ARIA/contrast/keyboard fixes, and a draft accessibility statement"
+category: "operations-compliance"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/wcag"
+tags: ["WCAG", "accessibility", "a11y", "ARIA", "conformance", "POUR"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into a WCAG (Web Content Accessibility Guidelines) advisor covering WCAG 2.0, 2.1, and 2.2. It evaluates success criteria, conformance levels (A/AA/AAA), the four POUR principles, ARIA patterns, colour contrast, keyboard accessibility, screen-reader compatibility, mobile and cognitive accessibility, the new WCAG 2.2 criteria, a WCAG 3.0 preview, accessibility statements, and the mapping of WCAG to laws (EN 301 549, EAA, ADA, Section 508).
+
+---
+
+## The Problem
+
+Accessibility is now legally and commercially required, but teams get stuck between high-level intent ("be accessible") and the concrete work of meeting specific WCAG success criteria. Developers need to know exactly which criterion a component fails, why, and how to fix it — with correct ARIA, contrast, and keyboard behavior — and which conformance level and laws apply.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/WCAG
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/WCAG/
+```
+
+### Step 3: Add Context (Optional)
+
+Add component code, HTML, URLs, or a description of the interface you want evaluated.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/WCAG
+claude
+```
+
+### Step 5: Start
+
+Say: **"Audit this component against WCAG 2.2 AA and tell me how to fix the issues."**
+
+---
+
+## Example Commands
+
+```
+"Audit this page / component against WCAG 2.2 Level AA"
+"Which success criteria does this fail, and why?"
+"Fix the ARIA on this widget so it's screen-reader accessible"
+"Check colour contrast and keyboard navigation"
+"What's new in WCAG 2.2 that we need to address?"
+"Write an accessibility statement for our site"
+"Which conformance level and laws apply to us (EAA / ADA / Section 508)?"
+"Map our WCAG conformance to EN 301 549"
+```
+
+---
+
+## What You Get
+
+| Output | Contents |
+|--------|----------|
+| **Accessibility Audit** | Findings per success criterion |
+| **Fix Guidance** | Concrete ARIA, contrast, keyboard corrections |
+| **Conformance Assessment** | A/AA/AAA level evaluation |
+| **Accessibility Statement** | Draft statement for your site |
+| **Legal Mapping** | WCAG-to-law crosswalk (EAA, ADA, 508) |
+
+---
+
+## Tips
+
+- **Work criterion by criterion** — it makes issues testable and fixable.
+- **Test keyboard and screen reader** — automated checks miss the hardest issues.
+- **Target 2.2 AA** — it's the common bar for current accessibility laws.
+
+---
+
+## Important Disclaimer
+
+This is an accessibility support tool, not a legal determination or formal conformance certification. Have qualified accessibility professionals validate audits and statements before relying on them.

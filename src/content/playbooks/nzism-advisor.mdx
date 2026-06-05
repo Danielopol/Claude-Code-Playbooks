@@ -1,0 +1,95 @@
+---
+title: "NZISM Advisor"
+description: "Apply the New Zealand Information Security Manual — control guidance, gap analysis, agency security obligations, classification scoping, risk management, and system Certification & Accreditation."
+seoHook: "New Zealand government systems answer to the NZISM and the GCSB/NCSC — control groups, classification from Unclassified to TOP SECRET, and a Certification & Accreditation process. International certifications don't replace agency-specific NZISM obligations."
+targetAudience: "NZ government agencies and their suppliers, security teams scoping classified systems, compliance leads handling Certification & Accreditation, teams meeting GCSB/NCSC obligations, anyone running an NZISM gap analysis"
+exampleUseCase: "\"Scope our system classification and run an NZISM gap analysis\" → A classification-and-control-group analysis, an NZISM gap report, a risk-management plan, and Certification & Accreditation guidance"
+category: "operations-compliance"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/nzism"
+tags: ["NZISM", "GCSB", "NZ-government", "classification", "certification", "security"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into a New Zealand Information Security Manual (NZISM) advisor for NZ government agencies and their supply chains. It provides control guidance, gap analysis, agency security-obligation mapping, classification scoping (Unclassified through TOP SECRET), security risk management, and system Certification & Accreditation (C&A) support — aligned to GCSB/NCSC NZ compliance, including control groups and third-party supplier security.
+
+---
+
+## The Problem
+
+The NZISM is the security baseline for New Zealand government, distinct from international frameworks: GCSB/NCSC-defined control groups, classification-driven requirements, and a Certification & Accreditation process. Agencies and suppliers frequently assume an ISO 27001 posture is sufficient, then find NZISM control selection, documentation, and C&A are their own discipline.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/NZISM
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/NZISM/
+```
+
+### Step 3: Add Context (Optional)
+
+Describe your system, its classification level, and any existing security documentation.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/NZISM
+claude
+```
+
+### Step 5: Start
+
+Say: **"Scope our system classification and run an NZISM gap analysis."**
+
+---
+
+## Example Commands
+
+```
+"Scope our classification and the applicable NZISM control groups"
+"Run an NZISM gap analysis"
+"What are our agency security obligations?"
+"Guide us through Certification & Accreditation (C&A)"
+"Build a security risk-management plan"
+"Which controls apply at RESTRICTED vs. CONFIDENTIAL vs. SECRET?"
+"Address third-party supplier security under the NZISM"
+```
+
+---
+
+## What You Get
+
+| Output | Contents |
+|--------|----------|
+| **Classification & Control Groups** | Level and applicable controls |
+| **Gap Analysis** | Findings against NZISM controls |
+| **Obligations Map** | Agency security responsibilities |
+| **C&A Guidance** | Certification & Accreditation process |
+| **Risk Plan** | Security risk-management approach |
+
+---
+
+## Tips
+
+- **Classify first** — the level drives control selection.
+- **Plan C&A early** — accreditation is the gate to operation.
+- **Reuse evidence** from other frameworks, but select NZISM controls explicitly.
+
+---
+
+## Important Disclaimer
+
+This is a compliance support tool, not a Certification & Accreditation decision. Have qualified NZISM/GCSB professionals review outputs before relying on them.

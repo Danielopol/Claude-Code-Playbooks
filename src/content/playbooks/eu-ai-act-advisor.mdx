@@ -1,0 +1,96 @@
+---
+title: "EU AI Act Advisor"
+description: "Classify AI systems across the EU AI Act's four risk tiers, check the prohibited practices, map provider/deployer and GPAI obligations, plan conformity assessment and CE marking, and handle Art. 50 transparency."
+seoHook: "The EU AI Act (Regulation 2024/1689) bans some AI outright, heavily regulates \"high-risk\" systems, and adds transparency duties for chatbots and synthetic media — with penalties rivaling GDPR. Most teams have no idea which tier their system falls into."
+targetAudience: "AI product and engineering teams shipping into the EU, AI governance and risk leads, providers and deployers of high-risk AI systems, GPAI model developers, legal and compliance teams classifying AI systems"
+exampleUseCase: "\"Classify our AI system under the EU AI Act and list our obligations\" → Risk-tier classification, a prohibited-practices check, the provider/deployer obligation set, and a conformity-assessment and transparency plan"
+category: "legal-compliance"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Sushegaad"
+sourceUrl: "https://github.com/Sushegaad/Claude-Skills-Governance-Risk-and-Compliance/tree/main/plugins/eu-ai-act"
+tags: ["EU-AI-Act", "AI-governance", "high-risk", "GPAI", "conformity-assessment", "compliance"]
+createdAt: "2026-06-04"
+---
+
+## What This Does
+
+Turns Claude Code into an EU AI Act (Regulation (EU) 2024/1689) compliance advisor. It classifies AI systems across all four risk tiers, checks the 9 prohibited practices (Art. 5), maps the 8 Annex III high-risk use cases, lays out provider and deployer obligations (Arts. 9-17, 26), covers GPAI model obligations and the Code of Practice (Arts. 51-55), guides conformity assessment and CE marking (Arts. 43-48), handles EU AI database registration and Art. 50 transparency (chatbots, synthetic media, AI-generated content), and maps to ISO 42001, NIST AI RMF, and GDPR. Current as of the AI Omnibus phase-in timeline.
+
+---
+
+## The Problem
+
+The AI Act's obligations depend entirely on classification — and the line between minimal-risk, limited-risk (transparency), high-risk, and prohibited is subtle. Teams ship AI features without knowing whether they're a "provider" or "deployer," whether Annex III applies, what GPAI duties attach, or when CE marking and conformity assessment are required. The phase-in timeline and penalties make guessing expensive.
+
+---
+
+## Quick Start
+
+### Step 1: Create Your Workspace
+
+```bash
+mkdir -p ~/Documents/EU-AI-Act
+```
+
+### Step 2: Download the Template
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/EU-AI-Act/
+```
+
+### Step 3: Add Context (Optional)
+
+Describe your AI system: purpose, users, data, decisions it influences, and your role in the value chain.
+
+### Step 4: Run Claude Code
+
+```bash
+cd ~/Documents/EU-AI-Act
+claude
+```
+
+### Step 5: Start
+
+Say: **"Classify our AI system under the EU AI Act and list our obligations."**
+
+---
+
+## Example Commands
+
+```
+"Which risk tier does our AI system fall into?"
+"Check our use case against the 9 prohibited practices"
+"Does our system match any Annex III high-risk area?"
+"Are we a provider or a deployer, and what obligations follow?"
+"What GPAI obligations apply, and what's in the Code of Practice?"
+"Walk us through conformity assessment and CE marking"
+"What Art. 50 transparency duties apply to our chatbot / synthetic media?"
+"Map our AI Act work to ISO 42001 and NIST AI RMF"
+```
+
+---
+
+## What You Get
+
+| Output | Contents |
+|--------|----------|
+| **Risk Classification** | Tier determination with reasoning |
+| **Prohibited-Practices Check** | Art. 5 screening |
+| **Obligation Set** | Provider/deployer/GPAI duties that apply |
+| **Conformity Plan** | Assessment route, CE marking, registration |
+| **Framework Mapping** | Crosswalk to ISO 42001, NIST AI RMF, GDPR |
+
+---
+
+## Tips
+
+- **Classify first** — every obligation flows from the risk tier and your role.
+- **Don't ignore transparency** — limited-risk systems still owe Art. 50 disclosures.
+- **Reuse your ISO 42001 / NIST AI RMF work** — much of it maps across.
+
+---
+
+## Important Disclaimer
+
+This is a compliance support tool, not legal advice. The AI Act's obligations and timeline continue to be clarified through guidance and delegated acts. Have qualified EU counsel review classifications before relying on them.

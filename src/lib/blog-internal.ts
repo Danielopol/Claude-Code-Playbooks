@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-prompt-engineer',
+    slug: 'claude-skills-prompt-engineer',
+    title: 'Stop Writing Prompts: Use Claude Skills as Your Personal Prompt Engineer',
+    description: "The prompt engineering tax — the overhead of crafting the right context, constraints, and structure on every single request — is a solved problem. Four Claude Skills that auto-upgrade your casual requests, self-correct outputs in real time, prevent AI from approving its own work, and run six specialist reviewers in parallel so you don't have to.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Prompt Eng.',
+    tags: ['claude skills prompt engineering', 'ai prompt engineer', 'stop writing prompts ai', 'claude skills automate prompts', 'prompt engineering', 'AI quality', 'Claude Code'],
+    createdAt: '2026-06-05',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-adhd',
     slug: 'claude-skills-adhd',
     title: 'Claude Skills for ADHD: The AI Focus System That Actually Works',

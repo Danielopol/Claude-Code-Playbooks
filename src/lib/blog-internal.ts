@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-sales-teams',
+    slug: 'claude-skills-sales-teams',
+    title: 'Claude Skills for Sales Teams: From Cold Outreach to Closed Deals',
+    description: "Five Claude Skills that act as an async SDR for every rep on your team — genuinely personalized cold outreach at scale, a daily briefing that starts every morning focused, structured call summaries before deal intel evaporates, pipeline automation that makes follow-up self-managing, and multi-channel sequences that research the prospect for you.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '15 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Sales',
+    tags: ['claude skills for sales', 'ai sales automation', 'claude skills sales outreach', 'sales outreach AI', 'cold email AI', 'pipeline automation', 'Claude Code'],
+    createdAt: '2026-06-06',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-prompt-engineer',
     slug: 'claude-skills-prompt-engineer',
     title: 'Stop Writing Prompts: Use Claude Skills as Your Personal Prompt Engineer',

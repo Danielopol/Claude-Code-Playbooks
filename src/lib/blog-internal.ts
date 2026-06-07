@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-customer-success',
+    slug: 'claude-skills-customer-success',
+    title: 'Claude Skills for Customer Success: Cut Churn Before It Happens',
+    description: "How CS teams use four Claude Skills to build a proactive churn-prevention system — multi-signal health scores that surface warning signs early, churn risk assessments with intervention playbooks, call transcript synthesis that turns 20 conversations into one actionable pattern report, and QBRs that demonstrate value before the renewal conversation gets hard.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '14 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Cust. Success',
+    tags: ['claude skills customer success', 'ai churn prevention', 'ai customer success manager', 'churn risk AI', 'QBR automation', 'customer health score', 'Claude Code'],
+    createdAt: '2026-06-07',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-sales-teams',
     slug: 'claude-skills-sales-teams',
     title: 'Claude Skills for Sales Teams: From Cold Outreach to Closed Deals',

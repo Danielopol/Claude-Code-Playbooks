@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-accountants',
+    slug: 'claude-skills-accountants',
+    title: 'Claude Skills for Accountants: Automate Reconciliation, Journals, and Close',
+    description: "How accountants use four Claude Skills to compress the month-end close — GL-to-subledger reconciliation with root-cause variance analysis, journal entries with supporting documentation generated in one pass, expense reports audited for policy violations automatically, and GAAP-formatted financial statements with variance callouts ready for board review.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '14 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Accounting',
+    tags: ['claude skills accounting', 'ai accounting automation', 'ai month-end close', 'accounting AI', 'journal entry AI', 'reconciliation AI', 'Claude Code'],
+    createdAt: '2026-06-08',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-customer-success',
     slug: 'claude-skills-customer-success',
     title: 'Claude Skills for Customer Success: Cut Churn Before It Happens',

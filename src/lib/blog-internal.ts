@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-tax-season',
+    slug: 'claude-skills-tax-season',
+    title: 'Claude Skills for Tax Season: File Faster with AI Document Workflows',
+    description: "Four Claude Skills that turn tax season from a document archaeology project into a clean, fast workflow — organize and rename every file CPA-ready, track and categorize expenses across multiple cards automatically, set up a year-round receipt capture system, and use browser automation to prefill tax forms from your own documents.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Tax Season',
+    tags: ['claude skills taxes', 'ai tax preparation', 'automate tax documents ai', 'tax document organization', 'expense tracking AI', 'tax filing AI', 'Claude Code'],
+    createdAt: '2026-06-09',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-accountants',
     slug: 'claude-skills-accountants',
     title: 'Claude Skills for Accountants: Automate Reconciliation, Journals, and Close',

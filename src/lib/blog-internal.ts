@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-legal',
+    slug: 'claude-skills-legal',
+    title: 'Claude Skills for Lawyers: Draft, Redline, and Research in a Fraction of the Time',
+    description: "How attorneys and legal teams use four Claude Skills as a first-draft accelerator — contract analysis that surfaces risk before outside counsel sees it, systematic redlining against standard terms, severity-ranked risk memos for board reporting, and NDA generation in minutes instead of days. The attorney stays in control; the mechanical layer gets handled.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '14 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Legal',
+    tags: ['claude skills legal', 'ai for lawyers', 'ai legal drafting', 'legal AI', 'contract review AI', 'legal risk assessment AI', 'Claude Code'],
+    createdAt: '2026-06-10',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-tax-season',
     slug: 'claude-skills-tax-season',
     title: 'Claude Skills for Tax Season: File Faster with AI Document Workflows',

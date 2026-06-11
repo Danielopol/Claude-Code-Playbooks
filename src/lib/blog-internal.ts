@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-compliance',
+    slug: 'claude-skills-compliance',
+    title: 'Claude Skills for Compliance Officers: Stay Audit-Ready with AI',
+    description: "How compliance teams use four Claude Skills to stay perpetually audit-ready — cross-framework control mapping across SOC 2, ISO 27001, and GDPR; pre-launch privacy reviews that catch violations before legal sees them; line-by-line GDPR audits with article citations; and ISO 27001 gap analysis with a ready-to-file Statement of Applicability.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '14 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Compliance',
+    tags: ['claude skills compliance', 'ai compliance automation', 'ai audit readiness', 'compliance AI', 'SOC 2 AI', 'GDPR AI', 'ISO 27001 AI', 'Claude Code'],
+    createdAt: '2026-06-11',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-legal',
     slug: 'claude-skills-legal',
     title: 'Claude Skills for Lawyers: Draft, Redline, and Research in a Fraction of the Time',

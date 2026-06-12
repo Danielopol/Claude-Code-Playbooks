@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-cybersecurity',
+    slug: 'claude-skills-cybersecurity',
+    title: 'Claude Skills for Cybersecurity Teams: Map Controls and Pass Audits Faster',
+    description: "How security teams use four Claude Skills to accelerate framework mapping and audit readiness — CIS Controls v8 gap assessments with Implementation Group scoping, NIST CSF 2.0 current-to-target profile building, PCI DSS v4.0.1 CDE scoping with the right SAQ, and FedRAMP SSP/POA&M documentation for cloud providers pursuing federal ATO.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '15 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Cybersecurity',
+    tags: ['claude skills cybersecurity', 'ai security controls', 'ai compliance mapping', 'cybersecurity AI', 'NIST CSF AI', 'CIS Controls AI', 'PCI DSS AI', 'FedRAMP AI', 'Claude Code'],
+    createdAt: '2026-06-12',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-compliance',
     slug: 'claude-skills-compliance',
     title: 'Claude Skills for Compliance Officers: Stay Audit-Ready with AI',

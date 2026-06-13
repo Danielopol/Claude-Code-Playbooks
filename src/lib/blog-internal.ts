@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-equity-research',
+    slug: 'claude-skills-equity-research',
+    title: 'Claude Skills for Equity Research Analysts: From Earnings to Initiation',
+    description: "How equity research analysts use four Claude Skills to compress the research workflow — a 24-hour post-earnings update with beat/miss analysis and revised estimates, a 7am morning note with actionable trade ideas, a structured thesis tracker that flags conviction drift before it becomes a portfolio mistake, and a 30-50 page institutional initiation report built through a 5-task workflow.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '14 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Equity Research',
+    tags: ['claude skills equity research', 'ai earnings analysis', 'ai equity research analyst', 'equity research AI', 'financial modeling AI', 'sell-side AI', 'Claude Code'],
+    createdAt: '2026-06-13',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-cybersecurity',
     slug: 'claude-skills-cybersecurity',
     title: 'Claude Skills for Cybersecurity Teams: Map Controls and Pass Audits Faster',

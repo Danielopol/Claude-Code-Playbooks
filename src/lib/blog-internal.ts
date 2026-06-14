@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-recruiters',
+    slug: 'claude-skills-recruiters',
+    title: 'Claude Skills for Recruiters: Screen, Source, and Schedule with AI',
+    description: "How recruiters use four Claude Skills to run a faster, more consistent hiring process — ranked shortlists from 200 resumes with match scores and red flags, job descriptions that actually attract top candidates, a pipeline tracker with stage conversion rates and stalled-candidate alerts, and compensation benchmarks that replace gut-feel counteroffers with market data.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Recruiting',
+    tags: ['claude skills recruiting', 'ai recruiting automation', 'ai candidate screening', 'recruiting AI', 'hiring AI', 'talent acquisition AI', 'Claude Code'],
+    createdAt: '2026-06-14',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-equity-research',
     slug: 'claude-skills-equity-research',
     title: 'Claude Skills for Equity Research Analysts: From Earnings to Initiation',

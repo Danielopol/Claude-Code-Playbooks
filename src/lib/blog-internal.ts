@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-hr',
+    slug: 'claude-skills-hr',
+    title: 'Claude Skills for HR Managers: Automate Onboarding, Reviews, and Policies',
+    description: "How HR managers use four Claude Skills to handle the three most document-heavy processes in people ops — structured onboarding programs with day-by-day schedules and 30/60/90 milestones, balanced performance reviews with specific examples and growth plans, employee handbook updates that stay compliant with current language, and full HR workflow automation that replaces tribal knowledge with repeatable processes.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '14 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'HR',
+    tags: ['claude skills hr', 'ai hr automation', 'ai performance reviews', 'HR AI', 'onboarding AI', 'employee handbook AI', 'people ops AI', 'Claude Code'],
+    createdAt: '2026-06-15',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-recruiters',
     slug: 'claude-skills-recruiters',
     title: 'Claude Skills for Recruiters: Screen, Source, and Schedule with AI',

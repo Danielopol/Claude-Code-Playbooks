@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-consultants',
+    slug: 'claude-skills-consultants',
+    title: 'Claude Skills for Consultants: Build Decks, Frameworks, and Proposals Fast',
+    description: "How consultants use four Claude Skills mapped to the frameworks they already know — the Minto Pyramid for answer-first communication that exposes MECE gaps before client review, PESTEL analysis for rigorous macro-environmental scanning, a 10-framework strategy toolkit covering SWOT through KPI design, and a proposal generator that reflects what the prospect actually said in the discovery call.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '14 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Consulting',
+    tags: ['claude skills consulting', 'ai for consultants', 'ai consulting frameworks', 'consulting AI', 'Minto Pyramid AI', 'PESTEL analysis AI', 'strategy AI', 'Claude Code'],
+    createdAt: '2026-06-16',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-hr',
     slug: 'claude-skills-hr',
     title: 'Claude Skills for HR Managers: Automate Onboarding, Reviews, and Policies',

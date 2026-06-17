@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-agencies',
+    slug: 'claude-skills-agencies',
+    title: 'Claude Skills for Agencies: Automate Client Onboarding and Reporting',
+    description: "How agencies use four Claude Skills to systematize the processes that eat margin — a brand-aware client onboarding workflow that produces the kickoff agenda, discovery questionnaire, and 30/60/90-day plan in one session; white-labeled performance reports with KPIs and strategic recommendations; proposals built from pitch deck through SOW; and QBR presentations that transform a quarter of data into a client-ready strategy conversation.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Agency',
+    tags: ['claude skills agency', 'ai agency automation', 'automate client reporting ai', 'agency AI', 'client onboarding AI', 'agency reporting AI', 'Claude Code'],
+    createdAt: '2026-06-17',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-consultants',
     slug: 'claude-skills-consultants',
     title: 'Claude Skills for Consultants: Build Decks, Frameworks, and Proposals Fast',

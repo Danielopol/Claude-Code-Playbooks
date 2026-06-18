@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-startups',
+    slug: 'claude-skills-startups',
+    title: 'Claude Skills for Startups: From Idea to MVP to First 100 Customers',
+    description: "How founders use four Claude Skills across the full early-stage journey — validating the idea and scoping the MVP without a technical cofounder, compressing 6-week planning cycles into 48 hours with ICE-scored feature prioritization, getting to 100 paying customers through manual concentric-circle outreach instead of waiting for virality, and generating an investor-ready business plan with TAM/SAM/SOM and financial projections when traction is real.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '15 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Startups',
+    tags: ['claude skills startup', 'ai for startups', 'ai mvp builder', 'startup AI', 'MVP planning AI', 'first 100 customers', 'founder AI', 'Claude Code'],
+    createdAt: '2026-06-18',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-agencies',
     slug: 'claude-skills-agencies',
     title: 'Claude Skills for Agencies: Automate Client Onboarding and Reporting',

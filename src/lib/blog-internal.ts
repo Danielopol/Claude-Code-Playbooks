@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-investors',
+    slug: 'claude-skills-investors',
+    title: 'Claude Skills for Investors: Automate Deal Screening and Due Diligence',
+    description: "How investment professionals use four Claude Skills across the deal lifecycle — a structured pass/fail screening memo from any CIM in minutes, a sector-tailored due diligence checklist with red flag escalation across seven workstreams, systematic data room review with severity-ranked findings and missing document alerts, and an IC-ready investment memo with thesis, risk framework, and recommendation.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '14 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Investing',
+    tags: ['claude skills investors', 'ai deal screening', 'ai due diligence', 'private equity AI', 'VC AI', 'investment memo AI', 'deal flow AI', 'Claude Code'],
+    createdAt: '2026-06-19',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-startups',
     slug: 'claude-skills-startups',
     title: 'Claude Skills for Startups: From Idea to MVP to First 100 Customers',

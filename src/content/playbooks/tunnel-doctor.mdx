@@ -1,0 +1,50 @@
+---
+title: "Tunnel Doctor"
+description: "Diagnose and fix conflicts between Tailscale and proxy/VPN tools on macOS — route hijacking, proxy env vars, SSH double-tunneling, and the ~60s DNS resolver stall."
+seoHook: "Tailscale ping works but SSH hangs for 60 seconds, and you can't tell if it's DNS, the proxy, or the TUN fabric lying to you. This playbook isolates the real conflict and fixes it."
+targetAudience: "developers, remote-dev users, macOS power users"
+exampleUseCase: "\"Tailscale ping works but git push hangs for a minute\" → Claude identifies the proxy/DNS conflict and applies the right route or env-var fix"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "daymade"
+sourceUrl: "https://github.com/daymade/claude-code-skills/tree/main/tunnel-doctor"
+tags: ["tailscale", "vpn", "macos", "networking", "dns"]
+createdAt: "2026-06-19"
+---
+
+## What This Does
+
+Diagnose and fix conflicts between Tailscale and proxy/VPN tools on macOS — route hijacking, proxy env vars, SSH double-tunneling, and the ~60s DNS resolver stall.
+
+
+## What's Inside
+
+The template covers:
+
+- **Five Conflict Layers**
+- **Diagnostic Workflow**
+- **SOP: Remote Development via Tailscale**
+- **── Health Checks ─────────────────────────────────────**
+- **── Route Warmup ──────────────────────────────────────**
+- **── Remote Development ────────────────────────────────**
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Make a dedicated folder for this workflow and open it in Claude Code.
+
+### Step 2: Download the Template
+
+Click **Download** above to save the template, then drop it into your project as `CLAUDE.md` (or paste it into your existing one).
+
+### Step 3: Start Working
+
+Tell Claude what you need in plain language — it will follow the template's workflow automatically. For example:
+
+> Tailscale ping works but git push hangs for a minute
+
+Claude reads the template and runs the steps for you.

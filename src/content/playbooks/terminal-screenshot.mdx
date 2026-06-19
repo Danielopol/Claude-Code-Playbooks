@@ -1,0 +1,50 @@
+---
+title: "Terminal Screenshot"
+description: "Render a terminal program's colored output to a PNG so Claude can actually see the visual result — color contrast, alignment, highlighting — instead of only reading raw ANSI escape codes."
+seoHook: "Claude can read your terminal text but not see whether the colors and alignment actually look right. This playbook renders the real visual output to a PNG it can inspect."
+targetAudience: "developers, CLI tool authors, dotfile tinkerers"
+exampleUseCase: "\"Check how my git diff colors actually look\" → A PNG of the real terminal output Claude can see, so it verifies the visual result after a config change"
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "daymade"
+sourceUrl: "https://github.com/daymade/claude-code-skills/tree/main/daymade-claude-code/terminal-screenshot"
+tags: ["terminal", "screenshot", "ansi", "cli", "verification"]
+createdAt: "2026-06-19"
+---
+
+## What This Does
+
+Render a terminal program's colored output to a PNG so Claude can actually see the visual result — color contrast, alignment, highlighting — instead of only reading raw ANSI escape codes.
+
+
+## What's Inside
+
+The template covers:
+
+- **Why this exists**
+- **The method: capture, then render**
+- **Capture recipes per tool**
+- **TUI programs (lazygit, htop, top) — out of scope**
+- **Installing freeze (the preferred renderer)**
+- **Bundled scripts**
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Make a dedicated folder for this workflow and open it in Claude Code.
+
+### Step 2: Download the Template
+
+Click **Download** above to save the template, then drop it into your project as `CLAUDE.md` (or paste it into your existing one).
+
+### Step 3: Start Working
+
+Tell Claude what you need in plain language — it will follow the template's workflow automatically. For example:
+
+> Check how my git diff colors actually look
+
+Claude reads the template and runs the steps for you.

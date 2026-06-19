@@ -1,0 +1,50 @@
+---
+title: "ASR Transcribe to Text"
+description: "Transcribe audio and video to text with Qwen3-ASR — local MLX inference on Apple Silicon (no API key, 15–27x realtime) or a remote API endpoint, auto-detecting the best path."
+seoHook: "Recordings, lectures, and meetings pile up untranscribed because cloud ASR is costly or private. This playbook transcribes locally on Apple Silicon — fast, free, and offline."
+targetAudience: "podcasters, researchers, students, journalists, note-takers"
+exampleUseCase: "\"Transcribe this 1-hour interview recording\" → A full text transcript produced locally at 15–27x realtime, no API key needed"
+category: "media-production"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "daymade"
+sourceUrl: "https://github.com/daymade/claude-code-skills/tree/main/daymade-audio/asr-transcribe-to-text"
+tags: ["asr", "transcription", "audio", "qwen", "speech-to-text"]
+createdAt: "2026-06-19"
+---
+
+## What This Does
+
+Transcribe audio and video to text with Qwen3-ASR — local MLX inference on Apple Silicon (no API key, 15–27x realtime) or a remote API endpoint, auto-detecting the best path.
+
+
+## What's Inside
+
+The template covers:
+
+- **Step 0: Detect Platform and Load Config**
+- **Step 1: Extract Audio (if input is video)**
+- **Step 2: Transcribe**
+- **Step 3: Verify Output**
+- **Step 4: Fallback — Overlap-Merge (Remote API Only)**
+- **Step 5: Recommend Transcript Correction**
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Make a dedicated folder for this workflow and open it in Claude Code.
+
+### Step 2: Download the Template
+
+Click **Download** above to save the template, then drop it into your project as `CLAUDE.md` (or paste it into your existing one).
+
+### Step 3: Start Working
+
+Tell Claude what you need in plain language — it will follow the template's workflow automatically. For example:
+
+> Transcribe this 1-hour interview recording
+
+Claude reads the template and runs the steps for you.

@@ -1,0 +1,50 @@
+---
+title: "Feishu Doc Scraper"
+description: "Extract Feishu (Lark) Docs, Wiki collections, spreadsheets, and Minutes transcripts into faithful local Markdown via lark-cli — no LLM rewriting of the body."
+seoHook: "Feishu content is trapped behind a proprietary viewer, and copy-paste mangles tables and structure. This playbook extracts it faithfully to Markdown you own."
+targetAudience: "knowledge workers, PKM builders, researchers, documentation teams"
+exampleUseCase: "\"Convert this Feishu wiki collection to Markdown\" → Faithful per-page Markdown following the collection's reference graph, tables intact"
+category: "knowledge-management"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "daymade"
+sourceUrl: "https://github.com/daymade/claude-code-skills/tree/main/feishu-doc-scraper"
+tags: ["feishu", "lark", "markdown", "export", "knowledge-base"]
+createdAt: "2026-06-19"
+---
+
+## What This Does
+
+Extract Feishu (Lark) Docs, Wiki collections, spreadsheets, and Minutes transcripts into faithful local Markdown via lark-cli — no LLM rewriting of the body.
+
+
+## What's Inside
+
+The template covers:
+
+- **Scope (read this first)**
+- **Choose the path**
+- **Path A — lark-cli API extraction (primary)**
+- **Path B — permission denied → owner-exported .docx**
+- **Path C — Feishu Minutes (妙记) transcript**
+- **Path D — browser DOM fallback (last resort)**
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Make a dedicated folder for this workflow and open it in Claude Code.
+
+### Step 2: Download the Template
+
+Click **Download** above to save the template, then drop it into your project as `CLAUDE.md` (or paste it into your existing one).
+
+### Step 3: Start Working
+
+Tell Claude what you need in plain language — it will follow the template's workflow automatically. For example:
+
+> Convert this Feishu wiki collection to Markdown
+
+Claude reads the template and runs the steps for you.

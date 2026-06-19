@@ -1,0 +1,48 @@
+---
+title: "Terraform Operational Traps"
+description: "Avoid the operational traps in Terraform provisioners, multi-environment isolation, and zero-to-deployment reliability — provisioner failures, snapshot cross-contamination, and post-apply container issues."
+seoHook: "Terraform makes infrastructure reproducible until a provisioner silently fails or two environments share a snapshot. This playbook encodes the hard-won fixes for the traps that bite in production."
+targetAudience: "DevOps engineers, platform engineers, SREs"
+exampleUseCase: "\"My container is unhealthy after terraform apply\" → Claude isolates whether it's the provisioner, cloud-init, or compose config and walks through the fix"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "20 minutes"
+author: "daymade"
+sourceUrl: "https://github.com/daymade/claude-code-skills/tree/main/terraform-skill"
+tags: ["terraform", "iac", "devops", "provisioners", "infrastructure"]
+createdAt: "2026-06-19"
+---
+
+## What This Does
+
+Avoid the operational traps in Terraform provisioners, multi-environment isolation, and zero-to-deployment reliability — provisioner failures, snapshot cross-contamination, and post-apply container issues.
+
+
+## What's Inside
+
+The template covers:
+
+- **Provisioner traps (symptom → fix)**
+- **Multi-environment isolation**
+- **Pre-deploy validation**
+- **Zero-to-deployment**
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Make a dedicated folder for this workflow and open it in Claude Code.
+
+### Step 2: Download the Template
+
+Click **Download** above to save the template, then drop it into your project as `CLAUDE.md` (or paste it into your existing one).
+
+### Step 3: Start Working
+
+Tell Claude what you need in plain language — it will follow the template's workflow automatically. For example:
+
+> My container is unhealthy after terraform apply
+
+Claude reads the template and runs the steps for you.

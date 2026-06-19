@@ -3,6 +3,7 @@ import createMDX from '@next/mdx';
 
 const nextConfig: NextConfig = {
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+  staticPageGenerationTimeout: 300,
   async redirects() {
     return [
       {

@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-teachers',
+    slug: 'claude-skills-teachers',
+    title: 'Claude Skills for Teachers: Build Courses, Quizzes, and Lesson Plans with AI',
+    description: "How educators use four Claude Skills to turn subject-matter expertise into structured learning — a full e-learning course from curriculum outline to LMS-ready quizzes, a personalized syllabus that bridges what a learner already knows to what they are about to study, a self-hosted AI tutoring platform with RAG knowledge bases and persistent quiz generation, and a vocabulary builder that creates targeted word lists with spaced repetition flashcards instead of generic lists.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '14 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Education',
+    tags: ['claude skills teachers', 'ai lesson planning', 'ai for educators', 'education AI', 'course creation AI', 'AI tutoring', 'Claude Code'],
+    createdAt: '2026-06-20',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-investors',
     slug: 'claude-skills-investors',
     title: 'Claude Skills for Investors: Automate Deal Screening and Due Diligence',

@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-students',
+    slug: 'claude-skills-students',
+    title: 'Claude Skills for Students: Study Smarter with AI Research and Notes',
+    description: "How students use four Claude Skills to get more out of every study session — an academic research assistant that finds, ranks, and synthesizes papers by relevance and methodology, a literature review builder that turns a reading list into a structured review with theme synthesis and gap analysis, a PDF chat interface for interrogating any paper without reading it word-for-word, and a reading analysis system that extracts key arguments, counterarguments, and significance from any text.",
+    category: 'guide',
+    difficulty: 'beginner',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Students',
+    tags: ['claude skills students', 'ai study assistant', 'claude skills for school', 'academic AI', 'AI research assistant', 'literature review AI', 'Claude Code'],
+    createdAt: '2026-06-21',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-teachers',
     slug: 'claude-skills-teachers',
     title: 'Claude Skills for Teachers: Build Courses, Quizzes, and Lesson Plans with AI',

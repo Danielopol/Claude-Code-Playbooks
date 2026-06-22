@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-personal-finance',
+    slug: 'claude-skills-personal-finance',
+    title: 'Claude Skills for Personal Finance: Budget, Track, and Plan with AI',
+    description: "How anyone can use four Claude Skills to take control of their money — a budget analyzer that breaks down spending by category and flags where money is leaking, an expense tracker that turns receipts and bank exports into a living ledger with trend alerts, a multi-agent financial planner that stress-tests savings goals against real income and expenses, and a finance manager that connects budgeting, tracking, and planning into one unified system.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Finance',
+    tags: ['claude skills personal finance', 'ai budgeting', 'ai money management', 'personal finance AI', 'expense tracker AI', 'budget AI', 'Claude Code'],
+    createdAt: '2026-06-22',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-students',
     slug: 'claude-skills-students',
     title: 'Claude Skills for Students: Study Smarter with AI Research and Notes',

@@ -95,9 +95,11 @@ const playbookFaqs: Record<string, FaqItem[]> = {
   ],
 };
 
+export const dynamicParams = true;
+export const revalidate = 86400;
+
 export async function generateStaticParams() {
-  const playbooks = getAllPlaybooks();
-  return playbooks.map((p) => ({ slug: p.slug }));
+  return [];
 }
 
 export async function generateMetadata({ params }: PlaybookPageProps): Promise<Metadata> {

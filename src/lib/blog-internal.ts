@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-health-fitness',
+    slug: 'claude-skills-health-fitness',
+    title: 'Claude Skills for Health and Fitness: Plan Nutrition and Track Progress with AI',
+    description: "How anyone can use four Claude Skills to build a health system that actually fits their life — a fat-loss nutrition planner with meal plans, macro targets, and grocery lists calibrated to real body data, a nutritional specialist that answers food questions with clinical precision, a mental health journal that tracks mood patterns and surfaces emotional triggers over time, and a DNA health analysis system that turns raw genetic data into personalized diet, exercise, and longevity recommendations.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '14 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Health',
+    tags: ['claude skills fitness', 'ai nutrition planner', 'ai health tracking', 'health AI', 'nutrition AI', 'mental health AI', 'fitness planning AI', 'Claude Code'],
+    createdAt: '2026-06-23',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-personal-finance',
     slug: 'claude-skills-personal-finance',
     title: 'Claude Skills for Personal Finance: Budget, Track, and Plan with AI',

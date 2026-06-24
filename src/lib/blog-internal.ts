@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-goal-setting',
+    slug: 'claude-skills-goal-setting',
+    title: 'Claude Skills for Goal Setting: Turn Resolutions into Results with AI',
+    description: "How to use four Claude Skills to close the follow-through gap — a 30-day goal achievement system that breaks any goal into daily actions and tracks momentum, a quarterly goals tracker that aligns projects to priorities with weekly check-ins, an annual life audit that reviews every domain of life and sets the course for the year ahead, and a personal OS that connects goals, habits, and reviews into one unified life management system.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Goals',
+    tags: ['claude skills goals', 'ai goal tracking', 'ai goal setting', 'goal achievement AI', 'productivity AI', 'life planning AI', 'Claude Code'],
+    createdAt: '2026-06-24',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-health-fitness',
     slug: 'claude-skills-health-fitness',
     title: 'Claude Skills for Health and Fitness: Plan Nutrition and Track Progress with AI',

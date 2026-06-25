@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-inbox-zero',
+    slug: 'claude-skills-inbox-zero',
+    title: 'Claude Skills for Inbox Zero: Automate Email Triage and Replies with AI',
+    description: "How to use four Claude Skills to permanently escape email overwhelm — an inbox zero manager that processes every email into action categories with priority scores, a smart triage system that surfaces what needs a response today versus what can wait, an email classifier that sorts bulk mail automatically by type and urgency, and an email drafter that writes context-aware replies in your voice without you writing from scratch.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Email',
+    tags: ['claude skills email', 'ai inbox zero', 'ai email triage', 'email automation AI', 'inbox management AI', 'email productivity', 'Claude Code'],
+    createdAt: '2026-06-25',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-goal-setting',
     slug: 'claude-skills-goal-setting',
     title: 'Claude Skills for Goal Setting: Turn Resolutions into Results with AI',

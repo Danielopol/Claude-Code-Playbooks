@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-calendar',
+    slug: 'claude-skills-calendar',
+    title: 'Claude Skills for Calendar Chaos: Reclaim Your Week with AI Scheduling',
+    description: "How to use four Claude Skills to stop losing your week to scheduling friction — a calendar automation system that books meetings, sends invites, and protects focus blocks without manual back-and-forth, an availability checker that finds optimal slots across multiple calendars instantly, a meeting conflict analyzer that detects double-bookings and overload before they cause problems, and a daily morning briefing that turns your calendar into a daily game plan with prep notes and priority flags.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Calendar',
+    tags: ['claude skills calendar', 'ai scheduling assistant', 'ai calendar management', 'calendar automation AI', 'meeting scheduling AI', 'time management AI', 'Claude Code'],
+    createdAt: '2026-06-26',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-inbox-zero',
     slug: 'claude-skills-inbox-zero',
     title: 'Claude Skills for Inbox Zero: Automate Email Triage and Replies with AI',

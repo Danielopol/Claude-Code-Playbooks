@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-meetings',
+    slug: 'claude-skills-meetings',
+    title: 'Claude Skills for Meeting Overload: Turn Notes into Action Items Automatically',
+    description: "How to use four Claude Skills to stop losing work to meeting overhead — a notes-to-actions converter that extracts every decision and task from raw meeting notes in seconds, a meeting intelligence system that builds a searchable knowledge base from recurring meetings, a meeting insights analyzer that surfaces what decisions were made and why across your entire meeting history, and a Gmail and Slack summarizer that catches you up on everything you missed without reading every thread.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Meetings',
+    tags: ['claude skills meetings', 'ai meeting notes', 'ai action items', 'meeting automation AI', 'meeting notes AI', 'productivity AI', 'Claude Code'],
+    createdAt: '2026-06-27',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-calendar',
     slug: 'claude-skills-calendar',
     title: 'Claude Skills for Calendar Chaos: Reclaim Your Week with AI Scheduling',

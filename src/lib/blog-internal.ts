@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-obsidian',
+    slug: 'claude-skills-obsidian',
+    title: 'Claude Skills for Obsidian Users: Auto-Tag and Connect Your Vault',
+    description: "How to use four Claude Skills to turn a passive note graveyard into an active knowledge system — retroactive auto-tagging across hundreds of untagged notes, automated workflows for linking new captures to existing ideas, Maps of Content generated from your actual vault structure, and ongoing backlink and frontmatter hygiene that keeps the whole system consistent.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Obsidian',
+    tags: ['claude skills obsidian', 'ai obsidian automation', 'ai note tagging', 'obsidian pkm', 'obsidian maps of content', 'obsidian vault organization', 'second brain ai', 'zettelkasten automation'],
+    createdAt: '2026-06-28',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-meetings',
     slug: 'claude-skills-meetings',
     title: 'Claude Skills for Meeting Overload: Turn Notes into Action Items Automatically',

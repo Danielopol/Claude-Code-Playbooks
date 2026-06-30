@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-file-cleanup',
+    slug: 'claude-skills-file-cleanup',
+    title: 'Claude Skills for File Cleanup: Organize Your Digital Mess Automatically',
+    description: "How to use four Claude Skills to clear years of digital clutter without the anxiety of deleting the wrong thing — a duplicate detector that finds every redundant copy eating your storage, an old file assistant that flags what's safely deletable, a downloads sorter that untangles the chaos by type and date, and an intelligent organizer that proposes a real folder structure for your entire Documents folder.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '11 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'File Cleanup',
+    tags: ['claude skills file organization', 'ai organize files', 'ai declutter computer', 'organize downloads folder', 'duplicate file finder', 'old file cleanup', 'ai file management', 'digital declutter'],
+    createdAt: '2026-06-29',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-obsidian',
     slug: 'claude-skills-obsidian',
     title: 'Claude Skills for Obsidian Users: Auto-Tag and Connect Your Vault',

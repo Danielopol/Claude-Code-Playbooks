@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-mac',
+    slug: 'claude-skills-mac',
+    title: 'Claude Skills for Mac Users: Speed Up and Automate Your Workflow',
+    description: "How to use four Claude Skills built for macOS — a plain-English Mac diagnostics tool that tells you exactly why your Mac is slow and how to fix it, a disk space analyzer that finds the hidden space hogs you'd never think to look for, an Apple Shortcuts builder that generates working Shortcuts from a description, and a home automation assistant that converts plain English into HomeKit and Home Assistant configs.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Mac',
+    tags: ['claude skills mac', 'ai mac automation', 'claude skills macos', 'mac performance fix', 'apple shortcuts automation', 'disk space mac', 'homekit automation', 'mac productivity'],
+    createdAt: '2026-06-30',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-file-cleanup',
     slug: 'claude-skills-file-cleanup',
     title: 'Claude Skills for File Cleanup: Organize Your Digital Mess Automatically',

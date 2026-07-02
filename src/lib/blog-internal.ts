@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-smart-home',
+    slug: 'claude-skills-smart-home',
+    title: 'Claude Skills for Smart Home: Automate Your House with AI',
+    description: "How to use four Claude Skills to go deeper with your smart home setup — a Home Assistant config generator that writes complex YAML automations from plain English, a platform-agnostic automation translator that works across HomeKit, Home Assistant, and SmartThings, an Apple Shortcuts builder for chaining HomeKit with iOS apps, and a home maintenance tracker that keeps the physical side of ownership organized alongside your automations.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Smart Home',
+    tags: ['claude skills smart home', 'ai home automation', 'claude home assistant', 'home assistant yaml', 'homekit automation ai', 'smart home setup', 'home assistant config', 'apple shortcuts homekit'],
+    createdAt: '2026-07-02',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-mac',
     slug: 'claude-skills-mac',
     title: 'Claude Skills for Mac Users: Speed Up and Automate Your Workflow',

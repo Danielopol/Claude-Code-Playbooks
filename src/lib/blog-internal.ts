@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-mental-wellness',
+    slug: 'claude-skills-mental-wellness',
+    title: 'Claude Skills for Mental Wellness: Journaling and Reflection with AI',
+    description: "How to use four Claude Skills for self-reflection and personal growth — a journaling companion that beats the blank-page problem with guided prompts and pattern recognition, an annual life audit that replaces vague resolutions with honest cross-domain assessment, a behavioral pattern analyzer that mines your existing journals and work logs for productivity and mood insights, and a 30-day goal protocol grounded in cognitive behavioral techniques.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Wellness',
+    tags: ['claude skills journaling', 'ai journaling', 'ai self-reflection', 'ai mental wellness', 'ai journaling prompts', 'annual life audit', 'goal achievement ai', 'self-improvement ai'],
+    createdAt: '2026-07-03',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-smart-home',
     slug: 'claude-skills-smart-home',
     title: 'Claude Skills for Smart Home: Automate Your House with AI',

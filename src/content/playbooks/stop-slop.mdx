@@ -1,0 +1,122 @@
+---
+title: "Stop Slop: AI Writing Pattern Eliminator"
+description: "A rule set that strips predictable AI tells out of any draft, from throat-clearing openers to false-agency verbs and em dashes"
+seoHook: "AI prose has a tell, and readers catch it fast. The em dashes, the 'not X, it's Y' contrasts, the fragments dropped for fake drama. This playbook hands Claude eight rules and a checklist so your writing sounds like you wrote it, not a model."
+targetAudience: "bloggers editing AI drafts, founders writing essays and updates, ghostwriters, newsletter authors, content marketers, anyone shipping AI-assisted prose"
+exampleUseCase: "\"Rewrite this essay to sound human\" → A revision with adverbs cut, passive voice made active, em dashes removed, false-agency verbs assigned to real people, plus a 1-50 score across directness, rhythm, trust, authenticity, and density"
+category: "research-writing"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Hardik Pandya"
+sourceUrl: "https://github.com/hardikpandya/stop-slop"
+tags: ["writing", "editing", "ai-detection", "prose", "voice", "content"]
+createdAt: "2026-07-04"
+---
+
+## What This Does
+
+Gives Claude a concrete rule set for catching and removing the patterns that make prose sound machine-generated. It works on three levels: banned phrases (throat-clearing openers, business jargon, adverbs), structural clichés (binary contrasts, negative listing, false agency), and sentence-level rules (no Wh- starters, no em dashes, active voice only). After a rewrite, Claude scores the result 1-10 across five dimensions so you know whether it still needs work.
+
+The rules come from Hardik Pandya's "stop-slop" skill. This packages them as a CLAUDE.md so any folder becomes a slop-detecting editor.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/StopSlop
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/StopSlop/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/StopSlop
+claude
+```
+
+Paste a draft and ask Claude to rewrite it, or drop a `.md` file into the folder and say "clean the slop out of this."
+
+---
+
+## The Eight Core Rules
+
+1. **Cut filler phrases** — throat-clearing openers, emphasis crutches, and every adverb.
+2. **Break formulaic structures** — no binary contrasts, negative listings, or dramatic fragmentation.
+3. **Use active voice** — every sentence gets a human subject doing something.
+4. **Be specific** — name the thing instead of announcing that it matters.
+5. **Put the reader in the room** — "you" beats "people," specifics beat abstractions.
+6. **Vary rhythm** — mix sentence lengths, two items beat three, no em dashes.
+7. **Trust readers** — state facts directly, skip the softening.
+8. **Cut quotables** — if it sounds like a pull-quote, rewrite it.
+
+---
+
+## The Scoring Rubric
+
+After every rewrite, Claude rates the draft 1-10 on five dimensions and adds them up:
+
+| Dimension | Question it answers |
+|-----------|---------------------|
+| Directness | Statements or announcements? |
+| Rhythm | Varied or metronomic? |
+| Trust | Respects reader intelligence? |
+| Authenticity | Sounds human? |
+| Density | Anything cuttable? |
+
+A total below 35/50 means the draft still needs a pass. The score gives you a fast signal without re-reading the whole thing.
+
+---
+
+## What It Catches
+
+The template ships three reference sets so Claude flags patterns by category:
+
+- **Phrases** — "Here's the thing," "It turns out," "the uncomfortable truth is," plus jargon like "lean into," "deep dive," and "circle back," and adverbs like "really," "just," and "genuinely."
+- **Structures** — binary contrasts ("not X, it's Y"), negative listing ("Not a X... Not a Y... A Z"), and false agency ("the complaint becomes a fix," "the decision emerges") where an inanimate thing does a human's job.
+- **Examples** — five before/after rewrites that show the rules applied, so Claude has a model to match rather than abstract instructions.
+
+---
+
+## Examples
+
+**Throat-clearing plus binary contrast:**
+> Before — "Here's the thing: building products is hard. Not because the technology is complex. Because people are complex. Let that sink in."
+>
+> After — "Building products is hard. Technology is manageable. People aren't."
+
+**Business jargon stack:**
+> Before — "In today's fast-paced landscape, we need to lean into discomfort and navigate uncertainty with clarity."
+>
+> After — "Move faster. Your competition is."
+
+**Rhetorical setup:**
+> Before — "What if I told you that the best teams don't optimize for productivity? Here's what I mean: they optimize for learning."
+>
+> After — "The best teams optimize for learning, not productivity."
+
+---
+
+## Tips
+
+- Use it in reverse to *detect* AI writing: ask Claude to flag which rules a draft breaks and where, without changing the text.
+- The false-agency rule is the highest-value one. Naming a real person behind every verb fixes more slop than swapping vocabulary.
+- Run the score twice, before and after, to see the delta. A jump from 22 to 40 is more convincing than "looks better."
+- Keep your own voice notes in the same folder so Claude edits toward how you actually write, not a generic clean style.
+
+---
+
+## Limitations
+
+- The rules are absolutes by design (no em dashes, no adverbs, no three-item lists). Loosen them for cases where the flagged form is the right call.
+- Aggressive cutting can strip nuance from technical or legal writing. Review edits before shipping anything precise.
+- It targets English prose patterns. Tells differ in other languages.
+- A high score means the text avoids known AI patterns, not that the argument is good or the facts are correct.

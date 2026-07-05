@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-devops',
+    slug: 'claude-skills-devops',
+    title: 'Claude Skills for DevOps Engineers: Automate Pipelines and Runbooks',
+    description: "How to use four Claude Skills to cut through DevOps boilerplate — a CI/CD pipeline generator that produces production-ready GitHub Actions, GitLab CI, and Jenkins configs for any stack, a Docker containerization tool that generates multi-stage Dockerfiles without the 2 GB bloat, an n8n-based DevOps automation assistant for incident response and monitoring workflows, and a runbook creator that turns tribal knowledge into structured operational procedures.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'DevOps',
+    tags: ['claude skills devops', 'ai devops automation', 'ai ci/cd pipeline', 'github actions generator', 'docker dockerfile generator', 'devops runbook', 'incident response automation', 'devops ai tools'],
+    createdAt: '2026-07-04',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-mental-wellness',
     slug: 'claude-skills-mental-wellness',
     title: 'Claude Skills for Mental Wellness: Journaling and Reflection with AI',

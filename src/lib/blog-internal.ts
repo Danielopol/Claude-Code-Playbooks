@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-documentation',
+    slug: 'claude-skills-documentation',
+    title: 'Claude Skills for Software Documentation: Auto-Generate Docs and Changelogs',
+    description: "How to use four Claude Skills to eliminate the documentation backlog — a codebase documenter that generates README, architecture guides, API docs, and inline comments from your actual code, a technical docs converter that transforms engineering artifacts into multi-audience documentation, a changelog generator that turns 200 cryptic git commits into a categorized release log, and a release notes generator that produces user-facing notes, upgrade guides, and announcement copy from your diffs and PRs.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Docs',
+    tags: ['claude skills documentation', 'ai code documentation', 'ai changelog generator', 'auto generate docs', 'ai release notes', 'codebase documentation', 'technical writing ai', 'developer documentation'],
+    createdAt: '2026-07-05',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-devops',
     slug: 'claude-skills-devops',
     title: 'Claude Skills for DevOps Engineers: Automate Pipelines and Runbooks',

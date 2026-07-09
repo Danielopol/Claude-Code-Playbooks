@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-code-review',
+    slug: 'claude-skills-code-review',
+    title: 'Claude Skills for Code Review: Catch Bugs Before They Ship',
+    description: "How to use four Claude Skills to build a real quality gate around your code — a PR reviewer that gives structured, senior-engineer-level feedback on every pull request, a multi-agent parallel review system that runs specialized security, performance, and quality auditors simultaneously, a set of coding guardrails that stop common mistakes before they happen, and an iterative build-fix loop that clears cascading compilation errors automatically.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Code Review',
+    tags: ['claude skills code review', 'ai code review', 'ai pull request review', 'automated pr review', 'multi-agent code review', 'ai security audit code', 'claude coding guardrails', 'build error fixing ai'],
+    createdAt: '2026-07-06',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-documentation',
     slug: 'claude-skills-documentation',
     title: 'Claude Skills for Software Documentation: Auto-Generate Docs and Changelogs',

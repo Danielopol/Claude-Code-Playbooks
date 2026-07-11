@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-mcp',
+    slug: 'claude-skills-mcp',
+    title: 'Claude Skills for Building MCP Servers: Extend Claude with Custom Tools',
+    description: "How to use four Claude Skills to go from an idea to a working MCP integration — an MCP Server Builder that generates production-ready servers with correct tool definitions and transport handling, an MCP Hub that finds the right server from 1,200+ already built, a Composio SDK integration that connects Claude to 250+ APIs without writing auth flows, and a Connect Apps Skill that lets Claude take real actions in Gmail, Slack, and GitHub instead of just describing them.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'mcp',
+    thumbnailTitle: 'MCP',
+    tags: ['claude skills mcp', 'build mcp server', 'claude skills custom tools', 'model context protocol', 'mcp server tutorial', 'composio sdk claude', 'claude api integrations', 'mcp hub servers'],
+    createdAt: '2026-07-07',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-code-review',
     slug: 'claude-skills-code-review',
     title: 'Claude Skills for Code Review: Catch Bugs Before They Ship',

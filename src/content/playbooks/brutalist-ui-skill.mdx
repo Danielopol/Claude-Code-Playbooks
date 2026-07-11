@@ -1,0 +1,97 @@
+---
+title: "Brutalist UI Skill: Industrial & Tactical Interface Design"
+description: "A design language that forces Claude to build raw, mechanical interfaces — Swiss industrial print or CRT terminal telemetry, with rigid grids and zero rounded corners"
+seoHook: "Ask an AI agent for a 'bold' UI and you get rounded cards, a blue gradient, and Inter. This playbook replaces that default with two committed visual archetypes: Swiss industrial print or tactical CRT telemetry, enforced down to the hex code and border-radius."
+targetAudience: "frontend developers, indie hackers building dev tools or dashboards, portfolio site owners, designers prototyping with Claude Code, teams shipping data-dense admin panels"
+exampleUseCase: "\"Build a landing page for my monitoring dashboard\" → A dark CRT-terminal interface with monospace telemetry data, ASCII bracket framing, scanline texture, and a single hazard-red accent, instead of a generic SaaS template"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "Leonxlnx (Taste Skill)"
+sourceUrl: "https://github.com/Leonxlnx/taste-skill/tree/main/skills/brutalist-skill"
+tags: ["frontend", "brutalist", "design-system", "typography", "ui"]
+createdAt: "2026-07-11"
+---
+
+## What This Does
+
+Gives Claude a strict design system for raw, mechanical interfaces instead of generic rounded-corner SaaS defaults. It defines two committed visual archetypes — Swiss Industrial Print (light, newsprint background, oversized black type, hazard red accent) and Tactical Telemetry (dark CRT terminal, monospace data, scanlines, phosphor glow) — and requires picking one and holding it for the whole interface.
+
+The system controls typography scale contrast (massive headers at `clamp(4rem, 10vw, 15rem)` next to 10px monospace metadata), a locked-down color palette, zero border-radius, and analog degradation effects like halftone dithering and CRT scanlines. It comes from Leonxlnx's "taste-skill" project, a set of anti-slop frontend design skills for AI coding agents.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/BrutalistUI
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/BrutalistUI/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/BrutalistUI
+claude
+```
+
+Describe the interface you want. Claude picks one archetype (Swiss print or tactical terminal) and applies the full typographic, color, and layout system to it.
+
+---
+
+## The Two Visual Archetypes
+
+Pick one per project. Never mix them in the same interface.
+
+- **Swiss Industrial Print** — light mode, matte off-white background (`#F4F4F0`), carbon-ink text, monolithic heavy sans-serif headers, hazard red (`#E61919`) as the only accent. Modeled on 1960s corporate identity systems and machinery blueprints.
+- **Tactical Telemetry & CRT Terminal** — dark mode only, near-black background (`#0A0A0A`, never pure black), white phosphor text, monospace-dominant, ASCII bracket framing, scanline and dithering overlays. Modeled on military databases and aerospace HUDs.
+
+---
+
+## Typography Rules
+
+- **Macro headers:** Neo-grotesque black weights (Neue Haas Grotesk, Archivo Black, Monument Extended) at fluid scales up to `15rem`, negative tracking down to `-0.06em`, compressed leading (`0.85`–`0.95`), uppercase only.
+- **Micro/data text:** Monospace (JetBrains Mono, IBM Plex Mono, Space Mono) fixed at 10–14px, generous tracking (`0.05em`–`0.1em`), uppercase, used for all metadata, nav, and coordinates.
+- **Textural disruption:** A high-contrast serif (Playfair Display, EB Garamond) used sparingly and only after halftone or 1-bit dithering processing — never rendered clean.
+
+---
+
+## Layout Rules
+
+- Strict CSS Grid. Elements anchor to grid tracks, never float freely.
+- Solid 1–2px borders delineate every zone. Full-width horizontal rules separate operational units.
+- Density oscillates between tightly packed monospace data clusters and large stretches of negative space around macro type — no in-between.
+- Zero border-radius anywhere. All corners are exactly 90 degrees.
+
+---
+
+## Symbology & Texture
+
+- ASCII framing around data points: `[ DELIVERY SYSTEMS ]`, `< RE-IND >`, directional markers like `>>>` and `///`.
+- Registration/copyright/trademark symbols (`®` `©` `™`) used as geometric elements, not legal text.
+- Simulated analog degradation: CRT scanlines via `repeating-linear-gradient`, halftone/1-bit dithering on images and serif type, a global low-opacity noise filter for physical grain.
+
+---
+
+## Tips
+
+- Commit to one archetype before writing any code. Mixing light Swiss print with dark terminal styling in the same interface breaks the system.
+- Use `display: grid; gap: 1px;` with contrasting parent/child backgrounds to get perfect hairline dividers without managing individual borders.
+- Reach for semantic tags (`<data>`, `<samp>`, `<kbd>`, `<output>`, `<dl>`) — they reinforce the technical, telemetry feel structurally, not just visually.
+- Reserve terminal green (`#4AF626`) for exactly one status indicator. It has no role as a general text color.
+
+---
+
+## Limitations
+
+- This is a maximalist, opinionated aesthetic. It is wrong for consumer apps, marketing sites aiming for warmth, or anything needing broad accessibility-friendly softness.
+- Zero border-radius and heavy monospace use can hurt readability on long-form body text. Reserve the system for dashboards, portfolios, and data-dense tools, not blog content.
+- The scanline/noise/dithering effects add visual weight. Test performance on lower-end devices before shipping them at full opacity.

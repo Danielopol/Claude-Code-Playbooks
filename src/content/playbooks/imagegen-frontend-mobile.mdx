@@ -1,0 +1,142 @@
+---
+title: "Imagegen Frontend Mobile: App Screen & Flow Reference Generator"
+description: "An image-direction rule set that produces premium, consistent iOS/Android app screen mockups and multi-screen user flows, ready to hand to a coding agent for implementation"
+seoHook: "AI-generated app mockups tend to give you one gorgeous hero screen and four generic filler screens that don't belong to the same product. This playbook locks a design bible before the first image renders, forces a believable screen-to-screen flow, and refuses to let text go small or illegible, so the mockup set actually looks like one app you could build."
+targetAudience: "mobile developers, product designers, indie app builders, agencies pitching app concepts, coding agents building iOS/Android/React Native apps from a visual spec"
+exampleUseCase: "\"design a 5-screen ecommerce app\" → 5 consistent iPhone-mockup screens (browse, product detail, cart, checkout, confirmation) sharing one palette, type system, and navigation model, each screen readable at normal viewing size and framed in a clean, evenly-spaced device mockup"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Leonxlnx (Taste Skill)"
+sourceUrl: "https://github.com/Leonxlnx/taste-skill/tree/main/skills/imagegen-frontend-mobile"
+tags: ["image-generation", "mobile-design", "ios", "android", "mockups", "user-flows"]
+createdAt: "2026-07-11"
+---
+
+## What This Does
+
+This is an image-generation skill, not a code generator. It runs through an image model (ChatGPT Images, Midjourney, or similar) and produces mobile app screen mockups and multi-screen flows as reference images. Those images become the visual spec you hand to Claude Code, Xcode, or a React Native project to actually build the app — the skill explicitly refuses to write SwiftUI, Flutter, or HTML itself.
+
+Before generating anything, the model locks an internal "design bible": platform mode (iOS-native, Android-native, or cross-platform), device frame style, palette, typography, spacing system, and component language. Every subsequent screen in the set has to match it, so screen 5 doesn't quietly drift into a different app than screen 1. Screens are also required to form a believable user journey — onboarding into auth into home, browse into detail into cart — rather than a loose grab-bag of unrelated UI ideas. A dedicated readability rule bans shrinking text to fit more content on screen; if text goes small, the design isn't finished.
+
+Use it to produce a pitch-ready flow before a single screen gets built, or to give a coding agent something concrete to implement against instead of a text description.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/ImagegenFrontendMobile
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/ImagegenFrontendMobile/
+```
+
+### Step 3: Generate the Screen Set
+
+Paste the template into an image-generation model along with your brief, e.g. "make an onboarding flow for a social app" or "design a 5-screen ecommerce app." Save each generated screen into your project folder as it comes back.
+
+### Step 4: Hand the Screens to a Coding Agent
+
+```bash
+cd ~/Documents/ImagegenFrontendMobile
+claude
+```
+
+Drop the screen images into the folder and say "build this flow in SwiftUI using these screens as the reference." The agent reads navigation structure, spacing, and component styling straight from the images.
+
+---
+
+## Platform Mode
+
+The model picks one platform feel first and holds it for the entire set, rather than mixing iOS and Android conventions:
+
+- **iOS-native premium** — cleaner top areas, tab-bar clarity, restrained chrome, native-feeling sheets
+- **Android-native premium** — stronger component rhythm, explicit app bar behavior, firmer layout framing
+- **Cross-platform premium neutral** — universal navigation patterns, less platform-specific ornament, broadly buildable
+
+---
+
+## Screen Count Discipline
+
+The template explicitly refuses to be lazy about screen count. If you ask for 5 screens, it generates 5 — never one polished hero screen plus filler:
+
+- onboarding flow → multiple distinct screens, not one
+- auth flow → separate sign-in, sign-up, and recovery states when useful
+- "app concept" with no number given → a meaningful set, not one isolated mockup
+
+If a detail is unclear on a screen, the rule is to generate a fresh dedicated detail render rather than cropping or zooming into an existing image, which would distort spacing and type.
+
+---
+
+## Logical Flow Requirement
+
+Multiple screens must form a believable journey, not a random screen collection. The model checks each transition: why does screen 2 follow screen 1, what action leads there, does UI state carry forward logically. Reference patterns include onboarding → auth → home, home → browse → detail, cart → checkout → confirmation, and welcome → permissions → personalized home.
+
+---
+
+## Device Mockup Rules
+
+Screens render inside a clean phone mockup by default (visible device border, even outer margins, centered alignment) unless you explicitly ask for raw screen-only output. Rules cover consistent device scale across the whole set, soft controlled shadows, and keeping the mockup as a supporting frame rather than something that competes with the screen content for attention.
+
+---
+
+## Style Variation Engine
+
+Per project, the model commits to one choice in each category and holds it across every screen:
+
+- **Theme paradigm** — pristine light, deep dark, soft wellness neutral, premium monochrome, editorial luxe, and more
+- **Structure bias** — list-led utility, card-led modular, media-led storytelling, chat-led conversational, commerce-led browse/detail
+- **Image art direction** — editorial photography, cinematic lifestyle imagery, tactile abstract, moody atmospheric backdrops
+- **Texture/surface** — ultra-subtle grain, matte paper, foggy gradient atmosphere, blurred image haze
+- **Signature components** — exactly 4 chosen from 18 options (hero metric card, progress ring block, message bubble system, checkout summary card, etc.)
+
+---
+
+## Category-Specific Bias
+
+The template adjusts defaults by app category:
+
+| Category | Bias |
+|----------|------|
+| Fintech | Trust, calm spacing, clear numbers, restrained accents, no fake chart spam |
+| Health/Fitness | Calm structure, strong metric hierarchy, motivating but not noisy |
+| Productivity | Clarity, list/card discipline, calm density, strong task hierarchy |
+| Social | Profile/feed rhythm, media moments, stronger flow variety |
+| Commerce | Browse/detail/cart clarity, strong product imagery, clean checkout hierarchy |
+| Wellness | Softer materials, calm typography, breathing room, tactile backgrounds |
+
+---
+
+## Anti-Slop Rules
+
+Explicitly banned unless requested:
+
+- **Visual tells**: purple-blue fintech gradients, ambient blobs with no purpose, oversized corner radii on everything, glossy surfaces without hierarchy
+- **Layout tells**: fake chart dashboard spam, repeated stat cards with no product reason, phone-shaped websites instead of real app screens, cloned onboarding slides
+- **Copy tells**: "elevate your life," "unlock your potential," "next-gen finance," "seamless control," plus fake brand names like "NovaCore," "Flowbit," "VeloPay"
+- **Iconography**: generic Lucide-style icon defaults that make the app look like an unstyled template
+
+---
+
+## Tips
+
+- State the platform explicitly ("premium iOS" vs "Android") if you have a target platform in mind — the model defaults to inferring it from context otherwise.
+- If a returned screen has small or cramped text, that's a defined failure mode in the template itself; ask for a regenerate rather than accepting it, since the rule says shrinking text means the design isn't finished.
+- For onboarding specifically, ask for "distinct" screens if the first pass comes back as three near-identical slides with only the headline changed — the template flags this as a known failure pattern.
+- Keep device mockup style consistent when regenerating a single screen out of a set; mention "same phone mockup, same palette as the other screens" to prevent drift.
+
+---
+
+## Limitations
+
+- This produces static image mockups, not working SwiftUI, Flutter, or React Native code. Someone still has to build the actual screens.
+- It explicitly refuses to write code or describe implementation — it stays in image-generation mode even if asked to switch.
+- Image model output quality varies; expect to regenerate screens that ignore specific instructions in a long prompt.
+- Best suited to onboarding, auth, browse/detail, dashboard, and profile-style screens. Highly custom or gesture-heavy interactions are hard to convey in a static image.

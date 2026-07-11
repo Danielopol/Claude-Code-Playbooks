@@ -1,0 +1,119 @@
+---
+title: "Taste Skill v1: Legacy Anti-Slop Frontend Design"
+description: "The original numeric-dial version of the Taste Skill frontend framework, preserved for projects already built on v1 conventions"
+seoHook: "Upgrading a frontend skill mid-project breaks anything already tuned to its old dials and thresholds. This playbook packages the original Taste Skill exactly as it shipped, so projects built on v1 keep generating consistent output instead of drifting when the framework moves on."
+targetAudience: "developers maintaining projects already built on taste-skill v1, teams that pinned their frontend conventions to specific dial values, agencies with multiple client codebases on different skill versions, anyone who needs deterministic backward compatibility"
+exampleUseCase: "\"Build a pricing page for this dashboard\" → A Next.js page generated with DESIGN_VARIANCE 8 / MOTION_INTENSITY 6 / VISUAL_DENSITY 4 baselines, Tailwind grid layouts, Framer Motion spring physics, and the full v1 AI-tells ban list applied — matching the exact output style the rest of the v1 project already has"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Leonxlnx (Taste Skill)"
+sourceUrl: "https://github.com/Leonxlnx/taste-skill/tree/main/skills/taste-skill-v1"
+tags: ["frontend", "design", "ui", "legacy", "anti-slop"]
+createdAt: "2026-07-11"
+---
+
+## What This Does
+
+This is the original v1 release of the Taste Skill, the anti-slop frontend framework that fights generic AI-generated UI. It's preserved here unchanged for projects already built against its exact conventions. The current default is v2, a substantial rewrite — use v1 only when you need exact backward compatibility with an existing codebase, not for new projects.
+
+Three numeric dials drive every decision: `DESIGN_VARIANCE` (8/10, how asymmetric the layout gets), `MOTION_INTENSITY` (6/10, how much animation ships), and `VISUAL_DENSITY` (4/10, how packed the UI is). Claude reads these baselines, adapts them only when you explicitly ask, and threads them through ten sections covering architecture, typography, color, motion, performance, and a pre-flight checklist. The skill bans the visual tells that make AI-built frontends look the same: purple glows, Inter font, centered heroes, three-card feature rows, generic stock photos.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/TasteSkillV1Project
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/TasteSkillV1Project/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/TasteSkillV1Project
+claude
+```
+
+Ask Claude to build a component, page, or full frontend. It reads the dial values and the ten rule sections before writing any code.
+
+---
+
+## The Three Dials
+
+| Dial | Default | Range |
+|------|---------|-------|
+| DESIGN_VARIANCE | 8 | 1 = perfect symmetry, 10 = artsy chaos |
+| MOTION_INTENSITY | 6 | 1 = static, 10 = cinematic/magic physics |
+| VISUAL_DENSITY | 4 | 1 = art gallery/airy, 10 = pilot cockpit/packed |
+
+Claude doesn't ask permission to use these defaults, but adapts them the moment you state a preference in chat. At DESIGN_VARIANCE above 4, centered heroes are banned in favor of split-screen or asymmetric layouts. At VISUAL_DENSITY above 7, card containers are banned in favor of `border-t` and `divide-y` grouping.
+
+---
+
+## Architecture Rules
+
+- **Dependency verification is mandatory.** Before importing any third-party library, Claude checks `package.json`. Missing packages get an install command printed before the code, never assumed.
+- **Server Components by default**, with interactive leaf components isolated behind `'use client'` when motion or glass effects are active.
+- **Tailwind with a version lock** — v4 projects use `@tailwindcss/postcss`, not the v3 plugin path.
+- **No `h-screen` for hero sections.** Only `min-h-[100dvh]`, to avoid iOS Safari viewport jumps.
+- **CSS Grid over flexbox percentage math.** No `w-[calc(33%-1rem)]` — use `grid-cols-3 gap-6` instead.
+- Icons come exclusively from `@phosphor-icons/react` or `@radix-ui/react-icons`, with a single `strokeWidth` standardized across the project.
+
+---
+
+## Design Engineering Directives
+
+Six numbered rules correct specific LLM biases:
+
+1. **Deterministic typography** — display text at `text-4xl md:text-6xl tracking-tighter`, Inter banned in favor of Geist/Outfit/Cabinet Grotesk/Satoshi, serif fonts banned on dashboards.
+2. **Color calibration** — max one accent color, saturation under 80%, and an explicit "Lila Ban" on the purple/blue AI aesthetic.
+3. **Layout diversification** — centered heroes banned above DESIGN_VARIANCE 4, forcing split-screen or asymmetric structures.
+4. **Anti-card overuse** — at VISUAL_DENSITY above 7, generic card containers are banned in favor of dividers and negative space.
+5. **Interactive UI states** — loading, empty, and error states are mandatory, plus tactile `:active` feedback (`scale-[0.98]`).
+6. **Form patterns** — labels above inputs, error text below, consistent `gap-2` spacing.
+
+---
+
+## Motion System
+
+MOTION_INTENSITY above 5 unlocks "Liquid Glass" refraction (inner borders plus inset shadows for glassmorphism), magnetic button physics via Framer Motion's `useMotionValue`/`useTransform` (never `useState`, to avoid re-render performance collapse), perpetual micro-interactions with spring physics (`stiffness: 100, damping: 20`), and staggered list reveals. Section 9 adds a full "Motion-Engine Bento" spec: five card archetypes (Intelligent List, Command Input, Live Status, Wide Data Stream, Contextual UI) each with a defined micro-animation, built on `rounded-[2.5rem]` surfaces and diffusion shadows.
+
+---
+
+## The AI Tells It Bans
+
+- No neon glows, pure black (`#000000`), oversaturated accents, or gradient text on large headers
+- No Inter font, no oversized H1s, no serif on dashboards
+- No 3-column card feature rows — zig-zag or asymmetric grids instead
+- No generic names ("John Doe"), generic avatar icons, round numbers (`99.99%`), or placeholder brand names ("Acme")
+- No broken Unsplash links — `picsum.photos/seed/{keyword}` instead
+- shadcn/ui components must be customized, never left in default state
+
+---
+
+## Pre-Flight Checklist
+
+Before shipping any output, the skill runs a seven-point check: global state usage, mobile layout collapse, `min-h-[100dvh]` on full-height sections, `useEffect` cleanup functions, presence of empty/loading/error states, card omission in favor of spacing, and isolation of CPU-heavy perpetual animations into their own Client Components.
+
+---
+
+## How v1 Differs from the Mainline Taste Skill (v2)
+
+v1 is dial-driven and section-numbered, with ten sections covering architecture through pre-flight checks. It leans on Framer Motion as the default animation engine and treats GSAP/ThreeJS as an exception for scrolltelling. If your project already has conventions built around the `DESIGN_VARIANCE`/`MOTION_INTENSITY`/`VISUAL_DENSITY` dials or the v1 section numbering, keep using this version — swapping to v2 mid-project changes the rule structure enough to produce inconsistent output against existing code.
+
+---
+
+## Limitations
+
+- v1 is frozen for compatibility. New anti-slop patterns and fixes land in v2, not here.
+- The dial system assumes Tailwind and React/Next.js. Other stacks need manual adaptation.
+- Framer Motion is assumed for most motion work; projects standardized on GSAP should check the mixing rule in Section 8 before combining the two in one component tree.

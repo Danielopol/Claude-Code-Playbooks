@@ -1,0 +1,113 @@
+---
+title: "GPT Taste Skill: Strict Anti-Slop UI Rules"
+description: "A stricter, more deterministic anti-slop frontend ruleset with GSAP motion patterns, despite the GPT-oriented name it works as a standard CLAUDE.md in Claude Code"
+seoHook: "Generic AI frontends share the same tells: six-line headings, gappy bento grids, cheap 'SECTION 01' labels, and the same left-right layout every time. This playbook forces a randomized, mathematically-checked design plan before any code gets written, so output stops repeating itself."
+targetAudience: "developers who want Awwwards-level polish from AI-generated frontends, agencies pitching premium landing pages, teams tired of every AI build looking the same, anyone layering GSAP scroll animation onto Claude Code output"
+exampleUseCase: "\"Build a SaaS landing page\" → Claude first outputs a <design_plan> block simulating a randomized layout/font/component selection, then generates a gapless bento grid with grid-flow-dense, a 2-3 line hero with GSAP ScrollTrigger pinning, and zero meta-labels or invisible buttons"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "Leonxlnx (Taste Skill)"
+sourceUrl: "https://github.com/Leonxlnx/taste-skill/tree/main/skills/gpt-tasteskill"
+tags: ["frontend", "design", "gsap", "ui", "deterministic"]
+createdAt: "2026-07-11"
+---
+
+## What This Does
+
+Despite the "GPT" name, this is a plain CLAUDE.md-style rule set — drop it in a project folder and Claude Code follows it exactly the same as any other template on this site. The naming just reflects where it originated (a GPT/Codex-oriented skill), not a dependency on OpenAI tooling.
+
+It's a stricter, more prescriptive sibling of the mainline Taste Skill. Where the main skill uses numeric dials, this one forces Claude to simulate a Python random-selection step in a `<design_plan>` block before writing any code — picking a hero architecture, font stack, three component patterns, and two GSAP paradigms from fixed lists, seeded off the prompt's character count. The goal: stop Claude from defaulting to the same centered hero and three-card row every time, and ship real GSAP scroll animation instead of CSS-only motion.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/GPTTasteSkillProject
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/GPTTasteSkillProject/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/GPTTasteSkillProject
+claude
+```
+
+Ask for a landing page, marketing site, or any GSAP-driven scroll experience. Claude outputs its `<design_plan>` verification block first, then the code.
+
+---
+
+## The Mandatory Pre-Flight Design Plan
+
+Before any React/UI code, Claude must output a `<design_plan>` block containing five checks:
+
+1. **Python RNG execution** — a mocked 3-line output showing the deterministic pick of hero layout, components, GSAP animations, and fonts
+2. **AIDA check** — confirms Navigation, Attention, Interest, Desire, and Action sections all exist
+3. **Hero math verification** — states the exact `max-w` class used and confirms the H1 will wrap in 2-3 lines, not 6
+4. **Bento density verification** — proves `col-span`/`row-span` values interlock with zero empty grid cells, and `grid-flow-dense` is applied
+5. **Label sweep and button check** — confirms no "SECTION 01"-style meta-labels and that button text has full contrast
+
+Only after this block does Claude write code. This is what makes the skill "deterministic" — the randomization is simulated and shown, not left to whatever the model defaults to.
+
+---
+
+## The AIDA Structure
+
+Every page follows Attention (hero) → Interest (bento/features) → Desire (GSAP scroll/media) → Action (CTA/footer), preceded by a floating glass-pill or minimal split nav. Sections get `py-32 md:py-48` vertical padding so each one reads as a distinct chapter rather than cramped blocks.
+
+---
+
+## The Hero: 2-Line Iron Rule
+
+The H1 must never exceed 2-3 lines — 4 to 6 lines is called out explicitly as "catastrophic failure." The fix is structural: wide containers (`max-w-5xl`, `max-w-6xl`) plus responsive clamped font sizes (`clamp(3rem, 5vw, 5.5rem)`), not just smaller text. Three hero layouts are randomly assigned: Cinematic Center (text centered, two CTAs, full-bleed background with radial wash), Artistic Asymmetry (offset text with an overlapping floating image), or Editorial Split (text and image side by side with heavy negative space). Floating badge icons, pill-tags under the hero, and raw stats in the hero are all banned.
+
+---
+
+## GSAP Motion Patterns
+
+This is the section that separates it from the mainline skill's Framer-first approach. Real GSAP (`@gsap/react`, `ScrollTrigger`) is required, not simulated with CSS transitions:
+
+- **Hover physics** — `group-hover:scale-105 transition-transform duration-700 ease-out` inside `overflow-hidden` containers on every clickable card
+- **Scroll pinning** — a section title pinned via `ScrollTrigger pin: true` while content scrolls past it
+- **Image scale and fade** — images start at `scale: 0.8`, grow to `1.0` on entry, fade to `opacity: 0.2` on exit
+- **Scrubbing text reveals** — paragraph words animate from `opacity: 0.1` to `1.0` sequentially, scrubbed to scroll position
+- **Card stacking** — cards overlap and stack from the bottom as the page scrolls
+
+---
+
+## The Gapless Bento Grid
+
+Every bento grid must use `grid-flow-dense` and have its `col-span`/`row-span` values verified by hand to leave zero empty cells — a named failure mode ("dead cells") that LLMs default to. Card count is capped at 3-5 intentional, heavily-styled cards rather than 8 generic ones.
+
+---
+
+## Content and Asset Bans
+
+- **Meta-labels banned forever** — "SECTION 01," "QUESTION 05," "ABOUT US" style labels are stripped entirely
+- Images come from `picsum.photos/seed/{keyword}/1920/1080` with CSS filters (`grayscale`, `mix-blend-luminosity`, `contrast-125`) applied so they don't read as stock photos
+- Backgrounds use radial blurs and grainy mesh gradients instead of flat colors
+- The whole page wraps in `overflow-x-hidden w-full max-w-full` to guard against horizontal scroll bugs from off-screen scroll animations
+
+---
+
+## How This Differs from the Mainline Taste Skill
+
+The mainline skill and taste-skill-v1 use numeric dials (DESIGN_VARIANCE, MOTION_INTENSITY, VISUAL_DENSITY) that Claude interprets contextually. This skill replaces dials with a forced, shown-in-output randomization step and a hard pre-flight gate before code generation — stricter and more auditable, at the cost of being more rigid. It's also GSAP-first rather than Framer Motion-first, and adds an explicit AIDA page-structure requirement the other variants don't enforce.
+
+---
+
+## Limitations
+
+- GSAP requires its own npm install and license consideration for premium plugins (SplitText, MorphSVG) if you reach for them — the skill doesn't install dependencies for you.
+- The Python randomization is simulated by the model, not actually executed. Treat it as a forcing function for variety, not a true random seed.
+- The AIDA structure assumes a marketing/landing-page context. It's a poor fit for dashboards or internal tools, where the mainline skill or v1 fits better.

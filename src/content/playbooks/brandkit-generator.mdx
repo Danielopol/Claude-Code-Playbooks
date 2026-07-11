@@ -1,0 +1,144 @@
+---
+title: "Brandkit Generator: Premium Identity Board Creator"
+description: "An image-direction rule set that produces a complete brand-guidelines board in one image: logo concept, color system, typography, and applications, grounded in brand strategy instead of random logo generation"
+seoHook: "Ask an image model for a logo and you get a random lightning bolt or a meaningless sparkle. This playbook forces the model to reason through category, metaphor, and symbol logic before drawing anything, then presents the result as a full brand-guidelines deck, not a single throwaway mark."
+targetAudience: "founders naming and branding a new product, indie hackers who need a logo before launch, designers pitching identity concepts, agencies producing brand decks, coding agents that need a visual identity reference before building a marketing site"
+exampleUseCase: "\"create a brand kit for a developer tool called Kite\" → one 3x3 identity board: logo cover, logo construction diagram, digital application (browser/terminal mockup), tagline panel, color system, typography specimen, physical application, image direction, and system detail — all sharing one palette and one symbolic logo mark"
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Leonxlnx (Taste Skill)"
+sourceUrl: "https://github.com/Leonxlnx/taste-skill/tree/main/skills/brandkit"
+tags: ["branding", "logo", "color-palette", "identity", "image-generation"]
+createdAt: "2026-07-11"
+---
+
+## What This Does
+
+This is an image-generation skill, not a code generator. It runs through an image model (ChatGPT Images, Midjourney, or similar) and produces a single premium brand-kit board: logo, color system, typography, and mockup applications, all in one coherent image. That board is the deliverable — you hand it to a coding agent afterward as the visual reference for building out a site, app, or marketing materials that match the identity.
+
+Before generating, the model works through brand strategy first: category, audience, emotional promise, and a symbolic metaphor for the logo. A security product gets shield/eye/boundary logic; a voice AI gets waveform/mic/pulse logic. The logo itself gets built from one of five concept methods (monogram + meaning, product action, metaphor fusion, negative space, or construction geometry) instead of being picked at random. The default output is a 3x3 panel board — logo cover, construction diagram, digital application, tagline, color system, typography, physical application, image direction, system detail — presented like a real identity studio's guidelines deck.
+
+Use it when you need a logo and full visual identity before a single line of frontend code exists, or when you want a coding agent to have a concrete brand reference instead of guessing at colors and type.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/BrandkitGenerator
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/BrandkitGenerator/
+```
+
+### Step 3: Generate the Brand Board
+
+Paste the template into an image-generation model along with your brand brief, e.g. "create a brand kit for a fintech app called Ledger, trustworthy and calm." Save the resulting board image into your project folder.
+
+### Step 4: Hand the Board to a Coding Agent
+
+```bash
+cd ~/Documents/BrandkitGenerator
+claude
+```
+
+Drop the brand board image into the folder and say "extract the color palette, typography, and logo direction from this brand board and apply it to the site." The agent reads the visual system directly from the image.
+
+---
+
+## Brand Strategy First
+
+Before any visual gets generated, the model reasons through category, audience, product function, emotional promise, cultural position, and a symbolic metaphor. It maps common categories to symbol logic so the mark connects to what the product actually does:
+
+| Category | Possible Symbol Logic |
+|----------|------------------------|
+| Developer tool | cursor, frame, bolt, scaffold, grid |
+| AI assistant | spark, orbit, signal, path, node |
+| Security | shield, eye, seal, protected core |
+| Voice AI | waveform, mic, orb, speech path |
+| Compliance | seal, dog, badge, document, shield |
+| Luxury / editorial | monogram, seal, paper, emboss, mark |
+
+---
+
+## Logo Concept Methods
+
+The template limits itself to five deliberate construction methods, using one or combining two at most:
+
+1. **Monogram + Meaning** — brand initial fused with a metaphor (e.g. "K" + kite/frame/direction)
+2. **Product Action** — the product's core verb turned into a symbol (build → scaffold, protect → shield, speak → waveform)
+3. **Metaphor Fusion** — two ideas combined into one reduced mark (owl + drone vision, shield + mountain)
+4. **Negative Space** — meaning built from empty space (hidden arrow, cutout initial, protected center)
+5. **Construction Geometry** — a mark built from a clear system (circles, diagonal cuts, grids, orbital paths)
+
+Explicitly banned: generic lightning bolts, random animals, fake luxury crests, copied famous marks, and meaningless sparkles.
+
+---
+
+## Default 3x3 Panel System
+
+Unless you specify a different layout, the board fills nine panels:
+
+1. Logo cover — large logo, minimal title, strong negative space
+2. Logo construction — symbol breakdown or geometry logic
+3. Digital application — browser chrome, terminal, or app icon
+4. Brand essence — one short tagline, large typography
+5. Color system — swatches, gradient strips, palette cards
+6. Typography — type specimen or primary/secondary pairing
+7. Physical application — card, badge, seal, or packaging mockup
+8. Image direction — cinematic landscape, halftone poster, material texture
+9. System detail — UI chips, command line, icon row, pattern detail
+
+Alternate layouts (2x3 cinematic deck, 2x2 compact board, 1x3 horizontal strip, 4x2 contact sheet) are available if you ask.
+
+---
+
+## Visual Modes
+
+The template ships nine pre-built visual modes tied to product category, each with its own color cues and logo logic:
+
+- **Dark Developer/Builder** — near-black panels, monospace accents, terminal windows, cyan/lime accents
+- **Dark Security/Threat Intelligence** — black/navy, shield forms, radar lines, red/blue alert chips
+- **Light Editorial/Compliance** — warm ivory, paper texture, serif labels, deep blue/red/gold accents
+- **Luxury/Beauty/Fashion** — ivory/stone/espresso, serif wordmark, embossing, editorial crops
+- **Voice/Communication** — dark indigo, lilac glow, waveform motifs
+- **Cultural/Experimental** — halftone, CRT texture, analog print, bold accent color
+
+Each mode locks a mood (precise/builder-native, serious/vigilant, trustworthy/institutional, tasteful/expensive) so the board doesn't drift into generic startup territory.
+
+---
+
+## Text and Tagline Rules
+
+The board uses very little text by design: brand name, one tagline, one URL or command, 2-5 section labels. Taglines should be short and specific, not generic corporate slogans. The template's own good examples: "Nothing random." "On guard." "Build better." Bad taglines are long marketing copy or buzzword soup.
+
+---
+
+## Color Discipline
+
+One dominant palette across the whole board: a base color, primary accent, secondary accent, and neutrals. Reference-quality palette examples from the template: black + cyan + muted coral, forest green + lime + fog gray, ivory + deep blue + red + gold. Accents must repeat across every panel — no random rainbow, no generic purple-blue AI glow unless it's actually justified by the brand.
+
+---
+
+## Tips
+
+- Give the model a real product description, not just a name — "compliance tool for healthcare orgs" produces sharper symbol logic than "Ledger" alone.
+- If the logo comes back generic (lightning bolt, random animal, meaningless sparkle), that's a named failure mode in the template; ask it to apply one of the five concept methods explicitly, e.g. "use metaphor fusion" or "use negative space."
+- Ask for a 2x3 layout instead of the 3x3 default if you want a tighter, more cinematic deck rather than the full nine-panel system.
+- Feed the finished board straight to a coding agent and ask it to extract hex codes and type pairing — the palette and typography panels are built to be legible enough for that.
+
+---
+
+## Limitations
+
+- This produces one static reference image, not usable vector logo files, font files, or a design-token system. A designer or coding agent still has to formalize the assets.
+- Image models vary in text rendering quality; tagline and label text in the generated board may need a manual cleanup pass.
+- The template explicitly avoids copying real-world logos or exact famous marks, but always verify the output doesn't accidentally resemble an existing brand before shipping it.
+- Best suited to software, SaaS, and consumer-app branding. It is not tuned for regulated-industry trademark work — get legal review before registering anything it produces.

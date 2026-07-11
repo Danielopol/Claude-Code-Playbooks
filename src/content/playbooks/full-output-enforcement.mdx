@@ -1,0 +1,73 @@
+---
+title: "Full-Output Enforcement: No Placeholders, No Stubs"
+description: "A short rule set that bans TODO comments, skeleton code, and 'rest follows the same pattern' shortcuts so Claude always delivers complete, runnable output"
+seoHook: "Ask for 5 components and get 2 finished plus 3 stubs marked '// implement here.' This playbook bans the entire family of placeholder shortcuts and gives Claude a clean way to pause and resume on genuinely long jobs instead of quietly truncating."
+targetAudience: "developers on any coding task, not just frontend work, anyone tired of finding TODO comments in what was supposed to be finished code, teams running Claude on batch or multi-file jobs"
+exampleUseCase: "\"Write all 5 CRUD endpoints for this API\" → Claude counts the 5 deliverables up front, writes each one completely, and cross-checks the count before responding instead of writing 2 in full and summarizing the rest"
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "2 minutes"
+author: "Leonxlnx (Taste Skill)"
+sourceUrl: "https://github.com/Leonxlnx/taste-skill/tree/main/skills/output-skill"
+tags: ["code-quality", "no-placeholders", "output-enforcement", "development"]
+createdAt: "2026-07-11"
+---
+
+## What This Does
+
+Bans the shortcuts models reach for when a response gets long: `// TODO`, `// rest of code`, `// similar to above`, "I can provide more details if needed." It applies to any task with a countable number of deliverables, files, functions, sections, or answers, not just frontend or design work.
+
+The template locks a deliverable count at the start of a task, generates every item in full, and cross-checks the count before responding. When a response is genuinely going to hit the token limit, it defines a clean pause-and-resume format instead of letting Claude compress or skip content to fit.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/FullOutput
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/FullOutput/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/FullOutput
+claude
+```
+
+Works from any project folder. Drop the CLAUDE.md into an existing repo if you want the rule to apply project-wide instead of running it from a scratch folder.
+
+---
+
+## The Process
+
+1. **Scope** — Read the full request, count the distinct deliverables, lock that number.
+2. **Build** — Generate every deliverable completely. No "you can extend this later."
+3. **Cross-check** — Re-read the original request before responding and compare the deliverable count against what was scoped.
+
+---
+
+## Handling Long Outputs
+
+When a response approaches the token limit, Claude writes at full quality up to a clean breakpoint (end of a function, file, or section) and ends with:
+
+```
+[PAUSED — X of Y complete. Send "continue" to resume from: next section name]
+```
+
+Sending "continue" picks up exactly where it stopped, no recap, no repetition.
+
+---
+
+## Limitations
+
+- A hard rule set, not a substitute for scoping a task sensibly. Asking for 50 files in one message still hits real limits; this just makes the stopping point explicit instead of silent.
+- Doesn't improve code correctness, only completeness. Full output can still contain bugs.

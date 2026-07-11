@@ -1,0 +1,140 @@
+---
+title: "Imagegen Frontend Web: Website Design Reference Generator"
+description: "An image-direction rule set that turns a one-line brief into a full set of Awwwards-level website design comps, one horizontal image per section, ready to hand to a coding agent"
+seoHook: "Ask an image model for a landing page and you get one generic hero with a purple gradient and a floating blob. This playbook forces one high-fidelity image per section, kills the left-text/right-image default, and locks a single consistent design system across the whole set, so what comes out looks like a real website concept, not AI moodboard filler."
+targetAudience: "frontend developers, indie hackers, designers using AI image tools, product teams building landing pages, agencies producing client comps, coding agents that need a visual spec before writing code"
+exampleUseCase: "\"design 8 sections for a fintech website\" → 8 separate horizontal images (hero, trust bar, features, product showcase, benefits, testimonials, pricing, CTA), one consistent palette and typography system across all of them, each labeled \"Section X of 8\" and detailed enough for a developer to rebuild in code"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Leonxlnx (Taste Skill)"
+sourceUrl: "https://github.com/Leonxlnx/taste-skill/tree/main/skills/imagegen-frontend-web"
+tags: ["image-generation", "web-design", "mockups", "design-reference", "frontend"]
+createdAt: "2026-07-11"
+---
+
+## What This Does
+
+This is not a coding skill. It generates image-generation prompts and direction, meant to run through an image model (ChatGPT Images, Midjourney, or similar) to produce a set of website design reference images. Those images are the deliverable — you then hand them to Claude Code or another coding agent as the visual spec for the actual build.
+
+The core rule: one separate horizontal image per section, always. A landing page with 8 sections produces 8 images, never one collapsed collage or a single tall screenshot-style render. Each image locks a full design system — palette, typography, spacing, CTA family, image treatment — so the set reads as one site instead of eight unrelated renders. The skill also fights the most common AI image tell: reflexive left-text/right-image heroes. It forces a deliberate choice between ten composition anchors and tracks anchor and background-mode variety across the whole page so nothing repeats more than twice in a row.
+
+Use it when you need a visual reference before writing a line of frontend code, or when a client needs to sign off on direction before implementation starts.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/ImagegenFrontendWeb
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/ImagegenFrontendWeb/
+```
+
+### Step 3: Generate Reference Images
+
+This template is written for an image-generation model, not a code generator. Paste its contents into ChatGPT Images (or another model with image output) along with your brief, e.g. "design 6 sections for a productivity SaaS landing page." Save the resulting images into your project folder.
+
+### Step 4: Hand the Images to Claude Code
+
+```bash
+cd ~/Documents/ImagegenFrontendWeb
+claude
+```
+
+Drop the generated section images into the folder and say "build this landing page in Next.js using these images as the design reference." Claude Code reads the visual hierarchy, spacing, and component styling directly from the images.
+
+---
+
+## The Core Output Rule
+
+Every request gets sliced into sections and each section becomes its own horizontal image:
+
+- "hero" → 1 image
+- "landing page" (no count given) → defaults to 6 images
+- "full website template" → defaults to 8 images
+- 12 sections requested → 12 images
+
+If the image model can only render one at a time, it generates them sequentially in the same response, labeled "Section X of N: Hero," "Section X of N: Trust bar," and so on, until the full set exists. No single "best" image standing in for the rest.
+
+---
+
+## Hero Composition Bias
+
+Left-text / right-image is the most overused AI hero pattern. The template does not ban it, but it makes the model justify using it. Before defaulting to it, the model has to consider nine alternatives: centered over background image, bottom-left over image, top-left lead, stacked center, image-as-canvas, off-grid editorial, mini minimalist, and the inverted right-text/left-image classic. The pre-output check literally asks: "Am I drafting the default text-left/image-right layout out of habit?"
+
+---
+
+## The Combinatorial Variation Engine
+
+To avoid every generation looking the same, the model commits to one option from each category and holds it for the whole set:
+
+- **Theme paradigm** — pristine light, deep dark, bold studio solid, or quiet premium neutral
+- **Typography character** — six options from clean grotesk to editorial serif pairing
+- **Hero architecture** — cinematic centered, asymmetric split, floating polaroid scatter, and four more
+- **Section system** — bento rhythm, alternating editorial blocks, poster-like storytelling, Swiss grid, and others
+- **Signature components** — exactly 4 chosen from a list of 12 (diagonal masonry, 3D card deck, bento grid, etc.)
+- **Narrative spine** — one concept (artifact, journey, tool, living system, stage, archive) threaded through every section
+
+Per section, the model also picks a composition anchor and background mode from ~10 options each, varying them across the page so no anchor repeats more than twice in a row and no background mode repeats more than three times.
+
+---
+
+## Brief-to-Direction Mapping
+
+The template reads keywords in your brief and pre-configures the dials:
+
+| You say | What happens |
+|---------|--------------|
+| "minimalist" / "swiss" / "clean" | Mini minimalist hero, solid surfaces, stacked center composition, skips the full-bleed requirement |
+| "editorial" / "magazine" / "fashion" | Mid or giant hero, duotone/atmospheric imagery, off-grid asymmetric pulls |
+| "cinematic" / "luxury" / "bold" | Giant statement hero, full-bleed image with tonal overlay, cinematic palette-matched gradients |
+| "SaaS" / "fintech" / "dashboard" | Mid editorial hero, subtle gradients, trust-driven anchors, higher implementation clarity |
+| "agency" / "portfolio" | Decisive giant or mini hero, bold background variety, poster-like off-grid layout |
+| "e-commerce" / "shop" | Product-focused mid hero, full-bleed product photography, unmistakable CTAs |
+
+---
+
+## Default Site Packs
+
+If you don't specify section count, the template has three presets:
+
+- **4-section pack**: Hero, Features, Social proof, CTA
+- **8-section pack**: Hero, Trust bar, Features, Product showcase, Benefits, Testimonials, Pricing, CTA
+- **12-section pack**: Hero, Trust bar, Feature grid, Product preview, Problem/solution, Benefits, Workflow, Metrics, Testimonials, Pricing, FAQ, CTA + footer
+
+---
+
+## Anti-Slop Rules
+
+The template bans specific AI tells outright:
+
+- **Visual**: purple/blue AI gradients, floating blobs, glassmorphism stacked without reason, over-rendered noise
+- **Layout**: cloned left-text/right-image blocks repeated section after section, endless centered sections, fake KPI stat columns (99% satisfaction, $10 saved, ∞ scale)
+- **Copy**: banned words like "unleash," "elevate," "revolutionize," "seamless," "transformative platform," and fake brand names like "Acme," "Nexus," "NovaCore"
+- **Density**: no over-packed sections, no wall-of-content layouts, no filling every empty area just because space exists
+
+---
+
+## Tips
+
+- If the output defaults to a purple-blue gradient hero, that's the failure mode this template exists to prevent — regenerate with an explicit palette instruction ("oxblood and paper, no blue").
+- Ask for section counts explicitly rather than relying on defaults if you have a specific page structure in mind; the model will still fill gaps sensibly, but naming sections gets you closer on the first pass.
+- Feed the resulting image set to Claude Code one section at a time if the model struggles to parse a large batch, since each image is self-contained and already includes typography scale and spacing cues.
+- The template enforces a consistency check across the whole image set (same palette, same CTA family, same border-radius language) — if two sections look like different products, that's a signal to regenerate rather than patch.
+
+---
+
+## Limitations
+
+- This produces static reference images, not working code, CSS, or design tokens. A coding agent still has to interpret and rebuild what it sees.
+- Image models vary in how strictly they follow multi-hundred-line instruction sets; expect to regenerate individual sections that drift off-brief.
+- The one-image-per-section rule assumes the image model supports multiple generations per response. Some tools cap output count per turn, in which case you generate sections across multiple turns.
+- Works best for marketing sites, landing pages, and product comps. It is not tuned for complex app dashboards or data-heavy interfaces.

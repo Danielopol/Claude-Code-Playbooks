@@ -1,0 +1,98 @@
+---
+title: "Stitch Design Taste: Semantic DESIGN.md Generator for Google Stitch"
+description: "Generates a DESIGN.md that encodes premium, anti-generic design rules in Google Stitch's natural-language format — color, type, layout, motion intent, and a full banned-pattern list"
+seoHook: "Google Stitch generates screens from natural-language design rules, but a blank prompt gets you the same generic AI look everyone else gets. This playbook has Claude write a DESIGN.md first — dialed-in atmosphere, calibrated color, banned clichés — so every screen Stitch generates from it inherits the same premium taste."
+targetAudience: "designers and developers using Google Stitch, teams prototyping with Cursor/Antigravity/Gemini CLI plus Stitch MCP, founders generating UI screens from natural language, frontend developers who want a portable design spec across AI design tools"
+exampleUseCase: "\"Set up a design system for my SaaS dashboard before I start generating screens in Stitch\" → A DESIGN.md with a named atmosphere (density/variance/motion dials), a calibrated Zinc-neutral palette with one accent, Geist typography rules, and an explicit anti-pattern list banning Inter, purple gradients, and 3-column card rows"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "Leonxlnx (Taste Skill)"
+sourceUrl: "https://github.com/Leonxlnx/taste-skill/tree/main/skills/stitch-skill"
+tags: ["frontend", "google-stitch", "design-system", "semantic-design", "ui"]
+createdAt: "2026-07-11"
+---
+
+## What This Does
+
+Google Stitch (labs.google/stitch) generates UI screens from natural-language design descriptions rather than code — you describe the visual system and it produces screens matching it. Left unguided, that description defaults to generic AI-design patterns: Inter, purple gradients, symmetric 3-column grids, centered heroes.
+
+This skill has Claude write a `DESIGN.md` first: a single source of truth Stitch reads before generating anything. It encodes visual atmosphere (with tunable density/variance/motion dials), a calibrated neutral-plus-one-accent color palette, typography rules with banned fonts, component behavior specs, layout and responsive rules, and a documented motion philosophy — plus an explicit list of AI-design tells to avoid. It comes from Leonxlnx's "taste-skill" project, a set of anti-slop frontend design skills for AI coding agents, and includes a ready-to-use reference `DESIGN.md` you can adapt directly.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/StitchDesign
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/StitchDesign/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/StitchDesign
+claude
+```
+
+Ask Claude to generate a `DESIGN.md` for your project, or adapt the reference "Taste Standard" system included in the template. Feed the resulting file into Stitch (directly, or via the Stitch MCP server in Cursor/Antigravity/Gemini CLI) before generating screens.
+
+---
+
+## The Four Style Dials
+
+The reference system exposes four numeric dials so you can tune the output per project instead of accepting one fixed look:
+
+| Dial | Range | What it controls |
+|------|-------|-------------------|
+| Creativity | 1–10 | 1 = ultra-minimal Swiss/monochrome, 10 = expressive editorial with inline headline images |
+| Density | 1–10 | 1 = gallery-airy whitespace, 10 = cockpit-dense data layouts |
+| Variance | 1–10 | 1 = predictable symmetric grids, 10 = artsy chaotic, no two sections alike |
+| Motion Intent | 1–10 | 1 = static, 10 = cinematic orchestration on every component |
+
+Default baseline: Creativity 8, Density 4, Variance 8, Motion 6.
+
+---
+
+## What the DESIGN.md Encodes
+
+1. **Visual atmosphere** — mood, density, and philosophy in plain language Stitch can interpret
+2. **Color calibration** — neutral base plus a single accent (max 80% saturation, no purple/neon), with hex codes and functional roles for every color
+3. **Typography** — font stacks for display/body/mono, with explicit bans (Inter, generic serifs) and forced alternatives (Geist, Outfit, Satoshi)
+4. **Component behavior** — buttons, cards, inputs, loaders, empty states, each with shape, shadow, and interaction spec
+5. **Layout principles** — grid-first, asymmetric hero structure, no 3-equal-column feature rows
+6. **Motion philosophy** — spring physics (`stiffness: 100, damping: 20`), perpetual micro-loops, staggered reveals — documented as intent for the coding agent that builds the exported design, since Stitch itself generates static screens
+7. **Anti-patterns** — the full banned-clichés list, treated as equally important as the positive rules
+
+---
+
+## Anti-Patterns It Bans
+
+The same discipline as the other taste-skill playbooks, translated into Stitch's language: no emojis, no Inter, no generic serif fonts, no pure black, no neon glows, no oversaturated accents, no 3-column equal card layouts, no centered heroes above variance 4, no filler UI text ("Scroll to explore," bouncing chevrons), no generic placeholder names, no fake round numbers (`99.99%`), no AI copywriting clichés ("Elevate," "Seamless," "Unleash"), no broken Unsplash links, no unmodified shadcn/ui defaults, no `h-screen` (use `min-h-[100dvh]`).
+
+---
+
+## Tips
+
+- Start with atmosphere, not tokens. Naming the mood ("clinical yet warm, like a well-lit architecture studio") before picking hex codes keeps the rest of the document consistent.
+- Name colors by function, not appearance — "Whisper Border" communicates intent; "light gray" doesn't.
+- Include exact hex codes, rem values, and pixel values in parentheses next to every descriptive name. Stitch interprets precise values better than vague adjectives.
+- The anti-pattern list matters as much as the positive rules. Don't skip it even if it feels redundant with the rest of the document.
+- Since Stitch generates static screens, use Section 8 (Motion & Interaction) as a handoff spec for whichever coding agent implements the exported design.
+
+---
+
+## Limitations
+
+- Stitch itself does not animate. The motion section is intent documentation for a downstream coding agent, not something Stitch executes directly.
+- Requires access to Google Stitch (labs.google/stitch), and optionally the Stitch MCP server for programmatic integration with Cursor, Antigravity, or Gemini CLI.
+- The dial system (Creativity/Density/Variance/Motion) is a starting heuristic. Extreme combinations (e.g., Creativity 10 with Density 10) can produce visually noisy results — review the generated DESIGN.md before feeding it to Stitch.
+- Like the other taste-skill playbooks, this enforces one opinionated aesthetic direction per project. It's not meant to produce neutral, unbranded output.

@@ -1,0 +1,111 @@
+---
+title: "Minimalist UI Design Skill: Editorial, Monochrome Interfaces"
+description: "A frontend design system that enforces warm monochrome, bento grids, and editorial typography — the Notion/Linear look, banned from gradients, heavy shadows, and Inter"
+seoHook: "Every AI-built UI defaults to Inter, blue gradients, and shadow-lg cards. This playbook forces the opposite: warm off-white canvases, editorial serif headings, pastel accents used only for semantic meaning, and shadows so subtle they're almost invisible."
+targetAudience: "frontend developers, indie hackers building SaaS products, designers prototyping with Claude Code, teams who want a Notion or Linear look without a design team"
+exampleUseCase: "\"Build a settings page for my app\" → A warm off-white interface with a serif page heading, 1px bordered cards with no shadow, pale pastel status badges, and macOS-style faux window chrome for embedded previews, instead of a generic Tailwind template"
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Leonxlnx (Taste Skill)"
+sourceUrl: "https://github.com/Leonxlnx/taste-skill/tree/main/skills/minimalist-skill"
+tags: ["frontend", "minimalist", "editorial", "design-system", "ui"]
+createdAt: "2026-07-11"
+---
+
+## What This Does
+
+This is a **frontend UI design system**, not a business or pricing playbook (the site also has "minimalist-pricing" and "minimalist-mvp" for those topics — this one is purely about visual interface design). It gives Claude a strict rule set for building ultra-minimalist, "document-style" interfaces in the style of Notion, Linear, and other top-tier workspace tools.
+
+It works by banning the generic defaults first: no Inter/Roboto/Open Sans, no Lucide/Feather icons, no heavy Tailwind shadows, no gradients, no pill-shaped large containers, no emojis, no AI copywriting clichés. Then it defines what to use instead: a warm monochrome palette, an editorial serif for headings paired with a geometric sans for UI, bento-grid layouts, and motion so subtle it's felt more than seen. It comes from Leonxlnx's "taste-skill" project, a set of anti-slop frontend design skills for AI coding agents.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/MinimalistUI
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/MinimalistUI/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/MinimalistUI
+claude
+```
+
+Describe the page or component you need. Claude applies the typographic hierarchy, warm monochrome palette, and bento-grid rules automatically.
+
+---
+
+## Banned by Default
+
+The template opens with a list of generic web defaults Claude must avoid:
+
+- Inter, Roboto, or Open Sans typefaces
+- Lucide, Feather, or standard Heroicons
+- Tailwind's default heavy shadows (`shadow-md`, `shadow-lg`, `shadow-xl`)
+- Bright primary-colored hero sections, gradients, neon, glassmorphism
+- `rounded-full` on large containers, cards, or primary buttons
+- Emojis anywhere in code, copy, or alt text
+- Placeholder names like "John Doe" or "Acme Corp"
+- AI copywriting clichés: "Elevate," "Seamless," "Unleash," "Next-Gen," "Delve"
+
+---
+
+## Typography & Color System
+
+- **Body/UI:** geometric sans with character — `SF Pro Display`, `Geist Sans`, `Switzer`.
+- **Headings:** editorial serif — `Newsreader`, `Playfair Display`, `Instrument Serif` — with tight tracking (`-0.02em` to `-0.04em`) and tight leading (`1.1`).
+- **Code/metadata:** monospace — `Geist Mono`, `SF Mono`, `JetBrains Mono`.
+- **Text color:** never pure black. Off-black/charcoal (`#111111` or `#2F3437`) for body, muted gray (`#787774`) for secondary text.
+- **Canvas:** pure white or warm bone (`#F7F6F3`, `#FBFBFA`). Borders are ultra-light gray (`#EAEAEA`).
+- **Accents:** desaturated pastels only, tied to meaning — pale red, blue, green, yellow, each with a matching dark text color for contrast.
+
+---
+
+## Component Rules
+
+- **Bento grids:** asymmetrical CSS Grid, `1px solid #EAEAEA` borders, 8–12px radius max, generous 24–40px padding.
+- **Primary buttons:** solid `#111111` fill, white text, 4–6px radius, no shadow, hover shifts to `#333333` or scales to `0.98`.
+- **Tags/badges:** pill-shaped, uppercase, wide tracking, pastel background only.
+- **Accordions:** no container box — separate items with a single bottom border, toggle with a plain `+`/`-`.
+- **Keystrokes:** rendered as `<kbd>` tags with a light border and monospace font.
+- **Faux-OS chrome:** wrap software mockups in a white top bar with three small gray circles, mimicking macOS window controls.
+
+---
+
+## Motion
+
+Motion should be felt, not noticed.
+
+- Scroll-triggered fade-ins (`translateY(12px)` + opacity, 600ms, `cubic-bezier(0.16, 1, 0.3, 1)`) via `IntersectionObserver`, never scroll listeners.
+- Card hover lifts with an ultra-subtle shadow shift, buttons scale to `0.98` on active.
+- List items stagger in with an 80ms cascade delay — nothing mounts all at once.
+- Animate only `transform` and `opacity`, never layout-triggering properties.
+
+---
+
+## Tips
+
+- Establish macro-whitespace first — `py-24` to `py-32` between sections — before touching typography or color.
+- Constrain body content to `max-w-4xl` or `max-w-5xl`; the editorial feel depends on line length, not just font choice.
+- Use `picsum.photos/seed/{context}/1200/800` as a placeholder image source when real assets aren't available yet — desaturate and add warm grain to match the palette.
+- Don't leave sections visually flat. Add a low-opacity radial gradient or subtle geometric line pattern behind hero content so it has depth without breaking the minimalist rules.
+
+---
+
+## Limitations
+
+- This is a UI design skill, not a business/strategy playbook. If you're looking for minimalist pricing pages or MVP scoping, use the separate "minimalist-pricing" or "minimalist-mvp" playbooks on this site instead.
+- The palette is intentionally narrow. Products that need strong brand color or high visual energy will fight this system.
+- Heavy reliance on a licensed editorial serif (Lyon Text, Optimized) may require font licensing; the template lists open alternatives like Newsreader and Instrument Serif as fallbacks.

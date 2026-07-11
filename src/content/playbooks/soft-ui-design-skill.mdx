@@ -1,0 +1,102 @@
+---
+title: "Soft UI Design Skill: Premium, Awwwards-Tier Interfaces"
+description: "A design system that makes Claude build $150k-agency-feeling UI — double-bezel cards, spring-physics motion, magnetic buttons, and a banned list that blocks every cheap AI-design tell"
+seoHook: "AI-generated UIs have a look: Inter font, shadow-md cards, linear transitions, symmetric 3-column grids. This playbook installs the opposite instinct — nested 'double-bezel' cards, spring-physics motion, and a hard ban on every default that makes a design read as template, not agency work."
+targetAudience: "frontend developers, startup founders building landing pages, indie hackers who want their product to feel premium, designers prototyping with Claude Code, agencies using Claude Code for client work"
+exampleUseCase: "\"Build a pricing page\" → A page with a floating glass navbar, double-bezel pricing cards with nested inner highlights, magnetic hover buttons with a button-in-button trailing arrow, and staggered spring-physics scroll reveals, instead of flat Tailwind cards with a linear fade-in"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "Leonxlnx (Taste Skill)"
+sourceUrl: "https://github.com/Leonxlnx/taste-skill/tree/main/skills/soft-skill"
+tags: ["frontend", "premium-ui", "soft-ui", "animation", "design-system"]
+createdAt: "2026-07-11"
+---
+
+## What This Does
+
+Gives Claude the exact fonts, spacing, shadow depths, card structures, and animation physics that make a website feel like a $150k agency build instead of a template. It opens with an "Absolute Zero" list of banned defaults — Inter, Roboto, thick-stroke icon sets, harsh drop shadows, linear transitions — then defines a "Creative Variance Engine" that forces Claude to pick a distinct vibe (Ethereal Glass, Editorial Luxury, or Soft Structuralism) and layout archetype (Asymmetrical Bento, Z-Axis Cascade, or Editorial Split) per project, so outputs don't repeat the same look every time.
+
+It comes from Leonxlnx's "taste-skill" project, a set of anti-slop frontend design skills for AI coding agents. Where the brutalist and minimalist skills in this same series enforce restraint, this one enforces polish: nested "double-bezel" card architecture, magnetic button hover physics, and spring-based scroll choreography.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/SoftUI
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/SoftUI/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/SoftUI
+claude
+```
+
+Describe the page or component. Claude silently picks a vibe archetype and layout archetype, then builds against the full component and motion spec.
+
+---
+
+## The Absolute Zero Directive
+
+If any of these show up in generated code, the design fails by the skill's own rule:
+
+- **Banned fonts:** Inter, Roboto, Arial, Open Sans, Helvetica
+- **Banned icons:** thick-stroke Lucide, FontAwesome, Material Icons
+- **Banned shadows/borders:** generic 1px gray borders, harsh dark drop shadows (`shadow-md`, `rgba(0,0,0,0.3)`)
+- **Banned layouts:** edge-to-edge sticky navbars, symmetrical 3-column grids without real whitespace
+- **Banned motion:** `linear`/`ease-in-out` transitions, instant state changes
+
+---
+
+## The Creative Variance Engine
+
+Before writing code, Claude picks one vibe and one layout archetype so outputs stay varied but always premium.
+
+**Vibe archetypes:** Ethereal Glass (OLED black, radial mesh gradients, backdrop-blur cards — for SaaS/AI/tech), Editorial Luxury (warm creams, variable serif headings, film-grain texture — for lifestyle/agency), Soft Structuralism (silver-grey/white, bold grotesk type, diffused ambient shadows — for consumer/health/portfolio).
+
+**Layout archetypes:** Asymmetrical Bento (masonry grid of varying card sizes), Z-Axis Cascade (overlapping cards with depth and slight rotation), Editorial Split (massive type on one half, scrollable content on the other). Each has an explicit mobile collapse rule.
+
+---
+
+## Haptic Micro-Aesthetics
+
+- **Double-bezel cards:** every premium container gets an outer shell (subtle tint, hairline border, large radius) wrapping an inner core (own background, inset highlight, mathematically smaller radius) — never a flat card on the background.
+- **Button-in-button:** trailing arrow icons sit inside their own circular wrapper flush with the button's padding, never floating naked next to the label.
+- **Spatial rhythm:** double the usual section padding (`py-24` to `py-40`), precede major headings with a pill-shaped eyebrow tag.
+
+---
+
+## Motion Choreography
+
+- Custom spring-like cubic-beziers everywhere (e.g., `cubic-bezier(0.32,0.72,0,1)`), never default linear/ease.
+- Floating glass navbar that morphs its hamburger into an X and expands into a staggered, blurred full-screen menu.
+- Magnetic button hover: scale down on press, inner icon translates diagonally and scales up for kinetic tension.
+- Scroll entry: heavy fade-up with blur (`translate-y-16 blur-md opacity-0` to resolved state, 800ms+) via `IntersectionObserver` or `whileInView`, never scroll listeners.
+
+---
+
+## Tips
+
+- Roll the variance engine mentally before prompting — naming a vibe ("Ethereal Glass, SaaS context") in your request gets a more consistent result than leaving it to chance.
+- The double-bezel technique is the single highest-leverage rule. Apply it to every card, image, and input before touching motion or color.
+- Keep `backdrop-blur` on fixed/sticky elements only. Applying it to scrolling containers is explicitly called out as a mobile performance killer.
+- Run the pre-output checklist from the template as a literal review pass on generated code, not just a read-through.
+
+---
+
+## Limitations
+
+- This system is deliberately maximalist and animation-heavy. It's a poor fit for internal tools, accessibility-first products, or anything where motion needs to stay minimal.
+- Spring-physics motion and blur effects are GPU-intensive. Test on real mobile hardware, not just desktop Chrome, before shipping.
+- The variance engine assumes Claude re-rolls per project. Within a single project, still commit to one vibe and one layout archetype — mixing them mid-build breaks the coherence the skill is designed to produce.

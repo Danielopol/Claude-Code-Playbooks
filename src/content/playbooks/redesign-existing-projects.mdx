@@ -1,0 +1,101 @@
+---
+title: "Redesign Existing Projects: UI Audit and Upgrade"
+description: "A design audit checklist that finds generic AI-look patterns in an existing codebase and fixes them without breaking functionality or migrating frameworks"
+seoHook: "Your app works fine but looks like every other AI-built product: Inter font, purple gradient, three equal cards, zero hover states. This playbook audits an existing UI against a long list of generic patterns and fixes them in place, using the framework already in the project."
+targetAudience: "developers inheriting an AI-generated codebase, indie hackers whose MVP looks generic, agencies doing UI polish passes, teams shipping a v1 that needs a visual upgrade before launch"
+exampleUseCase: "\"Make this dashboard look less like a generic AI template\" → A prioritized list of fixes (font swap, color cleanup, hover states, layout spacing, component swaps) applied directly to the existing Tailwind config and components, with functionality untouched"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Leonxlnx (Taste Skill)"
+sourceUrl: "https://github.com/Leonxlnx/taste-skill/tree/main/skills/redesign-skill"
+tags: ["frontend", "redesign", "ui-audit", "refactor", "design"]
+createdAt: "2026-07-11"
+---
+
+## What This Does
+
+Audits an app that already exists and fixes what's generic about it. This is the opposite starting point from the other Taste Skill playbooks, which build new pages from a visual reference. Here there's no reference image: the codebase itself is the input, and the job is to scan it, diagnose weak points against a long checklist, and apply targeted fixes without rewriting from scratch or swapping frameworks.
+
+The checklist covers typography, color and surfaces, layout, interactivity states, content quality, component patterns, iconography, code quality, and the things AI-generated UIs typically forget entirely (404 pages, form validation, skip-to-content links, cookie consent). It ends with a fix-priority order so the highest-impact, lowest-risk changes happen first.
+
+See also [Image-to-Code](/playbooks/image-to-code) for building new sections from a visual reference, and [Full-Output Enforcement](/playbooks/full-output-enforcement) for making sure Claude doesn't hand back a half-finished redesign.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Drop this CLAUDE.md into the root of the existing project you want to redesign, not a new empty folder.
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md /path/to/your/existing-project/CLAUDE.md
+```
+
+### Step 3: Start Working
+
+```bash
+cd /path/to/your/existing-project
+claude
+```
+
+Ask Claude to "audit the UI and list what's generic about it" first, then follow up with "fix priority 1 and 2" to work through the list incrementally rather than one giant diff.
+
+---
+
+## How It Works
+
+1. **Scan** — Claude reads the codebase, identifies the framework and styling method (Tailwind, vanilla CSS, styled-components, CSS modules), and notes current patterns.
+2. **Diagnose** — Runs the full audit checklist, listing every generic pattern, weak point, and missing state found.
+3. **Fix** — Applies targeted upgrades that work with the existing stack. No rewrites, no framework migrations.
+
+---
+
+## What Gets Audited
+
+- **Typography** — default fonts, weak headline presence, missing font weights, all-caps overuse
+- **Color and surfaces** — pure black backgrounds, oversaturated accents, the purple/blue "AI gradient" look, flat sections with no depth
+- **Layout** — everything centered and symmetrical, the three-equal-card feature row, missing max-width containers, misaligned card groups
+- **Interactivity** — missing hover/active states, no loading or empty or error states, dead links, no smooth scroll
+- **Content** — "John Doe" placeholder names, suspiciously round numbers, Lorem Ipsum, AI copywriting cliches like "Elevate" and "Unleash"
+- **Component patterns** — generic bordered cards, always one filled + one ghost button, accordion FAQs, 3-tower pricing tables
+- **Code quality** — div soup instead of semantic HTML, arbitrary z-index values, commented-out dead code, missing alt text
+- **Strategic omissions** — no 404 page, no form validation, no skip-to-content link, no legal links in the footer
+
+---
+
+## Fix Priority
+
+Applied in this order for maximum visual impact with minimum risk:
+
+1. **Font swap** — biggest instant improvement, lowest risk
+2. **Color palette cleanup** — remove clashing or oversaturated colors
+3. **Hover and active states** — makes the interface feel alive
+4. **Layout and spacing** — proper grid, max-width, consistent padding
+5. **Replace generic components** — swap cliche patterns for modern alternatives
+6. **Add loading, empty, and error states** — makes it feel finished
+7. **Polish typography scale and spacing** — the premium final touch
+
+---
+
+## Rules It Follows
+
+- Works with the existing tech stack. Never migrates frameworks or styling libraries.
+- Never breaks existing functionality. Test after every change.
+- Checks the project's dependency file before importing any new library.
+- Checks the Tailwind version (v3 vs v4) before touching config.
+- Falls back to vanilla CSS if the project has no framework.
+- Keeps changes reviewable and focused: small, targeted improvements over big rewrites.
+
+---
+
+## Limitations
+
+- This is an audit-and-fix checklist, not a visual reference generator. For building new pages from scratch with a strong visual direction, use the Image-to-Code playbook instead.
+- Assumes a working, functional app underneath. It upgrades visuals and polish, not architecture or business logic.
+- The checklist is opinionated (single accent color, no pure black, no three-card rows). Override specific items when the existing brand or design system has a deliberate reason for them.
+- Large-scale visual changes across many components still deserve human review before shipping, even when each individual fix is small.

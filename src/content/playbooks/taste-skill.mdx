@@ -1,0 +1,115 @@
+---
+title: "Taste Skill: Anti-Slop Frontend Design"
+description: "A design-taste inference system that reads your brief, tunes three dials, and stops Claude from shipping the same AI-purple centered-hero landing page everyone else gets"
+seoHook: "Every AI-built landing page looks the same: centered hero over a dark mesh gradient, three equal feature cards, Inter font, purple glow buttons. This playbook gives Claude a full design brief inference process, banned-pattern lists, and real GSAP motion code so your site doesn't scream 'built by a model.'"
+targetAudience: "frontend developers, indie hackers building landing pages, design-conscious founders, agencies shipping client sites with Claude Code, portfolio builders"
+exampleUseCase: "\"Build a landing page for a premium cookware brand\" → Claude declares a one-line design read, sets variance/motion/density dials, picks a non-cliche color palette (skips the banned beige+brass combo), and runs a 60-plus item pre-flight checklist before shipping"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Leonxlnx (Taste Skill)"
+sourceUrl: "https://github.com/Leonxlnx/taste-skill/tree/main/skills/taste-skill"
+tags: ["frontend", "design", "ui", "gsap", "anti-slop", "landing-page"]
+createdAt: "2026-07-11"
+---
+
+## What This Does
+
+Stops Claude from defaulting to generic "AI slop" design when it builds landing pages, portfolios, or redesigns. Instead of jumping straight to code, Claude first reads the brief (page kind, vibe words, audience, brand assets) and states a one-line "Design Read." From that read it sets three dials, variance, motion, and density, that gate every layout and animation decision downstream. It then maps the brief to a real design system when one applies (Fluent, Carbon, shadcn/ui) instead of hand-rolling CSS for things that already have official packages.
+
+The bulk of the skill is a long list of banned AI tells: no AI-purple gradients, no Inter-as-default, no three-equal-feature-cards, no em dashes anywhere, no beige+brass "premium consumer" palette, no eyebrow labels on every section, no div-based fake screenshots. It also ships canonical GSAP code for sticky-stack and horizontal-pan scroll effects, and a 60-plus item pre-flight checklist Claude runs before calling any page done.
+
+This is the flagship "v2" build of the Taste Skill project, aimed specifically at marketing pages and portfolios, not dashboards or product UI.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/TasteSkill
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/TasteSkill/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/TasteSkill
+claude
+```
+
+Describe the page you want ("landing page for a B2B SaaS analytics tool, Linear-style") and let Claude declare its Design Read before it writes any code. Drop it into an existing Next.js project's root CLAUDE.md to apply the same rules to a redesign.
+
+---
+
+## How the Brief Inference Works
+
+Before any code, Claude reads six signals: page kind, vibe words you used, reference URLs or screenshots, target audience, existing brand assets, and quiet constraints (accessibility, public-sector, regulated industries). It then states a single line, for example:
+
+> "Reading this as: B2B SaaS landing for technical buyers, with a Linear-style minimalist language, leaning toward Tailwind utilities + Geist + restrained motion."
+
+If the brief is ambiguous, Claude asks exactly one clarifying question, never a multi-question dump. If it can infer confidently, it skips the question and states the read directly.
+
+---
+
+## The Three Dials
+
+Every layout, motion, and density decision is gated by three numeric dials Claude sets after the design read:
+
+| Dial | Range | What it controls |
+|------|-------|-------------------|
+| `DESIGN_VARIANCE` | 1 (perfect symmetry) to 10 (artsy chaos) | Grid symmetry, offsets, asymmetric layouts |
+| `MOTION_INTENSITY` | 1 (static) to 10 (cinematic/physics) | Animation complexity, scroll effects |
+| `VISUAL_DENSITY` | 1 (art gallery/airy) to 10 (cockpit/packed) | Spacing, card usage, information density |
+
+Baseline is `8 / 6 / 4`. Vibe words shift these: "minimalist / Linear-style" drops variance to 5-6 and motion to 3-4, while "playful / Awwvards / experimental" pushes both to 9-10. Trust-first briefs (public-sector, regulated industries) cap all three dials low regardless of other signals.
+
+---
+
+## Design System Mapping
+
+Once the dials are set, Claude picks a foundation instead of hand-rolling everything:
+
+- **Real design systems** (installed as official packages): Fluent UI for enterprise SaaS, Material Web for Google-flavored products, Carbon for IBM-style B2B, Polaris for Shopify apps, Atlaskit for Jira-style tools, GOV.UK Frontend or USWDS for public-sector, shadcn/ui or Tailwind v4 for indie SaaS.
+- **Aesthetic-only briefs** (no official package exists): glassmorphism, bento grids, brutalism, editorial/magazine, dark tech, mesh gradients, kinetic typography. These get honest native CSS + Tailwind implementations, not a fake "official" library.
+
+One system per project, always. The template ships install commands and canonical doc links for every listed system in its appendices.
+
+---
+
+## Tips
+
+- The em-dash ban is absolute, not "use sparingly." Zero em dashes anywhere on the page, headlines, quotes, button text, alt text included. This is called out as the single most-violated AI tell.
+- Run the Eyebrow Restraint check mechanically: count `uppercase tracking` labels above section headers. Max 1 per 3 sections, hero included in the count.
+- For premium-consumer briefs (cookware, wellness, artisan goods), the skill explicitly bans the beige+brass+oxblood+espresso palette and gives seven rotating alternatives (Cold Luxury, Forest, Black and Tan, etc.) so consecutive projects don't look identical.
+- Motion needs a one-sentence justification (hierarchy, storytelling, feedback, or state transition). "It looked cool" is not a valid reason to add a ScrollTrigger.
+- Use the canonical GSAP skeletons in the template verbatim for sticky-stack and horizontal-pan effects. The most common failure mode is `start: "top center"` instead of `start: "top top"`, which causes the trigger to fire mid-scroll instead of pinning cleanly.
+
+---
+
+## Examples
+
+**Banned default vs. required override:**
+> Banned: centered hero over a dark mesh gradient with three equal feature cards below, Inter font, purple button glow.
+>
+> Required instead: split-screen or asymmetric hero (when `DESIGN_VARIANCE > 4`), a non-Inter display font (Geist, Outfit, Cabinet Grotesk), a single desaturated accent color, and feature content broken into at least 4 different layout families across the page.
+
+**Hero discipline in practice:**
+> A hero gets at most 4 text elements: an optional eyebrow, a 2-line headline, a 20-word subtext, and one primary plus one secondary CTA. A trust micro-strip ("Used by teams at...") or pricing teaser stuffed into the hero gets moved to its own section below.
+
+---
+
+## Limitations
+
+- Scoped to marketing surfaces: landing pages, portfolios, editorial sites, and redesigns. It explicitly says not to use it for dashboards, dense product UI, data tables, multi-step forms, code editors, or native mobile, and points to the right tool for each instead.
+- Assumes a React or Next.js + Tailwind v4 + Motion (`motion/react`) stack by default. Other stacks need manual translation of the architecture section.
+- The pre-flight checklist has 60-plus items. Thorough, but it means Claude needs real scope to run through it; a five-minute throwaway prototype won't get the full treatment.
+- Image-generation guidance assumes an image-gen tool is available in the environment. Without one, Claude falls back to Picsum-seed placeholders or explicit TODO slots rather than fabricating fake screenshots.
+- The Block Library (Section 12 of the template) is a schema contract for reusable component blocks, not a populated library. Treat it as a format to follow if you extend the skill yourself, not ready-made components.

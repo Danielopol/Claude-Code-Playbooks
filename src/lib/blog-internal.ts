@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-data-analysts',
+    slug: 'claude-skills-data-analysts',
+    title: 'Claude Skills for Data Analysts: From Raw Tables to Boardroom Charts',
+    description: "How to use four Claude Skills to take data from a raw spreadsheet all the way to a presentation-ready dashboard — a CSV and Excel analyst that answers questions in plain English with no formulas, a natural language SQL writer that produces optimized dialect-specific queries, a data visualization creator that turns default matplotlib charts into publication-quality figures, and an interactive dashboard builder that ships a shareable HTML dashboard with no BI tool required.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Data Analysis',
+    tags: ['claude skills data analysis', 'ai data analyst', 'ai sql writer', 'ai spreadsheet analysis', 'ai data visualization', 'ai dashboard builder', 'natural language sql', 'excel ai assistant'],
+    createdAt: '2026-07-08',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-mcp',
     slug: 'claude-skills-mcp',
     title: 'Claude Skills for Building MCP Servers: Extend Claude with Custom Tools',

@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-design-to-code',
+    slug: 'claude-skills-design-to-code',
+    title: 'Claude Skills for Designers Who Code: From Mockup to Frontend',
+    description: "How to use four Claude Skills to close the design-engineering gap — a design handoff generator that turns a Figma file into a complete developer spec, a design system manager that audits and documents inconsistent tokens and components, a frontend enhancer that upgrades a generic Next.js app into something distinctive, and an artifacts builder that ships a working React and Tailwind prototype as a single shareable file.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Design to Code',
+    tags: ['claude skills design to code', 'ai frontend builder', 'ai design handoff', 'design system audit ai', 'figma to code ai', 'react prototype ai', 'design engineering', 'ai ui prototyping'],
+    createdAt: '2026-07-15',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-data-analysts',
     slug: 'claude-skills-data-analysts',
     title: 'Claude Skills for Data Analysts: From Raw Tables to Boardroom Charts',

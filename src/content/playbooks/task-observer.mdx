@@ -1,0 +1,98 @@
+---
+title: "Task Observer: One Skill to Rule Them All"
+description: "A meta-skill that watches every work session, logs corrections and workflow patterns as skill candidates, and runs a review cycle that turns the log into new or improved skills"
+seoHook: "You build a skill, use it for a month, and it's frozen exactly where you left it — every correction you make, every workaround you find, evaporates at the end of the session. This meta-skill watches you work, logs what should change, and turns that log into a review cycle that keeps every skill in your library current, including itself."
+targetAudience: "Claude Code power users maintaining multiple custom skills, teams standardizing on shared skill libraries, consultants building reusable methodology skills, anyone who has corrected the same AI mistake more than once and wanted it to stick"
+exampleUseCase: "A session where you correct Claude's approach three times → each correction is silently logged as an observation tied to the relevant skill, and the next scheduled review turns the pattern into a concrete rule change staged for your approval"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "Eoghan Henn (rebelytics.com)"
+sourceUrl: "https://github.com/rebelytics/one-skill-to-rule-them-all/blob/main/SKILL.md"
+tags: ["skills", "meta-skill", "self-improvement", "workflow", "claude-code", "automation"]
+createdAt: "2026-07-17"
+---
+
+## What This Does
+
+Runs alongside every task-oriented session and watches for two things: a reusable workflow that no existing skill captures yet, and friction with a skill you already have (a rule Claude violated, a correction that reveals a gap, a better approach than the one documented). Instead of losing that signal at the end of the session, it appends a structured entry to an observation log — silently, without interrupting the work.
+
+A separate review cycle (scheduled or a 7-day fallback) later cross-checks every open observation against your whole skill library, stages the resulting updates, and hands them to you for approval. Nothing goes live automatically — the review produces a diff you install yourself. Because the meta-skill also watches itself, gaps in its own methodology get logged and fixed the same way.
+
+The canonical skill ships as a multi-file bundle (`SKILL.md` plus three files in `references/`, loaded on demand). This playbook's download merges all four into one CLAUDE.md so you can drop it in with a single file — see Limitations below if you want the original modular install instead.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/TaskObserver
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/TaskObserver/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/TaskObserver
+claude
+```
+
+Work normally. The skill creates `skill-observations/log.md` on first use and starts appending entries as it notices things worth capturing. Ask "any observations logged?" at the end of a session to see what it caught.
+
+---
+
+## What It Watches For
+
+- **New skill candidates** — a multi-step workflow you repeat, a methodology you explain that nothing captures yet, "I always do it this way" moments.
+- **Existing skill gaps** — a rule Claude violates, a correction that reveals a missing edge case, a technique that works well enough to promote from incidental to documented, an undocumented use case.
+- **What to cut** — a rule nobody follows, a section never referenced across many sessions, contradictory guidance, "just in case" complexity that never fired. The review treats simplification as seriously as addition.
+
+It stays off for casual conversation and quick factual questions — it only activates for sessions where tools are running and deliverables are being produced.
+
+---
+
+## The Observation Log
+
+Every entry follows a fixed format: title, status (`OPEN` / `ACTIONED` / `DECLINED`), date, session context, which skill it targets, whether it's open-source or internal, the issue, a suggested improvement, and — the most important field — the generalizable principle behind it. Entries are appended, never inserted mid-file, and numbered with a check-before-write, verify-after-write discipline specifically so two parallel sessions writing to the same log don't collide or silently overwrite each other's entries.
+
+Resolved entries stay in the active log until the day after they're resolved, then move to a dated archive file. This grace period is read from the file itself, not session memory, so it holds even if a different session does the archiving days later.
+
+---
+
+## The Review Cycle
+
+Two ways it runs: a scheduled recurring task (Mon/Wed/Fri mornings is the author's own cadence) that applies non-escalated changes on its own, or an in-session fallback that offers to run when 7+ days have passed with open observations waiting. The fallback is a one-line offer, never a blocker — decline it and keep working.
+
+When the user is present, every observation surfaces grouped by skill for approval before anything changes. When running unattended, it applies safe changes automatically but escalates without applying whenever an observation proposes a brand-new skill, removes or restructures existing content, or self-flags uncertainty. A review that changes nothing is treated as a failure mode, not a safe default — but a review is never allowed to touch a live skill file directly. Every update lands in a staged directory for you to review and install.
+
+---
+
+## Open-Source vs. Internal Skills
+
+Every observation gets tagged as one or the other. Open-source observations are methodology that would help any practitioner and default to fully generalized language — no client names, project specifics, or identifying detail, even in the reasoning field. Internal observations can keep real specifics because they're not going anywhere public. When it's ambiguous, the default is open-source: strip the specifics first, let the user add detail back in if it turns out to be internal.
+
+---
+
+## Tips
+
+- Pair the skill's own trigger phrases with a direct CLAUDE.md instruction to load it at the start of every task-oriented session — description-based matching alone can miss activation when Claude is focused on the task at hand.
+- Ask "any observations logged?" when you wrap up a session. The author's own habit — checking in every time a task gets archived — reportedly caught more real observations than waiting for the skill to surface them unprompted.
+- Start with one or two skills you already correct often. The review cycle's value compounds with library size; a single skill won't show much yet.
+- If you're in an environment with no persistent filesystem (a plain chat session), the skill switches to handoff-doc mode: it collects observations in-session and hands you a structured document to paste into your next session instead of losing them.
+
+---
+
+## Limitations
+
+- This playbook packages the skill as a single merged CLAUDE.md for convenience. The author's actual distribution is a `SKILL.md` plus a `references/` folder loaded on demand, meant to be installed as an Agent Skill (`.claude/skills/task-observer/`) rather than pasted whole into CLAUDE.md. If you want the modular, on-demand-loading version, grab the folder structure directly from the [source repo](https://github.com/rebelytics/one-skill-to-rule-them-all).
+- The scheduled review needs a scheduler that can actually reach the same filesystem the observation log lives on. A cloud-hosted scheduled task pointed at a local-only log won't work — the source material documents this gap explicitly rather than hiding it.
+- It only produces recommendations. It doesn't edit your skills for you; you still review and install every change.
+- The heavy concurrent-write safety machinery (numbering discipline, archival, log-write locking) is only load-bearing if you actually run parallel sessions against the same log. A single-session, single-user setup can safely ignore most of it in practice, even though the rules stay active.

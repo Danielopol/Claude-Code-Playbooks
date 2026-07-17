@@ -1,0 +1,118 @@
+---
+title: "Accessible Docs: Writing for ADHD and Dyslexic Readers"
+description: "A document template and rule set that makes standup summaries, project docs, and technical writing scannable for readers with ADHD or dyslexia — and faster to read for everyone else"
+seoHook: "Your standup summary took five minutes to write and gets skimmed in five seconds, if it gets read at all. This playbook restructures internal docs around how ADHD and dyslexic readers actually process text — action items first, a four-line notice up top telling people whether it's worth their time, three-sentence paragraphs — and the result is faster for every reader, not just the ones it was designed for."
+targetAudience: "team leads writing standup summaries, project managers drafting status updates, technical writers, engineering managers writing decision records, anyone whose docs get skimmed instead of read"
+exampleUseCase: "\"Write up today's standup notes\" → A one-page summary opening with an Attention Conservation Notice (who it's for, what it covers, what action is needed, when it's safe to stop reading), action items listed with names and dates before any background, and no paragraph over three sentences"
+category: "communications"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Neal Rauhauser"
+sourceUrl: "https://gist.github.com/nealrauhauser/36b20e84f3d5c5e019597e2a11643d2a"
+tags: ["accessibility", "documentation", "writing", "adhd", "dyslexia", "internal-comms"]
+createdAt: "2026-07-17"
+---
+
+## What This Does
+
+Restructures how Claude writes internal documents — standup summaries, project docs, technical writeups, decision records, meeting notes — around two ideas: tell the reader up front whether the document is worth their time, and put the thing they need to act on before the context they don't.
+
+Every document opens with a one-or-two-sentence statement of what it is, followed by an **Attention Conservation Notice** (a concept from Bruce Sterling): four lines answering who it's for, what it covers, what action is needed, and when it's fine to stop reading. Both together fit on one page. The rest of the document follows one of three fixed templates depending on type, with action items front-loaded so a reader can find their name and leave.
+
+This isn't accessibility-as-compliance. The same structure that helps a dyslexic reader scan also helps a distracted or time-pressured one — clarity reads as a feature for everyone, not a special case for some.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/AccessibleDocs
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/AccessibleDocs/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/AccessibleDocs
+claude
+```
+
+Ask Claude to draft a standup summary, project update, or technical doc, or paste in an existing document and ask it to reformat.
+
+---
+
+## The Attention Conservation Notice
+
+Four lines, always labeled exactly "Attention Conservation Notice," never abbreviated:
+
+- **For:** which team members need to read this
+- **What:** one sentence — the subject and scope
+- **Action:** what the reader needs to do (review, decide, note, nothing)
+- **Skip if:** when it's legitimate to stop reading here
+
+Example, from the source material:
+
+> Feb 23 standup summary covering funding, branding decisions, and infrastructure updates.
+>
+> **Attention Conservation Notice**
+> For: Full team
+> What: Key decisions and action items from the Feb 23 call
+> Action: Find your name in Action Items and confirm your tasks
+> Skip if: You were on the call and have no assigned items below
+
+---
+
+## Three Document Templates
+
+**Standup summary** — one-line context, then the ACN, then Action Items (name, task, due date) before Decisions Made, Key Updates, and Blockers. Action items go first on purpose: people with ADHD check for their name and stop reading once they have what they need.
+
+**Project document** — the ACN, then "What We Need From You" (if any action is required, it's stated before background), then Background, Details, and Open Questions with an owner and deadline for each.
+
+**Technical document** — the ACN, then "Before You Start" (prerequisites, assumed knowledge), numbered Steps or headed reference sections, and a Reference section for links and contacts.
+
+---
+
+## Writing Rules
+
+- **Paragraphs:** three sentences max. A fourth sentence is the signal to split or move content into a list.
+- **Headers:** descriptive, not clever — "Authentication Setup," not "Getting Started."
+- **Lists:** for three or more parallel items only. Full sentences are often clearer for connected ideas.
+- **Bold:** sparingly, for genuinely critical terms. If everything is bold, nothing is.
+- **Jargon:** defined on first use in one parenthetical line, unless the ACN already establishes the audience knows it.
+- **Active voice:** "Neal will fix the auth issue," not "The auth issue will be fixed." Passive voice hides ownership, which is especially bad for action items.
+- **Front-load:** the most important thing goes first — in the document, the section, and the sentence.
+- **White space:** short sections with visible breaks. Dense text blocks are harder to re-enter after losing your place.
+
+---
+
+## What to Avoid
+
+- Long introductions before the actual content
+- Summaries that summarize instead of inform ("Many things were discussed...")
+- Action items buried inside paragraphs instead of listed
+- Ambiguous ownership ("the team will...") — every action item gets a named owner
+- Nested bullets more than one level deep
+- Walls of text with no visual breaks
+- Hedging language that obscures what actually needs to happen
+
+---
+
+## Reformatting an Existing Document
+
+Give Claude a document that already exists and it will: read the whole thing first, write the ACN based on what the document actually contains, pull every action item to the top, reorganize the rest into the matching template, split any paragraph over three sentences, and flag ambiguous ownership for you to resolve rather than guessing at it. The rule is reformat and clarify only — it won't change the meaning or drop facts.
+
+---
+
+## Limitations
+
+- Templates cover standups, project docs, and technical writing. Other document types (proposals, contracts, long-form reports) aren't templated here and would need their own structure.
+- The three-sentence paragraph rule and single-level-bullet rule are opinionated defaults tuned for scannability, not universal style rules — loosen them where a document genuinely needs more nuance.
+- Reformatting mode preserves meaning but still requires you to review flagged ownership gaps rather than resolving them silently.

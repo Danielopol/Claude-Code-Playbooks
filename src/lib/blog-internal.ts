@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-no-code',
+    slug: 'claude-skills-no-code',
+    title: 'Claude Skills for No-Code Automation: Connect Your Apps Without Engineers',
+    description: "How to use four Claude Skills to build real automation without an engineering team — an n8n workflow builder that generates complete self-hosted automations without learning the platform first, a Connect Apps Skill that takes real actions in 1,000+ tools directly, an Airtable automation Skill that turns a spreadsheet-like base into a triggered workflow engine, and a CRM automation Skill that stops sales teams from manually updating HubSpot, Salesforce, or Pipedrive.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'No-Code',
+    tags: ['claude skills no-code', 'ai no-code automation', 'connect apps with ai', 'n8n automation ai', 'airtable automation ai', 'crm automation ai', 'no-code workflow builder', 'ai app integration'],
+    createdAt: '2026-07-18',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-design-to-code',
     slug: 'claude-skills-design-to-code',
     title: 'Claude Skills for Designers Who Code: From Mockup to Frontend',

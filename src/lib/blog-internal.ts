@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-notion',
+    slug: 'claude-skills-notion',
+    title: 'Claude Skills for Notion Power Users: Automate Your Workspace',
+    description: "How to use four Claude Skills to turn a sprawling Notion workspace into a real operating system — a Notion automation Skill that wires databases together with triggers and cross-platform sync, a knowledge base builder that gives your workspace a structured terminology and pattern registry, a personal knowledge base Skill that turns scattered reading notes into a searchable second brain, and a save-knowledge Skill that captures durable institutional knowledge with proper tagging so nothing gets lost between sessions.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Notion',
+    tags: ['claude skills notion', 'ai notion automation', 'claude notion integration', 'notion database automation', 'notion second brain', 'notion knowledge base', 'notion workspace ai', 'notion workflow automation'],
+    createdAt: '2026-07-20',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-no-code',
     slug: 'claude-skills-no-code',
     title: 'Claude Skills for No-Code Automation: Connect Your Apps Without Engineers',

@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-slack',
+    slug: 'claude-skills-slack',
+    title: 'Claude Skills for Slack Teams: Automate Updates, Summaries, and Standups',
+    description: "How to use four Claude Skills to eliminate repetitive Slack messaging — a Slack workflow automation Skill that builds standup bots, approval flows, and notification routing, a Gmail-to-Slack summary bot that stops you being the human email relay, a Microsoft Teams integration Skill for teams on that platform, and a daily morning briefing that consolidates Slack, email, and calendar into one 30-second view.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Slack',
+    tags: ['claude skills slack', 'ai slack automation', 'ai standup bot', 'slack workflow automation', 'gmail to slack', 'microsoft teams automation', 'ai daily briefing', 'slack bot ai'],
+    createdAt: '2026-07-22',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-notion',
     slug: 'claude-skills-notion',
     title: 'Claude Skills for Notion Power Users: Automate Your Workspace',

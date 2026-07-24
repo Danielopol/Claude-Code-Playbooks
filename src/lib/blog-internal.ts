@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-project-managers',
+    slug: 'claude-skills-project-managers',
+    title: 'Claude Skills for Project Managers: Plan Sprints and Track Risk with AI',
+    description: "How to use four Claude Skills to fix the recurring pain points in project management — a bootstrapper that sets up a full project structure in minutes, an epic breakdown advisor that splits vague epics into properly sized user stories, a prioritization advisor that recommends the right framework instead of forcing RICE on every backlog, and a risk assessment planner that turns a forgotten risk register into a scored, owned mitigation plan.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Project Management',
+    tags: ['claude skills project management', 'ai sprint planning', 'ai project manager', 'epic breakdown ai', 'prioritization framework ai', 'project risk assessment', 'agile ai tools', 'sprint planning ai'],
+    createdAt: '2026-07-24',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-slack',
     slug: 'claude-skills-slack',
     title: 'Claude Skills for Slack Teams: Automate Updates, Summaries, and Standups',

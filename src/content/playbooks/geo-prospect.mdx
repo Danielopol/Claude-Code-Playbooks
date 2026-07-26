@@ -1,0 +1,111 @@
+---
+title: "GEO Prospect Manager: A CRM for Selling AI Search Services"
+description: "Tracks GEO agency leads through lead, qualified, proposal, won, and lost stages in a local JSON file, with audit scores, notes, and MRR forecasting"
+seoHook: "Twelve prospects, three audits, and a follow-up you meant to send on Tuesday, all living in a spreadsheet and your memory. This playbook keeps the pipeline in one JSON file Claude reads and writes, so 'show me the pipeline' returns committed MRR, stage counts, and the two deals that need moving today."
+targetAudience: "GEO and SEO agency owners, solo consultants, freelance marketers, agency sales leads, anyone selling AI search optimization retainers"
+exampleUseCase: "\"Show me the pipeline\" → A stage-by-stage summary: 2 leads, 1 qualified at €4,500/mo, 1 proposal awaiting signature, 3 won for €18,500 committed MRR, plus next actions naming which prospect to send a proposal to and which follow-up is 8 days overdue"
+category: "sales-revenue"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Zubair Trabzada"
+sourceUrl: "https://github.com/zubair-trabzada/geo-seo-claude/tree/main/skills/geo-prospect"
+tags: ["geo", "prospecting", "lead-generation", "agency", "sales"]
+createdAt: "2026-07-25"
+---
+
+## What This Does
+
+Runs a lightweight CRM for a GEO agency out of a single JSON file. GEO means Generative Engine Optimization: getting a client's site cited by ChatGPT, Claude, Perplexity, Gemini, and Google AI Overviews.
+
+You talk, Claude updates the file. Add a prospect, score it with an audit, log a call note, move it to proposal, mark it won with a contract value. Ask for the pipeline and you get stage counts, committed MRR against pipeline value, and named next actions.
+
+The pitch works because the score is measurable and most sites score badly. This playbook keeps track of who you scored, what you found, and where each deal sits.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/GEOAgency
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/GEOAgency/
+```
+
+### Step 3: Add Your First Prospect
+
+```bash
+cd ~/Documents/GEOAgency
+claude
+```
+
+Say "New prospect: electron-srl.com." Claude derives the company name from the domain, assigns `PRO-001`, asks once for contact details and a value estimate, and writes the record.
+
+Data lives in `~/.geo-prospects/prospects.json`, outside the project folder, so it survives across sessions and projects.
+
+---
+
+## The Commands, in Plain English
+
+| Say | What happens |
+|-----|--------------|
+| "New prospect: acme.com" | Creates a record, status `lead` |
+| "Show my pipeline" | Table of every prospect with status, score, value |
+| "List qualified prospects" | Same table, filtered by stage |
+| "Show me PRO-001" | Full detail with note history |
+| "Audit electron-srl.com" | GEO scan, score saved to the record |
+| "Note on Electron: asked about pricing" | Timestamped note appended |
+| "Move acme.com to proposal" | Status change with an automatic note |
+| "We won bigshop.it at 6000/month" | Marks won, sets contract value |
+| "Pipeline summary" | Revenue forecast with next actions |
+
+---
+
+## Pipeline Stages
+
+| Status | Meaning | Next action |
+|--------|---------|-------------|
+| `lead` | Discovered, not contacted | Run an audit, assess the opportunity |
+| `qualified` | Audit done, pain points confirmed | Generate a proposal |
+| `proposal` | Sent, awaiting decision | Follow up, answer questions |
+| `won` | Signed, active client | Full audit, start onboarding |
+| `lost` | Closed lost | Log the reason |
+
+Committed MRR counts won deals only. Pipeline value counts qualified and later. Lead-stage guesses stay out of the forecast.
+
+---
+
+## Qualification Signals
+
+The template tells Claude what makes a domain worth pursuing:
+
+- Score under 55, meaning visible and fixable problems
+- Blocked or unconfigured AI crawlers in robots.txt, the fastest quick win to demo
+- No schema markup on product, service, or location pages
+- Content with no author, no dates, and no citable structure
+- A competitor already appearing in AI answers for the same buying queries
+
+That last signal closes deals. Ask ChatGPT or Perplexity a buying question in the prospect's category, screenshot the answer, and show them who got named instead.
+
+Prospects scoring above 75 get skipped. The work is maintenance, the budget is small, the pitch is weak.
+
+---
+
+## Pairs With the Proposal Generator
+
+Prospecting feeds proposals. Once a prospect hits `qualified`, the [GEO Proposal Generator](/playbooks/geo-proposal) reads the same audit file and writes a priced, client-ready proposal, then flips the record's status to `proposal` and stores the file path. Drop both CLAUDE.md files in the same folder and the two halves connect through `~/.geo-prospects/`.
+
+---
+
+## Limitations
+
+- The scoring here is a snapshot, not a full audit. A directional score comes from checking robots.txt, llms.txt, schema coverage, and author signals. The weighted 11-dimension engine with Python analyzers lives in the [source repo](https://github.com/zubair-trabzada/geo-seo-claude).
+- Storage is a plain JSON file on your disk. No encryption, no sync, no multi-user access. Keep contact data you would be comfortable leaving unencrypted on a laptop.
+- No email integration, no reminders, no calendar. Follow-up timing comes from you asking for the pipeline.
+- One user. Two people editing the same `prospects.json` will overwrite each other.

@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-product-discovery',
+    slug: 'claude-skills-product-discovery',
+    title: 'Claude Skills for Product Discovery: From User Research to Roadmap',
+    description: "How to use four Claude Skills to run the full product discovery pipeline — a discovery interview prep Skill that matches methodology and questions to your research goal, a Jobs-to-be-Done Skill that maps functional, social, and emotional customer needs, an Opportunity Solution Tree Skill that connects a business outcome to validated experiments, and an outcome-driven roadmap planner that turns discovery findings into a roadmap that survives stakeholder challenge.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Product Discovery',
+    tags: ['claude skills product discovery', 'ai product management', 'ai user research', 'jobs to be done ai', 'opportunity solution tree', 'ai roadmap planning', 'continuous discovery', 'product management ai tools'],
+    createdAt: '2026-07-26',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-project-managers',
     slug: 'claude-skills-project-managers',
     title: 'Claude Skills for Project Managers: Plan Sprints and Track Risk with AI',

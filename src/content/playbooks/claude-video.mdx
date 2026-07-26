@@ -1,0 +1,168 @@
+---
+title: "Claude Video: Let Claude Watch Any Video"
+description: "Turns a video URL or local file into frames plus a timestamped transcript, so Claude answers from what it saw and heard instead of the title"
+seoHook: "Paste a YouTube link and Claude guesses from the title. Pull a transcript and you lose everything on screen. This playbook downloads the video, samples frames at the moments that matter, and pairs them with timestamped captions, so Claude answers like someone who actually watched it."
+targetAudience: "content creators analyzing competitor videos, developers debugging screen recordings, marketers breaking down ad creative, researchers taking notes from lecture playlists, product teams reviewing user session recordings"
+exampleUseCase: "\"/watch https://youtu.be/abc what hook did they open with?\" → A breakdown citing the opening frames and transcript lines, with timestamps for the hook, the pattern interrupt, and the first call to action"
+category: "media-production"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "bradautomates"
+sourceUrl: "https://github.com/bradautomates/claude-video"
+tags: ["video", "transcription", "youtube", "yt-dlp", "media"]
+createdAt: "2026-07-25"
+---
+
+## What This Does
+
+Claude has no video input. This gives it one. A bundled Python script pulls native captions with `yt-dlp`, downloads the video when frames are needed, extracts JPEGs with `ffmpeg` at scene changes (or keyframes in the fast mode), and prints every frame path with a `t=MM:SS` marker. Claude then reads each frame as an image and lines it up against the timestamped transcript.
+
+Sources include YouTube, Vimeo, X, TikTok, Instagram, Loom, Twitch clips, and the rest of yt-dlp's site list, plus local `.mp4`, `.mov`, `.mkv`, and `.webm` files. When a video has no caption track, the script extracts a mono 16 kHz audio clip and sends it to Groq's `whisper-large-v3` or OpenAI's `whisper-1`, whichever key you configured.
+
+The skill comes from Brad Bonanno's claude-video repo. This packages the operating rules as a CLAUDE.md.
+
+---
+
+## Prerequisites
+
+Two binaries must be on your `PATH` before the skill works:
+
+```bash
+# macOS
+brew install ffmpeg yt-dlp
+
+# Debian / Ubuntu
+sudo apt install ffmpeg
+pipx install yt-dlp
+
+# Fedora
+sudo dnf install ffmpeg
+pipx install yt-dlp
+```
+
+```powershell
+# Windows
+winget install Gyan.FFmpeg
+pip install yt-dlp
+```
+
+You also need the bundled scripts, which the CLAUDE.md invokes as `python3 "${SKILL_DIR}/scripts/watch.py"`:
+
+```
+/plugin marketplace add bradautomates/claude-video
+/plugin install watch@claude-video
+```
+
+Or on any Agent Skills host: `npx skills add bradautomates/claude-video -g`.
+
+A Whisper API key is optional. Captions cover most public videos for free, and the fallback only fires on caption-less sources (local files, most TikToks, some Vimeos). Get a Groq key at console.groq.com/keys (cheaper, faster) or an OpenAI key at platform.openai.com/api-keys. Keys go in `~/.config/watch/.env` at `0600`. Skip it entirely with `--no-whisper` and accept frames-only answers on caption-less videos.
+
+On Windows, substitute `python` for `python3` in every command. The `python3` alias resolves to the Microsoft Store stub and will not run the script.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/ClaudeVideo
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/ClaudeVideo/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/ClaudeVideo
+claude
+```
+
+Paste a video URL with a question, or point at a local file. On the first run Claude executes the setup preflight, installs missing binaries where it can, and asks which detail mode you want as your default.
+
+---
+
+## The Four Detail Modes
+
+One dial controls fidelity, speed, and token cost. Set the default as `WATCH_DETAIL` in `~/.config/watch/.env`, or override per run with `--detail`.
+
+| Mode | Engine | Frame cap | What it's for |
+|------|--------|-----------|---------------|
+| `transcript` | captions only | 0 | Summaries and quote hunting; skips the download entirely when captions exist |
+| `efficient` | keyframes (`-skip_frame nokey`) | 50 | Near-instant extraction, roughly 40x faster than the scene modes |
+| `balanced` (default) | scene-change detection | 100 | The recommended setting for most videos |
+| `token-burner` | scene-change detection | uncapped | Maximum fidelity on long videos, at high image-token cost |
+
+Measured against a 49-minute 720p screen recording: `transcript` returned in about 4.5 seconds with zero image tokens, `efficient` extracted 50 frames in about 0.5 seconds (~9.8k image tokens), `balanced` took about 21 seconds for 100 frames (~19.7k), and `token-burner` kept all 116 scene cuts (~22.8k). The one-time download of 76 MB took about 37 seconds and is shared by the three frame modes.
+
+---
+
+## Frame Budgets and Focused Mode
+
+Frames dominate token cost, so the script targets a budget by duration: about 30 frames for clips under 30 seconds, 40 up to a minute, 60 for 1-3 minutes, 80 for 3-10 minutes, then the detail cap spread sparsely past 10 minutes with a warning printed. Sampling never exceeds 2 fps.
+
+When you name a moment, pass `--start` and `--end`. Focused mode switches to denser per-second budgets and filters the transcript to the same window, with frame timestamps still absolute on the source timeline.
+
+```bash
+# Zoom into 2:15 → 2:45 at 2 fps
+--start 2:15 --end 2:45 --fps 2
+
+# The last 10 seconds of a 1-minute clip
+--start 50 --end 60
+
+# From 1h12m to the end
+--start 1:12:00
+```
+
+On any video past 10 minutes where the question is about a specific part, a focused run beats a sparse scan of the whole thing.
+
+---
+
+## Useful Flags
+
+- `--timestamps 4:32,7:10,9:55` — force a frame at each moment. Read the transcript first, find where the presenter says "look here" or "notice this" (pointing at a slide is a low visual change, so scene detection misses it), then re-run against the downloaded local file. Cue frames are reserved against the cap before the detail engine runs.
+- `--resolution 1024` — quadruples image tokens per frame. Use it only when Claude needs to read on-screen text like slides, terminals, or code.
+- `--max-frames N` — tighten the budget below the mode's cap.
+- `--no-dedup` — keep near-duplicate frames. By default a 16x16 grayscale comparison against the last kept frame drops held slides and static screen recordings, so the budget goes to distinct content.
+- `--whisper groq|openai` — force a backend when both keys exist.
+- `--out-dir DIR` — keep working files somewhere you choose instead of a temp directory.
+
+---
+
+## Examples
+
+```
+/watch https://youtu.be/<viral-video> what hook did they open with?
+/watch bug-repro.mov what's going wrong?
+/watch https://youtu.be/<launch-video> what's actually new — skip the hype
+/watch https://vimeo.com/123 what tools does she mention?
+/watch ~/Movies/screen-recording.mp4 when does the UI break?
+```
+
+Common patterns: breaking down competitor content and ad creative frame by frame, diagnosing a bug from a screen recording someone sent you, and turning a course or channel into per-video notes instead of hours of watching.
+
+---
+
+## Tips
+
+- Ask a specific question. "What happens at 0:30" produces a sharper answer than "summarize this" because Claude can run focused and spend the frame budget where it matters.
+- Follow-ups are free. If you already watched a video in the session, Claude answers from the frames and transcript already in context instead of re-running the script.
+- Start at `transcript` detail on long videos, read the structure, then re-run focused on the section you care about.
+- Bump `--resolution` only when a frame contains text you need read back. It roughly quadruples the token cost per frame.
+- The script prints a working directory at the end. Claude deletes it when you're done, so tell it if you plan to ask more questions about the same video.
+
+---
+
+## Limitations
+
+- Downloading depends on `yt-dlp` supporting the source. Platforms change their delivery and anti-bot behavior often, and extraction breaks until yt-dlp ships a fix. Keeping yt-dlp updated is the usual remedy. Login-walled and region-locked videos fail outright.
+- Coverage thins past roughly 10 minutes on the capped modes. Either run focused with `--start`/`--end` or switch to `token-burner` and pay the tokens.
+- Frames are samples, not the full video. Anything that happens between sampled moments is invisible, and the dedup pass drops visually near-identical frames by design.
+- Whisper transcription costs money and requires a third-party key. Without one, caption-less videos come back frames-only.
+- Audio leaves your machine when Whisper runs. The video itself never does, and nothing is sent when native captions exist.
+- The skill shells out to `ffmpeg` and `yt-dlp`, so on claude.ai you must enable code execution first. Review the bundled scripts before the first run.

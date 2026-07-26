@@ -1,0 +1,121 @@
+---
+title: "GEO Platform Optimizer: Tune for Each AI Engine Separately"
+description: "Five separate audits for Google AI Overviews, ChatGPT, Perplexity, Gemini, and Bing Copilot, each with its own checklist and 0-100 rubric"
+seoHook: "Only 11% of domains get cited by both ChatGPT and Google AI Overviews for the same query. ChatGPT runs on Bing and leans on Wikipedia. Perplexity pulls 46.7% of its citations from Reddit. Optimizing once and hoping it carries across all five engines is how sites end up invisible on four of them."
+targetAudience: "GEO and SEO agencies, growth marketers, brand and comms leads, SaaS marketing teams, local business owners, anyone tracking AI referral traffic"
+exampleUseCase: "\"Audit acme.com across all five AI search platforms\" → A GEO-PLATFORM-OPTIMIZATION.md scoring Google AI Overviews, ChatGPT, Perplexity, Gemini, and Copilot out of 100 each, with the specific gaps per engine (no Wikidata entity, no IndexNow, no Reddit presence) and a plan split into this week, this month, and this quarter"
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Zubair Trabzada"
+sourceUrl: "https://github.com/zubair-trabzada/geo-seo-claude/tree/main/skills/geo-platform-optimizer"
+tags: ["geo", "chatgpt", "perplexity", "ai-overviews", "platform-optimization"]
+createdAt: "2026-07-25"
+---
+
+## What This Does
+
+Runs five independent audits, one per AI search engine, because each uses a different index, ranking logic, and set of source preferences. Each platform gets a checklist of ten optimization items and its own 0-100 rubric, so a site can score 78 for Google AI Overviews and 22 for Perplexity and you can see exactly why.
+
+This is the widest of the three GEO content playbooks. It works at the site and entity level: Wikipedia presence, Reddit participation, IndexNow, Knowledge Panels, YouTube. [geo-citability](/playbooks/geo-citability) works one level down, scoring individual passages on a single page for extractability. [geo-content](/playbooks/geo-content) sits between them, scoring content on E-E-A-T.
+
+From Zubair Trabzada's geo-seo-claude toolkit, packaged as a single CLAUDE.md.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/GEOPlatforms
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/GEOPlatforms/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/GEOPlatforms
+claude
+```
+
+Give Claude a URL and your industry: "Audit https://example.com for AI platform readiness. We sell project management software to agencies." It runs all five checklists and writes `GEO-PLATFORM-OPTIMIZATION.md`.
+
+---
+
+## How the Five Engines Differ
+
+| Engine | Index | Top citation source | What wins |
+|---|---|---|---|
+| Google AI Overviews | Google | Top-10 organic results | Question headings, direct answers, tables |
+| ChatGPT Search | Bing | Wikipedia (47.9%) | Entity presence, comprehensive 2,000+ word pages |
+| Perplexity | Own crawler + APIs | Reddit (46.7%) | Community validation, original research, freshness |
+| Gemini | Google + Google properties | YouTube | Video content, Knowledge Graph, Schema.org |
+| Bing Copilot | Bing | Microsoft ecosystem | IndexNow, LinkedIn, GitHub, fast load |
+
+Two numbers explain most of the strategy. 92% of AI Overviews citations come from pages already in the top 10, so classic SEO is the gate there. Perplexity cites 5-15 sources per answer instead of 2-4, which is why mid-authority sites break in through Perplexity first.
+
+---
+
+## Priority Order Per Platform
+
+The template ends with a cross-platform table that tells you where to start on each:
+
+| Priority | Google AIO | ChatGPT | Perplexity | Gemini | Copilot |
+|---|---|---|---|---|---|
+| #1 | Top-10 ranking | Wikipedia | Reddit presence | YouTube | IndexNow |
+| #2 | Q&A structure | Entity graph | Original research | Knowledge Panel | Bing Webmaster Tools |
+| #3 | Tables and lists | Bing SEO | Freshness | Schema.org | LinkedIn |
+| #4 | Featured snippets | Reddit | Community forums | Google Business Profile | Meta descriptions |
+
+---
+
+## Universal Wins
+
+Seven actions move the score on every platform at once, and the report separates them out as quick wins:
+
+1. Wikipedia and Wikidata entity presence
+2. A YouTube channel with topic-relevant content
+3. Comprehensive, well-structured content with clear headings
+4. Schema.org markup, especially Organization with sameAs
+5. Fast page load and clean HTML
+6. Author pages with credentials and sameAs links
+7. Regular content updates with visible dates
+
+Entity presence is the highest-value item on the list. It is worth 20 points on the ChatGPT rubric alone, and it feeds Gemini's Knowledge Graph and Copilot's entity grounding at the same time.
+
+---
+
+## Examples of What Gets Flagged
+
+- **No Wikidata item.** Free to fix, takes an afternoon, worth 10 points on ChatGPT and contributes to Gemini and Perplexity.
+- **IndexNow not implemented.** Worth 15 points on Copilot. Publish a key file at `/.well-known/indexnow-key.txt` and ping the API on publish.
+- **YouTube videos without chapters.** Gemini can only reference specific segments when timestamps exist. Chapters are the difference between 10 and 20 points.
+- **No FAQ section.** 10 points on Google AI Overviews. FAQPage rich results have been restricted to government and health sites since August 2023, but the content pattern still drives extraction.
+- **Zero Reddit presence.** 20 points on Perplexity, the single largest line item on any of the five rubrics.
+
+---
+
+## Tips
+
+- Pick two engines, not five. Score all five, then work the two where your audience actually searches. A B2B SaaS site gets more from ChatGPT and Perplexity than from Gemini's local and multi-modal strengths.
+- Do the universal seven first. They lift multiple scores at once, and the report's quick wins section is built from them.
+- Reddit is a quarter-long project, not a task. The rubric rewards authentic participation, and promotional posting scores zero while damaging the brand.
+- Check Bing's index separately with `site:yourdomain.com`. It routinely differs from Google's, and that gap silently costs you both ChatGPT and Copilot.
+- Once a platform scores above 70, switch from this playbook to [geo-citability](/playbooks/geo-citability) and fix the passages on the pages that engine is now reaching.
+
+---
+
+## Limitations
+
+- Several criteria need manual checking or third-party data. Organic ranking position, backlink profiles, and social engagement cannot be verified from a page fetch alone.
+- Citation share figures (Wikipedia at 47.9% for ChatGPT, Reddit at 46.7% for Perplexity) come from 2025-2026 studies. Platform behavior shifts, so re-check the underlying numbers before basing a quarter of work on them.
+- Scores are judgment-based and directional. Use the gap list, not the number.
+- Some criteria are conditional. Google Merchant Center, GitHub presence, and Bing Places score N/A when they do not apply, which shifts the effective denominator.
+- The full geo-seo-claude suite runs this alongside 14 other skills with parallel subagents and Python tooling. This template is the platform audit standing alone.

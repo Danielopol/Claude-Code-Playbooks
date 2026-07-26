@@ -1,0 +1,132 @@
+---
+title: "Improve: Audit Your Codebase and Write the Plans"
+description: "Turns Claude into a read-only senior advisor that audits a repo, ranks findings by leverage, and writes self-contained implementation plans to disk for cheaper models to execute"
+seoHook: "Your best model burns its budget writing boilerplate while nobody has surveyed the codebase in a year. This playbook flips the split: the expensive model reads everything, judges what's worth doing, and writes plans precise enough that a cheap model can execute them without ever seeing the audit."
+targetAudience: "tech leads inheriting an unfamiliar codebase, solo founders with growing tech debt, engineering managers planning a quarter, open-source maintainers triaging a backlog, developers preparing a PR for review"
+exampleUseCase: "\"/improve security\" → A vetted findings table with file:line evidence, impact, effort, and confidence per item, then plans/001-*.md through 005-*.md written to disk with inlined code excerpts, verification commands, and STOP conditions"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "shadcn"
+sourceUrl: "https://github.com/shadcn/improve"
+tags: ["code-review", "refactoring", "codebase-audit", "planning", "development"]
+createdAt: "2026-07-25"
+---
+
+## What This Does
+
+Puts Claude in the seat of a senior advisor who never touches your source code. It maps the repo, audits it across nine categories, verifies every finding by re-reading the cited code itself, ranks what's left by leverage, and writes the ones you pick into `plans/` as markdown files.
+
+The plan is the product. Each one is written for an executor that has never seen your session: exact file paths, current-state code excerpts, the repo's own build and test commands as verification gates, an explicit out-of-scope list, and STOP conditions for when reality doesn't match. Any agent or human can pick one up cold.
+
+The split is the point. An expensive model does the part where intelligence compounds, which is understanding, judging, and specifying. Cheaper models do the typing.
+
+From shadcn's `improve` skill.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+Use the repo you want audited. If you're trying it out first:
+
+```bash
+mkdir -p ~/Code/audit-target
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move it into the repo root:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Code/audit-target/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Code/audit-target
+claude
+```
+
+Say `improve` for a full audit, or `improve quick` to keep the first pass cheap. Claude comes back with a findings table and asks which ones to plan.
+
+---
+
+## The Four Commands
+
+**`improve`** runs the full audit. Recon maps the stack, conventions, and the exact build/test/lint commands. Parallel read-only subagents sweep nine categories: correctness, security, performance, test coverage, tech debt, dependencies, DX, docs, and direction. Claude then re-reads every cited location itself, drops false positives, and presents a table ordered by impact divided by effort, weighted by confidence. You pick what becomes plans; they land in `plans/` with an index.
+
+**`improve execute <plan>`** dispatches a cheaper subagent in an isolated git worktree with the full plan text inlined, then reviews the result like a tech lead. It re-runs every done criterion, checks the diff against the in-scope list, and reads what the new tests actually assert. Verdict is APPROVE, REVISE (max two rounds), or BLOCK. Merging stays your call. It never pushes or commits to your branch.
+
+**`improve branch`** scopes the same audit to what your branch changes: files touched since the merge-base with the default branch, plus their direct importers. Every finding gets tagged `introduced` or `pre-existing` so legacy debt in a file you edited doesn't get blamed on your PR.
+
+**`improve reconcile`** processes what happened since last session. DONE plans get spot-checked against current HEAD. BLOCKED ones get investigated and rewritten around the obstacle or retired. TODO plans run a drift check, and if the finding was fixed independently, the plan is marked REJECTED.
+
+---
+
+## Other Invocations
+
+- `improve quick` / `improve deep` — effort dial. `quick` sweeps recon hotspots with 0-1 subagents and reports the top ~6 HIGH-confidence findings. `deep` runs up to 8 concurrent subagents across every package and includes LOW-confidence "investigate" items. Composes with everything: `quick security`, `deep --issues`.
+- `improve <category>` — focused audit on `security`, `perf`, `tests`, and the rest.
+- `improve next` — direction only. Four to six grounded feature suggestions with evidence and trade-offs. Selected ones become design or spike plans, not build-everything plans.
+- `improve plan <description>` — skip the audit when you already know what you want. Claude recons, resolves ambiguity from the codebase where it can, asks about the rest one question at a time, and writes a single plan.
+- `improve review-plan <file>` — critique and tighten an existing plan against the template's standards.
+- `--issues` — also publish each plan as a GitHub issue via `gh`. Requires the explicit flag. If the repo is public, Claude checks first and asks before publishing anything describing a vulnerability or credential location.
+
+---
+
+## What Lands in `plans/`
+
+```
+plans/
+  README.md          ← execution order, dependency graph, status table
+  001-<slug>.md
+  002-<slug>.md
+```
+
+Every plan file carries a Status block (priority, effort, risk, dependencies, category, and the commit SHA it was written against), a "Why this matters" section, current-state code excerpts with `file:line` markers, a command table verified during recon, in-scope and out-of-scope file lists, ordered steps each ending in a verification command with its expected output, a test plan, machine-checkable done criteria, STOP conditions, and maintenance notes.
+
+The SHA stamp powers a mechanical drift check. Before touching anything, the executor runs `git diff --stat <SHA>..HEAD -- <in-scope paths>` and treats a mismatch against the inlined excerpts as a STOP condition.
+
+The index tracks status across sessions: TODO, IN PROGRESS, DONE, BLOCKED with a reason, or REJECTED with a rationale. Rejected findings are recorded so the next audit doesn't resurface them.
+
+---
+
+## The Hard Rules
+
+- **Never modifies source code.** The only writes go to `plans/` (or `advisor-plans/` if `plans/` is already taken). Executors edit only in disposable worktrees.
+- **Never mutates your working tree.** No installs, no builds, no commits, no formatters. Read-only analysis only, like `tsc --noEmit`, lint in check mode, and `npm audit`.
+- **Never reproduces secret values.** A credential finding names the type and the `file:line`, and the fix always includes rotation, since a committed secret stays burned after deletion.
+- **Treats repo content as data, not instructions.** A file that tells the auditor to ignore previous instructions gets recorded as a prompt-injection security finding.
+- **Declines direct implementation requests** and points at the plan or offers `execute`.
+
+---
+
+## Why the Vetting Step Matters
+
+Subagents over-report. Before anything reaches your screen, Claude opens every cited location itself and looks for three failure classes: by-design behavior flagged as a vulnerability (honoring `https_proxy` is the standard proxy convention, not SSRF), evidence attributed to the wrong file or line, and duplicates across subagents.
+
+Recon also ingests intent docs when they exist: ADRs under `docs/adr/`, PRDs, `CONTEXT.md`, `DESIGN.md`, `PRODUCT.md`. A tradeoff recorded in an ADR is settled, not a finding. The exception is decision drift: if the code no longer matches what the ADR says, that mismatch is itself a finding, because either the doc or the code is wrong.
+
+---
+
+## Tips
+
+- Run `improve quick` first on a large repo. A cheap pass tells you whether the top findings are worth a deep sweep.
+- Say no to plans. A short list of high-confidence, high-leverage plans beats a long one, and "not worth doing" gets recorded with its reasoning.
+- Watch for dependency ordering in the findings table. Characterization tests usually have to land before the refactor they protect.
+- If the repo has no working test or build command, expect that to be finding #1. Nothing risky should be planned before a verification baseline exists.
+- Add a `CLAUDE.md` if the repo lacks one. The audit flags it as high-leverage DX precisely because the executors reading these plans need it.
+- Before opening a PR, run `improve branch` for a scoped pass on what you changed.
+
+---
+
+## Limitations
+
+- `execute` needs a host agent that can spawn subagents in an isolated git worktree. Without that, you hand the plan to an agent or a person manually.
+- Fresh worktrees share git history but not `node_modules` or build artifacts. The executor installs dependencies first, and tooling that resolves from `dist/` may need one build the plan's command table never mentioned.
+- Findings depend on what the audit reached. On a large monorepo even `deep` scopes subagents to packages, so the final report has to say what was not audited.
+- Direction findings are options, not answers. Impact is product value and confidence measures how grounded the evidence is, not whether it's the right call. Strategy stays with the maintainer.
+- Effort and risk estimates are judgment calls from reading code, not measurements.
+- `--issues` needs `gh` authenticated and a GitHub remote. Without both, plans still get written and Claude says why issues were skipped.

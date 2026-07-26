@@ -1,0 +1,135 @@
+---
+title: "GEO Schema: Structured Data for AI Citation"
+description: "Audit and generate schema.org JSON-LD built for AI comprehension, with a sameAs entity graph, knowsAbout topics, and a 0-100 scoring rubric"
+seoHook: "ChatGPT and Perplexity decide whether to cite you based on whether they can tell what your business actually is. Rich results are a side effect. This playbook treats JSON-LD as the entity graph AI models read to verify and trust a source."
+targetAudience: "GEO consultants, technical SEOs, SaaS marketing engineers, agency owners running client audits, publishers optimizing author E-E-A-T, developers shipping schema on Next.js and WordPress sites"
+exampleUseCase: "\"Audit the structured data on stripe.com and generate what's missing\" → A schema score out of 100, a table of every detected JSON-LD block with validation errors, a sameAs audit across Wikipedia, Wikidata, LinkedIn, and Crunchbase, plus ready-to-paste Organization and WebSite blocks"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Zubair Trabzada"
+sourceUrl: "https://github.com/zubair-trabzada/geo-seo-claude/tree/main/skills/geo-schema"
+tags: ["geo", "schema", "json-ld", "structured-data", "seo"]
+createdAt: "2026-07-25"
+---
+
+## What This Does
+
+Turns Claude into a structured data auditor that scores a page for AI discoverability rather than Google rich results. It detects every JSON-LD, Microdata, and RDFa block on a page, validates each against Schema.org, flags what a business of that type should have but doesn't, and generates paste-ready markup for the gaps.
+
+The angle is GEO, not rich snippets. Schema is how AI models identify what an entity IS and how it connects to other entities across the web. The `sameAs` property gets treated as the highest-value field in the whole spec because it links your on-site entity to Wikipedia, Wikidata, LinkedIn, and Crunchbase, which is the graph AI platforms use to verify and cite a source. Two properties most rich-results guides skip get first-class treatment here: `knowsAbout` (topics the entity is expert in) and `speakable` (which passages an AI assistant should read aloud or quote).
+
+This is one skill from Zubair Trabzada's geo-seo-claude toolkit, packaged as a standalone CLAUDE.md.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Projects/GeoSchema
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Projects/GeoSchema/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Projects/GeoSchema
+claude
+```
+
+Ask "audit the structured data on https://example.com" and Claude works through detection, validation, the sameAs audit, and generation.
+
+---
+
+## The sameAs Entity Graph
+
+The template ranks 14 platforms in priority order, because AI systems weight them differently:
+
+1. Wikipedia — highest authority entity link
+2. Wikidata — machine-readable entity identifier
+3. LinkedIn, YouTube, Twitter/X, Facebook
+4. Crunchbase and GitHub for tech companies
+5. Google Scholar and ORCID for researchers
+6. App Store listings, BBB, vertical directories
+
+The audit checks each URL resolves, verifies your Organization or Person schema lists all of them, and cross-checks that name, description, and founding date match across platforms. Inconsistent facts across profiles weaken the entity signal.
+
+---
+
+## Schema Types Covered
+
+| Type | When it applies | GEO-specific properties to add |
+|---|---|---|
+| Organization | Every business site | `sameAs`, `knowsAbout`, `foundingDate`, `contactPoint` |
+| LocalBusiness | Physical locations | `geo`, `openingHoursSpecification`, `hasMap` |
+| Article + Person | Publishers | Author `sameAs`, `jobTitle`, `alumniOf`, `dateModified` |
+| Product | E-commerce | `aggregateRating`, `review`, `gtin`/`mpn` |
+| SoftwareApplication | SaaS | `featureList`, `softwareVersion`, `releaseNotes` |
+| WebSite + SearchAction | Homepage | `potentialAction` with a search URL template |
+| Person | Personal brands, About pages | `knowsAbout`, `worksFor`, `award` |
+| FAQPage | Any page with Q&A | `mainEntity` array of Question schemas |
+
+---
+
+## Scoring Rubric
+
+Claude scores the site 0-100 across twelve criteria. The heaviest weights:
+
+- Organization/Person schema present and complete — 15 points
+- sameAs links, 3 points each up to 5 platforms — 15 points
+- Server-rendered rather than JS-injected — 10 points
+- Valid JSON and valid Schema.org types — 10 points
+- Article schema with full author details — 10 points
+
+Smaller allocations cover WebSite + SearchAction, BreadcrumbList, `speakable`, `knowsAbout`, JSON-LD format over Microdata, and absence of deprecated schemas.
+
+---
+
+## Deprecated Schemas It Flags
+
+| Schema | Status | What to do |
+|---|---|---|
+| HowTo | Rich results deprecated Aug 2023 | Keep for AI parsing, stop promising rich results |
+| FAQPage | Restricted to govt/health Aug 2023 | Keep for AI question-answer extraction |
+| SpecialAnnouncement | Deprecated 2023 | Remove if still present |
+| CourseInfo | Replaced 2024 | Migrate to updated Course properties |
+| VideoObject `contentUrl` | Behavior changed 2024 | Point at the video file, not the page URL |
+
+---
+
+## Generation Rules
+
+When Claude writes new markup it follows a fixed set of constraints:
+
+- Use the `@graph` pattern so multiple schemas share one JSON-LD block
+- Every URL absolute, never relative
+- `@id` properties on each schema for cross-referencing
+- ISO 8601 for all dates
+- `speakable` on Article schemas, with CSS selectors pointing at summary and takeaway sections
+- JSON-LD placed in `<head>`, never injected via JavaScript
+
+---
+
+## Tips
+
+- Fetch raw HTML, not converted markdown. Markdown converters strip `<head>`, which is where the JSON-LD lives, so a naive fetch reports zero schema on a site that has plenty. `curl -sL <url>` works.
+- Server-render your JSON-LD. Google's December 2025 guidance says JavaScript-injected structured data may face delayed processing, and the rubric docks 5-10 points for it.
+- `knowsAbout` with three or more specific topics is cheap to add and one of the clearer expertise signals available to an AI model.
+- Migrate off Microdata and RDFa. Both parse worse for AI crawlers than JSON-LD, and the template flags exclusive use of either as a high-priority fix.
+
+---
+
+## Limitations
+
+- The audit reads one page at a time. Site-wide coverage means pointing Claude at each template type: homepage, article, product, location page.
+- Valid schema is a claim, not proof. Marking up an award you didn't win still validates. AI platforms cross-check against the sameAs graph, which is why URL consistency matters more than field count.
+- Deprecation dates in the reference table are current as of the source skill. Verify against Google's structured data docs before acting on a flag.
+- Scores measure markup completeness. They don't predict citation rate on their own, since content quality and brand mentions carry more weight in the full GEO model.

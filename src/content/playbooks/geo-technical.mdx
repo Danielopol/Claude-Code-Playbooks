@@ -1,0 +1,147 @@
+---
+title: "GEO Technical SEO Audit: 8 Categories, 100 Points"
+description: "A scored technical audit covering crawlability, indexability, security, Core Web Vitals, and the server-side rendering check that decides whether AI crawlers see your content at all"
+seoHook: "AI crawlers do not run JavaScript. If your React app renders content client-side, GPTBot and PerplexityBot fetch your page and find an empty body. This playbook runs a 100-point technical audit that catches that failure plus seven other categories, with the exact curl commands to prove each finding."
+targetAudience: "frontend engineers who own SEO, technical SEO specialists, DevOps and platform teams, agency technical leads, founders debugging why their SPA gets no organic traffic"
+exampleUseCase: "\"Audit the technical SEO on app.example.com\" → A GEO-TECHNICAL-AUDIT.md scoring 61/100, with SSR at 5/15 because product descriptions only appear after hydration, a redirect chain on three top pages, missing HSTS, LCP estimated at 3.4s from an unoptimized hero PNG, and a fix list ordered by category weight"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "Zubair Trabzada"
+sourceUrl: "https://github.com/zubair-trabzada/geo-seo-claude/tree/main/skills/geo-technical"
+tags: ["geo", "technical-seo", "performance", "crawlability", "web"]
+createdAt: "2026-07-25"
+---
+
+## What This Does
+
+Gives Claude a 100-point technical audit rubric spread across 8 scored categories plus a non-scoring section for emerging AI agent standards. You give it a URL and 2-3 inner pages. Claude fetches raw HTML and HTTP headers, works the rubric, and writes `GEO-TECHNICAL-AUDIT.md` with a score per category, a crawler access table, and issues split into fix-now, fix-this-month, and fix-this-quarter.
+
+Two categories carry the GEO weight. Server-side rendering, because AI crawlers parse raw HTML and never execute JavaScript. AI crawler access, because a robots.txt rule written years ago for a scraper problem now blocks GPTBot.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/GEOTechnical
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/GEOTechnical/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/GEOTechnical
+claude
+```
+
+Then ask: "Run the technical audit on https://yourdomain.com plus /pricing and /blog"
+
+---
+
+## The 8 Scored Categories
+
+| Category | Points | Why It Is Weighted There |
+|---|---|---|
+| Crawlability | 15 | robots.txt, AI crawler access, sitemaps, crawl depth, stray noindex |
+| Core Web Vitals | 15 | LCP, INP, CLS at the 75th percentile |
+| Server-Side Rendering | 15 | GEO critical. AI crawlers see raw HTML only |
+| Page Speed & Server | 15 | TTFB, page weight, images, bundles, caching, CDN |
+| Indexability | 12 | Canonicals, duplicates, pagination, hreflang, index bloat |
+| Security | 10 | HTTPS enforcement and six response headers |
+| Mobile Optimization | 10 | Google crawls mobile-only since July 2024 |
+| URL Structure | 8 | Clean URLs, hierarchy, redirect chains, parameters |
+
+Above 90 is Excellent. 70-89 Good. 50-69 Needs Work. 30-49 Poor. Below 30 means something fundamental is broken.
+
+---
+
+## The SSR Check
+
+This is the category most technical audits skip, and it is the one that decides AI visibility.
+
+GPTBot, PerplexityBot, and ClaudeBot fetch raw HTML and parse it. They do not run your bundle. Content rendered client-side by React, Vue, Angular, or Svelte is invisible to them. Googlebot does execute JavaScript, but it queues JS rendering separately, which can delay indexing by days or weeks.
+
+The detection is one command:
+
+```bash
+curl -s https://yourdomain.com
+```
+
+Compare that output to what the browser shows. If your article text, product descriptions, H1s, JSON-LD, or internal navigation links are missing from the curl response, they are missing for AI crawlers too.
+
+Scoring runs on a slope. All key content server-rendered scores 15. Main content rendered but some elements JS-only scores 10. Critical content behind JS scores 5. An empty body scores 0.
+
+The template maps each framework to its SSR fix: Next.js, Remix, or Gatsby for React, Nuxt for Vue, Angular Universal, SvelteKit, and Prerender.io or Rendertron when rewriting the app is not on the table.
+
+---
+
+## AI Crawler Access
+
+Category 1 includes a table of 11 crawlers with the platform each one feeds, from GPTBot and ClaudeBot to Bytespider and Applebot-Extended. Scoring is blunt: all major crawlers allowed scores 5, Googlebot blocked scores 0 and is treated as fatal.
+
+One nuance the template calls out explicitly. Blocking `Google-Extended` does not block `Googlebot`. Google-Extended only controls AI training data usage, not search indexing. Teams block it thinking they are protecting content from Gemini and are surprised when search rankings stay intact. The recommendation is to allow it unless there is a real data licensing concern, since blocking still reduces AI Overviews presence.
+
+---
+
+## What Gets Measured, With Commands
+
+The audit is built around checks you can verify yourself:
+
+- **TTFB** — `curl -o /dev/null -s -w 'TTFB: %{time_starttransfer}s\n' [URL]`, target under 800ms, ideally under 200ms
+- **Raw HTML content** — `curl -s [URL]` compared against the rendered DOM
+- **Security headers** — six headers checked, with the required value for each (HSTS at `max-age=31536000; includeSubDomains`, `X-Content-Type-Options: nosniff`, and so on)
+- **CDN detection** — response headers `CF-Ray`, `X-Cache`, `X-Served-By`
+- **Page weight** — under 2MB total, under 1MB on critical pages
+- **JS bundles** — over 200KB compressed is a warning, over 500KB is critical
+
+---
+
+## Core Web Vitals Without Field Data
+
+Most sites lack CrUX data. The template gives Claude a way to estimate from page characteristics instead:
+
+- **LCP** — inspect the largest above-fold element. Image size and format? Web font blocking text render? Slow TTFB?
+- **INP** — heavy JavaScript on the page? Long tasks over 50ms? Third-party scripts?
+- **CLS** — images without explicit width and height? Content injected above the fold after load? Fonts causing FOUT or FOIT?
+
+Each metric ships with its standard fixes: preload the hero image in WebP or AVIF, break long tasks with `scheduler.yield()`, set `aspect-ratio` on ad slots and embeds.
+
+---
+
+## Agent-Readiness Signals
+
+Category 9 does not score. It surfaces two emerging standards where absence is normal and penalizing it would be unfair.
+
+**RFC 8288 Link headers** advertise machine-readable service discovery: an API catalog, service docs, an MCP server card, all without HTML parsing. The template only raises this for API-first sites, those with `/api/` or `/developers/` paths or OpenAPI docs in the sitemap. For a standard business site the section is omitted entirely.
+
+**Markdown content negotiation** tests whether the server answers `Accept: text/markdown` with actual Markdown. Cloudflare's Markdown for Agents enables it with a one-line config change. When it works, AI agents get clean text with no HTML boilerplate to strip. When it does not, that is a forward-looking note, not a failure.
+
+The template also checks for IndexNow. ChatGPT and Bing Copilot both read Bing's index, so instant Bing notification means faster AI visibility on two platforms.
+
+---
+
+## Tips
+
+- Feed it the homepage plus your two highest-value inner page types. A pricing page and a blog post surface different failures than the homepage alone.
+- Run the SSR curl check before anything else. A 0/15 there makes the other 85 points academic.
+- Category weights double as a priority order. Crawlability, Core Web Vitals, SSR, and Page Speed are 60 of the 100 points.
+- Save each report with a date in the filename. Month-over-month category deltas show whether the performance work landed.
+
+---
+
+## Limitations
+
+- Claude estimates Core Web Vitals from page characteristics when field data is missing. Confirm the numbers in PageSpeed Insights or CrUX before reporting them to a client.
+- Index bloat detection relies on sitemap counts and `site:` estimates, neither of which is exact.
+- Mobile checks read viewport meta, layout width, tap target sizing, and font sizes from HTML and CSS. They do not replace testing on a real device.
+- Bundle size and unused CSS figures need build output or devtools to be precise. The audit flags the smell, not the byte count.
+- This is the technical skill from a 15-skill GEO suite. Citability scoring, llms.txt generation, schema markup, and client-facing PDF reports are separate skills in the source repo.

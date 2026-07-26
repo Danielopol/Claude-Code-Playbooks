@@ -1,0 +1,111 @@
+---
+title: "Explain This: Understand Papers, Articles, and Code for Real"
+description: "An explainer that builds a profile of how you learn, shapes every explanation around it, gates on comprehension quizzes, and turns the questions into a spaced-repetition deck"
+seoHook: "An AI summary feels like understanding right up until you try to use it. This skill interviews you once about how you actually learn, then explains papers, articles, and code through that profile — and refuses to close an explanation until you've answered questions drawn from the source rather than from its own prose."
+targetAudience: "researchers reading outside their field, engineers onboarding to unfamiliar codebases, grad students working through papers, self-directed learners, anyone who reads a lot and retains little"
+exampleUseCase: "\"Explain this paper\" → An explanation built as why-it-exists, the one idea, how it works using analogies from domains you already know, what you can now do, then five graded questions written from the paper itself — each one added to a review deck that resurfaces on an SM-2 schedule"
+category: "education"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "DannyMac180"
+sourceUrl: "https://github.com/DannyMac180/skills/blob/main/explain-this/SKILL.md"
+tags: ["learning", "spaced-repetition", "research", "comprehension", "note-taking"]
+createdAt: "2026-07-25"
+---
+
+## What This Does
+
+Explains any digital artifact — a paper, PDF, article, code diff, or whole repo — through a persistent profile of how you personally learn, then checks that the explanation actually landed.
+
+Three things make it different from asking for a summary. It **interviews you first** (about ten minutes, once) and writes a `LEARNER.md` capturing what you already know deeply, how you like to enter a topic, what convinces you, and what understanding is *for* in your life. It **quizzes you** at the end of every explanation, grading your free-text answers itself rather than letting you self-grade. And every question becomes a **spaced-repetition card**, so what you understood in July is still there in October.
+
+The design goal it states outright: formation, not summarization. Not just what you can do with an artifact, but who you become by understanding it.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/ExplainThis
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/ExplainThis/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/ExplainThis
+claude
+```
+
+The first run won't explain anything. It runs the interview and drafts your profile, shows it to you, and applies your corrections. After that, point it at a paper, URL, diff, or repo and ask it to explain.
+
+---
+
+## The Explanation Spine
+
+Every explanation follows the same five-part shape, with the profile read first:
+
+1. **Why does this exist?** — the problem the artifact answers. Context before content.
+2. **The one idea** — the single sentence worth retaining above all others.
+3. **How it works** — intuition before mechanism, using analogies pulled from domains you already know, skipping what your profile says you already understand.
+4. **What can you now do** — pointed at your stated goals: what you can build, argue, or decide that you couldn't before.
+5. **Check yourself** — the quiz.
+
+A depth dial controls how far it goes: `orient` (a five-minute pass), `working` (you could explain it to a colleague, the default), or `rederivable` (you could rebuild it). Say "just orient me" or "I want to really grok this" to override per request.
+
+---
+
+## Adapters by Artifact Type
+
+Each artifact type gets its own definition of what "meaning" even means:
+
+- **Papers and PDFs** — claim plus evidence. Reads in evidence order (abstract, figures, results, methods) rather than page order, and treats the gap between what the authors *measured* and what they *claim* as the high-value thing to explain.
+- **Articles and essays** — the argument arc. Names the implied opponent, separates what's argued from what's merely asserted, and flags the weakest link honestly.
+- **Code, diffs, and repos** — behavioral change and intent. Follows one path through the system in narrative order instead of reading files alphabetically, and flags which parts are the idea versus which are plumbing.
+
+---
+
+## Why the Quizzes Are Unusual
+
+Most AI-generated quizzes test whether you remember the explanation you just read. This one explicitly forbids that. Questions are drafted **from the artifact, not the explanation**, then self-checked with an echo test: if the answer appears near-verbatim in the explanation, the question gets cut for measuring short-term verbal memory rather than understanding.
+
+The other rules worth knowing:
+
+- Every question must be **load-bearing** — if missing it wouldn't change what you can do with the artifact, it's trivia and gets cut. No author names, no years, no constants.
+- Explain-back questions are graded on exactly three criteria: core claim present, mechanism correct, **nothing invented**. That last one is the anti-confabulation check.
+- On a miss, it re-explains the missed idea **differently** rather than repeating itself. That's the first learning moment, before the card ever enters the deck.
+- When grading is ambiguous between hit and partial, it's instructed to choose partial, because it wrote the explanation *and* grades the quiz and knows that biases it.
+
+---
+
+## The Evidence-Gated Profile
+
+The part that separates this from a profile that just accumulates opinions about you: it can only claim a weakness it can prove. A "Known Weak Pattern" gets written to your profile only after **4+ misses on the same tag across at least 2 different artifacts** within 60 days. The cross-artifact requirement is what distinguishes "struggles with derivations" from "that one paper was brutal."
+
+Every entry cites its evidence inline (`[evidence: 5 misses / 3 artifacts, Jul–Sep]`), auditable against the raw signal log. Patterns also **heal** — once your hit rate on a tag recovers past 80%, the entry becomes eligible for retirement, because a deficit-only profile turns into a self-fulfilling ceiling. If a question was simply bad, you say so and the signal is excluded, so generation failures never become facts about you.
+
+---
+
+## Tips
+
+- Answer interview question 6 ("what are you trying to build or become this year?") properly. It's the one that turns explanations into something pointed at your goals rather than generic teaching.
+- Non-work domains make the best analogies. When it asks what you know well enough to teach, include the hobby, not just the job.
+- Your `LEARNER.md` is yours to edit. If an entry about your weaknesses feels wrong, delete it — the skill is built to expect that.
+- The stretch policy is deliberate: roughly one explanation in five leads with an unfamiliar frame, flagged as such, so comfort-only explanations don't become a ceiling.
+
+---
+
+## Limitations
+
+- **This packages a multi-file skill as one CLAUDE.md.** The original ships helper scripts (`sm2.ts` for card scheduling, `scan-signals.ts` for the threshold and heal scans) that a single file can't include. The template documents every file format and threshold so Claude can maintain the deck directly, but installing the [full bundle](https://github.com/DannyMac180/skills/tree/main/explain-this) is less error-prone if you plan to use review mode heavily.
+- The first run costs about ten minutes before you get any explanation. That's the design, not a bug, but it's real friction if you just wanted one paper explained.
+- State lives in `~/.explain-this/`. Back it up — the source calls losing a learner's history the worst failure the tool can have.
+- Spaced repetition only pays off if you actually run the reviews. The skill nudges once when cards are due and is explicitly forbidden from nagging, so the discipline is yours.

@@ -1,0 +1,127 @@
+---
+title: "GEO Proposal Generator: Turn an Audit Into a Priced Client Offer"
+description: "Converts GEO audit findings into a client-ready proposal with executive summary, three priced tiers, ROI projection, timeline, and terms"
+seoHook: "You ran the audit, the site scores 32/100, and the prospect is interested. Now you spend a Saturday reformatting findings into something a CFO will read. This playbook writes the proposal instead: business-language pain points, a recommended tier picked by score, and an ROI table that ties back to the audit."
+targetAudience: "SEO and GEO agency owners, freelance consultants, digital marketing agencies adding AI search services, growth agencies, solo SEO contractors"
+exampleUseCase: "\"Write a GEO proposal for electron-srl.com from this audit\" → A send-ready markdown proposal with a 200-word executive summary, the 3 critical findings translated into revenue risk, a scored recommendation for the €5,000/month Standard tier, a 6-month ROI projection, and a month-by-month engagement timeline"
+category: "sales-revenue"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Zubair Trabzada"
+sourceUrl: "https://github.com/zubair-trabzada/geo-seo-claude/tree/main/skills/geo-proposal"
+tags: ["geo", "proposal", "agency", "sales", "client-acquisition"]
+createdAt: "2026-07-25"
+---
+
+## What This Does
+
+Takes the output of a GEO audit and writes the proposal you would otherwise assemble by hand. GEO means Generative Engine Optimization: getting a site cited by ChatGPT, Claude, Perplexity, Gemini, and Google AI Overviews rather than ranked in a list of blue links.
+
+Claude reads the audit, picks the three findings that hurt the most, rewrites them as business problems instead of technical ones, selects a service tier from the score, and fills a full proposal document. Executive summary, market context, score breakdown, three packages, ROI projection, engagement timeline, investment summary, next steps, terms.
+
+The proposal ships priced in euros at €2,500 / €5,000 / €9,500 per month. Swap the currency and the numbers for your market before the first send. The structure survives any price point.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/GEOAgency
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/GEOAgency/
+```
+
+### Step 3: Bring an Audit
+
+```bash
+cd ~/Documents/GEOAgency
+claude
+```
+
+Paste your audit output, or say "Write a GEO proposal for electron-srl.com." Claude asks for the audit if it cannot find one, because a proposal without findings is a template, not a pitch.
+
+Proposals save to `~/.geo-prospects/proposals/<domain>-proposal-<date>.md`. Pair this with the [GEO Prospect Manager](/playbooks/geo-prospect) and the proposal also flips the prospect's pipeline status.
+
+---
+
+## How the Tier Gets Picked
+
+Claude recommends one package based on the audit score, then marks it in the packages section and names it in the executive summary.
+
+| GEO Score | Recommended tier | Reasoning |
+|-----------|------------------|-----------|
+| 0-40 | Premium (€9,500/mo) | Critical issues need intensive work |
+| 41-60 | Standard (€5,000/mo) | Significant gaps, structured monthly work |
+| 61-75 | Basic (€2,500/mo) | Solid base, monitoring and targeted fixes |
+| 76+ | Basic or quarterly retainer | Maintenance only |
+
+Presenting three tiers and letting the client pick shifts the decision onto them. The template presents three and recommends one.
+
+---
+
+## What Goes Into the Proposal
+
+**Executive summary** — company, industry, score, tier label, the three most urgent issues each with a one-sentence business impact, and the recommended package with its price. Capped at 200 words, because that plus the price is what a decision-maker actually reads.
+
+**Market context** — a table of the numbers that make the case: AI-referred traffic up 527% year over year, AI traffic converting at 4.4x organic, Gartner projecting a 50% drop in traditional search traffic by 2028, and only 23% of marketers investing in GEO today.
+
+**Position table** — the prospect's score, crawler access, brand mentions, schema coverage, and llms.txt status against industry average and top performers.
+
+**Score breakdown** — six weighted categories: AI Citability and Visibility (25%), Brand Authority Signals (20%), Content Quality and E-E-A-T (20%), Technical Foundations (15%), Structured Data (10%), Platform Optimization (10%).
+
+**Critical issues** — for each one: what we found, business impact, our fix, timeline.
+
+**ROI projection** — four scenarios from no action to Premium, with projected score, AI traffic increase, and estimated monthly value, plus stated assumptions and a payback period.
+
+**Timeline** — Month 1 foundation, Months 2-3 optimization, Months 4-6 authority building, Month 6 review, each with an expected score delta.
+
+---
+
+## Package Structure
+
+| | Basic | Standard | Premium |
+|---|---|---|---|
+| Monthly | €2,500 | €5,000 | €9,500 |
+| Audit cadence | Quarterly | Monthly + delta report | Monthly + delta report |
+| Strategy calls | — | Monthly, 60 min | Bi-weekly |
+| Content work | — | 10 pages/month optimized | 10 pages + 4 new articles |
+| Brand building | — | Wikipedia, Wikidata, LinkedIn | Plus Reddit, YouTube, citations |
+| Support | Email, 48h | Slack, 24h | Priority, 4h |
+| Minimum term | 6 months | 6 months | 12 months |
+| Projected 6-month gain | +10-20 points | +25-40 points | +40-60 points |
+
+---
+
+## Rules It Follows
+
+- **Business language in client-facing text.** "Your product pages have no structured data, so AI assistants cannot read your prices" beats "missing Product schema JSON-LD."
+- **Every number traces back to the audit.** No invented traffic figures. If traffic data is missing, the ROI table gets labeled illustrative.
+- **No unfilled placeholders.** If a value is unknown, Claude asks or drops the row rather than shipping `[COMPANY NAME]` to a prospect.
+- **No ranking guarantees.** The terms guarantee methodology and effort, not outcomes.
+
+---
+
+## Before Your First Send
+
+Edit these in the template so the first proposal comes out as yours:
+
+- Agency name and calendar link
+- Currency and the three monthly rates
+- Contract minimums, since 6 and 12 months are defaults rather than law
+- The "Why Us" bullets, which currently describe a generic GEO specialist
+
+---
+
+## Limitations
+
+- The proposal is only as good as the audit behind it. This playbook writes the document; it does not scan the site. The full audit suite with crawler checks, citability scoring, and schema analysis lives in the [source repo](https://github.com/zubair-trabzada/geo-seo-claude).
+- Pricing assumes a European agency selling to SMBs. US, UK, and APAC markets price differently.
+- ROI projections use industry benchmarks, not the client's analytics. Treat them as directional and say so in the call.
+- The market stats are current as of 2026 and will age. Refresh the numbers table before you lean on it in a pitch.

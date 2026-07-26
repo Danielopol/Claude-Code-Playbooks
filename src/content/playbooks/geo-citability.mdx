@@ -1,0 +1,140 @@
+---
+title: "AI Citability Scoring: Make Your Pages Quotable"
+description: "Score any page 0-100 on how likely ChatGPT, Perplexity, and Gemini are to quote it, with block-level rewrites for the passages that score worst"
+seoHook: "AI engines do not cite pages. They cite passages. A page can rank first on Google and still get skipped because the answer is buried in paragraph four and every sentence starts with 'it' instead of naming the subject."
+targetAudience: "SEO consultants, content marketers, technical writers, documentation owners, agency teams selling GEO audits, publishers chasing AI referral traffic"
+exampleUseCase: "\"Score https://acme.com/guide for AI citability\" → A GEO-CITABILITY-SCORE.md with an overall score out of 100, a weighted breakdown across five categories, the three strongest and three weakest content blocks named by heading, and rewritten opening sentences for every block scoring below 60"
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Zubair Trabzada"
+sourceUrl: "https://github.com/zubair-trabzada/geo-seo-claude/tree/main/skills/geo-citability"
+tags: ["geo", "citability", "ai-search", "content-structure", "authority"]
+createdAt: "2026-07-25"
+---
+
+## What This Does
+
+Scores a page on extractability: how easily an AI system can pull a passage out and present it as a direct answer. Claude segments the page at each H2 and H3, scores every block on five weighted categories, averages them into a page score, and writes specific rewrites for the blocks that drag the average down.
+
+This is the structural half of GEO. It does not judge whether your content is good, it judges whether it is quotable. [geo-content](/playbooks/geo-content) covers the other half, scoring the same page on E-E-A-T to see whether an engine has reason to trust the source at all. [geo-platform-optimizer](/playbooks/geo-platform-optimizer) goes wider, tuning a whole site per engine.
+
+From Zubair Trabzada's geo-seo-claude toolkit, packaged as a single CLAUDE.md.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/GEOCitability
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/GEOCitability/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/GEOCitability
+claude
+```
+
+Give Claude a URL: "Score https://example.com/guide for AI citability." It fetches the page, segments it, scores each block, and writes `GEO-CITABILITY-SCORE.md`.
+
+---
+
+## The Five Categories
+
+| Category | Weight | What it measures |
+|---|---|---|
+| Answer Block Quality | 30% | Does each section open with a 1-2 sentence direct answer? |
+| Passage Self-Containment | 25% | Can a block be understood in isolation, with its subject named? |
+| Structural Readability | 20% | Clean heading hierarchy, short paragraphs, tables, lists |
+| Statistical Density | 15% | Specific numbers with named sources, not "many" and "most" |
+| Uniqueness & Original Data | 10% | Information not available on a higher-authority page |
+
+Block score = (Answer × 0.30) + (SelfContain × 0.25) + (Structure × 0.20) + (Stats × 0.15) + (Unique × 0.10). The page score is the average across blocks, plus a "citability coverage" figure: the percentage of blocks scoring above 70.
+
+---
+
+## What the Research Says
+
+The scoring is built on published GEO findings, which the template carries as a reference table:
+
+| Finding | Source |
+|---|---|
+| Optimal cited passage length: 134-167 words | Bortolato 2025, AI Overview passage analysis |
+| Definition patterns increase citation rate 2.1x | Georgia Tech 2024 |
+| Adding statistics increases citation by 40% | Princeton GEO study 2024 |
+| Authority quotations increase citation up to 115% in some categories | IIT Delhi 2024 |
+| Content with source citations is cited 20-25% more often | Perplexity and ChatGPT search |
+
+---
+
+## Self-Containment Checklist
+
+Applied to every passage. Five questions, and most pages fail on the first:
+
+1. Does it explicitly name the subject, rather than "it," "this," or "they"?
+2. Can someone understand the main point reading only this passage?
+3. Does it contain at least one specific fact, statistic, or named entity?
+4. Is it between 50 and 200 words?
+5. Does it avoid opening with "But," "However," or "And," which imply prior context?
+
+---
+
+## Examples
+
+The template carries a matched pair so Claude has a target, not an abstraction.
+
+**High citability, 58 words:**
+> "Content delivery networks (CDNs) are distributed server systems that cache and serve web content from locations geographically close to end users. A CDN reduces latency by 50-70% on average by serving assets from edge servers rather than a single origin server."
+
+Names its subject, opens with a definition, carries three specific data points.
+
+**Low citability, 52 words:**
+> "If you've ever wondered why some websites load faster than others, the answer might surprise you. There's this amazing technology that has been around for a while now."
+
+Similar length, but the topic is never named, there are zero facts, and no sentence works pulled out of context.
+
+---
+
+## Per-Engine Preferences
+
+The template includes what each system favors, which shapes the rewrite advice:
+
+| Engine | Preference |
+|---|---|
+| ChatGPT Search | Explicit definitions, named sources, recent dates. Cites 2-4 sources. |
+| Perplexity | Fact-dense passages with statistics. Cites 4-8 sources. Values recency. |
+| Claude | Well-structured, comprehensive passages. Nuance over brevity. |
+| Gemini / AI Overviews | Concise 40-60 word answer blocks. Favors existing top-10 organic results. |
+| Copilot | High-authority domains with clear factual claims. |
+
+For a full per-engine audit rather than a passage-level one, see [geo-platform-optimizer](/playbooks/geo-platform-optimizer).
+
+---
+
+## Tips
+
+- Run it on your best-performing page first. A page already getting search traffic with a low citability score is the highest-leverage rewrite you have.
+- Fix Answer Block Quality before anything else. It carries 30% of the score and usually means moving one sentence to the top of a section.
+- Question-based H2s ("What is X?", "How does X work?") map directly to AI queries and lift both the answer and structure scores.
+- Convert any comparison of three or more things into a table. AI systems extract table data with high accuracy, and it is the fastest structural win available.
+- Keep both score files after a rewrite. The per-section score table makes it obvious which edits worked.
+
+---
+
+## Limitations
+
+- Scoring is judgment-based. Expect a few points of variance between runs on the same page, and treat the block ranking as more reliable than the absolute number.
+- Citability is one input among several. A perfectly structured page from a domain with no authority signals still may not get cited. Pair it with [geo-content](/playbooks/geo-content).
+- The rubric is tuned for informational and comparison content. Narrative essays, landing pages, and creative writing score low by design and should not be optimized against it.
+- "Expected citability lift" figures in the output are estimates, not measurements.
+- The full geo-seo-claude repo runs this scoring through a Python engine with page-fetch tooling. This template reproduces the rubric and procedure for Claude to apply directly.

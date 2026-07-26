@@ -1,0 +1,127 @@
+---
+title: "Unbroker: Remove Your Data From Broker Sites"
+description: "A consent-gated privacy workflow that maps where your personal data is exposed across people-search sites, files the opt-outs, verifies the removals, and re-checks on a schedule"
+seoHook: "Hundreds of data brokers publish your name, phone number, current and prior addresses, email, and relatives. Opting out means grinding through hundreds of hostile forms, then doing it again in six months when they re-list you. This playbook turns that grind into a queue Claude drains for you, with a ledger showing exactly what came down and what is still exposed."
+targetAudience: "anyone cleaning up after a doxxing, journalists and researchers, domestic-abuse survivors reducing their footprint, security and privacy engineers, people managing removals for family members, consultants handling client privacy requests"
+exampleUseCase: "\"Remove my data from data brokers. Here is my consent. Run it hands-off and show me the digest at the end.\" → A full exposure map across the broker registry, opt-outs filed parents-first so one removal clears a dozen child sites, a removal ledger tracking every case through submitted to verified-gone, a scheduled re-check for re-listings, and one list of the handful of sites that need you personally"
+category: "legal-compliance"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "Nous Research"
+sourceUrl: "https://github.com/NousResearch/hermes-agent/tree/main/optional-skills/security/unbroker"
+tags: ["privacy", "data-removal", "opt-out", "security", "pii", "ccpa", "gdpr"]
+createdAt: "2026-07-25"
+---
+
+## What This Does
+
+Data brokers and people-search sites publish your name, current and prior addresses, phone numbers, email addresses, and relatives. That exposure feeds doxxing, stalking, harassment, and identity theft. Removal is the documented fix, and it is miserable work: hundreds of sites, each with its own form, each with its own dark patterns, and all of them re-list you within months.
+
+This playbook gives Claude the removal workflow. It scans the broker registry to find where your data appears, files opt-out and right-to-delete requests, verifies each removal with a second scan, keeps a ledger of every case, and schedules re-checks so a re-listing gets caught and re-filed.
+
+Use it on your own data, or on data you are authorized to manage. Consent is the gate: family members and clients who asked you to handle their removals, each tracked as a separate isolated subject. It refuses to act on anyone without a recorded authorization, which is the line between a privacy tool and a people-search tool.
+
+The workflow comes from Nous Research's `unbroker` skill in the hermes-agent repo. This packages the rules and procedure as a CLAUDE.md.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/Unbroker
+```
+
+Keep it out of any repo you push. The folder will hold identity details you are trying to get off the internet.
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Unbroker/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/Unbroker
+claude
+```
+
+Then give Claude your intake and your consent in one message:
+
+> "Remove my data from data brokers. I authorize removal of my own data. My name is [name], I also go by [aliases], I live in [city, state], I previously lived in [prior cities], my emails are [...] and my phones are [...]. Run it hands-off and show me the digest at the end."
+
+Collect all of it up front. Old addresses and maiden names are where most listings hide, and the scan is only as good as the identifiers you hand it.
+
+---
+
+## How the Cycle Works
+
+Four phases, run as a loop rather than site-by-site.
+
+**Scan first, remove second.** Claude crawls every broker before touching a single form. Scanning has no side effects, so it parallelizes and retries freely. The complete exposure map is what makes the removal phase efficient, because you cannot deduplicate what you have not mapped.
+
+**Reduce.** Many brokers are resold shells of a few parents. One parent removal clears a dozen child sites, so the plan collapses ownership clusters and orders parents first, most children first. After a parent confirms, Claude re-scans its children, which usually dropped out on their own.
+
+**Remove, one at a time.** Opt-outs hit CAPTCHAs, email-verification loops, and session binding, so the removal phase is deliberately sequential. Requests file under the framework that applies where you live: CCPA/CPRA in California, GDPR in the EU and UK, a general right-to-delete elsewhere. It never cites a right you cannot invoke.
+
+**Verify, then re-check.** A case gets marked removed only after a second scan shows the listing gone. The confirmation page inside a broker's own opt-out flow proves nothing. After that, a recurring job re-runs the loop on schedule, because re-listing is the business model.
+
+California residents get a shortcut worth using first: the state's DROP request deletes your data from every broker registered with California in one filing, roughly 545 of them.
+
+---
+
+## What It Will Not Automate
+
+The escalation boundary is a feature, not a gap. Claude records the blocked case with a reason, keeps working the queue, and hands you one consolidated list at the end.
+
+- **Hard CAPTCHAs.** No solver service, no solver farm, no fingerprint spoofing. A normal browser clearing a checkbox challenge as a side effect of being a normal browser is fine. A behavioral or slider challenge it cannot pass gets recorded as blocked. If a site accepts a correct CAPTCHA answer and then rejects the submission anyway, it is fingerprinting the automation, and Claude stops rather than escalating the fight.
+- **Government ID verification.** Sites demanding a driver's license or passport scan go to you. The workflow never volunteers an SSN, license number, or passport number, and never submits more than the broker already displays publicly.
+- **Phone callbacks, fax, and notarized mail.** These reach the digest with the exact next step attached. There is a useful workaround the workflow tries first: when a broker's form is gated behind a phone callback but the broker publishes a deletion email address, the request routes through email instead.
+- **Anything demanding more PII mid-flow.** If a form asks for fields beyond the plan, Claude stops that case and queues it rather than deciding alone to hand over more of your data.
+
+---
+
+## The Removal Ledger and Report
+
+Every case is a state machine, tracked from `unscanned` through `found`, `submitted`, `verification_pending`, `awaiting_processing`, to `confirmed_removed`, plus `blocked` and `human_task_queued` branches.
+
+Each record holds the broker, the state, the listing URLs used as evidence, the field names disclosed, the channel used, and the next re-check date. Disclosures are logged **by field name only, never by value**, so the audit trail does not become a second copy of the data you are erasing.
+
+Two outputs at the end of a run:
+
+- **The human-task digest** lists the handful of sites needing you personally, with the reason and the next step for each. You see it once, at the end, rather than being interrupted twenty times mid-run.
+- **The status report** shows per-broker state and reports honestly. Suppression is reported as suppression, not deletion. Paid-tier retention is flagged as residual exposure. Public records that cannot be deleted are named as out of scope.
+
+---
+
+## Managing Multiple People
+
+Each subject is fully isolated: its own opaque id, dossier, ledger, re-check schedule, and consent record. Subject ids carry no name, so the file paths and logs do not leak the identity.
+
+Dossiers never merge and subjects never cross-reference. Family members share addresses and relatives, which makes cross-contamination both easy and wrong. Consent is per person, and a parent's consent does not cover an adult child.
+
+---
+
+## Tips
+
+- **Spend real effort on intake.** Every alias, maiden name, misspelling, old email, dead phone number, and city you lived in during the last twenty years. Brokers index all of them. A scan run on "current name plus current city" finds a fraction of the exposure.
+- **Do the California DROP filing first** if you are a CA resident. One request against 545 registered brokers beats any amount of per-site grinding.
+- **Let it file blind opt-outs.** Submitting a removal request to a site that may not list you costs nothing and discloses only your own identifiers to that broker's official channel. A guided opt-out flow that matches your name, email, and date of birth and returns "no results" is stronger evidence of absence than any scrape.
+- **Turn on at-rest encryption** if the folder is anywhere backed up or synced. The dossier is a concentrated file of exactly what you are trying to remove.
+- **Watch the affiliate-parent exception.** On some parent networks, deleting your user account wipes the suppressions you already have and does not stop public-records re-listing. Suppress and maintain there instead. If a "deletion complete" email arrives from one, re-run the suppression.
+- **Keep the scheduled re-check.** A one-time cleanup decays. The recurring job is what makes the work stick.
+
+---
+
+## Limitations
+
+- **This playbook packages the skill's rules as a single CLAUDE.md.** The complete `unbroker` skill is multi-file: a deterministic Python CLI that owns the state machine, a curated broker database with field-verified per-site opt-out playbooks, email templates, and a hermetic test suite. For full functionality, install the real bundle from the [source repo](https://github.com/NousResearch/hermes-agent/tree/main/optional-skills/security/unbroker). The CLAUDE.md carries the procedure and the safety boundaries, and describes how to keep the ledger by hand if you run without the engine.
+- **Coverage changes.** Broker rosters, opt-out mechanics, and form flows shift constantly. A playbook that worked last quarter may point at a dead URL. Refresh the broker list before each run rather than trusting a cached copy.
+- **Results vary by jurisdiction.** California and the EU/UK give you enforceable deletion rights with statutory response windows. Elsewhere you are asking, not compelling, and broker compliance is uneven.
+- **Removal is not erasure.** Public records (voter rolls, property deeds, court filings) stay published, and some brokers keep records in paid tiers after hiding them from free search. The report names both rather than claiming a clean sweep.
+- **This is not legal advice.** Operate only on people who authorized removal of their own data.
+- **Automation is the frontier, not the finished product.** The upstream skill ships placeholder data and notes that live agent-driven submission against broker sites is still being field-tested. Expect to review submissions rather than trusting them unread.

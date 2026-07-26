@@ -1,0 +1,145 @@
+---
+title: "Threads Carousel Generator: Turn a Post Into Slide Images"
+description: "Splits a text post into 12 slide types and renders exportable carousel images for Threads, Instagram, LinkedIn, TikTok, and Stories via a bundled Next.js preview"
+seoHook: "A good post dies in the feed as a wall of text. The same post as six designed slides gets saved and shared. This playbook has Claude split your text into a hook, body slides, and a CTA, then render them at platform-exact dimensions you export as PNGs or a single PDF."
+targetAudience: "content creators, social media managers, indie founders posting on Threads and LinkedIn, newsletter writers repurposing posts, marketers building carousel decks"
+exampleUseCase: "\"Make a carousel from this post, 6 slides, paper surface with orange accent\" → A slide plan you approve, then a browser preview at 1080×1350 with a hook slide, three body slides, a stats slide, and a CTA, exported as 01-hook.png through 06-cta.png or one PDF"
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "itchernetski"
+sourceUrl: "https://github.com/itchernetski/threads-carousel-claude-skill"
+createdAt: "2026-07-25"
+tags: ["carousel", "social-media", "threads", "instagram", "linkedin", "design"]
+---
+
+## What This Does
+
+Turns a text post into a set of designed carousel slides for Threads, Instagram, LinkedIn, TikTok, Stories, or a wide presentation deck. Claude reads your text, splits it into a hook, body slides, and a CTA, picks slide types that fit the content, and writes the result into a rendering app that exports PNGs or a single PDF.
+
+**You have to clone the source repo for any of this to work.** The rendering happens in a Next.js app bundled with the repo, not in the CLAUDE.md. The template you download here is an operating guide: how to install the app, how Claude authors slides by editing `src/slides.ts`, the full slide-type and style vocabulary, and how to preview and export. Without the clone, there is nothing to render into.
+
+Install takes one clone plus one dependency install, and you do it once.
+
+---
+
+## Quick Start
+
+### Step 1: Clone the Repo
+
+```bash
+mkdir -p ~/.claude/skills
+git clone https://github.com/itchernetski/threads-carousel-claude-skill.git ~/.claude/skills/threads-carousel
+```
+
+### Step 2: Install Dependencies
+
+```bash
+cd ~/.claude/skills/threads-carousel/template
+bun install   # or pnpm install / npm install
+```
+
+Needs Node 18+ and one of bun, pnpm, or npm. The install pulls around 350MB into `node_modules`, which every future carousel reuses through a symlink.
+
+### Step 3: Download the Template
+
+Click **Download** above, then:
+```bash
+mkdir -p ~/Documents/Carousels
+mv ~/Downloads/CLAUDE.md ~/Documents/Carousels/
+```
+
+### Step 4: Make a Carousel
+
+```bash
+cd ~/Documents/Carousels
+claude
+```
+
+Paste a post and say "make a carousel." Claude asks once for slide count, format, and style, shows you the slide breakdown, writes `src/slides.ts` in a temporary working copy, and starts the preview at `http://localhost:3333`.
+
+The source skill is bilingual: "сделай карусель" triggers it the same way, and the preview toolbar toggles between Russian and English labels.
+
+---
+
+## Format Presets
+
+| Preset | Size | Where it goes |
+|---|---|---|
+| `threads-4x5` *(default)* | 1080×1350 | Threads, Instagram feed |
+| `instagram-square` | 1080×1080 | Instagram, Facebook, LinkedIn feed |
+| `linkedin-square` | 1080×1080 | LinkedIn document post (PDF) |
+| `tiktok-9x16` | 1080×1920 | TikTok Photo Mode, Reels, Shorts |
+| `story-9x16` | 1080×1920 | Instagram and Threads Stories |
+| `wide-16x9` | 1920×1080 | Presentations, YouTube, desktop decks |
+
+Format switches live in the preview toolbar and resize the canvas without a rebuild, so you can test all six before exporting.
+
+---
+
+## The 12 Slide Types
+
+`hook` for the opener, `body` for a title plus paragraph, `list` for numbered items, `stats` for big numbers, `quote` for pulled quotes, `checklist` for checkmark bullets, `process` for numbered steps with a connector, `comparison` for two-column before/after, `cta` to close, `image` for a screenshot or photo, `emoji` for a 360px illustration, and `number` for a hero digit.
+
+A `body` slide can also take a `points` array instead of text, which renders a pros and cons list with green ✓ and muted ✗ icons.
+
+Every type accepts a `badge` (a small tag like `01` or `TIP`), a `highlight` word rendered in the accent color, and an optional `italic-box` highlight style that puts the word in Playfair italic on a colored rectangle.
+
+---
+
+## The Style System
+
+Four axes, composed at runtime, picked independently:
+
+- **Font (5)** — Minimal (Unbounded), Editorial (Playfair), Clean (Inter), Mono (JetBrains Mono), Condensed (Oswald)
+- **Surface (8)** — Dark, White, Light, Paper (cream, ruled), Gradient, Pastel, Neon, Ember
+- **Accent (11)** — Yellow, Red, Teal, Coral, Orange, Violet, Lime, Blue, Fuchsia, Pink, Amber
+- **Purpose (2)** — Carousel (44px uppercase titles with an accent divider) or Presentation (72px sentence case, lighter body, no divider)
+
+That gives 880 valid combinations. Starting points worth trying: `dark + teal` for noir tech, `paper + orange` for literary warm, `ember + lime` for a dramatic announcement, `white + coral` for sharp editorial.
+
+Eight background decorations layer on top: none, organic blobs, dot grid, diagonal lines, ruled notebook paper, SVG noise, a giant slide-index watermark, or the default soft radial glow.
+
+---
+
+## How Slides Get Split
+
+The template gives Claude four rules, and they do most of the work:
+
+1. **The hook is the single most intriguing line** from the post, 1-3 short lines. It has to stand alone as a thumbnail, because it is the only slide most people see.
+2. **One idea per body slide.** Max 40 words, max 5 lines. Never join two ideas with "and."
+3. **Mix the types.** Lists for enumerations, stats for numbers, quotes for direct speech, comparison for before/after. Six `body` slides in a row is a wall of text with extra steps.
+4. **The CTA closes** with a conclusion and your handle. Centered, short.
+
+Claude prints the full slide plan before generating anything, so you fix the breakdown before it becomes images.
+
+---
+
+## Adding Images
+
+`image` slides read from the Next.js `/public/` directory. Hand Claude a local file path and it copies the file into `public/images/` with a safe lowercase name, then references it as `imageSrc: "/images/screenshot.png"`.
+
+External URLs do not work. The `html-to-image` export pipeline blanks them out on CORS, which is why the file has to be served same-origin.
+
+---
+
+## Export
+
+Open `http://localhost:3333` and use the toolbar:
+
+- **PDF** downloads every slide in one file, JPEG-compressed, roughly 5-8MB for ten slides. This is the format LinkedIn document posts want.
+- **PNG** downloads each slide as `01-hook.png`, `02-body.png`, and so on.
+- Clicking a single thumbnail exports just that slide.
+
+Running several carousels at once works: separate working directories on ports 3333, 3334, 3335.
+
+---
+
+## Limitations
+
+- **The source repo is required.** The downloadable template documents the workflow and the design vocabulary; the Next.js app that renders slides ships with the [GitHub repo](https://github.com/itchernetski/threads-carousel-claude-skill). Clone it first or nothing renders.
+- Export runs in the browser through `html-to-image` and `jspdf`. No headless CLI export, so someone has to open the preview and click. Server-side rendering via Satori is on the roadmap, not shipped.
+- Adaptive font sizing is calibrated for Latin text. Russian and other Cyrillic copy runs 20-30% longer at the same size and can overflow a slide.
+- Background decoration is global per deck. Per-slide backgrounds are not supported.
+- Emoji render with the operating system's font, so a deck exported on macOS looks different from the same deck exported on Windows.
+- Content lives in `src/slides.ts` and the engine lives in `CarouselApp.tsx` and `src/lib/`. Editing the engine to fix a layout problem usually means the slide has too much text on it.

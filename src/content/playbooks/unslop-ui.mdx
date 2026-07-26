@@ -1,0 +1,120 @@
+---
+title: "Unslop UI: Kill the AI Design Tells"
+description: "A frontend guardrail built from a 3.2M-post Reddit analysis of what people actually call AI slop, with a build mode that forces design decisions up front and an audit mode that scans existing code for the tells"
+seoHook: "Your site looks AI-made and you can't say why. Other people can: the indigo primary, the gradient headline, Inter left at default, three feature cards under a centered hero. This playbook hands Claude a ranked catalogue of those tells, sourced from 3,033 real complaints, plus a scan pass that finds them in code you already shipped."
+targetAudience: "frontend developers, indie hackers shipping landing pages, agencies delivering client sites built with Claude Code, design engineers reviewing generated UI, teams adding a design check to CI"
+exampleUseCase: "\"Audit this Next.js app, does it look AI-generated?\" → A finding list with file:line for every violet-600 primary, gradient-clipped heading, stock shadcn Card and default Inter import, ranked by how often real users complain about each, with a vibe score and the top three fixes"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "JCarterJohnson"
+sourceUrl: "https://github.com/JCarterJohnson/vibecoded-design-tells"
+tags: ["frontend", "design", "ui", "anti-slop", "audit"]
+createdAt: "2026-07-25"
+---
+
+## What This Does
+
+Gives Claude a ranked catalogue of the specific cues that make a website read as AI-generated, plus two ways to use it.
+
+**Build mode** runs before any code exists. Claude has to establish a brief first: a real reference site or a named direction, a stated color decision, a typeface chosen for a reason, and a layout intent tied to what the page is for. If you give no brief, Claude states the choices it made and why instead of falling back to the median. Most "looks AI" output is a specification problem, not a styling problem, and this is where it gets fixed.
+
+**Audit mode** runs against code you already have. Claude walks your `.tsx`, `.jsx`, `.vue`, `.svelte`, `.astro`, `.css` and `.html` files against the code signatures for each tell, reports every hit with file, line, severity and a concrete fix, then gives a vibe score. The upstream repo ships a deterministic Python scanner that does the same pass and exits with the high-severity count, so you can gate a build on it in CI.
+
+The catalogue is not invented. It comes from an analysis of roughly 3.2M posts across 47 AI and SaaS subreddits, and 3,033 comments from 125 "why do all AI sites look the same" threads. Each tell carries its comment share, so effort goes where people actually complain. Tells the data cleared, like mesh backgrounds and bento grids, are explicitly listed as things not to chase.
+
+The sharpest idea here: the skill refuses to prescribe a look. It flags the 2024 default (purple gradient on a dark hero) **and** the 2026 "tasteful default" that anti-slop advice created (cream background, Instrument Serif, sage green accent). Swapping one for the other resets the clock. A tell is an unspecified default, not a banned color, so a purple you actually chose passes.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Projects/my-site
+```
+
+Or use an existing frontend repo.
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Projects/my-site/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Projects/my-site
+claude
+```
+
+For build mode: "Build the landing page. Follow the unslop rules." Claude will ask for a reference or state its choices.
+
+For audit mode: "Audit this codebase for AI design tells" or "does this look AI-generated?"
+
+---
+
+## How Build Mode Works
+
+Claude establishes four things before writing CSS:
+
+1. **A reference.** One real site, brand, or screenshot to anchor to. This single input does more than every other rule in the file. With none, Claude picks a *named* direction (editorial, brutalist, utilitarian-dense, warm-consumer, technical-mono) instead of "modern and clean," which means nothing.
+2. **A color decision.** A real brand color or one sampled from something concrete. Not the framework default and not cream-and-sage either.
+3. **A type decision.** A specific face or pairing with a stated reason. Inter, Geist, Instrument Serif and Fraunces are allowed only as real choices, never as the autopilot pick.
+4. **A layout intent.** What the page is for and what the reader should do first. Structure follows the goal, which is how you avoid the hero-plus-three-cards skeleton.
+
+If you say "just build it," Claude produces one deliberate result and tells you what it chose, or offers two or three genuinely distinct directions. It will not hand you the median.
+
+---
+
+## The Tells It Catches
+
+Thirteen entries, ordered by comment share in the data:
+
+- **The "tasteful default"** (co-top priority) — cream page background (`#faf8f5`, `bg-stone-50`), a serif display face, a forest-green primary. Any two of the three is a strong signal.
+- **Untouched shadcn/Tailwind** (2.5%) — repeated `bg-slate-*` cards, the stock `rounded-lg border bg-card shadow-sm` trio, `components.json` still on `baseColor: "slate"` with `cssVars` unedited.
+- **AI purple** (2.3%) — `indigo-*`/`violet-*` as the CTA color, `#6366f1` and neighbors, `--primary` sitting at hue 255-280.
+- **Gradients and gradient text** (2.0%) — `bg-clip-text text-transparent`, `from-purple-* to-blue-*`, gradients on more than one surface.
+- **Animation spam** (1.1%) — `whileHover={{ scale: 1.05 }}` on every card, `data-aos="fade-up"` on every section, scrolljacking.
+- **Uniform rounding** (0.8%) — `rounded-2xl`/`rounded-3xl` everywhere, `border-radius: 9999px` on every button.
+- **Unprompted neon glow** (0.7%) — `shadow-[0_0_*]` and saturated `text-shadow` on dark. Dark mode itself is fine; the glow nobody asked for is the tell.
+- **Emoji as icons** (0.5%) — emoji in headings and feature-card slots where an SVG icon belongs.
+- **Default fonts** (0.4%, flagged as understated) — Inter/Geist as the only face, or the "tasteful" serifs as the heading face with no second face.
+- **The centered hero + 3 cards + CTA skeleton** (0.4% comments, 1.6% posts) — the structure itself, before any color.
+- **Layout-quality tells** — text overflowing its container, mixed padding values with no scale, near-misaligned edges, no hierarchy. A scanner cannot see these, so check them by eye.
+- **Copy clichés** — "Transform your X," "Supercharge," "Unleash," which pair with the gradient-text tell.
+- **Cleared by the data** — mesh/aurora/blob backgrounds (a keyword artifact), bento grids (0.1% and actively defended), glassmorphism. Do not chase these.
+
+---
+
+## How This Differs From the Other Anti-Slop Playbooks
+
+This site already hosts several frontend anti-slop playbooks. Pick by what you need:
+
+- **Unslop UI (this one)** — rules derived from a real dataset of user complaints, with severity weights, and an audit pass for code that already exists. Use it when you want to *check* something, or when you want a guardrail that refuses to give you a house style.
+- **[Taste Skill](/playbooks/taste-skill)** — a fuller design-direction system with dial-based briefs, design-system mapping and GSAP motion code. Use it when you want opinionated help *making* the thing look good.
+
+They stack. Let a design skill build; let this one keep it honest. The template says so explicitly: a guardrail is not a designer.
+
+---
+
+## Tips
+
+- Bring a reference. One screenshot of a site you like beats every other input in the file, and it is the one thing a model cannot supply for you.
+- Mark real decisions with an `unslop-ignore` comment on the line. Flagged values you chose on purpose stop nagging, and the audit stays trustworthy.
+- Fix findings with the project's actual color, not another nice color. Replacing `bg-purple-600` with `bg-emerald-700` is a new unspecified default, not a fix.
+- Grab the Python scanner from the source repo if you want CI gating. Its exit code is the high-severity finding count, so a failing build is a one-line CI condition.
+- Run the audit on a competitor's site or an old project first. The vibe score is more legible when you have something to compare against.
+
+---
+
+## Limitations
+
+- A scan reads code, not rendered pages. Layout coherence, spacing rhythm, overflowing text and information hierarchy all need a human eye, and tell 10 exists precisely because those are a large share of why a page reads as generated.
+- The signature lists are Tailwind-heavy. Plain CSS, CSS-in-JS and design-token systems get partial coverage.
+- The weights come from data collected through mid-2026. Defaults move, which is the file's own core argument, so treat the ranking as current rather than permanent.
+- It removes tells. It does not produce taste, a brand, or a layout, and the template opens by saying so.
+- A clean score means your code avoids the known tells, not that the design is good.

@@ -1,0 +1,82 @@
+---
+title: "GEO Report PDF Renderer"
+description: "Render a GEO audit markdown file into a styled client-ready PDF with a cover page, color-coded score tables, and severity callouts"
+seoHook: "A markdown audit is a file. A PDF with a navy cover page and a color-coded score badge is a deliverable you can charge for. This playbook converts one into the other with pandoc and headless Chrome, no Python and no design work."
+targetAudience: "GEO and SEO agencies sending client deliverables, freelance consultants, marketing teams presenting to executives, anyone who needs an audit to look like a report"
+exampleUseCase: "\"Turn GEO-AUDIT-REPORT.md into a PDF\" → GEO-REPORT.pdf with a dark navy cover carrying the brand name, domain, and score badge, score cells shaded green through red by value, severity-tagged finding callouts, automatic section page breaks, and page-numbered footers"
+category: "data-reporting"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Zubair Trabzada"
+sourceUrl: "https://github.com/zubair-trabzada/geo-seo-claude/tree/main/skills/geo-report-pdf"
+tags: ["geo", "pdf", "reporting", "client-deliverable"]
+createdAt: "2026-07-25"
+---
+
+## What This Does
+
+Takes a finished GEO audit written in markdown and prints it to a styled PDF. Claude reads the cover metadata out of the report header, runs pandoc to build a self-contained HTML file, then drives headless Chrome to print that HTML to PDF.
+
+Pairs with the [GEO Client Report Generator](/playbooks/geo-report), which produces the markdown this consumes.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/GEOReports
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/GEOReports/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/GEOReports
+claude
+```
+
+With your audit markdown in the folder, say "turn the audit report into a PDF."
+
+---
+
+## Dependencies
+
+Two external tools, both must be installed before the first run:
+
+- **pandoc** — `brew install pandoc`, `winget install JohnMacFarlane.Pandoc`, or `apt install pandoc`
+- **Google Chrome or Chromium** — used headless to print the HTML to PDF
+
+The playbook also needs an input file. It looks for `GEO-AUDIT-REPORT.md` in the current directory and stops if that file is absent rather than inventing audit data.
+
+The upstream geo-seo-claude suite installs a pandoc HTML template and stylesheet under `~/.claude/skills/geo/templates/`. Running this as a standalone CLAUDE.md, you will not have them, so the template instructs Claude to generate a local `geo-pdf/template.html` and `geo-pdf/style.css` on the first run and reuse them afterward.
+
+---
+
+## What the PDF Contains
+
+- Cover page with a dark navy gradient, brand name, domain, GEO score badge colored by value, audit date, business type, locations, and CMS
+- Score cells shaded by threshold: 80 and up green, 65 and up blue, 50 and up amber, 35 and up orange, below 35 red
+- Severity callouts on findings, with left borders in red, orange, yellow, or green
+- Automatic page breaks before major sections
+- Dark-theme monospace styling for JSON schema blocks
+- Footer with brand name, date, and page numbers
+
+---
+
+## Troubleshooting
+
+| Problem | Fix |
+|---|---|
+| `pandoc: command not found` | Install pandoc, then reopen the terminal |
+| Chrome not found | Check the binary path for your OS |
+| PDF is blank | Raise `--virtual-time-budget` to 8000 so the inline script finishes |
+| Cover metadata missing | The audit markdown needs the standard header format Claude parses |
+| Fonts look wrong | The PDF renders offline and falls back to system fonts. Expected. |

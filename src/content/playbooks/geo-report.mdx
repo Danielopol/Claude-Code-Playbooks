@@ -1,0 +1,133 @@
+---
+title: "GEO Client Report Generator"
+description: "Turn AI-search audit findings into a client-ready GEO report with a weighted 0-100 readiness score and a three-tier action plan"
+seoHook: "You ran the audit. Now the client wants a document, and they do not care about server-side rendering or JSON-LD. This playbook turns raw AI-search findings into a 3,000-word report a marketing director can read, priced in dollars and sorted into what to fix this week, this month, and this quarter."
+targetAudience: "GEO and SEO agencies, freelance consultants, in-house marketing leads, growth teams reporting to executives, web studios upselling AI-search work"
+exampleUseCase: "\"Write the GEO client report for acme.com from the audit data in this folder\" → GEO-CLIENT-REPORT.md with a weighted readiness score out of 100, per-platform readiness for Google AIO, ChatGPT, Perplexity, Gemini and Copilot, an AI crawler access table, top-5 most and least citable pages, and a prioritized action plan split into quick wins, monthly work, and quarterly initiatives"
+category: "data-reporting"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Zubair Trabzada"
+sourceUrl: "https://github.com/zubair-trabzada/geo-seo-claude/tree/main/skills/geo-report"
+tags: ["geo", "reporting", "seo", "client-deliverable", "analytics"]
+createdAt: "2026-07-25"
+---
+
+## What This Does
+
+GEO is Generative Engine Optimization: getting a site cited by AI search platforms instead of buried under them. Running the analysis is one job. Packaging it into something a business owner will read is another.
+
+This playbook handles the second job. It gives Claude a fixed 12-section report structure, a weighted scoring formula, and the exact client-facing language for translating each technical finding into business impact. Output is a single self-contained `GEO-CLIENT-REPORT.md`, 3,000-6,000 words, with no references to other files.
+
+It comes from the geo-report skill in Zubair Trabzada's geo-seo-claude suite.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/GEOReports
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/GEOReports/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/GEOReports
+claude
+```
+
+Drop your audit data into the folder, then say "write the GEO client report for acme.com."
+
+---
+
+## The Scoring Formula
+
+Five components, weighted:
+
+| Component | Weight |
+|---|---|
+| AI Platform Readiness | 25% |
+| Content Quality & E-E-A-T | 25% |
+| Technical Foundation | 20% |
+| Schema & Structured Data | 15% |
+| Brand Authority & Entity Presence | 15% |
+
+The composite lands in one of five bands, each with client-facing copy attached so the number arrives with an interpretation:
+
+| Range | Label |
+|---|---|
+| 85-100 | Excellent |
+| 70-84 | Good |
+| 55-69 | Moderate |
+| 40-54 | Below Average |
+| 0-39 | Needs Attention |
+
+---
+
+## What Goes In the Report
+
+Twelve sections, in order:
+
+1. **Executive summary** — one paragraph, 4-6 sentences, score plus the top three recommendations plus a dollar estimate
+2. **GEO readiness score** — headline number and weighted component breakdown
+3. **AI visibility dashboard** — per-platform readiness for Google AI Overviews, ChatGPT Web Search, Perplexity, Gemini, and Bing Copilot
+4. **AI crawler access** — allow/block status for Googlebot, GPTBot, Bingbot, PerplexityBot, Google-Extended, ClaudeBot, Applebot-Extended
+5. **Brand authority** — presence on Wikipedia, Wikidata, LinkedIn, YouTube, Reddit, Knowledge Panel, Crunchbase, GitHub
+6. **Citability analysis** — the five most and five least citable pages, each with a specific fix
+7. **Technical health** — Core Web Vitals, SSR, mobile, security, speed, IndexNow
+8. **Schema and structured data** — which JSON-LD types exist and validate
+9. **llms.txt status**
+10. **Prioritized action plan** — the section clients actually act on
+11. **Competitor comparison** — included only when competitor URLs were analyzed
+12. **Appendix** — methodology, data sources, and a 14-term glossary
+
+---
+
+## The Action Plan Tiers
+
+The plan sorts every recommendation into three buckets by effort, so nobody has to guess what to do Monday morning.
+
+**Quick wins, under 4 hours.** Unblock AI crawlers in robots.txt. Add publication dates. Add author bylines with credentials. Fix broken meta descriptions. Add `sameAs` properties to existing Organization schema. Create llms.txt.
+
+**Medium-term, 1-5 days.** Restructure the top 10 pages with question-based headings and direct answers. Implement full Schema.org markup. Build author pages with credentials. Optimize Core Web Vitals. Register Bing Webmaster Tools. Implement IndexNow.
+
+**Strategic, weeks to months.** Build Wikipedia and Wikidata entity presence. Develop Reddit community engagement. Launch a YouTube content strategy. Move to server-side rendering. Build topical authority. Start an original research program.
+
+---
+
+## Client-Facing Translations
+
+The template carries prewritten explanations so technical findings land with a non-technical reader. Two examples it uses verbatim:
+
+> On blocked crawlers: "Blocking AI crawlers is like closing your store during business hours. If a crawler cannot access your site, the AI platform it powers cannot cite your content."
+
+> On client-side rendering: "Your site uses client-side rendering, which means AI crawlers see an empty page when they visit. This is the single most impactful technical issue for AI search visibility."
+
+The brand authority table carries citation-share stats for weight, including that 47.9% of ChatGPT citations point to Wikipedia and 46.7% of Perplexity citations point to Reddit.
+
+---
+
+## Tips
+
+- Fill the five input areas before you ask for the report. Platform readiness, content and E-E-A-T, technical, schema, and brand authority each feed a weighted slot.
+- Missing data gets marked "Not assessed" rather than estimated. Keep it that way. A fabricated Core Web Vitals number is the fastest way to lose a client's trust.
+- Dollar figures anchor on three assumptions the template states openly: current organic traffic value, AI search reaching 25-40% of organic discovery by end of 2026, and a 10-point score gain correlating with a 15-25% lift in citation frequency. Adjust them for your market.
+- Pair this with the PDF renderer when the deliverable needs to look like a consulting document rather than a text file.
+
+---
+
+## Limitations
+
+- The report is only as good as the inputs. This playbook formats and frames findings, it does not crawl or measure a site on its own.
+- The composite score is a weighted heuristic from the geo-seo-claude suite, not an industry standard. It tracks progress against itself well, and comparisons across vendors poorly.
+- Impact estimates come from 2025-2026 industry benchmarks. Treat them as ranges, state assumptions, and never guarantee results.
+- Section 11 needs competitor URLs analyzed alongside the primary domain, otherwise skip it.

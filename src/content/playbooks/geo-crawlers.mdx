@@ -1,0 +1,123 @@
+---
+title: "AI Crawler Access Audit: Who Can Actually Read Your Site"
+description: "Maps 14 AI crawlers against your robots.txt, meta tags, and HTTP headers, then returns an access score and the exact rules to change"
+seoHook: "Over 35% of the top 1,000 websites block at least one major AI crawler, and most did it by accident with a robots.txt rule copied from a scraper problem years ago. This playbook checks all 14 AI bots against your site and tells you which line is costing you ChatGPT and Perplexity visibility."
+targetAudience: "web developers who own robots.txt, technical SEO specialists, publishers deciding on AI training policy, agency teams auditing client sites, marketing ops at content-heavy companies"
+exampleUseCase: "\"Check AI crawler access for example.com\" → A GEO-CRAWLER-ACCESS.md scoring 42/100, showing GPTBot and PerplexityBot blocked by an inherited wildcard rule, ClaudeBot not mentioned, Bytespider crawling freely, plus a copy-paste robots.txt block that flips the four Tier 1 bots to Allow"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Zubair Trabzada"
+sourceUrl: "https://github.com/zubair-trabzada/geo-seo-claude/tree/main/skills/geo-crawlers"
+tags: ["geo", "crawlers", "robots-txt", "ai-bots", "technical-seo"]
+createdAt: "2026-07-25"
+---
+
+## What This Does
+
+Gives Claude a reference table of 14 AI crawlers, sorted into three tiers by how much they affect AI search visibility, plus a six-step procedure for checking a site against all of them.
+
+Claude fetches robots.txt, parses every User-agent block, resolves wildcard inheritance, then checks a sample of pages for meta robots tags, `X-Robots-Tag` headers, `llms.txt`, and JavaScript rendering dependence. The output is `GEO-CRAWLER-ACCESS.md`: a per-crawler status table, an access score out of 100, and a ready-to-paste robots.txt block.
+
+Crawler access is the floor under everything else in GEO. Content quality, schema markup, and citability all stop mattering the moment GPTBot gets a 403.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/GEOCrawlers
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/GEOCrawlers/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/GEOCrawlers
+claude
+```
+
+Then ask: "Check AI crawler access for https://yourdomain.com"
+
+---
+
+## The Three Tiers
+
+**Tier 1 — allow these.** GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, PerplexityBot. These power the products where users type questions and read answers. Blocking any of them removes you from that surface directly. PerplexityBot is the one publishers most regret blocking, since Perplexity always displays source links and sends real referral traffic.
+
+**Tier 2 — allow these too.** Google-Extended, GoogleOther, Applebot-Extended, Amazonbot, FacebookBot. Broader ecosystem reach. Apple Intelligence ships on 2B+ devices, Meta AI sits inside apps with 3B+ combined users.
+
+**Tier 3 — your call.** CCBot, anthropic-ai, cohere-ai feed model training rather than live search, so blocking them costs no search visibility. Bytespider is the one the template recommends blocking outright for Western businesses: aggressive crawling behavior, minimal visibility benefit.
+
+The template documents each crawler with its operator, exact User-Agent string, what it does, what blocking it costs, and the recommendation with reasoning.
+
+---
+
+## The Distinctions That Trip People Up
+
+Several crawlers look like duplicates and are not:
+
+- **GPTBot vs OAI-SearchBot** — GPTBot content may be used to improve OpenAI models. OAI-SearchBot is search-only with no training use. Blocking GPTBot for training reasons still leaves your ChatGPT search presence intact, if you allow OAI-SearchBot.
+- **ChatGPT-User** — fires when a person explicitly asks ChatGPT to open your URL. Blocking it turns away users who are actively trying to read your page.
+- **ClaudeBot vs anthropic-ai** — ClaudeBot powers live web search and citations. anthropic-ai is training and safety research. Blocking the second does not affect the first.
+- **Google-Extended vs Googlebot** — Google-Extended controls Gemini training and AI Overviews improvement. It has no effect on Google Search rankings. Googlebot controls those.
+- **Applebot-Extended vs Applebot** — Extended is Apple Intelligence. Plain Applebot runs Siri search and Spotlight Suggestions and is unaffected.
+
+---
+
+## The Six-Step Check
+
+1. **robots.txt** — parse every User-agent block, resolve wildcard inheritance, classify each crawler as Allowed, Blocked, or Not Mentioned. Note `Crawl-delay` and `Sitemap` directives.
+2. **Meta robots tags** — sample 5-10 key pages for `noindex`, `nofollow`, the emerging `noai` and `noimageai` tags, and bot-specific tags like `<meta name="GPTBot" content="noindex">`.
+3. **HTTP headers** — `X-Robots-Tag` variants on the same pages. Headers override meta tags and apply to non-HTML resources.
+4. **AI-specific files** — `/llms.txt`, `/.well-known/ai-plugin.json`, `/ai.txt`.
+5. **JavaScript rendering** — GPTBot, ClaudeBot, and PerplexityBot all have limited JS rendering. If critical content needs hydration, allowing the crawler is not enough.
+6. **Content Signals** — scan the already-fetched robots.txt for `Content-Signal:` directives from the IETF draft, validate keys against `ai-train`, `search`, `ai-personalization`, `ai-retrieval`, and values against `yes` and `no`.
+
+---
+
+## How the Score Breaks Down
+
+| Component | Weight |
+|---|---|
+| Tier 1 crawlers allowed | 50% |
+| Tier 2 crawlers allowed | 25% |
+| No blanket AI blocks | 15% |
+| AI-specific files present | 10% |
+
+Tier 1 carries half the score because those five bots map to the AI products people actually use to search. The "no blanket blocks" component checks for a `User-agent: *` with `Disallow: /` and for noai meta tags, which quietly override everything else you configured.
+
+---
+
+## The Recommended robots.txt
+
+The template ships a maximum-visibility configuration: explicit `Allow: /` blocks for all 11 Tier 1 and Tier 2 crawlers plus anthropic-ai, and `Disallow: /` for Bytespider and CCBot. Claude adapts it to what it finds on your site rather than pasting it blindly, so existing path-level rules survive.
+
+It also covers Content Signals, the IETF draft that lets you declare intent rather than just access. A directive like `Content-Signal: ai-train=no, search=yes, ai-retrieval=yes` says you want to appear in AI search answers without becoming training data.
+
+---
+
+## Tips
+
+- Check the wildcard block first. Most accidental AI blocking comes from a `User-agent: *` rule that predates these bots existing, not from a deliberate decision.
+- Blocking training crawlers while allowing search crawlers is a coherent policy. The template's tier split is built for exactly that: allow Tier 1 and 2, block CCBot and anthropic-ai.
+- Run this before any content-side GEO work. Fixing citability on a site that blocks GPTBot changes nothing.
+- Re-check after any CDN or WAF change. Cloudflare and similar edge products can block AI user-agents at the network layer even when robots.txt says Allow.
+
+---
+
+## Limitations
+
+- robots.txt is a request, not enforcement. Crawlers that ignore it are unaffected by anything here, and the audit cannot detect that.
+- The meta tag and header checks sample 5-10 pages. A page-level `noai` tag outside that sample will be missed.
+- User-agent strings and crawler behavior change. Verify against operator documentation before making a policy decision for a client.
+- The audit reads configuration, not server logs. It tells you what should happen, not which bots actually visited. Log analysis is a separate job.
+- This is the crawler analysis skill from a 15-skill GEO suite. The full audit, citability scoring, llms.txt generation, and client reporting are separate skills in the source repo.

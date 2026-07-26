@@ -1,0 +1,80 @@
+---
+title: "GEO Toolkit Updater"
+description: "Pull the latest geo-seo-claude skills, agents, scripts, and schema templates from upstream, with a diff summary before anything is overwritten"
+seoHook: "AI search rules move faster than your installed tooling. Crawler lists grow, schema types get deprecated, scoring weights shift. Running an audit on last quarter's skill files gives you last quarter's answers."
+targetAudience: "GEO consultants running the geo-seo-claude suite, agency owners maintaining audit tooling, marketers who installed the toolkit months ago, technical SEOs"
+exampleUseCase: "\"Update my GEO skills\" → A diff summary of new, modified, and removed files across skills, agents, scripts, and schema templates, then an in-place update that leaves your local customizations intact"
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Zubair Trabzada"
+sourceUrl: "https://github.com/zubair-trabzada/geo-seo-claude/tree/main/skills/geo-update"
+tags: ["geo", "maintenance", "tooling", "updates", "skills"]
+createdAt: "2026-07-25"
+---
+
+## What This Does
+
+Refreshes an installed geo-seo-claude toolkit against the upstream repository. Claude checks the install exists under `~/.claude/`, shallow-clones the latest repo to a temp directory, runs a recursive diff so you see what will change before it changes, then copies the main skill, all `geo-*` sub-skills, the audit agents, the Python scripts, the JSON-LD schema templates, and any hooks into place. It updates Python dependencies from `requirements.txt` and cleans up the temp clone.
+
+The GEO guidance inside those skills carries dated facts: which schema types Google deprecated and when, which AI crawlers to check in robots.txt, how the 0-100 scores are weighted. Updating the files is how that guidance stays current.
+
+This is one skill from Zubair Trabzada's geo-seo-claude toolkit, packaged as a standalone CLAUDE.md.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Projects/GeoUpdate
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Projects/GeoUpdate/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Projects/GeoUpdate
+claude
+```
+
+Say "update my GEO skills" and Claude runs the workflow.
+
+---
+
+## Safety Rules Built In
+
+- **Nothing gets deleted.** Files that exist locally but no longer exist upstream stay put and get listed for you to review, since you may have customized them.
+- **Settings are off-limits.** Claude never touches `~/.claude/settings.json` or `settings.local.json`.
+- **Failed clone means no changes.** If the `git clone` fails, Claude reports the error and stops before modifying anything.
+- **No-op when current.** If the diff is empty, Claude says so and skips the copy step.
+
+---
+
+## What You Get Back
+
+```
+GEO-SEO Update Complete
+=======================
+New files:      [count]
+Modified files: [count]
+Unchanged:      [count]
+Removed upstream (kept locally): [count]
+
+Dependencies: [updated / unchanged / failed]
+```
+
+---
+
+## Notes
+
+- Restart Claude Code after updating. Skill changes take effect in new sessions only.
+- Requires `git` and `python3` on PATH. A dependency install failure is reported but not treated as fatal.
+- If `~/.claude/skills/geo/SKILL.md` is missing, Claude tells you the toolkit isn't installed and points you at the installer instead of trying to update nothing.

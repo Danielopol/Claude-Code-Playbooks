@@ -1,0 +1,111 @@
+---
+title: "No AI Slop: Edit Without Losing Your Voice"
+description: "An editor that strips 20+ AI writing patterns while protecting the bluntness, humor, and cadence that make a draft sound like you wrote it"
+seoHook: "Most AI-cleanup tools fix the slop and flatten your voice along with it — the profanity goes, the digression goes, the one blunt line you actually meant survives as something safer. This one names the patterns it cuts, makes the minimum effective edit, and grades its own output against a checklist that asks whether you'd still recognize the draft as yours."
+targetAudience: "newsletter writers, founders publishing essays, product marketers, ghostwriters editing AI drafts, anyone whose writing gets flattened by generic editing tools"
+exampleUseCase: "\"Is this AI slop?\" → Every pattern found, each with the quoted line and a short fix, without rewriting or scoring the draft — then an offer to edit it"
+category: "research-writing"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Peter Yang"
+sourceUrl: "https://github.com/petergyang/no-ai-slop"
+tags: ["writing", "editing", "voice", "ai-detection", "content"]
+createdAt: "2026-07-17"
+---
+
+## What This Does
+
+Edits drafts in one of two modes. **Edit** (the default) makes the minimum effective change: fix the AI patterns, leave strong human sentences alone, and return the full draft plus a short "What changed" section. **Detect** audits without rewriting — it names each pattern, quotes the line, and gives the fix in a few words.
+
+The detect mode refuses to score the draft or guess whether AI wrote it, and that refusal is the point. AI detectors guess. Named patterns are evidence you can check yourself.
+
+What separates this from a generic cleanup pass is the voice-preservation rule. Before editing, it identifies 3-5 voice signals in the draft — vocabulary, cadence, bluntness, humor, uncertainty, digressions — and protects them. Profanity, self-interruptions, strong opinions, and honest admissions stay. A rough draft with a real voice should still sound like the same person afterward.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/NoAISlop
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/NoAISlop/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/NoAISlop
+claude
+```
+
+Paste a draft to edit it, or ask "is this AI slop?" to get the audit instead.
+
+---
+
+## Patterns It Cuts
+
+| Pattern | Smells like |
+|---------|-------------|
+| Binary contrasts | "It's not X. It's Y." |
+| Throat-clearing openers | "Here's the thing..." |
+| Faux-insight setups | "What nobody tells you..." |
+| Colon reveals | "The best part: it learns." |
+| Superficial analysis | "...highlighting the team's commitment" |
+| Importance puffery | "marks a pivotal moment" |
+| Weasel attribution | "experts agree," "studies show" |
+| Fake-strong verbs | "serves as a centralized hub" |
+| Synonym cycling | the agent, then the assistant, then the tool |
+| Negative listing | "Not a X. Not a Y. A Z." |
+| Dramatic fragmentation | "That's it. That's the whole thing." |
+
+Two get specific treatment worth calling out. **Fake-profound kickers** — the closing metaphor or mic-drop line — get deleted, not rewritten into a better metaphor, with the piece ending on the clearest concrete sentence already in the draft. **Weasel attribution** gets replaced with a named source, or the claim gets flagged for you rather than a source being invented.
+
+---
+
+## The Banned List
+
+Cut outright: delve, foster, leverage, utilize, facilitate, empower, streamline, robust, cutting-edge, paradigm shift, game changer, tapestry, realm, beacon, multifaceted, meticulous, intricate, paramount, transformative, elevate, embark, supercharge, harness, ever-evolving.
+
+Adverbs like "just," "honestly," and "actually" and phrases like "it's worth noting" and "at the end of the day" are conditional cuts. They go when they add nothing and stay when they carry real uncertainty, contrast, or the writer's spoken rhythm. Em dashes get a quota rather than a ban: none in short copy, 1-2 in longer drafts when they clearly beat a comma or period.
+
+---
+
+## The Self-Check
+
+After editing, the skill grades its own output against a 27-item checklist before returning anything. If a check fails, it fixes the draft and re-runs. The checks cover the mechanical rules, but the ones that matter most are at the end:
+
+- Is the amount of cutting proportional to the actual slop, with no aggressive compression that strips out character?
+- Would the writer recognize the edited draft as their own voice?
+- Would the draft sound natural if read to a sharp colleague?
+
+The source ships this as a separate `eval.md`; this template merges it in as an Eval Checklist section so the whole thing works as one file.
+
+---
+
+## Tips
+
+- Give it the audience and format if it doesn't ask. "Who is this for and where will it be published?" changes what counts as slop — a LinkedIn post and an engineering RFC have different tolerances.
+- Use detect mode first on anything already published. You get the pattern list without a rewrite you didn't ask for.
+- The "protect the specific fact" rule is the one to watch for. Good editing turns "significantly improves productivity" into "cut review time from 30 minutes to 8," so if a number goes missing, push back.
+
+---
+
+## Related Playbooks
+
+Three playbooks on this site attack AI writing patterns from different angles. This one leads with voice preservation and a self-grading eval. [Stop Slop](/playbooks/stop-slop) applies eight absolute rules and scores the result 1-50 across five dimensions. [AI Writing Pattern Remover](/playbooks/avoid-ai-writing) organizes patterns into a P0/P1/P2 priority system with per-context strictness profiles. Pick based on whether you want voice protection, hard rules, or tunable strictness.
+
+---
+
+## Limitations
+
+- English prose only. The pattern list doesn't transfer to other languages.
+- It won't verify facts or supply missing sources. Unsupported claims get flagged back to you.
+- The banned-word list is absolute, so legitimate uses get cut too. "Robust" in a statistics paper is the right word and this will still remove it.
+- Detect mode names patterns, which is not the same as guaranteeing a text passes any particular AI detector.

@@ -1,0 +1,142 @@
+---
+title: "GEO Content Quality: Score Your Pages on E-E-A-T"
+description: "Grade any page on Experience, Expertise, Authoritativeness, and Trustworthiness, then get the specific rewrites that make AI engines trust it enough to cite"
+seoHook: "Google's December 2025 rater guidelines extended E-E-A-T from health and finance pages to every competitive query. Your content can be accurate and well-written and still get skipped by ChatGPT because there is no author byline, no first-hand testing, and no date on the page."
+targetAudience: "content marketers, SEO consultants, agency strategists, technical writers, in-house content teams, founders publishing their own blog"
+exampleUseCase: "\"Score our blog and pricing page on E-E-A-T\" → A GEO-CONTENT-ANALYSIS.md with a 0-100 score broken into Experience, Expertise, Authoritativeness and Trustworthiness out of 25 each, a per-page table of word count and heading structure, flagged passages with rewrite suggestions, and a topical authority modifier from +10 to -5"
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Zubair Trabzada"
+sourceUrl: "https://github.com/zubair-trabzada/geo-seo-claude/tree/main/skills/geo-content"
+tags: ["geo", "content", "ai-search", "copywriting", "seo"]
+createdAt: "2026-07-25"
+---
+
+## What This Does
+
+Turns Claude into a content quality auditor that scores pages the way AI search engines do. It runs the E-E-A-T framework as a 100-point rubric with 28 named signals, then layers on word count floors, readability targets, paragraph structure rules, freshness scoring, and a topical authority modifier. Output is a written analysis with flagged passages and rewrite suggestions, not a number.
+
+This one is about the writing itself: whether the content demonstrates real expertise and earns trust. Two neighbors cover the other halves of the same problem. [geo-citability](/playbooks/geo-citability) scores the structural properties that make a passage extractable and quotable. [geo-platform-optimizer](/playbooks/geo-platform-optimizer) tunes the same site for each engine separately, since ChatGPT and Google AI Overviews pick sources differently.
+
+From Zubair Trabzada's geo-seo-claude toolkit, packaged so a single CLAUDE.md gives you the full assessment.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/GEOContent
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/GEOContent/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/GEOContent
+claude
+```
+
+Give Claude a URL: "Score https://example.com/blog/our-guide on E-E-A-T." It fetches the page, scores the four dimensions, and writes `GEO-CONTENT-ANALYSIS.md` into the folder.
+
+---
+
+## The Four Dimensions
+
+Each is worth 25 points, scored against named signals rather than vibes.
+
+| Dimension | What it measures | Highest-weight signals |
+|---|---|---|
+| Experience | First-hand involvement with the topic | First-person accounts, original research, case studies with numbers |
+| Expertise | Knowledge depth and competence | Visible author credentials, technical depth, stated methodology |
+| Authoritativeness | Recognition by others | Inbound citations, press mentions, tier-1 publication history |
+| Trustworthiness | Publisher reliability | Contact info, accurate claims, editorial or corrections policy, disclosures |
+
+The distinction between Experience and Expertise carries most of the weight. AI platforms separate content that reports on a topic from content written by someone who has done the thing. "We implemented this across 40 client sites and here is what broke" scores where "best practices for implementation" does not.
+
+---
+
+## Word Count Floors
+
+These are minimums for adequate coverage, not targets. Padding a 600-word answer to 2,000 words lowers the score.
+
+| Page Type | Minimum | Ideal Range |
+|---|---|---|
+| Homepage | 500 | 500-1,500 |
+| Blog post | 1,500 | 1,500-3,000 |
+| Pillar guide | 2,000 | 2,500-5,000 |
+| Product page | 300 | 500-1,500 |
+| Service page | 500 | 800-2,000 |
+| About page | 300 | 500-1,000 |
+| FAQ page | 500 | 1,000-2,500 |
+
+---
+
+## What Gets Flagged
+
+The template ships a table of low-quality AI content signals that Claude checks each page against:
+
+- Generic phrasing ("In today's fast-paced world", "It's important to note that")
+- Perfect but empty structure: clean headings with shallow content beneath them
+- Hedging overload ("It depends on various factors") without naming the factors
+- Repetitive conclusions where each section restates the same point
+- Filler paragraphs that could be deleted with no information lost
+- Claims presented as fact with no attribution
+
+AI-generated content is not itself a problem. Google clarified in March 2024 that production method does not matter as long as the result shows genuine E-E-A-T and human oversight. The flagged patterns are symptoms of thin content, whoever wrote it.
+
+---
+
+## Freshness Scoring
+
+Content without a visible date is treated as less trustworthy. Dates should be specific ("January 15, 2026"), not "recently", and should appear in both the rendered content and the structured data.
+
+| Last updated | Status |
+|---|---|
+| Within 3 months | Excellent |
+| Within 6 months | Good |
+| Within 12 months | Acceptable, may need refresh |
+| 12-24 months | Warning, review for accuracy |
+| No date, or 24+ months | Critical, may be deprioritized |
+
+Content covering fundamentals that do not change gets marked evergreen and exempted, as long as it carries no time-dependent claims like "the latest" or "currently".
+
+---
+
+## Topical Authority Modifier
+
+After the 100-point E-E-A-T score, the site-wide coverage of its core topic adds or subtracts:
+
+- **Authority** (20+ pages, strong clustering): +10
+- **Developing** (10-20 pages, some clustering): +5
+- **Emerging** (5-10 pages, limited clustering): +0
+- **Thin** (under 5 pages, no clustering): -5
+
+The assessment also looks for gaps: subtopics competitors cover that this site misses.
+
+---
+
+## Tips
+
+- Score three or four pages, not one. The E-E-A-T signals that matter most are site-wide (author pages, contact info, editorial policy) and only show up when you look across a set.
+- Fix Trustworthiness first. Contact information, a privacy policy, valid HTTPS, and disclosures are 12 of the 25 points and take an afternoon.
+- The Experience gap is usually the real one. Adding one specific case study with numbers moves more than a week of rewriting.
+- Rerun after changes and diff the two analysis files. The score delta tells you whether the rewrite landed.
+
+---
+
+## Limitations
+
+- Scoring is judgment-based, not deterministic. Two runs on the same page can land a few points apart. Use it for direction and priority order, not as a metric to report on.
+- Authoritativeness depends on external validation (press mentions, backlinks, Wikipedia presence) that Claude can only partially verify from a page fetch.
+- Readability targets are estimated from sentence and paragraph length rather than computed with a Flesch tool.
+- The word count benchmarks are English-language, general-web heuristics. Technical documentation and legal pages follow different norms.
+- The full geo-seo-claude suite runs 15 skills with Python scoring scripts and parallel subagents. This template is the content assessment on its own, driven by Claude reading the page.

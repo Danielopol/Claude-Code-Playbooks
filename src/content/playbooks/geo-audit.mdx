@@ -1,0 +1,128 @@
+---
+title: "GEO Audit: Score Your Site for AI Search Citation"
+description: "A full Generative Engine Optimization audit that crawls a site, scores it 0-100 across six weighted categories, and returns a prioritized 30-day fix list"
+seoHook: "Your site ranks on Google and still never gets quoted by ChatGPT or Perplexity. Those are two different games with two different scorecards. This playbook runs the second scorecard: crawl the site, score six GEO categories, and hand back the exact fixes that move you from invisible to cited."
+targetAudience: "SEO consultants adding GEO services, marketing leads at SaaS companies, agency owners running client audits, in-house content strategists, founders who want to know why AI never mentions their product"
+exampleUseCase: "\"Run a GEO audit on acme.io\" → A GEO-AUDIT-REPORT.md with an overall score of 58/100, business type detected as SaaS, GPTBot blocked in robots.txt flagged as a High issue, missing FAQ schema on 12 pages, five quick wins, and a week-by-week 30-day action plan"
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Zubair Trabzada"
+sourceUrl: "https://github.com/zubair-trabzada/geo-seo-claude/tree/main/skills/geo-audit"
+tags: ["geo", "seo", "ai-search", "audit", "content-optimization"]
+createdAt: "2026-07-25"
+---
+
+## What This Does
+
+Turns Claude into a GEO auditor. Give it a URL and it fetches the homepage, classifies the business type, crawls the sitemap, collects page-level data across up to 50 pages, then runs five analysis passes over that data: AI visibility, platform optimization, technical infrastructure, content E-E-A-T, and schema markup.
+
+The output is `GEO-AUDIT-REPORT.md`: a composite GEO Score out of 100, a per-category breakdown, every issue sorted into four severity tiers, five quick wins, and a 30-day plan broken into weekly themes.
+
+GEO measures something SEO does not. Traditional SEO optimizes for ranking position. GEO optimizes for whether an AI system quotes you in its answer. A Georgia Tech / Princeton / IIT Delhi study from 2024 found sites scoring well on GEO metrics get 30-115% more visibility in AI-generated responses.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/GEOAudit
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/GEOAudit/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/GEOAudit
+claude
+```
+
+Then ask: "Run a GEO audit on https://yourdomain.com"
+
+---
+
+## How the Score Works
+
+Six categories, weighted:
+
+| Category | Weight | What It Measures |
+|---|---|---|
+| AI Citability | 25% | How quotable and extractable your content is |
+| Brand Authority | 20% | Third-party mentions, entity recognition signals |
+| Content E-E-A-T | 20% | Experience, Expertise, Authoritativeness, Trustworthiness |
+| Technical GEO | 15% | AI crawler access, llms.txt, rendering, speed |
+| Schema & Structured Data | 10% | Schema.org markup quality and completeness |
+| Platform Optimization | 10% | Presence on platforms AI models train on and cite |
+
+Citability and Brand Authority carry 45% between them. That reflects how AI systems actually pick sources: they need a passage they can lift, and they need to recognize your brand as a real entity.
+
+Scores land in five bands. Above 90 is Excellent, 75-89 Good, 60-74 Fair, 40-59 Poor, and below 40 means AI systems can barely see you.
+
+---
+
+## The Severity Tiers
+
+Every issue gets sorted into one of four buckets with an implied deadline:
+
+- **Critical (fix now)** — all AI crawlers blocked, no server-rendered content, domain-level noindex, 5xx errors on key pages, zero structured data.
+- **High (fix this week)** — GPTBot, ClaudeBot, or PerplexityBot blocked, no llms.txt, no question-answering content blocks, missing Organization schema, no author attribution.
+- **Medium (fix this month)** — partial crawler blocking, malformed llms.txt, citability under 50, missing FAQ schema, thin author bios.
+- **Low (when convenient)** — schema validation warnings, missing alt text, missing Open Graph tags, heading hierarchy issues.
+
+The tiering is the useful part. Most audit tools hand you 200 undifferentiated findings. This one tells you which five to do on Monday.
+
+---
+
+## Business-Type Adjustments
+
+The audit detects what kind of site it is looking at and shifts weight accordingly:
+
+- **SaaS** — feature comparison tables score high for citability. Checks API docs structure, changelogs, knowledge base. Key schema: SoftwareApplication, FAQPage, HowTo.
+- **Local business** — NAP consistency, service area pages, review markup. Key schema: LocalBusiness, GeoCoordinates, OpeningHoursSpecification.
+- **E-commerce** — product descriptions, comparison content, buying guides. Key schema: Product, AggregateRating, Offer, BreadcrumbList.
+- **Publisher** — author credentials, source citation practices, freshness, original research. Key schema: Article, NewsArticle, Person, ClaimReview.
+- **Agency** — case studies are the citability engine. Checks team credentials and thought leadership. Key schema: Organization, Service, Person, Review.
+
+Detection runs off homepage signals: a pricing page and free-trial CTA reads as SaaS, a Maps embed and address reads as local, case studies and a portfolio read as agency.
+
+---
+
+## Crawl Behavior
+
+The template sets hard limits so an audit stays polite and finishes:
+
+- 50 pages maximum per audit, prioritized by navigation position and page value
+- 30-second timeout per fetch, skip anything slower
+- At least 1 second between fetches
+- robots.txt respected before any crawl, with AI-specific directives noted
+- HTML only. PDFs, images, and binaries get skipped
+- URLs canonicalized first so HTTP/HTTPS and www/non-www duplicates do not eat the page budget
+
+Failed fetches get logged and reported in the appendix instead of stopping the run.
+
+---
+
+## Tips
+
+- Run it on a competitor first. The report format makes side-by-side comparison easy, and a competitor scoring 80 while you score 45 is a more useful number than either score alone.
+- Start with the Technical GEO category even though it only carries 15%. A blocked GPTBot caps every other category's real-world value at zero.
+- Re-run monthly and diff the reports. Score movement per category shows which work paid off.
+- The 30-day plan is generated as checkboxes. Keep the file in the repo and tick items off as you ship.
+
+---
+
+## Limitations
+
+- Claude cannot query AI systems to confirm whether they actually cite you. Scores predict citability from page signals, they do not measure real citations.
+- Brand Authority scoring depends on what Claude can fetch about your presence on YouTube, Reddit, Wikipedia, and LinkedIn. Coverage varies.
+- Core Web Vitals get estimated from page characteristics when real user field data is unavailable. Treat those numbers as directional.
+- The 50-page cap means large sites get sampled, not fully crawled. Point the audit at your highest-value section for a deeper read.
+- This is the orchestration layer of a 15-skill suite. Running it as a single CLAUDE.md means Claude does all five analysis passes itself instead of delegating to specialist subagents. The full toolkit, including the citability scorer, llms.txt generator, and PDF reporting, lives in the source repo.

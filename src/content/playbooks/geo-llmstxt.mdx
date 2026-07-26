@@ -1,0 +1,126 @@
+---
+title: "llms.txt Generator & Auditor"
+description: "Generate and validate llms.txt, the root-level Markdown file that tells AI systems what your site is and which pages to cite"
+seoHook: "ChatGPT and Perplexity guess at your site structure by crawling pages and inferring. One Markdown file at your domain root replaces the guessing with your own summary, and fewer than 5% of sites have one."
+targetAudience: "GEO consultants, technical SEOs, developer relations and docs teams, SaaS marketers, agency owners running AI visibility audits, indie founders"
+exampleUseCase: "\"Generate an llms.txt for my SaaS site\" → A crawl of the sitemap and navigation, 10-30 prioritized pages with factual 10-30 word descriptions, a Key Facts block with founding year and headcount, and a Contact section, ready to drop at /llms.txt"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Zubair Trabzada"
+sourceUrl: "https://github.com/zubair-trabzada/geo-seo-claude/tree/main/skills/geo-llmstxt"
+tags: ["geo", "llms-txt", "ai-search", "documentation", "technical-seo"]
+createdAt: "2026-07-25"
+---
+
+## What This Does
+
+`llms.txt` is a Markdown file at the root of a domain, at `https://example.com/llms.txt`. Jeremy Howard proposed the convention in September 2024 and adoption grew through 2025-2026. Think of it as the inverse of `robots.txt`: where robots.txt tells crawlers what not to access, llms.txt tells AI systems what is most useful to understand about the site. The format is a title, a one-sentence blockquote description, then H2 sections listing key pages as `- [Title](URL): description` entries, optionally with Key Facts and Contact blocks.
+
+This template gives Claude both modes. Analysis mode fetches an existing file, validates eleven structural elements, scores it on completeness, accuracy, and usefulness, then crawls the site to find important pages the file omits. Generation mode builds one from scratch: it reads the homepage and sitemap, sorts discovered pages into always-include, include-if-good, and skip buckets, writes factual descriptions from actual page content, and compiles business facts.
+
+Per the source skill, sites can also serve `/llms-full.txt`, a longer version with 30-100+ pages and richer per-entry detail. Both can coexist, and AI systems check llms.txt first.
+
+This is one skill from Zubair Trabzada's geo-seo-claude toolkit, packaged as a standalone CLAUDE.md.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Projects/LlmsTxt
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Projects/LlmsTxt/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Projects/LlmsTxt
+claude
+```
+
+Say "generate an llms.txt for https://example.com" or "audit the llms.txt at https://example.com" and Claude picks the right mode.
+
+---
+
+## What Goes In The File
+
+| Element | Required | Rule |
+|---|---|---|
+| H1 title | Yes | First line, official site name |
+| Blockquote description | Yes | Immediately after the title, under 200 characters, factual |
+| H2 sections | Yes, at least one | Docs, Products, Services, API, Blog, Resources, About, Legal, Contact |
+| Page entries | Yes | `- [Title](absolute URL): 10-30 word description`, 10-30 entries total |
+| Key Facts | Recommended | Founding year, HQ, headcount, key products, industry |
+| Contact | Recommended | Website, email, support, phone, address |
+
+Order entries within each section by importance. Section names should roughly mirror your main navigation.
+
+---
+
+## Writing Descriptions
+
+The description quality decides whether an AI system can tell your pages apart. The template gives Claude examples on both sides.
+
+**Good:**
+> Explains the three pricing tiers (Free, Pro, Enterprise) with feature comparison and annual/monthly costs.
+
+> Details the company's founding in 2018, team of 45 employees, and office locations in Austin and London.
+
+**Bad:**
+> Our amazing pricing page!
+
+> Learn more about our company.
+
+Rule: state what information is on the page, name specific topics or data, and drop words like "best," "leading," and "revolutionary."
+
+---
+
+## Which Pages Make The Cut
+
+**Always include** the homepage, About, Pricing, top 3-5 product or service pages, Contact, and the docs landing page.
+
+**Include if strong**: top blog posts, case studies, key guides, FAQ, and Careers for larger companies.
+
+**Skip** thin category and tag pages, pagination, login and signup, legal boilerplate, near-duplicate content, and anything with minimal unique text. Also skip internal tools, admin panels, and anything sensitive.
+
+---
+
+## The Audit Score
+
+Analysis mode produces a weighted score:
+
+**Completeness (40%)** — does it cover the major sections in the navigation, include the highest-value pages, and carry accurate Key Facts?
+
+**Accuracy (35%)** — do descriptions match page content, do URLs resolve to the right pages, are the facts current?
+
+**Usefulness (25%)** — could an AI system understand the site's purpose from this file alone, and are the most citation-worthy pages highlighted?
+
+Format validation runs alongside, marking each of eleven elements Critical, High, Medium, or Low severity. A missing H1 or missing H2 section is Critical. A missing Contact section is Low.
+
+---
+
+## Tips
+
+- Set an update cadence tied to publishing. Weekly blog posts means updating llms.txt monthly. Quarterly product releases means updating after each one.
+- Put your strongest page first in each section. Order signals priority.
+- Keep llms.txt scannable in under 60 seconds and push depth into llms-full.txt.
+- Verify after deploy that `https://yourdomain.com/llms.txt` returns 200 with no redirect.
+- Cross-check robots.txt. Listing a page in llms.txt while blocking AI crawlers from it in robots.txt cancels the benefit.
+
+---
+
+## Limitations
+
+- llms.txt is a convention, not a ratified standard. No AI platform publicly guarantees it reads the file, so treat it as a low-cost bet rather than a fix.
+- A stale file is worse than none. Wrong pricing or a dead URL feeds an AI system bad data with your authority attached.
+- Generation depends on a reachable sitemap and clean navigation. Sites that render links only through client-side JavaScript will produce a thin first draft.
+- The file describes your site to AI systems. It does not control what they publish about you.

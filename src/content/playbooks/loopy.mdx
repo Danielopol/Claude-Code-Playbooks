@@ -1,0 +1,152 @@
+---
+title: "Loopy: Build and Reuse Agent Loops"
+description: "Mine your codebase and coding history for repeated work, turn it into bounded agent loops, and audit the loops you already have"
+seoHook: "You keep asking your agent to do the same thing. Triage the flaky test, sweep the dependency bumps, re-check the broken links. Loopy finds that repetition in your actual code and history, turns it into a reusable loop with a real stop condition, and refuses to hand you an agent that runs forever."
+targetAudience: "developers running agent workflows, platform and DevEx engineers, tech leads automating repo maintenance, prompt engineers, teams standardizing AI-assisted tasks"
+exampleUseCase: "\"Look through this repo and find work I keep repeating that could be a loop\" → Ranked candidates with the evidence behind each one, plus the strongest converted into a short named loop with an observable success check and a named stopping state"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Forward Future"
+sourceUrl: "https://github.com/Forward-Future/loopy"
+tags: ["agents", "automation", "workflow", "loops", "codebase", "prompt-engineering"]
+createdAt: "2026-07-25"
+---
+
+## What This Does
+
+Turns Claude into a loop builder. It reads your repo and coding history for work you repeat, converts the strongest candidate into a bounded loop, and runs a preflight so the loop has an observable success check and a real stopping state instead of "keep going until it looks good."
+
+It also handles the rest of the lifecycle: recommending published loops from the Loop Library catalog, diagnosing weak loops (Loop Doctor), executing a loop and returning an evidence receipt, debriefing a completed run, saving loops to a project `LOOPS.md`, and preparing a loop for publication.
+
+The framing throughout: a loop is a feedback system with terminal states, not permission for endless autonomy.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/Loopy
+```
+
+Or just use an existing repo you want to mine for loops.
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Loopy/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/Loopy
+claude
+```
+
+Then say what you want: "find repeated work in this repo," "audit this loop," or "run this loop."
+
+**Alternative install:** if you use the skills CLI, `npx skills add Forward-Future/loop-library --skill loopy` installs it as a native skill. The CLAUDE.md download works anywhere, no CLI required.
+
+---
+
+## The Nine Paths
+
+Loopy routes your request to the smallest useful path:
+
+| Path | What it does |
+|------|--------------|
+| Discover | Mines a codebase or coding-thread history for repeated work |
+| Find | Recommends up to three published Loop Library loops |
+| Audit (Loop Doctor) | Diagnoses an existing loop and repairs material weaknesses |
+| Adapt | Swaps a published loop's thresholds, tools, cadence, or checks |
+| Craft | Interviews you, then produces a new bounded loop |
+| Run | Executes a loop in scope and returns an evidence receipt |
+| Debrief | Analyzes run receipts and proposes the smallest fix |
+| Save / Reuse | Appends loops to a project `LOOPS.md` and reuses them later |
+| Publish | Checks catalog overlap, previews, submits only on approval |
+
+---
+
+## The Six-Step Cycle
+
+Every loop Loopy builds runs on the same sequence:
+
+1. **Observe** — read fresh state, collect the agreed evidence
+2. **Choose** — pick the highest-value in-scope action from explicit criteria
+3. **Act** — one bounded, reversible change
+4. **Verify** — run the same acceptance check under recorded conditions
+5. **Record** — save action, evidence, outcome, remaining work
+6. **Repeat or stop** — continue only while progress is measurable
+
+Before delivering any loop, Claude silently traces one full cycle and repairs what's weak. If fresh observations can't change the next action, it hands you a one-shot workflow instead of pretending you need a loop.
+
+---
+
+## Discovery Rules
+
+The discovery workflow has a specific evidence bar, which is what keeps it from inventing patterns:
+
+- **Two distinct occurrences minimum** before calling thread-derived work "repeated." Repeated discussion of one occurrence doesn't count.
+- **Codebase patterns are labeled differently.** A pattern found in code with no run history is a potential loop, not a proven recurrent one.
+- **Similar-looking functions are a refactoring signal, not a loop.** It looks at operational paths instead: scripts, CI config, maintenance commands, runbooks, issue templates.
+- **Rejected outright:** one-shot migrations, straight-line checklists, vague goals, and any task where another pass receives no new evidence.
+
+Candidates are ranked by recurrence evidence, time or failure cost, feedback quality, reversibility, and safe authority.
+
+---
+
+## What Loop Doctor Flags
+
+Ask for an audit and Claude checks a fixed list of material weaknesses:
+
+- Vague, self-graded, or irreproducible verification
+- Optimizing and accepting against the same evidence (overfitting)
+- Endless retries, subjective finish lines, errors reported as success
+- Destructive, production, financial, or external-message actions with no approval boundary
+- Decisions on stale state, or changes that overwrite unrelated work
+- Missing handoff state when another cycle must resume the work
+
+It returns a verdict of Ready, Repair needed, or Not actually a loop, plus up to three findings and the minimally repaired loop. No numerical score. It won't flag a missing time or iteration budget when a clear no-progress stop already covers it.
+
+---
+
+## Example Prompts
+
+- "Analyze this repo for work I keep repeating and turn the best one into a loop."
+- "Is there a published loop for keeping a changelog in sync with merged PRs?"
+- "Audit this loop prompt. It runs forever and I can't tell when it's done."
+- "Run this loop against `src/` and give me the receipt."
+- "Here's the receipt from last night's run. Why did it stall?"
+- "Save that loop to the project so I can reuse it."
+
+---
+
+## Run Receipts
+
+Running a loop returns a structured receipt rather than a summary: the loop identity (or SHA-256 digest for pasted loops), scope, acceptance check and conditions, run boundary, and a result from a fixed set — Success, Clean no-op, Blocked, Approval required, Exhausted, or No progress.
+
+An error never gets classified as success. If the loop can't run with the available tools, it stops as Blocked instead of simulating a pass.
+
+---
+
+## Tips
+
+- Point it at a repo with real CI config and scripts. Discovery mines operational paths, so a repo with only source files gives it thin evidence.
+- If you already have a loop prompt that misbehaves, start with the audit instead of a rewrite. The Loop Doctor output tells you which of the six weaknesses you actually hit.
+- Ask for a debrief before asking for a fix. The workflow separates four causes — loop design, execution choice, environment failure, changed goal — and only two of them are fixed by editing the prompt.
+- Say "save that loop" once you like one. It lands in `LOOPS.md` at the project root with the prompt and date, and later requests check that file first.
+- Ask for "the detailed breakdown" if you want the internal design. By default Claude keeps the six-step schema private and gives you one sentence plus a sub-80-word prompt.
+
+---
+
+## Limitations
+
+- **Find requires web access.** The live catalog at signals.forwardfuture.com is the source of truth. If it's unreachable, Claude says published-loop discovery is unavailable rather than guessing from memory.
+- **Thread history depends on your tooling.** Without thread-listing tools, discovery falls back to codebase evidence and says so.
+- **Running a loop is not standing authorization.** It covers ordinary reversible actions in your stated scope. Schedules, production changes, purchases, and external messages each need separate approval.
+- **Publishing is gated twice.** A prepared preview isn't a submission, and an owner draft isn't a public publication.
+- **It refuses to fill blanks.** No invented stacks, metrics, schedules, owners, or permissions. When something's unknown you get neutral wording or one short question, which means vague requests produce vague loops.

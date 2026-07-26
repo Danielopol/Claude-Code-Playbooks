@@ -1,0 +1,135 @@
+---
+title: "Brand Mention Scanner for AI Search"
+description: "Score a brand's presence across YouTube, Reddit, Wikipedia, and LinkedIn to find out why AI models do or do not cite it"
+seoHook: "A DR 70 backlink profile means almost nothing to ChatGPT. Ahrefs looked at 75,000 brands in December 2025 and found unlinked mentions on YouTube and Reddit predict AI citations roughly 3x better than backlinks do. This playbook scores where your brand actually shows up and what to fix first."
+targetAudience: "GEO and SEO agencies, brand and PR teams, founders of SaaS and DTC companies, content marketers, community managers, anyone whose brand is missing from AI answers"
+exampleUseCase: "\"Run a brand authority scan for Notion\" → GEO-BRAND-MENTIONS.md with a weighted 0-100 Brand Authority Score, per-platform scores for YouTube, Reddit, Wikipedia, and LinkedIn against published rubrics, Reddit sentiment analysis, Wikidata Q-number lookup, and recommendations split into week one, month one to three, and month three to twelve"
+category: "market-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Zubair Trabzada"
+sourceUrl: "https://github.com/zubair-trabzada/geo-seo-claude/tree/main/skills/geo-brand-mentions"
+tags: ["geo", "brand-mentions", "pr", "authority", "ai-search"]
+createdAt: "2026-07-25"
+---
+
+## What This Does
+
+Scans the platforms AI models lean on when deciding whether a brand is a real entity worth citing, scores each one against a published rubric, and combines them into a weighted Brand Authority Score out of 100. Output is a `GEO-BRAND-MENTIONS.md` report with platform detail, sentiment, competitive context, and a phased recommendation list.
+
+The premise inverts traditional SEO. In SEO, a dofollow link from a high-authority domain is the prize. In GEO, an unlinked mention in a Reddit recommendation thread or a YouTube video description may beat it, because AI training and retrieval systems disproportionately index high-engagement platforms.
+
+From the geo-brand-mentions skill in Zubair Trabzada's geo-seo-claude suite.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/BrandAuthority
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/BrandAuthority/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/BrandAuthority
+claude
+```
+
+Say "run a brand authority scan for Acme, acme.com, project management software."
+
+---
+
+## The Weighting
+
+| Platform | Weight | Why |
+|---|---|---|
+| YouTube | 25% | Strongest measured correlation with AI citation, ~0.737 |
+| Reddit | 25% | Second strongest, and decisive for product recommendation queries |
+| Wikipedia / Wikidata | 20% | Entity recognition foundation, training-data cornerstone |
+| LinkedIn | 15% | Professional and B2B authority signals |
+| Other platforms | 15% | Quora, GitHub, Stack Overflow, Hacker News, news, podcasts |
+
+Each platform gets a six-band rubric, so a score is defensible rather than a vibe. YouTube 70-89 means an active channel over 1K subscribers with the brand named in 10 to 19 third-party videos. Reddit 30-49 means occasional mentions across one or two subreddits and no official account.
+
+The composite maps to five ratings, from Dominant at 85 and up down to Minimal below 30.
+
+---
+
+## Why Those Platforms
+
+**YouTube** is the second-largest search engine, and its transcripts, descriptions, and metadata sit deep in AI training data. Gemini and AI Overviews reference YouTube directly, and Perplexity and ChatGPT both cite video content. Transcripts carry brand names in conversational context, which matches how models generate text.
+
+**Reddit** is among the most heavily indexed sources in AI training data, backed by Google's $60M/year licensing deal from 2024. Users append "reddit" to an estimated 10-15% of Google searches when they want unfiltered opinions, and Perplexity cites Reddit threads constantly.
+
+**Wikipedia** decides entity existence. Models use it to determine whether a brand is a real thing worth knowing about, and Wikidata supplies the machine-readable facts behind knowledge graph construction.
+
+**LinkedIn** carries the professional and B2B context: company information, team credentials, thought leadership.
+
+---
+
+## The Correlation Table
+
+The reference data the template scores against, from the Ahrefs December 2025 study of 75,000 brands:
+
+| Signal | Correlation with AI citation | Traditional SEO value |
+|---|---|---|
+| YouTube mentions | ~0.737 | Low, not a ranking factor |
+| Reddit mentions | High, coefficient unpublished | Low |
+| Wikipedia presence | High | Moderate |
+| LinkedIn presence | Moderate | Low |
+| Domain Rating | ~0.266 | Very high |
+| Backlink count | ~0.266 | Very high |
+
+The two columns barely overlap. What wins AI citations is close to irrelevant for rankings, and what wins rankings is a weak predictor of citations.
+
+---
+
+## The Wikipedia Check
+
+Search engines produce false negatives on Wikipedia presence often enough that the template refuses to trust them. It runs a Python one-liner against the Wikipedia and Wikidata APIs first, returning the article title, URL, and Wikidata Q-number, then verifies with a direct URL fetch. Search results are treated as supplemental only, and the rule is explicit: when the API says a page exists, it exists.
+
+That step needs Python 3 with the `requests` package installed (`pip install requests`). Everything else in the scan runs on ordinary web fetches.
+
+---
+
+## Recommendations You Get Back
+
+Three horizons, each with platform-specific tactics from the template:
+
+**YouTube.** Upload 3-5 explainer videos on core topics. Put the brand name in titles, descriptions, and spoken content. Pursue guest appearances. Make comparison and "alternatives" videos, which AI reaches for on comparison queries.
+
+**Reddit.** Pick 3-5 subreddits where the audience already is. Participate for real, since communities detect and punish shilling. Run an AMA if it fits. Monitor and answer mentions.
+
+**Wikipedia.** Hire someone who knows Wikipedia and never edit your own article. Build notability first through press and industry recognition. Complete the Wikidata entry even without an article.
+
+**LinkedIn.** Finish the company page, post on a cadence, have leadership publish weekly, engage in industry threads.
+
+---
+
+## Tips
+
+- Give Claude the founder or CEO name alongside the brand. A founder Wikipedia page is one of the strongest authority signals in the Wikipedia rubric.
+- List two or three competitors up front. A moderate Reddit presence in an industry where nobody else has one is a strong position, and the competitive context table is what shows that.
+- Sentiment matters as much as volume. Being the top answer in "what do you recommend for X" threads beats being mentioned in twenty neutral ones.
+- Recency counts for news and press. A mention from the last six months carries far more weight than one from three years ago.
+- Re-run the scan quarterly. Brand authority moves slowly, and monthly deltas mostly measure noise.
+
+---
+
+## Limitations
+
+- Scores come from public search and page fetches, so counts are estimates. Two runs a week apart can differ without anything on the platforms changing.
+- LinkedIn and YouTube restrict what is visible without an API key, which puts subscriber and follower figures at approximate.
+- The 0.737 YouTube correlation is one study from December 2025. Correlation is not causation, and platform weights will shift as AI search matures.
+- Stack Overflow and GitHub scoring is meaningful for developer-facing brands and close to noise for most B2C ones. Say what the brand sells so those platforms get weighted sensibly.
+- Building Wikipedia presence takes months and depends on notability you cannot manufacture. Treat it as a long-horizon item, not a task.

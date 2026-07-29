@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-ux-research',
+    slug: 'claude-skills-ux-research',
+    title: 'Claude Skills for UX Researchers: Synthesize Interviews into Insights',
+    description: "How to use four Claude Skills to cut the most time-consuming part of UX work down to minutes — a customer call synthesis Skill that turns hours of transcripts into validated and invalidated assumptions, a mixed-methods research synthesis Skill that builds themes and evidence-based personas from interviews and surveys together, a customer journey mapping workshop that turns synthesized findings into a shared cross-functional artifact, and a proto-persona Skill for aligning teams before deeper research is even done.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'UX Research',
+    tags: ['claude skills ux research', 'ai user research synthesis', 'ai interview analysis', 'customer interview synthesis', 'ux research ai tools', 'journey mapping ai', 'proto persona ai', 'thematic analysis ai'],
+    createdAt: '2026-07-29',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-product-discovery',
     slug: 'claude-skills-product-discovery',
     title: 'Claude Skills for Product Discovery: From User Research to Roadmap',

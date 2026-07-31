@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-newsletter',
+    slug: 'claude-skills-newsletter',
+    title: 'Claude Skills for Newsletter Writers: Build a Publishing Machine',
+    description: "How to use four Claude Skills to build a self-sustaining newsletter flywheel — an audience swipe file that mines your replies and comments for content ideas, an article pipeline that scores and drafts your idea backlog, a newsletter system that drafts each issue in your voice while avoiding topic repeats, and a content repurposer that turns every issue into two weeks of social posts automatically.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Newsletter',
+    tags: ['claude skills newsletter', 'ai newsletter writing', 'automate newsletter ai', 'newsletter content ideas', 'content repurposing ai', 'newsletter automation', 'ai writing pipeline', 'creator publishing tools'],
+    createdAt: '2026-07-31',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-ux-research',
     slug: 'claude-skills-ux-research',
     title: 'Claude Skills for UX Researchers: Synthesize Interviews into Insights',

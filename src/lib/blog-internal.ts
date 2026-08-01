@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-podcasters',
+    slug: 'claude-skills-podcasters',
+    title: 'Claude Skills for Podcasters: Automate Show Notes, Clips, and Promotion',
+    description: "How to use four Claude Skills to eliminate the podcast production tax — a production assistant that generates transcripts, timestamped show notes, and social clips after every episode, a full creator system that handles ideation and guest research before you even hit record, a content repurposer that turns each episode into ongoing weekly social posts, and a cross-platform repurposing engine for giving flagship episodes the full multi-platform treatment.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Podcasting',
+    tags: ['claude skills podcast', 'ai podcast automation', 'ai show notes', 'podcast production ai', 'podcast clips ai', 'podcast promotion automation', 'content repurposing podcast', 'ai podcast workflow'],
+    createdAt: '2026-08-01',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-newsletter',
     slug: 'claude-skills-newsletter',
     title: 'Claude Skills for Newsletter Writers: Build a Publishing Machine',

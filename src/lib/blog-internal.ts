@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-video-creators',
+    slug: 'claude-skills-video-creators',
+    title: 'Claude Skills for Video Creators: Script, Produce, and Repurpose with AI',
+    description: "How to use four Claude Skills to run the full video pipeline — a marketing video Skill that picks the right tool from AI avatars, generation models, and programmatic frameworks and scripts the piece, a Remotion Skill for building animated product demos in React with live preview iteration, a content repurposer that keeps a weekly drip of social posts flowing from every video, and a cross-platform repurposing engine for giving standout videos the full multi-channel treatment.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Video Creation',
+    tags: ['claude skills video', 'ai video creation', 'ai video repurposing', 'remotion ai video', 'ai marketing video', 'video script ai', 'ai product demo video', 'video content repurposing'],
+    createdAt: '2026-08-10',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-podcasters',
     slug: 'claude-skills-podcasters',
     title: 'Claude Skills for Podcasters: Automate Show Notes, Clips, and Promotion',

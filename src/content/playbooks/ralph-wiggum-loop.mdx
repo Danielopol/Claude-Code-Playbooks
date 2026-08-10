@@ -1,0 +1,87 @@
+---
+title: "Ralph Wiggum Autonomous Loop"
+description: "Self-referential development loop that keeps Claude iterating on the same task until it hits a completion promise or an iteration cap — a Stop hook that blocks exit and re-feeds the same prompt."
+seoHook: "You want to walk away and come back to a finished feature, not babysit every turn confirming 'yes, keep going.' The technique that made this possible is embarrassingly simple: never let the agent actually stop until the tests pass."
+targetAudience: "developers automating well-defined iterative tasks, engineers wanting Claude to keep working unattended, teams experimenting with autonomous agent loops, developers with tasks that have automatic pass/fail verification (tests, linters, type checkers)"
+exampleUseCase: "\"Build a REST API for todos with full CRUD, validation, and tests. Output <promise>COMPLETE</promise> when done.\" with --max-iterations 50 → Claude implements, runs tests, sees failures, fixes them, and repeats automatically across as many turns as it takes, without you re-approving each iteration, until it either outputs the exact completion phrase or hits the iteration cap"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "5 minutes"
+author: "Community (Geoffrey Huntley technique)"
+sourceUrl: "https://github.com/anthropics/claude-code/tree/main/plugins/ralph-wiggum"
+tags: ["autonomous-agents", "iteration", "stop-hook", "self-referential", "automation", "official"]
+createdAt: "2026-08-10"
+---
+
+## What This Does
+
+Implements the "Ralph" technique — named for its "just keep trying" philosophy — as a Stop hook that intercepts Claude's exit attempts and re-feeds the exact same prompt, inside the current session, no external bash loop required. Each iteration sees the modified files and git history from the last one, so Claude effectively reads its own past work and keeps refining until it hits a stated completion promise or an iteration cap.
+
+---
+
+## Quick Start
+
+### Step 1: Navigate to Your Project
+
+```bash
+cd ~/your-project
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Start a Loop
+
+```bash
+claude
+```
+
+Then run:
+```
+/ralph-loop "Your task, with clear completion criteria. Output <promise>DONE</promise> when finished." --completion-promise "DONE" --max-iterations 30
+```
+
+Cancel anytime with `/cancel-ralph`.
+
+---
+
+## Writing a Prompt That Actually Terminates
+
+**Clear completion criteria** — spell out exactly what "done" means, not just "make it good":
+```
+Build a REST API for todos.
+When complete: all CRUD endpoints working, input validation in place,
+tests passing (coverage > 80%), README with API docs.
+Output: <promise>COMPLETE</promise>
+```
+
+**Incremental goals** for anything non-trivial — phase it rather than asking for the whole thing at once.
+
+**Self-correction built into the loop** — tell it to write failing tests first, implement, run tests, fix failures, repeat until green, then output the promise.
+
+**An escape hatch for when it's stuck** — tell it explicitly what to do after N iterations if it hasn't succeeded: document the blocker, list what was tried, suggest alternatives.
+
+## Tips & Best Practices
+
+- **Always set `--max-iterations`.** This is the real safety mechanism — `--completion-promise` alone isn't enough, because it's exact-string matching and can't express multiple outcomes like "SUCCESS" vs. "BLOCKED".
+- **Run inside a git repo** so every iteration's work is recoverable if something goes sideways.
+- **Start with a low iteration cap on a new prompt**, review the output, then raise it once you trust the prompt.
+- **Consider a scratch branch or worktree** so a runaway loop can't damage your main branch.
+
+## When to Use This
+
+**Good for:** well-defined tasks with automatic verification (tests, linters, type checkers), greenfield work you can walk away from, tasks that genuinely benefit from many refinement passes.
+
+**Not good for:** tasks requiring human judgment or design decisions, one-shot operations, anything with unclear success criteria, production debugging.
+
+The question that decides it: **can the loop tell on its own whether it succeeded?** No automatic signal means nothing for the loop to iterate against.
+
+## Limitations
+
+- Unbounded loops bill per iteration — the cost scales with how long it takes to converge, or with your iteration cap if it never does
+- `--completion-promise` is exact-string matching only, no branching outcomes
+- Reported results (six repos overnight in a hackathon, a $50k contract for $297 in API costs) depend heavily on how well the prompt is written — this is not a guarantee

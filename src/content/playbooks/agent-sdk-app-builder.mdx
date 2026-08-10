@@ -1,0 +1,76 @@
+---
+title: "Agent SDK App Builder"
+description: "Scaffold new Claude Agent SDK applications in TypeScript or Python, and verify existing ones against official SDK patterns before you ship."
+seoHook: "You're staring at the Agent SDK docs trying to figure out the right project structure, which package version is current, and whether your setup actually follows best practices — or if it'll break in production. One wrong import and an afternoon disappears."
+targetAudience: "developers building with the Claude Agent SDK, teams starting new agent projects, engineers verifying an existing SDK app before deployment, developers migrating from ad-hoc API calls to the SDK"
+exampleUseCase: "\"Set up a new customer support agent in TypeScript\" → Interactive setup asking language, project name, agent type, and starting point, followed by SDK installation at the latest version, working example code, and an automatic verification pass before it's called done"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Anthropic (Ashwin Bhat)"
+sourceUrl: "https://github.com/anthropics/claude-code/tree/main/plugins/agent-sdk-dev"
+tags: ["agent-sdk", "scaffolding", "typescript", "python", "verification", "official"]
+createdAt: "2026-08-10"
+---
+
+## What This Does
+
+Scaffolds a new Claude Agent SDK application end to end — asking clarifying questions, checking for the latest SDK version, creating all necessary files, and running an automatic verification pass. Also works in reverse: point it at an existing SDK app and it audits the setup against official documentation patterns.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir my-agent-project && cd my-agent-project
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into your project:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Start Building
+
+```bash
+claude
+```
+
+Then ask: **"Set up a new Agent SDK application"**
+
+Claude will ask you one question at a time — language, project name, agent type, starting point, tooling preference — before writing anything.
+
+---
+
+## Two Modes
+
+### Scaffold a new app
+
+Interactive setup: language choice, project naming, agent type, starting point (minimal, basic, or use-case specific), and package manager preference. Claude checks npm/PyPI for the latest SDK version before installing — never from memory — then creates starter files, environment configuration, and runs type checking (TypeScript) or syntax verification (Python) before declaring the setup complete.
+
+### Verify an existing app
+
+Ask "verify my Agent SDK application" and Claude runs a full audit: SDK version currency, environment configuration, correct SDK usage patterns, type safety, security (no hardcoded keys, `.env` gitignored), error handling, and documentation completeness. Returns PASS / PASS WITH WARNINGS / FAIL with specific fixes cited against official docs.
+
+---
+
+## Tips & Best Practices
+
+- **Always use the latest SDK version** — the setup checks npm/PyPI before installing rather than trusting cached knowledge
+- **Verify before deploying** — run the verification audit before any production deploy, and again after any significant change
+- **Keep API keys out of source** — `.env.example` is created for you, with `.env` added to `.gitignore` automatically
+- **Ask one question at a time** — the interactive setup deliberately doesn't batch its questions, so answers stay unambiguous
+
+---
+
+## Troubleshooting
+
+**TypeScript project has type errors after creation** — the setup runs `npx tsc --noEmit` automatically; if errors persist, confirm you're on the latest SDK version and that `tsconfig.json` matches SDK requirements.
+
+**Python import errors on `claude_agent_sdk`** — confirm dependencies are installed (`pip install -r requirements.txt`) and any virtual environment is activated.
+
+**Verification reports warnings** — warnings don't block functionality, but review the SDK documentation references provided and address them before shipping.

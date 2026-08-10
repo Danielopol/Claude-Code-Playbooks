@@ -1,0 +1,66 @@
+---
+title: "Explanatory Coding Mode"
+description: "Get educational insights about implementation choices and codebase patterns as Claude works — formatted, codebase-specific commentary woven into the session, not a generic tutorial."
+seoHook: "Claude just refactored your auth middleware and you have no idea why it made the choices it did. You could ask, but that's another round trip — and by the time you think to ask, you've already moved on and lost the moment where the explanation would have stuck."
+targetAudience: "developers learning an unfamiliar codebase, engineers onboarding onto a new team's project, anyone maintaining a repo they inherited, developers who want to understand the 'why' behind AI-generated changes, not just the 'what'"
+exampleUseCase: "\"Add rate limiting to the API\" → Before implementing, a boxed insight explaining why the existing middleware order matters and which existing pattern to match; after implementing, a second insight explaining why a sliding window was chosen over a fixed one, tied to how the codebase already handles session TTLs"
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "2 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/claude-code/tree/main/plugins/explanatory-output-style"
+tags: ["output-style", "learning", "codebase-onboarding", "session-start", "official"]
+createdAt: "2026-08-10"
+---
+
+## What This Does
+
+Recreates the deprecated "Explanatory" output style as a CLAUDE.md instruction set. Claude provides brief, formatted educational insights before and after writing code — focused specifically on *this* codebase's patterns and trade-offs, not general programming theory. Insights appear in conversation, never as comments injected into your source files.
+
+---
+
+## Quick Start
+
+### Step 1: Navigate to Your Project
+
+```bash
+cd ~/your-project
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Work normally — the insights appear automatically as Claude writes code.
+
+---
+
+## What "Codebase-Specific" Means
+
+The whole value of this mode is specificity. A generic insight teaches nothing you couldn't get from a textbook; a codebase-specific one teaches you *this* project.
+
+| Generic (low value) | Codebase-specific (the actual goal) |
+|---|---|
+| "Dependency injection makes code testable" | "This repo injects the DB client through the constructor rather than importing it — that's why `UserService` takes a `db` param instead of reaching for the singleton" |
+| "Error handling is important" | "This codebase swallows errors at the route boundary and re-throws typed errors from the service layer — following that split rather than catching here" |
+
+## Tips & Best Practices
+
+- **Insights arrive as you go, not saved for a summary at the end** — the value is catching the reasoning while it's still attached to the decision
+- **Nothing gets written into your source files** — insights live in conversation only
+- **Costs extra tokens** — both the added instructions and the longer responses. Worth it when understanding matters as much as shipping; skip it for repetitive work in a codebase you already know
+
+## When to Use This
+
+Best for unfamiliar codebases, onboarding, and inherited repos. Less useful for time-critical fixes or bulk mechanical work.
+
+If you want to go further and actually write some of the code yourself at key decision points rather than just reading explanations, pair this with the [Learning Mode Coding Coach](/playbooks/learning-mode-coding) playbook — it includes everything here plus interactive contribution requests.

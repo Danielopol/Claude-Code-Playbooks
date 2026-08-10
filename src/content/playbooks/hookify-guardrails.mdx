@@ -1,0 +1,89 @@
+---
+title: "Hookify Guardrails"
+description: "Create custom Claude Code guardrails with lightweight markdown rule files instead of hand-editing hooks.json — pattern matching, no restart required, rules live-load on the next tool call."
+seoHook: "You've told Claude three times not to use console.log in this codebase, and it keeps happening because 'don't do X' in a conversation doesn't survive to the next session. You need a rule that actually enforces itself — without writing a hooks.json schema from scratch."
+targetAudience: "developers wanting reusable guardrails without hooks.json complexity, teams enforcing coding standards automatically, engineers who keep correcting the same AI behavior repeatedly, anyone wanting a warn-or-block layer on dangerous commands"
+exampleUseCase: "\"Warn me when I use rm -rf commands\" → A .claude/hookify.warn-rm.local.md file is generated with the regex pattern, event type, and warning message already filled in — active on the very next Bash tool call, no restart, no hooks.json editing"
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/claude-code/tree/main/plugins/hookify"
+tags: ["hooks", "guardrails", "automation", "regex", "safety", "official"]
+createdAt: "2026-08-10"
+---
+
+## What This Does
+
+Turns hook creation into writing a markdown file instead of editing JSON. Describe a behavior you want caught — in plain language or as a specific regex — and get a `.claude/hookify.{name}.local.md` rule file that warns or blocks on Bash commands, file edits, session stops, or prompt submissions. Can also analyze recent conversation to auto-propose rules for behaviors you've already corrected Claude on.
+
+---
+
+## Quick Start
+
+### Step 1: Navigate to Your Project
+
+```bash
+cd ~/your-project
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Create Your First Rule
+
+```bash
+claude
+```
+
+Then ask: **"Create a rule warning me about console.log in TypeScript files"** — or just say "create a hookify rule" with no detail, and Claude analyzes recent conversation for behaviors you've been correcting.
+
+---
+
+## Rule Anatomy
+
+```markdown
+---
+name: block-dangerous-rm
+enabled: true
+event: bash
+pattern: rm\s+-rf
+action: block
+---
+
+⚠️ **Dangerous rm command detected!**
+This command could delete important files. Verify the path and make sure you have backups.
+```
+
+- **`event`** — `bash`, `file`, `stop`, `prompt`, or `all`
+- **`action`** — `warn` (shows message, allows the operation) or `block` (prevents it)
+- **`pattern`** — a Python regex, matched against the command or new file content
+- Multi-condition rules use a `conditions:` list instead, where every condition must match
+
+## Supported Formats
+
+Rules live at `.claude/hookify.{name}.local.md` in the project root. Simple rules use a single `pattern:`; advanced rules check multiple `field` / `operator` / `pattern` conditions across `file_path`, `new_text`, `old_text`, `content`, `command`, or `user_prompt` depending on event type.
+
+## Tips & Best Practices
+
+- **Use unquoted patterns in YAML** to avoid double-escaping backslashes
+- **Test regex before shipping**: `python3 -c "import re; print(re.search(r'pattern', 'text'))"`
+- **Too broad beats too narrow at first** — `console\.log\(|logger\.` catches more than `pattern: log`, which also matches "login" and "catalog"
+- **Add `.claude/*.local.md` to `.gitignore`** — these are meant to be local, not committed team policy
+- **Rules apply immediately** on the next matching tool call — no restart needed
+
+## Limitations
+
+- Requires Python 3.7+ on PATH, no external dependencies otherwise
+- Regex-only matching — no semantic understanding of what the code actually does
+- `stop` event rules that block can prevent Claude from ending a turn — enable those deliberately, not by default
+
+## Troubleshooting
+
+**Rule not triggering** — confirm the file is in `.claude/` at the project root (not a plugin directory), `enabled: true` is set, and the regex actually matches your test string.
+
+**Hooks feel slow** — simplify the regex, use a specific event type instead of `all`, and limit the number of active rules.

@@ -1,0 +1,83 @@
+---
+title: "Learning Mode Coding Coach"
+description: "Interactive coding mode that hands you the meaningful 5-10 line decisions — business logic, trade-offs, design choices — while Claude handles the boilerplate and explains the codebase as you go."
+seoHook: "You asked Claude to build the feature and it did, perfectly, in ninety seconds — and you learned nothing. You could have written that session timeout logic yourself and actually understood the trade-off, but the opportunity came and went before you even saw it."
+targetAudience: "developers learning a new language or framework, junior engineers building real judgment, students in coding bootcamps, side-project builders who want to retain what they build, anyone who wants a coding partner rather than a code vending machine"
+exampleUseCase: "\"Add session timeout handling\" → Claude scaffolds the file, prepares the function signature and TODO, then stops: 'Auto-extending sessions improves UX but leaves them open longer; hard timeouts are more secure but frustrate active users. Implement handleSessionTimeout() with your call.' You write 8 lines. Claude integrates them and explains the trade-off you just made."
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "2 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/claude-code/tree/main/plugins/learning-output-style"
+tags: ["output-style", "learning", "pair-programming", "education", "session-start", "official"]
+createdAt: "2026-08-10"
+---
+
+## What This Does
+
+Recreates the unshipped "Learning" output style as a CLAUDE.md instruction set, combined with explanatory insights. Instead of implementing every decision itself, Claude identifies the 5–10 line spots where your judgment actually matters — business logic, error handling strategy, algorithm choice — scaffolds the surrounding context, and asks you to write that piece. Boilerplate, CRUD, and configuration it still writes directly.
+
+---
+
+## Quick Start
+
+### Step 1: Navigate to Your Project
+
+```bash
+cd ~/your-project
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Work normally. When Claude hits a meaningful decision point, it'll scaffold the context and ask you to write the piece that matters.
+
+---
+
+## When You'll Be Asked to Contribute
+
+**You'll be asked for:**
+- Business logic with multiple valid approaches
+- Error handling strategy
+- Algorithm implementation choices
+- Data structure decisions
+- UX decisions
+- Architecture and design pattern choices
+
+**Claude implements directly, no ask:**
+- Boilerplate and repetitive code
+- Obvious implementations with no real choice
+- Configuration and setup
+- Simple CRUD
+
+## How a Request Looks
+
+Claude prepares the ground first — creates the file, writes the function signature, adds a `TODO`, explains why the decision matters — then asks, and waits:
+
+> **Context:** I've set up the authentication middleware. The session timeout behavior is a security vs. UX trade-off — should sessions auto-extend on activity, or have a hard timeout?
+>
+> **Request:** In `auth/middleware.ts`, implement `handleSessionTimeout()`.
+>
+> **Guidance:** Auto-extending improves UX but may leave sessions open longer; hard timeouts are more secure but might frustrate active users.
+
+## Tips & Best Practices
+
+- **Interactive by design** — sessions take longer than fully-automated ones, and cost more tokens for both the instructions and the back-and-forth
+- **Your approach wins**, even if Claude would have done it differently — the point of the mode is that the call was yours to make
+- **Combine with real projects**, not toy exercises — the trade-offs only teach something when the codebase is real
+
+## When to Use This
+
+Best for learning a new stack, building junior-engineer judgment, or side projects where retention matters more than speed. Skip it for deadline work or bulk refactors — those need the fully-automated path instead.
+
+For educational commentary without being asked to write code yourself, see [Explanatory Coding Mode](/playbooks/explanatory-coding-mode) — this playbook includes everything from that one, plus the interactive contribution requests.

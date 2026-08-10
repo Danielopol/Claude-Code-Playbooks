@@ -1,0 +1,94 @@
+---
+title: "Claude Code Plugin Builder"
+description: "End-to-end guided workflow for building Claude Code plugins — structure, commands, agents, skills, hooks, and MCP integration — with a validation checklist before you distribute."
+seoHook: "You want to package a workflow as a real plugin instead of copy-pasting a CLAUDE.md into every new project, but the plugin.json schema, the hooks event types, and the difference between a skill and an agent aren't things you want to reverse-engineer from someone else's repo."
+targetAudience: "developers building their first Claude Code plugin, teams standardizing internal tooling as a plugin, plugin authors preparing for marketplace distribution, engineers who keep re-explaining the same slash command to teammates"
+exampleUseCase: "\"Build a plugin that validates database migrations before commit\" → 8-phase workflow from discovery through component planning (a hook plus a validation skill), detailed design, structure creation with plugin.json, implementation, a validation checklist covering ${CLAUDE_PLUGIN_ROOT} usage and hook input handling, local testing, and a finished README"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "Anthropic (Daisy Hollman)"
+sourceUrl: "https://github.com/anthropics/claude-code/tree/main/plugins/plugin-dev"
+tags: ["plugin-development", "hooks", "mcp", "skills", "agents", "official"]
+createdAt: "2026-08-10"
+---
+
+## What This Does
+
+An 8-phase guided workflow for building a Claude Code plugin from concept to distribution: discovery, component planning, detailed design, structure creation, implementation, validation, testing, and documentation. Covers all five component types — commands, agents, skills, hooks, and MCP integration — with concrete patterns and a pre-distribution checklist for each.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir my-plugin && cd my-plugin
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Start Building
+
+```bash
+claude
+```
+
+Then ask: **"Build a plugin that [does X]"** and work through the 8 phases — or ask about a specific component type directly, e.g. "how do I write a hook that validates file writes?"
+
+---
+
+## Plugin Structure
+
+```
+plugin-name/
+├── .claude-plugin/
+│   └── plugin.json          # required
+├── commands/                # slash commands (optional)
+├── agents/                  # specialized agents (optional)
+├── skills/                  # agent skills (optional)
+├── hooks/                   # event handlers (optional)
+├── .mcp.json                # external tool config (optional)
+└── README.md
+```
+
+Components auto-discover from these directories. Every path reference should use `${CLAUDE_PLUGIN_ROOT}` so the plugin works no matter where it's installed.
+
+## Component Cheat Sheet
+
+| Component | Format | Key detail |
+|---|---|---|
+| Commands | Markdown + YAML frontmatter in `commands/` | `!` backtick syntax injects live bash output as context |
+| Agents | Markdown + YAML frontmatter in `agents/` | `description` needs `<example>` blocks or the agent won't trigger reliably |
+| Skills | `SKILL.md` per directory in `skills/` | Progressive disclosure: metadata → core doc → references/examples/scripts |
+| Hooks | `hooks/hooks.json` + handler scripts | Prompt-based hooks let an LLM judge nuance; command hooks are deterministic and fast |
+| MCP | `.mcp.json` or `plugin.json` | stdio for local processes, SSE for OAuth-gated hosted services, HTTP for REST |
+
+## Tips & Best Practices
+
+- **Ask clarifying questions before implementing** — plugin scope, triggering conditions, and component boundaries are exactly the things worth nailing down before writing files
+- **Write skill descriptions in third person with quoted trigger phrases** — "This skill should be used when the user asks to 'X'..." — vague descriptions mean the skill never loads
+- **Agent descriptions need `<example>` blocks** — this is what makes automatic triggering reliable instead of hit-or-miss
+- **Validate hook input, never trust the payload** — this applies even to hooks you write for your own internal tooling
+- **Least-privilege `allowed-tools`** on every command — scope tightly rather than granting broad tool access by default
+
+## Validation Checklist Before Distributing
+
+- [ ] `plugin.json` is valid JSON with all required fields
+- [ ] Every path uses `${CLAUDE_PLUGIN_ROOT}`, no absolute paths
+- [ ] Hook scripts are executable and validate their input
+- [ ] Agent descriptions contain `<example>` blocks
+- [ ] Skill descriptions contain specific trigger phrases
+- [ ] No credentials committed anywhere
+- [ ] MCP servers use HTTPS/WSS
+- [ ] Tested locally with `claude --plugin-dir /path/to/plugin`
+
+## Troubleshooting
+
+**Component isn't loading** — run `claude --debug` to see what's being discovered and why something might be skipped.

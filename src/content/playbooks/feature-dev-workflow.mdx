@@ -1,0 +1,75 @@
+---
+title: "7-Phase Feature Development Workflow"
+description: "Structured feature development that explores the codebase, asks every clarifying question up front, presents multiple architecture options with a recommendation, and runs a three-angle quality review before calling it done."
+seoHook: "You asked for a feature and got code back in thirty seconds — code that ignored the pattern the rest of the codebase uses, missed an edge case nobody mentioned because nobody was asked, and now needs a second pass anyway. The fast path wasn't actually faster."
+targetAudience: "developers building features that touch multiple files, engineering teams wanting consistent feature-development discipline, developers working in unfamiliar codebases, teams that keep re-explaining the same architectural context every ticket"
+exampleUseCase: "\"Add OAuth authentication\" → Parallel exploration agents map the existing auth system and session handling, a clarifying-questions phase surfaces five underspecified decisions before any code is written, three competing architectures get compared with a recommendation, and after implementation three review agents check for bugs, style, and simplicity before final summary"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "Anthropic (Sid Bidasaria)"
+sourceUrl: "https://github.com/anthropics/claude-code/tree/main/plugins/feature-dev"
+tags: ["feature-development", "architecture", "workflow", "multi-agent", "code-review", "official"]
+createdAt: "2026-08-10"
+---
+
+## What This Does
+
+A systematic seven-phase process for building non-trivial features: discovery, parallel codebase exploration, clarifying questions (that block until answered), multi-approach architecture design with a recommendation, implementation only after explicit approval, three-angle quality review, and a final summary. Designed for features that touch multiple files or require real architectural decisions — not one-line fixes.
+
+---
+
+## Quick Start
+
+### Step 1: Navigate to Your Project
+
+```bash
+cd ~/your-project
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Start a Feature
+
+```bash
+claude
+```
+
+Then ask: **"Add [feature description]"** and let the workflow guide you through all seven phases.
+
+---
+
+## The Seven Phases
+
+1. **Discovery** — clarify what's actually being built and confirm understanding
+2. **Codebase Exploration** — 2–3 parallel agents trace similar features, architecture, and patterns; every file they identify gets read, not just summarized
+3. **Clarifying Questions** — every ambiguity, edge case, and integration question surfaces here, before any design work starts. This phase is explicitly not skippable.
+4. **Architecture Design** — 2–3 competing approaches (minimal-change, clean-architecture, pragmatic-balance) with trade-offs and a stated recommendation; you pick
+5. **Implementation** — starts only after explicit approval, following the chosen architecture and existing conventions
+6. **Quality Review** — three parallel review agents check simplicity/DRY, bugs/correctness, and convention adherence
+7. **Summary** — what was built, key decisions, files touched, suggested next steps
+
+---
+
+## Tips & Best Practices
+
+- **Answer the clarifying questions thoughtfully** — Phase 3 exists specifically to prevent the rework that comes from unstated assumptions
+- **Trust the architecture recommendation** — it's built from actual exploration of your codebase, not a generic best-practice guess
+- **"Whatever you think is best" still needs your confirmation** — if you say this, you'll get a specific recommendation and a request to confirm it, not silent autonomy
+- **Be specific in the initial request** — more detail up front means fewer clarifying-question rounds later
+
+## When to Use This
+
+**Use it for:** new features touching multiple files, features needing architectural decisions, complex integrations, requirements that are somewhat unclear.
+
+**Skip it for:** single-line fixes, trivial changes, well-defined simple tasks, urgent hotfixes — the structure adds overhead these don't need.
+
+## Limitations
+
+- Exploration on a large codebase takes real time — that's the cost of the thoroughness, not a bug
+- Requires an existing codebase with patterns to learn from; less useful for pure greenfield work

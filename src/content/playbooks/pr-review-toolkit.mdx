@@ -1,0 +1,92 @@
+---
+title: "PR Review Toolkit"
+description: "Six specialist reviewers — comments, tests, error handling, type design, general quality, and simplification — each triggered by name or automatically based on what changed in the diff."
+seoHook: "One generic 'review my code' prompt either misses the silent failure buried in a catch block or buries the one real type-design issue under twenty stylistic suggestions nobody asked for. Different problems need different reviewers, not one reviewer trying to do everything at once."
+targetAudience: "developers wanting targeted PR review, engineering teams standardizing review quality, developers preparing PRs for external review, teams tired of one-size-fits-all review agents"
+exampleUseCase: "\"Review this PR\" → git diff analyzed for what actually changed, Test Analyzer runs because test files changed, Silent Failure Hunter runs because error handling changed, Code Reviewer always runs for CLAUDE.md compliance — results aggregated into critical/important/suggestions with file:line references, Code Simplifier offered as a polish pass once everything else is clean"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "Anthropic (Daisy)"
+sourceUrl: "https://github.com/anthropics/claude-code/tree/main/plugins/pr-review-toolkit"
+tags: ["code-review", "pull-request", "testing", "error-handling", "type-design", "official"]
+createdAt: "2026-08-10"
+---
+
+## What This Does
+
+Six specialist review agents, each scoped to one concern, triggered by name or automatically based on what's actually in your diff. Results aggregate into a single report — critical issues, important issues, suggestions, and strengths — with file:line references and a recommended fix order.
+
+---
+
+## Quick Start
+
+### Step 1: Navigate to Your Project
+
+```bash
+cd ~/your-project
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Review a PR
+
+```bash
+claude
+```
+
+Ask for a full review, or target one specialist directly: **"Check if the tests are thorough"** or **"Review the error handling"**.
+
+---
+
+## The Six Specialists
+
+| Specialist | Focus | Scoring |
+|---|---|---|
+| Comment Analyzer | Comment accuracy vs. actual code, comment rot | — |
+| Test Analyzer | Behavioral coverage, critical gaps, edge cases | 1–10 per gap, 10 = critical |
+| Silent Failure Hunter | Swallowed errors, weak catch blocks, missing logging | severity-flagged |
+| Type Design Analyzer | Encapsulation, invariants, usefulness | 4 dimensions, 1–10 each |
+| Code Reviewer | CLAUDE.md compliance, bugs, general quality | 0–100, 91+ = critical |
+| Code Simplifier | Unnecessary complexity, redundancy, over-compact code | preserves functionality |
+
+## Auto-Trigger Logic
+
+| Condition in the diff | Specialist that runs |
+|---|---|
+| Always | Code Reviewer |
+| Test files changed | Test Analyzer |
+| Comments/docs added | Comment Analyzer |
+| Error handling changed | Silent Failure Hunter |
+| Types added or modified | Type Design Analyzer |
+| After review passes | Code Simplifier (polish) |
+
+## Tips & Best Practices
+
+- **Run early, before creating the PR** — not as an afterthought after review feedback arrives
+- **Sequential by default, parallel on request** — sequential is easier to act on one finding at a time; ask explicitly for parallel when you want raw speed
+- **Address critical findings first** — the aggregated report is already prioritized for you
+- **Re-run after fixes** to confirm the issue is actually resolved, not just addressed
+- **Don't run all six on a two-line change** — target the specialist that matches the concern
+
+## Recommended Sequence
+
+```
+1. Write code       → Code Reviewer
+2. Fix issues        → Silent Failure Hunter (if error handling touched)
+3. Add tests          → Test Analyzer
+4. Document            → Comment Analyzer
+5. Review passes        → Code Simplifier (polish)
+6. Create PR
+```
+
+## Troubleshooting
+
+**Wrong specialist ran, or none did** — name the concern explicitly ("test coverage", "error handling") instead of a generic "review this".
+
+**Reviewing too much** — specify the files, PR number, or branch, or just say "recent changes" / "git diff".

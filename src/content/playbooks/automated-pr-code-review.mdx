@@ -1,0 +1,80 @@
+---
+title: "Automated PR Code Review"
+description: "High-signal automated PR review using parallel agents with a validation pass that filters out false positives before anything gets posted."
+seoHook: "Your team's PR review either rubber-stamps everything with 'LGTM' or drowns authors in fifty nitpicks nobody acts on. What you actually need is a reviewer that only speaks up when it's found something real — and can prove it."
+targetAudience: "engineering teams with review bottlenecks, open-source maintainers handling high PR volumes, tech leads wanting consistent review quality, solo developers without a senior engineer to review their code"
+exampleUseCase: "\"Review PR #482\" → Skip check for closed/draft/already-reviewed, parallel CLAUDE.md compliance and bug-detection agents, a validation pass that discards unconfirmed findings, then either a clean terminal summary or precise inline GitHub comments — never both duplicated, never a guess presented as fact"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/claude-code/tree/main/plugins/code-review"
+tags: ["code-review", "pull-request", "github", "multi-agent", "false-positive-filtering", "official"]
+createdAt: "2026-08-10"
+---
+
+## What This Does
+
+Runs a multi-stage PR review: skip-check, parallel review by four specialized agents (two for project-rule compliance, two for bugs and security), then an independent validation pass that discards any finding that can't be confirmed. Only validated, high-signal issues get reported — as a terminal summary by default, or as inline GitHub comments when you explicitly ask for it.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir pr-review-setup && cd pr-review-setup
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Review a PR
+
+```bash
+claude
+```
+
+Then ask: **"Review PR #123"** — or add `--comment` to have findings posted as inline GitHub comments instead of just printed.
+
+Requires the `gh` CLI installed and authenticated.
+
+---
+
+## The Signal Bar
+
+This is the core discipline of the workflow — what gets flagged and what doesn't:
+
+**Flagged:**
+- Code that will fail to compile or parse
+- Code that will definitely produce wrong results regardless of input
+- Clear, unambiguous CLAUDE.md violations you can quote directly
+
+**Never flagged:**
+- Code style or subjective quality opinions
+- Issues that depend on specific inputs or state
+- Pre-existing issues the PR didn't introduce
+- Anything a linter would catch
+- Pedantic nitpicks a senior engineer wouldn't raise
+- Issues explicitly silenced in code (e.g. a lint-ignore comment)
+
+If a finding can't be validated with high confidence, it's dropped rather than reported. False positives erode trust faster than missed issues do.
+
+## Tips & Best Practices
+
+- **Validate before reporting.** Every bug/security finding goes through a second, independent agent whose only job is confirming it's real before it counts.
+- **Cite your sources.** Every CLAUDE.md violation links to the specific rule being broken — no vague "this seems off."
+- **One comment per issue, ever.** Never duplicate the same finding across multiple inline comments.
+- **Committable suggestions only when they fully fix it.** If a fix needs follow-up steps or spans multiple locations, describe it in prose instead of offering a one-click suggestion.
+- **Link to code with the full git SHA**, not a branch name — GitHub's inline Markdown renderer requires it to resolve correctly.
+
+## Limitations
+
+- Skips PRs that are closed, drafts, or where the reviewer has already commented
+- Requires `gh` CLI — the workflow explicitly avoids web fetch for GitHub interaction
+- Designed for precision over recall — it will stay silent rather than guess

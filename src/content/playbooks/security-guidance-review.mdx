@@ -1,0 +1,96 @@
+---
+title: "Security Guidance Review"
+description: "Three-layer continuous security review for AI-generated code — instant regex warnings on edit, an LLM diff review at end of turn, and an agentic commit-time reviewer that traces data flow across files."
+seoHook: "Your AI assistant just wrote a working feature — and quietly used pickle.load on user-controlled data, or built a query that skips your read-replica policy. It compiles, it passes the demo, and the vulnerability ships with it because nobody was specifically looking for it."
+targetAudience: "developers using AI coding assistants in production codebases, security-conscious teams, engineers wanting automated review beyond a linter, teams with org-specific security policies to enforce consistently"
+exampleUseCase: "\"Add a webhook receiver that fetches the callback URL\" → An instant pattern warning if the implementation uses a known-dangerous call, an end-of-turn diff review checking for SSRF before you even see the response, and — at commit time — an agentic reviewer that traces the URL's data flow across files to catch cross-file vulnerabilities regex alone would miss"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/claude-code/tree/main/plugins/security-guidance"
+tags: ["security", "code-review", "vulnerability-scanning", "hooks", "official"]
+createdAt: "2026-08-10"
+---
+
+## What This Does
+
+Three review layers that fire at different moments: instant regex pattern-matching on every file edit (~25 known-dangerous patterns like `pickle.load`, raw `innerHTML`, `yaml.load` without a safe loader), an end-of-turn LLM diff review whose high-severity findings get fixed before you see the response, and an agentic commit-time reviewer that reads related files to trace data flow and catch multi-file issues — IDOR, auth bypass, cross-file SSRF — that pattern matching structurally can't see.
+
+---
+
+## Quick Start
+
+### Step 1: Navigate to Your Project
+
+```bash
+cd ~/your-project
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Configure (Optional)
+
+No environment variables are required for default behavior. Set `SECURITY_REVIEW_MODEL` to control which model runs the diff review, or add org-specific rules — see below.
+
+### Step 4: Work Normally
+
+```bash
+claude
+```
+
+Reviews run automatically as you edit files, at the end of each turn, and at commit time.
+
+---
+
+## The Three Layers
+
+| Layer | When it fires | What it catches |
+|---|---|---|
+| Pattern warnings | Every Edit/Write | ~25 known-dangerous regex patterns, instant, no model call |
+| Diff review | End of turn | Injection, XSS, SSRF, hardcoded secrets — fed back before you see the response |
+| Agentic commit review | `git commit` | Multi-file vulnerabilities: IDOR, auth bypass, cross-file SSRF |
+
+## Org-Specific Policies
+
+Drop a `claude-security-guidance.md` in `~/.claude/` (user-wide), `<project>/.claude/` (team, committed), or `<project>/.claude/*.local.md` (personal overrides, gitignored):
+
+```markdown
+# Acme security rules
+- All SELECTs against `customers` or `orders` MUST go through db.replica, never db.primary.
+- Calls to requests.get(url) with a user-controlled url need the SSRF-allowlist wrapper.
+```
+
+All three load and concatenate (user → project → local) into the diff review's prompt, up to an 8 KB budget — local rules truncate first if it's exceeded. **Never put secrets in this file** — it's appended to every review prompt.
+
+## Tips & Best Practices
+
+- **Silence a specific finding with an inline comment** explaining why it's safe — the reviewer treats inline justifications as exclusions
+- **Drop to a cheaper model** (via `SECURITY_REVIEW_MODEL`) if false positives outweigh the value; stay on a stronger model if precision matters more than cost
+- **`ENABLE_STOP_REVIEW=0`** disables just the end-of-turn review while keeping commit/push reviews — useful in multi-agent or shared-worktree setups where another agent can move HEAD between your turns
+- **`SG_DUAL_OR=on`** runs two parallel review passes and unions the findings for a few extra points of recall, at roughly 2× review cost — most setups don't need it
+
+## Limitations
+
+This is a best-effort assistive tool, not a guarantee. Treat findings as suggestions, not a substitute for human code review, SAST/DAST, dependency scanning, or penetration testing. It can miss vulnerabilities, produce false positives, and behave differently across codebases and model versions.
+
+## Privacy Notes
+
+Diff reviews transmit changed file paths, diff hunks, and relevant file contents to whatever model endpoint you've configured (Anthropic API by default, or your gateway/provider if configured otherwise). A local debug log at `~/.claude/security/log.txt` records metadata and finding categories only — no file contents, no prompts — and rotates at 1 MB.
+
+## Prerequisites
+
+- Claude Code CLI ≥ v2.1.144
+- Python 3.8+ on PATH
+- A working API path — subscription, API key, or third-party provider config
+
+## Troubleshooting
+
+**Doesn't seem to fire** — run with `--debug-file /tmp/claude/debug.txt` and grep for `security_reminder_hook`.
+
+**Review never finds anything** — on third-party providers, confirm `SECURITY_REVIEW_MODEL` uses the provider-specific ID format, not a bare canonical name.

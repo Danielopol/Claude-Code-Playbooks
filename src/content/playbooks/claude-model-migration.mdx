@@ -1,0 +1,80 @@
+---
+title: "Claude Model Migration Assistant"
+description: "Migrate code and prompts between Claude models — update model strings, remove incompatible beta headers, and adjust prompts only for reported behavioral differences."
+seoHook: "A new Claude model ships and your codebase has model strings scattered across a dozen files, each formatted differently for whatever platform touches it — and if you migrate blind, you'll also break the smaller model you deliberately kept for cost reasons."
+targetAudience: "developers upgrading Claude API integrations, teams managing multi-platform deployments (Bedrock, Vertex, Azure), engineers debugging behavioral differences after a model upgrade, anyone maintaining prompts across model versions"
+exampleUseCase: "\"Migrate my codebase to the latest Opus model\" → Every model string updated to the correct platform-specific format across Anthropic API, Bedrock, and Vertex, incompatible beta headers removed with an explanatory comment, and a summary of every file changed — prompts left untouched unless you report a specific issue"
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Anthropic (William Hu)"
+sourceUrl: "https://github.com/anthropics/claude-code/tree/main/plugins/claude-opus-4-5-migration"
+tags: ["claude-api", "migration", "model-strings", "bedrock", "vertex", "official"]
+createdAt: "2026-08-10"
+---
+
+## What This Does
+
+Systematically updates model strings across your codebase when moving between Claude models — matching the correct format per platform (Anthropic API, AWS Bedrock, Google Vertex AI, Azure AI Foundry) — and removes beta headers the target model doesn't support. Prompt adjustments for behavioral differences are applied only when you explicitly ask or report a specific symptom, never preemptively.
+
+---
+
+## Quick Start
+
+### Step 1: Navigate to Your Project
+
+```bash
+cd ~/your-project
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Migrate
+
+```bash
+claude
+```
+
+Then ask: **"Migrate my codebase to [target model]"**
+
+---
+
+## How It Works
+
+1. Searches the codebase for every model string and API call
+2. Identifies which platform each reference targets
+3. Looks up the current model ID from official docs — never from memory, since IDs and dates change
+4. Replaces strings in the platform-specific format
+5. Removes unsupported beta headers, leaving an explanatory comment instead of a silent deletion
+6. Summarizes every change made
+
+---
+
+## Tips & Best Practices
+
+- **Scope the migration to what you asked for.** If you say "migrate to Opus," a smaller model used elsewhere in the codebase for cost reasons is left alone — that's often a deliberate choice, not an oversight.
+- **Prompt adjustments are opt-in only.** By default this only touches model strings. Behavioral tuning — softening aggressive trigger language, adding scope constraints, adjusting for the word "think" — is applied only when you report the specific symptom.
+- **Model IDs differ by platform format**, not just by model: Anthropic API uses `claude-<model>-<version>-<date>`, Bedrock prefixes with `anthropic.` and suffixes `-v1:0`, Vertex uses `@<date>` instead of a hyphen.
+
+## Common Prompt Adjustment Triggers
+
+If you report one of these after migrating, the assistant knows what to adjust:
+
+| Symptom | Fix |
+|---|---|
+| Tools firing too often | Soften aggressive trigger language (`CRITICAL:`, `MUST`, `ALWAYS`) |
+| Extra files, unrequested abstractions | Add explicit scope constraints |
+| Proposes fixes without reading code | Add instruction to explore before proposing |
+| Generic-looking frontend output | Add specific aesthetic direction |
+| Odd behavior around "think" | Replace with "consider" / "evaluate" (only relevant without extended thinking enabled) |
+
+## Limitations
+
+- Requires you to specify (or have Claude look up) the correct target model ID — this playbook doesn't hardcode one, since IDs change with each release
+- Doesn't touch model tiers you didn't mention, by design
+- Prompt-adjustment snippets are meant to be integrated thoughtfully into existing prompt structure, not appended blindly

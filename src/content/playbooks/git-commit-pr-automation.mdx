@@ -1,0 +1,76 @@
+---
+title: "Git Commit & PR Automation"
+description: "Three streamlined git workflows: commit with an auto-drafted message matching your repo's style, ship a full commit-push-PR in one step, and clean up branches deleted on the remote."
+seoHook: "You're mid-flow on a feature and git wants your full attention — stage files, write a message, remember the branch naming convention, push, then switch tabs to open a PR with a description nobody will read anyway. Every context switch costs you the thread you were pulling on."
+targetAudience: "developers who want cleaner git history, teams establishing commit conventions, engineers who create PRs frequently, anyone whose local branch list is cluttered with merged branches"
+exampleUseCase: "\"Ship this as a PR\" → New branch created if you're on main, a commit written to match your repo's existing message style, pushed to origin, and a PR opened with a summary and test-plan checklist covering the whole branch history — not just the last commit"
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/claude-code/tree/main/plugins/commit-commands"
+tags: ["git", "commit", "pull-request", "github-cli", "branch-cleanup", "official"]
+createdAt: "2026-08-10"
+---
+
+## What This Does
+
+Three focused git workflows in one CLAUDE.md: `/commit` for a single well-formed commit, `/commit-push-pr` for the full ship sequence, and a `[gone]`-branch cleanup routine. Each reads actual repo context — `git status`, `git diff`, recent commit style — before acting, rather than guessing at conventions.
+
+---
+
+## Quick Start
+
+### Step 1: Navigate to Your Repository
+
+```bash
+cd ~/your-project
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Use It
+
+```bash
+claude
+```
+
+Then say: **"Commit these changes"**, **"Ship this as a PR"**, or **"Clean up my stale branches"**.
+
+---
+
+## The Three Workflows
+
+### Commit
+
+Reads `git status`, `git diff HEAD`, current branch, and the last 10 commits to learn your message style — then stages relevant files and commits, matching your repo's conventions rather than imposing generic ones.
+
+### Commit, Push, and Open a PR
+
+Creates a new branch if you're on main (never commits directly to the default branch), commits, pushes to `origin`, and opens a PR with `gh pr create`. The PR description covers the **entire branch history**, not just the latest commit — summary bullets plus a checkable test plan.
+
+### Clean Up Gone Branches
+
+Finds local branches whose remote counterpart was deleted (`git branch -v` shows `[gone]`), removes any associated worktrees first, then deletes the branches. Safe to run repeatedly — it only ever touches branches already gone from the remote.
+
+---
+
+## Tips & Best Practices
+
+- **Never commits secrets** — `.env`, `credentials.json`, and anything with a hardcoded key gets excluded automatically
+- **Requires `gh` CLI, authenticated**, for the push-PR workflow (`gh auth login`)
+- **Run `git fetch --prune` first** if the cleanup workflow reports nothing to clean — branches only show as `[gone]` after the remote tracking refreshes
+- **Combine them**: `/commit` during development, `/commit-push-pr` when ready to ship, `/clean_gone` weekly for maintenance
+
+## Troubleshooting
+
+**Commit comes back empty** — verify you actually have staged or unstaged changes with `git status`.
+
+**PR creation fails** — confirm `gh` is installed and authenticated, and that the repo has an `origin` remote pointing to GitHub.
+
+**Cleanup finds no `[gone]` branches** — run `git fetch --prune` to refresh remote-tracking branches first.

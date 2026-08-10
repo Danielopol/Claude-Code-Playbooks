@@ -1,0 +1,73 @@
+---
+title: "Distinctive Frontend Design"
+description: "Design lead guidance for building frontends that don't read as AI-generated — deliberate palette, typography, and layout choices grounded in the actual subject, with a built-in self-critique pass before you write code."
+seoHook: "Every AI-built landing page looks the same three ways: warm cream with a serif headline, near-black with one neon accent, or a hairline-rule broadsheet layout. Your product isn't generic — why does its interface look like it was assembled from the same three templates as everyone else's?"
+targetAudience: "full-stack developers who can build but struggle with visual design, indie hackers shipping without a designer, teams tired of their product looking AI-generated, developers building landing pages, dashboards, or marketing sites who want a distinctive look"
+exampleUseCase: "\"Design a landing page for our climate data API\" → A two-pass process: first a compact token system (4-6 named hex colors, two type roles, a layout concept, one signature element) grounded in the actual subject matter, then a self-critique pass that checks the plan against the three most common AI-design defaults and revises anything that reads as generic before a single line of code gets written"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "Anthropic"
+sourceUrl: "https://github.com/anthropics/claude-code/tree/main/plugins/frontend-design"
+tags: ["frontend", "ui-design", "design-system", "typography", "css", "official"]
+createdAt: "2026-08-10"
+---
+
+## What This Does
+
+A design-lead persona for frontend work that names the three visual patterns AI output clusters around by default — and explicitly avoids reproducing them unless your brief actually calls for one. Works in two passes: brainstorm a compact design token system grounded in your subject matter, then critique that plan against the generic defaults before writing any code. Builds to an accessibility and responsiveness floor without you having to ask for it separately.
+
+---
+
+## Quick Start
+
+### Step 1: Navigate to Your Project
+
+```bash
+cd ~/your-project
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Design Something
+
+```bash
+claude
+```
+
+Then ask: **"Design a [page/component] for [what it's actually for]"** — the more specific the subject, the more distinctive the output.
+
+---
+
+## The Three AI-Design Defaults This Avoids
+
+Named explicitly so Claude can check its own output against them:
+
+1. Warm cream background (`#F4F1EA`-ish) with a high-contrast serif and a terracotta accent
+2. Near-black background with one bright acid-green or vermilion accent
+3. Broadsheet layout — hairline rules, zero border-radius, dense newspaper columns
+
+All three are legitimate for *some* briefs. The point isn't banning them — it's that they show up regardless of subject when nothing steers the design elsewhere. Where your brief specifies a direction, it always wins, even if that direction happens to be one of these three.
+
+## The Two-Pass Process
+
+**Pass 1 — brainstorm a token system:** 4–6 named hex colors, two-plus type roles (a restrained display face, a body face, an optional utility face), a layout concept sketched in prose and ASCII wireframes, and one signature element the page will be remembered by.
+
+**Pass 2 — critique before building:** check the plan against what a generic version of the same prompt would produce. Anything that reads as the default gets revised, with the change and reasoning stated explicitly. Only after this pass does code get written.
+
+## Tips & Best Practices
+
+- **Ground it in the actual subject** — the subject's own materials, vernacular, and world are where distinctive choices come from, not abstract design theory
+- **Spend boldness in one place** — one signature element, quiet and disciplined everywhere else
+- **Numbered markers (01/02/03) need a real sequence to justify them** — don't default to them just because they look organized
+- **Copy is design material** — write from the user's side of the screen, active voice, one job per element
+- **Quality floor is non-negotiable**: mobile-responsive, visible keyboard focus, `prefers-reduced-motion` respected
+
+## Watch Out For
+
+CSS selector specificity conflicts — a type-based selector like `.section` and an element-based one like `.cta` can silently cancel each other out, most often around section padding and margins.

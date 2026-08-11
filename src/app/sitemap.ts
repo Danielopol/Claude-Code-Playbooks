@@ -1,9 +1,7 @@
 import { MetadataRoute } from 'next';
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
 import { personas } from '@/lib/personas';
 import { internalBlogPosts } from '@/lib/blog-internal';
+import { getAllPlaybooks } from '@/lib/playbooks';
 
 interface Playbook {
   slug: string;
@@ -11,36 +9,15 @@ interface Playbook {
   lastModified: Date;
 }
 
+// Reads the precomputed index (see scripts/build-index.mjs) rather than
+// re-scanning src/content/playbooks — that scan was a second full pass over
+// every MDX file on top of the one the listing pages already do.
 function getPlaybooks(): Playbook[] {
-  const playbooksDirectory = path.join(process.cwd(), 'src/content/playbooks');
-
-  if (!fs.existsSync(playbooksDirectory)) {
-    return [];
-  }
-
-  const playbooks: Playbook[] = [];
-  const files = fs.readdirSync(playbooksDirectory);
-
-  files.forEach((file) => {
-    if (file.endsWith('.mdx')) {
-      const filePath = path.join(playbooksDirectory, file);
-      const fileContent = fs.readFileSync(filePath, 'utf8');
-      const { data } = matter(fileContent);
-
-      // Use frontmatter createdAt if available, otherwise fall back to file mtime
-      const lastModified = data.createdAt
-        ? new Date(data.createdAt)
-        : fs.statSync(filePath).mtime;
-
-      playbooks.push({
-        slug: file.replace('.mdx', ''),
-        category: data.category || 'uncategorized',
-        lastModified,
-      });
-    }
-  });
-
-  return playbooks;
+  return getAllPlaybooks().map((p) => ({
+    slug: p.slug,
+    category: p.category || 'uncategorized',
+    lastModified: p.createdAt ? new Date(p.createdAt) : new Date(),
+  }));
 }
 
 function getUniqueCategories(playbooks: Playbook[]): string[] {

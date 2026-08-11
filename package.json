@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/build-index.mjs",
     "build": "next build",
+    "index": "node scripts/build-index.mjs",
     "start": "next start",
     "lint": "eslint",
     "blog:add": "npx tsx src/scripts/update-blog.ts add",

@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-social-media',
+    slug: 'claude-skills-social-media',
+    title: 'Claude Skills for Social Media Managers: Plan, Create, and Schedule Posts',
+    description: "How to use four Claude Skills to run the full daily social media workflow — a campaign planner that sets objectives, audience, and channel strategy before anything gets built, a content calendar Skill that maps topics to platforms and pillars, a content engine that batch-generates a month of platform-specific posts in one session, and a scheduling Skill that distributes each post with the right formatting, timing, and hashtags per platform.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Social Media',
+    tags: ['claude skills social media', 'ai social media automation', 'ai content scheduling', 'social media content calendar', 'ai campaign planning', 'batch content creation ai', 'social media management ai', 'ai content pillars'],
+    createdAt: '2026-08-12',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-video-creators',
     slug: 'claude-skills-video-creators',
     title: 'Claude Skills for Video Creators: Script, Produce, and Repurpose with AI',

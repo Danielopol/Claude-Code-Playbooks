@@ -1,0 +1,74 @@
+---
+title: "Bulk Legal Document Review to Excel Matrix"
+description: "Turn dozens or hundreds of contracts, NDAs, or leases into a single sourced Excel matrix — one row per document, one column per review question, color-coded risk flags."
+seoHook: "Due diligence just landed 150 vendor contracts on your desk with a two-week deadline. Reading each one and manually tracking findings in a spreadsheet takes days you don't have, and missing one unfavorable clause could cost real money after close."
+targetAudience: "M&A lawyers doing due diligence, in-house counsel auditing a contract portfolio, paralegals supporting bulk document review, compliance teams sweeping vendor agreements, procurement teams comparing terms across many supplier contracts"
+exampleUseCase: "\"Review these 40 NDAs and flag anything unusual\" → A structured Excel workbook: one row per NDA, columns for term, confidentiality survival period, non-compete/non-solicit presence, and an overall risk flag — every cell sourced back to its clause, with a Summary sheet tallying how many came back Red, Yellow, or Green"
+category: "legal-compliance"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "IURA"
+sourceUrl: "https://github.com/iura-ai/iura-plugins"
+tags: ["due-diligence", "contract-review", "bulk-processing", "excel", "legal", "risk-assessment", "portfolio-audit"]
+createdAt: "2026-08-13"
+---
+
+## What This Does
+
+Converts a pile of legal documents into a single structured spreadsheet you can actually sort, filter, and compare — instead of forty open PDFs and a notepad. Each document becomes a row, each review question becomes a column, and every cell carries both the extracted answer and a citation back to the exact clause it came from.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir bulk-legal-review && cd bulk-legal-review
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Run a Review
+
+```bash
+claude
+```
+
+Then ask: **"Review these contracts and extract [governing law, liability cap, termination terms, etc.]"** — pointing at a folder of documents.
+
+---
+
+## What You Get
+
+A multi-sheet Excel workbook:
+
+| Sheet | Contents |
+|-------|----------|
+| Summary | Review name, document count, risk distribution, color legend |
+| Review Matrix | The main grid — documents as rows, extraction questions as columns, risk cells color-coded Green/Yellow/Red |
+| Sources | Clause/page reference for every extracted value |
+| Extraction Parameters | The list of columns and the exact question each one answers |
+
+## Pre-Built Column Sets
+
+The template ships ready-to-use extraction columns for five common document types — commercial/master service agreements, NDAs, leases, loan agreements, and share/asset purchase agreements — each with 10–16 fields tuned to what actually matters for that document type. All are fully customizable.
+
+## Tips & Best Practices
+
+- **Never leave a cell blank.** "Not addressed" or "Silent" is a finding — the absence of a liquidated damages clause is information, not a gap in the work.
+- **Attach a source to every value.** A risk flag without a clause reference isn't verifiable and won't survive a lawyer's spot-check.
+- **Normalize terminology across rows.** If one contract says "12 months" and another says "1 year" for the same concept, write them the same way — otherwise the matrix can't actually be compared or sorted.
+- **Batch large sets.** For 10+ documents, process in batches and verify consistency after each one. For 50+, prioritize a subset (e.g. highest contract value first) rather than processing everything in one uneven pass.
+- **Spot-check before delivering.** Re-read 2–3 documents against their extracted rows to catch systematic extraction errors before they propagate across the whole matrix.
+
+## Limitations
+
+- Extraction quality depends on document quality — scanned PDFs without clean OCR will produce weaker results than searchable text
+- Risk classifications (Green/Yellow/Red) are only as good as the negotiation playbook or market standard they're measured against — without one, the workbook should flag that it's using general market norms rather than your organization's actual position
+- This produces a working analytical document for legal review, not a substitute for it — every extraction and risk flag needs a qualified lawyer's sign-off before anyone relies on it

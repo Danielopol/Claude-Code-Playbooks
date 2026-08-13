@@ -1,0 +1,70 @@
+---
+title: "Legal Memo Drafting Assistant"
+description: "Draft structured, objective IRAC-format legal memoranda — question presented, brief answer, statement of facts, IRAC discussion, and a practical recommendation."
+seoHook: "The business needs an answer to a legal question by end of day, and a proper memo means chasing down statutes, checking for conflicting case law, and structuring an analysis that a non-lawyer can actually act on — not just a paragraph of hedging."
+targetAudience: "in-house counsel answering business questions quickly, law firm associates drafting internal memos, compliance teams documenting legal risk assessments, paralegals doing first-pass legal research, legal operations teams standardizing memo format across a team"
+exampleUseCase: "\"Draft a memo on whether we can terminate this distribution agreement early\" → A structured memorandum: precise question presented, a 2-paragraph brief answer, an objective statement of facts, full IRAC analysis with arguments for and against, and a conclusion with a risk rating and recommended next steps"
+category: "legal-compliance"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "IURA"
+sourceUrl: "https://github.com/iura-ai/iura-plugins"
+tags: ["legal-memo", "irac", "legal-writing", "legal-research", "in-house-counsel", "risk-assessment"]
+createdAt: "2026-08-13"
+---
+
+## What This Does
+
+Turns a legal question into a professionally structured memorandum — the kind an in-house legal team uses to answer business stakeholders, document risk, or build the record before a decision. Follows the standard memo architecture: header, question presented, brief answer, statement of facts, IRAC discussion, and a conclusion with a practical recommendation.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir legal-memos && cd legal-memos
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Draft a Memo
+
+```bash
+claude
+```
+
+Then ask: **"Draft a memo on whether [specific legal question]"**
+
+---
+
+## Memo Structure
+
+| Section | Purpose |
+|---------|---------|
+| Header | To/From/Date/Re, privilege designation |
+| Question Presented | One narrow, fact-laden, neutral formulation of the issue |
+| Brief Answer | 1–3 paragraphs — direct conclusion, no citations |
+| Statement of Facts | Objective recitation, no legal conclusions |
+| Discussion | Full IRAC analysis per issue — Issue, Rule, Application, Conclusion |
+| Conclusion & Recommendation | Risk rating, practical next steps, caveats |
+
+## Tips & Best Practices
+
+- **Objectivity over advocacy.** A memo presents arguments for and against — it's not a brief written to win. The conclusion should follow from the analysis, not the other way around.
+- **Verify every citation.** Citing statutes or case law from memory risks hallucination — laws get amended and case names get misremembered. If you have a legal research tool connected, use it to verify each citation before it goes in the memo. If you don't, the memo should say so explicitly.
+- **Present conflicting authority honestly.** When precedent is genuinely split, show both lines and note which is more recent or dominant — collapsing a real conflict into false consensus is one of the most common ways memos mislead.
+- **Match length to complexity.** A single simple question deserves 2–4 pages, not 15. Padding a short answer to look thorough undermines trust in the whole document.
+- **Distinguish facts from conclusions.** The Statement of Facts should never smuggle in a legal conclusion like "breached the contract" — that's for the Discussion section to establish.
+
+## Limitations
+
+- This produces a working internal document, not a formal legal opinion — every memo needs review by a qualified lawyer before anyone relies on it
+- Citation accuracy depends entirely on either a connected legal research tool or documents the user supplies — without one, treat every citation as needing independent verification
+- Jurisdiction-specific: the memo structure (IRAC) is broadly portable, but the substantive law cited must match the jurisdiction actually governing the question

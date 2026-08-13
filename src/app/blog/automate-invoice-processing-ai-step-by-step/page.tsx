@@ -402,7 +402,7 @@ INVOICE_START_NUMBER: 1042   # picks up from your last invoice`}</pre>
             { label: 'Payment detected', detail: 'Stripe webhook or daily bank reconciliation marks it paid and syncs to accounting.' },
             { label: 'Reminders cancel', detail: 'No awkward email chasing someone who already paid.' },
             { label: 'AR tracker updates', detail: 'Your receivables dashboard reflects reality in real time.' },
-          ].map(({ label, detail }, i) => (
+          ].map(({ label, detail }) => (
             <div key={label} className="relative">
               <div className="absolute -left-6 top-1.5 w-3 h-3 rounded-full bg-[#22d3ee] border-2 border-[#0d1117]" />
               <p className="font-semibold text-foreground text-sm">{label}</p>

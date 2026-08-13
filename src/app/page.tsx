@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
@@ -64,6 +65,28 @@ function QuickStartStep({
 
 interface HomePageProps {
   searchParams: Promise<{ page?: string }>;
+}
+
+/**
+ * Pages 2-50 of the homepage listing are noindex,follow: they hold no content
+ * of their own, and Google was crawling them and filing them under "crawled -
+ * currently not indexed". `follow` is deliberate — the crawler still walks
+ * through to the playbooks behind them.
+ */
+export async function generateMetadata({ searchParams }: HomePageProps): Promise<Metadata> {
+  const params = await searchParams;
+  const page = parseInt(params.page || '1', 10);
+  const isPaginated = Number.isFinite(page) && page > 1;
+
+  return {
+    alternates: {
+      canonical: '/',
+    },
+    ...(isPaginated && {
+      title: `Claude Code Playbooks — Page ${page}`,
+      robots: { index: false, follow: true },
+    }),
+  };
 }
 
 export default async function HomePage({ searchParams }: HomePageProps) {
@@ -214,6 +237,14 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       {/* Category Pills */}
       <section className="container pb-8">
         <CategoryPills categories={categories} counts={categoryCounts} />
+        <p className="text-center mt-4">
+          <Link
+            href="/categories"
+            className="text-sm text-muted-foreground hover:text-[#22d3ee] transition-colors"
+          >
+            Browse all {categories.length} categories →
+          </Link>
+        </p>
       </section>
 
       {/* Playbooks Grid */}

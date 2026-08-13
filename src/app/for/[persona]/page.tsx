@@ -5,7 +5,6 @@ import { getPlaybooksByCategories } from '@/lib/playbooks';
 import { getCategoryById } from '@/lib/categories';
 import { personas, getPersonaById } from '@/lib/personas';
 import { PlaybookCard } from '@/components/PlaybookCard';
-import { Category } from '@/types/playbook';
 import { ArrowLeft, Users, FolderOpen } from 'lucide-react';
 
 interface PersonaPageProps {

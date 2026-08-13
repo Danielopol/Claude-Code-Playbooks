@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 import { DifficultyBadge } from './DifficultyBadge';
 import { CategoryBadge } from './CategoryBadge';
-import { Clock, Bot, FileCode } from 'lucide-react';
+import { Clock, Bot } from 'lucide-react';
 import { Difficulty, Category } from '@/types/playbook';
 
 interface PlaybookCardProps {
@@ -22,7 +22,6 @@ export function PlaybookCard({
   category,
   difficulty,
   timeToSetup,
-  tags = [],
 }: PlaybookCardProps) {
   return (
     <Link href={`/playbooks/${slug}`} className="block group">

@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { JetBrains_Mono, Press_Start_2P } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Home, BookOpen, Rss, Phone, Mail, Users } from 'lucide-react';
+import { Home, BookOpen, Rss, Phone, Mail, Users, Layers } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
 import './globals.css';
 
@@ -75,6 +75,18 @@ function Header() {
           >
             <BookOpen className="h-4 w-4" />
             <span>Browse</span>
+          </Link>
+          {/*
+            Site-wide link to the category hub index. Every playbook page now
+            reaches all 37 category hubs in two hops, which is what feeds the
+            deep pages that were sitting in "crawled - currently not indexed".
+          */}
+          <Link
+            href="/categories"
+            className="flex items-center gap-1.5 text-muted-foreground hover:text-[#22d3ee] transition-colors"
+          >
+            <Layers className="h-4 w-4" />
+            <span>Categories</span>
           </Link>
           <Link
             href="/for"

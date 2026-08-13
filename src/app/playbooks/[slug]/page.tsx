@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getAllPlaybooks, getPlaybookBySlug, getRelatedPlaybooks } from '@/lib/playbooks';
+import { getPlaybookBySlug, getRelatedPlaybooks, getCategoryNeighbors } from '@/lib/playbooks';
 import { getCategoryById } from '@/lib/categories';
 import { DifficultyBadge } from '@/components/DifficultyBadge';
 import { CategoryBadge } from '@/components/CategoryBadge';
@@ -9,7 +9,7 @@ import { CopyButton } from '@/components/CopyButton';
 import { DownloadButton } from '@/components/DownloadButton';
 import { SetupGuideBox } from '@/components/SetupGuideBox';
 import { PlaybookCard } from '@/components/PlaybookCard';
-import { Clock, ArrowLeft, ExternalLink, Terminal, FileCode, HelpCircle } from 'lucide-react';
+import { Clock, ArrowLeft, ArrowRight, ExternalLink, Terminal, FileCode, HelpCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface PlaybookPageProps {
@@ -142,6 +142,7 @@ export default async function PlaybookPage({ params }: PlaybookPageProps) {
 
   const categoryInfo = getCategoryById(playbook.category);
   const relatedPlaybooks = getRelatedPlaybooks(playbook);
+  const { previous, next } = getCategoryNeighbors(playbook);
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
@@ -416,7 +417,58 @@ export default async function PlaybookPage({ params }: PlaybookPageProps) {
               />
             ))}
           </div>
+          {categoryInfo && (
+            <p className="mt-6 text-sm text-muted-foreground">
+              <Link
+                href={`/categories/${playbook.category}`}
+                className="text-[#22d3ee] hover:underline"
+              >
+                Browse all {categoryInfo.name} playbooks →
+              </Link>
+            </p>
+          )}
         </section>
+      )}
+
+      {/* Sequential paths through the category, so crawlers can walk it end to end */}
+      {(previous || next) && (
+        <nav
+          className="mt-10 pt-8 border-t border-[#30363d] grid gap-4 sm:grid-cols-2"
+          aria-label="Previous and next playbook"
+        >
+          {previous ? (
+            <Link
+              href={`/playbooks/${previous.slug}`}
+              className="flex items-start gap-3 p-4 bg-[#161b22] border border-[#30363d] rounded-lg hover:border-[#22d3ee] transition-colors group"
+              rel="prev"
+            >
+              <ArrowLeft className="h-4 w-4 mt-1 flex-shrink-0 text-muted-foreground group-hover:text-[#22d3ee] transition-colors" />
+              <span className="min-w-0">
+                <span className="block text-xs text-muted-foreground/70 mb-1">Previous</span>
+                <span className="block text-sm font-semibold group-hover:text-[#22d3ee] transition-colors">
+                  {previous.title}
+                </span>
+              </span>
+            </Link>
+          ) : (
+            <span />
+          )}
+          {next && (
+            <Link
+              href={`/playbooks/${next.slug}`}
+              className="flex items-start gap-3 p-4 bg-[#161b22] border border-[#30363d] rounded-lg hover:border-[#22d3ee] transition-colors group sm:text-right sm:flex-row-reverse"
+              rel="next"
+            >
+              <ArrowRight className="h-4 w-4 mt-1 flex-shrink-0 text-muted-foreground group-hover:text-[#22d3ee] transition-colors" />
+              <span className="min-w-0">
+                <span className="block text-xs text-muted-foreground/70 mb-1">Next</span>
+                <span className="block text-sm font-semibold group-hover:text-[#22d3ee] transition-colors">
+                  {next.title}
+                </span>
+              </span>
+            </Link>
+          )}
+        </nav>
       )}
     </div>
   );

@@ -2,6 +2,13 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
+# /_next/ is intentionally crawlable — Googlebot needs the CSS and JS there to
+# render pages. Build assets are kept out of the index with an X-Robots-Tag
+# noindex header instead (see next.config.ts).
+#
+# ?page=, ?category= and ?q= listing variants are also intentionally crawlable:
+# they carry noindex,follow so crawlers pass through them to the playbooks.
+
 # AI crawlers — explicitly allowed
 User-agent: GPTBot
 Allow: /

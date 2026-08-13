@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { CheckCircle2, Download, Monitor, Terminal, Star, ArrowLeft, AlertTriangle, Info, Sparkles } from 'lucide-react';
+import { CheckCircle2, Monitor, Terminal, Star, ArrowLeft, AlertTriangle, Info, Sparkles } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 export const metadata: Metadata = {

@@ -22,6 +22,23 @@ function normalizeDifficulty(value) {
   return d === 'beginner' || d === 'intermediate' || d === 'advanced' ? d : 'beginner';
 }
 
+/**
+ * The category IDs that actually have a hub page, scraped out of the TS source
+ * (this script is plain .mjs, so it cannot import the module).
+ *
+ * A playbook whose category is not in this set still builds and still renders,
+ * but /categories/<its-category> 404s — so nothing on the site ever links to
+ * it and it is invisible to crawlers. Five playbooks sat like that for months
+ * behind typo'd IDs ("creative-content", "testing-qa", "automation-productivity").
+ * Warn loudly at build time instead of letting the next one go unnoticed.
+ */
+function knownCategoryIds() {
+  const source = path.join(root, 'src/lib/categories.ts');
+  if (!fs.existsSync(source)) return null;
+  const ids = [...fs.readFileSync(source, 'utf8').matchAll(/^\s*id: '([^']+)',/gm)].map((m) => m[1]);
+  return ids.length ? new Set(ids) : null;
+}
+
 function build() {
   if (!fs.existsSync(playbooksDir)) {
     console.warn(`[build-index] ${playbooksDir} not found — writing empty index.`);
@@ -33,6 +50,8 @@ function build() {
   const files = fs.readdirSync(playbooksDir).filter((f) => f.endsWith('.mdx'));
   const entries = [];
   const skipped = [];
+  const knownCategories = knownCategoryIds();
+  const orphaned = new Map();
 
   for (const file of files) {
     const slug = file.replace(/\.mdx$/, '');
@@ -47,6 +66,11 @@ function build() {
     if (!data.title || !data.category) {
       skipped.push(`${file} (missing title or category)`);
       continue;
+    }
+
+    if (knownCategories && !knownCategories.has(data.category)) {
+      if (!orphaned.has(data.category)) orphaned.set(data.category, []);
+      orphaned.get(data.category).push(slug);
     }
 
     // seoHook / targetAudience / exampleUseCase are deliberately excluded: they
@@ -85,6 +109,17 @@ function build() {
     console.warn(`[build-index] skipped ${skipped.length} file(s):`);
     for (const s of skipped.slice(0, 20)) console.warn(`  - ${s}`);
     if (skipped.length > 20) console.warn(`  ... and ${skipped.length - 20} more`);
+  }
+  if (orphaned.size) {
+    const count = [...orphaned.values()].reduce((n, s) => n + s.length, 0);
+    console.warn(
+      `[build-index] ${count} playbook(s) use a category with no hub page — ` +
+        `/categories/<id> will 404 and nothing will link to them:`
+    );
+    for (const [category, slugs] of orphaned) {
+      console.warn(`  - "${category}": ${slugs.join(', ')}`);
+    }
+    console.warn('  Fix: add the category to src/lib/categories.ts, or retag the playbooks.');
   }
 }
 

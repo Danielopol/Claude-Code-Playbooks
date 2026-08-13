@@ -22,14 +22,6 @@ export const metadata: Metadata = {
   },
 };
 
-function PlaybookLink({ href, children }: { href: string; children: React.ReactNode }) {
-  return (
-    <Link href={href} className="text-[#22d3ee] hover:underline font-medium">
-      {children}
-    </Link>
-  );
-}
-
 function ToolCard({
   name,
   tagline,

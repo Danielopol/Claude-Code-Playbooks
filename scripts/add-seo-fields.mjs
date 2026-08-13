@@ -11,7 +11,6 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const playbooksDir = path.join(__dirname, '..', 'src', 'content', 'playbooks');
-const templatesDir = path.join(__dirname, '..', 'public', 'templates');
 
 // Category to audience mapping
 const categoryAudiences = {
@@ -47,7 +46,7 @@ const categoryAudiences = {
 };
 
 // Generate SEO hook from description - rewrite as pain-point-first
-function generateSeoHook(title, description, category) {
+function generateSeoHook(title, description) {
   const desc = description.toLowerCase();
 
   // Map common patterns to pain points
@@ -95,9 +94,6 @@ function generateSeoHook(title, description, category) {
 
 // Generate example use case
 function generateExampleUseCase(title, description) {
-  const titleLower = title.toLowerCase();
-  const descLower = description.toLowerCase();
-
   // Create a reasonable input prompt based on the title
   const cleanTitle = title.replace(/^(Claude Code |AI |Smart |Intelligent |Automated? )/i, '');
   const inputPhrase = `Help me with ${cleanTitle.toLowerCase()}`;
@@ -136,16 +132,8 @@ function processFile(filePath) {
   const description = descMatch[1];
   const category = catMatch[1];
 
-  // Also try to read template for more context
-  const slug = path.basename(filePath, '.mdx');
-  const templatePath = path.join(templatesDir, `${slug}.md`);
-  let templateContent = '';
-  if (fs.existsSync(templatePath)) {
-    templateContent = fs.readFileSync(templatePath, 'utf8').substring(0, 500);
-  }
-
   // Generate SEO fields
-  const seoHook = generateSeoHook(title, description, category);
+  const seoHook = generateSeoHook(title, description);
   const targetAudience = categoryAudiences[category] || 'professionals, business owners, freelancers, managers, team leads';
   const exampleUseCase = generateExampleUseCase(title, description);
 

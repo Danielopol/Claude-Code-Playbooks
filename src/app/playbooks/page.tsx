@@ -10,18 +10,41 @@ import { Category } from '@/types/playbook';
 import { categories } from '@/lib/categories';
 import { FolderOpen } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'All Playbooks | Claude Code Playbooks',
-  description: 'Browse all copy-paste workflows for Claude Code. No coding required.',
-  alternates: {
-    canonical: '/playbooks',
-  },
-};
-
 const ITEMS_PER_PAGE = 24;
 
 interface PlaybooksPageProps {
   searchParams: Promise<{ category?: string; q?: string; page?: string }>;
+}
+
+/**
+ * Only the bare /playbooks listing is indexable.
+ *
+ * ?category= is a query-string duplicate of /categories/[category], which is
+ * the canonical hub, so it points there and drops out of the index. ?q= and
+ * ?page= are noindex,follow — no unique content, but the crawler should keep
+ * walking to the playbooks they link.
+ */
+export async function generateMetadata({ searchParams }: PlaybooksPageProps): Promise<Metadata> {
+  const params = await searchParams;
+  const page = parseInt(params.page || '1', 10);
+  const isFiltered = Boolean(params.category || params.q) || (Number.isFinite(page) && page > 1);
+
+  const base: Metadata = {
+    title: 'All Playbooks | Claude Code Playbooks',
+    description: 'Browse all copy-paste workflows for Claude Code. No coding required.',
+  };
+
+  if (!isFiltered) {
+    return { ...base, alternates: { canonical: '/playbooks' } };
+  }
+
+  return {
+    ...base,
+    alternates: {
+      canonical: params.category ? `/categories/${params.category}` : '/playbooks',
+    },
+    robots: { index: false, follow: true },
+  };
 }
 
 async function PlaybooksList({

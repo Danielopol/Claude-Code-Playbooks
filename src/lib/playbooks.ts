@@ -207,15 +207,50 @@ export function searchPlaybooks(query: string): Playbook[] {
   );
 }
 
-export function getRelatedPlaybooks(playbook: Playbook, limit = 3): Playbook[] {
+/**
+ * Related playbooks are the `limit` entries that FOLLOW this one in its
+ * category, wrapping around the end.
+ *
+ * Taking the first N of the category instead — what this used to do — meant
+ * every one of the 188 marketing-content pages linked to the same three
+ * playbooks, so the other 185 received no internal links at all. Google
+ * crawled them once and left them in "crawled - currently not indexed".
+ *
+ * Offsetting by the playbook's own position turns the category into a ring:
+ * each page is linked by the `limit` pages before it, so link equity reaches
+ * every playbook regardless of how deep it sits in the listing order.
+ */
+export function getRelatedPlaybooks(playbook: Playbook, limit = 12): Playbook[] {
   // Category-bucketed, so this stays O(limit) instead of O(all playbooks).
+  const inCategory = getPlaybooksByCategory(playbook.category);
+  const self = inCategory.findIndex((p) => p.slug === playbook.slug);
+  if (self === -1) return inCategory.slice(0, limit);
+
   const related: Playbook[] = [];
-  for (const p of getPlaybooksByCategory(playbook.category)) {
-    if (p.slug === playbook.slug) continue;
-    related.push(p);
-    if (related.length === limit) break;
+  const take = Math.min(limit, inCategory.length - 1);
+  for (let i = 1; related.length < take; i++) {
+    related.push(inCategory[(self + i) % inCategory.length]);
   }
   return related;
+}
+
+/**
+ * Previous/next playbook within the category, for sequential crawl paths.
+ * Wraps at both ends so the category is always fully traversable.
+ */
+export function getCategoryNeighbors(playbook: Playbook): {
+  previous: Playbook | null;
+  next: Playbook | null;
+} {
+  const inCategory = getPlaybooksByCategory(playbook.category);
+  const self = inCategory.findIndex((p) => p.slug === playbook.slug);
+  if (self === -1 || inCategory.length < 2) {
+    return { previous: null, next: null };
+  }
+  return {
+    previous: inCategory[(self - 1 + inCategory.length) % inCategory.length],
+    next: inCategory[(self + 1) % inCategory.length],
+  };
 }
 
 export interface LatestPlaybooksResult {

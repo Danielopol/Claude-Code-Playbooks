@@ -1,0 +1,74 @@
+---
+title: "Blog-to-Social Publisher"
+description: "Turn one blog post into an X thread, LinkedIn post, Medium article, and Dev.to RSS feed — zero dependencies, works in any repo type."
+seoHook: "You publish a blog post and it dies on your own domain. Manually rewriting it for X, LinkedIn, Medium, and Dev.to eats two hours you don't have — and by the time you're done, you've written the LinkedIn version in the X voice by accident."
+targetAudience: "developer bloggers distributing technical content, indie hackers documenting their build in public, startup teams repurposing product updates across channels, technical writers syndicating to Dev.to, solo founders who write once but need to be everywhere"
+exampleUseCase: "\"Publish my latest post everywhere\" → Copy-pastable X thread with 3 format variants, a LinkedIn draft posted via API with auto-attached diagrams, a Medium-ready HTML preview with upload markers for images, and a Dev.to RSS feed set up for automatic future imports — all from one blog post"
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Kanaeru Labs"
+sourceUrl: "https://github.com/kanaerulabs/growth-kit"
+tags: ["content-distribution", "social-media", "twitter", "x", "linkedin", "medium", "devto", "rss", "repurposing", "blog"]
+createdAt: "2026-08-13"
+---
+
+## What This Does
+
+Feed it a blog post — a slug, a file path, or a URL — and it generates platform-native content for X/Twitter, LinkedIn, Medium, and Dev.to. No Node.js, no npm, no language-specific dependencies: everything runs through Claude's built-in Read, Write, Bash, and WebFetch tools, so it works the same whether your blog lives in a Python repo, a Rust repo, or a folder of markdown files.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir social-publisher && cd social-publisher
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Publish
+
+```bash
+claude
+```
+
+Then ask: **"Generate an X thread for my latest blog post"** or **"Publish my post about [topic] to all platforms"**
+
+---
+
+## Supported Platforms
+
+| Platform | What You Get |
+|----------|---------------|
+| X/Twitter | Three formats in one pass: a 5–8 post thread, a structured long-form single post, and a ~280-char short announcement |
+| LinkedIn | Professional thought-leadership post, optionally posted as a draft via the LinkedIn API with auto-attached diagrams |
+| Medium | Clean HTML with Medium-specific formatting fixes (image upload markers, inline footnotes, paragraph-style references) |
+| Dev.to | One-time RSS feed setup for automatic future post imports |
+
+## Universal Input
+
+Accepts a blog post slug, a markdown file path, a PDF, a plain text file, or a live URL. It auto-detects your blog's folder structure — Gatsby, Next.js, Astro, Hugo, or a custom layout — without any configuration.
+
+---
+
+## Tips & Best Practices
+
+- **LinkedIn escaping is non-negotiable.** LinkedIn's API silently truncates posts that don't escape reserved characters (`( ) [ ] { } | @ < > # * _ ~ \`). The template handles this as a two-pass sed pipeline — don't skip it if you're posting via API rather than copy-pasting.
+- **Medium doesn't support inline images or footnotes well.** The template inserts upload markers instead of trying to embed images directly, and converts footnotes to inline citations — both are workarounds for real Medium platform limitations, not stylistic choices.
+- **Dev.to RSS only imports new posts, not edits.** Once a post syncs via RSS, updating the source markdown won't update the Dev.to copy — you'll need to edit that one manually.
+- **Run `/publisher:all` sequentially, not in parallel.** Firing all four platform generators simultaneously causes resource contention; the workflow deliberately runs them one at a time in separate steps.
+- **Every draft gets a humanization pass.** The template includes a full list of banned AI-tell words and phrases ("delve," "unlock the power of," "in today's fast-paced world") applied to every generated post before it's shown to you.
+
+## Limitations
+
+- PDF and DOCX input parsing is limited — convert to markdown first for best results
+- LinkedIn API posting requires OAuth app credentials (`LINKEDIN_CLIENT_ID`, `LINKEDIN_CLIENT_SECRET`) from https://www.linkedin.com/developers/apps; without them, it still generates the post text for manual copy-paste
+- Dev.to import polls roughly every 30 minutes and only picks up genuinely new posts

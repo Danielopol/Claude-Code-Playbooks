@@ -1,0 +1,64 @@
+---
+title: "Vercel Analytics & Speed Insights Setup"
+description: "Wire up Vercel Analytics, Speed Insights, and SPA routing rewrites into a React/Vite project in one pass — including the routing fix most people miss."
+seoHook: "You add Vercel Analytics, check the dashboard a week later, and it's empty. The package installed fine — you just imported from the wrong entry point, and nothing told you."
+targetAudience: "React and Vite developers deploying to Vercel, indie hackers wanting traffic data without a heavier analytics stack, solo founders setting up a new SPA, developers debugging a 404-on-refresh bug in production"
+exampleUseCase: "\"Set up Vercel Analytics for this Vite app\" → @vercel/analytics and @vercel/speed-insights installed, both components mounted with the correct /react imports, a vercel.json rewrite rule added so direct route navigation stops 404ing, and a verification pass confirming both actually render"
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Kanaeru Labs"
+sourceUrl: "https://github.com/kanaerulabs/growth-kit"
+tags: ["vercel", "analytics", "speed-insights", "react", "vite", "spa-routing", "monitoring"]
+createdAt: "2026-08-13"
+---
+
+## What This Does
+
+A one-shot setup task for React/Vite projects deploying to Vercel: installs Analytics and Speed Insights, mounts them correctly, and fixes the SPA routing gap that causes 404s when someone refreshes on a non-root route — a bug that only shows up in production, never in local dev.
+
+---
+
+## Quick Start
+
+### Step 1: Navigate to Your Project
+
+```bash
+cd ~/your-vite-project
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Run the Setup
+
+```bash
+claude
+```
+
+Then ask: **"Set up Vercel Analytics and Speed Insights"**
+
+---
+
+## What Gets Configured
+
+| Component | Purpose |
+|-----------|---------|
+| `@vercel/analytics` | Page view and visitor tracking |
+| `@vercel/speed-insights` | Core Web Vitals monitoring |
+| `vercel.json` rewrite rule | Serves `index.html` for all routes, fixing direct-navigation 404s |
+
+## Tips & Best Practices
+
+- **Import from `/react`, not `/next`.** The two entry points look nearly identical and neither errors if you pick wrong — the wrong one just silently collects nothing. If the Vercel dashboard stays empty after a deploy, check this first.
+- **Test routing with a direct URL hit, not in-app navigation.** Vite's dev server already handles client-side routing correctly, so the missing-rewrite bug never shows up locally. Only a hard refresh or a shared link on a nested route — after deploying — will surface it.
+- **This is a five-minute task, not an ongoing workflow.** It doesn't set up custom event tracking, alerting, or dashboard configuration — just the two packages and the routing fix.
+
+## Limitations
+
+- Scoped to React/Vite projects specifically — Next.js apps use different Vercel Analytics import paths and don't need the `vercel.json` rewrite (Next.js handles SPA-style routing server-side already)
+- Doesn't cover custom event tracking or alerting — only the base pageview/vitals setup

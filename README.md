@@ -2,7 +2,7 @@
 
 **Copy-paste workflows that supercharge Claude Code for any profession.**
 
-Website: [claudecodehq.com](https://claudecodehq.com)
+Website: [claudecodehq.com](https://www.claudecodehq.com)
 
 ---
 

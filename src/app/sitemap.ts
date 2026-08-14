@@ -28,8 +28,25 @@ function getUniqueCategories(playbooks: Playbook[]): string[] {
   return Array.from(categories);
 }
 
+/*
+ * The canonical host is www. Everything else in the app hardcodes it —
+ * metadataBase in layout.tsx, the JSON-LD blocks, llms.txt, the Sitemap
+ * directive in robots.txt — and apex 308-redirects to it (next.config.ts).
+ *
+ * This used to read NEXT_PUBLIC_SITE_URL, which is set to the apex domain in
+ * both .env.local and the Vercel project. The result was a sitemap where all
+ * 1,339 URLs pointed at a host that redirects, contradicting the canonical
+ * tags on the very pages it listed. Google is told to crawl apex, takes a
+ * redirect on every URL, then has to reconcile it against a www canonical.
+ *
+ * Hardcoded so a stray environment variable cannot reintroduce that. If a
+ * configurable base URL is ever genuinely needed (staging, previews), it has
+ * to be threaded through every location above, not just this one.
+ */
+const BASE_URL = 'https://www.claudecodehq.com';
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.claudecodehq.com';
+  const baseUrl = BASE_URL;
   const playbooks = getPlaybooks();
   const categories = getUniqueCategories(playbooks);
 

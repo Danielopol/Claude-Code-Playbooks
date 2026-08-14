@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-influencers',
+    slug: 'claude-skills-influencers',
+    title: 'Claude Skills for Influencers: Grow Your Brand and Land Sponsorships',
+    description: "How to use four Claude Skills to grow a creator brand and turn it into revenue — a milestone-based X growth system for going from zero to a real audience, a daily follower research briefing that turns new followers into real relationships before they drift away, a content repurposer that multiplies every piece across platforms, and an influencer brief Skill repurposed to build a professional media kit that mirrors exactly what brands need to say yes.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Influencer Growth',
+    tags: ['claude skills influencer', 'ai for influencers', 'ai creator brand growth', 'x twitter growth ai', 'follower engagement ai', 'creator sponsorship deals', 'influencer media kit', 'creator economy ai tools'],
+    createdAt: '2026-08-14',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-social-media',
     slug: 'claude-skills-social-media',
     title: 'Claude Skills for Social Media Managers: Plan, Create, and Schedule Posts',

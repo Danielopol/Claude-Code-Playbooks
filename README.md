@@ -8,7 +8,7 @@ Website: [claudecodehq.com](https://www.claudecodehq.com)
 
 ## What is this?
 
-Claude Code Playbooks is a curated library of **799+ ready-to-use CLAUDE.md templates** spanning 35 categories and 28 professional personas. Each playbook is a downloadable workflow file that you drop into your project to instantly configure Claude Code for a specific task — from equity research to academic writing to DevOps automation.
+Claude Code Playbooks is a curated library of **1179+ ready-to-use CLAUDE.md templates** spanning 35 categories and 28 professional personas. Each playbook is a downloadable workflow file that you drop into your project to instantly configure Claude Code for a specific task — from equity research to academic writing to DevOps automation.
 
 No setup guides. No prompt engineering. Just download, paste, and go.
 

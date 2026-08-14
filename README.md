@@ -8,7 +8,7 @@ Website: [claudecodehq.com](https://www.claudecodehq.com)
 
 ## What is this?
 
-Claude Code Playbooks is a curated library of **1179+ ready-to-use CLAUDE.md templates** spanning 35 categories and 28 professional personas. Each playbook is a downloadable workflow file that you drop into your project to instantly configure Claude Code for a specific task — from equity research to academic writing to DevOps automation.
+Claude Code Playbooks is a curated library of **1179+ ready-to-use CLAUDE.md templates** spanning 34 categories and 28 professional personas. Each playbook is a downloadable workflow file that you drop into your project to instantly configure Claude Code for a specific task — from equity research to academic writing to DevOps automation.
 
 No setup guides. No prompt engineering. Just download, paste, and go.
 
@@ -21,7 +21,7 @@ No setup guides. No prompt engineering. Just download, paste, and go.
 
 ## Features
 
-- **799+ Playbooks** across 35 categories
+- **1179+ Playbooks** across 35 categories
 - **28 Persona Pages** — find playbooks tailored to your role (researchers, developers, founders, finance pros, marketers, and more)
 - **One-Click Copy & Download** — every template is ready to use
 - **Blog** — tutorials, guides, and news about Claude Code
@@ -66,7 +66,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the site locally.
+Open [claudecodehq.com](https://www.claudecodehq.com) to view the site locally.
 
 ### Available Scripts
 

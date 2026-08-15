@@ -1,0 +1,82 @@
+---
+title: "Evidence-Based GEO / AI Search Optimization Audit"
+description: "Audit content for AI Overviews, ChatGPT, and Perplexity citability using primary-source evidence — including why llms.txt isn't the ranking lever most GEO advice claims it is."
+seoHook: "Every GEO checklist tells you to create an llms.txt file. Google's own documentation says Google Search ignores it completely, and a 300,000-domain study found only 1 of the top 50 AI-cited sites even has one — so which advice are you actually going to trust?"
+targetAudience: "SEO specialists expanding into AI search optimization, content marketers optimizing for AI Overviews and ChatGPT citations, in-house marketing teams tired of contradictory GEO advice, agencies needing a defensible, source-cited GEO methodology for client reports, technical marketers who want crawler-access and rendering checks alongside content scoring"
+exampleUseCase: "\"Run a GEO audit on our pricing page\" → A GEO-ANALYSIS.md with a 0-100 readiness score, separate scores for Google AI Overviews vs. AI Mode vs. ChatGPT vs. Perplexity, an AI crawler access report from robots.txt, an evidence-based llms.txt assessment that doesn't oversell its impact, specific 134-167 word passages flagged for citability, and the top 5 highest-impact changes ranked by effort"
+category: "marketing-content"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "AgriciDaniel"
+sourceUrl: "https://github.com/AgriciDaniel/claude-seo"
+tags: ["geo", "aeo", "ai-search", "chatgpt-seo", "ai-overviews", "perplexity", "llms-txt", "generative-engine-optimization", "seo"]
+createdAt: "2026-08-13"
+---
+
+## What This Does
+
+Runs a structured audit of how citable a page is to AI search systems — Google AI Overviews, Google AI Mode, ChatGPT web search, and Perplexity — scored across five weighted criteria: citability, structural readability, multi-modal content, authority signals, and technical accessibility.
+
+What sets this apart from typical GEO advice is the evidence discipline: every non-obvious claim traces to a named primary source (Google's own documentation, specific Google engineers, or large-sample third-party studies), and it explicitly corrects the most common GEO myth — that `llms.txt` is a ranking lever. It isn't, and Google's docs say so directly.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir geo-audit && cd geo-audit
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Run an Audit
+
+```bash
+claude
+```
+
+Then ask: **"Run a GEO audit on [url or page content]"**
+
+---
+
+## The Five Scoring Criteria
+
+| Criterion | Weight | What it checks |
+|-----------|--------|-----------------|
+| Citability | 25% | Self-contained 134-167 word answer blocks, direct answers up front, specific sourced data |
+| Structural readability | 20% | Heading hierarchy, question-based headers, short paragraphs, tables and lists |
+| Multi-modal content | 15% | Images, video, infographics, interactive elements |
+| Authority & brand signals | 20% | Author credentials, publish/update dates, recency, entity presence (Wikipedia, Reddit, YouTube) |
+| Technical accessibility | 20% | Server-side rendering, AI crawler access, llms.txt, RSL licensing |
+
+## The llms.txt Myth, Corrected
+
+| Source | What they actually said |
+|--------|---------------------------|
+| Google's AI optimization guide | Google Search ignores llms.txt entirely — it "won't harm (nor help)" rankings |
+| John Mueller (Google) | Called it "a dead end"; compared it to deprecated meta keywords |
+| SE Ranking, 300k-domain study | Only 1 of the top 50 AI-cited domains had an llms.txt |
+| OtterlyAI server-log audit | 0.1% of AI-bot traffic requests it |
+
+It does matter for AI *coding agents* reading developer documentation — just not for AI search citation. The audit reports presence without pretending it's a ranking factor.
+
+## Tips & Best Practices
+
+- **Recency is one of the highest-leverage levers available.** Content under 3 months old is roughly 3x more likely to be cited than older content, and pages stale for 6+ months start losing citation eligibility — a scheduled refresh program often beats a full rewrite.
+- **Score Google AI Overviews and AI Mode separately.** They're different citation engines that agree on conclusions ~86% of the time but cite the *same URL* only ~13.7% of the time — optimizing for one doesn't automatically cover the other.
+- **Server-side rendering is a hard requirement, not a nice-to-have.** AI crawlers don't execute JavaScript — client-only rendered content is frequently invisible to them regardless of how good the content itself is.
+- **Brand mentions beat backlinks for AI visibility.** YouTube and Reddit mentions correlate far more strongly with AI citation than Domain Rating does (Ahrefs study) — if link building isn't moving the needle on AI visibility, that's expected, not a sign something's broken.
+- **User-triggered AI fetchers ignore robots.txt by design.** Google-Agent, Google-NotebookLM, and ChatGPT-User act on a specific user's behalf and cannot be blocked via robots.txt — if access control matters here, it needs to happen server-side.
+
+## Limitations
+
+- Several cited statistics are third-party-reported (Ahrefs, SE Ranking, OtterlyAI) rather than confirmed by the platform owners — the audit flags which is which, and that distinction should be preserved when sharing findings
+- GEO measurement is inherently noisier than traditional rank tracking — treat scores as directional, not a precise metric to optimize to the decimal point
+- Optional integration with DataForSEO's AI-optimization tools exists for real-time ChatGPT/LLM mention tracking, but the core audit works fully without any paid API

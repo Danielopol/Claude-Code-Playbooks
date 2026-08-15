@@ -1,0 +1,78 @@
+---
+title: "SERP-Overlap Content Clustering"
+description: "Design hub-and-spoke content architecture using actual Google SERP overlap — not keyword text similarity — with a full internal link matrix and cannibalization checks."
+seoHook: "Your keyword clustering tool groups 'dog training tips' and 'dog training classes' into the same cluster because the words look similar — except Google shows completely different results for each, and now you have two pages fighting each other for the same rank."
+targetAudience: "content strategists building topic clusters, SEO managers planning pillar-and-spoke content architecture, content teams avoiding keyword cannibalization at scale, in-house marketers scaling a content program past the intuition stage, agencies building content plans that need to survive a client's skeptical review"
+exampleUseCase: "\"Build a content cluster plan for 'project management software'\" → 40 expanded keyword variants scored by actual SERP overlap, grouped into a pillar page plus 3-5 spoke clusters with template assignments, a full internal link matrix with mandatory pillar-spoke links, a cannibalization check confirming no duplicate primary keywords, and content briefs for every planned post"
+category: "marketing-content"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "AgriciDaniel (original: Lutfiya Miller)"
+sourceUrl: "https://github.com/AgriciDaniel/claude-seo"
+tags: ["content-clustering", "seo", "topic-clusters", "pillar-page", "hub-and-spoke", "content-strategy", "internal-linking", "serp-analysis"]
+createdAt: "2026-08-13"
+---
+
+## What This Does
+
+Most keyword clustering tools group keywords by text similarity or stemming — which produces clusters that look right and rank wrong. This uses Google's actual top-10 results as the clustering signal: if two keywords share 7+ of the same ranking URLs, Google already thinks they're the same topic, so target them with one page. If they share almost nothing, they need separate pages, no matter how similar the words look.
+
+The output is a complete hub-and-spoke plan — a pillar page, 2-5 spoke clusters, a full internal link matrix, and a cannibalization check — ready to hand to writers as content briefs.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir content-clustering && cd content-clustering
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Build a Cluster Plan
+
+```bash
+claude
+```
+
+Then ask: **"Build a content cluster plan for [seed keyword]"**
+
+---
+
+## The SERP Overlap Method
+
+| Shared top-10 results | Relationship | Action |
+|------------------------|---------------|--------|
+| 7–10 | Same post | Merge — target both with one page |
+| 4–6 | Same cluster | Group under one spoke cluster |
+| 2–3 | Interlink | Adjacent clusters, cross-link them |
+| 0–1 | Separate | Different clusters, or out of scope |
+
+## Cluster Constraints
+
+- 2–5 spoke clusters per pillar, 2–4 posts per cluster
+- Pillar: 2,500–4,000 words, links to every spoke
+- Spokes: 1,200–1,800 words, link back to the pillar plus 2–3 siblings
+- Zero orphan pages — every post reachable from the pillar within 2 clicks
+- Zero keyword cannibalization — no two posts share a primary keyword
+
+## Tips & Best Practices
+
+- **Never trust text similarity alone.** The whole point of this method is that "similar-looking" keywords can have completely different search intent and different ranking pages — always verify against actual SERP data before merging or splitting.
+- **Pre-group by intent before doing pairwise comparisons.** Full pairwise SERP checking on 40 keywords is 780 comparisons; pre-grouping by informational/commercial/transactional intent cuts that to a fraction, since you only need to cross-check keywords at group boundaries.
+- **7+ overlap means merge, don't just interlink.** If two keywords are hitting 7 or more of the same top-10 results, writing two separate posts for them creates internal competition — Google will pick one to rank and suppress the other.
+- **Cache SERP results within a session.** If keyword A's results were already fetched for an A-B comparison, reuse them for A-C rather than re-searching.
+- **Every spoke-to-pillar link is mandatory, not optional.** A cluster without complete bidirectional pillar-spoke linking is structurally broken and won't pass the SEO value between pages the way clustering is supposed to.
+
+## Limitations
+
+- SERP data quality depends on your search tool's freshness — results can shift, so treat scores as a snapshot, not a permanent classification
+- The 3-4 overlap range genuinely requires human judgment (domain overlap, intent alignment, volume ratio) — don't force an automatic threshold decision here
+- Designed for content-heavy sites building genuine topical authority; overkill for a single landing page or a site with only a handful of target keywords

@@ -1,0 +1,86 @@
+---
+title: "Customer Support Automation Builder"
+description: "A guided builder that generates a custom support automation system — TypeScript scripts, response templates, and a triage workflow — wired to your actual ticketing, billing, and database stack."
+seoHook: "Every generic support automation guide assumes you're on Zendesk with Stripe and nothing else. You're on HelpScout, your billing is Chargebee, and half the advice out there just doesn't apply — so you're back to handling tickets one at a time with fifteen browser tabs open."
+targetAudience: "startup founders doing support while building the product, small support teams standardizing responses across agents, solo operators handling 10-100 tickets a day without dedicated support software, teams whose stack doesn't match the generic Zendesk-and-Stripe tutorials, engineering-adjacent teams comfortable running scripts and managing API credentials"
+exampleUseCase: "\"Build me a support automation for HelpScout, Stripe, and our Postgres database\" → A working support-automation/ directory: pagination-safe scripts for listing/replying/closing HelpScout conversations, Stripe scripts for refunds and cancellations, a read-only database query script, five starter response templates plus custom ones for your specific scenarios, and a workflow skill that auto-triages every open ticket and suggests the most urgent one first"
+category: "customer-support"
+difficulty: "advanced"
+timeToSetup: "45 minutes"
+author: "Nathan Baschez"
+sourceUrl: "https://github.com/nbashaw/claude-cs"
+tags: ["customer-support", "automation", "helpscout", "zendesk", "stripe", "ticket-triage", "typescript", "meta-skill"]
+createdAt: "2026-08-13"
+---
+
+## What This Does
+
+Instead of a fixed integration for one platform, this walks Claude through building a support automation system tailored to whatever you actually run — Zendesk, Intercom, HelpScout, Freshdesk, or Front for tickets; Stripe, Chargebee, Paddle, or Braintree for billing; Postgres, MySQL, or MongoDB for customer lookups. The output is real, working TypeScript you keep and extend, not a one-off script.
+
+The generated system auto-triages every open ticket by urgency, gathers full customer context (billing status, subscription, ticket history) before drafting anything, and never sends a reply without your explicit approval.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir support-automation-builder && cd support-automation-builder
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Start the Build
+
+```bash
+claude
+```
+
+Then ask: **"Build me a support automation for [your ticketing platform], [your billing platform], and [your database]"**
+
+---
+
+## What You End Up With
+
+```
+support-automation/
+├── config.ts                    # env loading + validation
+├── lib/                         # thin wrappers per platform (auth, pagination)
+├── scripts/                     # list, get, reply, close, refund, cancel, query-db, check-setup
+└── references/common-responses/ # your response templates
+```
+
+## Supported Platforms
+
+| Category | Platforms |
+|----------|-----------|
+| Ticketing | Zendesk, Intercom, HelpScout, Freshdesk, Front, Linear, or any platform with an API |
+| Billing | Stripe, Chargebee, Paddle, Braintree, or any processor with an API |
+| Database | PostgreSQL, MySQL, MongoDB, or any SQL database |
+| Other | Analytics (Mixpanel, Amplitude), feature flags (LaunchDarkly), email (SendGrid, Postmark) |
+
+## Tips & Best Practices
+
+- **Discovery comes before code.** The build starts by asking what your actual stack is — never assume Zendesk-and-Stripe. Answer honestly even if your setup is unusual; the scripts adapt to whatever API you point at.
+- **Database access is read-only by construction, not convention.** The `query-db.ts` script only permits `SELECT`, `WITH`, `SHOW`, and `EXPLAIN` at the code level — a bad prompt can't accidentally turn into a write.
+- **Every script outputs structured JSON.** That's what lets Claude parse results and chain scripts together in a workflow, rather than scraping console output.
+- **Approval is required before every send — no exceptions.** The whole system is built around "suggest, don't decide": Claude drafts, you approve, then it sends. This holds even after the system has proven reliable.
+- **Use idempotency keys on refunds.** A retried refund request should never double-refund — Stripe and most processors support this natively.
+- **Test with `check-setup.ts` before anything else.** It validates every required environment variable is present, catching missing credentials before they fail mid-workflow.
+
+## Real-World Reference Point
+
+The author built this pattern for [Lex](https://lex.page)'s support operation: 15 scripts across HelpScout, Stripe, and Postgres, 6 response templates, keyword-based automatic triage, and unified customer context — handling roughly 80% of support tasks through yes/no approvals.
+
+## Limitations
+
+- Best suited for teams with API access to their tools and someone comfortable running TypeScript scripts and managing credentials — not a no-code solution
+- Initial build takes 30–60 minutes for a basic setup; more platforms or a more complex stack takes longer
+- Assumes 10–100 tickets/day volume; enterprise support software with dedicated automation tooling may already cover this ground
+- The generated scripts are a starting point you're expected to extend — new scenarios need new templates, new repetitive operations need new scripts

@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { JetBrains_Mono, Press_Start_2P } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Home, BookOpen, Rss, Phone, Mail, Users, Layers } from 'lucide-react';
+import { Home, BookOpen, Phone, Mail, Layers } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
 import './globals.css';
 
@@ -87,20 +87,6 @@ function Header() {
           >
             <Layers className="h-4 w-4" />
             <span>Categories</span>
-          </Link>
-          <Link
-            href="/for"
-            className="flex items-center gap-1.5 text-muted-foreground hover:text-[#22d3ee] transition-colors"
-          >
-            <Users className="h-4 w-4" />
-            <span>For You</span>
-          </Link>
-          <Link
-            href="/blog"
-            className="flex items-center gap-1.5 text-muted-foreground hover:text-[#f97316] transition-colors"
-          >
-            <Rss className="h-4 w-4" />
-            <span>Blog</span>
           </Link>
         </nav>
       </div>

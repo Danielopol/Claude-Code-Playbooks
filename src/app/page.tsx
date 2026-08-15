@@ -11,10 +11,9 @@ import { CategoryPills } from '@/components/CategoryPills';
 import { ContributePlaybookModal } from '@/components/ContributePlaybookModal';
 import { HomeFAQ } from '@/components/HomeFAQ';
 import {
-  Terminal,
   Sparkles,
-  BookOpen,
-  Github,
+  Users,
+  Rss,
 } from 'lucide-react';
 
 const ITEMS_PER_PAGE = 24; // 24 items per page
@@ -150,31 +149,18 @@ export default async function HomePage({ searchParams }: HomePageProps) {
           {/* Quick Links */}
           <div className="flex items-center justify-center gap-3 mt-6 flex-wrap">
             <Link
-              href="https://claude.ai/code"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/for"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#30363d] bg-[#161b22] text-sm text-muted-foreground hover:text-foreground hover:border-[#22d3ee] transition-all"
             >
-              <Terminal className="h-4 w-4" />
-              Claude Code
+              <Users className="h-4 w-4" />
+              For You
             </Link>
             <Link
-              href="https://docs.anthropic.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#30363d] bg-[#161b22] text-sm text-muted-foreground hover:text-foreground hover:border-[#22d3ee] transition-all"
+              href="/blog"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#30363d] bg-[#161b22] text-sm text-muted-foreground hover:text-foreground hover:border-[#f97316] transition-all"
             >
-              <BookOpen className="h-4 w-4" />
-              Docs
-            </Link>
-            <Link
-              href="https://github.com/Danielopol/Claude-Code-Playbooks"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#30363d] bg-[#161b22] text-sm text-muted-foreground hover:text-foreground hover:border-[#22d3ee] transition-all"
-            >
-              <Github className="h-4 w-4" />
-              GitHub
+              <Rss className="h-4 w-4" />
+              Blog
             </Link>
             <Link
               href="/getting-started"

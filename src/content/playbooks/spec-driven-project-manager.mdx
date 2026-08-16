@@ -1,0 +1,85 @@
+---
+title: "Spec-Driven Project Manager (CCPM)"
+description: "A complete PRD-to-shipped-code workflow: write PRDs, parse them into technical epics, decompose into GitHub issues, launch parallel agents via git worktrees, and track it all with deterministic status scripts."
+seoHook: "Your requirements live in three Slack threads, a Google Doc nobody updated, and someone's memory. Six months later nobody can say why a feature works the way it does — the actual specification evaporated the moment the sprint ended."
+targetAudience: "engineering teams wanting full requirement-to-code traceability, tech leads coordinating parallel work across multiple engineers or agents, solo developers who want PM discipline without PM overhead, teams already living in GitHub Issues who want the workflow formalized, anyone tired of specs that exist nowhere durable"
+exampleUseCase: "\"I want to build a notification preferences feature\" → A structured PRD through guided brainstorming, parsed into a technical epic capped at 10 tasks, decomposed into numbered task files with dependency and parallelization metadata, synced to GitHub as linked issues with a dedicated git worktree, executed by parallel subagents each scoped to non-conflicting files, and tracked end-to-end with status/standup/blocked scripts"
+category: "project-management"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "Automaze"
+sourceUrl: "https://github.com/automazeio/ccpm"
+tags: ["project-management", "prd", "github-issues", "git-worktrees", "parallel-agents", "epic-planning", "task-tracking", "spec-driven-development"]
+createdAt: "2026-08-15"
+---
+
+## What This Does
+
+A full delivery lifecycle, not just a triage checklist: **Plan → Structure → Sync → Execute → Track**. Every feature starts as a written PRD, gets parsed into a technical epic, decomposes into numbered tasks with explicit dependency and parallelization metadata, syncs to GitHub as real linked issues, and gets built by parallel subagents working in isolated git worktrees — each one scoped to a specific set of files so they don't step on each other.
+
+The whole point: requirements live in files with frontmatter, not in chat history. Six months from now, `git blame` and the epic file both explain why a feature works the way it does.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+cd ~/your-project
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Start Planning
+
+```bash
+claude
+```
+
+Then say: **"I want to build [feature]"** or **"create a PRD for [feature]"**
+
+---
+
+## The Five Phases
+
+| Phase | Trigger phrases | Produces |
+|-------|-------------------|----------|
+| Plan | "I want to build X", "create a PRD for X" | `.claude/prds/<name>.md` → `.claude/epics/<name>/epic.md` |
+| Structure | "decompose the X epic into tasks" | Numbered task files with dependency + parallelization metadata |
+| Sync | "push the X epic to GitHub" | Real GitHub issues, a dedicated `epic/<name>` worktree |
+| Execute | "start working on issue 42" | Parallel subagents, each scoped to non-conflicting files |
+| Track | "what's our status", "standup" | Deterministic script output — no reconstruction from memory |
+
+## File Structure It Creates
+
+```
+.claude/
+├── prds/<feature-name>.md
+├── epics/<feature-name>/
+│   ├── epic.md
+│   ├── <N>.md                    # renamed to GitHub issue number after sync
+│   ├── <N>-analysis.md           # parallel work stream breakdown
+│   ├── github-mapping.md
+│   └── updates/<issue_N>/        # per-stream progress tracking
+```
+
+## Tips & Best Practices
+
+- **Cap epics at roughly 10 tasks.** The workflow explicitly favors simplicity over completeness — if an epic wants more than that, it's probably two epics.
+- **Task numbers change on sync — never hard-code dependencies by filename.** Tasks start as `001.md`, `002.md` and get renamed to their real GitHub issue number after sync. The `depends_on` array is rewritten automatically; anything referencing the old sequential number breaks silently if you bypass this.
+- **Conflicts pause, they never auto-resolve.** When two parallel agents hit the same file, the correct behavior is to stop and report — not to guess at a merge. This is a deliberate safety rule, not a limitation to work around.
+- **Tracking is script-first by design.** Status, standup, and blocked-item queries run a deterministic bash script rather than having the model reconstruct project state from files — faster and immune to the model misreading a frontmatter field.
+- **The repository safety check matters.** Every GitHub write operation checks the git remote first, so a misconfigured clone can't accidentally push issues to the wrong repository.
+
+## Limitations
+
+- Requires the GitHub CLI (`gh`) authenticated, and works best with the `gh-sub-issue` extension installed for true parent/child issue linking — without it, tasks become flat labeled issues instead of GitHub sub-issues
+- Built around git worktrees for parallel execution — teams uncomfortable with worktrees will need to adapt the Execute phase or run tasks sequentially instead
+- Designed for engineering delivery specifically (PRD → code), not general project management — non-technical PM workflows should look elsewhere on this site
+- The 10-task epic guideline is a default, not a hard rule — very large features genuinely need more, but the workflow nudges toward splitting rather than growing a single epic indefinitely

@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-paid-ads',
+    slug: 'claude-skills-paid-ads',
+    title: 'Claude Skills for Paid Ads: Write, Test, and Optimize Campaigns with AI',
+    description: "How to use four Claude Skills to run the full paid media loop — an ad copy generator that analyzes winning patterns and produces dozens of new variations, a Google Ads manager that fixes broad-match, negative-keyword-free campaign structures, a Facebook and Meta ads manager that replaces guesswork targeting with proper audience segmentation, and a creative testing framework that turns ad-hoc A/B tests into a statistically rigorous testing system.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Paid Ads',
+    tags: ['claude skills paid ads', 'ai ad copy', 'ai ad campaign optimization', 'google ads ai', 'facebook ads ai', 'ppc automation ai', 'ad creative testing', 'ai media buying'],
+    createdAt: '2026-08-16',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-influencers',
     slug: 'claude-skills-influencers',
     title: 'Claude Skills for Influencers: Grow Your Brand and Land Sponsorships',

@@ -1,0 +1,89 @@
+---
+title: "Compounding PM Operating System"
+description: "A persistent PM profile that learns your frameworks, vocabulary, and decision patterns across product cycles — comparing predictions to actuals so each cycle gets sharper than the last."
+seoHook: "Every product cycle you run with AI assistance starts from zero. The tool doesn't remember that your last three activation predictions were 20% optimistic, doesn't know your team calls it a 'north star' not a 'KPI', and has no idea you already tried this exact approach eighteen months ago and it flopped."
+targetAudience: "product managers who want their tools to learn their frameworks instead of re-explaining them every session, PM leads coaching a team toward consistent operating patterns, PMs who want a real prediction-accuracy track record instead of vibes-based retros, product teams building a shared institutional memory instead of losing it every time someone leaves, PMs tired of generic frameworks that ignore what actually worked for them before"
+exampleUseCase: "\"Evaluate this opportunity: enterprise customers keep asking for SSO\" → Because a similar past opportunity is in the profile, the system surfaces it directly: 'This resembles the 2024 SAML integration — that one hit 60% of predicted enterprise activation because we underestimated procurement friction. Key learning: budget 6 weeks for security review, not 2.' The current opportunity gets evaluated with that calibration built in, not from scratch"
+category: "product-management"
+difficulty: "advanced"
+timeToSetup: "20 minutes"
+author: "Abhishek Tiwari"
+sourceUrl: "https://github.com/abhitsian/compound-pm-marketplace"
+tags: ["product-management", "pm-frameworks", "opportunity-evaluation", "product-strategy", "prediction-tracking", "personalization", "decision-log", "product-discovery"]
+createdAt: "2026-08-15"
+---
+
+## What This Does
+
+Most PM frameworks are static — the same opportunity template, the same prioritization matrix, every single time, with no memory of what you tried before or whether it worked. This is different: a `pm-profile.yaml` file that captures your actual frameworks, vocabulary, and decision history, and gets updated after every product cycle with real predictions-vs-actuals data.
+
+The mechanism is simple but the effect compounds: by cycle 5, the system is suggesting activation thresholds calibrated from your last four projects instead of generic benchmarks. By cycle 10, it knows your estimation bias and corrects for it automatically, and flags when a new opportunity resembles a past failure before you commit resources to repeating it.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir pm-operating-system && cd pm-operating-system
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Build Your Profile
+
+```bash
+claude
+```
+
+Then say: **"Let's set up my PM profile"** — import existing docs, answer a short Q&A, or start minimal and let it build through usage.
+
+---
+
+## The Full Loop
+
+```
+Observe → Opportunity → Solution → Spec → Review → Measure → Compound
+   ↑                                                              │
+   └──────────────────── learnings feed back ─────────────────────┘
+```
+
+| Step | What it produces |
+|------|--------------------|
+| Opportunity | A structured, evaluated opportunity doc — signal classified, problem framed as a How Might We, prioritized on impact/risk |
+| Solution | Multiple solution approaches, classified as Differentiator / Must-Match / Neutralizer |
+| Spec | Vision narrative, journey map, metrics framework, launch criteria |
+| Review | Prioritized findings (P1 blocking / P2 should-fix / P3 nice-to-have) |
+| Measure | Explicit, falsifiable predictions — not vague directional hopes |
+| **Compound** | Predictions compared to actuals, profile updated — **the step that makes everything else worth doing** |
+
+## What Gets Personalized
+
+| Profile field | Adapts |
+|-----------------|--------|
+| Frameworks (opportunity evaluation, solution classification, metrics hierarchy) | How each step structures its output |
+| Vocabulary | Whether you call it a "north star," an "outcome metric," or a "KPI" |
+| Thresholds | Pre-filled targets calibrated from your actual project history |
+| Project patterns | Surfaced automatically when a new opportunity resembles a past one |
+| Decision log | Surfaced when a similar trade-off comes up again |
+
+## Tips & Best Practices
+
+- **Never skip Compound.** It's explicitly framed in the source material as "the most important step" — everything before it is just PM templates with a chatbot attached. The compounding only happens if predictions get checked against reality and the profile gets updated.
+- **Make predictions specific and falsifiable.** "Adoption will improve" isn't a prediction the system can learn from. "35% activation within 7 days" is — it has a number that can be right or wrong.
+- **Classify failures by type, not just outcome.** The template distinguishes strategy failure (wrong market), opportunity failure (right market, wrong problem), prioritization failure (right problem, wrong solution), execution failure, and measurement failure — because the fix is different for each one.
+- **Let it surface past patterns before you ask.** When a new opportunity resembles something already in `project_patterns`, the system should say so proactively — that's the whole value of the memory existing.
+- **Start minimal if you're not sure.** A skeleton profile that fills in through actual usage beats an elaborate upfront setup you have to guess at before you've run a single cycle.
+
+## Limitations
+
+- The compounding value is genuinely cumulative — cycle 1 looks like any other PM template, and the differentiation only shows up after several real cycles have fed the profile
+- Works best with a git-tracked project where `pm-profile.yaml` and the `docs/` output persist between sessions — it's designed around a durable file, not a one-off conversation
+- For a team, a shared `team-profile.yaml` layer requires deliberate promotion of individual learnings — insights don't automatically become team knowledge without an explicit sharing step
+- This playbook condenses the operating system's core loop and compounding mechanism; the source repository also ships dedicated judgment-training exercises (teardown practice, reaction simulation, bias checks) and standalone strategy/growth commands (segmentation, competitive differentiation, North Star metric design) worth exploring directly in the source if you want the full toolkit

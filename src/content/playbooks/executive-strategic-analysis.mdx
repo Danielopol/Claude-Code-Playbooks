@@ -1,0 +1,79 @@
+---
+title: "Executive Strategic Analysis"
+description: "Board-ready strategic analysis with consulting-grade rigor — clarification-first scoping, named frameworks (Rumelt's Kernel, Three Horizons, Porter's Five Forces), and a credibility-tiered evidence standard that fact-checks every claim before it reaches the board."
+seoHook: "You've watched a strategy deck fall apart in a board meeting because someone asked where a market-size number came from and the honest answer was 'the model remembered it.' Executive strategy work needs evidence that survives scrutiny, not confident-sounding prose."
+targetAudience: "corporate strategy teams preparing board-level recommendations, management consultants building client-ready strategic plans, executives navigating a major strategic decision (transformation, market entry, M&A), strategy directors standardizing analysis rigor across their function, anyone whose strategic analysis needs to survive a skeptical board asking 'where's the evidence for that?'"
+exampleUseCase: "\"Build a strategic analysis for our decision on whether to enter the enterprise segment\" → A clarification pass establishing decision-maker, timeline, and constraints before any research starts, Three Horizons and Porter's Five Forces applied to the specific context, every market claim sourced at a stated credibility tier (McKinsey-tier down to trade press) with 3-5 citations, a one-page executive summary leading with the recommendation, and a full appendix trail for anyone who wants to check the work"
+category: "executive-strategy"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "dr-robert-li"
+sourceUrl: "https://gist.github.com/dr-robert-li/d1d27597ce719a6d6cd1ca6149ee8cc8"
+tags: ["strategy", "executive-strategy", "consulting", "board-ready", "porter-five-forces", "rumelt", "three-horizons", "strategic-planning", "evidence-based"]
+createdAt: "2026-08-17"
+---
+
+## What This Does
+
+A board-level strategic analysis process, not a quick-framework worksheet — built around a clarification-first workflow that establishes decision-maker, timeline, and constraints before any analysis begins, a curated set of named strategic frameworks matched to the actual challenge, and a strict evidence hierarchy that requires 3-5 sourced citations per significant claim, weighted toward analyst-tier sources over generic web content.
+
+The output structure mirrors what an actual consulting deliverable looks like: a one-page executive summary derived from a full comprehensive plan, with financial projections, competitive intelligence, and source documentation living in appendices rather than cluttering the summary a board member actually reads.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir strategic-analysis && cd strategic-analysis
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Start an Analysis
+
+```bash
+claude
+```
+
+Then say: **"I need a strategic analysis on [decision/challenge]"** — expect a round of clarifying questions before analysis starts, not an immediate answer.
+
+---
+
+## Framework Library
+
+| Framework | Best for |
+|-----------|----------|
+| Rumelt's Kernel | Complex challenges needing focus and coordinated execution |
+| Three Horizons | Digital transformation, disruption, business model innovation |
+| Porter's Five Forces | Competitive industry structure |
+| Blue Ocean Strategy | Differentiation away from head-to-head competition |
+| SWOT / PESTEL / VRIO | Standard internal and macro-environmental assessment |
+| Scenario Planning | Strategic options under genuine uncertainty |
+
+## Evidence Standard
+
+- **Source tiers, in order**: industry analyst reports (McKinsey/BCG/Bain/Gartner/Forrester) → empirical business studies → peer-reviewed research → authoritative business media (HBR, MIT Sloan) → trade publications
+- **3-5 citations per significant claim**, prioritizing contemporary evidence over anything more than a few years old
+- **Direct verification** of critical data points before they enter the document — not cited from memory
+
+## Tips & Best Practices
+
+- **Don't skip the clarification phase to get to analysis faster.** The single most common way strategic analysis fails a board review is being built on unstated assumptions about scope, decision-maker, or timeline that nobody actually confirmed upfront.
+- **Lead with the recommendation, every time.** The pyramid principle — conclusion first, evidence after — is non-negotiable for executive audiences. A document that builds up to its answer reads as unprepared, not thorough.
+- **State the source tier for every material claim.** "According to a 2024 McKinsey report" carries different weight than "industry sources suggest," and a board should be able to tell which one they're getting without having to ask.
+- **If a large analysis has to be segmented across multiple work sessions**, always run a coherence review afterward — a document stitched from disconnected passes reads exactly like what it is unless someone explicitly checks the argument still flows end to end.
+- **The disclaimer belongs on every output.** This produces proposed recommendations and analysis, not an adopted organizational decision — that distinction matters for anyone who might act on it downstream.
+
+## Limitations
+
+- This is deliberately heavier-weight than a quick strategy exercise — suited to genuinely consequential decisions (transformation, market entry, major investment), not a fast SWOT for a small pivot
+- Evidence quality depends on what sources are actually reachable and verifiable in the session — claims that can't be verified should be flagged as needing confirmation, not presented with false confidence
+- The framework selection step requires real judgment about which named framework fits the specific challenge — defaulting to the same one or two frameworks for every engagement defeats the purpose
+- For a lighter, faster startup-oriented strategy toolkit (SWOT, GTM, pricing, KPIs in one session), see the [Business Strategy Consultant](/playbooks/business-strategy-consultant) playbook instead — this one is built for board-level rigor, not speed

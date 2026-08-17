@@ -1,0 +1,83 @@
+---
+title: "Structured Design Critique System"
+description: "A persistent, multi-round design critique pipeline: scope which of 19 design areas your project actually needs, generate real HTML wireframe options for each, collect Keep/Cut feedback, and let locked decisions constrain everything downstream."
+seoHook: "Every design review you've gotten from an AI is the same shape: one pass, generic feedback, no memory of what you decided five minutes ago. By the time you're picking a color palette, it's already forgotten that you chose a keyboard-first navigation model and generates decorative options anyway."
+targetAudience: "founders and solo developers designing a product without a design team, product designers wanting structured critique with real wireframe options instead of text feedback, teams needing a repeatable design review process across multiple projects, anyone who wants design decisions to actually build on each other instead of being independently generic, indie hackers who need something better than a single unstructured 'review my UI' prompt"
+exampleUseCase: "\"Let's do a design review for my note-taking app\" → A confirmed 10-area plan (screen inventory through accessibility, in dependency order), real interactive HTML wireframe options generated for each area with Keep/Cut/Comment feedback rounds, a persistent dashboard tracking progress across sessions, and later areas — like color and typography — automatically respecting the keyboard-first, minimalist navigation already locked in an earlier round"
+category: "creative-design"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "metedata"
+sourceUrl: "https://github.com/metedata/design-crit"
+tags: ["design-critique", "ui-design", "wireframes", "design-system", "product-design", "ux", "design-review", "stateful-workflow"]
+createdAt: "2026-08-17"
+---
+
+## What This Does
+
+Most AI design feedback is one pass and stateless — you get a list of suggestions, and the next question starts from scratch with no memory of what you just decided. This is different: a persistent pipeline that scopes which design areas your specific project actually needs (out of 19 pre-built options, dependency-ordered), works through each one with real generated wireframe options instead of text descriptions, and carries every locked decision forward so later areas actually respect earlier ones.
+
+State lives in `.design-crit/` and survives across sessions — you can pick up a review three days later and it summarizes exactly where you left off before continuing.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir design-critique && cd design-critique
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Start a Review
+
+```bash
+claude
+```
+
+Then say: **"Let's do a design review for [your project]"** — expect a brief conversation to scope the project before any design work starts.
+
+---
+
+## The Pipeline
+
+```
+Brief → Review Plan → Design Reviews (per area, in dependency order) → Design Direction
+```
+
+## Design Area Library
+
+| Core areas (default in) | Situational areas (include when relevant) |
+|--------------------------|----------------------------------------------|
+| Screen Inventory, Edge States | Onboarding Flows (consumer apps) |
+| Navigation, Content Layout | Data Visualization (dashboards) |
+| Content Hierarchy, Component Design | Responsive (cross-device) |
+| Elevation & Shape, Typography | Iconography (icon-heavy UI) |
+| Color System, Density & Spacing | Motion (polish-focused products) |
+| Content Voice, Accessibility (always last) | Imagery & Illustration (marketing/brand) |
+| | Loading & Performance (async-heavy apps) |
+
+Typical project: 8-12 areas. A custom area gets added when the brief reveals something none of the 19 pre-built ones cover.
+
+## Tips & Best Practices
+
+- **Generate real wireframes, not descriptions.** Every option is an actual interactive HTML file you can open and click through — "here's what option A might look like" as prose defeats the entire point of a visual review.
+- **Every option needs an honest downside.** The "Watch out for" section on each option card is not optional — a review where every option sounds equally good isn't actually helping you decide.
+- **Later areas must respect earlier locked decisions.** This is the core value proposition over a one-shot review: if navigation locked on a keyboard-first, minimal approach, the typography and color options generated afterward should reflect that constraint, not ignore it.
+- **The "Emerging Preferences" summary is worth reading explicitly.** After 2+ areas lock, the system distills cross-cutting patterns — "consistently prefers functional over decorative" — into a running summary. That's your actual design voice being surfaced, not just a decision log.
+- **Skip areas deliberately, don't force every one.** If a brand guide already exists, color and typography may be substantially pre-decided — the planning stage should exclude or de-prioritize areas the brief has already answered, with a stated reason.
+- **Re-entry summarizes before resuming.** Coming back to an in-progress review should always get a status recap first — how many areas are locked, what round you're on — never a silent jump straight back into wireframe generation.
+
+## Limitations
+
+- Designed around generating and viewing real HTML files locally — works best in an environment where you can actually open and interact with the generated wireframes, not a chat-only context
+- The area-selection step requires genuine judgment tied to the brief; treating the 19-area library as a fixed checklist to run through regardless of project defeats its purpose
+- Best suited for genuinely multi-decision design work (a new product or a significant redesign) — a single quick UI tweak doesn't need the full pipeline overhead
+- State persistence assumes a consistent working directory across sessions — moving the project or losing the `.design-crit/` folder loses the accumulated context and locked decisions

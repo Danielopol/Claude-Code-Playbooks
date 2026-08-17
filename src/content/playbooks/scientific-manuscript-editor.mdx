@@ -1,0 +1,72 @@
+---
+title: "Scientific Manuscript Editor"
+description: "Five focused editing passes for scientific manuscripts: verb tense conventions by section, topic-sentence structure, line-by-line grammar, substantive clarity editing, and a pre-submission compliance check."
+seoHook: "Your co-author points out the Methods section is in present tense, the Introduction shifts tense mid-paragraph, and a reviewer's first comment is that your repository link 404s — because generic grammar checkers don't know scientific writing has its own tense conventions, and nothing checks whether your GitHub repo is actually public before you hit submit."
+targetAudience: "PhD students and postdocs preparing a manuscript for journal submission, PIs doing a final pass before co-authors sign off, research groups standardizing writing quality across a lab's publications, anyone who's had a paper bounced by an editor for an inaccessible repository or incomplete citation, non-native English speakers wanting a genuinely academic-register edit rather than generic grammar correction"
+exampleUseCase: "\"Do a full editing pass on my Results section before I send it to my advisor\" → Verb tense checked against Results-section conventions (past tense for findings), topic sentences flagged with %CC comments only where genuinely weak, line-by-line grammar review catching a dangling modifier and two comma splices, substantive clarity edits tightening three overwrought sentences, and — once the whole paper is ready — a pre-submission check confirming the GitHub repo is public and every preprint citation has been checked for its published version"
+category: "academic-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Matsen Group"
+sourceUrl: "https://github.com/matsengrp/plugins"
+tags: ["scientific-writing", "manuscript-editing", "latex", "academic-writing", "grammar-checking", "journal-submission", "peer-review-prep", "verb-tense"]
+createdAt: "2026-08-17"
+---
+
+## What This Does
+
+Five separate, narrowly-focused editing passes instead of one generic proofread — because scientific manuscripts have failure modes generic editors don't catch: section-specific verb tense conventions, paragraphs that don't survive a topic-sentence-only skim, and pre-submission blockers like a private GitHub repo or an unpublished preprint citation that should now point to the journal version.
+
+Each pass is LaTeX-aware — commands, citations, and math expressions are recognized and left alone; only the actual prose gets edited.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir manuscript-editing && cd manuscript-editing
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Run an Editing Pass
+
+```bash
+claude
+```
+
+Then ask: **"Check the verb tense in my Methods section"** or **"Run a full editing pass on this manuscript"**
+
+---
+
+## The Five Passes
+
+| Pass | Catches |
+|------|---------|
+| Verb tense | Section-specific tense violations — present tense in Methods, tense drift mid-paragraph in Discussion |
+| Topic sentences | Paragraphs whose main point isn't in the first sentence — tested by whether the paper reads coherently from topic sentences alone |
+| Line-by-line grammar | Dangling modifiers, unclear antecedents, comma splices — the class of error generic tools miss |
+| Clarity editing | Jargon that obscures rather than precises, inconsistent terminology, sentences that are correct but unclear |
+| Pre-submission check | Private repos, unpublished preprints that have since been published, incomplete bibliographic entries |
+
+## Tips & Best Practices
+
+- **Run passes separately, not blended.** Each one has a narrow job — mixing "check my grammar" with "check my tense" with "check my structure" into one pass produces shallower results on all three than running them one at a time.
+- **The topic-sentence pass marks before it rewrites.** It inserts `%CC` comments only where a paragraph's opener genuinely doesn't carry the main point — a well-structured paragraph gets no comment. Implementation happens only when you explicitly ask for it, so you can review the marked list before anything changes.
+- **Tense conventions differ by section, and that's not a style choice — it's convention.** Methods is past tense throughout. Introduction mixes present (established knowledge) and past (specific prior studies). Getting this right matters more to reviewers than it might seem.
+- **Run the pre-submission check last, and run it even if you're confident.** A private repository link or an unpublished preprint citation that's now been formally published are exactly the kind of thing that's invisible during writing and obvious to a reviewer — catching it before submission avoids an easily preventable rejection reason.
+- **"Our work" reads casual to most journals — "our study" is the safer default.** Small thing, flagged reflexively across academic style guides for a reason.
+
+## Limitations
+
+- The clarity-editing pass explicitly stays out of domain-specific technical content it can't evaluate (a specialized statistical method, a niche protocol) — it flags the limitation rather than confidently editing something outside general scientific writing conventions
+- Repository and preprint verification depends on being able to actually reach those resources — rate-limited or auth-gated links get flagged for manual verification rather than silently skipped
+- Designed around LaTeX source specifically; verb-tense and grammar passes assume LaTeX markup needs to be distinguished from prose, which matters less if working from plain text or Word
+- This playbook condenses five of the source repository's manuscript-focused agents; the source also ships general code-review agents (antipattern detection, code smell detection) not included here since they overlap with the code-review content already on this site

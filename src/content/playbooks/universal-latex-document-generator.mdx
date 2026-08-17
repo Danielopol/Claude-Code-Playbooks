@@ -1,0 +1,74 @@
+---
+title: "Universal LaTeX Document Generator"
+description: "Create, compile, and convert any document to a professional PDF with LaTeX — resumes, theses, papers, posters, invoices, fillable forms, mail-merged letters — plus a pipeline for converting handwritten or scanned PDFs into clean LaTeX source."
+seoHook: "Your document compiles without a single error and the PDF still shows inverted question marks where every '<5%' should be — because angle brackets silently break in LaTeX text mode and nothing tells you until you actually look at the output."
+targetAudience: "graduate students writing theses and papers who want publication-quality output without fighting LaTeX syntax, job seekers needing ATS-safe resumes across multiple formats, academics building CVs, posters, and lecture notes from the same toolkit, anyone converting handwritten or scanned documents into clean digital LaTeX, teams needing mail-merged letters or fillable PDF forms generated at scale"
+exampleUseCase: "\"Convert these 15 pages of handwritten calculus notes into a LaTeX document\" → Pages split into images, converted via the math-notes profile with beautiful theorem environments, batched two agents in parallel per the scaling strategy, validated, concatenated, and compiled into a clean typeset PDF with a rendered preview — instead of hours of manual retyping"
+category: "academic-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "ndpvt-web"
+sourceUrl: "https://github.com/ndpvt-web/latex-document-skill"
+tags: ["latex", "pdf", "resume", "thesis", "academic-paper", "poster", "document-generation", "pdf-conversion", "ocr", "mail-merge"]
+createdAt: "2026-08-17"
+---
+
+## What This Does
+
+One skill, 27 ready-to-use templates, and a compile pipeline that auto-detects the right LaTeX engine — covering resumes, theses, academic papers, IEEE journal submissions, conference posters, presentations, invoices, cheat sheets, fillable PDF forms, and mail-merged batch letters. It also runs in reverse: converting handwritten notes, scanned textbooks, or printed documents into clean LaTeX source through a page-batched conversion pipeline.
+
+Every document compiles to a real PDF with PNG previews you can actually check before calling it done — not just "the compile succeeded."
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir latex-documents && cd latex-documents
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Generate a Document
+
+```bash
+claude
+```
+
+Then ask: **"Create a [resume/thesis/poster/report] for [purpose]"** — or point it at an existing PDF and ask to convert it to LaTeX.
+
+---
+
+## What's Covered
+
+| Category | Examples |
+|----------|----------|
+| Career documents | 5 ATS-tiered resume templates, cover letter, academic CV |
+| Academic | Thesis/dissertation, academic paper with BibTeX, IEEE two-column journal, lecture notes, homework, lab reports |
+| Presentations | Beamer slides, portrait and landscape conference posters (NeurIPS/ICML/CVPR/ICLR presets) |
+| Reference material | General/exam/programming cheat sheets, formula sheets |
+| Business | Invoices, formal letters, reports with charts and flowcharts |
+| Interactive | Fillable PDF forms, conditional/configurable documents, mail-merged batch letters |
+| Conversion | PDF-to-LaTeX (handwritten, scanned, printed), Markdown/DOCX/HTML ↔ LaTeX, version diffing |
+
+## Tips & Best Practices
+
+- **Escape angle brackets — this is the #1 silent defect.** `<` and `>` are invalid in LaTeX text mode with T1 encoding and render as inverted question marks without throwing a compile error. Use `$<$` / `\textless` instead. The document will compile fine and just be wrong.
+- **Pick the resume template by context, not habit.** `resume-classic-ats.tex` for finance/law/government ATS portals, `resume-executive.tex` for VP+, `resume-technical.tex` for engineering roles with a projects section — using one template for every situation defeats the point of having five.
+- **For 5+ page documents, avoid the "wall of bullets."** The default should be prose paragraphs for analysis and argument — bullets are for genuinely parallel, discrete items. A 40-page report with more than 20 itemize blocks needs a rewrite pass, not more content.
+- **Batch PDF-to-LaTeX conversion by page count.** 1–10 pages: one pass. 11–20: split in half. 21+: batch 7 pages per worker, run in parallel. A single long pass on a big scan measurably degrades quality.
+- **Always generate and actually look at the PNG preview** before calling a document done — a clean compile is not proof the output is correct, especially for the angle-bracket and float-placement issues that produce no errors at all.
+
+## Limitations
+
+- Requires a working TeX Live installation; the compile script auto-installs it on first run, but don't run multiple compiles in parallel before that finishes — concurrent installs cause package-manager lock contention
+- PDF-to-LaTeX conversion quality depends heavily on scan/handwriting legibility — the math-notes profile's "beautiful mode" works best on reasonably clean handwriting, not degraded photocopies
+- Non-fillable PDF form filling (image-based forms) requires manually validating bounding boxes against the source image — an unchecked box position can silently misplace text in the output
+- `hyperref` should be dropped from PDF-to-LaTeX conversions that use theorem environments — it triggers `\set@color` errors in that specific combination

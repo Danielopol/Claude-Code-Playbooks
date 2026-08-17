@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-seo-agencies',
+    slug: 'claude-skills-seo-agencies',
+    title: 'Claude Skills for SEO Agencies: Scale Audits, Content, and Rank Tracking',
+    description: "How to use four Claude Skills to scale SEO work across every client without scaling headcount — a page SEO analysis Skill for deep single-URL audits, a programmatic SEO Skill that plans and quality-gates pages built at scale, a content gap finder that mines Reddit and X for what to write next, and a rank monitor that catches ranking drops before they show up in a client's traffic report.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'SEO',
+    tags: ['claude skills seo', 'ai seo automation', 'scale seo with ai', 'seo audit ai', 'programmatic seo ai', 'content gap analysis', 'rank tracking ai', 'seo agency tools'],
+    createdAt: '2026-08-17',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-paid-ads',
     slug: 'claude-skills-paid-ads',
     title: 'Claude Skills for Paid Ads: Write, Test, and Optimize Campaigns with AI',

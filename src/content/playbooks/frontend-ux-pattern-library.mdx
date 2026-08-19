@@ -1,0 +1,77 @@
+---
+title: "Frontend UX Pattern Library"
+description: "Concrete, research-backed patterns for SaaS dashboards, landing pages, and forms — plus accessibility requirements, Tailwind implementation gotchas, and a pre-delivery checklist that treats accessibility as a launch blocker, not a nice-to-have."
+seoHook: "Your form has 11 fields, asks for a phone number nobody needs, and validates on every keystroke — three separate, measured ways to tank conversion, and none of them show up as a bug because the page still technically works."
+targetAudience: "frontend developers who want concrete UX patterns instead of vague design advice, indie hackers building a SaaS dashboard or landing page without a designer, teams wanting an accessibility checklist that's actually specific enough to act on, React/Tailwind developers who keep hitting the same dynamic-class-name bug, anyone shipping a form who wants the conversion research instead of guessing"
+exampleUseCase: "\"Build a settings page and a signup form for our dashboard\" → Settings laid out as bucket + side panel with destructive actions grouped in a Danger Zone, signup form built as a single-column 4-field layout instead of 11 (a measured 120% conversion difference), every input properly labeled and validated on blur, and a pre-delivery checklist confirming touch targets, contrast, and focus states before calling it done"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "majidmanzarpour"
+sourceUrl: "https://gist.github.com/majidmanzarpour/8b95e5e0e78d7eeacd3ee54606c7acc6"
+tags: ["frontend", "ux-patterns", "accessibility", "tailwind", "react", "saas-dashboard", "landing-page", "conversion-optimization", "wcag"]
+createdAt: "2026-08-19"
+---
+
+## What This Does
+
+A pattern library for the parts of frontend UX that have a right answer, not just a style preference: SaaS dashboard layout architecture, landing page section flow, form field counts backed by actual conversion research, toast timing formulas, and a WCAG accessibility checklist specific enough to act on directly rather than "make it accessible."
+
+Pairs well with a separate aesthetic-direction playbook for the visual/brand layer — this one covers structure, conversion, accessibility, and the specific Tailwind/React implementation traps that produce silent bugs.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir frontend-patterns && cd frontend-patterns
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Build a Component or Page
+
+```bash
+claude
+```
+
+Then ask: **"Build a settings page for our dashboard"** or **"Review this landing page against the pre-delivery checklist"**
+
+---
+
+## What's Covered
+
+| Area | Includes |
+|------|----------|
+| SaaS dashboards | Layout architecture, navigation-by-scope rules, empty states, settings page conventions, toast timing formula |
+| Landing pages | Above-the-fold requirements, section flow, CTA design, pricing table rules, social proof placement |
+| Forms | Research-backed field-count and layout guidance |
+| Accessibility | Contrast ratios, touch target sizing, focus states, form labeling, semantic HTML |
+| Tailwind/React | The dynamic-class-name purge bug, `cn()` helper pattern, CVA variants, reduced-motion handling |
+
+## Research-Backed Form Numbers
+
+- Single-column forms: **120% fewer errors** than multi-column
+- 4 fields vs. 11 fields: **120% more conversions**
+- Requiring a phone number unnecessarily: **58% abandonment**
+
+## Tips & Best Practices
+
+- **Never construct a Tailwind class name dynamically.** `` `bg-${color}-500` `` gets purged at build time because Tailwind scans for literal class strings — the code compiles fine and renders unstyled in production. Use an explicit lookup object instead; this is one of the most common silent frontend bugs.
+- **Validate forms on blur, not on every keystroke.** Mid-keystroke validation flags incomplete input as an error before the user has finished typing, which reads as impatient and produces false negatives.
+- **Toast duration has an accessibility floor, not just a default.** 4-5 seconds is the norm, but 6 seconds is the accessibility minimum — shorter and screen reader users can't finish reading before it auto-dismisses.
+- **Destructive confirmations require typing the resource name or a specific label**, never a generic "Yes" — this is a deliberate friction point, not an oversight to streamline away.
+- **The pre-delivery checklist is a gate, not a courtesy pass.** Treat every accessibility item — contrast, touch targets, labels, focus states — as a launch blocker rather than a follow-up ticket.
+
+## Limitations
+
+- This is a structural and technical pattern library, not an aesthetic-direction guide — for palette, typography personality, and avoiding the "generic AI look," pair it with a design-direction playbook
+- The Tailwind/React implementation section assumes that specific stack — the dashboard, landing page, and accessibility guidance is stack-agnostic, but the code patterns are Tailwind/React-specific
+- Conversion statistics (form field counts, phone number abandonment) are general findings, not guarantees for every product — validate with your own funnel data where it matters

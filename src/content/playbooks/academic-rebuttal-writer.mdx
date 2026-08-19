@@ -1,0 +1,78 @@
+---
+title: "Academic Rebuttal Writer"
+description: "Classify reviewer comments, choose a deliberate response strategy per comment (Accept/Defend/Clarify/Experiment), and draft a professional rebuttal using success patterns distilled from spotlight-accepted papers."
+seoHook: "Reviewer 2 misread your methodology section, Reviewer 3 wants an ablation study you didn't run, and Reviewer 1 is actually right about a real gap — and your rebuttal deadline is in 48 hours. Treating all three the same way is how a fixable paper gets rejected."
+targetAudience: "PhD students and postdocs responding to conference or journal reviews, PIs coordinating rebuttal strategy across multiple co-authors, researchers facing a tight rebuttal deadline who need to triage systematically, anyone whose first rebuttal draft came out either defensive or vague, academics wanting a repeatable process rather than starting from scratch each submission cycle"
+exampleUseCase: "\"Help me respond to these ICML reviews\" → Every comment classified by reviewer and severity (Major/Minor/Typo/Misunderstanding), a deliberate Accept/Defend/Clarify/Experiment strategy chosen for each, a full rebuttal draft that acknowledges reviewer strengths before addressing concerns, and a tone pass confirming no defensive language made it into the final version"
+category: "academic-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Galaxy-Dawn"
+sourceUrl: "https://github.com/Galaxy-Dawn/claude-scholar"
+tags: ["academic-writing", "peer-review", "rebuttal", "conference-submission", "journal-submission", "research", "academic-publishing"]
+createdAt: "2026-08-19"
+---
+
+## What This Does
+
+Turns a pile of reviewer comments into a structured, strategic rebuttal instead of a reactive point-by-point response. Every comment gets classified (Major/Minor/Typo/Misunderstanding) and assigned a deliberate strategy — Accept, Defend, Clarify, or Experiment — rather than defaulting to the same defensive posture for everything. The drafting patterns are distilled from an analysis of successful ICLR spotlight-paper rebuttals: acknowledge strengths first, provide clarity over just correctness, justify experimental choices, and address ethical implications proactively.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir rebuttal-writing && cd rebuttal-writing
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Draft a Rebuttal
+
+```bash
+claude
+```
+
+Then say: **"Help me write a rebuttal for these reviewer comments"** — and paste or point to the review file.
+
+---
+
+## The Process
+
+| Step | What happens |
+|------|----------------|
+| Classify | Every comment sorted by reviewer and severity |
+| Strategize | Accept / Defend / Clarify / Experiment chosen per comment |
+| Apply success patterns | Acknowledge strengths, add clarity, justify experimental choices, address ethics |
+| Draft | Full rebuttal with exact section/table/page references |
+| Tone pass | Checked for gratitude, respect, specificity — zero defensive phrasing |
+
+## Response Strategies
+
+| Strategy | When |
+|----------|------|
+| Accept | The reviewer is correct and the fix is feasible |
+| Defend | The current approach has real justification — explain the reasoning |
+| Clarify | The reviewer misread something already in the paper |
+| Experiment | The concern genuinely needs new evidence, not argument |
+
+## Tips & Best Practices
+
+- **Triage before drafting.** Major Issues get addressed first and get the most space — a rebuttal that treats a typo fix and a methodology concern with equal weight signals the author didn't actually prioritize the feedback.
+- **Acknowledge strengths before defending anything.** This is the single most common pattern in successful rebuttals and the easiest one to skip under deadline pressure — reviewers who feel heard on what worked are more receptive to pushback on what didn't.
+- **Never parse review comments with code.** Review analysis needs to catch tone, implicit concerns, and context — something natural-language reading does and automated parsing consistently misses.
+- **Cite exact locations, every time.** "We address this in the revised methodology" is weaker than "See Section 4.2, Table 3" — specificity signals the change actually happened rather than being promised.
+- **Ban "obviously" and "clearly" from every draft.** If the point were actually obvious, the reviewer likely wouldn't have raised it — using those words reads as condescending regardless of intent.
+
+## Limitations
+
+- Distilled patterns come from analysis of ML/AI conference (ICLR) spotlight papers specifically — norms differ somewhat across fields, so calibrate expectations for humanities or wet-lab biology submissions accordingly
+- This produces a strong draft, not a final submission — co-author review and a final read against the actual venue's rebuttal format/length limits is still necessary
+- Assumes the underlying research and paper are sound; a rebuttal strategy can't substitute for a genuine methodology fix a reviewer correctly identified as missing

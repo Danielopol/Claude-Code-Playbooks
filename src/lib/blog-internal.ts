@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-ecommerce',
+    slug: 'claude-skills-ecommerce',
+    title: 'Claude Skills for E-commerce Sellers: Automate Listings, Ads, and Reviews',
+    description: "How to use four Claude Skills to cut the three biggest recurring e-commerce workloads down to minutes — an Amazon seller assistant that automates inventory, pricing, and ad spend, an app store optimizer for sellers expanding into their own companion app, a review response Skill that keeps every reply on-brand across platforms, and a competitor ad analyzer that extracts winning patterns straight from the Meta Ad Library.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'E-commerce',
+    tags: ['claude skills ecommerce', 'ai for amazon sellers', 'ai product listings', 'amazon fba automation', 'ai review response', 'competitor ad analysis', 'ecommerce automation ai', 'app store optimization ai'],
+    createdAt: '2026-08-19',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-seo-agencies',
     slug: 'claude-skills-seo-agencies',
     title: 'Claude Skills for SEO Agencies: Scale Audits, Content, and Rank Tracking',

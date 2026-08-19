@@ -1,0 +1,95 @@
+---
+title: "UX Writing Toolkit"
+description: "Write and edit interface copy — buttons, errors, empty states, notifications — against research-backed benchmarks for sentence length, comprehension, and reading level, plus a tone framework that adapts to the user's emotional state."
+seoHook: "Your error messages say 'Something went wrong' with no explanation, your buttons say 'Submit' with no context, and your delete confirmation reads like a legal disclaimer — because writing interface copy that's actually clear takes more discipline than it looks like, and 'good enough' ships every time."
+targetAudience: "product designers writing their own interface copy without a dedicated content designer, UX writers wanting a structured framework instead of ad-hoc editing, engineers filling in placeholder UI strings before launch, startup founders polishing an MVP's microcopy, design teams establishing a consistent product voice across a growing app"
+exampleUseCase: "\"Rewrite this error message: 'Error: Invalid input'\" → 'Email must include @' for the inline validation case, or 'Payment failed. Your card was declined. Try a different payment method.' for a system error — matched to the actual failure type, empathetic tone for a frustrated user, and specific enough to actually resolve the problem instead of just naming it"
+category: "creative-design"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "content-designer"
+sourceUrl: "https://github.com/content-designer/ux-writing-skill"
+tags: ["ux-writing", "microcopy", "content-design", "error-messages", "accessibility", "voice-and-tone", "interface-copy", "ux"]
+createdAt: "2026-08-17"
+---
+
+## What This Does
+
+Structured UX writing for every common interface element — buttons, titles, error messages, empty states, form fields, notifications — each with a specific pattern, not generic "write clearly" advice. Includes research-backed benchmarks for sentence length, comprehension rate, and reading level by audience, a tone-adaptation framework tied to the user's actual emotional state in the moment, and accessibility guidance that treats screen-reader-friendly text as a correctness requirement rather than optional polish.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir ux-writing && cd ux-writing
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Write or Edit Copy
+
+```bash
+claude
+```
+
+Then ask: **"Write an error message for a failed file upload"** or **"Audit this onboarding flow for UX writing quality"**
+
+---
+
+## Patterns by Element
+
+| Element | Pattern | Example |
+|---------|---------|---------|
+| Button/link | `[Verb] [object]` | "Save changes", "Delete account" |
+| Validation error | `[Field] [specific requirement]` | "Email must include @" |
+| System error | `[Action failed]. [Cause]. [Recovery step].` | "Payment failed. Your card was declined. Try a different payment method." |
+| Success message | `[Action] [result/benefit]`, past tense | "Changes saved" |
+| Empty state | Explanation + CTA | "No messages yet. Start a conversation to connect with your team." |
+
+## The Four-Phase Edit
+
+Every piece of copy gets edited in this order — never skip ahead:
+
+1. **Purposeful** — does it actually help the user reach their goal?
+2. **Concise** — cut every word that isn't earning its place
+3. **Conversational** — read it aloud; would you actually say this?
+4. **Clear** — specific verbs, consistent terms, tested readability
+
+## Tone by Emotional State
+
+| User state | Tone |
+|-------------|------|
+| Frustrated (errors) | Empathetic, solution-focused, no blame |
+| Confused (first use) | Patient, step-by-step |
+| Confident (routine) | Efficient, minimal — e.g. just "Saved" |
+| Cautious (high-stakes) | Serious, transparent, never playful |
+| Successful | Positive, proportional, brief |
+
+## Benchmarks
+
+- **Comprehension**: ≤8 words = ~100%, ≤14 words = ~90%, 25 words = comprehension drops sharply
+- **Buttons**: 2-4 words ideal, 6 max
+- **Reading level**: 7th-8th grade for general audiences, 9th-10th for professional tools
+- **Contrast**: WCAG AA minimum 4.5:1 for any color-conveyed status
+
+## Tips & Best Practices
+
+- **Never rely on color alone for status.** A red field with no text label conveys nothing to a colorblind user or anyone on a screen reader — always pair a visual indicator with explicit text.
+- **High-stakes confirmations should never be playful.** Matching tone to stakes isn't a style preference — a cheerful "Poof! It's gone! 🎉" on an irreversible account deletion is a design failure that undermines trust exactly when it matters most.
+- **Every error needs a recovery path.** "Something went wrong" with no next step is a dead end — the pattern `[what failed]. [why]. [what to do]` exists specifically so this never happens.
+- **Screen-reader labels aren't optional polish.** "Submit" with no context is ambiguous to a screen reader user in a way it isn't to a sighted user looking at the surrounding form — "Submit application" costs nothing and fixes it.
+- **Voice stays constant; tone adapts.** Don't confuse the two — the brand personality doesn't change between a success message and an error message, but how urgently and empathetically it comes across should.
+
+## Limitations
+
+- Benchmarks (comprehension rates, character counts) are English-language research; adapt reading-level targets for other languages, where word/character counts don't translate directly
+- The four-phase edit process assumes there's existing draft text to work from — for entirely new copy, start with the interface-element patterns instead
+- Accessibility guidance here covers UX writing specifically (labels, error structure, link text) — it's not a substitute for a full accessibility audit of the interface itself

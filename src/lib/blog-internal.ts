@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-authors',
+    slug: 'claude-skills-authors',
+    title: 'Claude Skills for Authors: Plan, Draft, and Edit Your Novel with AI',
+    description: "How to use four Claude Skills as a creative collaborator, not a ghostwriter — a novel writing assistant for developing characters and plot structure before you draft, a book bible that checks new scenes against established facts as you write, a copy editing Skill repurposed for focused manuscript prose passes, and a dedicated proofreading agent for a final language-only pass before publishing.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Novel Writing',
+    tags: ['claude skills writing book', 'ai novel writing', 'ai for authors', 'novel planning ai', 'book bible consistency', 'manuscript editing ai', 'ai proofreading', 'fiction writing tools'],
+    createdAt: '2026-08-21',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-ecommerce',
     slug: 'claude-skills-ecommerce',
     title: 'Claude Skills for E-commerce Sellers: Automate Listings, Ads, and Reviews',

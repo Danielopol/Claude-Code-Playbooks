@@ -1,0 +1,80 @@
+---
+title: "UX Copy Audit & Refactoring System"
+description: "Turn a CLAUDE.md style guide into an enforced standard across an entire product's content — bulk audits, diff-reviewed refactoring, and zero-risk read-only consistency reports across hundreds of files at once."
+seoHook: "Your style guide says 'active voice, no click-here links, sentence case' and half your product still breaks all three rules — because enforcing a style guide by hand across 300 content files means reading all 300 files, and nobody has time for that."
+targetAudience: "UX writers who currently depend on developers for routine content changes, content designers wanting to enforce a style guide at scale instead of one file at a time, teams doing a pre-launch content audit across hundreds of strings, UX writers hesitant about AI editing production copy who want a zero-risk starting point, content teams tired of inconsistent terminology creeping back in after every review"
+exampleUseCase: "\"Audit our /docs folder for tone violations\" → A read-only markdown report flagging every file that breaks the CLAUDE.md style guide, with no files touched — then, once trust is built, a diff-reviewed refactor pass that fixes header capitalization and passive voice across the whole folder, approved change by change rather than blindly applied"
+category: "creative-design"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "Yuval Keshtcher"
+sourceUrl: "https://uxwritinghub.com/claude-code-ux-writing/"
+tags: ["ux-writing", "content-audit", "style-guide", "content-design", "claude-code-basics", "content-ops", "consistency"]
+createdAt: "2026-08-21"
+---
+
+## What This Does
+
+Shifts UX writing from copy-pasting text into a chat window, one string at a time, to running a style guide as an enforced standard across an entire project's files. A single `CLAUDE.md` file becomes the source of truth for voice, tone, terminology, and formatting — read automatically before every change — and three workflows (bulk audit, diff-reviewed refactor, read-only report) apply it at whatever scale the project actually needs, from one file to hundreds.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir ux-copy-audit && cd ux-copy-audit
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+Then edit the style guide sections to match your actual voice, tone, and terminology rules before running anything.
+
+### Step 3: Run an Audit
+
+```bash
+claude
+```
+
+Then ask: **"Read all files in [folder] and check for style guide violations — don't edit anything, just report"**
+
+---
+
+## The Three Workflows
+
+| Workflow | What it does | Risk level |
+|----------|----------------|------------|
+| Bulk content audit | Finds a pattern (e.g. "click here" links) across every file at once | Read-only, zero risk |
+| Automated refactoring | Applies style guide rules directly, shows a diff, waits for Y/N approval per change | Low — every change reviewed |
+| Read-only consistency report | Full tone/style check against `CLAUDE.md`, generates a report, touches nothing | Zero risk |
+
+**Start with the read-only report** if the idea of AI editing production copy feels uncomfortable — move to refactoring only once the reports consistently match your own judgment.
+
+## Plan Mode vs. Normal Mode
+
+| | Plan Mode | Normal Mode |
+|---|-----------|--------------|
+| Behavior | Proposes, waits for approval | Executes directly |
+| Best for | New projects, complex changes | Fast iteration once trust is built |
+
+**Always start in Plan Mode.**
+
+## Tips & Best Practices
+
+- **Write a specific style guide, not a vague one.** "Be friendly" enforces nothing. "Use 'you' and 'your', avoid passive voice, sentences under 20 words, never 'click here' as link text" is something Claude can actually check against.
+- **Review every diff before approving a bulk refactor.** The value of applying a style guide across 300 files at once is exactly why a single bad automated judgment is worth catching before it propagates — approve change by change, not in one blanket accept.
+- **Read-only mode is the trust-building step, not a limitation.** Ask explicitly for a report with no edits before ever letting the tool touch production copy — this is the fastest way to calibrate confidence in how well your style guide is specified.
+- **State "do not edit the files" explicitly for audit-only requests.** Don't rely on the request's general phrasing to prevent autonomous changes — say it directly.
+- **This runs on a per-token cost model, not the chat app's flat fee.** Typically pennies for a full day of audit work, but worth knowing before pointing it at a very large content folder for the first time.
+
+## Limitations
+
+- Data is processed locally but text content is sent to Anthropic's servers — verify your account's data handling settings before running this against confidential or enterprise-sensitive copy
+- This is a content-operations and consistency-enforcement tool, not a drafting or ideation tool — for actually writing new copy from scratch, pair it with a UX-writing craft playbook covering voice, patterns, and benchmarks
+- Best suited for projects with genuinely large content surfaces (dozens to hundreds of files) — the setup overhead isn't worth it for a five-page site you can review by hand in ten minutes

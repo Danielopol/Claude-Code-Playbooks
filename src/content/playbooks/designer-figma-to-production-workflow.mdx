@@ -1,0 +1,88 @@
+---
+title: "Designer's Figma-to-Production Workflow"
+description: "A structured discuss-plan-execute-verify loop that takes a designer from a Figma file to a deployed, pixel-perfect production site — using Claude Code plus the GSD meta-prompting system, no traditional coding required."
+seoHook: "You hand off a Figma file and three weeks later the hover states are wrong, the spacing doesn't match, and 'close enough' shipped instead of your actual design — because every handoff loses fidelity somewhere between your file and their code."
+targetAudience: "designers who want to ship real, deployed products without becoming full-time developers, design directors evaluating whether their team can self-serve implementation, freelance designers wanting to offer functional prototypes instead of static mockups, product designers tired of fidelity loss in developer handoff, anyone with design intuition who's been putting off learning to code"
+exampleUseCase: "\"Build my Figma portfolio design into a live site\" → A locked requirements doc splitting scope into V1/V2/out-of-scope, phase-by-phase design decisions captured with exact specs (\"hover is transform: translateY(-2px), disabled is exactly 40% opacity\"), parallel-executed atomic commits per task, a verification pass checking the deployed site against Figma side-by-side, and a live Vercel URL — a full dashboard built in two days by one designer, per the source workflow"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "20 minutes"
+author: "Tommaso Nervegna"
+sourceUrl: "https://nervegna.substack.com/p/claude-code-for-designers-a-practical"
+tags: ["figma", "design-to-code", "designers", "no-code", "gsd", "vercel", "prototyping", "design-system", "portfolio"]
+createdAt: "2026-08-21"
+---
+
+## What This Does
+
+A structured build loop — discuss, plan, execute, verify — that lets a designer go from a Figma file (or even just a described concept) to a deployed, functioning site without writing code in the traditional sense. Built on Claude Code plus **GSD (Get Shit Done)**, a meta-prompting layer that questions assumptions before building, locks requirements before execution, and verifies every phase against concrete yes/no deliverables instead of a vague "does this look right."
+
+The Figma-specific path uses MCP integration to pull exact design tokens, component specs, and layout values directly from the file — so the output matches pixel-for-pixel instead of approximating from a screenshot.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir my-design-project && cd my-design-project
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Set Up GSD and Start
+
+```bash
+npx get-shit-done-cc
+claude --dangerously-skip-permissions
+```
+
+Then run: **`/gsd:new-project`**
+
+---
+
+## The Loop
+
+```
+Discuss → Plan → Execute → Verify
+   ↑                          │
+   └──── next phase ──────────┘
+```
+
+| Step | Command | What happens |
+|------|---------|----------------|
+| New project | `/gsd:new-project` | Interrogates the concept, researches in parallel, produces locked `REQUIREMENTS.md` and `ROADMAP.md` |
+| Discuss | `/gsd:discuss-phase N` | Surfaces every decision point for the phase — layout, spacing, hover behavior — captured as exact specs, not vibes |
+| Plan | `/gsd:plan-phase N` | Research + atomic task plans, verified against requirements before execution starts |
+| Execute | `/gsd:execute-phase N` | Parallel/sequential waves, fresh 200k-token context per task, one atomic commit per task |
+| Verify | `/gsd:verify-work N` | Concrete yes/no deliverable checklist, auto-diagnosed fix plans for anything failing |
+
+## Figma-Specific Path
+
+1. Design in Figma with real structure — named tokens, component variants, Auto Layout
+2. Initialize referencing the file directly, with Figma MCP integration specified
+3. Phase 1 extracts the design system into code, matching Figma exactly
+4. Phase 2 builds components pixel-for-pixel, with exact interaction specs
+5. Later phases build screens using the established design system and components
+6. Verify by comparing the deployed site against Figma with DevTools measurements, not by eye
+
+## Tips & Best Practices
+
+- **Never skip the discuss step to save time.** Vague direction produces generic output that has to be redone — the discussion itself is the fast path, not an obstacle to it.
+- **Lock requirements before execution and resist scope creep mid-phase.** The whole structure exists to prevent "just one more feature" from derailing a phase that was already planned and verified.
+- **Give exact specs, not descriptions.** "Hover is `transform: translateY(-2px)`, disabled is exactly 40% opacity" produces a correct result. "Make the hover subtle" produces a guess.
+- **Verify against concrete yes/no deliverables, not a vibe check.** "Does this look right?" lets real gaps through — "Do cards lift with shadow on hover? Do they stack on mobile below 768px?" doesn't.
+- **Never commit `.env`.** Set up `.gitignore` to exclude it before the first commit, not as a fix after a credential leaks into git history.
+
+## Limitations
+
+- Depends on the third-party `get-shit-done-cc` package for the actual `/gsd:*` slash commands and phase orchestration — this is a real dependency to install, not pure prompt engineering
+- The `--dangerously-skip-permissions` flag that makes the workflow efficient also means autonomous git commits and file operations without a per-action confirmation — understand what it grants before enabling it
+- The Figma-specific path assumes a genuinely well-structured Figma file (real tokens, proper component variants, sensible naming) — a messy file produces messy extraction regardless of how good the prompting is
+- Best suited for designers building a real product surface (portfolio, dashboard, marketing site) rather than a one-off static mockup, where the phase/verification overhead pays for itself

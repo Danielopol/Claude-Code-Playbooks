@@ -1,0 +1,70 @@
+---
+title: "Claude Code Project Architecture"
+description: "A setup guide for structuring a Claude Code project's full toolkit — layered CLAUDE.md context, slash commands, sub-agents, skills, hooks, and plugins — each used for what it's actually good at instead of one mechanism for everything."
+seoHook: "Your CLAUDE.md has grown to 400 lines of everything you might ever need, your slash commands do the job of what should be a shared skill, and you've never touched a hook — because nobody explained which of the six building blocks is actually right for which job."
+targetAudience: "Claude Code users setting up a new project properly instead of ad-hoc, teams standardizing how they structure CLAUDE.md/commands/agents/skills across projects, power users who've been reaching for the same mechanism (usually a bloated CLAUDE.md) for every use case, anyone who's heard of hooks or skills but never actually set one up, developers wanting a mental model for when to use an agent vs. a skill vs. a plugin"
+exampleUseCase: "\"Help me set up this project's Claude Code architecture\" → A three-layer context system (global preferences, project preferences, on-demand reference files), a slash command for the recurring task you actually invoke by hand, a sub-agent for research work that needs its own context window, and a SessionStart hook that calculates the real current date instead of relying on the model's potentially stale sense of 'today'"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "20 minutes"
+author: "Product Talk"
+sourceUrl: "https://www.producttalk.org/how-to-use-claude-code-features/"
+tags: ["claude-code-basics", "claude-md", "slash-commands", "sub-agents", "skills", "hooks", "plugins", "project-setup", "architecture"]
+createdAt: "2026-08-21"
+---
+
+## What This Does
+
+A mental model — and setup guide — for Claude Code's six building blocks (layered CLAUDE.md context, slash commands, sub-agents, skills, hooks, plugins/marketplaces) so each gets used for what it's actually built for, rather than defaulting to one bloated CLAUDE.md for everything. Covers when a sub-agent earns its own context window vs. when a simple slash command is enough, what actually distinguishes a skill from a plugin, and where hooks fit as guaranteed-to-run automation rather than a suggestion the model might follow.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir claude-code-setup && cd claude-code-setup
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Set Up the Architecture
+
+```bash
+claude
+```
+
+Then say: **"Help me set up this project's Claude Code architecture — I want [describe your recurring workflows]"**
+
+---
+
+## The Six Building Blocks
+
+| Block | Use for | Lives in |
+|-------|---------|----------|
+| Layered CLAUDE.md | Persistent context, kept lean | `~/.claude/CLAUDE.md` (global), `project/CLAUDE.md` (project) |
+| Slash commands | Workflows you trigger yourself, explicitly | `~/.claude/commands` or `project/.claude/commands` |
+| Sub-agents | Work needing its own context window, or parallel execution | `~/.claude/agents` or `project/.claude/agents` |
+| Skills | Instructions + bundled code, shared across Claude web/Desktop/Code | `SKILL.md` inside a named directory |
+| Hooks | Automation *guaranteed* to run at a specific lifecycle point | Configured via `/hooks` |
+| Plugins/marketplaces | Bundled commands+agents+skills+hooks, installable from a git repo | `/plugin marketplace add <repo>` |
+
+## Tips & Best Practices
+
+- **Keep `CLAUDE.md` lean; push reference material to separate files loaded on demand.** A file that tries to anticipate every possible need stops being read carefully — this is the same principle as progressive disclosure, applied at the whole-project level rather than within a single file.
+- **Reach for a sub-agent specifically for context-window isolation or genuine parallelism** — not as a default wrapper for every sub-task. Parallel agents save wall-clock time but burn tokens fast, especially noticeable on lighter usage tiers.
+- **Skills don't reliably self-invoke yet.** Be explicit ("use your [X] skill") rather than assuming the model will pick the right skill automatically just because it's relevant.
+- **Hooks are for things that must happen, not things that usually happen.** A `SessionStart` hook calculating the real current date is a good example — anything a workflow genuinely can't function without belongs here, not in a prompt instruction that's merely a strong suggestion.
+- **Never install a plugin without reviewing what it does.** Structurally a plugin is just someone else's git repo — treat installing one with the same caution as running any third-party script on your machine.
+
+## Limitations
+
+- LLM behavior is non-deterministic even with precise instructions — design workflows (diff review before bulk changes, explicit verification steps) that catch drift rather than assuming perfect consistency run to run
+- Context compacts automatically around 75% fullness — a workflow depending on very long uninterrupted context should account for this rather than assume unlimited room
+- This is an architectural mental model, not a specific task's CLAUDE.md — pair it with a task-specific playbook for the actual workflow you're building, once the project structure itself is set up

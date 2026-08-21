@@ -1,0 +1,78 @@
+---
+title: "Non-Technical Claude Code Onboarding"
+description: "A four-step setup guide and decision framework for non-technical professionals moving from the Claude web app to Claude Code — with real workflow examples from expense reports to marketing content generation."
+seoHook: "You've hit the file size limit in the web chat app three times this month, but 'just use the terminal' sounds like something for engineers, not for someone whose job is writing expense reports and marketing copy."
+targetAudience: "non-technical professionals hearing about Claude Code for the first time, marketing and content teams hitting file size or context limits in the web app, customer support and success teams wanting to answer technical questions without pulling in engineers, operations and finance staff processing large spreadsheets, anyone deciding whether the terminal version is actually worth the switch"
+exampleUseCase: "\"I keep hitting upload limits with my spreadsheets in the Claude app\" → An explanation of why Claude Code removes that limit entirely, a four-step setup (install, open terminal, type 'claude', run a first simple prompt), and a concrete first task — pointing Claude Code at a Downloads folder to build an interactive expense report from raw credit card CSVs in under 20 minutes"
+category: "productivity"
+difficulty: "beginner"
+timeToSetup: "15 minutes"
+author: "Every"
+sourceUrl: "https://every.to/source-code/how-to-use-claude-code-for-everyday-tasks-no-programming-required"
+tags: ["getting-started", "non-technical", "onboarding", "claude-code-basics", "terminal", "slash-commands", "beginner"]
+createdAt: "2026-08-21"
+---
+
+## What This Does
+
+A genuine on-ramp for someone who has never opened a terminal, walking through exactly when Claude Code beats the familiar web chat app, how to get it installed and running in four steps, and what a first real task should look like — plus real workflow examples (expense reports, large-dataset analysis, codebase-grounded support answers, marketing content generation) to show what becomes possible once the basic setup is done.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir my-first-claude-code-project && cd my-first-claude-code-project
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Start the Onboarding
+
+```bash
+claude
+```
+
+Then say: **"I'm new to Claude Code — help me get set up and try a first task"**
+
+---
+
+## When to Use Claude Code vs. the Web App
+
+| Use Claude Code (terminal) when... | Stick with the web app when... |
+|--------------------------------------|-----------------------------------|
+| A file size limit is blocking the task | It's a straightforward single-chat question |
+| The project needs a long, focused session | This is someone's very first AI experience |
+| Working with multiple large spreadsheets | File size was never actually a problem |
+| Automating something repeated regularly | A polished no-setup interface matters more |
+
+## Real Workflow Examples
+
+| Workflow | What it does |
+|----------|----------------|
+| Expense reporting | Point at a folder of downloaded transactions, get an interactive categorized web report in 10-20 minutes |
+| Large dataset analysis | Analyze a CSV too big for the web app to handle smoothly — just point at the file |
+| Support research | Answer technical product questions directly from the codebase, without pulling in an engineer |
+| Marketing content | Custom slash commands that turn recent product changes into newsletter-ready copy |
+
+## Tips & Best Practices
+
+- **Start Claude Code inside a specific project folder, not the computer's root directory.** Launching from a dedicated folder scopes what's visible to what's relevant — starting from the root grants access to the entire computer, which is rarely necessary and worth avoiding for both focus and privacy.
+- **Open with something small and concrete, not an ambitious first project.** A prompt like "find my expense CSV in Downloads and tell me what's inside" proves the setup works and calibrates expectations before attempting anything bigger.
+- **Turn repeated tasks into saved slash commands.** Once a prompt gets reused — a support-answer template, a marketing-copy generator — save it as a file in `.claude/commands/` and invoke it by name instead of retyping the instructions every time.
+- **This isn't a code-completion tool.** Unlike Cursor, which assists someone already writing code, Claude Code writes code (or completes tasks) from plain-English descriptions — the mental model is delegation, not autocomplete.
+- **Watch what's consuming context if sessions start feeling sluggish.** Some connected tools are heavier on the context window than others — check integrations before assuming the task itself is too large.
+
+## Limitations
+
+- Requires a few minutes of terminal comfort — genuinely simpler than it looks from the outside, but not literally zero setup
+- The context window, while much larger than the web app's, is still finite — very long sessions can eventually lose the thread
+- File organization directly affects both performance and privacy, since it determines what Claude Code can actually see
+- Best suited for someone who already has a specific recurring task in mind — pure open-ended exploration works better in the web app first

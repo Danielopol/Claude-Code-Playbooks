@@ -9,6 +9,7 @@ import { CopyButton } from '@/components/CopyButton';
 import { DownloadButton } from '@/components/DownloadButton';
 import { SetupGuideBox } from '@/components/SetupGuideBox';
 import { PlaybookCard } from '@/components/PlaybookCard';
+import { Newsletter } from '@/components/Newsletter';
 import { Clock, ArrowLeft, ArrowRight, ExternalLink, Terminal, FileCode, HelpCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -371,6 +372,14 @@ export default async function PlaybookPage({ params }: PlaybookPageProps) {
             </CardContent>
           </Card>
         )}
+
+        <Newsletter
+          variant="inline"
+          source={`playbook:${playbook.slug}`}
+          className="mb-8"
+          heading="Get new playbooks like this one"
+          subheading="One email a week with new Claude Code workflows. Free, like everything here."
+        />
 
         <SetupGuideBox
           content={playbook.content}

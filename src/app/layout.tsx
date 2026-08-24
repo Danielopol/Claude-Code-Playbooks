@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Home, BookOpen, Phone, Mail, Layers } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
+import { Newsletter } from '@/components/Newsletter';
 import './globals.css';
 
 const jetbrainsMono = JetBrains_Mono({
@@ -123,6 +124,9 @@ function Footer() {
                 Terms
               </Link>
             </div>
+          </div>
+          <div className="md:max-w-xs w-full">
+            <Newsletter variant="footer" source="footer" />
           </div>
           <div>
             <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">

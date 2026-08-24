@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-grant-writers',
+    slug: 'claude-skills-grant-writers',
+    title: 'Claude Skills for Grant Writers: Win More Funding with AI Drafts',
+    description: "How to use four Claude Skills to strengthen every stage of a grant application — a grant proposal writer that produces a complete first draft in your funder's exact template, a fact checker that verifies every claim and statistic before reviewers can flag them, a grant proposal reviser that integrates reviewer feedback without losing your voice, and a research paper writer that builds the publication record funders actually look for.",
+    category: 'guide',
+    difficulty: 'advanced',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Grant Writing',
+    tags: ['claude skills grants', 'ai grant writing', 'ai grant proposal', 'nsf nih grant ai', 'grant proposal revision', 'research paper writing ai', 'ai fact checking', 'academic funding ai'],
+    createdAt: '2026-08-24',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-authors',
     slug: 'claude-skills-authors',
     title: 'Claude Skills for Authors: Plan, Draft, and Edit Your Novel with AI',

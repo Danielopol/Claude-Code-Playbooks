@@ -46,3 +46,5 @@ nul
 
 # demo video project (large media files)
 /demo-video/
+# Harvest pipeline working data (regenerable, can be very large)
+scripts/pipeline/data/

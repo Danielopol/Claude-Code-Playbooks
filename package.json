@@ -10,7 +10,12 @@
     "start": "next start",
     "lint": "eslint",
     "blog:add": "npx tsx src/scripts/update-blog.ts add",
-    "blog:sync": "npx tsx src/scripts/update-blog.ts sync"
+    "blog:sync": "npx tsx src/scripts/update-blog.ts sync",
+    "pipeline:verify": "node scripts/pipeline/verify-sources.mjs",
+    "pipeline:test": "node scripts/pipeline/selftest.mjs",
+    "pipeline:discover": "node scripts/pipeline/discover.mjs",
+    "pipeline:harvest": "node scripts/pipeline/harvest.mjs",
+    "pipeline:report": "node scripts/pipeline/report.mjs"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

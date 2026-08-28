@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-pitch-decks',
+    slug: 'claude-skills-pitch-decks',
+    title: 'Claude Skills for Pitch Decks: Build Investor-Ready Slides with AI',
+    description: "How to use four Claude Skills to build and populate every deck a founder needs — a pitch deck generator that follows the proven problem-solution-traction-ask structure, a template populator repurposed for keeping financial figures consistent across every slide, an HTML presentation builder for founders who want version-controlled, code-friendly decks, and a partnership deck generator for the proposals that come after the round closes.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Pitch Decks',
+    tags: ['claude skills pitch deck', 'ai pitch deck', 'ai investor slides', 'startup fundraising deck', 'seed series a deck', 'ai presentation builder', 'partnership proposal deck', 'investor deck ai'],
+    createdAt: '2026-08-28',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-grant-writers',
     slug: 'claude-skills-grant-writers',
     title: 'Claude Skills for Grant Writers: Win More Funding with AI Drafts',

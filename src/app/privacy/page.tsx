@@ -65,7 +65,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-base font-semibold text-foreground mb-3">Advertising</h2>
           <p className="mb-3">
-            This site displays advertising served by Google AdSense. The following disclosures apply:
+            This site uses Google AdSense to display advertising. Advertising cookies are set only when ads are actually served, and in the European Economic Area, the United Kingdom, and Switzerland only after you have given consent through our Google-certified consent management platform. The following disclosures apply:
           </p>
           <ul className="list-disc list-inside space-y-2 ml-2">
             <li>Third-party vendors, including Google, use cookies to serve ads based on your prior visits to this site and other websites.</li>

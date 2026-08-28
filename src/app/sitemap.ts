@@ -101,13 +101,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/privacy`,
-      lastModified: new Date('2026-02-25'),
+      lastModified: new Date('2026-08-24'),
       changeFrequency: 'yearly',
       priority: 0.2,
     },
     {
       url: `${baseUrl}/terms`,
       lastModified: new Date('2026-02-25'),
+      changeFrequency: 'yearly',
+      priority: 0.2,
+    },
+    {
+      url: `${baseUrl}/licensing`,
+      lastModified: new Date('2026-08-24'),
       changeFrequency: 'yearly',
       priority: 0.2,
     },

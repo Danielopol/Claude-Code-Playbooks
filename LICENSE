@@ -1,0 +1,81 @@
+Claude Code Playbooks — Licensing
+=================================
+
+This repository contains two kinds of material under two different terms.
+Read both sections before reusing anything.
+
+
+1. SITE CODE — MIT License
+--------------------------
+
+Applies to the website source: everything in `src/` except `src/content/`,
+plus `scripts/`, `public/` except `public/templates/`, and all configuration
+files.
+
+MIT License
+
+Copyright (c) 2026 Claude Code Playbooks
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+2. PLAYBOOK CONTENT — NOT covered by the MIT License
+----------------------------------------------------
+
+Applies to `src/content/playbooks/` and `public/templates/`.
+
+Playbook content is CURATED, not uniformly owned by this project. It is not
+released under a single open source license, and the MIT License above does
+NOT grant you rights to it.
+
+Each playbook falls into one of three categories:
+
+  a) Third-party sourced. The playbook carries a `sourceUrl` field in its
+     frontmatter identifying where the workflow originated. Copyright remains
+     with the original author. Where the source carries its own license
+     (for example an MIT- or Apache-licensed GitHub repository), that license
+     governs, and you must comply with its terms — including preserving its
+     license text and attribution — independently of this file.
+
+  b) Community submitted. Contributed through the submission form on the site.
+     Contributors grant this project a non-exclusive right to publish and
+     distribute their submission. They retain copyright in their own work.
+
+  c) Originally written for this project. The descriptions, setup
+     instructions, tips, limitations, and troubleshooting sections written by
+     this project are Copyright (c) 2026 Claude Code Playbooks, and may be
+     quoted with attribution and a link to the corresponding page.
+
+Because provenance varies playbook by playbook, we cannot grant blanket
+permission to redistribute the playbook corpus. If you want to reuse a
+specific playbook, check its `sourceUrl` and honor the original author's
+terms.
+
+
+3. ATTRIBUTION AND REMOVAL
+--------------------------
+
+Every playbook with a known origin links to that source from its page. If you
+are the author of material published here and you want attribution corrected,
+the wording changed, or the page removed, email
+valentin.marin83@gmail.com and we will act on it promptly. We do not require a
+formal legal notice to honor a removal request.
+
+Trademarks, including Claude and Anthropic, belong to their respective owners.
+This project is not affiliated with or endorsed by Anthropic.

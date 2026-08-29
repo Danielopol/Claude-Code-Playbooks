@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Home, BookOpen, Phone, Mail, Layers } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
+import Script from 'next/script';
 import { Newsletter } from '@/components/Newsletter';
 import './globals.css';
 
@@ -218,6 +219,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`dark ${jetbrainsMono.variable} ${pressStart2P.variable}`}>
       <body className="antialiased min-h-screen flex flex-col bg-[#0d1117]">
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9363191043798291"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}

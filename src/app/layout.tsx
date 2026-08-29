@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Home, BookOpen, Phone, Mail, Layers } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
-import Script from 'next/script';
 import { Newsletter } from '@/components/Newsletter';
 import './globals.css';
 
@@ -218,13 +217,23 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`dark ${jetbrainsMono.variable} ${pressStart2P.variable}`}>
-      <body className="antialiased min-h-screen flex flex-col bg-[#0d1117]">
-        <Script
+      <head>
+        {/*
+          Plain native <script>, not next/script: the App Router's Script
+          component never emits a literal <script src> tag server-side — it
+          renders a <link rel="preload"> and injects the real tag client-side
+          after hydration. Google's AdSense verification and ad-serving
+          crawlers fetch static HTML without executing JS, so they need the
+          literal tag below, in <head>, exactly as AdSense's own instructions
+          specify.
+        */}
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9363191043798291"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
         />
+      </head>
+      <body className="antialiased min-h-screen flex flex-col bg-[#0d1117]">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}

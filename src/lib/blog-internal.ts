@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-reports',
+    slug: 'claude-skills-reports',
+    title: 'Claude Skills for Reports: Turn Data into Executive-Ready Documents',
+    description: "How to use four Claude Skills to go from raw data to a document leadership actually reads — a business analytics reporter that finds the insights and weak areas hiding in CSV data, a report generator that formats findings into polished tables, charts, and commentary, an executive summary generator that condenses a 30-page report into the one page that gets read, and an executive dashboard for ongoing visibility beyond a single report.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Reports',
+    tags: ['claude skills reports', 'ai report generator', 'ai executive summary', 'business analytics ai', 'data to document', 'executive dashboard ai', 'automated reporting', 'ai business reports'],
+    createdAt: '2026-08-30',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-pitch-decks',
     slug: 'claude-skills-pitch-decks',
     title: 'Claude Skills for Pitch Decks: Build Investor-Ready Slides with AI',

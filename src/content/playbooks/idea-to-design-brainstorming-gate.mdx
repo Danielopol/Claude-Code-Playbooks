@@ -1,0 +1,69 @@
+---
+title: "Idea-to-Design Brainstorming Gate"
+description: "A hard approval gate before any implementation — classify every request as a Spike, Bounded change, or Architectural project, then design collaboratively and never write code until the design is explicitly approved."
+seoHook: "You asked for 'a quick fix' and three hours later there's a half-finished refactor touching six files you never approved — because 'simple' got treated as 'skip the design step' instead of 'keep the design short.'"
+targetAudience: "developers who want Claude to stop implementing before checking in, teams tired of scope creep starting from an innocent-sounding request, tech leads wanting a consistent process for classifying work by size, anyone who's had an AI agent run ahead of what they actually approved, engineering managers standardizing how much process different sizes of work actually need"
+exampleUseCase: "\"Add a dark mode toggle\" → Classified out loud as Bounded (the theming flow already exists to read), a few clarifying questions about persistence and default state, a short design presented in chat, and an explicit stop-and-wait for approval before a single line of code is written — versus a request to \"build a plugin system\" correctly escalating to the full Architectural path with a written spec"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "obra (superpowers)"
+sourceUrl: "https://github.com/obra/superpowers/blob/main/skills/brainstorming/SKILL.md"
+tags: ["brainstorming", "design-process", "approval-gate", "scope-classification", "spec-writing", "claude-code-basics"]
+createdAt: "2026-08-30"
+---
+
+## What This Does
+
+A discipline for the moment right before implementation starts: classify the request's actual size (Spike, Bounded, or Architectural), scale the process to match, and never let implementation begin without an explicit approval — no matter how small the task looks. The classification is said out loud so you can correct it, and hidden complexity discovered mid-task always upgrades the classification, never the other way around.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir brainstorming-gate && cd brainstorming-gate
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Start a Request
+
+```bash
+claude
+```
+
+Then describe what you want built — the classification and approval gate happen automatically before any code gets written.
+
+---
+
+## The Three Paths
+
+| Path | When | Process |
+|------|------|---------|
+| Spike | A feasibility question — "can we...", "is it possible..." | 2-3 sentence probe, a nod, cheap investigation, report a recommendation. No design doc. |
+| Bounded | A well-scoped change to something that already exists | Clarifying questions, a short in-chat design, explicit approval, then implementation. No spec file. |
+| Architectural | New projects, new subsystems, interface changes others depend on | Full process: questions, 2-3 approaches, sectioned design, written spec, self-review, your review, then implementation planning. |
+
+**When in doubt, take the heavier path.** The classification only ever escalates mid-task — it never downgrades.
+
+## Tips & Best Practices
+
+- **"Simple" means a short design, not no design.** Even a two-sentence design in chat needs an explicit approval before implementation — the artifact scales with simplicity, the approval step never does.
+- **Bounded measures whether the flow already exists, not your familiarity with the category.** Understanding "this kind of app" isn't enough to call something bounded — if there's no existing flow to modify, it's architectural, however routine it feels.
+- **A spike's output is an answer, not code to keep.** If the spike's throwaway code turns out to be worth keeping, that's a new request — reclassify it rather than quietly promoting it.
+- **Decompose before you brainstorm, not during.** If a request actually describes several independent subsystems, flag that immediately rather than spending questions refining details of something that needs splitting first.
+- **Self-review a written spec before showing it to the requester** — scan for placeholders, contradictions, and ambiguity, and fix them inline rather than making the reviewer catch them.
+
+## Limitations
+
+- This is a process discipline, not a design methodology — it structures *when* to design and *when* to stop and ask, not *how* to architect a specific system
+- The full Architectural path assumes a project convention for where specs get saved; adapt the file path to match your team's actual practice
+- Best suited for genuinely collaborative work where pausing for approval is wanted — a fully autonomous batch pipeline with no human in the loop needs a different pattern

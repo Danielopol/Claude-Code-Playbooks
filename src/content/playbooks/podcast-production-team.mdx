@@ -1,0 +1,79 @@
+---
+title: "Podcast Production Team"
+description: "A coordinated five-role agent team — researcher, scriptwriter, show-note editor, distribution manager, and reviewer — that produces a full podcast episode's content in one pass, with the team size scaling to match the actual request."
+seoHook: "You ask for 'a podcast episode' and get one undifferentiated wall of text that's trying to be research, script, and show notes all at once — because one pass through one role can't actually do what five specialized ones can."
+targetAudience: "podcasters wanting a repeatable production pipeline instead of starting from a blank page every episode, content teams adding a podcast to an existing content strategy, solo creators who need research, scripting, and distribution copy without hiring a full production team, shows doing interview episodes that need a real question structure, anyone tired of one-shot podcast content that reads like it skipped a planning step"
+exampleUseCase: "\"Plan a 30-minute interview episode on AI ethics with a researcher guest\" → A research brief with 5+ current issues and guest talking points, a full script with a DEPTH-structured interview progression and dialogue cues, show notes with real timestamps tied to script segments, a distribution package with platform-specific promo copy and a posting calendar, and a review report confirming every deliverable is internally consistent before delivery"
+category: "media-production"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "revfactory"
+sourceUrl: "https://github.com/revfactory/harness-100/blob/main/en/02-podcast-studio/.claude/skills/podcast-studio/skill.md"
+tags: ["podcast", "content-production", "multi-agent", "scriptwriting", "show-notes", "distribution", "media-production"]
+createdAt: "2026-08-30"
+---
+
+## What This Does
+
+Runs podcast episode production through five specialized roles instead of one generic pass: a researcher who investigates the topic and extracts talking points, a scriptwriter who builds the actual episode script, a show-note editor who compiles timestamped notes, a distribution manager who writes platform-specific promo copy, and a reviewer who cross-checks every deliverable for consistency before calling it done. The team size scales to the request — a full episode gets all five, "just write the script" gets three.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir podcast-episode && cd podcast-episode
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Plan an Episode
+
+```bash
+claude
+```
+
+Then describe the episode — topic, type (solo/interview/panel), and any guest info — and ask for a full production pass or just a specific deliverable.
+
+---
+
+## The Five Roles
+
+| Role | Deliverable |
+|------|--------------|
+| researcher | Research brief — talking points, verified facts, references |
+| scriptwriter | Full episode script with dialogue cues |
+| shownote-editor | Timestamped show notes and reference links |
+| distribution-manager | Platform-specific promo copy and posting calendar |
+| production-reviewer | Cross-validation report across all deliverables |
+
+## Execution Modes
+
+| Ask for... | Team deployed |
+|--------------|-----------------|
+| Full production / "plan an episode" | All 5 roles |
+| Script only | researcher + scriptwriter + reviewer |
+| Show notes from an existing script | shownote-editor + reviewer |
+| Promo copy from an existing script | distribution-manager + reviewer |
+| A review of an existing script | reviewer only |
+
+## Tips & Best Practices
+
+- **Match the mode to what you actually need.** Running all five roles for "just write me a script" produces unused deliverables and wastes the parallel-execution advantage that show-notes and distribution get from running simultaneously once the script is done.
+- **Structure interview questions with a DEPTH progression** — facts, then reasoning, then implications, then personal stakes, then forward-looking synthesis — rather than a flat list. This is what makes a scripted interview feel like a real conversation instead of a Q&A form.
+- **Show notes timestamps should trace to actual script segment boundaries, not estimates.** A show note that guesses at timing drifts out of sync with the real episode the moment recording deviates even slightly from the script.
+- **Write platform-specific distribution copy, not one description everywhere.** A short-form hook-first clip description and a longer show-notes-style post perform differently — reusing one for both under-serves at least one platform.
+- **Trust the review report's Must-Fix items.** The reviewer's cross-validation exists specifically to catch inconsistencies between deliverables (a fact in the script that contradicts the research brief, a timestamp in show notes that doesn't match the script) that are easy to miss when each piece is read in isolation.
+
+## Limitations
+
+- Explicitly out of scope: actual audio recording and editing (Audacity, GarageBand-level work), podcast hosting API integration, and RSS feed technical setup — this produces content, not audio production
+- Interview and narrative-pacing techniques (DEPTH questioning, narrative arcs) are guidance, not guarantees — episode quality still depends on how well the actual topic and guest fit the format
+- Best suited for planning and content generation ahead of recording, not for post-recording transcription or editing workflows

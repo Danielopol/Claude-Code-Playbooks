@@ -1,0 +1,74 @@
+---
+title: "CEO-Mode Plan Review"
+description: "Review a technical or product plan the way a great CEO would — pick a mode (expand scope, cherry-pick expansions, hold scope, or cut ruthlessly), then apply nine prime directives and eleven cognitive patterns to catch every silent failure, missing edge case, and unnamed error before it ships."
+seoHook: "Your plan got a 'looks good, ship it' from the one person whose job was actually to find the landmines — because a rubber-stamp review and a rigorous one look identical until the plan is in production and the shadow path nobody traced turns into a 3am incident."
+targetAudience: "tech leads reviewing a teammate's technical plan before implementation starts, founders and engineering managers who want a genuinely rigorous second opinion, solo developers who want the discipline of a tough reviewer without hiring one, teams deciding whether to expand, hold, or cut scope on a project before committing, anyone whose plan reviews currently amount to a skim and a thumbs-up"
+exampleUseCase: "\"Review this plan in Hold Scope mode\" → A system audit of what's already in flight, a premise challenge asking whether this is even the right problem, a section-by-section pass naming every unhandled error and untraced shadow path, an explicit edge-case map for every user-facing interaction, a check that observability and rollback are actual line items rather than afterthoughts, and a plain verdict: ship as-is, ship with these specific changes, or reconsider the approach entirely"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "garrytan (gstack)"
+sourceUrl: "https://github.com/garrytan/gstack/blob/main/plan-ceo-review/SKILL.md"
+tags: ["plan-review", "code-review", "technical-planning", "scope-management", "risk-assessment", "engineering-leadership"]
+createdAt: "2026-08-30"
+---
+
+## What This Does
+
+A structured plan review that refuses to rubber-stamp: pick one of four review postures (Scope Expansion, Selective Expansion, Hold Scope, or Scope Reduction), then apply nine prime directives — zero silent failures, every error named, all shadow paths traced, edge cases mapped, observability as scope not afterthought, diagrams mandatory, deferred items written down, six-month-future thinking, permission to say "scrap it" — plus a set of CEO-level cognitive patterns (inversion reflex, focus as subtraction, proxy skepticism, edge-case paranoia) to catch what a quick skim misses.
+
+The mode is chosen once and held for the whole review — no silent drift toward a different posture halfway through.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir plan-review && cd plan-review
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Run a Review
+
+```bash
+claude
+```
+
+Then say: **"Review this plan"** — pointing at the plan document or pasting it — and answer which mode applies when asked.
+
+---
+
+## The Four Modes
+
+| Mode | Posture |
+|------|---------|
+| Scope Expansion | Envision the platonic ideal — push scope up, propose 10x improvements, but every expansion is your decision |
+| Selective Expansion | Hold the current scope as baseline and make it bulletproof, while surfacing expansion opportunities one at a time to cherry-pick |
+| Hold Scope | Maximum rigor on the scope as given — no silent expansion or reduction |
+| Scope Reduction | Find the minimum viable version and cut everything else, ruthlessly |
+
+## The Nine Prime Directives
+
+Zero silent failures · Every error has a name · Shadow paths traced (nil, empty, upstream error, plus happy path) · Edge cases mapped for every interaction · Observability as first-class scope · Diagrams mandatory for non-trivial flows · Deferred items written down · Six-month-future thinking · Permission to say "scrap it and do this instead"
+
+## Tips & Best Practices
+
+- **Choose the mode before the review starts, and hold it.** Silent drift between modes — starting in Expansion and quietly reviewing like Hold Scope by section three — is the most common way this review loses its value. Raise concerns about the mode itself once, up front, then execute it faithfully.
+- **"Handle errors" is not a plan item — name the specific exception.** A catch-all handler is a code smell worth flagging explicitly, not a detail to let slide because the plan mentions error handling in general terms.
+- **Trace all four paths for every new data flow**, not just the happy path: nil input, empty/zero-length input, and upstream error are the three shadow paths that most plans skip.
+- **Observability and rollback planning are scope, not cleanup.** If they're not explicit line items in the plan, that's a finding worth raising, not something to assume will happen later.
+- **Deliver a plain verdict, not just a list of observations.** The review ends with an actual recommendation — ship as-is, ship with specific changes, or reconsider — not a pile of findings with no synthesis.
+
+## Limitations
+
+- This is a review discipline for genuinely consequential plans — applying full rigor to a one-line config change wastes the reviewer's time and yours
+- The cognitive-patterns framework is a way of thinking through the review, not a checklist to enumerate in the output — over-literal application (listing all eleven patterns explicitly) misses the point of internalizing them
+- Best suited for plans that already exist in some written form; this reviews a plan, it doesn't generate one from scratch — pair it with a design/brainstorming playbook for that earlier step

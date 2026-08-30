@@ -1,0 +1,78 @@
+---
+title: "Instagram Post Downloader"
+description: "Download Instagram posts, carousels, and Reel covers at full CDN resolution — no screenshots, no compression — with carousel slides stitched into a single PDF and support for batch downloading multiple URLs at once."
+seoHook: "You screenshot an Instagram carousel for a competitor swipe file and get six blurry, cropped, watermark-adjacent images instead of the crisp originals — because a screenshot is a photo of a photo, and there's a full-resolution version sitting on Instagram's CDN the whole time."
+targetAudience: "social media managers building competitor swipe files, marketers archiving campaign creative for a portfolio, researchers documenting Instagram content for analysis, content creators saving their own posts as a permanent local archive, anyone tired of blurry screenshots when the actual high-res image is one CDN request away"
+exampleUseCase: "\"Download these 3 Instagram posts\" → Each post saved to its own folder named from the caption, single images pulled at full resolution, a 4-slide carousel saved as individual numbered images plus one stitched carousel.pdf, a metadata.txt recording the source URL and fetch timestamp for each, and a completion summary listing exactly what was saved and what (if anything) failed"
+category: "marketing-content"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "mohitagw15856"
+sourceUrl: "https://github.com/mohitagw15856/pm-claude-skills/blob/main/exports/openclaw/instagram-post-downloader/SKILL.md"
+tags: ["instagram", "social-media", "download", "carousel", "competitor-research", "content-archive", "pdf"]
+createdAt: "2026-08-30"
+---
+
+## What This Does
+
+Pulls Instagram posts directly from the CDN at full resolution instead of relying on a screenshot — single images, multi-slide carousels (saved as individual files plus one stitched PDF), and Reel cover thumbnails. Handles a batch of URLs in one run, with a completion summary showing exactly what succeeded and what didn't.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir instagram-downloads && cd instagram-downloads
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Add the Domain to Your Allowlist
+
+In Claude Code: **Settings → Capabilities → Domain allowlist → Add** `*.cdninstagram.com` — required before any fetch will succeed.
+
+### Step 4: Download a Post
+
+```bash
+claude
+```
+
+Then paste one or more Instagram URLs and ask it to download them.
+
+---
+
+## Output Structure
+
+```
+instagram-downloads/
+├── single_post_caption/
+│   ├── image.jpg
+│   └── metadata.txt
+└── carousel_post_caption/
+    ├── slide_01.jpg
+    ├── slide_02.jpg
+    ├── carousel.pdf
+    └── metadata.txt
+```
+
+Every post gets a `metadata.txt` recording the source URL, shortcode, type, caption, username, and fetch timestamp — so a download is always traceable back to its origin.
+
+## Tips & Best Practices
+
+- **Set up the domain allowlist before your first attempt.** Without `*.cdninstagram.com` added, every fetch fails with a permission error that looks like a bug but is actually just the missing allowlist entry.
+- **Batch your URLs in one request rather than one at a time.** One comma-separated or newline-separated list produces one consolidated completion summary instead of several disconnected runs.
+- **Instagram's API surface changes often — expect a fallback chain, not a single fixed endpoint.** The template handles this by trying a JSON endpoint first and falling back to parsing embedded page data if that fails.
+- **Check the completion summary's "Skipped" section, not just the success count.** A batch that processed 3 URLs and saved 2 files should tell you exactly which one failed and why, not just report "2 files saved" and leave you to notice the discrepancy.
+
+## Limitations
+
+- Reel *video* download is out of scope — this handles the Reel cover/thumbnail image only, not the video file itself
+- Depends on Instagram's current page structure for extraction; a platform-side change can require adjusting the fetch approach
+- Requires the CDN domain to be explicitly allowlisted in Claude Code's capability settings — this is a one-time setup step, not automatic

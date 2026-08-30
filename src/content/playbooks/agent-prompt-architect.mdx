@@ -1,0 +1,81 @@
+---
+title: "Agent Prompt Architect"
+description: "A compact seven-field skeleton (Role, Goal, Inputs, Constraints, Process, Output, Verification, Fallback) and a fast refinement loop for turning vague intent into a prompt an agent can execute reliably every time."
+seoHook: "Your sub-agent prompt works perfectly on the happy path and silently does something different every time it hits missing information — because 'figure it out' isn't a fallback policy, it's the absence of one, and nobody wrote down what should happen instead."
+targetAudience: "developers building sub-agents, skills, or slash commands that need to behave consistently, teams standardizing how prompts get written across a project, anyone whose agent prompt works in testing but drifts in production, prompt engineers wanting a repeatable structure instead of starting from a blank page each time, people debugging why an agent's output format varies run to run"
+exampleUseCase: "\"Design a prompt for a sub-agent that summarizes support tickets\" → A seven-field skeleton filled in with a single measurable goal, explicit hard constraints instead of soft language like 'try to be concise', a fixed output schema so downstream parsing never breaks, a self-verification step before the agent reports done, and an explicit fallback policy for when a ticket is missing required fields"
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "repowise-dev"
+sourceUrl: "https://github.com/repowise-dev/claude-code-prompts/blob/master/skills/prompt-architect/SKILL.md"
+tags: ["prompt-engineering", "sub-agents", "skills", "slash-commands", "prompt-design", "claude-code-basics"]
+createdAt: "2026-08-30"
+---
+
+## What This Does
+
+A compact, repeatable structure for writing prompts that agents actually execute consistently — not a general essay on good prompting, but a seven-field skeleton (Role, Goal, Inputs, Constraints, Process, Output, Verification, Fallback) plus a fast test-and-patch refinement loop. Built for the specific failure modes that show up in agent workflows: vague goals with no priority, soft language that agents deprioritize under pressure, hidden assumptions the prompt never actually states, and output that drifts in format run to run.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir prompt-design && cd prompt-design
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Design a Prompt
+
+```bash
+claude
+```
+
+Then describe what the prompt needs to do — the skeleton and refinement loop apply directly to drafting or fixing it.
+
+---
+
+## The Skeleton
+
+```markdown
+Role: [who the agent is]
+Goal: [single primary outcome]
+Inputs: [what is available]
+Constraints: [must-follow rules]
+Process: [ordered steps]
+Output: [exact format and fields]
+Verification: [how to self-check before final]
+Fallback: [what to do if blocked]
+```
+
+## Common Failure Patterns
+
+| Pattern | Fix |
+|---------|-----|
+| Over-broad goal (multiple objectives, no priority) | Convert to one measurable success condition |
+| Soft constraints ("try to...") | Replace with explicit must/should rules |
+| Hidden assumptions (unstated context) | Move them into Inputs explicitly |
+| Output drift (no fixed schema) | Add a fixed output template |
+
+## Tips & Best Practices
+
+- **A prompt missing Fallback will stall silently the first time it hits missing information.** Explicitly state whether the agent should ask, infer and flag the inference, or stop and report — "figure it out" isn't a policy.
+- **Test on a genuine edge case, not just the happy path, before calling a prompt done.** A prompt that only gets tested on typical input has an unknown failure mode waiting for the first unusual one.
+- **When a test fails, patch only the failing section.** Rewriting the whole prompt from one failure risks fixing what wasn't broken and reintroducing bugs elsewhere.
+- **Keep a short changelog of edits.** It's the only way to tell whether a later regression traces back to this change or something else — without it, debugging a prompt regression means re-deriving history from memory.
+- **"Try to keep it concise" and "must stay under 200 words" are not interchangeable.** Soft language reads as a suggestion an agent can deprioritize under competing pressure; a strict rule doesn't leave that room.
+
+## Limitations
+
+- This structures individual prompt design — it doesn't cover multi-agent orchestration, handoffs between agents, or system-level architecture
+- The refinement loop assumes you can actually run the prompt and observe failures; for a prompt you can't yet test in context, treat the skeleton as a first draft to validate once you can
+- Best suited for prompts meant to run repeatedly and reliably (a sub-agent, a skill, a slash command) — a one-off exploratory prompt doesn't need this level of structure

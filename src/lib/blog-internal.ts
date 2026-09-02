@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-excel',
+    slug: 'claude-skills-excel',
+    title: 'Claude Skills for Spreadsheets: Automate Excel Models and Analysis',
+    description: "How to use four Claude Skills to eliminate the most repetitive parts of working in Excel — a live automation Skill that refreshes and updates real Excel dashboards on a schedule, a file manipulation Skill that merges and formats dozens of workbooks into one, a financial modeling Skill for a quick founder-scale 3-statement projection, and a professional-grade 3-statement model builder with full IB/FP&A supporting schedules.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Excel',
+    tags: ['claude skills excel', 'ai spreadsheet automation', 'ai excel models', 'excel automation ai', '3 statement model ai', 'financial modeling ai', 'excel file merging', 'ai xlsx tools'],
+    createdAt: '2026-09-02',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-reports',
     slug: 'claude-skills-reports',
     title: 'Claude Skills for Reports: Turn Data into Executive-Ready Documents',

@@ -1,0 +1,62 @@
+---
+title: "Project Graveyard: Autopsy Your Abandoned Side Projects"
+description: "Scan local repos for dead side projects, autopsy each one from its git history, surface your personal death patterns, and pick the one corpse most worth resurrecting — then help ship it."
+seoHook: "Every developer has a folder full of half-finished side projects and zero idea why any of them actually died — was it the payments wall, a shinier new idea, or just fear of deploying? The pattern is sitting right there in git history; nobody's ever asked it the question."
+targetAudience: "developers with a graveyard of abandoned side projects, indie hackers deciding what to build next, anyone who keeps starting projects and wondering why none of them ship, people about to start something new who suspect they've half-built it before"
+exampleUseCase: "\"Run the graveyard on my dev folder\" → A census of every dead repo with combined lifespan and oldest corpse, a tombstone per project naming its evidence-based cause of death, the personal patterns behind them (\"your projects die at day 19\"), and one resurrection pick with a 7-step plan ending at actually shipped"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Shubham Saboo"
+sourceUrl: "https://github.com/Shubhamsaboo/awesome-llm-apps/blob/main/agent_skills/project-graveyard/SKILL.md"
+tags: ["side-projects", "git-history", "productivity", "developer-tools", "retrospective", "project-management"]
+createdAt: "2026-09-05"
+---
+
+## What This Does
+
+Scans wherever your side projects actually live, reads each dead repo's git history, and works out an evidence-based cause of death — a payments wall, getting killed by a newer project, finished-but-never-shipped, scope explosion, deploy fear, or a slow fade nobody named at the time. For the low-confidence causes, it asks you directly rather than guessing, and labels each verdict honestly: forensic (what git showed) versus confirmed (what you said).
+
+The real payoff is the patterns across all of them — the day your projects tend to die, the cause that keeps recurring, the newer-shinier-idea cycle — followed by a **world-check** on the single best candidate for resurrection: has what blocked it gotten easier since it died, or has the world already shipped the idea? Either way you get a concrete answer and, if it's worth digging up, a 7-step plan that ends at *shipped*, not "keep working on it."
+
+Everything runs against git history already on disk — no API calls, nothing leaves the machine.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir project-graveyard && cd project-graveyard
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Run the Autopsy
+
+```bash
+claude
+```
+
+Then say: **"Run the graveyard"** and point at where your side projects live (e.g. `~/dev`, `~/projects`). Answer the one or two follow-up questions about ambiguous cases, and let it write the tombstone report.
+
+---
+
+## Tips & Best Practices
+
+- Give every git identity you commit under (personal email, work email, GitHub web edits) — otherwise real corpses get skipped as "not yours."
+- If the census looks absurd, check for a repo nested inside another (an accidental `git init` on a home directory or Desktop is a common culprit).
+- Offer the redacted version (`project-1..n`) before sharing the report anywhere — causes and patterns stay intact, names don't.
+- Don't skip the world-check before resurrecting anything. A project that died fighting an API that now has an official SDK is a very different pitch than one whose whole idea shipped as a funded product last year.
+
+## Limitations
+
+- Reads local git history only — it has no visibility into repos that were never committed to git, or into why a project died beyond what commits and their timing imply.
+- The 45-day "dead" threshold is a heuristic, not a verdict — a stable, finished tool can look dead at 45 days; always confirm before eulogizing anything the user considers done.
+- Designed to surface one resurrection candidate, not rank every project — resist the temptation to turn it into a full portfolio review.

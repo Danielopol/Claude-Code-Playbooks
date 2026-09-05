@@ -1,0 +1,60 @@
+---
+title: "Secure Coding Practices"
+description: "A threat-model-first secure coding reference — trust-boundary mapping, a STRIDE quick-pass, a three-tier always/ask-first/never boundary system, and copy-paste prevention patterns for injection, XSS, broken access control, and SSRF."
+seoHook: "An AI assistant can write a feature that compiles, passes the demo, and quietly uses string-concatenated SQL or fetches whatever URL the user handed it — because nobody told it to think about trust boundaries before writing the first line."
+targetAudience: "developers using AI coding assistants on production codebases, teams without a dedicated security engineer who still need secure defaults, backend engineers building anything that touches user input, authentication, or external APIs, anyone who wants a concrete always-do/ask-first/never-do checklist instead of vague security advice"
+exampleUseCase: "\"Add a webhook receiver that fetches the callback URL\" → A five-minute trust-boundary map before any code, a STRIDE pass flagging SSRF as the live threat, an allowlisted-and-DNS-checked fetch pattern instead of a naive fetch(userUrl), and a reminder to run the project's dependency audit before shipping"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Addy Osmani"
+sourceUrl: "https://github.com/addyosmani/agent-skills/blob/main/skills/security-and-hardening/SKILL.md"
+tags: ["security", "secure-coding", "owasp", "threat-modeling", "vulnerability-prevention", "code-quality"]
+createdAt: "2026-09-05"
+---
+
+## What This Does
+
+A secure-by-default coding reference built around a five-minute threat model — map the trust boundaries, name the assets, run a quick STRIDE pass, write an abuse case next to every use case — done *before* writing the feature, not bolted on after. From there it gives a concrete three-tier boundary system: what to always do without exception (parameterized queries, hashed passwords, security headers), what requires asking first (new auth flows, new data categories, new integrations), and what to never do (commit secrets, trust client-side validation, expose stack traces).
+
+The bulk of the reference is copy-paste prevention patterns for the vulnerability classes that show up most in day-to-day code — SQL injection, broken authentication, XSS, broken access control, security misconfiguration, sensitive data exposure, and SSRF (the one attackers reach for whenever a server fetches a user-influenced URL) — plus a dependency and supply-chain hygiene section covering lockfile audits and the specific risk of an AI-suggested package that doesn't actually exist.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir secure-coding && cd secure-coding
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Apply It Before Building a Feature
+
+```bash
+claude
+```
+
+Describe the feature you're about to build — especially anything touching user input, auth, or an external service — and ask Claude to threat-model it first using this reference before writing code.
+
+---
+
+## Tips & Best Practices
+
+- Do the five-minute threat model even when a feature feels too small for it — the boundary you skip mapping is exactly the one that becomes the incident.
+- "Handle errors" is not a security control on its own — name the specific failure mode (a missing auth header, a malformed webhook payload) and what happens for each.
+- Show generic errors to the user and detailed ones to the server log, never the reverse — stack traces are a gift to an attacker probing for weaknesses.
+- Treat an AI-suggested dependency the same as any other new dependency: verify it actually exists and is the intended package before adding it — hallucinated or typosquatted package names are a real supply-chain risk.
+
+## Limitations
+
+- A practices reference, not an automated scanner — it shapes what to build and review for, but doesn't replace SAST/DAST tooling or a professional penetration test for anything handling real money or regulated data.
+- The "ask first" tier assumes a team that can actually enforce a gate; in a solo or fast-moving context, treat it as a personal checklist rather than an approval workflow.
+- Code examples use a Node/TypeScript stack — translate the underlying pattern (parameterize, encode, authorize, allowlist) to whatever stack the project actually uses.

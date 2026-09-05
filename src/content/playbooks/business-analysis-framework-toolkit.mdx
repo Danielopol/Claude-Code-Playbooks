@@ -1,0 +1,59 @@
+---
+title: "Business Analysis Framework Toolkit"
+description: "A two-phase consulting-report system: build a rigorous analysis framework from a 20+ framework catalog (SWOT, Porter's Five Forces, BCG Matrix, TAM-SAM-SOM, DCF, and more) with per-chapter data requirements, then synthesize collected data into a McKinsey-voice report under a strict no-hallucinated-numbers rule."
+seoHook: "A consulting-grade report that skips straight to prose either fabricates numbers to sound confident or reads like a data dump nobody interpreted — the fix is planning which frameworks and which data each chapter actually needs before a single sentence gets written."
+targetAudience: "consultants and analysts producing market, brand, or competitive analysis reports, product managers building investor-ready market sizing decks, corporate strategy teams standardizing report structure across a function, anyone who needs a McKinsey/BCG-style deliverable without hallucinated statistics"
+exampleUseCase: "\"Analyze the Gen-Z skincare market\" → A framework document selecting TAM-SAM-SOM + Product Life Cycle for market sizing, Porter's Five Forces + Strategic Group Mapping for competition, and RFM + Consumer Decision Journey for consumer profiling, each chapter with its own data requirements and search keywords — then, once real data is collected, a synthesized report where every chart and claim traces to that data and nothing is invented"
+category: "market-research"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "ByteDance (deer-flow)"
+sourceUrl: "https://github.com/bytedance/deer-flow/blob/main/skills/public/consulting-analysis/SKILL.md"
+tags: ["market-research", "consulting", "business-analysis", "strategic-frameworks", "competitive-intelligence", "report-writing"]
+createdAt: "2026-09-05"
+---
+
+## What This Does
+
+Splits consulting-grade report writing into two disciplined phases. **Phase 1** takes a research subject and domain (market, brand, financial, industry, consumer, investment, or competitive), selects 2–4 complementary frameworks from a catalog spanning strategic analysis (SWOT, PESTEL, Porter's Five Forces), market and growth (BCG Matrix, Ansoff, TAM-SAM-SOM), consumer behavior (RFM, Consumer Decision Journey, Jobs-to-be-Done), financial valuation (DCF, DuPont, Comparable Company Analysis), and competitive positioning (Blue Ocean, Strategic Group Mapping) — then builds a chapter skeleton where every chapter names its objective, its framework, its hypothesis, its exact data requirements, and its visualization plan.
+
+Only after real data is collected against that plan does **Phase 2** synthesize the final report, under one non-negotiable rule: the **Data Authenticity Protocol**. Every number and chart must trace to actually-collected data — missing data gets flagged as "not available," never invented. Each section follows a fixed narrative chain — Observation (What) → Attribution (Why) → Implication (So What) — so the report reads as interpreted insight in a consulting voice, not a data dump.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir business-analysis && cd business-analysis
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Build a Framework
+
+```bash
+claude
+```
+
+Give Claude a research subject and its scope (geography, time range, industry segment) and ask it to build the Phase 1 analysis framework. Once you've gathered the real data it calls for, come back and ask it to run Phase 2 and synthesize the final report.
+
+---
+
+## Tips & Best Practices
+
+- Resist starting Phase 2 with a thin data package "to keep momentum" — a report built on gaps just relocates the gap-filling problem into hallucinated-sounding prose. Close the required data gaps first.
+- The framework-selection step is where reports most often go wrong: two frameworks that measure the same thing (Porter's Five Forces and Strategic Group Mapping can easily collapse into one section) waste a chapter instead of adding depth — be deliberate about what each one uniquely contributes.
+- Keep the consolidated data-collection task list deduplicated across chapters — two chapters often want the same market-size figure; request it once.
+
+## Limitations
+
+- This builds the framework and the final report — it is explicitly not a data-collection or web-research tool, and needs a real research step (an agent or a human) between its two phases.
+- The framework catalog favors business and strategy domains; a genuinely technical or scientific research report needs different tooling.
+- Best suited to reports with real data behind them — for a quick, low-stakes internal memo, this level of structure is more overhead than the task warrants.

@@ -1,0 +1,59 @@
+---
+title: "Documentation Review System"
+description: "Mode-routed documentation review that diagnoses a page against its doc type and seven quality dimensions before touching a sentence, then picks the intervention level — maintenance, improve, rewrite, author, or strategy — that actually matches what's wrong."
+seoHook: "\"Review this doc\" usually gets you either a pile of comma fixes on a page whose structure is fundamentally broken, or a rewrite nobody asked for on a page that just needed a cleanup pass — because nothing forced a diagnosis before the edits started."
+targetAudience: "technical writers standardizing review quality across a docs team, engineers who own docs alongside code and want a repeatable process, developer-relations teams auditing an existing docs site, anyone whose \"can you review this doc\" requests currently get inconsistent, mood-dependent results"
+exampleUseCase: "\"Review this troubleshooting page\" → A doc-type classification (troubleshooting, with a buried task-shaped section flagged as secondary), a diagnosis against seven quality dimensions surfacing that the page buries its actual fix three paragraphs in, an intervention-level call of rewrite rather than line edits, and a restructured page with house style applied last and validation run to confirm"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Storybook"
+sourceUrl: "https://github.com/storybookjs/storybook/blob/next/.agents/skills/docs-review/SKILL.md"
+tags: ["documentation", "technical-writing", "content-review", "editing", "docs-as-code"]
+createdAt: "2026-09-05"
+---
+
+## What This Does
+
+Routes every documentation request — review, improve, rewrite, author, or "just give me advice" — through a diagnosis pass before any edit happens. It classifies the page's primary doc type (concept, task, reference, troubleshooting, migration, or decision guide), evaluates it against seven quality dimensions in a fixed order (intent clarity, audience fit, information shape, conceptual clarity, task usability, example quality, economy), and only then picks an intervention level: light maintenance, a strengthening pass, a full rewrite, ground-up authoring, or a planning artifact with no files touched.
+
+The hard rule underneath it: when a page's structure is genuinely wrong for its job, sentence-level polish doesn't fix it — reorder, split, replace examples, or rewrite the shape. House style (voice, headings, link conventions) is always the last pass, applied after structure and content are right, never the first move.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir docs-review && cd docs-review
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Review a Page
+
+```bash
+claude
+```
+
+Then paste in the doc you want reviewed, or say "review this page" and point at the file. Claude will classify its doc type, diagnose it, and tell you which intervention level applies before making any changes.
+
+---
+
+## Tips & Best Practices
+
+- The hybrid-mode call for a vague "review this doc" request matters: lead with critique when the draft is obviously weak, lead with edits when it's decent and just needs cleanup. Getting this backwards reads as either pedantic or evasive.
+- Don't let a well-written secondary section talk you out of flagging that the page's primary type is wrong — a gorgeous troubleshooting sidebar doesn't fix a concept page that never explains the concept.
+- Check the Economy dimension against the rest of the docs tree, not just the page in isolation — padding that duplicates another page is still padding.
+
+## Limitations
+
+- Assumes a real docs tree with an identifiable audience and doc type per page — less useful for marketing copy or free-form long-form writing.
+- The validation step (Step 7) is a placeholder for whatever the project's own docs tooling is — wire it to a real linter or build check rather than skipping it.
+- Built for single-page reviews; a full site-wide information-architecture pass is better treated as its own `strategy`-mode exercise, not automated end-to-end here.

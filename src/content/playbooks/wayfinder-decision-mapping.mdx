@@ -1,0 +1,60 @@
+---
+title: "Wayfinder: Decision-Ticket Planning for Oversized Efforts"
+description: "Plan work too big for one agent session as a shared map of decision tickets — questions to resolve, not slices of a build to execute — and work through them one at a time until the way to the destination is clear."
+seoHook: "A huge, foggy effort doesn't fail because nobody could code it — it fails because nobody could hold the whole shape of it in one session, so the plan drifts, decisions get made twice, and nobody can tell what's actually settled versus still open."
+targetAudience: "engineering leads scoping multi-session efforts, teams planning a spec or major migration before implementation starts, solo developers who lose track of open decisions across long-running projects, anyone whose planning currently lives in scattered chat threads instead of a single source of truth"
+exampleUseCase: "\"Chart a map for redesigning our auth system\" → A named destination (the target auth architecture spec), a breadth-first frontier of decision tickets (which provider, how sessions migrate, what breaks for existing users), research tickets fired off in parallel, and a living map that tracks exactly which decisions are settled and which are still fog — worked one ticket per session until the way is clear"
+category: "project-management"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Matt Pocock"
+sourceUrl: "https://github.com/mattpocock/skills/blob/main/skills/engineering/wayfinder/SKILL.md"
+tags: ["planning", "project-management", "decision-tracking", "issue-tracker", "scoping", "large-projects"]
+createdAt: "2026-09-05"
+---
+
+## What This Does
+
+Wayfinder charts oversized, foggy efforts as a **shared map** of **decision tickets** on your issue tracker — questions whose resolution is a decision, not a slice of a build to execute. It names a destination first (the spec, decision, or change the effort is finding its way to), fans out breadth-first across the open decisions, and creates tickets only for questions sharp enough to state precisely now, leaving everything else in a deliberately incomplete "fog of war" that graduates one patch at a time as earlier tickets resolve.
+
+The discipline that makes it work: plan, don't do. Each ticket resolves exactly one decision, the map is done when nothing's left to decide, and no session resolves more than one ticket (research tickets excepted) — so scope never quietly balloons into execution and no single sitting tries to hold the whole effort in its head.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir wayfinder-map && cd wayfinder-map
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Chart Your First Map
+
+```bash
+claude
+```
+
+Then describe the oversized, foggy idea you need to plan. Claude will name the destination, map the frontier of decisions, and create the map plus its first batch of tickets.
+
+---
+
+## Tips & Best Practices
+
+- The destination line is the single highest-leverage sentence on the whole map — get it right before creating a single ticket, since every later "is this in scope" call traces back to it.
+- Keep ticket questions genuinely decision-shaped. "Implement the login form" is a task wearing a ticket's clothes; "Which auth provider do we standardize on?" is a real ticket.
+- Use your tracker's native blocking/dependency feature if it has one — it renders the frontier visually, so anyone can see what's takeable without opening the map itself.
+- Resist resolving two tickets in one sitting even when the second feels quick. The one-ticket-per-session rule is what keeps each resolution properly scoped, not a formality to skip under time pressure.
+
+## Limitations
+
+- Built for genuinely oversized efforts — a task small enough to finish in one sitting doesn't need a map; skip straight to doing it.
+- Without a tracker that supports native child-issues and blocking, the fallback (local markdown files) works but loses the visual frontier a real tracker's UI gives for free.
+- The map is only as good as its destination. A vague or drifting destination produces a map that never converges — revisit and sharpen it explicitly if tickets start feeling arbitrary.

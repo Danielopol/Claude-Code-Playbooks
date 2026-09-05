@@ -1,0 +1,60 @@
+---
+title: "Writing for AI Agents: A Craft Reference"
+description: "A theory of writing any document an agent consumes — skills, CLAUDE.md, reference docs — built on context pointers, an information hierarchy of steps versus disclosed reference, completion criteria, and leading words that anchor behavior in the fewest tokens."
+seoHook: "A skill or CLAUDE.md that half-works isn't usually wrong — it's just badly engineered as a document: the wording of one pointer decided whether the agent ever reached the rule that mattered, and nobody was thinking about that when it got written."
+targetAudience: "developers writing or maintaining CLAUDE.md and AGENTS.md files, skill authors trying to make triggering reliable, teams whose agent docs have grown long and inconsistent, anyone who wants a systematic craft for writing documents an agent actually follows instead of trial-and-error prompting"
+exampleUseCase: "\"My CLAUDE.md keeps missing rules and my skill barely triggers\" → A diagnosis using context pointers (is the wording sharp enough to fire the branch that matters?), the information hierarchy (should this be an in-file step, in-file reference, or pushed behind a pointer?), and a pruning pass that hunts no-ops and duplication sentence by sentence — restructured, not just trimmed"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Matt Pocock"
+sourceUrl: "https://github.com/mattpocock/skills/blob/main/skills/productivity/writing-for-agents/SKILL.md"
+tags: ["claude-md", "skill-authoring", "prompt-engineering", "documentation", "agent-design", "context-management"]
+createdAt: "2026-09-05"
+---
+
+## What This Does
+
+A craft reference for writing anything an agent reads and follows every run — a skill, a `CLAUDE.md`/`AGENTS.md`, a reference doc reached by a pointer. The core insight: the packaging differs, but the writing doesn't, because the agent takes the same *process* each time rather than producing a one-off human-readable output. That means the same handful of levers — how a pointer is worded, where material sits on the information hierarchy, how sharp a completion criterion is, whether a concept is anchored with a leading word — decide whether the document actually gets followed.
+
+It covers context pointers (a pointer's wording decides whether it fires, not its target), the information hierarchy of in-file steps versus in-file reference versus disclosed reference, when premature completion happens and how to defend against it, leading words as a token-efficient way to anchor behavior, and a concrete pruning discipline for hunting duplication, staleness, and no-ops sentence by sentence.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir writing-for-agents && cd writing-for-agents
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Apply It to a Real Document
+
+```bash
+claude
+```
+
+Then paste in the skill, `CLAUDE.md`, or reference doc you're struggling with and ask Claude to restructure it using this framework — or ask it to draft a new one from scratch with these principles in mind.
+
+---
+
+## Tips & Best Practices
+
+- Sharpen a pointer's wording before you inline the material behind it — a must-have target behind a weakly worded pointer is a variance bug, and the cheap fix is almost always wording, not restructuring.
+- When a `CLAUDE.md` has grown long and the model seems to miss rules buried in the middle, that's the sprawl failure mode. Restructure with the information hierarchy — don't just trim words from individual sentences.
+- Reach for an existing word before coining your own leading word. A pretrained concept (*fog of war*, *tracer bullet*) anchors behavior for free; a made-up word costs you the definition tokens a real one gives away.
+- Run the no-op test on every sentence during a pruning pass: does it change behavior versus what the model already does by default? If not, delete the whole sentence rather than trimming it.
+
+## Limitations
+
+- This is a craft reference, not a linter — applying it well still takes judgment about where each specific piece of content belongs on the hierarchy.
+- Pairs well with, but doesn't replace, a dedicated tool for restructuring an already-bloated `CLAUDE.md` — this playbook is about writing and organizing from the ground up, not a mechanical two-level split.
+- Best suited to documents an agent reads repeatedly across many runs; a truly one-off instruction doesn't need this level of engineering.

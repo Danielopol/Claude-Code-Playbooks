@@ -1,0 +1,59 @@
+---
+title: "Agent Design Philosophy"
+description: "A mental model for designing AI agents in any domain — the model already knows how to be an agent, so design is about capabilities, knowledge, and context, added only as far as a Progressive Complexity ladder (basic → planning → subagents → skills) that real usage actually demands."
+seoHook: "Most agent-building advice jumps straight to architecture diagrams and tool schemas before answering the one question that actually determines whether the thing works: what 3-5 capabilities does it truly need, and what should it be trusted to figure out on its own?"
+targetAudience: "developers building their first AI agent or subagent, teams over-engineering agent architecture before real usage data exists, anyone designing a Claude Code subagent or custom tool set, product builders scoping an agent for customer service, research, operations, or creative work"
+exampleUseCase: "\"Design an agent for handling support tickets\" → A purpose/domain/trust pass before any code, a starting set of 3-5 capabilities (search tickets, read history, draft reply, escalate, close) rather than a dozen speculative ones, knowledge loaded on-demand instead of front-loaded into every turn, and an explicit call to stay at Level 1 (Basic) until real usage actually shows the need for progress tracking or subagents"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "shareAI-lab"
+sourceUrl: "https://github.com/shareAI-lab/learn-claude-code/blob/main/skills/agent-builder/SKILL.md"
+tags: ["agent-design", "ai-agents", "architecture", "claude-code", "subagents", "design-philosophy"]
+createdAt: "2026-09-05"
+---
+
+## What This Does
+
+A compact mental model for agent design built on one core claim: the model already knows how to be an agent, so the code's job is a simple loop — see context and capabilities, decide to act or respond, execute and continue. Design work is really about three elements: **capabilities** (start with 3-5 atomic actions, expand only on demonstrated need), **knowledge** (loaded on-demand, never front-loaded into every turn), and **context** (precious — isolate noisy subtasks, truncate verbose output, protect clarity over completeness).
+
+The **Progressive Complexity** ladder is the practical guardrail: start at Basic (3-5 capabilities), add Planning only when multi-step tasks lose coherence, add Subagents only when exploration pollutes context, add Skills only when domain expertise is needed but not always. Most agents never need to go past Level 2 — and the anti-patterns table (over-engineering, too many capabilities, rigid workflows, front-loaded knowledge, micromanagement) names exactly the mistakes that come from skipping the ladder and building for imagined future needs instead of what real usage has actually shown.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir agent-design && cd agent-design
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Scope Your Agent
+
+```bash
+claude
+```
+
+Describe the agent or subagent you want to build — its purpose and domain — and ask Claude to work through the Agent Design Thinking questions (purpose, domain, capabilities, knowledge, trust) before writing any implementation.
+
+---
+
+## Tips & Best Practices
+
+- Resist writing a step-by-step script for a new agent before writing its capability list — script first and you've already over-constrained what the model could have reasoned through on its own.
+- If a subagent keeps failing on the same missing action, that's the signal to add a capability — not to write it a longer, more detailed prompt trying to compensate for the gap.
+- When context is getting cluttered with exploration or research noise, that's the Progressive Complexity signal to split the noisy subtask into a subagent, not to keep adding truncation rules to the main thread.
+
+## Limitations
+
+- A design philosophy, not a scaffolding tool — it hands you the questions and defaults to apply before writing code, not the code itself.
+- Genuinely regulated or safety-critical domains (financial transactions, medical decisions) often need more explicit workflow constraints than "trust the model" — treat this as the default starting posture, not a rule that overrides domain-specific compliance needs.
+- Complements, rather than replaces, an implementation-focused agent-building guide — this is the mental model for *what* to build and *why*; the concrete *how* is a separate concern.

@@ -1,0 +1,59 @@
+---
+title: "ML Research Paper Pipeline: Design to Submission"
+description: "An end-to-end pipeline for ML/AI research papers targeting NeurIPS, ICML, ICLR, ACL, AAAI, and COLM — experiment design tied to claims, incremental-safe execution with an experiment journal, negative-result handling, ensemble self-review with a meta-reviewer, and anonymization-safe submission prep."
+seoHook: "A paper stays 'almost done' for months not because the results are bad, but because nothing bridges raw experiment output to an actual draft — so every writing session starts by re-deriving the story from JSON files, and half the numbers that make it into the draft were never traced back to a real result."
+targetAudience: "PhD students and postdocs writing conference or journal papers under deadline pressure, ML researchers running multi-experiment projects who need the results-to-writeup bridge to stop breaking, research engineers preparing a first paper submission, labs standardizing how experiments get logged, reviewed, and turned into drafts"
+exampleUseCase: "\"Help me get from these experiment results to an ICML submission\" → A structured experiment log bridging raw result files to the paper's story, a draft grounded in that log rather than hallucinated numbers, a 3-5 reviewer ensemble with a meta-review pass defaulting to negative bias, a separate claim-verification pass tracing every number back to its source, and an anonymization + pre-compilation checklist before the final PDF"
+category: "academic-research"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "Orchestra Research (NousResearch)"
+sourceUrl: "https://github.com/NousResearch/hermes-agent/blob/main/optional-skills/research/research-paper-writing/SKILL.md"
+tags: ["academic-writing", "machine-learning", "research", "neurips", "icml", "iclr", "peer-review", "latex"]
+createdAt: "2026-09-05"
+---
+
+## What This Does
+
+Covers the full lifecycle of an empirical ML paper as one iterative loop, not a strict sequence: project setup and contribution framing, a breadth-then-depth literature search with a mandatory citation-verification protocol (never generate a bibliography entry from memory), experiment design where every experiment must map to a specific claim, crash-safe execution with an experiment journal that captures the reasoning tree git alone can't, and result analysis that treats a well-explained negative result as genuinely publishable rather than automatically a dead end.
+
+The two most load-bearing pieces are the **experiment log** — a structured bridge from raw result files to prose that prevents the drafting pass from hallucinating numbers it had to re-derive — and the **self-review phase**, which runs 3-5 independent reviewer personas biased toward negative findings, aggregates them with a meta-reviewer, adds a separate visual pass on the compiled PDF and a fresh-context claim-verification pass, before ever reaching submission prep (anonymization, formatting, and automated pre-compilation checks that catch broken citations and missing figures before the LaTeX compiler does).
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir research-paper && cd research-paper
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Start the Pipeline
+
+```bash
+claude
+```
+
+Point Claude at your existing repo or results and ask it to work through Phase 0 (project setup and contribution framing) first — it'll propose the one-sentence contribution for you to confirm before anything else proceeds.
+
+---
+
+## Tips & Best Practices
+
+- Revisit the one-sentence contribution from Phase 0 every time a result changes the story — a paper that quietly drifts from its stated contribution reads as unfocused even when every individual section is solid.
+- Treat "did they compare against X" as the default reviewer question and make sure the baseline table already answers it before submission — weak baselines are one of the most common rejection reasons.
+- Don't force a positive spin a negative result doesn't support. Several strong venues (workshops, TMLR, NeurIPS Datasets & Benchmarks) explicitly want honestly reported null results with rigorous methodology.
+
+## Limitations
+
+- Built around empirical ML papers for major ML/AI venues — a theory paper, a survey, or a different field's conventions need real adaptation, not a literal pass through every phase.
+- Citation verification and human-evaluation design assume access to real APIs and platforms (a citation database, a crowdsourcing service) — without them, budget more manual verification time.
+- A process framework, not a guarantee of acceptance — rigorous baselines and honest limitations sections improve the odds, but reviewer judgment is still reviewer judgment.

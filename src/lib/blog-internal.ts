@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-pdf',
+    slug: 'claude-skills-pdf',
+    title: 'Claude Skills for PDFs: Extract, Merge, and Fill Forms Automatically',
+    description: "How to use four Claude Skills to handle the PDF tasks everyone runs into — a text and table extractor that pulls clean, structured data out of documents built for printing, a merge and split tool for combining or breaking apart files without a subscription, a form auto-filler that populates dozens of identical PDFs from a spreadsheet, and an OCR scanner that turns a scanned image into searchable, copyable text.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'PDF Tools',
+    tags: ['claude skills pdf', 'ai pdf automation', 'ai fill pdf forms', 'pdf data extraction', 'merge split pdf', 'pdf ocr scanner', 'ai pdf tools', 'batch pdf form filling'],
+    createdAt: '2026-09-05',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-excel',
     slug: 'claude-skills-excel',
     title: 'Claude Skills for Spreadsheets: Automate Excel Models and Analysis',

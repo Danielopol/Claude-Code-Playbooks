@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-customer-research',
+    slug: 'claude-skills-customer-research',
+    title: 'Claude Skills for Customer Research: Mine Feedback for Product Gold',
+    description: "How to use four Claude Skills to turn scattered customer feedback into product decisions — a customer research assistant for investigating a single question with confidence-scored, multi-source answers, a call synthesis Skill for finding patterns across a batch of customer calls, a feedback synthesizer that aggregates every channel into themes and prioritized feature requests, and a churn risk Skill that turns behavioral signals into scored segments and specific intervention playbooks.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Customer Research',
+    tags: ['claude skills customer research', 'ai feedback analysis', 'ai voice of customer', 'customer feedback synthesis', 'churn risk scoring', 'nps analysis ai', 'product feedback ai', 'customer call analysis'],
+    createdAt: '2026-09-08',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-pdf',
     slug: 'claude-skills-pdf',
     title: 'Claude Skills for PDFs: Extract, Merge, and Fill Forms Automatically',

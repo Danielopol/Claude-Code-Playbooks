@@ -1,6 +1,26 @@
+import { Children, isValidElement, type ReactNode } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Clock, Calendar, User } from 'lucide-react';
 import { BlogCategory, BlogDifficulty } from '@/types/blog';
+import { Newsletter } from '@/components/Newsletter';
+import { getBlogNewsletterCopy } from '@/lib/newsletter-copy';
+
+/*
+ * Inserts the signup card before the article's second top-level <h2> — after
+ * the intro and first section, where a reader has had enough value to say yes
+ * but most have not bounced yet. With ~72% bounce, the footer form alone was
+ * seen by almost nobody. Posts without two top-level h2s get it at the end.
+ */
+function withInlineSignup(children: ReactNode, signup: ReactNode): ReactNode[] {
+  const nodes = Children.toArray(children);
+  let headingsSeen = 0;
+  const index = nodes.findIndex(
+    (node) => isValidElement(node) && node.type === 'h2' && ++headingsSeen === 2
+  );
+
+  if (index === -1) return [...nodes, signup];
+  return [...nodes.slice(0, index), signup, ...nodes.slice(index)];
+}
 
 function getCategoryLabel(category: BlogCategory): string {
   const labels: Record<BlogCategory, string> = {
@@ -184,7 +204,16 @@ export function BlogPostLayout({
 
           {/* Article body — written as JSX in each page */}
           <div className="space-y-6 text-muted-foreground leading-relaxed">
-            {children}
+            {withInlineSignup(
+              children,
+              <Newsletter
+                key="inline-signup"
+                variant="inline"
+                source={`blog:${slug}`}
+                className="!my-10"
+                {...getBlogNewsletterCopy(slug)}
+              />
+            )}
           </div>
 
           {/* Footer */}

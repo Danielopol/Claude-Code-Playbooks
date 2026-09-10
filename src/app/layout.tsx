@@ -115,6 +115,9 @@ function Footer() {
               <Link href="/about" className="hover:text-[#22d3ee] transition-colors">
                 About
               </Link>
+              <Link href="/advertise" className="hover:text-[#22d3ee] transition-colors">
+                Advertise
+              </Link>
             </div>
             <div className="flex items-center justify-center md:justify-start gap-4 text-xs text-muted-foreground/70 mt-2">
               <Link href="/privacy" className="hover:text-muted-foreground transition-colors">

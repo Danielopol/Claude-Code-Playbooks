@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { track } from '@vercel/analytics';
 import { Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -46,6 +47,9 @@ export function Newsletter({
       const data = await res.json();
 
       if (res.ok) {
+        // The subscribe route only records `source` on its fallback path, so
+        // this event is the one place per-placement conversion is measurable.
+        track('Newsletter Signup', { source: source || variant });
         setStatus('success');
         setMessage(data.message || 'Thanks for subscribing!');
         setEmail('');

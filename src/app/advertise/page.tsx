@@ -53,14 +53,27 @@ const AUDIENCE = {
   ],
 };
 
-const PLACEMENTS = [
+const linkClass = 'text-[#22d3ee] hover:underline';
+
+const PLACEMENTS: {
+  name: string;
+  price: string;
+  term: string;
+  offer?: string;
+  blurb: string;
+  includes: React.ReactNode[];
+  featured?: boolean;
+}[] = [
   {
     name: 'Tool Listing',
     price: '$199',
     term: 'one-time · 12 months',
     blurb: 'For tools our readers can use alongside Claude.',
     includes: [
-      'Listed in our tools directory with your logo, description and link',
+      <>
+        Listed in our <Link href="/tools" className={linkClass}>tools directory</Link> with your
+        logo, description and link
+      </>,
       'Featured on the category page that matches your tool',
       'Labeled Sponsored, reviewed for fit before you pay',
     ],
@@ -105,8 +118,6 @@ const RULES = [
   'We review every application and turn down tools that aren’t a fit for our readers. You only pay after approval.',
   'Sponsor copy can’t claim or imply endorsement by Anthropic. This site is independent and not affiliated with Anthropic.',
 ];
-
-const linkClass = 'text-[#22d3ee] hover:underline';
 
 export default function AdvertisePage() {
   const playbookCount = Math.floor(getAllPlaybooks().length / 100) * 100;
@@ -179,7 +190,12 @@ export default function AdvertisePage() {
 
       {/* Placements */}
       <section className="mb-12">
-        <h2 className="text-lg font-semibold mb-4">Placements</h2>
+        <div className="flex flex-wrap items-baseline justify-between gap-2 mb-4">
+          <h2 className="text-lg font-semibold">Placements</h2>
+          <Link href="/tools" className={`text-sm ${linkClass}`}>
+            Browse the tools directory &rarr;
+          </Link>
+        </div>
         <div className="grid gap-4 md:grid-cols-3">
           {PLACEMENTS.map((p) => (
             <div
@@ -198,8 +214,8 @@ export default function AdvertisePage() {
                 </div>
               )}
               <ul className="space-y-2 text-sm text-muted-foreground mb-5 flex-1">
-                {p.includes.map((item) => (
-                  <li key={item} className="flex gap-2">
+                {p.includes.map((item, i) => (
+                  <li key={i} className="flex gap-2">
                     <Check className="h-4 w-4 text-[#22c55e] shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </li>

@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next';
 import { personas } from '@/lib/personas';
 import { internalBlogPosts } from '@/lib/blog-internal';
 import { getAllPlaybooks } from '@/lib/playbooks';
+import { getDirectoryTools } from '@/lib/sponsors';
 
 interface Playbook {
   slug: string;
@@ -173,5 +174,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...categoryPages, ...personaIndexPage, ...personaPages, ...playbookPages, ...blogPostPages];
+  // Listed only once it has listings — until then /tools is noindex.
+  const toolsPage: MetadataRoute.Sitemap =
+    getDirectoryTools().length > 0
+      ? [{ url: `${baseUrl}/tools`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.5 }]
+      : [];
+
+  return [...staticPages, ...toolsPage, ...categoryPages, ...personaIndexPage, ...personaPages, ...playbookPages, ...blogPostPages];
 }

@@ -4,12 +4,17 @@ import Link from 'next/link';
 import { getPlaybooksByCategory } from '@/lib/playbooks';
 import { categories, getCategoryById, getCategoriesByVertical } from '@/lib/categories';
 import { PlaybookCard } from '@/components/PlaybookCard';
+import { SponsorStack } from '@/components/SponsorStack';
+import { getTopicsForCategory } from '@/lib/sponsors';
 import { Category } from '@/types/playbook';
 import { ArrowLeft, FolderOpen, Layers } from 'lucide-react';
 
 interface CategoryPageProps {
   params: Promise<{ category: string }>;
 }
+
+// Regenerate daily so sponsor and tool-listing dates apply without a deploy.
+export const revalidate = 86400;
 
 export async function generateStaticParams() {
   return categories.map((c) => ({ category: c.id }));
@@ -115,6 +120,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         <p className="text-muted-foreground">{categoryInfo.description}</p>
       </div>
 
+      <SponsorStack
+        topics={getTopicsForCategory(categoryInfo.id)}
+        withListings
+        className="mb-8 max-w-3xl"
+      />
       {playbooks.length === 0 ? (
         <div className="text-center py-12">
           <p className="text-muted-foreground">

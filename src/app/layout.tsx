@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Home, BookOpen, Phone, Mail, Layers } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
 import { Newsletter } from '@/components/Newsletter';
+import { getDirectoryTools } from '@/lib/sponsors';
 import './globals.css';
 
 const jetbrainsMono = JetBrains_Mono({
@@ -115,6 +116,11 @@ function Footer() {
               <Link href="/about" className="hover:text-[#22d3ee] transition-colors">
                 About
               </Link>
+              {getDirectoryTools().length > 0 && (
+                <Link href="/tools" className="hover:text-[#22d3ee] transition-colors">
+                  Tools
+                </Link>
+              )}
               <Link href="/advertise" className="hover:text-[#22d3ee] transition-colors">
                 Advertise
               </Link>

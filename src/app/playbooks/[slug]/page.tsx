@@ -10,6 +10,8 @@ import { DownloadButton } from '@/components/DownloadButton';
 import { SetupGuideBox } from '@/components/SetupGuideBox';
 import { PlaybookCard } from '@/components/PlaybookCard';
 import { Newsletter } from '@/components/Newsletter';
+import { SponsorStack } from '@/components/SponsorStack';
+import { getTopicsForCategory } from '@/lib/sponsors';
 import { Clock, ArrowLeft, ArrowRight, ExternalLink, Terminal, FileCode, HelpCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -343,6 +345,8 @@ export default async function PlaybookPage({ params }: PlaybookPageProps) {
             )}
           </div>
         )}
+
+        <SponsorStack topics={getTopicsForCategory(playbook.category)} className="mb-8" />
 
         {playbook.claudeMdTemplate && (
           <Card className="mb-8 bg-[#161b22] border-[#30363d]">

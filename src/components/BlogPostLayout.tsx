@@ -3,7 +3,8 @@ import Link from 'next/link';
 import { ArrowLeft, Clock, Calendar, User } from 'lucide-react';
 import { BlogCategory, BlogDifficulty } from '@/types/blog';
 import { Newsletter } from '@/components/Newsletter';
-import { getBlogNewsletterCopy } from '@/lib/newsletter-copy';
+import { SponsorStack } from '@/components/SponsorStack';
+import { getBlogNewsletterCopy, getBlogTopics } from '@/lib/blog-audience';
 
 /*
  * Inserts the signup card before the article's second top-level <h2> — after
@@ -201,6 +202,8 @@ export function BlogPostLayout({
               </div>
             )}
           </header>
+
+          <SponsorStack topics={getBlogTopics(slug)} className="mb-10" />
 
           {/* Article body — written as JSX in each page */}
           <div className="space-y-6 text-muted-foreground leading-relaxed">

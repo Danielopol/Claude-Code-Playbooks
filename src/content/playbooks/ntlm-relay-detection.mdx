@@ -1,0 +1,59 @@
+---
+title: "Detecting NTLM Relay with Event Correlation"
+description: "A blue-team methodology for detecting NTLM relay attacks (MITRE ATT&CK T1557.001) via Windows event correlation — IP-to-hostname mismatch on logon events, LLMNR/NBT-NS poisoning-tool signatures, SMB/LDAP signing audits, and NTLM downgrade detection across Active Directory."
+seoHook: "In a successful NTLM relay, the logon event on the target shows the victim's username but the attacker's IP address — the mismatch is sitting right there in Windows Event 4624, but only if something is actually correlating workstation name against source IP instead of trusting the username field alone."
+targetAudience: "SOC analysts and threat hunters covering Active Directory environments, security engineers building SIEM correlation rules for credential-relay detection, purple team members validating NTLM relay detection and signing enforcement, blue teams responding to a coercion-technique alert that may precede a relay attempt"
+exampleUseCase: "\"Build detection coverage for NTLM relay in our AD environment\" → An IP-to-hostname mismatch correlation rule against Windows Event 4624, a rapid multi-host authentication check to catch relay spraying, an LLMNR/NBT-NS poisoning-tool signature, a domain-wide SMB and LDAP signing audit that exports the actual vulnerable-host list, and an NTLM downgrade detector flagging any NTLMv1 traffic in an environment that should be NTLMv2-only"
+category: "operations-compliance"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "mukul975"
+sourceUrl: "https://github.com/mukul975/Anthropic-Cybersecurity-Skills/blob/main/skills/detecting-ntlm-relay-with-event-correlation/SKILL.md"
+tags: ["threat-hunting", "active-directory", "siem", "ntlm", "blue-team", "security-monitoring"]
+createdAt: "2026-09-12"
+---
+
+## What This Does
+
+A defensive methodology for detecting NTLM relay attacks through Windows event correlation. The core insight it's built around: in a successful relay, the target's logon event shows the *victim's* username but the *attacker's* source IP, while the workstation-name field may still claim the victim's real machine — so correlating that field against a known-hosts inventory and flagging any mismatch is the primary detection signal, backed up by a check for rapid authentication to multiple targets in a short window (relay spraying, as an attacker tests what a captured credential can reach).
+
+Beyond logon-event correlation, it covers detecting the LLMNR/NBT-NS poisoning tools attackers use to force authentication in the first place (a single host answering an unusual volume of name-resolution queries from many sources), a domain-wide SMB and LDAP signing enforcement audit — the actual protocol-level fix, prioritized above detection since it prevents the attack rather than just alerting on it — and NTLM downgrade detection, since NTLMv1 traffic in an environment that should be NTLMv2-only is itself a red flag independent of any active attack.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir ntlm-relay-detection && cd ntlm-relay-detection
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Build Detection Coverage
+
+```bash
+claude
+```
+
+Describe your environment and SIEM platform, and ask Claude to build out the correlation rules and signing audit from this methodology — or point it at existing detection rules to review against this framework.
+
+---
+
+## Tips & Best Practices
+
+- Build the IP-to-hostname inventory before writing any correlation rule — a mismatch rule with no reliable "expected IP" to compare against will either miss real relays or drown in false positives from a stale inventory.
+- Treat the signing-enforcement audit as higher priority than the detection rules themselves — closing the actual protocol gap prevents the attack; detection only tells you it already happened.
+- When a coercion-technique alert fires, treat it as a precursor signal and increase scrutiny on subsequent logon events from that target for the following hours, rather than treating it as a standalone, low-priority alert.
+
+## Limitations
+
+- Query examples are illustrative patterns for common SIEM platforms — adapt field names and syntax to your actual SIEM, log source, and schema before deploying any rule to production.
+- Detection assumes centralized, reliable Windows Security Event Log collection with the right audit policy already enabled — without that, the correlation logic has no data to run against.
+- Covers one attack class within the broader credential-access tactic — pair it with a fuller Active Directory hardening and monitoring program rather than treating it as complete coverage on its own.

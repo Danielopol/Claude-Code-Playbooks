@@ -1,0 +1,59 @@
+---
+title: "Subagent-Driven Development"
+description: "Execute an implementation plan by dispatching a fresh subagent per task with a spec-and-quality review after each, a ledger that survives compaction, and a 'rulings not stalls' policy that keeps a running plan from waiting on a human at every fork."
+seoHook: "A session that loses its place after a compaction doesn't just forget context — it re-dispatches entire task sequences it already finished, because nothing was tracking real progress anywhere outside its own memory."
+targetAudience: "developers executing multi-task implementation plans with Claude Code, teams using subagents to isolate context per task, anyone whose long-running sessions lose track of progress after a compaction, engineers who want continuous execution without a check-in after every task"
+exampleUseCase: "\"Execute this implementation plan\" → A fresh implementer subagent dispatched per task with exactly the context it needs, a separate task reviewer checking spec compliance and quality before the task is marked done, a bounded 5-round fix loop that escalates to a fresh agent on a stronger model after round 3, a ledger recording every completion and ruling so a compaction never causes rework, and one broad final review across the whole branch before wrap-up"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "obra (Superpowers)"
+sourceUrl: "https://github.com/obra/superpowers/blob/main/skills/subagent-driven-development/SKILL.md"
+tags: ["subagents", "implementation-plans", "code-review", "autonomous-execution", "claude-code", "developer-tools"]
+createdAt: "2026-09-12"
+---
+
+## What This Does
+
+A disciplined execution loop for implementation plans with mostly-independent tasks: dispatch a fresh, isolated subagent per task, review that task for spec compliance and code quality before marking it done, run a bounded fix loop when the review finds problems, and close out with one broad review across the whole branch. Fresh context per task means no pollution from earlier tasks' history; a separate reviewer means the same agent isn't grading its own work.
+
+The two ideas that make this hold up under real, long sessions: a **ledger** that records every task completion and every autonomous decision, so a compaction or restart never causes an already-finished task to get re-dispatched — the single most expensive failure this workflow guards against — and a **"rulings, not stalls"** policy that has the agent decide conflicts and ambiguities itself (with the decision logged) rather than pausing to ask, reserving actual stops for only four cases: irreversible operations, security-sensitive actions, side effects outside the workspace, or a plan broken enough that every path forward is a guess.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir subagent-driven-dev && cd subagent-driven-dev
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Execute a Plan
+
+```bash
+claude
+```
+
+Point Claude at an implementation plan with a set of mostly-independent tasks and say "execute this plan using subagent-driven development." It will set up a workspace, create a ledger, and start dispatching implementer and reviewer subagents per task.
+
+---
+
+## Tips & Best Practices
+
+- Treat writing to the ledger as part of completing a task, not an optional afterthought — it's the only thing that survives a compaction, and skipping it defeats the entire point of the workflow.
+- Don't skip the task reviewer on "obviously simple" tasks. The review is cheap relative to the cost of a subtly wrong task compounding into three more tasks built on top of it.
+- When the fix loop reaches round 4–5, actually switch to a stronger model if one is available — repeating the same approach with the same model rarely breaks whatever pattern caused rounds 1–3 to fail.
+
+## Limitations
+
+- Assumes plan tasks are genuinely independent enough to implement in isolation — tightly coupled tasks fight this model and are better handled by continuous, manual execution instead.
+- The fix-loop cap (5 rounds) is a deliberate circuit breaker, not a success guarantee — a task that consistently blows through it usually signals a plan defect, not an implementation problem worth more retries.
+- Needs real subagent-dispatch capability (parallel or sequential agent tooling) — without it, the "fresh subagent per task" isolation this approach depends on isn't available.

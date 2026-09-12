@@ -1,0 +1,59 @@
+---
+title: "Inventory Demand Planning"
+description: "Codified expertise for demand forecasting, safety-stock optimization, replenishment planning, and promotional-lift estimation — the working knowledge of a senior multi-location retail demand planner managing hundreds of SKUs."
+seoHook: "A forecast that's off by 10% doesn't just miss a number — it either strands cash in dead stock or empties shelves during your best-selling week, and most planning teams find out which one only after it's already happened."
+targetAudience: "demand planners at multi-location retailers, inventory managers setting safety stock and reorder points, merchandising teams planning seasonal buys and promotions, supply chain analysts evaluating forecast accuracy, anyone building or auditing a replenishment process"
+exampleUseCase: "\"We're running a 3-week BOGO promotion on a top-20 SKU\" → A promotional lift estimate from historical elasticity, a forward-buy calculation for the vendor PO, cannibalization modeling for close substitutes, and an explicit post-promo dip forecast so the following weeks' below-baseline sales don't get mistaken for a demand collapse"
+category: "operations-compliance"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "affaan-m (ECC)"
+sourceUrl: "https://github.com/affaan-m/ECC/blob/main/docs/ja-JP/skills/inventory-demand-planning/SKILL.md"
+tags: ["demand-planning", "inventory-management", "forecasting", "retail", "supply-chain", "safety-stock"]
+createdAt: "2026-09-12"
+---
+
+## What This Does
+
+Distills the working knowledge of a senior multi-location retail demand planner into a forecasting-method decision table (moving average, exponential smoothing, Croston's for intermittent demand, causal regression for promotions), a safety-stock methodology that goes beyond the textbook formula to handle lead-time variability and lumpy demand, and a full promotional-planning workflow covering lift estimation, cannibalization, forward-buy, and the post-promo dip that catches unprepared planners off guard.
+
+It also covers ABC/XYZ classification tied to a concrete replenishment policy matrix, seasonal transition timing (buy commitment, markdown triggers, hard liquidation cutoffs), and a set of key edge cases — a viral demand spike, an overnight vendor lead-time doubling, phantom inventory, a holiday calendar shift — each with the specific reasoning that keeps a standard playbook from producing a bad call in that situation.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir demand-planning && cd demand-planning
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Work Through a Planning Decision
+
+```bash
+claude
+```
+
+Describe the situation — a forecast to build, a safety-stock level to set, a promotion to plan, a markdown decision to make — and Claude will apply the relevant framework and core knowledge to it.
+
+---
+
+## Tips & Best Practices
+
+- Document every new-product forecast's assumptions explicitly (which analogs were used, price point, distribution, competitive window) so a post-mortem can audit exactly what was assumed rather than reconstructing it from memory.
+- Frame a markdown recommendation to merchandising around sell-through pace and margin math, never as "we bought too much" — the framing changes how the recommendation lands even when the number is identical.
+- Watch the tracking signal weekly, not just WMAPE monthly — a demand-pattern regime change (after a reformulation or a competitor's entry) fails a model silently, and the tracking signal is what catches it early.
+
+## Limitations
+
+- Planning methodology, not a forecasting engine — pair it with whatever demand-planning suite, ERP, or spreadsheet actually holds the SKU-level data.
+- Dollar figures, lift percentages, and thresholds are illustrative benchmarks from a mid-size multi-location retail context — recalibrate against your own category's actual promo history and margin structure.
+- Assumes reasonably clean POS and sell-through data feeding the forecast; garbage-in problems (phantom inventory, miscoded promotions) will silently degrade every downstream number.

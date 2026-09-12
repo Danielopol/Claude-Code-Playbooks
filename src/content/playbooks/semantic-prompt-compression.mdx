@@ -1,0 +1,59 @@
+---
+title: "Semantic Prompt Compression"
+description: "Re-encode verbose system prompts, tool descriptions, and skill bodies into a dense telegraphic register — punctuation as connectives, label frames, verbless assertions — via re-encoding, not word deletion, with a density gate and a declared-loss verification pass."
+seoHook: "Deleting function words out of a sentence doesn't compress it, it just damages it — the actual technique is re-framing each claim in a register whose grammar is punctuation, and the difference between the two shows up the first time a compressed rule gets silently misread by the model executing it cold."
+targetAudience: "prompt engineers reducing system-prompt token count, developers writing tool and function descriptions for AI agents, skill authors trying to fit more into a context budget, anyone whose compressed prompts have quietly lost a rule or a throw condition without anyone noticing"
+exampleUseCase: "\"Compress this tool description\" → A density gate check first (is this already dense enough that compression would lose more than it saves?), a payload inventory listing every MUST/NEVER line and exact identifier before anything gets cut, each claim re-framed into a definition/obligation/default/condition-consequence construction, and a verification pass that names every declared loss and measures the real token delta rather than assuming symbols automatically save space"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "5 minutes"
+author: "can1357 (oh-my-pi)"
+sourceUrl: "https://github.com/can1357/oh-my-pi/blob/main/.omp/skills/semantic-compression/SKILL.md"
+tags: ["prompt-engineering", "token-optimization", "system-prompts", "technical-writing", "claude-md", "agent-instructions"]
+createdAt: "2026-09-12"
+---
+
+## What This Does
+
+A precise discipline for compressing load-bearing, machine-executed text — system prompts, tool and function descriptions, skill bodies, agent instructions — where a model executes the text cold with no author present to disambiguate a mistake. The core reframe: compression is re-encoding, not word deletion. Stripping function words out of an English sentence leaves a damaged English sentence; the actual technique re-frames each claim into a construction (a verbless assertion, a label frame, a condition→consequence arrow) whose grammar is punctuation and layout, so the function words have no work left to do and drop out on their own.
+
+It opens with a density gate that stops the whole exercise before it starts if the text is already dense enough that compression would lose more than it saves, requires a full payload inventory (every MUST/NEVER line, identifier, and default) before anything gets deleted, and closes with a verification pass that names every declared loss explicitly and measures the real token delta against the target model's actual tokenizer — since word counts and symbol substitutions don't reliably predict token savings, and a naive pass has been measured silently dropping a real behavioral rule while claiming a saving.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir semantic-compression && cd semantic-compression
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Compress a Prompt
+
+```bash
+claude
+```
+
+Paste in the system prompt, tool description, or skill body you want compressed and ask Claude to apply the density gate first, then compress it using this methodology.
+
+---
+
+## Tips & Best Practices
+
+- Run the density gate honestly — the biggest failure mode isn't under-compressing, it's compressing an already-dense house-style prompt and silently losing a throw condition or a NEVER rule in the process.
+- When in doubt about a connective symbol, write the word instead. The whole point of this register is a model executing it cold with no author to disambiguate — an ambiguous glyph is worse than a slightly longer sentence.
+- Never compress a tool or skill's trigger description the way you compress its body — the description is retrieval surface matched against varied user phrasing, and keeping natural, redundant alternatives there is load-bearing, not wasteful.
+
+## Limitations
+
+- Built for load-bearing, machine-executed text — applying this register to human-facing narrative prose, teaching documentation, or marketing copy actively works against those genres' actual goals.
+- Token-cost claims about specific symbols are tokenizer-dependent — always measure the real delta with the target model's actual tokenizer rather than assuming a glyph substitution saves tokens.
+- A text-level compression discipline, distinct from information-architecture decisions like what belongs in-file versus behind a pointer — pair it with a document-structure playbook for that separate concern.

@@ -1,0 +1,59 @@
+---
+title: "Chinese AI-Writing Style Audit (中文 AI 味检查)"
+description: "An 11-rule checklist for stripping the tell-tale patterns of unedited AI-generated Chinese copy — em-dash chains, 不是而是 contrast pairs, 首先其次 sequence stacking, 被 passive chains — refined from real user correction feedback, each with a precise trigger, bad/good example, and scope."
+seoHook: "AI writing detection tools and de-slopping guides are almost all built for English — but Chinese AI-generated copy has its own unmistakable tells, from chained em-dashes to repeated 值得注意的是 preambles, and nothing English-language guidance catches them."
+targetAudience: "Chinese-language content marketers and product-announcement writers, developer-relations teams writing Chinese READMEs and release notes, anyone drafting WeChat/公众号 articles who's been told the copy 'AI 味太重', bilingual teams needing a Chinese equivalent of English AI-writing detection"
+exampleUseCase: "\"帮我改一下这段产品发布稿，AI 味有点重\" → Each of the 11 rules checked in turn against the draft — connected em-dash chains split into proper sentences, repeated 不是而是 contrasts replaced with direct facts, emoji stripped from formal copy, overloaded long sentences split by their actual information layers — each fix backed by a stated trigger and scope so the rule never gets misapplied outside the document type it was calibrated for"
+category: "creative-writing"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "bojieli"
+sourceUrl: "https://github.com/bojieli/ai-agent-book/blob/main/chapter9/ai-style-skill/skill/SKILL.md"
+tags: ["chinese-writing", "ai-writing-detection", "editing", "content-marketing", "wechat", "style-guide"]
+createdAt: "2026-09-12"
+---
+
+## What This Does
+
+An 11-rule checklist for auditing Chinese reader-facing copy — product announcements, WeChat/公众号 articles, emails, README sections — for the specific patterns that mark it as unedited AI output. Each rule is a precise, self-contained unit: a trigger condition (what has to repeat or combine to actually count as a violation, not just any single instance of the pattern), a detection approach, a genuine bad/good example pair, a concrete fix, and a scope stating exactly which document types it applies to.
+
+The patterns cover ground English-language AI-writing guides don't touch: chaining em-dashes in place of normal punctuation, repeating "不是……而是……" (it's not X, it's Y) contrast pairs, stacking "让我们" rallying-cry openers, mechanically sequencing every sentence with 首先/其次/最后, vague "在这个……时代" era-framing openers, emoji density in formal copy, forced parallel structure, empty poetic metaphors standing in for real information, overloaded long sentences, repeated "值得注意的是" preambles, and chained 被-passive constructions. It was refined from real user correction feedback, not written from theory alone.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir ai-style-audit && cd ai-style-audit
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Audit a Draft
+
+```bash
+claude
+```
+
+Paste in the Chinese copy you want audited and ask Claude to check it against the 11-rule checklist, or just say "这段文案 AI 味有点重，帮我改一下" (this copy has too much AI flavor, help me fix it).
+
+---
+
+## Tips & Best Practices
+
+- Detection here is judgment-based, not a mechanical string match — every rule's trigger depends on repetition, scope, and whether the pattern is doing real work, so read each passage in full context before flagging it.
+- Respect each rule's stated scope. A rule calibrated for formal product announcements (like the emoji rule) shouldn't be applied wholesale to a casual internal chat message.
+- When several rules fire in the same passage, fix the most disruptive one first — usually the em-dash chain or the overloaded sentence — since smaller issues often resolve naturally once the structural ones are fixed.
+
+## Limitations
+
+- Calibrated specifically for Chinese-language reader-facing copy — the patterns here are language-specific and don't transfer directly to English AI-writing detection (pair with an English-focused humanizing playbook for that).
+- Every rule's "does not trigger" exception exists for a reason — don't mechanically flag every instance of a pattern without checking whether the exception applies to this specific passage.
+- Refined from real correction feedback on specific document types (product posts, WeChat articles, emails, READMEs) — a genuinely different genre, like fiction or academic Chinese writing, may need different calibration.

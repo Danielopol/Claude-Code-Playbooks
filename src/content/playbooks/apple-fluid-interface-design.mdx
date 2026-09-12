@@ -1,0 +1,59 @@
+---
+title: "Apple Fluid Interface Design for the Web"
+description: "Apple's approach to gesture-driven UI and physical motion — from WWDC's Designing Fluid Interfaces — translated to CSS, Pointer Events, and spring animation libraries: interruptibility, velocity handoff, momentum projection, rubber-banding, and translucent materials."
+seoHook: "Most web animation looks fine until a user's finger touches it — then a fixed-duration CSS transition can't be grabbed mid-flight, reversed, or handed a real release velocity, and the interface instantly reads as a computer instead of an extension of the hand moving it."
+targetAudience: "frontend developers building gesture-driven interfaces, designers reviewing motion and interaction quality, teams building mobile-web or app-like experiences that need to feel native, anyone whose drag/swipe/sheet interactions feel stiff or laggy compared to a native app"
+exampleUseCase: "\"Review this bottom sheet's drag interaction\" → A check against interruptibility (can it be grabbed mid-close and reversed?), velocity handoff (does the release carry the finger's actual speed into the settle animation?), momentum projection (does a flick land where the gesture was heading, not just the nearest boundary?), and rubber-banding at the edge — each with the concrete spring parameters and code pattern to fix what's missing"
+category: "creative-design"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "emilkowalski"
+sourceUrl: "https://github.com/emilkowalski/skills/blob/main/skills/apple-design/SKILL.md"
+tags: ["interaction-design", "animation", "ui-design", "gestures", "spring-physics", "accessibility"]
+createdAt: "2026-09-12"
+---
+
+## What This Does
+
+Distills Apple's own WWDC design talks — chiefly *Designing Fluid Interfaces* — into a concrete, web-implementable set of rules for gesture-driven UI: kill input latency, track a drag 1:1 with the pointer's actual grab offset, and above all make every animation interruptible — grabbable and reversible mid-flight, always starting from the live on-screen value rather than snapping to a logical target. It covers the two-parameter spring model (damping ratio for overshoot, response for settle speed) that replaces the raw mass/stiffness/damping physics triplet, velocity handoff from a released gesture into its settle animation, and momentum projection — the exponential-decay math that makes a flick land where the gesture was actually heading, not just at the nearest boundary.
+
+Beyond motion mechanics, it covers translucent materials and depth (when to blur, when to dim vs. offset, why never to stack two light translucent surfaces), multimodal feedback rules for combining motion with sound and haptics, concrete reduced-motion and reduced-transparency handling, and Apple's size-specific typography discipline (tracking and leading that scale inversely with font size). A closing section names the eight underlying design foundations — purpose, agency, responsibility, familiarity, flexibility, simplicity, craft, delight — that everything else in the skill exists to serve.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir fluid-interface-design && cd fluid-interface-design
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Review or Build an Interaction
+
+```bash
+claude
+```
+
+Point Claude at a gesture-driven component (a drawer, a sheet, a draggable card) and ask it to review the interaction against these principles, or to build one from scratch using them.
+
+---
+
+## Tips & Best Practices
+
+- Interruptibility is worth getting right before anything else on this list — an interface that can be grabbed and reversed mid-flight reads as fluid even with fairly plain visuals; one that can't reads as stiff no matter how polished the rest is.
+- Bounce is earned, not default — reserve it for motion the user's own gesture actually carried momentum into. A menu or modal that just appears should settle cleanly, with no overshoot.
+- Design reduced-motion and reduced-transparency as real states, not an afterthought bolted on at the end — they change more than just "turn animations off."
+
+## Limitations
+
+- Web-platform techniques (CSS, Pointer Events, spring libraries) approximate native iOS motion closely but not perfectly — some effects have no exact web equivalent.
+- Assumes access to a spring-capable animation library; the raw math (projection, rubber-banding) can be hand-implemented, but a good spring implementation is worth reaching for rather than rebuilding from scratch.
+- These are interface-motion principles, not a full design system — pair them with your project's actual visual language, brand, and component library.

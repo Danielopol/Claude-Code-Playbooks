@@ -1,0 +1,59 @@
+---
+title: "Reproducible Database Lookup"
+description: "A methodology for querying public database APIs — scientific, regulatory, financial, or otherwise — so another agent or human can repeat exactly what you did: bounded calls, count reconciliation, identifier-conversion tracking, and untrusted-data handling for every response."
+seoHook: "An agent that fetches a plausible-looking number from an API and reports it as fact, with no record of which endpoint, which filters, or which page it came from, has produced an answer nobody can actually check — and in a scientific, financial, or regulatory context that's not a shortcut, it's a liability."
+targetAudience: "researchers and analysts who need agent-fetched facts to be independently verifiable, developers building agents that query public scientific or financial APIs, teams whose downstream conclusions depend on complete and reconciled datasets, anyone tired of an agent quietly fabricating a plausible number instead of reporting a failed lookup"
+exampleUseCase: "\"Get me all known variants for gene X from a public database\" → A retrieval contract defined up front (targeted vs. exhaustive), the authoritative source selected without unnecessary fan-out, a count-first bounded retrieval with page-by-page reconciliation, every identifier conversion logged, and a final report stating exactly what was queried, when, and whether the counts actually reconcile — or a clear, visible failure instead of a fabricated answer if they don't"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "K-Dense Inc."
+sourceUrl: "https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/database-lookup/SKILL.md"
+tags: ["api-integration", "data-provenance", "reproducibility", "scientific-computing", "research-tools"]
+createdAt: "2026-09-12"
+---
+
+## What This Does
+
+A cross-domain methodology for turning "look this up" into a genuinely reproducible retrieval: define exactly what's being retrieved and from which identifier space before calling anything, select the authoritative source rather than fanning out across every API that might have an answer, make bounded and rate-limited calls with an explicit total-work ceiling, and return results with enough provenance — endpoints, parameters, access date, identifier conversions, count reconciliation — that another agent or a human could replay the exact same lookup and get the exact same answer.
+
+The methodology treats every external API response as untrusted third-party data (never instructions to follow, never safe to paste raw into a shell command), gives concrete recovery paths for the most common failure mode (a wrong identifier format silently returning nothing), and insists on failing *visibly* rather than *plausibly* — if pagination stops early or counts don't reconcile, that gets reported before any conclusion is drawn from the partial data, not papered over with a confident-sounding summary.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir database-lookup && cd database-lookup
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Run a Reproducible Lookup
+
+```bash
+claude
+```
+
+Describe what you need retrieved and from what kind of source (scientific, financial, regulatory, or otherwise). Claude will define the retrieval contract, pick the right source, and return results with full provenance.
+
+---
+
+## Tips & Best Practices
+
+- The retrieval contract is the single highest-leverage step — most reproducibility failures trace back to an ambiguous scope that got resolved silently, and differently, on the next run.
+- Treat a documented rate limit as a real constraint, not a suggestion. Hitting it repeatedly and retrying blindly usually makes a slow retrieval slower, not faster.
+- When a query returns exactly zero results, state that plainly first. Broadening the search is a separate, explicit decision — never a silent fallback.
+
+## Limitations
+
+- A methodology, not a list of live API endpoints — specific base URLs, parameters, and rate limits for any given database change over time and should be confirmed against that source's current documentation.
+- Bulk or exhaustive retrieval against a large public database can take real wall-clock time even when done correctly — set that expectation before starting a many-page retrieval.
+- Best suited to genuinely public, documented APIs — a source requiring a negotiated data-use agreement or non-API access needs a different process entirely.

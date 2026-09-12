@@ -1,0 +1,59 @@
+---
+title: "Building Animations in Expo and React Native"
+description: "A construction discipline for React Native motion: a frequency gate that produces zero lines of code when nothing should animate, a cheapest-tool-that-fits selection table, spring/easing values instead of guesses, and the JS-thread rules that separate 60fps from 20fps on a real device."
+seoHook: "React Native animation that looks smooth in the simulator on a flagship phone can drop to 20fps the moment a state update hides inside a gesture handler — and nothing about that failure shows up until someone actually tests it on a three-year-old Android."
+targetAudience: "React Native and Expo developers building gestures, sheets, and screen transitions, mobile engineers debugging motion that stutters on real devices, teams standardizing animation quality across a mobile app, anyone tired of animation code reviews that end in 'this needs a real device to judge'"
+exampleUseCase: "\"Add a swipe-to-dismiss animation to this card\" → A frequency-and-purpose gate confirming it should animate at all, a shared-value-plus-gesture-handler implementation kept entirely off the JS thread, a spring config with real damping/response values instead of guessed numbers, velocity handoff from the release gesture into the settle animation, reduced-motion handling shipped in the same pass, and an explicit note on what to feel-check on a release build on the slowest supported device"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "emilkowalski"
+sourceUrl: "https://github.com/emilkowalski/skills/blob/main/skills/animate-expo/SKILL.md"
+tags: ["react-native", "expo", "animation", "mobile-development", "gestures", "performance"]
+createdAt: "2026-09-12"
+---
+
+## What This Does
+
+Turns "add an animation" into a disciplined build sequence instead of an improvised implementation. It starts with a hard gate — should this even animate, given how often it fires (a tab switch happening 100+ times a day should never animate; a rare celebration state is where the delight budget belongs) — then walks through naming the animation's actual purpose, picking the cheapest tool that fits from a real decision table (a native tab bar over a hand-rolled one, a native sheet over a custom modal, a shared value only when the interaction is genuinely continuous or gesture-driven), and choosing concrete spring or easing values instead of approximated ones.
+
+The core of the discipline is keeping motion off the JS thread — the specific mobile failure mode that makes an animation look fine in dev and drop to 20fps in production: no state updates inside a gesture handler, no per-frame cross-thread scheduling, no reading or writing a shared value during render. It closes with press-not-hover redesign rules (mobile has no hover state), sparing and well-timed haptics, reduced-motion handling that ships with the animation rather than after it, and a hard rule that feel is only judged on a release build on the slowest supported device — nothing else counts as verified.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir expo-animation && cd expo-animation
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Build or Review an Animation
+
+```bash
+claude
+```
+
+Describe the interaction you want animated in your Expo/React Native app, or paste in existing animation code for review. Claude will apply the build sequence — gate, purpose, tool selection, JS-thread discipline — before writing or fixing the implementation.
+
+---
+
+## Tips & Best Practices
+
+- Be opinionated and brief. When the honest answer is "this shouldn't animate" or "this needs a real device before I can tell you if it's right," give that answer rather than hedging.
+- The frequency gate is the highest-leverage check in the whole sequence — most janky, over-animated mobile UIs trace back to skipping it and animating something that fires dozens of times a session.
+- When a review flags stutter, check the JS-thread rules before touching timing values — a state update hiding inside a gesture handler causes far more visible jank than a slightly-off spring config.
+
+## Limitations
+
+- Specific to React Native and Expo — the underlying principles (interruptibility, velocity handoff, keeping animation off the main thread) generalize, but the concrete APIs here don't transfer directly to native iOS/Android or the web.
+- Assumes a project already has, or can add, a real UI-thread animation and gesture library — without one, several of the tool-selection recommendations need different entries.
+- Feel verification genuinely requires physical devices across a performance range — a review done entirely in a simulator or on a single high-end device will miss exactly the problems this discipline exists to catch.

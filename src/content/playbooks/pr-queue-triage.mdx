@@ -1,0 +1,59 @@
+---
+title: "PR Queue Triage"
+description: "Clear a backlog of open pull requests before a release by classifying every PR into an evidence-based disposition — never by title — with a real git merge-tree test against the actual release branch, not the platform's often-wrong mergeable flag."
+seoHook: "GitHub's mergeable badge is computed against main, but your real release branch is somewhere else — so a PR that shows 'dirty' can be perfectly clean, and one that shows 'clean' can conflict the moment it actually lands, unless something tests the real merge."
+targetAudience: "solo maintainers clearing a PR backlog before a release, small teams doing a pre-release speedrun pass, open-source maintainers who need to triage community contributions fast without rubber-stamping them, anyone tired of judging PRs by their titles"
+exampleUseCase: "\"Triage the open PR queue before v0.9\" → A test-merge of every candidate against the actual release branch (not main), a disposition per PR — direct-merge, harvest, candidate, supersede, defer, or close-with-note — each backed by a read diff and a real merge-tree result, a working triage doc tracking progress across the session, and full authorship credit preserved on every merge or harvest"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "jamiepine (voicebox) and Hmbown (CodeWhale)"
+sourceUrl: "https://github.com/jamiepine/voicebox/blob/main/.agents/skills/triage-prs/SKILL.md"
+tags: ["pull-requests", "github", "release-management", "open-source", "code-review", "maintainer-tools"]
+createdAt: "2026-09-12"
+---
+
+## What This Does
+
+A disciplined pass through a backlog of open pull requests: inventory the queue with `gh pr list`, read every non-trivial candidate from its actual diff rather than its title, and — critically — test-merge each one against the *real* release branch with `git merge-tree`, since GitHub's mergeable flag is computed against `main` and frequently misreports status for anything else. Every PR lands in exactly one disposition: direct-merge, harvest (reimplement with explicit authorship credit), candidate needing a closer look, supersede, defer, or close-with-note.
+
+The workflow is built for a **speedrun session with a known cutoff** — a release — not as a substitute for genuine ongoing review, and it's explicit about credit: a harvested change carries `Co-authored-by:` and `Harvested-from:` trailers since a reimplementation doesn't preserve authorship the way a cherry-pick does. It's also explicit about authority: when triage is advisory rather than backed by full merge rights, the output is a compact recommendation table for a maintainer to approve, never a silent merge or close.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir pr-triage && cd pr-triage
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Triage the Queue
+
+```bash
+claude
+```
+
+Say "triage the open PR queue for [target version]" and Claude will set up an isolated review worktree, inventory every open PR, and work through the classification workflow.
+
+---
+
+## Tips & Best Practices
+
+- The `git merge-tree` step is the single highest-leverage move in this whole workflow — it's the difference between trusting a platform badge that's frequently wrong for non-`main` targets and knowing, with certainty, whether a PR actually applies cleanly.
+- Pair this with a release-notes-drafting pass afterward: triage first against the real landing branch, then draft notes against the new main — doing it in the reverse order produces notes that don't match what actually shipped.
+- Check for file-path overlaps across the whole queue, not just within each PR in isolation — a PR that looks small in isolation can still collide with three other open PRs touching the same file.
+
+## Limitations
+
+- Built for a speedrun pass with a known cutoff (a release), not a substitute for ongoing, careful review of every contribution — genuinely complex or risky PRs still deserve dedicated, unhurried attention.
+- Assumes `gh` CLI and git are both available and authenticated — the merge-tree and PR-metadata steps depend on both.
+- The disposition taxonomy assumes a maintainer (or equivalent authority) is available to approve closes and merges — in a fully autonomous run, default to reporting and let a human execute the close/merge actions.

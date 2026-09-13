@@ -40,9 +40,37 @@ let cachedPlaybooks: Playbook[] | null = null;
 let cachedBySlug: Map<string, Playbook> | null = null;
 let cachedByCategory: Map<Category, Playbook[]> | null = null;
 
+interface MdNode {
+  type: string;
+  url?: string;
+  children?: MdNode[];
+}
+
+/**
+ * Unwraps links whose target is a bare relative path, keeping their text.
+ *
+ * Playbooks harvested from GitHub carry the source repo's relative links —
+ * `[xbrl.md](references/xbrl.md)`, `[docs](URL)` placeholders. On the site
+ * those resolve under /playbooks/ to files that don't exist, and Search Console
+ * was reporting them as 404s. Root-relative (`/…`), fragment (`#…`) and
+ * absolute links are left alone.
+ */
+function unwrapRelativeLinks() {
+  const isBrokenRelative = (url = '') => !/^([a-z][a-z0-9+.-]*:|\/|#|\?)/i.test(url);
+  const walk = (node: MdNode) => {
+    if (!node.children) return;
+    node.children = node.children.flatMap((child) =>
+      child.type === 'link' && isBrokenRelative(child.url) ? (child.children ?? []) : [child]
+    );
+    node.children.forEach(walk);
+  };
+  return (tree: MdNode) => walk(tree);
+}
+
 async function markdownToHtml(markdown: string): Promise<string> {
   const result = await remark()
     .use(gfm)
+    .use(unwrapRelativeLinks)
     .use(html, { sanitize: false })
     .process(markdown);
   return result.toString();
@@ -102,6 +130,7 @@ export async function getPlaybookBySlug(slug: string): Promise<Playbook | null> 
     tags: frontmatter.tags || [],
     createdAt: frontmatter.createdAt,
     updatedAt: frontmatter.updatedAt,
+    noindex: frontmatter.noindex === true,
     content: htmlContent,
     claudeMdTemplate,
   };
@@ -149,6 +178,7 @@ function scanPlaybooksFromDisk(): Playbook[] {
         tags: frontmatter.tags || [],
         createdAt: frontmatter.createdAt,
         updatedAt: frontmatter.updatedAt,
+        noindex: frontmatter.noindex === true || undefined,
         content: '',
         claudeMdTemplate: undefined,
       };

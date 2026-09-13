@@ -119,6 +119,10 @@ After creating a new playbook, check if its `category` is already covered by a p
 
 Every category used by playbooks should appear in at least one persona's `categories` array so the playbooks are discoverable on `/for/[persona]` pages.
 
+### Optional: `noindex: true`
+
+Setting `noindex: true` in the frontmatter keeps the playbook live but emits `robots: noindex, follow`, drops it from `sitemap.xml`, and keeps it out of the `/for/[persona]` previews. It is set on playbooks Google reported as "Crawled - currently not indexed" whose main content is republished from a source Google consistently declines to index (September 2026 Search Console audit). Don't set it on new playbooks by default.
+
 ### Important rules for MDX content
 
 - **Source URL is required when a URL is provided.** If the user provides a URL as the source for a playbook (a gist, repo, blog post, etc.), you MUST add `sourceUrl: "the-url"` to the MDX frontmatter. This renders a "Source" button on the playbook page linking to the original content. Never omit it when the origin URL is known.

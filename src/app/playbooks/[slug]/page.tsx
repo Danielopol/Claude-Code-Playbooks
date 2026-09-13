@@ -119,6 +119,8 @@ export async function generateMetadata({ params }: PlaybookPageProps): Promise<M
     alternates: {
       canonical: `/playbooks/${slug}`,
     },
+    // follow stays on so crawlers still pass through to the related playbooks.
+    ...(playbook.noindex && { robots: { index: false, follow: true } }),
     openGraph: {
       title: playbook.title,
       description: playbook.description,

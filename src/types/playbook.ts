@@ -51,6 +51,7 @@ export interface Playbook {
   tags: string[];
   createdAt: string;
   updatedAt?: string;
+  noindex?: boolean;
   content: string;
   claudeMdTemplate?: string;
 }
@@ -69,4 +70,10 @@ export interface PlaybookFrontmatter {
   tags: string[];
   createdAt: string;
   updatedAt?: string;
+  /**
+   * Keep the page live for visitors but out of Google's index and the sitemap.
+   * Used for playbooks Google has already declined to index ("crawled -
+   * currently not indexed") whose main content is republished from elsewhere.
+   */
+  noindex?: boolean;
 }

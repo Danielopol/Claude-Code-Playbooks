@@ -7,6 +7,14 @@ import { personas, getPersonaById } from '@/lib/personas';
 import { PlaybookCard } from '@/components/PlaybookCard';
 import { ArrowLeft, Users, FolderOpen } from 'lucide-react';
 
+/*
+ * Each category section is a preview that links on to its /categories/<id> hub,
+ * which lists every playbook. Rendering every card here made these pages huge
+ * (/for/marketers was 2.1 MB of HTML) without adding a single crawl path the
+ * hubs don't already provide.
+ */
+const PLAYBOOKS_PER_SECTION = 12;
+
 interface PersonaPageProps {
   params: Promise<{ persona: string }>;
 }
@@ -60,7 +68,9 @@ export default async function PersonaPage({ params }: PersonaPageProps) {
     .map((catId) => {
       const categoryInfo = getCategoryById(catId);
       const categoryPlaybooks = playbooks.filter((p) => p.category === catId);
-      return { categoryId: catId, categoryInfo, playbooks: categoryPlaybooks };
+      // Preview slots go to pages Google can index; noindex playbooks stay reachable via the hub.
+      const preview = categoryPlaybooks.filter((p) => !p.noindex).slice(0, PLAYBOOKS_PER_SECTION);
+      return { categoryId: catId, categoryInfo, total: categoryPlaybooks.length, playbooks: preview };
     })
     .filter((group) => group.playbooks.length > 0);
 
@@ -137,14 +147,14 @@ export default async function PersonaPage({ params }: PersonaPageProps) {
               <FolderOpen className="h-5 w-5 text-[#a78bfa]" />
               {group.categoryInfo?.name || group.categoryId}
               <span className="text-sm font-normal text-muted-foreground">
-                ({group.playbooks.length})
+                ({group.total})
               </span>
             </h2>
             <Link
               href={`/categories/${group.categoryId}`}
               className="text-xs text-muted-foreground hover:text-[#22d3ee] transition-colors"
             >
-              View all →
+              View all {group.total} →
             </Link>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

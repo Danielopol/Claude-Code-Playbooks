@@ -88,6 +88,8 @@ function build() {
       tags: Array.isArray(data.tags) ? data.tags : [],
       createdAt: data.createdAt ?? '',
       updatedAt: data.updatedAt,
+      // Omitted (undefined → dropped by JSON.stringify) unless set, to keep the index lean.
+      noindex: data.noindex === true ? true : undefined,
     });
   }
 

@@ -8,6 +8,7 @@ interface Playbook {
   slug: string;
   category: string;
   lastModified: Date;
+  noindex: boolean;
 }
 
 // Reads the precomputed index (see scripts/build-index.mjs) rather than
@@ -18,6 +19,7 @@ function getPlaybooks(): Playbook[] {
     slug: p.slug,
     category: p.category || 'uncategorized',
     lastModified: p.createdAt ? new Date(p.createdAt) : new Date(),
+    noindex: p.noindex === true,
   }));
 }
 
@@ -158,8 +160,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  // Playbook pages
-  const playbookPages: MetadataRoute.Sitemap = playbooks.map((playbook) => ({
+  // Playbook pages — noindex ones are left out; submitting a URL while telling
+  // Google not to index it is a contradiction Search Console flags.
+  const playbookPages: MetadataRoute.Sitemap = playbooks.filter((p) => !p.noindex).map((playbook) => ({
     url: `${baseUrl}/playbooks/${playbook.slug}`,
     lastModified: playbook.lastModified,
     changeFrequency: 'monthly',

@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-skills-complete-playbook',
+    slug: 'claude-skills-complete-playbook',
+    title: 'The Complete Claude Skills Playbook: 100 Ways to Automate Your Work in 2026',
+    description: "The definitive Claude Skills hub — 100 curated Skills across file organization, development, marketing, finance, legal, HR, and personal productivity, plus a full directory of role-specific guides for every profession and team function.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '20 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Skills Directory',
+    tags: ['claude skills', 'claude skills list', 'best claude skills', 'claude skills 2026', 'claude skills directory', 'ai automation skills', 'claude code skills'],
+    createdAt: '2026-09-13',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-customer-research',
     slug: 'claude-skills-customer-research',
     title: 'Claude Skills for Customer Research: Mine Feedback for Product Gold',

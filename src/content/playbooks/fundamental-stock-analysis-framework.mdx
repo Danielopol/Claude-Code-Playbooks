@@ -1,0 +1,59 @@
+---
+title: "Fundamental Stock Analysis Framework"
+description: "A rigorous, sector-relative, multi-factor equity analysis process for Indian (NSE/BSE) and US/global listed companies — document-first sourcing that never invents a number, a recency gate that catches superseded data, forensic and IPO modes, and an adversarial challenge pass before delivery."
+seoHook: "A stock analysis that quotes clean ratios but never opened the auditor's report or the related-party note isn't finished — and the single most common way a technically correct-looking analysis turns out wrong isn't bad arithmetic, it's a conclusion built on a quarter of data that was already superseded when it was written."
+targetAudience: "individual investors conducting real due diligence before a stock purchase, equity research analysts producing evidence-backed reports for clients, portfolio managers screening Indian and global stocks with rigorous fundamental criteria, anyone who wants a stock analysis that traces every figure to a primary filing instead of an aggregator site"
+exampleUseCase: "\"Analyze this NSE-listed company — is it fundamentally strong?\" → A document-first data pull from the actual annual report and quarterly filings (never an aggregator as the source of record), a recency gate confirming no newer results or rating action has superseded the data, a kill-criteria screen for governance red flags before any valuation work starts, sector-correct metrics instead of generic ratios, and an adversarial challenge pass that attacks the draft's own load-bearing claims before delivery"
+category: "equity-research"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "alirezarezvani"
+sourceUrl: "https://github.com/alirezarezvani/claude-skills/blob/main/finance/skills/stock-analysis/SKILL.md"
+tags: ["equity-research", "fundamental-analysis", "india-markets", "due-diligence", "valuation", "forensic-accounting"]
+createdAt: "2026-09-15"
+---
+
+## What This Does
+
+A document-first fundamental analysis process built on one non-negotiable rule: never invent a number. Every figure must trace to a primary source — an annual report, a 10-K, a quarterly filing, a concall transcript — with aggregator sites (screener.in, Yahoo Finance, and similar) treated strictly as navigation aids for *locating* documents, never as a source of record. A recency gate runs before any analysis begins, because the framework's own finding is that the most common way a well-built analysis turns out wrong isn't bad arithmetic — it's a conclusion drawn from data that a newer quarter, rating action, or regulatory decision had already superseded.
+
+The ten-stage workflow classifies the sector first (since standard ratios are undefined or inverted for banks, insurers, REITs, and miners), runs an early kill-criteria and red-flag screen that can escalate straight into a forensic-only mode, reads the full annual report — not just the financial statements, but the risk factors, related-party notes, auditor qualifications, and governance signals that decide most real outcomes — builds a genuinely defensible peer set, and closes with an adversarial challenge pass where a fresh reviewer attacks the draft's own load-bearing claims before it ships. Throughout, the output is explicitly research and analysis, never personalized investment advice or a trading signal.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir stock-analysis && cd stock-analysis
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Analyze a Stock
+
+```bash
+claude
+```
+
+Name the company or ticker and the depth you want (a quick screen, a standard analysis, or a deep dive), and provide or point to the primary filings if you have them. Claude will run the workflow, sourcing every figure and flagging any gap explicitly.
+
+---
+
+## Tips & Best Practices
+
+- The recency gate catches the single most common way a technically correct analysis turns out wrong — a conclusion drawn from data already superseded by a newer quarter, rating action, or regulatory decision published days before the analysis date.
+- When a red flag surfaces early, resist the pull to keep going with the standard workflow anyway — escalating to a forensic-only pass and saying so explicitly is more useful than a valuation built on earnings nobody should believe.
+- The adversarial challenge pass is the step most likely to get skipped under time pressure, and it's exactly the step that catches an analysis that quietly became advocacy for its own conclusion.
+
+## Limitations
+
+- A methodology for equity research and analysis, not licensed financial advice — always state that plainly in any output, and never frame a conclusion as a personalized recommendation.
+- Sector-specific metric sets (banks, insurers, REITs, miners, and dozens more) each carry real specialized logic — treat sector specificity as a hard requirement and research the right metric set rather than defaulting to generic ratios.
+- Deepest rigor requires primary source documents (annual reports, regulatory filings, transcripts) that may not always be readily accessible — when they aren't, say so explicitly rather than silently substituting aggregator data.

@@ -1,0 +1,59 @@
+---
+title: "ADHD-Shaped Output"
+description: "Shape every response for an ADHD reader — lead with the next action, number bounded steps, restate state every turn, suppress tangents, give concrete time estimates, and make wins visible — grounded in five specific facts about how ADHD changes reading, not just 'be brief.'"
+seoHook: "Being brief isn't the same as being usable — a short answer that still buries the action three sentences in, or asks the reader to 'keep in mind' something off-screen, fails an ADHD brain exactly the same way a long one does."
+targetAudience: "people with ADHD using Claude Code or any AI assistant daily, neurodivergent professionals who need output shaped for executive function, anyone who knows the gap between 'got it' and 'done it' is where their tasks actually die, coaches and support tools designing for ADHD readers"
+exampleUseCase: "\"Fix my failing test\" → 'Test fails at auth.spec.ts:42: expected 200, got 401. Cause: missing auth header. Fix: add Authorization: Bearer ${token} to the request.' — cause and fix stated matter-of-factly with no 'uh oh,' no preamble, no closing 'let me know if that helps,' and the concrete next action given whether or not anything is left open"
+category: "productivity"
+difficulty: "beginner"
+timeToSetup: "2 minutes"
+author: "ayghri"
+sourceUrl: "https://github.com/ayghri/i-have-adhd/blob/main/skills/i-have-adhd/SKILL.md"
+tags: ["adhd", "accessibility", "output-formatting", "productivity", "neurodivergent", "communication-style"]
+createdAt: "2026-09-15"
+---
+
+## What This Does
+
+Reshapes every response around five specific, named facts about how ADHD changes reading — small working memory (nothing off-screen exists), the gap between understanding and doing, the difficulty of starting, uniform-feeling vague time estimates, and scarce dopamine that needs visible wins, not buried ones. Ten concrete rules follow directly from those facts: lead with the next action instead of context, number bounded multi-step tasks with no step containing "and then" twice, always end with one concrete two-minute action, suppress tangents rather than dumping every side-issue at once, restate exactly which step you're on every turn, give time estimates in real units, show completed work in concrete terms rather than burying it in a recap, and cut every preamble, recap, and closing pleasantry.
+
+It stays on for the rest of the session once activated — not just the next reply — and names six explicit situations where the rules should bend (a full explanation was requested, a destructive action needs confirmation, a debug spiral needs a pause instead of more iteration, real ambiguity needs one clarifying question, or the rule would delete the actual answer). A pre-send checklist catches the specific phrases that creep back in under normal writing momentum.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir adhd-mode && cd adhd-mode
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Turn It On
+
+```bash
+claude
+```
+
+Say "turn on ADHD mode" (or reference this skill) and it stays active for the rest of the session. Say "stop adhd mode" any time to return to normal style.
+
+---
+
+## Tips & Best Practices
+
+- The 5-item list cap is the rule most likely to get misapplied as "drop information" — it never does. It only changes what's shown by default versus what's retained and surfaced on request.
+- Run the pre-send checklist as an explicit final pass, not just an ambient habit — the forbidden-opener and forbidden-closer patterns are exactly the ones that creep back in under normal writing momentum.
+- When suppressing a tangent collides with a genuinely urgent secondary issue, the test is whether ignoring it now causes real harm before the next turn — if not, it waits; if so, it's not actually a tangent.
+
+## Limitations
+
+- Shapes communication style, not judgment — it changes how information is presented, never what gets analyzed, searched, or retained.
+- Examples lean toward software and technical work, but the underlying shape (action first, numbered steps, visible state, concrete time, one next step) transfers to any domain with multi-step work.
+- Not a substitute for actual accessibility accommodations in a product's own UI — this shapes conversational output, not a full application's design.

@@ -1,0 +1,59 @@
+---
+title: "Agent DX CLI Scale"
+description: "A 7-axis, 0-21 scoring scale for evaluating how well a CLI is designed for AI agents rather than humans — machine-readable output, raw payload input, schema introspection, context-window discipline, input hardening, safety rails, and agent knowledge packaging."
+seoHook: "Human DX optimizes for discoverability and forgiveness; agent DX optimizes for predictability and defense-in-depth — two different design goals that most CLIs quietly conflate, which is exactly why an agent driving a human-optimized CLI wastes tokens, hallucinates flags, and fails silently."
+targetAudience: "developers building CLIs that AI agents will drive, platform teams deciding whether to build a dedicated agent-facing mode, engineers debugging why an agent keeps mishandling a specific tool, anyone designing MCP servers or agent tool surfaces on top of an existing CLI"
+exampleUseCase: "\"Score our CLI for agent-readiness\" → A 0-21 score across 7 axes with cited evidence per axis (which command, which flag), a clear identification of the lowest-scoring gaps — often safety rails (no dry-run, no response sanitization) — and a rating from Human-only through Agent-first that tells the team exactly what to fix next instead of a vague 'needs work' verdict"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "Google Labs"
+sourceUrl: "https://github.com/google-labs-code/design.md/blob/main/.agents/skills/agent-dx-cli-scale/SKILL.md"
+tags: ["cli-design", "agent-tooling", "developer-experience", "mcp", "api-design", "prompt-injection"]
+createdAt: "2026-09-15"
+---
+
+## What This Does
+
+A concrete, evidence-based scoring scale for whether a CLI is actually designed for AI agents to drive — as distinct from a CLI that's merely usable by one. Seven axes, each scored 0–3: machine-readable output (structured JSON, not tables and color codes), raw payload input (can an agent send the API schema directly instead of translating through bespoke flags?), schema introspection (can it discover what's valid at runtime?), context-window discipline (field masks and pagination that protect the agent's token budget), input hardening against agent-specific failure modes (hallucinated paths, embedded query params — not typos), safety rails (dry-run plus sanitization against prompt injection riding in on API responses), and agent knowledge packaging (does it ship the skill files an agent needs at conversation start?).
+
+The total (0–21) maps to four ratings — Human-only, Agent-tolerant, Agent-ready, Agent-first — but the real value is per-axis: a CLI that scores well on structured output and poorly on safety rails has a specific, fixable gap, not a general "needs work" verdict. A non-scored bonus section flags multi-surface readiness (MCP support, plugin install, headless auth) as a separate capability multiplier worth noting even though it doesn't count toward the total.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir cli-scale && cd cli-scale
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Score a CLI
+
+```bash
+claude
+```
+
+Point Claude at a CLI's `--help` output, its documentation, or its source, and ask it to score the CLI against the 7 axes. For a new CLI, ask it to use the scale as a design checklist instead.
+
+---
+
+## Tips & Best Practices
+
+- The safety-rails axis is the one teams most often skip entirely — it's easy to add structured output and call a CLI "agent-ready" while leaving it wide open to prompt injection riding in on API responses.
+- A CLI that scores well on raw payload input but poorly on schema introspection creates a specific, painful failure mode: an agent that can send anything but has no reliable way to know what's valid, so it guesses and gets it wrong just often enough to be expensive.
+- Treat agent knowledge packaging as cheap, high-leverage effort — a well-written skill file describing invariants ("always dry-run before a delete") often closes gaps that would otherwise require actual code changes on the other axes.
+
+## Limitations
+
+- A scoring framework for CLI design, not a security audit tool — a CLI can score well here and still have vulnerabilities this scale doesn't probe for.
+- Assumes the CLI's primary consumer is an autonomous or semi-autonomous agent; a CLI built purely for human interactive use isn't failing by scoring low here, it's serving a different audience.
+- The bonus multi-surface criteria are intentionally non-scored — don't let a high MCP or plugin score paper over a low score on the seven core axes.

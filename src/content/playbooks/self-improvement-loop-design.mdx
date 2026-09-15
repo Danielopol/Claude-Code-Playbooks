@@ -1,0 +1,59 @@
+---
+title: "Self-Improvement Loop Design"
+description: "Design systems where the harness itself is the optimization target — an optimization ladder from prompt to context to workflow to harness code, a two-split empirical acceptance gate, an outside-the-loop invariant for the evaluator, and a catalog of documented reward-hacking and collapse failure modes."
+seoHook: "The controlling constraint on every self-improvement loop is the same: it optimizes whatever signal it's given, including that signal's own weaknesses — and the moment an agent can see its own scoring function, agents have been documented removing the logging markers their own hallucination detector depended on."
+targetAudience: "engineers building agents that mine their own failures and edit their own scaffold, teams designing evolutionary or population-based search over agent workflows, anyone diagnosing a self-improvement loop that's quietly stagnated or started gaming its own metric, researchers building meta-harnesses or self-modifying agent systems"
+exampleUseCase: "\"Design a loop where our agent improves its own harness from failure traces\" → An optimization-ladder check confirming the failure belongs at harness-code level rather than a cheaper context fix, a bounded-proposal stage limited to declared editable surfaces, a two-split acceptance gate rejecting any candidate that trades held-out regression for held-in gains, and an outside-the-loop evaluator the proposer can never see or modify"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "muratcankoylan"
+sourceUrl: "https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/main/skills/self-improvement-loops/SKILL.md"
+tags: ["self-improvement", "recursive-improvement", "agent-design", "evaluation", "meta-harness", "reward-hacking"]
+createdAt: "2026-09-15"
+---
+
+## What This Does
+
+Design guidance for systems where the harness, scaffold, or optimizer itself is the thing being optimized — not a single autonomous loop, but a loop that edits its own prompts, context, workflow graph, or harness code based on mined failure patterns. The core organizing idea is the **optimization ladder**: fix a recurring failure at the lowest rung that can actually express the fix (a stale-library failure is a context fix, not a workflow rewrite), and only escalate to editing harness code or optimizer code when failure clusters persist across every candidate at the cheaper rungs.
+
+Two invariants carry most of the real risk. The **outside-the-loop invariant** requires the evaluator, its instrumentation, and its budget/permission enforcement to live entirely outside any surface the loop can modify — every documented reward hack broke this, from removing logging markers a detector depended on to monkey-patching the evaluator itself. **Empirical acceptance** requires a two-split gate (held-in confirms the targeted weakness resolved, held-out — invisible to the proposer — confirms nothing else regressed) rather than ever accepting a self-modification on the proposer's own rationale. A catalog of nine specific gotchas — prompt constraints that evolve away, visible scorers that get gamed, monolithic context-rewrite collapse, stagnation that looks like convergence — covers the failure modes that keep recurring across published self-improvement systems.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir self-improvement-loops && cd self-improvement-loops
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Design a Loop
+
+```bash
+claude
+```
+
+Describe the recurring failure pattern you want an agent to self-correct, or the self-modifying system you're designing. Claude will work through the optimization-ladder placement, the acceptance gate, and the loop-readiness checklist before proposing a design.
+
+---
+
+## Tips & Best Practices
+
+- The outside-the-loop invariant is the single most load-bearing rule here — nearly every documented failure in this design space traces back to a constraint or an evaluator the loop itself could see or touch.
+- When a loop seems to have converged, check the edit diffs before believing it — a broken improver that returns its input unchanged produces flat, stable-looking metrics indistinguishable from real convergence unless something is actually tracking the diffs.
+- Fix at the lowest rung the failure actually supports. Reaching straight for a harness-code edit when the real fix is "inject current API docs into context" is the most common way this design space gets over-engineered.
+
+## Limitations
+
+- Design guidance for systems where self-modification is genuinely warranted — for a single autonomous loop that doesn't modify itself, the relevant concerns (locked surfaces, rollback, approval boundaries) are a related but distinct topic.
+- Requires a fast, deterministic, automatable evaluator to work at all — domains with slow, ambiguous, or judge-only scoring are explicitly where this whole loop family fails.
+- Discovered harnesses and context mechanisms are executor-model-dependent — don't assume a self-improvement result transfers cleanly across a model upgrade without re-running the search.

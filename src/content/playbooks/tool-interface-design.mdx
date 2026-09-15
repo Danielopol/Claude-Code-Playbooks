@@ -1,0 +1,59 @@
+---
+title: "Tool Interface Design for Agents"
+description: "Design agent-facing tools as contracts an agent must infer entirely from the description alone — the consolidation principle over narrow overlapping tools, architectural reduction toward primitives, actionable error-recovery messages, and an 8-point audit checklist."
+seoHook: "A human reads docs, understands conventions, and can ask a colleague when a tool call is unclear. An agent has to infer the entire contract from one description block in a single shot — every ambiguity in that block becomes a real failure mode no amount of prompt engineering downstream can fully fix."
+targetAudience: "developers building MCP servers or tool catalogs for AI agents, teams debugging why an agent keeps picking the wrong tool or generating malformed calls, anyone consolidating a sprawling tool catalog where agents pick wrong half the time, engineers designing error messages agents can actually recover from"
+exampleUseCase: "\"Why does my agent keep calling the wrong tool?\" → An audit against the consolidation principle (do list_users, list_events, and create_event overlap enough to merge into one schedule_event call?), a description rewritten to answer what/when/returns explicitly, error messages redesigned to tell the agent what to change before retrying instead of returning a bare 'failed', and an 8-point checklist run against every tool before it ships"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "muratcankoylan"
+sourceUrl: "https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/main/skills/tool-design/SKILL.md"
+tags: ["tool-design", "mcp", "agent-tooling", "api-design", "error-handling", "claude-code"]
+createdAt: "2026-09-15"
+---
+
+## What This Does
+
+Treats every agent-facing tool as a contract the agent must infer entirely from its description, in one shot, with no chance to ask a clarifying question the way a human developer reading API docs could. The core move is the **consolidation principle**: build single comprehensive tools instead of multiple narrow ones that overlap, because every tool in a collection competes for the agent's attention during selection and overlapping functionality creates genuine ambiguity, not just clutter — real production evidence shows collapsing a sprawling specialized tool set into fewer well-designed primitives measurably improves outcomes. It pushes that principle further with **architectural reduction**: giving an agent direct filesystem or command-execution access instead of custom wrapper tools, when the underlying capability is already well-documented and the model has the reasoning capability to use it directly.
+
+Beyond consolidation, it covers writing descriptions that answer what/when/inputs/returns explicitly (since the description *is* the prompt that steers tool selection, not documentation on the side), designing error messages actionable enough for an agent to actually recover from, a consistent naming schema across a whole catalog, MCP-specific namespace-collision gotchas, and a concrete tool audit checklist — name, description, schema, return shape, recovery, overlap, consolidation decision, token impact — to run on every tool before it ships.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir tool-design && cd tool-design
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Audit or Design a Tool Catalog
+
+```bash
+claude
+```
+
+Point Claude at an existing tool catalog or MCP server and ask it to audit each tool against the 8-point checklist, or describe a new set of tools you're planning and ask it to apply the consolidation principle before you build them.
+
+---
+
+## Tips & Best Practices
+
+- Read every tool description as prompt engineering, because it is — it loads into context and steers behavior exactly like an instruction would.
+- When debugging why an agent picked the wrong tool, check for overlap first — two tools with similar activation scenarios is a far more common cause than one poorly worded description.
+- Prefer primitive, general-purpose tools over specialized wrappers whenever the underlying capability (a real filesystem, a real shell) already gives the model what it needs — a wrapper built as a guardrail for a weaker model can become the thing constraining a stronger one later.
+
+## Limitations
+
+- This is the interface layer specifically — whether a project needs LLMs at all, what the pipeline stages should be, or whether to introduce sub-agents are separate, adjacent design questions this doesn't cover.
+- The consolidation principle is a strong default, not an absolute rule — pushed too far, it produces an unusable mega-tool with too many parameters for an agent to reliably fill in correctly.
+- Architectural reduction works best with a well-documented, consistently structured data layer and a capable model — it's the wrong call for messy data or a domain that genuinely needs specialized guardrails.

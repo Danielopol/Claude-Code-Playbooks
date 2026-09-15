@@ -1,0 +1,59 @@
+---
+title: "Planning with Files"
+description: "Persistent, file-based planning for multi-step AI-agent work — task_plan.md, findings.md, and progress.md on disk, a 2-action rule for capturing multimodal findings before they're lost, a 3-strike error protocol, and a 5-question reboot test to verify state survives a compaction."
+seoHook: "A context window is RAM — volatile and limited. The filesystem is disk — persistent and effectively unlimited. Most agent sessions lose real work not because the task was too hard, but because nothing important ever made it from the first to the second before a compaction wiped it."
+targetAudience: "developers running multi-step research or build tasks with Claude Code, anyone whose long sessions lose track of progress after a compaction or restart, teams standardizing how agents track state across sessions, users running multiple parallel Claude Code tasks in the same repository"
+exampleUseCase: "\"Research and implement this feature\" → A task_plan.md created before any work starts, findings written to disk after every two search or browse operations so multimodal discoveries survive, a 3-strike protocol that forces a genuinely different approach on the second failed attempt instead of a more careful retry, and a plan that survives a mid-task compaction because the next session can answer the 5-question reboot test straight from the files on disk"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "OthmanAdi"
+sourceUrl: "https://github.com/OthmanAdi/planning-with-files/blob/master/.agents/skills/planning-with-files/SKILL.md"
+tags: ["planning", "context-management", "claude-code", "session-recovery", "developer-tools", "autonomous-agents"]
+createdAt: "2026-09-15"
+---
+
+## What This Does
+
+A "Manus-style" persistent planning pattern built on one idea: the context window is volatile RAM, the filesystem is persistent disk, so anything that matters gets written down, not just held in conversation memory. Three files carry the state — `task_plan.md` for phases and decisions, `findings.md` for research and discoveries, `progress.md` for the session log — updated on a strict cadence: the plan gets read before any major decision, findings get written after every two view/browse/search operations (before multimodal content like a screenshot scrolls out of context and is gone for good), and every error gets logged in a table rather than silently retried.
+
+The **3-strike error protocol** forces real escalation instead of repeated blind retries: diagnose and fix, then a genuinely different approach, then a broader rethink of the plan itself, then stop and ask rather than attempt a fourth variation alone. A **5-question reboot test** (where am I, where am I going, what's the goal, what have I learned, what have I done) doubles as a self-check after any compaction or restart — if all five can be answered straight from the files on disk, the planning setup is actually working.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir planning-with-files && cd planning-with-files
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Start a Multi-Step Task
+
+```bash
+claude
+```
+
+Give Claude a research task, a build, or anything spanning 5+ tool calls. It will create `task_plan.md` before starting real work, and keep `findings.md` and `progress.md` current as it goes — resilient to a compaction or a session restart partway through.
+
+---
+
+## Tips & Best Practices
+
+- Writing to `findings.md` is cheap; losing a discovery because it wasn't written down before the context that produced it scrolled away is expensive — err toward writing more, not less.
+- The 3-strike protocol's real value is forcing a genuinely different approach on attempt 2, not a more careful retry of attempt 1 — if attempt 2 looks like attempt 1 with extra caution, it doesn't count as a real second attempt.
+- Treat "continue after completion" as the default, not an edge case — real projects rarely end exactly where the original plan predicted, and the planning files should grow with the actual scope rather than lock it in.
+
+## Limitations
+
+- Built for a single agent (or a small, coordinated set) working a bounded task — not a replacement for a team-facing project tracker or issue system.
+- The three-file structure is a starting point, not a rigid schema — adapt file names and structure to what the actual task needs.
+- Assumes real persistent filesystem access across the session — in a fully ephemeral or sandboxed environment with no disk persistence between turns, the core premise doesn't hold.

@@ -1,0 +1,59 @@
+---
+title: "Long-Horizon Agent Prompting"
+description: "Design the launch prompt for an agent working autonomously for hours or days — a pseudo-formal task brief with an exact success predicate, an enumerated non-counting-outcomes list, adversarial verification, and effort floors, because persistence pressure against a loose spec produces confident non-solutions."
+seoHook: "A short interactive prompt fails cheaply when it's wrong. A long-horizon brief with a loophole burns hours of compute producing a confident, answer-shaped artifact that never actually solved the problem — and the cost of a weak specification scales with exactly the autonomy that makes long runs worth running."
+targetAudience: "developers launching long-running autonomous agents or multi-agent orchestrations, teams building agents that work for hours or days on hard open-ended problems, anyone diagnosing a failed long run that returned a plausible-looking non-solution, prompt engineers designing verification and stop conditions for persistent agents"
+exampleUseCase: "\"Write the launch prompt for an agent debugging why v4 underperforms v3 in production\" → An exact success predicate (a defect that closes the gap, proven by a reproduction script and a corrected run — not a narrative), an explicit non-counting list ruling out correlational stories and partial explanations, an adversarial verification checklist for the reviewer, and a return condition gated on surviving that review instead of on the agent's own confidence"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "muratcankoylan"
+sourceUrl: "https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/blob/main/skills/long-horizon-prompting/SKILL.md"
+tags: ["prompt-engineering", "autonomous-agents", "multi-agent-orchestration", "verification", "agent-design", "claude-code"]
+createdAt: "2026-09-15"
+---
+
+## What This Does
+
+A methodology for the specific, high-stakes prompt that launches an agent expected to work autonomously for hours or days — alone, or orchestrating many parallel workers on an open-ended hard problem. The central technique is the **pseudo-formal task brief**: definitions covering every degenerate edge case, an exact success predicate with explicit scope quantifiers, and — the highest-leverage piece — an enumerated list of near-miss outcomes that explicitly *don't* count, since under persistence pressure a model reliably produces an answer-shaped partial result unless every escape hatch is named and closed in advance.
+
+It covers the real trade-off underneath long-horizon prompting: persistence instructions counter a documented drift toward giving up, but the same pressure raises the surface for reward hacking — so the hard design rule is that every persistence instruction needs a matching verification gate, never one without the other. It also covers the verification bottleneck (parallel sampling finds good answers faster than a system can reliably select them, so budget as much design effort for the auditor as the generator), structural diversity in parallel search (role labels alone don't prevent convergence), and a concrete brief-writing workflow that ends in red-teaming the finished brief by asking a fresh model instance how it could satisfy the letter without the intent.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir long-horizon-prompting && cd long-horizon-prompting
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Write a Launch Brief
+
+```bash
+claude
+```
+
+Describe the hard, open-ended problem you want an agent to work on autonomously. Claude will walk through the brief-writing workflow — success predicate, non-counting outcomes, auditor checklist, effort floor — and red-team the result before you launch it.
+
+---
+
+## Tips & Best Practices
+
+- The non-counting outcomes list is the single highest-leverage section to spend time on — every excluded near miss is one fewer way the agent can produce something that looks like success without actually being it.
+- Red-team the finished brief before launching a genuinely expensive run, even when it feels obviously airtight — the "how could an agent satisfy the letter without the intent" question routinely surfaces a loophole the author was too close to see.
+- Resist over-specifying the path. Leaner, outcome-first prompts have outperformed accumulated instruction stacks in practice — spend the budget on the predicate and the failure modes, not on prescribing exactly how to get there.
+
+## Limitations
+
+- Built for genuinely long-running, high-effort autonomous work — applying this level of specification rigor to a short interactive task is pure overhead.
+- Generalizes past its clearest exemplar (mathematics) but needs real translation work per domain — the auditor checklist and non-counting list have to come from someone who actually knows that domain's specific failure modes.
+- A well-written brief reduces but doesn't eliminate reward-hacking risk — pair persistence instructions with runtime-level (not just prompt-level) verification and sandboxing wherever the stakes justify it.

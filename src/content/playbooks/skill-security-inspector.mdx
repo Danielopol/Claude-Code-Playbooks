@@ -1,0 +1,59 @@
+---
+title: "Skill Security Inspector"
+description: "Review an AI agent skill before installing it using two independent lines — static scanner evidence plus source-aware semantic judgment — checking purpose fit, permission fit, sensitive access, external transmission, execution risk, and persistence, down to a clear APPROVE, CAUTION, or REJECT verdict."
+seoHook: "A skill's risk score can miss real semantic risk, and a high score can be entirely justified when the sensitive behavior is documented and necessary — the number alone was never the verdict, and treating it as one is exactly how a plausible-looking skill with one undocumented extra behavior gets waved through."
+targetAudience: "developers installing third-party Claude Code skills or plugins, teams vetting an internal skill library before wider rollout, anyone downloading a skill from a repository and wondering if it's actually safe, security-conscious users who want a structured review instead of just reading SKILL.md and hoping"
+exampleUseCase: "\"Is this downloaded skill safe to install?\" → A static scan (or a stated manual fallback if none is available), source read against every HIGH/CRITICAL finding, a semantic pass checking whether the code does only what it claims (purpose fit) and whether requested permissions match observed behavior, and a final APPROVE/CAUTION/REJECT verdict with a concise triage report — never a raw scanner dump, and never a numeric score standing in for judgment"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "NVIDIA (SkillSpector)"
+sourceUrl: "https://github.com/NVIDIA/SkillSpector/blob/main/skills/skill-inspector/SKILL.md"
+tags: ["security-review", "supply-chain-security", "skill-auditing", "claude-code", "mcp", "code-review"]
+createdAt: "2026-09-15"
+---
+
+## What This Does
+
+A structured pre-install security review for AI agent skills, run on two independent lines that never get collapsed into a single number: a static scan for known risk patterns (when a scanner tool is available, with an explicit manual fallback when it isn't), and a source-aware semantic review that checks whether the implementation actually matches what the skill claims to do. The semantic pass works through ten specific questions — purpose fit, permission fit, sensitive access (tokens, credentials, other skills, agent memory), external transmission, execution risk (shell, `eval`, downloaded code), persistence (cron jobs, startup hooks, self-rewriting files), prompt risk (hidden actions, weakened safety boundaries), overly broad trigger phrases that could hijack unrelated requests, supply-chain red flags, and whether sensitive behavior actually requires user consent.
+
+Every review ends in exactly one of three verdicts — `APPROVE`, `CAUTION`, or `REJECT` — with an explicit rule against ever downgrading an unexplained HIGH or CRITICAL finding based only on reputation or a familiar package name. A numeric risk score, where available, maps to a default posture (0-20 usually fine after a quick check, 81-100 default reject) but is treated as a *starting posture*, never the verdict itself — a low score with unexplained sensitive behavior still gets flagged, and a high score with fully documented, necessary, bounded behavior can still land on `CAUTION` rather than an automatic rejection.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir skill-inspector && cd skill-inspector
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Review a Skill
+
+```bash
+claude
+```
+
+Point Claude at a local skill directory, a downloaded archive, or a repository URL and ask it to review the skill for safety before installing. It will run (or fall back gracefully without) a static scan, read the source directly, and deliver a concise triage report with a clear verdict.
+
+---
+
+## Tips & Best Practices
+
+- The purpose-fit and permission-fit checks catch the most common real problem: a skill that does roughly what it says, plus one undocumented extra thing — scope creep nobody consented to, not necessarily outright malware.
+- Give trigger risk real attention on its own — an overly broad activation phrase can cause a skill to silently hijack requests that were never meant for it, a usability and trust problem even when the skill's actual code is benign.
+- When no scanner is available and the manual fallback is in effect, say so explicitly in the report rather than letting it read the same as a scanner-backed review.
+
+## Limitations
+
+- A structured review methodology, not a guarantee — sufficiently obfuscated or genuinely novel malicious code can evade both static and source-level review.
+- Read-only by design: it inspects source without executing it, so behavior that only manifests at runtime (a network call gated behind a rare condition, say) may not surface from static and source review alone.
+- Best suited to reviewing an individual skill or a small set before installation — not a substitute for a marketplace or platform's own vetting process at scale.

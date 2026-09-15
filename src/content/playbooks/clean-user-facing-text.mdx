@@ -1,0 +1,59 @@
+---
+title: "Clean User-Facing Text"
+description: "A final text-hygiene pass for authorized prose — audits and strips invisible Unicode artifacts and homoglyphs, then reduces mechanical AI-writing signals with a measure-before/measure-after check, while preserving every fact and the writer's actual voice."
+seoHook: "Copy-pasted AI output can carry invisible Unicode characters that look identical to a normal space or letter but aren't — a hygiene problem entirely separate from writing style, and one that most 'sound less like AI' guides never even check for."
+targetAudience: "writers and editors finalizing AI-assisted articles, manuscripts, and reports they're authorized to polish, documentation teams cleaning up prose before publishing, anyone who's had AI-generated text carry stray Unicode artifacts into a final document, teams wanting an honest, non-evasion-framed approach to reducing AI writing tells"
+exampleUseCase: "\"Clean up this draft before I publish it\" → A deterministic pass stripping invisible Unicode and homoglyphs first, a before/after AI-cadence density check that skips the rewrite entirely if the text already reads naturally, a single rewrite pass that kills stock AI vocabulary and injects real sentence-length variation without inventing a single new fact, and an honest report distinguishing what was verifiably fixed from what's only a best-effort stylistic pass"
+category: "creative-writing"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "guillaumemeyer"
+sourceUrl: "https://github.com/guillaumemeyer/watermarks-remover/blob/main/skills/clean-user-facing-text/SKILL.md"
+tags: ["editing", "ai-writing-detection", "unicode", "proofreading", "content-hygiene", "technical-writing"]
+createdAt: "2026-09-15"
+---
+
+## What This Does
+
+A two-layer text-hygiene pass distinct from a typical "sound less like AI" rewrite. Layer A is fully deterministic: strip invisible Unicode characters and homoglyphs — artifacts that look identical to a normal space or letter but aren't, and that often ride along silently when text is copy-pasted from certain tools. Layer B is a measured, honest rewrite pass: score the text's AI-cadence density first, skip the rewrite entirely if it's already low or medium, and only when density is genuinely high, kill stock AI vocabulary, inject real sentence-length variation, and flatten formulaic structure — all while a hard rule holds throughout: never invent a detail, name, number, quote, or source to make the prose easier to write or more varied. A missing fact gets flagged, never filled.
+
+The whole approach is explicit about its own limits: Unicode cleanup is deterministic and verifiable; statistical-signal reduction is best-effort against perplexity/burstiness-style detectors specifically, and the skill refuses to claim detector evasion, proof of human authorship, or removal of any vendor's secret-key watermark. It's built for text the user owns or is authorized to process, explicitly not for disguising AI involvement where authorship disclosure genuinely matters.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir clean-text && cd clean-text
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Clean a Draft
+
+```bash
+claude
+```
+
+Paste in the prose you want finalized and ask Claude to clean it up. It will strip invisible artifacts, measure AI-cadence density, and rewrite only if the density check says it's actually needed — preserving every fact and the writer's own voice throughout.
+
+---
+
+## Tips & Best Practices
+
+- Run the artifact-stripping pass unconditionally, even on text that scores low on AI-density — invisible Unicode characters are a real, separate hygiene problem from writing style, and they're free to fix.
+- The measure-before step matters as much as the rewrite itself — rewriting text that's already fine risks introducing errors or flattening a deliberate voice for zero real benefit.
+- When using a voice sample, confirm it's actually owned or authorized before applying it — this preserves the line between "sound like my own established voice" and impersonating someone else's.
+
+## Limitations
+
+- Only for text the user owns or is authorized to process — never use to help disguise AI involvement where authorship disclosure genuinely matters (a graded academic submission, a professional certification, and similar contexts).
+- The statistical-detector levers are honestly limited to perplexity/burstiness-style detectors — trained neural classifiers are adversarially trained against exactly this kind of edit, and no claim here should be read as guaranteed evasion of any specific tool.
+- Never a substitute for actually disclosing AI assistance where a policy or relationship requires it — this tool improves prose quality and strips accidental artifacts; it makes no authenticity claims on its own.

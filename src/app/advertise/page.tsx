@@ -4,6 +4,10 @@ import { Megaphone, Check, ShieldCheck, AlertTriangle } from 'lucide-react';
 import { AdvertiseForm } from '@/components/AdvertiseForm';
 import { getAllPlaybooks } from '@/lib/playbooks';
 import { internalBlogPosts } from '@/lib/blog-internal';
+import { getLiveAudience } from '@/lib/vercel-analytics';
+
+// Refresh the live audience numbers hourly.
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: 'Advertise | Claude Code Playbooks',
@@ -27,21 +31,26 @@ export const metadata: Metadata = {
 };
 
 /*
- * Update monthly from Vercel Analytics (Production, last 30 days).
- * Publish only claudecodehq.com traffic, and keep the tier-1 figure next to the
- * total — roughly a fifth of raw visitors (Singapore, China) are low-engagement
- * datacenter traffic, and advertisers who check will notice.
+ * Shown when the Vercel Analytics API is unreachable or VERCEL_ANALYTICS_TOKEN
+ * is not set (see src/lib/vercel-analytics.ts). Last hand-checked against the
+ * dashboard on 2026-09-08; refresh if it is ever load-bearing for long.
+ *
+ * The tier-1 figure stays next to the total on purpose — roughly a fifth of raw
+ * visitors (Singapore, China) are low-engagement datacenter traffic, and
+ * advertisers who check will notice.
  */
-const AUDIENCE = {
+const FALLBACK_AUDIENCE = {
   period: 'Aug 9 – Sep 8, 2026',
   growth: '+29% on the previous 30 days',
-  stats: [
-    { value: '18.4K', label: 'monthly visitors' },
-    { value: '37.2K', label: 'monthly page views' },
-    { value: '46%', label: 'from the US, UK, Canada, Australia & Western Europe' },
-    { value: '55%', label: 'arrive from Google search' },
-  ],
-  // Approximate share of page views by topic.
+  visitors: '18.4K',
+  pageviews: '37.2K',
+  tier1Share: '46%',
+  googleShare: '55%',
+};
+
+// Approximate share of page views by topic. Vercel has no notion of our topics
+// and the API only returns the top 100 pages, so these stay hand-maintained.
+const AUDIENCE = {
   topics: [
     { name: 'Writing, content & creative', share: 11 },
     { name: 'Academic research & education', share: 10 },
@@ -119,9 +128,44 @@ const RULES = [
   'Sponsor copy can’t claim or imply endorsement by Anthropic. This site is independent and not affiliated with Anthropic.',
 ];
 
-export default function AdvertisePage() {
+const compact = (value: number) =>
+  new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(value);
+
+function formatRange(since: Date, until: Date): string {
+  const day = (date: Date, withYear = false) =>
+    date.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      ...(withYear && { year: 'numeric' }),
+    });
+
+  return `${day(since)} – ${day(until, true)}`;
+}
+
+export default async function AdvertisePage() {
   const playbookCount = Math.floor(getAllPlaybooks().length / 100) * 100;
   const guideCount = internalBlogPosts.length;
+
+  // Falls back to the last hand-checked numbers if the API is unreachable.
+  const live = await getLiveAudience();
+
+  const stats = [
+    { value: live ? compact(live.visitors) : FALLBACK_AUDIENCE.visitors, label: 'monthly visitors' },
+    { value: live ? compact(live.pageviews) : FALLBACK_AUDIENCE.pageviews, label: 'monthly page views' },
+    {
+      value: live ? `${live.tier1Share}%` : FALLBACK_AUDIENCE.tier1Share,
+      label: 'from the US, UK, Canada, Australia & Western Europe',
+    },
+    {
+      value: live?.googleShare != null ? `${live.googleShare}%` : FALLBACK_AUDIENCE.googleShare,
+      label: 'arrive from Google search',
+    },
+  ];
+
+  const period = live ? formatRange(live.since, live.until) : FALLBACK_AUDIENCE.period;
+  const growth = live
+    ? live.growth !== null && `${live.growth >= 0 ? '+' : ''}${live.growth}% on the previous 30 days`
+    : FALLBACK_AUDIENCE.growth;
 
   return (
     <div className="container mx-auto py-12 max-w-4xl">
@@ -139,7 +183,7 @@ export default function AdvertisePage() {
       {/* Audience */}
       <section className="mb-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {AUDIENCE.stats.map((stat) => (
+          {stats.map((stat) => (
             <div key={stat.label} className="p-4 bg-[#161b22] border border-[#30363d] rounded-lg">
               <div className="text-2xl font-bold text-foreground">{stat.value}</div>
               <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
@@ -147,7 +191,7 @@ export default function AdvertisePage() {
           ))}
         </div>
         <p className="text-xs text-muted-foreground/70 mt-3">
-          Vercel Analytics, {AUDIENCE.period}. {AUDIENCE.growth}.
+          Vercel Analytics, {period}.{growth && ` ${growth}.`}
         </p>
       </section>
 

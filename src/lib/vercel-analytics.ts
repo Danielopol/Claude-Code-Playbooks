@@ -23,7 +23,10 @@ const TEAM_ID = process.env.VERCEL_ANALYTICS_TEAM_ID || 'team_ZUSmsiPG52CtaPkpau
 
 const WINDOW_DAYS = 30;
 const CACHE_SECONDS = 3600;
-const TIMEOUT_MS = 8000;
+/* A cold function running three 30-day queries needs room; 8s was too tight
+ * and a timed-out render baked the fallback numbers in until the next one. */
+const TIMEOUT_MS = 20_000;
+const ATTEMPTS = 2;
 /** The API caps grouped results at 100 rows and buckets the rest as "Others". */
 const MAX_ROWS = 100;
 
@@ -60,7 +63,7 @@ export interface LiveAudience {
   until: Date;
 }
 
-async function query(by: string, since: Date, until: Date, token: string): Promise<Row[] | null> {
+async function attempt(by: string, since: Date, until: Date, token: string, attempt: number) {
   const url = new URL(ENDPOINT);
   url.searchParams.set('projectId', PROJECT_ID);
   if (TEAM_ID) url.searchParams.set('teamId', TEAM_ID);
@@ -68,25 +71,37 @@ async function query(by: string, since: Date, until: Date, token: string): Promi
   url.searchParams.set('since', since.toISOString());
   url.searchParams.set('until', until.toISOString());
   url.searchParams.set('limit', String(MAX_ROWS));
+  // Distinct URL per attempt, so a retry can't be served a cached failure.
+  if (attempt > 0) url.searchParams.set('_retry', String(attempt));
 
-  try {
-    const res = await fetch(url, {
-      headers: { Authorization: `Bearer ${token}` },
-      signal: AbortSignal.timeout(TIMEOUT_MS),
-      next: { revalidate: CACHE_SECONDS },
-    });
+  const res = await fetch(url, {
+    headers: { Authorization: `Bearer ${token}` },
+    signal: AbortSignal.timeout(TIMEOUT_MS),
+    next: { revalidate: CACHE_SECONDS },
+  });
 
-    if (!res.ok) {
-      console.error(`Vercel Analytics query (by=${by}) failed: ${res.status} ${res.statusText}`);
-      return null;
+  if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+
+  const body = await res.json();
+  return Array.isArray(body?.data) ? (body.data as Row[]) : null;
+}
+
+async function query(by: string, since: Date, until: Date, token: string): Promise<Row[] | null> {
+  for (let i = 0; i < ATTEMPTS; i++) {
+    try {
+      return await attempt(by, since, until, token, i);
+    } catch (error) {
+      const last = i === ATTEMPTS - 1;
+      console.error(
+        `Vercel Analytics query (by=${by}) attempt ${i + 1}/${ATTEMPTS} failed:`,
+        error instanceof Error ? error.message : error
+      );
+      if (last) return null;
+      await new Promise((resolve) => setTimeout(resolve, 500));
     }
-
-    const body = await res.json();
-    return Array.isArray(body?.data) ? (body.data as Row[]) : null;
-  } catch (error) {
-    console.error(`Vercel Analytics query (by=${by}) errored:`, error);
-    return null;
   }
+
+  return null;
 }
 
 const sum = (rows: Row[], field: 'visitors' | 'pageviews') =>
@@ -96,7 +111,11 @@ export async function getLiveAudience(): Promise<LiveAudience | null> {
   const token = process.env.VERCEL_ANALYTICS_TOKEN;
   if (!token) return null;
 
-  const until = new Date();
+  /* Snapped to the hour so the query URL is stable within it: the cached
+   * response is reused instead of re-queried on every regeneration, and the
+   * rendered page stays identical between renders (identical output costs no
+   * ISR writes). */
+  const until = new Date(Math.floor(Date.now() / 3600_000) * 3600_000);
   const since = new Date(until.getTime() - WINDOW_DAYS * 86400_000);
   const previousSince = new Date(since.getTime() - WINDOW_DAYS * 86400_000);
 

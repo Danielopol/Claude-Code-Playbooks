@@ -6,8 +6,11 @@ import { getAllPlaybooks } from '@/lib/playbooks';
 import { internalBlogPosts } from '@/lib/blog-internal';
 import { getLiveAudience } from '@/lib/vercel-analytics';
 
-// Refresh the live audience numbers hourly.
-export const revalidate = 3600;
+/* The numbers themselves are queried hourly (src/lib/vercel-analytics.ts).
+ * Re-rendering every 30 minutes costs nothing extra — within the hour the
+ * cached response is reused and the output is identical — but it halves how
+ * long a render that fell back to the hardcoded numbers stays cached. */
+export const revalidate = 1800;
 
 export const metadata: Metadata = {
   title: 'Advertise | Claude Code Playbooks',

@@ -17,7 +17,7 @@ const RULES: [RegExp, string, TopicId][] = [
   [/academic-research|grant-writers|deep-research/, 'researchers', 'academic-research'],
   [/students/, 'students', 'academic-research'],
   [/teachers/, 'teachers', 'academic-research'],
-  [/equity-research/, 'equity research analysts', 'finance'],
+  [/equity-research|fiscal-ai|earnings-note/, 'equity research analysts', 'finance'],
   [/private-equity|financial-modeling/, 'finance professionals', 'finance'],
   [/investors/, 'investors', 'finance'],
   [/accountants|tax-season|invoice-processing/, 'accountants', 'finance'],

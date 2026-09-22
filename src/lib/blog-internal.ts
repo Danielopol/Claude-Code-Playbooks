@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'fiscal-ai-mcp-earnings-note',
+    slug: 'fiscal-ai-mcp-earnings-note',
+    title: 'Claude Code + Fiscal.ai MCP: Write an Earnings Note in 10 Minutes',
+    description: "A real MCP integration walkthrough — connect Claude Code to Fiscal.ai's hosted MCP server for live financial statements, ratios, and transcripts, then pair it with the Equity Research Skills to draft a complete earnings note in about 10 minutes.",
+    category: 'mcp',
+    difficulty: 'intermediate',
+    readingTime: '11 min read',
+    featured: true,
+    thumbnailType: 'mcp',
+    thumbnailTitle: 'Fiscal.ai MCP',
+    tags: ['fiscal.ai mcp', 'claude mcp financial data', 'ai earnings note', 'automate equity research note', 'claude code mcp setup', 'equity research ai', 'financial data mcp server'],
+    createdAt: '2026-09-22',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'claude-skills-complete-playbook',
     slug: 'claude-skills-complete-playbook',
     title: 'The Complete Claude Skills Playbook: 100 Ways to Automate Your Work in 2026',

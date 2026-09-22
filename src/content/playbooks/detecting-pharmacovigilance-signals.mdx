@@ -1,0 +1,59 @@
+---
+title: "Detecting Pharmacovigilance Signals"
+description: "Mine FDA FAERS adverse-event data for drug-reaction disproportionality signals — PRR, ROR, EBGM, and IC (BCPNN) computed from a real 2x2 contingency table, working Python against the free public OpenFDA API, and the gotchas (404-means-zero, .exact required for phrase counting, small-count instability) that produce silently wrong numbers if missed."
+seoHook: "A PRR calculated without the .exact query modifier silently tokenizes 'injection site reaction' into three separate words before counting — the number still comes back, it's just wrong, and pharmacovigilance screening built on OpenFDA has several gotchas exactly like this that don't throw an error, they just quietly corrupt the signal."
+targetAudience: "pharmacovigilance scientists and drug safety analysts screening FAERS for adverse-event signals, health-data engineers building an automated OpenFDA disproportionality pipeline, epidemiology students learning PRR/ROR/EBGM calculation with real data instead of toy examples, anyone who needs working code against a real public drug-safety API instead of a theoretical explanation of signal detection"
+exampleUseCase: "\"Check whether warfarin is over-reported for GI bleeding in FAERS\" → A real 2x2 contingency table built from live OpenFDA count queries (drug-normalized via generic_name, reaction counted via the mandatory .exact modifier), PRR/ROR with confidence intervals computed correctly, and the explicit caveat that a high ratio is a triage-worthy hypothesis for a safety scientist's review — not a confirmed causal signal"
+category: "bio-research"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "OpenMed"
+sourceUrl: "https://github.com/maziyarpanahi/openmed/blob/master/skills/detecting-pv-signals/SKILL.md"
+tags: ["pharmacovigilance", "drug-safety", "faers", "openfda", "epidemiology", "python"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A working, statistically grounded guide to disproportionality signal detection — the core technique pharmacovigilance uses to screen spontaneous adverse-event reports (like the FDA's FAERS) for drug-reaction pairs that occur together more often than the background rate would predict. It builds the underlying 2x2 contingency table directly from live queries against the free, public OpenFDA `/drug/event` API (no PHI involved, no MedDRA license needed to query already-coded terms), then computes PRR, ROR with a Woolf's-method confidence interval, and the Information Component (IC/BCPNN) from working Python — with Empirical Bayes EBGM/EB05 correctly deferred to a maintained statistical package rather than hand-rolled, since the gamma-Poisson shrinkage math is easy to get subtly wrong from scratch.
+
+What makes it genuinely useful beyond the formulas is the gotchas section, each one a real way to get a wrong number without any error being thrown: OpenFDA returns HTTP 404 for an empty result set rather than a 200 with an empty list, so naive code miscounts; the `.exact` query modifier is mandatory for the reaction field or OpenFDA tokenizes a multi-word reaction term into separate words; small counts (a < 3) make PRR/ROR numerically unstable, which is exactly why the shrinkage-based EBGM and IC025 exist; and OpenFDA itself is a sample of FAERS, not deduplicated the way the official quarterly extracts are, so it's a screening tool whose confirmed signals still need reproducing against the curated data. Every threshold in the workflow is explicitly framed as a triage filter for a human safety scientist's review, never a verdict — disproportionality reflects reporting patterns and notoriety bias, not proven causality.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir pv-signals && cd pv-signals
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Screen a Drug-Reaction Pair
+
+```bash
+claude
+```
+
+Ask Claude to check a drug-reaction pair for disproportionate reporting in FAERS. It will build the 2x2 table from live OpenFDA queries (using `.exact` and the RxNorm-normalized drug field correctly), compute PRR/ROR/IC with proper confidence intervals, and frame the result as a screening hypothesis for follow-up, not a diagnosis.
+
+---
+
+## Tips & Best Practices
+
+- Always use `patient.drug.openfda.generic_name` instead of the free-text `medicinalproduct` field — otherwise brand-name and generic-name reports of the same drug fragment into separate, undercounted buckets.
+- For rare events (small `a`), don't trust PRR/ROR at face value — lean on EBGM/EB05 or IC025 specifically because they're built to handle the small-count instability that makes the simpler ratios unreliable.
+- Treat OpenFDA as a screening tool, not the final word — reproduce any signal that will actually drive a decision against the official, deduplicated quarterly FAERS extracts before it goes further.
+
+## Limitations
+
+- Statistical screening only — every method here (PRR, ROR, IC, EBGM) detects disproportionate *reporting*, not a proven adverse drug reaction; confounders like indication, notoriety bias, and reporting-stimulation effects require a safety scientist's review before any signal is acted on.
+- OpenFDA's live API is a convenient, unlicensed sample of FAERS — it isn't deduplicated the way official quarterly extracts are, so it's appropriate for rapid screening but not as the system of record for a regulatory submission.
+- Doesn't implement Empirical Bayes shrinkage (EBGM/EB05) itself — that step is explicitly handed off to a maintained statistical package (`openEBGM` or `PhViD` in R), since a hand-rolled implementation risks getting the shrinkage prior wrong.

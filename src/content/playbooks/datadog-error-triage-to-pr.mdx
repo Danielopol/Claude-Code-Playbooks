@@ -1,0 +1,59 @@
+---
+title: "Datadog Error Triage to PR"
+description: "Take Datadog Error Tracking issues from raw occurrence counts to a reviewable, tested PR — a five-class bug taxonomy that filters out infra noise and deploy-skew before ranking, a recency premium that catches fresh regressions early, a mandatory approval gate before any fix is written, and a test-first fix workflow that generalizes past the one reported occurrence."
+seoHook: "The highest-occurrence error in your Datadog dashboard is usually not a code bug — it's a timeout, a rate limit, or an expected retry, and triaging by raw count alone means you'll spend an investigation on infrastructure noise while a smaller, rising, genuinely fixable regression sits unranked below it."
+targetAudience: "engineering teams using Datadog Error Tracking who want a repeatable triage-to-fix workflow, on-call or platform engineers tired of manually classifying which high-count errors are actually fixable code bugs, teams wanting an approval gate between investigation and code changes for production error fixes, anyone who wants a Datadog issue's fix traced back to its introducing commit automatically"
+exampleUseCase: "\"Find and fix our most impactful production errors this week\" → Error Tracking issues pulled and classified into a five-bucket taxonomy (genuine bug, infra/transient, deploy skew, expected noise, upstream) so only real candidates get investigated, ranked by impact × trend × fix-confidence with extra weight for new-and-rising regressions, a plan presented for approval with file:line evidence and the introducing commit identified via git blame, then a failing test written before the fix and a PR opened only after confirmation"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Latitude"
+sourceUrl: "https://github.com/latitude-dev/latitude-llm/blob/development/.agents/skills/fix-datadog-issues/SKILL.md"
+tags: ["datadog", "observability", "error-tracking", "debugging", "incident-response", "developer-tools"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+An end-to-end workflow for turning Datadog Error Tracking noise into a shipped, tested fix — built around the single most useful insight in production error triage: occurrence count alone is a trap, because most high-count "errors" aren't fixable code bugs at all. A five-class taxonomy (genuine code bug, infra/transient, deploy-version skew, expected-and-already-handled, upstream/third-party) filters candidates before any ranking happens, so a Class A bug — a real `TypeError` or validation failure — doesn't get lost behind a noisy connection-timeout that nobody should spend investigation time on. Surviving candidates get ranked on three axes (customer-facing impact, volume × trend, and fix-confidence × blast radius), with an explicit "recency premium" that weights a new-and-rising issue over an old flat one at the same count — because a fresh regression's first-seen deploy version usually hands you the introducing commit directly via `git blame`, making it both faster to fix and more valuable to catch early.
+
+The workflow enforces a hard approval gate between investigation and code changes: everything through root-cause analysis is read-only, and the agent presents a structured plan (issues found and ruled out, chosen focus with reasoning, file:line evidence for the hypothesis, the proposed fix and its blast radius, PR scoping) and waits for explicit confirmation before writing a single line — with a pre-authorization escape hatch for "just fix it" workflows that still stops for a genuine blocker. The fix itself is test-first: a failing test that reproduces the bug *and* covers the general root cause (not just the one observed input) before any fix code is written, confirmed to fail without the fix and pass with it.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir datadog-triage && cd datadog-triage
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Triage Production Errors
+
+```bash
+claude
+```
+
+Ask Claude to find and fix your most impactful Datadog errors, or point it at a specific issue. It will classify candidates before ranking them, present a plan for approval before writing any code, then follow a test-first fix workflow and open a PR referencing the original issue.
+
+---
+
+## Tips & Best Practices
+
+- Adjust the service-scoping and environment-filtering details in Step 0 to match your actual deployment structure — the workflow deliberately derives the in-scope service list from the real codebase layout rather than a hardcoded list, so it stays accurate as services are added or removed.
+- Take the recency premium seriously even when a resurfacing issue has a lower absolute count than an old chronic one — catching a regression within its first few deploys is both cheaper to fix and prevents the occurrence pile-up that makes root-causing harder later.
+- Never skip the Step 4 approval checkpoint under time pressure — the plan format (evidence, chosen focus, proposed fix, blast radius) exists specifically so a reviewer can catch a wrong root-cause hypothesis before it becomes a wrong fix in production code.
+
+## Limitations
+
+- Built around Datadog's Error Tracking and span-aggregation model specifically — the classification taxonomy and ranking logic transfer conceptually to other APM/observability tools, but the actual query syntax will need translating.
+- Assumes git-based deployments where a span's version tag maps to a commit SHA — an environment without that mapping loses the "find the introducing commit automatically" capability and needs manual root-cause tracing instead.
+- The batching guidance (solo PR vs. grouping up to ~4 small related fixes) is a starting heuristic; a team's own PR-size conventions should take precedence where they differ.

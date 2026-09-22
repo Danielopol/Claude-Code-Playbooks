@@ -1,0 +1,59 @@
+---
+title: "ML Paper Writing for Top Conferences"
+description: "Write publication-ready ML/AI papers for NeurIPS, ICML, ICLR, ACL, AAAI, and COLM — a non-negotiable citation-verification workflow against the ~40% hallucination rate in AI-generated references, a claim-ledger gate that stops unsupported claims from reaching manuscript prose, and sentence-level writing principles synthesized from named researchers (Nanda, Farquhar, Gopen & Swan, Lipton, Steinhardt, Perez) who've published extensively at top venues."
+seoHook: "AI-generated citations have roughly a 40% error rate — fabricated DOIs, wrong years, papers that simply don't exist — and a hallucinated reference in a submitted paper isn't a typo, it's a form of academic misconduct that can trigger desk rejection or retraction, which is why the one hard rule here is never write a BibTeX entry from memory."
+targetAudience: "ML/AI researchers drafting a paper for NeurIPS, ICML, ICLR, ACL, AAAI, or COLM, graduate students who need citation verification discipline built into their writing workflow instead of bolted on at the end, PhD advisors setting expectations for AI-assisted paper drafting from a research repo, anyone who's had an AI assistant invent a plausible-sounding but nonexistent reference"
+exampleUseCase: "\"Draft the Introduction and cite the key related work\" → A first full draft produced proactively from the research repo's code and results rather than waiting for section-by-section approval, every citation run through the programmatic verification workflow (search via Semantic Scholar/CrossRef/arXiv, confirm metadata, verify the actual claim appears in the source, only then add the BibTeX), and any claim that can't be traced to a verified experiment or paper marked [CLAIM NEEDS EVIDENCE] instead of smoothed over"
+category: "academic-research"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Orchestra Research"
+sourceUrl: "https://github.com/Galaxy-Dawn/claude-scholar/blob/main/skills/ml-paper-writing/SKILL.md"
+tags: ["academic-writing", "machine-learning", "neurips", "icml", "citations", "latex"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A full-pipeline guide for drafting ML/AI conference papers, anchored on two disciplines most AI-assisted paper-writing skips: citation integrity and evidence-backed claims. Every citation goes through a mandatory programmatic verification workflow — search Semantic Scholar/CrossRef/arXiv/OpenAlex, confirm the metadata, fetch the BibTeX from the DOI (never typed from memory), and verify the specific claim being cited actually appears in the source paper — with an explicit, unambiguous rule for what happens when verification fails: mark it `[CITATION NEEDED]` and tell the scientist, never invent a plausible-sounding reference. A parallel "claim ledger gate" applies the same discipline to the paper's own content: before a project plan, experiment note, or literature summary becomes manuscript prose, its supporting claim or evidence record gets identified explicitly, and anything that can't be traced gets marked `[CLAIM NEEDS EVIDENCE]` rather than smoothed into confident-sounding prose.
+
+Beyond integrity, it synthesizes sentence-level and structural writing guidance from researchers who've published extensively at top ML venues — Neel Nanda's advice to spend roughly equal time on the abstract, introduction, and figures as on everything else combined (since reviewers read title → abstract → intro → figures → maybe the rest, and rarely reach a poorly-hooked methods section), Gopen & Swan's seven reader-expectation principles (subject-verb proximity, stress position, old-before-new information ordering) with concrete before/after rewrites, and Zachary Lipton's word-choice heuristics (drop hedging, avoid incremental-sounding verbs like "combine" or "modify" when the contribution is genuinely novel). It closes with practical mechanics: a conference requirements quick-reference (with an explicit note to verify exact current-year limits, since these change annually) and a template-handling checklist that insists on copying the entire venue template directory and verifying it compiles before writing a word of content.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir ml-paper && cd ml-paper
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Draft a Paper
+
+```bash
+claude
+```
+
+Point Claude at your research repo (code, results, experimental logs) and ask it to draft a paper section, find and cite related work, or review a draft for unsupported claims. It will produce a proactive first draft where the evidence is clear, verify every citation programmatically before adding it, and flag any claim it can't trace to actual evidence.
+
+---
+
+## Tips & Best Practices
+
+- Never accept a citation the workflow couldn't verify — treat a `[CITATION NEEDED]` or `[PLACEHOLDER - VERIFY]` marker as a hard stop requiring your own manual check, not a formatting detail to clean up later.
+- Apply the equal-time-on-abstract/intro/figures allocation literally, especially under deadline pressure — it's tempting to rush the abstract to get to the "real" methods writing, which is backwards from how reviewers actually read.
+- Delete an abstract's first sentence if it could be prepended unchanged to any other ML paper in the field — that's the fastest single diagnostic for a generic opening that needs the actual contribution stated instead.
+
+## Limitations
+
+- The citation-verification workflow depends on access to programmatic literature-search APIs (Semantic Scholar, CrossRef, arXiv, OpenAlex); without that access, citation checking falls back to slower, less reliable manual verification and should be flagged as such.
+- Conference page limits and specific requirements (checklists, disclosure statements, style files) change year to year — always confirm current numbers against the venue's own current call for papers rather than trusting a cached figure.
+- Writing-philosophy guidance is synthesized specifically for ML/AI conference papers; a journal submission, a theory-heavy math paper, or a systems paper with different reviewer norms may need different structural conventions.

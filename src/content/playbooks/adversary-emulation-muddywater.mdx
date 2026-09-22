@@ -1,0 +1,59 @@
+---
+title: "Adversary Emulation: MuddyWater"
+description: "An intelligence-grounded, authorized purple-team emulation profile for MuddyWater (MITRE ATT&CK G0069), Iran's MOIS-linked cyber-espionage group — attribution, targeting, representative TTPs by ATT&CK tactic, emulation guidance mapped to generic red-team tooling, and paired detection/defense recommendations for every offensive technique, all under an explicit authorized-use caveat."
+seoHook: "Generic red-team exercises test whether defenses catch 'an attacker' in the abstract — real purple-team value comes from emulating a specific, well-documented adversary's actual playbook, so the detections you validate are the ones that would catch the threat actor realistically targeting your sector, not a hypothetical one."
+targetAudience: "purple-team and red-team operators running authorized adversary emulation exercises, blue-team detection engineers validating coverage against a specific documented threat actor, security teams in government, telecom, energy, or finance sectors MuddyWater has historically targeted, SOC analysts building detections informed by real TTPs instead of generic attack patterns"
+exampleUseCase: "\"Run a purple-team exercise emulating an Iranian state-linked threat actor targeting our sector\" → MuddyWater's documented TTPs mapped by ATT&CK tactic (macro-document spearphishing, RMM tool abuse for initial access, PowerShell-centric execution via mshta/CMSTP proxy execution, DNS-tunneling C2), each one paired with the specific detection logic it's meant to validate, all framed under an explicit authorized-engagement caveat"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "PurpleAILAB (Decepticon)"
+sourceUrl: "https://github.com/PurpleAILAB/Decepticon/blob/main/packages/decepticon/decepticon/skills/shared/adversary-emulation/muddywater/SKILL.md"
+tags: ["security", "adversary-emulation", "red-teaming", "threat-intelligence", "mitre-attack", "purple-team"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A structured, citation-backed adversary-emulation profile for MuddyWater (MITRE ATT&CK G0069, also tracked as Mercury, Mango Sandstorm, and Static Kitten), an Iranian MOIS-linked cyber-espionage group active since at least 2017 — built for authorized purple-team and red-team exercises rather than casual reading. It opens with attribution and targeting grounded in named sources (CISA's joint advisory AA22-055A, UK NCSC malware analysis, and reporting from Unit 42, Mandiant, Symantec, and others), then walks representative TTPs by ATT&CK tactic: the group's defining reliance on PowerShell-based backdoors launched via proxy-execution binaries like `mshta.exe` and `CMSTP.exe`, its evolution from the PhonyC2 to MuddyC2Go command-and-control framework, its systematic pivot to abusing legitimate RMM tools (Atera, ScreenConnect) for initial access, and its more recent adoption of ClickFix-style social engineering and cloud-storage-based exfiltration.
+
+Every offensive technique carries two things most emulation write-ups skip: an emulation instruction generalized to whatever C2 and phishing tooling your team is actually cleared to use (never requiring MuddyWater's specific malware), and a paired detection recommendation stating exactly what a blue team should be watching for to catch it — Script Block Logging for the PowerShell obfuscation, an RMM software allowlist for the tool abuse, DNS-query-pattern monitoring for the Mori-style tunneling. An explicit authorized-use caveat opens the emulation section: apply this only within a sanctioned engagement's documented scope, and never run disruptive actions outside an isolated, explicitly authorized lab.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir adversary-emulation && cd adversary-emulation
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Run an Authorized Exercise
+
+```bash
+claude
+```
+
+Within an authorized purple-team engagement, ask Claude to plan an exercise emulating MuddyWater's TTPs against your environment, or to build detection logic for a specific technique in the profile. It will map the documented TTPs to your actual authorized tooling and pair every offensive step with the detection coverage it's meant to validate.
+
+---
+
+## Tips & Best Practices
+
+- Confirm rules of engagement and scope before applying any offensive technique from this profile — the authorized-use caveat isn't boilerplate; MuddyWater's real playbook includes destructive capability (the 2023 DarkBit ransomware incident) that must never run outside a sanctioned, isolated environment.
+- Use the paired detection guidance to validate coverage *before* running the offensive side of the exercise — knowing what "should" alert makes it obvious when a gap in logging or detection logic is the actual finding, not just whether the emulated technique succeeded.
+- Treat the RMM tool abuse pattern as a priority technique to test — legitimate RMM software abuse is specifically effective at evading detection tuned for custom malware, which is exactly why MuddyWater pivoted heavily toward it.
+
+## Limitations
+
+- Intelligence-grounded but still a synthesis of public reporting — treat it as a strong starting profile for an exercise, not a guarantee of complete coverage of the actor's full, non-public capability.
+- Emulation guidance intentionally stays tool-agnostic (mapped to "your C2/phishing tooling") rather than naming a specific commercial or open-source platform — teams will need to translate each technique into their own cleared toolset.
+- A profile for one specific, named threat actor — pair it with profiles of other actors relevant to your sector and with a broader detection-engineering program for coverage beyond this one group's documented TTPs.

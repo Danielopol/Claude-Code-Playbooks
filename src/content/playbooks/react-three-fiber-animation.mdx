@@ -1,0 +1,59 @@
+---
+title: "React Three Fiber Animation Reference"
+description: "Animate React Three Fiber scenes correctly — useFrame fundamentals with render priority, full GLTF animation control via useAnimations (playback, crossfade, event listeners, speed-based blending between Idle/Walk/Run), @react-spring/three physics animations with gesture and chain integration, and the five performance rules that keep per-frame updates from triggering React re-renders."
+seoHook: "Calling setState inside a React Three Fiber useFrame callback re-renders the entire React component tree sixty times a second — the fix (mutate the mesh ref directly instead) is one line, but it's the single most common performance mistake in every R3F codebase that started as a normal React app."
+targetAudience: "React developers building 3D scenes and animations with React Three Fiber, engineers implementing character animation blending (Idle/Walk/Run) from GLTF models, teams choosing between useFrame manual animation and @react-spring/three physics-based springs, anyone debugging janky R3F performance caused by React re-renders inside the animation loop"
+exampleUseCase: "\"Blend between idle, walk, and run animations based on character speed\" → useAnimations wired to a GLTF's action clips, all three animations started simultaneously, and their effective weights cross-blended every frame inside useFrame based on a speed threshold — the correct GLTF animation-blending pattern instead of abruptly switching between separate play() calls"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "zebbern (claude-code-guide)"
+sourceUrl: "https://github.com/zebbern/claude-code-guide/blob/main/skills/r3f-animation/SKILL.md"
+tags: ["react-three-fiber", "threejs", "react", "3d-animation", "webgl", "react-spring"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A working code reference for animating React Three Fiber scenes across every common technique: `useFrame` fundamentals (the per-frame state object, render priority ordering via the second argument, and conditional animation done correctly inside the callback rather than conditionally calling the hook), full GLTF character animation via `useAnimations` — playback control (play/stop/reset/pause/speed/loop mode), crossfading between clips, listening for `finished`/`loop` mixer events, and the speed-based weight-blending pattern that smoothly transitions between Idle, Walk, and Run clips instead of abruptly switching between them.
+
+The spring-physics half covers `@react-spring/three` from basic single-value springs through multi-spring arrays, gesture-driven dragging via `@use-gesture/react`, and chained animations (`useChain`) that sequence one spring after another with precise timing overlap. It closes with five concrete performance rules — isolate animated components so re-renders don't cascade, mutate refs instead of calling `setState` inside `useFrame`, throttle expensive per-frame calculations via delta accumulation while keeping cheap updates running every frame, pause offscreen animations, and share animation clips across instances — the exact fixes for the performance mistakes that show up first in a normal React developer's initial R3F code.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir r3f-animation && cd r3f-animation
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Animate a Scene
+
+```bash
+claude
+```
+
+Ask Claude to animate an object, play a GLTF character animation, add a spring-based hover or drag interaction, or fix janky performance in an existing R3F scene. It will use `useFrame` or `@react-spring/three` correctly for the situation and apply the performance rules by default.
+
+---
+
+## Tips & Best Practices
+
+- Default to mutating refs inside `useFrame` rather than `useState` for anything animating every frame — treat a `setState` call inside the animation loop as a performance bug to catch in review, not a stylistic choice.
+- For character animation, prefer the weight-blending pattern (all relevant clips playing simultaneously with `setEffectiveWeight` cross-fading between them) over abrupt `play()`/`stop()` switches — it's what produces smooth transitions between states like idle and walking.
+- Reach for `@react-spring/three` specifically when an animation needs to be interruptible mid-motion (a drag gesture, a hover that can re-trigger before finishing) — springs naturally handle interruption in a way fixed-duration `useFrame` tweening doesn't.
+
+## Limitations
+
+- Covers React Three Fiber and Drei/react-spring integration specifically — vanilla Three.js animation patterns outside React aren't the same API surface, even though the underlying concepts (mixers, action weights, clips) are shared.
+- GLTF animation examples assume the model was exported with named animation clips; a model without clean clip names will need those identified first (e.g. by logging `names` from `useAnimations`).
+- Performance guidance targets typical scene complexity; a scene with very large numbers of simultaneously animated instances may need additional techniques (instancing, GPU-driven animation) beyond what's covered here.

@@ -1,0 +1,59 @@
+---
+title: "Technical Writing Style Guide"
+description: "Write docstrings, READMEs, commit messages, and PR descriptions that read like human technical documentation instead of LLM output — six concrete 'tells' with before/after rewrites, a smoothness diagnostic for prose that sounds authoritative while stating one fact three times, and industry-metaphor substitution tables ('surfaces' to 'raises/returns/logs', 'wired through' to 'passed as a parameter')."
+seoHook: "The single biggest giveaway that documentation was LLM-written isn't a specific word — it's writing that states significance instead of mechanism, like 'this ensures the sandbox remains secure' instead of the actual fact: every operation runs relative to a Dir opened at mount time, so .. and symlinks can't escape it."
+targetAudience: "engineers writing docstrings, READMEs, and PR descriptions who want them to read like real documentation, tech leads establishing a house writing style for AI-assisted contributions, anyone reviewing generated documentation that feels subtly off but can't name why, teams tired of code comments padded with adjectives instead of the actual mechanism or cost"
+exampleUseCase: "\"This docstring reads like it was written by an LLM, fix it\" → The specific tell identified (significance instead of mechanism — 'provides robust protection against runaway code' names no number or mechanism) and rewritten to state the actual fact ('the VM polls allocator usage every 255 instructions; crossing the hard limit exits the worker with OOM_EXIT_CODE'), plus a scan for industry-metaphor language like 'wired through' or 'surfaces to the caller' replaced with the literal mechanism"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "pydantic (monty)"
+sourceUrl: "https://github.com/pydantic/monty/blob/main/.agents/skills/writing-style/SKILL.md"
+tags: ["technical-writing", "documentation", "code-review", "writing-style", "developer-tools"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A precise, mechanism-first style guide for engineering prose — docstrings, comments, limitations sections, READMEs, commit messages, and PR descriptions — built around one governing rule: the reader is an engineer looking for a fact, so give them the fact instead of building toward a conclusion. Six concrete "tells" each get a named failure mode and a before/after rewrite: stating significance instead of mechanism ("ensures the sandbox remains secure" versus the actual boundary check that makes it true), throat-clearing openers that delay the sentence, the "not just X, but Y" essay-style reveal that reference docs don't need, adjectives standing in for a number or mechanism, docstrings that restate the function signature instead of saying why it exists, and self-summarizing sections that announce what they just said.
+
+Beyond the tells, it names a subtler failure — smoothness — where sentences engineered for rhythm read as authoritative conclusions even when they only restate one fact three ways; a three-check diagnostic (does the sentence end on a rhythmic beat that could be duller without losing meaning? how many actual facts survive stripping the cadence? is the sentence about the system or about how the reader should feel?) catches this in review. It closes with three substitution tables for industry-metaphor language that deletes the actual mechanism — "the error surfaces" doesn't say whether it raises, returns, or logs; "wired through" doesn't say parameter, field, or global — mapping dozens of these phrases (lands, ships, spins up, bubbles up, load-bearing, X-shaped) to the literal, checkable alternative.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir tech-writing-style && cd tech-writing-style
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Write or Review Docs
+
+```bash
+claude
+```
+
+Ask Claude to write a docstring, README, or PR description, or to review existing prose that reads as generic or "off." It will apply the tell-avoidance rules and metaphor substitutions, and — when reviewing — name which specific failure mode is present rather than giving vague style feedback.
+
+---
+
+## Tips & Best Practices
+
+- Apply the "significance instead of mechanism" check first when reviewing — it's the single most common tell, and fixing it (replacing a vague benefit claim with the actual boundary, number, or code path) usually improves a passage more than any other single edit.
+- Run the three smoothness checks on any paragraph that "reads well" but feels hard to pin down — smooth, confident-sounding prose is exactly the failure mode most likely to get approved without scrutiny.
+- Keep the industry-metaphor tables open while reviewing PR descriptions specifically — phrases like "wired through" and "surfaces to" are common enough in casual engineering speech that they slip past without the explicit substitution list as a checklist.
+
+## Limitations
+
+- Scoped specifically to technical/engineering prose (docstrings, READMEs, commit messages, PR descriptions) — it's a different register from marketing copy, user-facing help text, or narrative writing, which have their own legitimate use for rhythm and persuasion.
+- The before/after examples use a specific codebase's terminology (sandboxes, allocators, worker pools); apply the underlying principle (mechanism over adjective, fact over feeling) rather than the literal examples to a different domain.
+- A style discipline, not a technical-accuracy check — prose can pass every rule here and still be factually wrong; pair it with an actual code or documentation review for correctness.

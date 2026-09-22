@@ -1,0 +1,59 @@
+---
+title: "Contribution PR Review"
+description: "Review an external contributor's PR the way an open-source maintainer should — check automated bot security findings first (across every channel they might post to), watch specifically for suspicious AGENTS.md or workflow-permission changes, scale size and test-coverage expectations by contributor experience, and separate intent/scope alignment from code quality that bots already covered."
+seoHook: "A PR that quietly modifies a pull_request_target workflow trigger or edits your repo's agent-instruction file is a very different risk than a PR that just adds a feature — and a maintainer skimming for 'does this look reasonable' can miss both, which is exactly why external-contribution review needs its own checklist distinct from reviewing a teammate's diff."
+targetAudience: "open-source maintainers reviewing contributions from outside their core team, teams that use AI code-review bots (Codex, CodeRabbit, or similar) and want a maintainer checklist for what those bots can't assess, project owners who need consistent size and test-coverage expectations scaled to contributor experience, anyone worried about supply-chain-style risk from a seemingly benign external PR touching CI workflows or agent config"
+exampleUseCase: "\"Review this external contributor's PR before merging\" → Bot security findings checked across every comment channel first, a scan for suspicious workflow permission or agent-instruction-file changes unrelated to the PR's stated purpose, test coverage and PR size assessed against the contributor's actual history (200 lines is excellent for a first-timer, unremarkable for a regular contributor), and a draft comment — good-to-merge or changes-needed — presented for approval before ever posting"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Home Assistant AI (ha-mcp)"
+sourceUrl: "https://github.com/homeassistant-ai/ha-mcp/blob/master/.claude/skills/contrib-pr-review/SKILL.md"
+tags: ["pull-requests", "code-review", "open-source", "github", "security-review", "maintainers"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A maintainer's review checklist purpose-built for external contributions, which carry different risks than reviewing a teammate's PR — starting with a security pass that checks every channel an automated review bot might have posted findings to (top-level review, inline comments, and general PR conversation are often separate API surfaces that a naive check would miss), plus a manual scan for the specific patterns bots tend not to catch: unrelated changes to agent-instruction files like `AGENTS.md`, workflow modifications involving elevated-permission triggers like `pull_request_target`, or changes to installed agent/skill configuration. It explicitly distinguishes non-breaking changes (tool consolidation, parameter changes where the same outcome is still achievable) from genuine breaking changes (removed functionality with no replacement) — a distinction reviewers frequently get wrong in either direction.
+
+Size and test-coverage expectations scale explicitly by contributor history rather than applying one flat bar: a 300-line PR from a first-time contributor gets different guidance than the same size from a regular one, with broader GitHub experience factored in as a secondary signal when someone is new to the specific project but clearly experienced overall. It also enforces a clean separation between what gets checked internally and what gets said publicly — security is always checked first but only mentioned in the visible comment if something real was found — and produces two length- and structure-constrained comment templates (good-to-merge, changes-needed) that always get presented to the user for explicit approval before posting, never sent automatically.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir contrib-review && cd contrib-review
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Review a Contribution
+
+```bash
+claude
+```
+
+Point Claude at an external contributor's PR and ask for a review. It will check any automated bot findings across every comment channel, scan for suspicious workflow or agent-config changes, assess size and test coverage against the contributor's history, check intent against any linked issue, and draft a comment for your approval before posting anything.
+
+---
+
+## Tips & Best Practices
+
+- Never let "the bots already reviewed it" become a reason to skip the manual security scan for agent-config and workflow-permission changes — those are exactly the categories most automated code-review tools aren't specifically tuned to flag.
+- Keep the security assessment internal on a clean PR — mentioning it explicitly ("I checked for security issues and found none") in a public comment reads as unnecessarily suspicious toward a contributor who did nothing wrong; only surface it when something was actually found.
+- Adjust size expectations by contributor history before judging a PR "too large" — a 400-line PR is a reasonable ask from a regular contributor and a lot to absorb from someone's very first contribution to the project.
+
+## Limitations
+
+- Assumes GitHub (via `gh`) and an automated review bot are already part of the repo's workflow; a different Git host or no automated review setup needs the security-scanning step adapted or done manually.
+- The breaking-vs-non-breaking heuristics are general guidance, not exhaustive — a genuinely ambiguous API change still warrants a judgment call from someone who knows the project's actual compatibility commitments.
+- Focused on contribution review specifically, not a full CI/CD security posture review — treat it as one layer of scrutiny for incoming external code, not a complete supply-chain security process.

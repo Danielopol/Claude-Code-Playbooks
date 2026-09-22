@@ -1,0 +1,59 @@
+---
+title: "Visual Explainer HTML Pages"
+description: "Generate self-contained HTML explanations instead of walls of chat text or terminal ASCII — a design-judgment pass before any HTML is written (palette, type, layout concept, audited against genericness), Mermaid diagram invariants that force labeled mechanism over decoration, and a hard list of generic-default patterns to avoid (gradient heroes, violet accents, centered-everything layouts)."
+seoHook: "A 4-row comparison table or a system diagram dumped as chat text or bare ASCII forces the reader to reconstruct the visual structure in their head — and the fix isn't more words, it's recognizing when content is inherently visual and rendering it as a real, self-contained HTML page instead, with the same design discipline you'd apply to a real deliverable."
+targetAudience: "developers who want architecture diagrams, diff reviews, or project recaps rendered as real pages instead of chat walls, teams that want explanatory HTML output to avoid generic AI-generated design clichés (gradient heroes, violet accents, centered layouts), anyone building a Mermaid-heavy explanation who wants labeled, mechanism-showing diagrams instead of decorative boxes-and-arrows, engineers who need a light/dark-mode-correct token system for one-off explanatory pages"
+exampleUseCase: "\"Explain this system architecture visually\" → A content-appropriate representation chosen first (a Mermaid diagram for a data-flow-heavy architecture, CSS grid cards for a text-heavy module breakdown), a written design plan (named hex values, type roles, one-sentence layout concept) audited against generic AI-page tells before any HTML is written, and a self-contained page with labeled diagram arrows, a real light/dark token system, and zero gradient-hero or violet-accent clichés"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "nicobailon"
+sourceUrl: "https://github.com/nicobailon/visual-explainer/blob/main/plugins/visual-explainer/SKILL.md"
+tags: ["html", "mermaid", "diagrams", "documentation", "web-design", "technical-writing"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A design-first workflow for generating self-contained HTML pages to explain systems, code changes, plans, and data — triggered specifically when content is inherently visual (a comparison table with four-plus rows, an architecture with real structure, a multi-step process) rather than defaulting to chat prose or terminal ASCII for everything. Before any HTML gets written, it forces an explicit design pass: pick 4–6 named hex values, type roles, and a one-sentence layout concept, then audit that plan against the question "would I produce this same plan for any similar page?" — catching and revising the generic parts (slate-and-indigo, Inter, a hero-plus-three-cards layout) in favor of something that actually fits the content's domain (a CLI recap gets a terminal-inspired amber-on-near-black treatment instead).
+
+For diagrams specifically, it enforces Mermaid invariants that separate a genuinely informative diagram from decoration: depict the actual mechanism rather than a labeled box, put a real label on every arrow instead of an unlabeled line that only says "related somehow," and match complexity to what the decision or explanation actually turns on. A full set of layout and style invariants covers a correct CSS-custom-property token system for pages that need to support both light and dark mode, a rem-based type scale with one root-level knob, and — notably — an explicit list of the generic AI-generated-page tells to avoid entirely: gradient-mesh blobs, violet/fuchsia default accents, centered-everything layouts, and emoji section markers among them.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir visual-explainer && cd visual-explainer
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Generate a Visual Explanation
+
+```bash
+claude
+```
+
+Ask Claude to explain a system, review a diff or plan visually, or turn a comparison into a proper page instead of a chat table. It will pick the right representation (Mermaid, CSS cards, a timeline), write and self-audit a design plan first, then produce a complete, self-contained HTML file.
+
+---
+
+## Tips & Best Practices
+
+- Let the content's domain drive the aesthetic direction deliberately — a CLI/infra explanation calling for a terminal-inspired palette is a stronger choice than reaching for the same generic blue-and-slate treatment on every page regardless of subject.
+- Label every Mermaid arrow with what actually happens along it (`writes`, `polls every 30s`) — an unlabeled arrow is close to useless for someone trying to understand the actual mechanism, not just the topology.
+- Check the generic-defaults avoid-list explicitly before finalizing a page — violet/fuchsia accents, gradient-mesh blobs, and centered-everything layouts are specifically called out because they're the most common way an otherwise-good explanation ends up looking like every other AI-generated page.
+
+## Limitations
+
+- A design methodology and set of invariants, not a rendering engine itself — actually building the referenced templates (architecture cards, slide-deck layouts, themed pickers) requires writing the HTML/CSS/JS by hand each time rather than pulling from a bundled template library.
+- Best suited to a one-off or occasional explanatory page; a page meant to be maintained and updated repeatedly may be better served by a proper documentation site than a hand-composed self-contained HTML file.
+- The Mermaid invariants assume Mermaid.js is an acceptable dependency for the page; an environment that can't load it needs the CSS-grid-cards fallback representation instead.

@@ -1,0 +1,59 @@
+---
+title: "Nuxt UI Component Guidance"
+description: "Build interfaces correctly with @nuxt/ui v4 — five core rules (UApp wrapper, semantic colors, reading generated theme files for real slot names, override priority, icon naming), a task-to-focus-area routing table, the Nuxt UI MCP server for live component API lookups, and full installation for both Nuxt and standalone Vue."
+seoHook: "Styling a Nuxt UI component with text-gray-500 instead of the semantic text-muted works fine in light mode and silently breaks dark mode — Nuxt UI's whole theming system is built on semantic color tokens, and reaching for familiar raw Tailwind palette classes out of habit is the single most common way to fight the library instead of using it."
+targetAudience: "Vue and Nuxt developers building UIs with @nuxt/ui v4, teams choosing between Modal and Slideover or Select and SelectMenu and unsure which fits, developers customizing Nuxt UI's theme or brand colors, anyone hitting an unexpected component style override and needing to know the actual priority order"
+exampleUseCase: "\"Build a settings page with Nuxt UI\" → Focus areas identified from the routing table (conventions plus form validation and field layout patterns), a UApp-wrapped app confirmed, semantic color tokens used throughout instead of raw Tailwind grays, and the Nuxt UI MCP server queried for the exact props/slots of whichever form components are needed"
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Nuxt"
+sourceUrl: "https://github.com/nuxt/ui/blob/v4/skills/nuxt-ui/SKILL.md"
+tags: ["nuxt", "vue", "tailwind-css", "ui-components", "nuxt-ui", "frontend"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A working-guide for `@nuxt/ui` v4 — the 125+ component Vue library built on Reka UI, Tailwind CSS, and Tailwind Variants — that separates two different needs: *when to use which component and how to build well* (this playbook) versus *what a specific component's props and slots are* (the official Nuxt UI MCP server, added with one `claude mcp add` command). Five core rules anchor everything: always wrap the app in `UApp` for toasts/tooltips/overlays to work at all, always use semantic color tokens (`text-default`, `bg-elevated`) instead of raw Tailwind palette classes so dark mode and theming actually work, read the generated theme file (`.nuxt/ui/<component>.ts` or `node_modules/.nuxt-ui/ui/<component>.ts`) for a component's real slot names instead of guessing, respect the override priority (`ui`/`class` prop → global config → theme defaults), and use the `i-{collection}-{name}` icon format.
+
+A task-to-focus-area routing table tells you what to pay attention to for common jobs — a dashboard needs component-selection decisions like Modal vs. Slideover or Select vs. SelectMenu plus dashboard layout patterns; a login form needs form validation and field-layout conventions; theming work needs only the semantic-color rules. Complete installation instructions cover both a Nuxt project (module registration, CSS imports, the `UApp` root wrapper) and a standalone Vue + Vite setup (the Vite plugin, the Vue plugin registration, router wiring, and the Inertia-specific router option).
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir nuxt-ui-project && cd nuxt-ui-project
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Build With Nuxt UI
+
+```bash
+claude
+```
+
+Ask Claude to build a page, form, dashboard, or component with Nuxt UI. It will apply the semantic-color and `UApp`-wrapper rules by default, pick the right component for the interaction (checking the routing table for what matters most to the current task), and add the Nuxt UI MCP server when it needs exact prop/slot details for a specific component.
+
+---
+
+## Tips & Best Practices
+
+- Add the Nuxt UI MCP server early in a project (`claude mcp add --transport http nuxt-ui https://ui.nuxt.com/mcp`) — component APIs change across releases, and the MCP's live documentation beats relying on training-data knowledge of prop names.
+- When a component doesn't look right, check the generated theme file for its real slot names before reaching for a `class` override — most "the CSS isn't applying" issues come from styling the wrong slot.
+- For component-choice decisions (Modal vs. Slideover, Select vs. SelectMenu, Toast vs. Alert), consult the component-selection guidance for the current task rather than picking by familiarity — Nuxt UI's components have overlapping but distinct intended use cases.
+
+## Limitations
+
+- This playbook is guidance on *when* and *how*, not a full prop/slot/event reference — always pair it with the Nuxt UI MCP server (or the library's own docs) for exact component APIs.
+- Works with Nuxt, Vue+Vite, Laravel+Inertia, and AdonisJS+Inertia specifically; other Vue meta-frameworks aren't covered by the installation steps here.
+- Assumes Tailwind CSS is the styling foundation — a project on a different CSS approach would need to adopt Tailwind first.

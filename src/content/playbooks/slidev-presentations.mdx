@@ -1,0 +1,59 @@
+---
+title: "Slidev Presentation Builder"
+description: "Build developer-focused presentations with Slidev — Markdown-driven slides with live code, syntax highlighting, Monaco editor embeds, Mermaid/PlantUML diagrams, LaTeX math, click-based animations, and presenter notes, plus a quick-reference table for the exact syntax each feature needs."
+seoHook: "PowerPoint can't run your code live, animate a diff line-by-line, or render a Mermaid diagram from a code block — Slidev builds slides from Markdown with Vite and Vue underneath, so a conference talk or code walkthrough stays version-controlled text instead of a fragile binary file nobody can diff."
+targetAudience: "developers preparing a conference talk, workshop, or internal tech talk with live code examples, engineers who want presenter notes and slides in the same version-controlled Markdown file, teams building teaching materials with runnable code snippets and diagrams, anyone tired of PowerPoint for anything code-heavy"
+exampleUseCase: "\"Build a conference talk about our new API with live code examples\" → A Slidev project scaffolded with pnpm create slidev, slides written in Markdown with --- separators, syntax-highlighted and click-revealed code blocks using the {1|2-3|all} line-highlighting syntax, a Mermaid architecture diagram embedded directly in a code fence, and a PDF export via pnpm run export for sharing afterward"
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Anthony Fu (antfu/skills)"
+sourceUrl: "https://github.com/antfu/skills/blob/main/skills/slidev/SKILL.md"
+tags: ["slidev", "presentations", "markdown", "vue", "developer-tools", "conference-talks"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A quick-reference guide for Slidev, the Vite/Vue/Markdown-based slide tool built specifically for developers, covering the full range of what makes it different from a general-purpose presentation tool: live, runnable code blocks (including an embedded Monaco editor and a "monaco-run" mode), line-by-line and click-revealed syntax highlighting, Mermaid and PlantUML diagrams rendered straight from a code fence, LaTeX math, and Magic Move animations that morph one code block into the next. The core syntax is minimal — `---` separates slides, the first frontmatter block sets deck-wide config, HTML comments become presenter notes — and a quick-reference table maps every notable feature (code tabs, draggable elements, scoped per-slide CSS, layout slots, click animations, rough-marker annotations) to its exact Markdown or frontmatter syntax.
+
+It also covers the practical mechanics of shipping a deck: the dev server for live editing, the presenter mode (with notes, a timer, and a next-slide preview) that runs alongside the audience-facing view, PDF export via a headless Chromium build, and building a standalone SPA for hosting the deck as a website. Built-in layouts (`cover`, `two-cols`, `center`, `quote`, `image-left`, and more) cover the standard structural needs of a talk without custom CSS.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir slidev-talk && cd slidev-talk
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Build a Deck
+
+```bash
+claude
+```
+
+Ask Claude to scaffold a Slidev presentation on your topic, add live code examples, embed a diagram, or set up presenter notes. It will use `pnpm create slidev` to bootstrap the project and write slides in the correct Markdown syntax for whichever features the talk needs.
+
+---
+
+## Tips & Best Practices
+
+- Keep presenter notes (the HTML comments under each slide) genuinely useful during the actual talk — timing cues, the point you're trying to land, or a reminder of what to demo next, not a transcript of the slide content.
+- Use click-based line highlighting (`{1|2-3|all}`) instead of separate slides when walking through a code block step by step — it keeps the audience oriented on one piece of code instead of re-parsing a new slide each time.
+- Export to PDF early and check it renders correctly — some interactive features (Monaco, draggable elements, drawing mode) don't have a meaningful static PDF equivalent, and it's better to know that before the day of the talk.
+
+## Limitations
+
+- PDF export requires `playwright-chromium` and a working headless-browser environment — CI or sandboxed environments without browser support will need that dependency installed separately.
+- Interactive features (live-runnable Monaco code, draggable elements, drawing mode) only work in the live dev-server or hosted SPA view, not in a static PDF or PPTX export.
+- Best suited to developer-audience talks that benefit from code and diagrams; a purely visual or narrative deck may not gain much over a conventional slide tool.

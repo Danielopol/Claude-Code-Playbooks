@@ -1,0 +1,59 @@
+---
+title: "Git Conflict Resolution Framework"
+description: "A plan-first framework for resolving Git merge conflicts by combining both branches' intent instead of blindly picking a side — categorized resolution patterns for imports, tests, generated files, configs, code logic, and struct definitions, with a mandatory approval step before any file is touched."
+seoHook: "Resolving a merge conflict by picking 'ours' or 'theirs' is a coin flip that silently discards one branch's real work — and the failure mode that actually burns teams is a generated lock file hand-merged instead of regenerated, which looks resolved right up until the next install breaks."
+targetAudience: "developers facing a messy multi-file merge conflict and unsure where to start, teams that want conflict resolution to explain its reasoning instead of silently guessing, anyone who has hand-merged a lock file or other generated artifact and paid for it later, engineers who want a second opinion presented as numbered options instead of a unilateral pick"
+exampleUseCase: "\"Resolve the conflicts from this merge\" → Every conflicted file categorized (regular, deleted-modified, generated, tests, config) into a structured resolution plan with a strategy and risk rating per file, presented for approval before anything is touched, then executed pattern-by-pattern — generated files regenerated from source rather than hand-merged, imports combined instead of chosen between, and genuinely ambiguous code-logic conflicts presented as numbered options"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "tailcallhq (forgecode)"
+sourceUrl: "https://github.com/tailcallhq/forgecode/blob/main/.forge/skills/resolve-conflicts/SKILL.md"
+tags: ["git", "merge-conflicts", "version-control", "code-review", "git-workflow"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A structured, plan-first framework for resolving Git merge conflicts that treats "pick ours or theirs" as a last resort rather than the default. It starts by categorizing every conflicted file — regular conflicts, deleted-but-modified files, generated files, test files, imports, and configuration — into a written resolution plan with a strategy, rationale, and risk rating per file, and requires explicit approval before touching anything. Deleted-modified files get backed up first; genuinely ambiguous conflicts (like two branches implementing the same calculation differently) get presented to the user as numbered options with the actual conflicting code shown, never silently guessed.
+
+Six resolution patterns cover the situations that come up constantly: imports and dependencies get merged (all unique entries from both sides, deduplicated and grouped by the language's convention) rather than chosen between; tests keep all cases from both branches; generated files — lock files, protobuf output, compiled assets — are never hand-merged, they're regenerated from source after picking either version as a placeholder; configuration merges all keys with documented tie-breaking; code logic gets analyzed for whether the changes are orthogonal (merge both) or truly conflicting (pick with justification, or ask); struct/type definitions merge all fields and then fix the resulting compile errors. The flow ends with a mandatory validate-then-test step before the resolution is considered done.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir conflict-resolution && cd conflict-resolution
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Resolve a Merge Conflict
+
+```bash
+claude
+```
+
+Trigger a merge or rebase that produces conflicts, then ask Claude to resolve them. It will assess and categorize every conflicted file, present a resolution plan for approval, then execute pattern-by-pattern with a one-line explanation per file and a final test pass.
+
+---
+
+## Tips & Best Practices
+
+- Never let a generated file (lock files especially) get hand-merged — the regenerate-from-source step exists specifically because a plausible-looking hand merge of a lock file is one of the most common ways a "resolved" conflict breaks the next install or build.
+- Insist on the plan-then-approve step even under time pressure; a wrong resolution strategy applied to five similar conflicts is far more expensive to unwind than the thirty seconds it takes to review the plan first.
+- When a code-logic conflict is presented as numbered options, the chosen reasoning should be applied consistently to the remaining related conflicts in the same merge — don't re-litigate the same tradeoff file by file.
+
+## Limitations
+
+- A resolution methodology, not a guarantee of correctness — orthogonal-looking changes can still interact in ways only the test suite (or a human reviewer) catches, which is why the validate-and-test step is mandatory, not optional.
+- Deleted-modified file handling assumes the ability to create local backups before resolving; a workflow without local filesystem access needs an equivalent safeguard.
+- Configuration and code-logic tie-breaking rules (newer value, safer value, production requirements) are heuristics — a genuinely business-critical conflict still warrants a human decision, which the framework surfaces rather than resolves unilaterally.

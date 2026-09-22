@@ -1,0 +1,59 @@
+---
+title: "Paid Ads Account Audit Framework"
+description: "Run a paid-advertising account audit across Google, Meta, TikTok, and nine other platforms with real evidence discipline — a standardized finding schema, honest completeness states (complete/provisional/partial/insufficient-evidence) instead of a fake 100% coverage claim, correct weight renormalization when a platform's data fails to load, and strict separation between observations, diagnoses, recommendations, and draft account-change proposals."
+seoHook: "A paid-ads audit that scores portfolio health at 82% after one platform's authentication silently failed isn't reporting 82% — it's reporting a number computed from 11 platforms while claiming coverage of 12, and the honest fix is a completeness state that says Partial, not a health score that pretends nothing went wrong."
+targetAudience: "marketing operations teams auditing paid ad accounts across multiple platforms, agencies needing a standardized, evidence-graded finding format instead of a prose summary a client can't verify, anyone who's had an AI-generated ads audit invent a score for a platform it couldn't actually read, teams that need proposed account changes kept as reviewable drafts instead of silently applied"
+exampleUseCase: "\"Audit our Google, Meta, and TikTok ad accounts for opportunities and risks\" → Each platform's data normalized into a snapshot with source lineage preserved, findings validated against a common schema (severity, confidence, evidence reference, source classification) instead of a loose bullet list, an honest completeness state when TikTok's data comes back only 65% covered, and every recommendation kept separate from any proposed account mutation — which stays a draft until explicitly reviewed"
+category: "marketing-content"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "AgriciDaniel (claude-ads)"
+sourceUrl: "https://github.com/AgriciDaniel/claude-ads/blob/main/skills/ads-audit/SKILL.md"
+tags: ["paid-advertising", "ppc", "marketing-audit", "google-ads", "meta-ads", "marketing-analytics"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+An evidence-disciplined framework for auditing paid advertising accounts across twelve platforms — Google, Meta, YouTube, LinkedIn, TikTok, Microsoft, Apple, Amazon, Reddit, Pinterest, Snapchat, and X — built around a rigor that most AI-generated marketing audits skip entirely: every finding follows a standardized schema (platform, control ID, pass/fail/unknown result, severity, confidence, source classification, the actual evidence it's based on, and a recommendation), and the audit's overall completeness gets stated honestly as Complete, Provisional, Partial, or Insufficient Evidence rather than silently presenting a number as if every platform's data loaded cleanly when it didn't.
+
+The rigor shows up most clearly in how a failed data source gets handled: if one platform's authentication fails mid-audit, the framework doesn't stop analyzing the others, doesn't assign that platform a zero, doesn't carry forward a stale historical score, and doesn't fold its missing weight into the denominator anyway — it renormalizes the portfolio score only across platforms that actually succeeded, and marks the whole bundle Partial. It also enforces a strict four-layer separation in the final report — observations directly supported by data, diagnoses inferred with a stated confidence level, recommendations with an owner and success measure, and proposed account *mutations* that remain drafts requiring explicit approval — so a client or stakeholder can tell the difference between "here's what we found" and "here's what we're about to change in your live account."
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir ads-audit && cd ads-audit
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Run an Audit
+
+```bash
+claude
+```
+
+Provide account exports, screenshots, or authenticated access for the platforms you want audited, along with business context (objective, spend, target CPA/ROAS). Claude will normalize the data into a snapshot, validate findings against the standard schema, and produce a report with an honest completeness state — never claiming coverage it doesn't actually have.
+
+---
+
+## Tips & Best Practices
+
+- Always supply the primary conversion definition and its value up front — without it, findings about ROAS or CPA efficiency have nothing real to be measured against, and the audit should flag that gap rather than guess.
+- Treat a Provisional or Partial completeness state as real information, not a failure of the audit — it tells you exactly where to focus follow-up data collection before trusting the portfolio-level numbers.
+- Keep proposed account changes (mutations) explicitly separate from recommendations in whatever you share onward — a stakeholder reading a combined list can't tell what's already been decided from what still needs their sign-off.
+
+## Limitations
+
+- A framework for structuring and grading an audit's findings — it doesn't include platform-specific benchmark data or scoring thresholds, which change too often to hardcode reliably and should come from current platform documentation or your own historical baselines.
+- Assumes account data arrives via export, screenshot, or authenticated API access; the audit is only as complete as what's actually supplied, and the completeness-state discipline exists specifically to make that limitation visible rather than hidden.
+- Best suited to a structured, multi-platform review — a quick single-metric question ("is our Google CPA too high?") doesn't need this level of process overhead.

@@ -1,0 +1,59 @@
+---
+title: "Research Paper Structure Editor"
+description: "Improve the structural clarity of ML/CV/NLP research papers before submission — a reverse-outlining check that maps every paragraph's topic sentence back to the section thesis, section-by-section guidance for Abstract through Conclusion, a five-dimension adversarial self-review, and a claim-evidence map that catches unsupported claims in the Abstract and Introduction before a reviewer does."
+seoHook: "The most common reason a paper reads as unclear isn't bad sentences — it's a paragraph whose topic sentence doesn't actually map back to the section's thesis, and reverse outlining (write down the thesis, then every paragraph's opening claim, then check the mapping) catches that in minutes instead of a reviewer catching it in rejection comments."
+targetAudience: "graduate students and researchers preparing an ML/CV/NLP paper for submission, academic authors who want a structural editing pass distinct from grammar polishing, anyone doing a pre-submission self-review who wants a systematic adversarial pass instead of just rereading the draft, co-authors splitting section-writing who need consistent paragraph-level structure across the paper"
+exampleUseCase: "\"Review my Introduction and Method sections for clarity before I submit\" → A reverse outline built from each section's topic sentences and checked against its stated thesis, paragraphs failing the mapping flagged for revision, a claim-evidence map built for every claim in the Introduction checking it's actually traceable to a later result, and a five-dimension adversarial self-review (contribution, clarity, experimental strength, evaluation completeness, method soundness) before the draft is called done"
+category: "academic-research"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "Master-cai (Research-Paper-Writing-Skills)"
+sourceUrl: "https://github.com/Master-cai/Research-Paper-Writing-Skills/blob/main/research-paper-writing/SKILL.md"
+tags: ["academic-writing", "research-papers", "machine-learning", "paper-writing", "peer-review"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A structural editing methodology for ML/CV/NLP-style research papers, distinct from sentence-level grammar polishing — it treats paper clarity as a reverse-outlining problem: for each section, write down the thesis, write down every paragraph's topic sentence, write down the evidence under each paragraph, and check whether the whole thing actually maps together. A paragraph that can't be cleanly mapped back to the section's thesis gets revised or removed, which catches the single most common source of "this reads unclear" feedback — a paragraph technically well-written in isolation that doesn't actually connect to what the section is arguing.
+
+It pairs that structural check with section-specific guidance (an Abstract's claims need to be traceable to later results; Related Work should organize by dimension of comparison rather than a flat "X did Y" list; a Method subsection should state motivation, design, and technical advantage in that order) and a genuinely adversarial final pass: a five-dimension self-review (contribution, clarity, experimental strength, evaluation completeness, method soundness) and an explicit claim-evidence map that traces every major claim in the Abstract and Introduction to the actual result supporting it — weakening or removing anything that can't be traced, rather than leaving an overclaim in place. It works one paragraph at a time rather than bulk-rewriting a whole section at once, keeping each edit reviewable.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir paper-structure && cd paper-structure
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Review or Draft a Section
+
+```bash
+claude
+```
+
+Point Claude at a paper draft (or a section of one) and ask for a structural review or help drafting. It will build a reverse outline to check paragraph-to-thesis mapping, apply the relevant section-specific guidance, and produce a claim-evidence map for anything that reads as a claim needing support.
+
+---
+
+## Tips & Best Practices
+
+- Run the reverse-outlining check on the Introduction and Abstract before anywhere else — claim-evidence misalignment there is what reviewers notice first and penalize hardest.
+- Ask for one paragraph revised at a time rather than a whole section rewritten at once; it's much easier to verify a single paragraph's new topic sentence still supports its section's thesis than to audit a bulk rewrite.
+- Take the "avoid incremental-patching style" rule seriously in the Method section specifically — describing a contribution as a sequence of small fixes to a baseline reads weaker than stating the actual unified design rationale, even when the underlying work is identical.
+
+## Limitations
+
+- A structural and clarity editor, not a fact-checker or citation verifier — it doesn't check whether cited claims about prior work are accurate, or whether references actually exist; pair it with citation-verification tooling for that.
+- Tuned for the conventions of ML/CV/NLP-style papers (contributions lists, ablations, baselines); a humanities or theoretical-math paper's structural conventions differ enough that some section-specific guidance won't transfer directly.
+- Focuses on structure and claim-evidence alignment specifically — sentence-level grammar and word-choice polishing is a separate, complementary editing pass.

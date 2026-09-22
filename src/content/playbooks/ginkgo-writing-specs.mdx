@@ -1,0 +1,59 @@
+---
+title: "Writing Ginkgo Specs"
+description: "Author correct Ginkgo specs — container vs. subject vs. setup nodes, the declare-in-container/initialize-in-setup rule that prevents the most common Ginkgo bug, JustBeforeEach for separating creation from configuration, DeferCleanup for restore-not-clear teardown, and GinkgoHelper() for failure locations that point at the caller instead of the helper."
+seoHook: "A Ginkgo spec that initializes a shared variable directly inside a Describe block instead of in BeforeEach looks fine and often passes — until specs run in a different random order and start mutating each other's state, because that variable was only ever set once, at test-tree construction time, not fresh per spec."
+targetAudience: "Go developers new to Ginkgo/Gomega BDD-style testing, teams reviewing Ginkgo specs for the declare-vs-initialize mistake, engineers extracting test helpers who want failure messages to point at the right line, anyone deciding between BeforeEach and JustBeforeEach for shared test setup"
+exampleUseCase: "\"Why do my Ginkgo tests fail only when run in random order?\" → The construction-time-vs-run-time explanation for why a variable initialized directly in a Describe body gets shared and mutated across specs, the fix (declare in the container, initialize in BeforeEach), and when to reach for JustBeforeEach instead to separate input configuration from object creation"
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "onsi (Ginkgo)"
+sourceUrl: "https://github.com/onsi/ginkgo/blob/master/plugins/ginkgo/skills/writing-specs/SKILL.md"
+tags: ["ginkgo", "gomega", "golang", "testing", "bdd-testing", "go-testing"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A grounded reference for writing correct Ginkgo specs, built around Ginkgo's two-phase model: container bodies (`Describe`/`Context`/`When`) run once at tree-construction time, while setup and subject nodes (`BeforeEach`, `It`) run fresh per spec. That distinction produces the single rule that prevents most Ginkgo bugs — declare shared variables in the container, initialize them in `BeforeEach` — and explains why assertions and expensive work never belong directly inside a container body.
+
+It covers the full setup/cleanup node table and their execution order (`BeforeEach` outer-to-inner, `AfterEach` inner-to-out, `JustBeforeEach` after all `BeforeEach`es for separating input configuration from object creation), `DeferCleanup`'s LIFO teardown registered next to the setup it undoes (restore original state, don't just clear it), `GinkgoWriter` and `By` for output that only surfaces on failure, and `GinkgoHelper()`/`GinkgoHelperGo` for keeping failure locations pointed at the calling spec instead of buried inside a shared test helper.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir ginkgo-specs && cd ginkgo-specs
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Write or Review Specs
+
+```bash
+claude
+```
+
+Point Claude at a new or existing Ginkgo test file and ask it to write specs, review them for the declare/initialize mistake, or extract a shared assertion into a `GinkgoHelper()`-marked function. It will apply the container/setup distinction and the correct cleanup and helper patterns.
+
+---
+
+## Tips & Best Practices
+
+- Randomize spec execution order locally (`ginkgo --randomize-all`) — it's the fastest way to surface a variable that was wrongly initialized in a container body instead of `BeforeEach`.
+- Reach for `JustBeforeEach` only when several `Context`s need to override just one input before a shared creation step; overusing it produces hard-to-follow nesting.
+- Mark every helper in a call chain with `GinkgoHelper()`, not just the outermost one — it composes, and a single unmarked frame in the middle breaks the failure-location chain for everything above it.
+
+## Limitations
+
+- Covers spec authoring specifically — table-driven specs and asynchronous/timeout testing are separate, related topics.
+- The declare/initialize rule and node-ordering table are specific to Ginkgo's construction/run-phase model; they don't map directly onto Go's standard `testing` package or other test frameworks.
+- Assumes Ginkgo and Gomega are already wired into the test suite (`RegisterFailHandler`, `RunSpecs`) — initial suite bootstrap is out of scope.

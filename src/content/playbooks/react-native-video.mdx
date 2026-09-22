@@ -1,0 +1,59 @@
+---
+title: "React Native Video (v6 & v7)"
+description: "Give correct react-native-video guidance by detecting the installed major version first — v6's imperative <Video> component and v7's completely different useVideoPlayer/VideoView player-object model share a name but no API, and mixing them up is the single most common mistake when helping with this library."
+seoHook: "react-native-video v6 and v7 are different enough that a v7 code example handed to a v6 project (or vice versa) won't just be subtly wrong — it will reference hooks and props that don't exist in that version at all, and the fix is one five-second package.json check most answers skip."
+targetAudience: "React Native developers adding or debugging video playback, teams deciding whether to adopt react-native-video v7 beta or stay on v6, engineers building TikTok-style short-video feeds needing fast source preloading, anyone hitting a DRM or event-handling mismatch after a version upgrade"
+exampleUseCase: "\"How do I control playback in react-native-video?\" → A version check against package.json first, then the correct API for whichever major version is installed — ref.seek() and props for v6, or player.seekTo() and useVideoPlayer for v7 — plus a decision table for which version to pick on a brand-new project"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "TheWidlarzGroup"
+sourceUrl: "https://github.com/TheWidlarzGroup/react-native-video/blob/master/skills/react-native-video/SKILL.md"
+tags: ["react-native", "video-playback", "mobile-development", "exoplayer", "avplayer", "drm"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A version-first reference for `react-native-video`, built around the fact that v6 and v7 are effectively different libraries sharing a package name: v6 is one imperative `<Video source paused .../>` component controlled via props and a `ref`; v7 is a player-object model (`useVideoPlayer` returns a player instance, `<VideoView player={player} />` renders it, events flow through `useEvent`). Every piece of advice starts with detecting the installed version from `package.json` or `node_modules`, because a v7 code sample handed to a v6 app (or vice versa) references APIs that simply don't exist on the other version.
+
+Beyond version detection, it covers a decision table for choosing v6 vs. v7 on a new project (v7 for preloading-heavy feeds, new-architecture apps, and plugin-based DRM; v6 for RN < 0.75, existing production apps, or anything needing built-in ad support), quick-start code for both versions' mental models, a feature-location map for where each topic lives per version, and a red-flags table for the most common version-mixing mistakes — including the DRM API, which changed from a built-in prop in v6 to a separate package in v7.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir rn-video && cd rn-video
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Get Version-Correct Guidance
+
+```bash
+claude
+```
+
+Ask Claude for help playing, controlling, or debugging video in your React Native app. It will check the installed `react-native-video` version first and give API guidance matched to that version instead of guessing.
+
+---
+
+## Tips & Best Practices
+
+- Always run the version check before answering — the description alone makes clear why guessing wrong is the single most common failure mode with this library.
+- Recommend v7 for new short-video/feed-style apps specifically because of its purpose-built `preload()` and `replaceSourceAsync` — that's the concrete case where the newer beta API earns its adoption risk.
+- Pause playback on navigation blur (`useFocusEffect`/`useIsFocused`) in both versions — it's easy to forget and video silently keeps playing in the background after a user navigates away.
+
+## Limitations
+
+- Covers the two major versions' public API surface and version-selection tradeoffs — it doesn't include the full prop/method reference for either version, which is deep enough to warrant the library's own docs for edge cases.
+- DRM, offline downloads, and ad integration differ meaningfully by version and platform; treat the feature-map table as a starting point for what's possible, not a complete implementation guide.
+- Version detection assumes a standard `node_modules`/`package.json` setup — a monorepo or unusual dependency resolution may need a different lookup approach.

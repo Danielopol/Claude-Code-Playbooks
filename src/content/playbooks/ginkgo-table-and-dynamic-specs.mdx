@@ -1,0 +1,59 @@
+---
+title: "Ginkgo Table and Dynamic Specs"
+description: "Parameterize and generate Ginkgo test specs correctly — DescribeTable/Entry, the four ways to name an entry, DescribeTableSubtree for multi-It rows, reusable entry sets, and the one gotcha (Entry params evaluate at construction time, not BeforeEach time) that causes most table-spec bugs."
+seoHook: "A DescribeTable entry that reads shelf[\"Les Miserables\"] looks correct and compiles fine — but it reads a nil map, because Ginkgo evaluates every Entry argument when the test tree is built, before a single BeforeEach has run, and that one timing fact breaks more table-driven Go tests than any other Ginkgo quirk."
+targetAudience: "Go developers writing table-driven tests with Ginkgo and Gomega, teams migrating from repetitive It blocks to DescribeTable, anyone debugging a table spec where an Entry sees a nil or zero-value variable, engineers extracting shared It blocks across Contexts into reusable closures"
+exampleUseCase: "\"Why does my DescribeTable entry get a nil pointer even though BeforeEach sets it up?\" → The construction-time-vs-run-time explanation with a wrong/right code pair, plus the struct-per-row pattern for tables with many parameters and DescribeTableSubtree for entries that need multiple It blocks each"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "onsi (Ginkgo)"
+sourceUrl: "https://github.com/onsi/ginkgo/blob/master/plugins/ginkgo/skills/tables-and-dynamic-specs/SKILL.md"
+tags: ["ginkgo", "gomega", "golang", "testing", "table-driven-tests", "go-testing"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A focused reference for Ginkgo's table-driven and dynamically generated spec idioms, anchored on the one fact that explains every gotcha: `DescribeTable`, `Entry`, and loop-generated specs are all syntactic sugar that runs during Ginkgo's tree-construction phase, before any `BeforeEach` or spec body executes. Covers `DescribeTable`/`Entry` syntax, the four ways to name or auto-name an entry, decorating entries with the same decorators as any other node, `DescribeTableSubtree` for entries that need multiple `It`s and their own setup, the struct-per-row pattern for tables with many parameters, reusable `[]TableEntry` slices shared across tables, and the correct place to load fixture data that determines spec structure (`TestXxx` before `RunSpecs`, never `BeforeSuite`).
+
+The centerpiece is the construction-time-vs-run-time distinction: an `Entry`'s arguments are evaluated when the tree is built, so an entry that tries to read a `BeforeEach`-initialized variable silently gets the zero value — a `nil` map or pointer — instead of an error. The fix (pass a key, dereference inside the spec closure) and the same principle applied to shared-behavior closures across `Context`s round out the reference.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir ginkgo-tables && cd ginkgo-tables
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Write Table Specs
+
+```bash
+claude
+```
+
+Point Claude at a Go test file using Ginkgo and ask it to convert repetitive `It` blocks into a `DescribeTable`, or to debug a table spec that's seeing unexpected zero values. It will apply the construction-time rule correctly and pick the right entry-naming and row-sharing pattern for the situation.
+
+---
+
+## Tips & Best Practices
+
+- If an `Entry` needs data that only exists after setup runs, pass a lookup key instead of the value itself, and resolve it inside the spec closure — the fix is almost always this shape.
+- Switch from positional `Entry(nil, 12, 1.2, 8.5, 11, 2783)` arguments to a named struct the moment a table grows past two or three parameters; unreadable entries are the most common table-spec code-review complaint.
+- Use `DescribeTableSubtree` instead of `DescribeTable` the moment one row needs more than one assertion or its own `BeforeEach` — trying to cram multiple concerns into a single `It` per entry is a sign you want the subtree form.
+
+## Limitations
+
+- Covers table and dynamic specs specifically — general Ginkgo authoring (container/subject/setup nodes, `JustBeforeEach`, `GinkgoHelper()`) is a separate topic.
+- Assumes familiarity with Ginkgo's two-phase construction/run model; if that model itself is unfamiliar, read Ginkgo's own overview docs first.
+- Code samples target Ginkgo's Go DSL — the concepts (deferred evaluation, construction- vs. run-time data) don't transfer directly to other BDD frameworks with different execution models.

@@ -1,0 +1,59 @@
+---
+title: "Leanback to Compose for TV Migration"
+description: "Migrate an Android TV app from the legacy Leanback UI Toolkit to Jetpack Compose for TV (androidx.tv) — the 10-foot UI design constraints, D-pad focus handling (initial focus, bidirectional routing, focusRestorer, IME focus chaining), Media3 playback with PlayerSurface, a five-phase migration order, and a direct Leanback-class-to-Compose-screen mapping table."
+seoHook: "Porting a phone Compose screen straight to Android TV breaks on day one — nothing receives initial D-pad focus, carousels forget which card you were on when you navigate back to them, and a text field silently refuses to open the keyboard, because TV Compose needs explicit focus management that mobile Compose never required."
+targetAudience: "Android engineers migrating a Leanback-based TV app to Jetpack Compose for TV, teams retiring BrowseSupportFragment/ArrayObjectAdapter/CardPresenter in favor of androidx.tv.material3, developers debugging D-pad focus traps or IllegalStateException from an off-screen FocusRequester, anyone building Media3-based video playback for Android TV with Compose"
+exampleUseCase: "\"Migrate our BrowseSupportFragment screen to Compose for TV\" → A BrowseScreen built from LazyColumn-of-LazyRows with androidx.tv.material3 components, Modifier.focusRestorer() on each row so vertical navigation between carousels doesn't lose the last-focused card, initial focus wired via FocusRequester in a LaunchedEffect, and the five-phase migration order that replaces legacy Fragments without breaking compilation mid-way"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "Google (android/skills)"
+sourceUrl: "https://github.com/android/skills/blob/main/tv/leanback-to-compose-tv-migration/SKILL.md"
+tags: ["android", "android-tv", "jetpack-compose", "leanback", "kotlin", "media3", "d-pad-navigation"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A migration playbook, from Google's own `android/skills` repository, for moving an Android TV application off the legacy Leanback UI Toolkit and onto Jetpack Compose for TV (`androidx.tv`). It starts from the "10-foot UI" design paradigm that TV interfaces have to satisfy — comfortable readability from across a room, high-contrast focus states, and D-pad-only 4-way navigation with no focus traps — and works through the specific engineering rules that make Compose actually work for that paradigm: `androidx.tv.material3` over mobile Material3 for built-in D-pad focus handling, explicit initial-focus assignment via `FocusRequester` (TV Compose never focuses anything automatically), and `Modifier.focusRestorer()` on every horizontal carousel so vertical navigation between rows doesn't lose the user's place — the exact bug that produces the most confusing TV-Compose focus complaints.
+
+It covers Media3 video playback migration (`PlayerSurface` plus a mandatory transport-controls overlay, D-pad-driven seeking via `onPreviewKeyEvent`, never a legacy `AndroidView`-wrapped `PlayerView`), text input and IME focus chaining for search bars and login forms (including why intercepting the Back key during text editing is mandatory, not optional), a five-phase migration order designed to avoid breaking compilation mid-migration (foundation → leaf screens → browsing screens → details/playback → final cleanup), and a direct mapping table from every major Leanback class (`BrowseSupportFragment`, `ArrayObjectAdapter`, `CardPresenter`, `GuidedStepSupportFragment`, and more) to its modern Compose equivalent.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir tv-migration && cd tv-migration
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Migrate a Screen
+
+```bash
+claude
+```
+
+Point Claude at a Leanback-based screen (a `BrowseSupportFragment`, a settings screen, a video-playback screen) and ask it to migrate that screen to Compose for TV. It will apply the correct focus-handling patterns, the right `androidx.tv.material3` components, and place the work at the correct phase of the overall migration order.
+
+---
+
+## Tips & Best Practices
+
+- Attach `Modifier.focusRestorer()` to every `LazyRow` carousel from the start — retrofitting it after users report "focus jumps around" is far more work than including it in the first pass at each screen.
+- Assign initial focus with a `LaunchedEffect(Unit)` (or keyed to relevant state for pagers) on literally every screen — a screen with no initial focus assignment leaves the D-pad with nothing to move from, which reads as a completely broken screen to a TV user.
+- Follow the five-phase order even under deadline pressure: migrating browsing/discovery screens (Phase 3) before the foundational design system and leaf screens (Phases 1–2) tends to produce rework once the shared `TvTheme` and atomic components stabilize.
+
+## Limitations
+
+- Targets Android TV specifically via `androidx.tv.*` — the focus-handling patterns don't transfer to mobile Compose, where initial and directional focus work differently.
+- Assumes the app can adopt Media3 for playback; apps on older playback stacks need that migration handled as a prerequisite, not covered here.
+- The component mapping table covers the common Leanback surface (`BrowseSupportFragment`, `DetailsSupportFragment`, `GuidedStepSupportFragment`, and similar) — a heavily customized `Presenter` subclass hierarchy may need additional analysis beyond the direct 1:1 mappings shown.

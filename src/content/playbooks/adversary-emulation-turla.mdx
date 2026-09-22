@@ -1,0 +1,59 @@
+---
+title: "Adversary Emulation: Turla"
+description: "An intelligence-grounded, authorized purple-team emulation profile for Turla (MITRE ATT&CK G0010), Russia's FSB-linked espionage group — attribution, distinctive TTPs (satellite C2 hijacking, steganographic email backdoors, parasitizing rival APT infrastructure), emulation guidance mapped to generic red-team tooling, and paired detection recommendations, under an explicit authorized-use and lab-only caveat for rootkit techniques."
+seoHook: "Turla doesn't just compromise targets — it has twice been caught hijacking another nation-state's own C2 infrastructure and deploying implants through that rival's existing victim access, a documented TTP most purple-team exercises never think to test defenders against because almost no generic threat model includes it."
+targetAudience: "purple-team and red-team operators running authorized adversary emulation exercises, blue-team detection engineers validating coverage against sophisticated state-linked actors, security teams in government, diplomatic, defense, or research sectors Turla has historically targeted, SOC analysts building detections for steganographic C2, passive non-beaconing implants, or Exchange Transport Agent abuse"
+exampleUseCase: "\"Run a purple-team exercise emulating a sophisticated state-linked espionage actor's long-dwell-time tradecraft\" → Turla's documented TTPs mapped by ATT&CK tactic (Exchange Transport Agent persistence mirroring LightNeuron, Gmail-based C2 mirroring ComRAT v4, a passive non-beaconing implant activated by a trigger packet), each one paired with the specific detection logic meant to catch it, with kernel-rootkit techniques explicitly scoped to isolated-lab-only use"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "PurpleAILAB (Decepticon)"
+sourceUrl: "https://github.com/PurpleAILAB/Decepticon/blob/main/packages/decepticon/decepticon/skills/shared/adversary-emulation/turla/SKILL.md"
+tags: ["security", "adversary-emulation", "red-teaming", "threat-intelligence", "mitre-attack", "purple-team"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A structured, citation-backed adversary-emulation profile for Turla (MITRE ATT&CK G0010, also tracked as Venomous Bear, Secret Blizzard, and Waterbug), a Russian FSB Center 16-attributed espionage group active since at least 2004 with one of the broadest and longest-running malware ecosystems of any documented threat actor. Beyond standard attribution and targeting, it foregrounds what actually makes Turla worth emulating specifically: a documented, repeated pattern of hijacking other nation-states' own C2 infrastructure (Iranian APT OilRig in 2019, Pakistani APT Storm-0156 in 2024) and deploying implants through their existing victim access — a TTP almost no generic red-team scenario tests defenders against — alongside satellite-downlink C2 hijacking, an Exchange Transport Agent backdoor (LightNeuron) that intercepts live email with steganographic commands, and a passive Linux implant (Penquin) that produces zero outbound traffic until triggered by a magic packet.
+
+Every offensive technique carries a generalized emulation instruction (mapped to whatever C2, phishing, and post-exploitation tooling your team is actually cleared to use, never requiring Turla's specific malware) paired with concrete detection guidance — Exchange Transport Agent auditing for the LightNeuron pattern, activation-packet-focused monitoring for the passive implant, UEFI/kernel-integrity monitoring for the Snake rootkit. The authorized-use caveat is explicit and technique-specific: kernel rootkit emulation is scoped to an isolated lab environment only, with fileless Registry staging and AMSI-bypass patching offered as the non-lab-safe alternative for testing similar evasion coverage.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir adversary-emulation-turla && cd adversary-emulation-turla
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Run an Authorized Exercise
+
+```bash
+claude
+```
+
+Within an authorized purple-team engagement, ask Claude to plan an exercise emulating Turla's tradecraft, or to build detection logic for a specific technique — the Exchange persistence pattern, the passive implant model, or the email-based C2. It will map the documented TTPs to your actual authorized tooling and pair every offensive step with matching detection guidance.
+
+---
+
+## Tips & Best Practices
+
+- Confirm rules of engagement before touching anything rootkit-related — the caveat here is explicit and non-negotiable: kernel-level persistence techniques run in an isolated lab only, never in a live authorized-engagement environment, regardless of how tightly scoped the rest of the exercise is.
+- Prioritize testing the passive-implant and Exchange Transport Agent patterns specifically — both represent detection blind spots most environments haven't built coverage for, since standard EDR heuristics assume regular outbound beaconing and standard mail-flow monitoring rarely audits installed Transport Agents.
+- If your organization runs a multi-team or coalition exercise, the infrastructure-hijacking technique is worth the extra design effort — it's one of the few TTPs that specifically tests whether analysts can distinguish between distinct threat actors operating through the same compromised infrastructure.
+
+## Limitations
+
+- Intelligence-grounded but still a synthesis of public reporting — treat it as a strong starting profile for an exercise, not a guarantee of complete coverage of the actor's full, non-public capability.
+- Several signature techniques (the Snake kernel rootkit, satellite C2 hijacking, infrastructure parasitism) require either an isolated lab or a multi-team exercise design to emulate safely and meaningfully — a standard single-team engagement will only be able to cover a subset of the full profile.
+- Emulation guidance intentionally stays tool-agnostic rather than naming a specific commercial or open-source platform — teams will need to translate each technique into their own cleared toolset.

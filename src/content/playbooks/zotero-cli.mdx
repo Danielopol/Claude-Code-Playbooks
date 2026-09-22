@@ -1,0 +1,59 @@
+---
+title: "Zotero from the Shell"
+description: "Read and write a Zotero library entirely from the shell with zotero-cli — six search modes (items, semantic, tag, citekey, notes) picked correctly for the query, a find-keys-then-act-on-keys core loop, PDF annotation with a dry-run verification pass before writing, and the token-efficiency case for a CLI over an MCP server's always-loaded tool schemas."
+seoHook: "A Zotero MCP server's tool schemas cost real context on every single request whether you use them or not — a shell command costs only what you actually run, and for a researcher scripting through hundreds of papers in a session, that difference compounds fast."
+targetAudience: "researchers and academics managing citations and reading notes in Zotero via the command line, anyone scripting bulk operations across a Zotero library (tagging, collection filing, bibliography export), engineers choosing between a Zotero MCP server and a CLI tool for token-efficiency reasons, PDF-heavy researchers who need reliable page-range reading and figure/table/equation annotation"
+exampleUseCase: "\"What does my Zotero library say about attention mechanisms in transformers?\" → A semantic search (not exact keyword search) run first to catch conceptually related papers regardless of wording, results returned as compact keys, then targeted metadata or full-text page-range reads only for the papers that actually matter — instead of dumping every matching paper's full text into context"
+category: "research-writing"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "54yyyu (zotero-mcp)"
+sourceUrl: "https://github.com/54yyyu/zotero-mcp/blob/main/src/zotero_mcp/skills/zotero-cli/SKILL.md"
+tags: ["zotero", "research", "citations", "cli", "academic-research", "pdf-annotation"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A complete working reference for `zotero-cli`, a shell command that reads and writes a Zotero library directly — chosen deliberately over a Zotero MCP server when shell access is available, since an MCP server's tool schemas load into context on every request regardless of use, while a CLI invocation costs only what actually runs. The core pattern is find-keys-then-act-on-keys: every search returns compact 8-character item keys (kept small with `--detail keys_only` while browsing), which then feed directly into metadata, full-text, or page-range reads, and pipe cleanly into a loop for bulk operations. Six distinct search modes get picked by what's actually known — exact-phrase `items` search when the title or author is known, `semantic` search when only the idea or topic is known (built on a search index that needs a one-time build check), `tag`, `citekey`, and `notes` modes for their specific narrower cases — with an explicit warning against reporting empty results as "you have no papers on X" before confirming the library is actually reachable and, for semantic search, actually indexed.
+
+The PDF-handling section is unusually thorough: it flags exactly where extracted text becomes unreliable (math, figures, and tables — symbols drop out, table cells run together) and gives the fallback (render the specific page as an image, optionally zoomed to one region) rather than pretending full-text extraction always works. Annotation follows a deliberate plan-check-write sequence — list figure/table/equation boxes with paste-ready coordinates, write highlight/comment instructions as JSON, dry-run the batch to see exactly which words each highlight would actually cover, fix every miss, then commit for real — which catches the common failure of a highlight silently landing on the wrong text before it's permanently written to the library.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir zotero-workspace && cd zotero-workspace
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Work With Your Library
+
+```bash
+claude
+```
+
+Ask about papers in your Zotero library, request a search by topic or exact title, or ask to read, annotate, or tag specific items. Claude will pick the right search mode for the query, use `--json` output for reliable parsing, and follow the find-keys-then-act-on-keys pattern for anything requiring multiple items.
+
+---
+
+## Tips & Best Practices
+
+- Always run `zotero-cli config` (and `db status` for semantic search) before reporting empty results as "nothing found" — an unreachable library or an unbuilt search index produces the same empty-looking result as a genuine no-match, and conflating them gives the user wrong information.
+- Use `--detail keys_only` while browsing search results and only fetch full metadata or text for the specific items that matter — this is both faster and keeps output manageable across a large library.
+- For annotation specifically, never skip the `--dry-run` pass — verifying which exact words a highlight will cover before writing it permanently is the difference between a clean annotation and one that has to be manually cleaned up in the Zotero app afterward.
+
+## Limitations
+
+- Requires `zotero-cli` installed and either the Zotero desktop app running with its local API enabled, or web API credentials configured — without one of those, `zotero-cli config` will fail and nothing else in this workflow works.
+- Semantic search specifically depends on a built search index; a fresh Zotero library or one that hasn't run `db update` will silently have no semantic results until that index exists.
+- PDF text extraction has known, flagged unreliability for math notation, figures, and tables — treat those specific pages' extracted text as a lead to verify visually via the image-rendering fallback, not as ground truth.

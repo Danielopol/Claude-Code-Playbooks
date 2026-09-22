@@ -1,0 +1,59 @@
+---
+title: "Reshape PR Commits"
+description: "Turn a branch's messy WIP/fixup commit history into a clean, logically-grouped set of commits before review — proposed regrouping with explicit approval, git reset --soft plus staged re-commits instead of interactive rebase, and hard guardrails (feature branches only, force-with-lease only, never touch another author's commits)."
+seoHook: "A PR with fifteen commits named 'wip', 'fix', and 'oops typo' works fine to merge, but it makes the diff impossible to review commit-by-commit and turns git blame into archaeology — and the fix isn't interactive rebase's fragile editor dance, it's a three-command reset-and-recommit flow any agent can run safely with the right guardrails."
+targetAudience: "developers who batch small WIP commits while working and need a clean history before opening a PR, tech leads who want reviewable, logically-grouped diffs instead of a stream-of-consciousness commit log, teams standardizing on conventional commit messages before merge, anyone nervous about force-pushing history rewrites"
+exampleUseCase: "\"Clean up my commits before I open this PR\" → git log against the merge-base to see the noisy history, the combined diff read to understand what actually changed (not what the messages claim), a numbered regrouping plan presented for approval before anything is touched, then git reset --soft plus staged re-commits and a force-with-lease push"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "Qualcomm (GenieX)"
+sourceUrl: "https://github.com/qualcomm/GenieX/blob/main/.claude/skills/reshape-pr-commits/SKILL.md"
+tags: ["git", "pull-requests", "commit-history", "code-review", "git-workflow"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A disciplined workflow for turning a noisy feature-branch history into a small set of commits, each representing one coherent logical change, before a PR goes up for review. Rather than interactive rebase's fragile pick/squash/reword editor flow, it uses `git reset --soft` back to the merge-base followed by staged `git add` + `git commit` per logical group — simpler, with far fewer merge-conflict surprises. The flow always reads the combined diff first (not just the existing commit messages, which are often wrong or stale) before proposing a regrouping, then presents the planned final shape as a numbered list and waits for explicit approval before touching any history.
+
+It also defines when to *offer* this proactively: when the user signals a PR is ready ("done with this PR," "let's open it") and the commit log looks like a stream of WIP/fixup commits, suggest the cleanup once — but never insist, and never re-ask in the same session if declined. The guardrails are the load-bearing part: only ever rewrite the current feature branch (refuse on `main` or an already-merged HEAD), always `--force-with-lease` on the push, and stop and ask rather than silently re-authoring history if another author's commits are mixed in.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir reshape-commits && cd reshape-commits
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Clean Up a Branch
+
+```bash
+claude
+```
+
+Ask Claude to clean up the commits on your current feature branch before you open (or update) a PR. It will read the base and the full diff, propose a numbered regrouping for your approval, then reset and re-commit — never force-pushing without `--force-with-lease` and never touching `main`.
+
+---
+
+## Tips & Best Practices
+
+- Always let it show the proposed final commit list before executing — a one-line rationale per group makes it easy to catch a wrong split (e.g., a refactor accidentally bundled with a behavior change) before it's baked into history.
+- If your project has a `CONTRIBUTING.md` with commit-message conventions (type prefixes, scope names, subject rules), point to it — the reshaping should match the house style rather than invent its own.
+- `git reset --soft` plus staged re-commits is deliberately preferred over interactive rebase here: no editor to drive, no pick/squash lines to get wrong, and conflicts only ever show up once, at the final push.
+
+## Limitations
+
+- Rewrites history — only ever safe on a feature branch that hasn't been merged and that no one else is actively building on top of; the guardrails refuse `main` and already-merged branches, but a shared feature branch with other active contributors still needs care.
+- Refuses to touch commits authored by someone else without asking first — on a branch with mixed authorship, expect it to stop and check rather than silently reshape everyone's history.
+- Assumes a single target base branch (typically `main`); a more complex branching model (stacked PRs, multiple integration branches) needs the base identified manually before the flow starts.

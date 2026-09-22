@@ -1,0 +1,59 @@
+---
+title: "Scholarly Writing Refiner"
+description: "Polish academic English at the sentence level — a five-dimension review (grammar, word choice, voice, coherence, sentence structure) with concrete before/after tables for colloquial-to-academic substitutions, active/passive voice selection by scenario, transition-signal words by logical relationship, and section-specific tense and structure conventions for the Abstract and Introduction."
+seoHook: "'It was found by us that the results were improved by the method' technically says the same thing as 'we found that our method improved the results' — but only one of them is what a journal reviewer expects from academic prose, and the difference is a specific, teachable set of voice, word-choice, and sentence-structure rules, not vague 'make it sound more academic' feedback."
+targetAudience: "non-native English speakers polishing a manuscript for journal submission, graduate students revising a thesis chapter for academic tone, researchers who know their content is sound but want the prose to read as native-level academic English, anyone who needs grammar and word-choice feedback specific to scientific writing conventions rather than general copyediting"
+exampleUseCase: "\"Polish this Introduction paragraph for a journal submission\" → Each of the five dimensions checked independently (subject-verb agreement, colloquial word choices swapped for academic register, passive voice applied where the action's object matters more than the actor, transition signal words corrected where 'Furthermore' was used to express contrast instead of 'However'), with the polished text delivered alongside a list of what changed and why"
+category: "academic-research"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "zebbern (claude-code-guide)"
+sourceUrl: "https://github.com/zebbern/claude-code-guide/blob/main/skills/scholarly-writing-refiner/SKILL.md"
+tags: ["academic-writing", "english-editing", "manuscript-editing", "esl-writing", "grammar"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A sentence-level academic English editor that reviews across five independently-rated dimensions — grammar, word choice, voice, coherence/cohesion, and sentence structure — each backed by a concrete before/after table rather than general advice to "sound more academic." The grammar section catches specific, common errors (subject-verb disagreement on collective nouns, dangling modifiers, broken parallelism, "that" vs. "which") with a correction and a one-line reason for each; the word-choice section maps dozens of colloquial phrases ("a lot of," "get," "deal with") to their academic equivalents while explicitly warning against over-substitution ("can" doesn't need replacing); and a full tense-by-section table specifies exactly when a paper should shift from past tense (describing what was done) to present tense (stating a conclusion) across the Abstract, Introduction, Methods, Results, Discussion, and Conclusion.
+
+The voice and coherence sections are where it goes beyond a basic grammar check: a scenario table specifies exactly when active voice belongs ("We trained the model," describing the authors' own actions) versus passive ("The samples were analyzed," emphasizing the object of an action), and a signal-words table maps each logical relationship — addition, contrast, cause-and-effect, concession, exemplification — to its correct transition word, catching the common mistake of using "Furthermore" where the sentence actually expresses a contrast that needs "However." Sentence-structure guidance covers concrete fixes for run-on academic sentences (past ~40 words, split), noun pile-ups, and starting sentences with "There is/are," rounding out with section-specific structural conventions for the Abstract (a five-part funnel in ~150–300 words) and Introduction (broad context → specific problem → limitations of existing work → contribution → outline).
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir scholarly-refiner && cd scholarly-refiner
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Polish a Paragraph
+
+```bash
+claude
+```
+
+Paste a paragraph or section you're revising for journal submission, optionally noting the paper type and target venue. Claude will review across the five dimensions and return polished text alongside the specific changes made and why.
+
+---
+
+## Tips & Best Practices
+
+- Specify the target journal or field when you have one — regional punctuation conventions (American vs. British quotation-mark placement) and formality expectations vary enough between venues that this changes real decisions.
+- Don't over-apply the colloquial-to-academic substitutions — the guide itself flags "can" as acceptable as-is; blanket-replacing every simple verb with a longer Latinate one produces stiff, over-formal prose rather than better academic writing.
+- Use the coherence section specifically when a reviewer or advisor says a section "doesn't flow" — the jumping-argumentation and signal-word-misuse diagnoses name the actual structural problem instead of leaving you to guess what "doesn't flow" means.
+
+## Limitations
+
+- A sentence- and paragraph-level polish, not a structural or claim-evidence review — pairing it with a structural editing pass (checking whether the paper's overall argument and evidence hold together) covers a different, complementary layer.
+- Section-specific conventions (abstract length, tense patterns) are general academic norms; always defer to a specific target journal's actual author guidelines where they differ.
+- Voice and tense guidance reflects general STEM/social-science academic convention; some fields (humanities, certain qualitative research traditions) have different, sometimes contrary, stylistic norms.

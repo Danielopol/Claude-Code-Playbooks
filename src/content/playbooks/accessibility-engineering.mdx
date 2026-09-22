@@ -1,0 +1,59 @@
+---
+title: "Accessibility Engineering for Components"
+description: "Build accessible UI components at the code level, not just the audit level — 14 concrete engineering principles (focus-visible over bare :focus, roving tabindex for composite widgets, inert-based modal focus trapping, WCAG 2.5.8 hit-area minimums), a common-mistakes table with fixes, and a severity-rated review format ending in a hard Block/Needs-changes/Approve verdict."
+seoHook: "outline: none on a focus ring is still one of the most common accessibility bugs in production interfaces, and the fix isn't 'add accessibility later' — it's styling :focus-visible instead, which is a one-line change that most components never got because nobody wrote down the specific rule at the point where the CSS was written."
+targetAudience: "frontend engineers building or reviewing UI components, modals, menus, and forms, teams who want accessibility fixes at the point of code review instead of a separate compliance audit pass, developers debugging a specific reported keyboard-navigation or screen-reader issue, anyone who needs a severity-rated accessibility finding format with a concrete file:line Before/After table instead of a vague issue list"
+exampleUseCase: "\"Review this modal component for accessibility\" → A keyboard-only walkthrough first (does every flow complete without a mouse), then a screen-reader pass checking each control announces a name/role/state, findings grouped by violated principle in a severity-rated table (HIGH: no focus trap on open, MEDIUM: close button missing an accessible name), and a final Block verdict since a HIGH finding remains — with the exact before/after code needed to fix each one"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "jakubkrehel (skills)"
+sourceUrl: "https://github.com/trycompai/crm/blob/release/.agents/skills/better-accessibility/SKILL.md"
+tags: ["accessibility", "aria", "wcag", "frontend", "keyboard-navigation", "screen-readers"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+An engineering-first accessibility guide, distinct from a compliance-checklist audit — it treats accessibility as free craft that mostly requires using the platform correctly rather than bolting features on afterward: native `<button>` and `<a href>` elements ship with keyboard support and accessible names for free, and a visible focus ring is one CSS rule (`:focus-visible`, never bare `:focus`, so keyboard users get the ring and mouse users usually don't). Fourteen concrete principles cover the ground that actually shows up in code review — roving `tabindex` for composite widgets like tabs and menus (active item gets `0`, everything else `-1`, and positive tabindex values are never used), `inert`-based focus trapping for modals that moves focus in on open and restores it to the trigger on close, WCAG 2.5.8's real 24×24px hit-area minimum with the 44×44px touch-friendly target as the practical goal, and the specific ARIA live-region discipline (`polite` for routine updates, `assertive` reserved for genuine errors, a stable empty region for reliable repeated announcements) that most components get wrong.
+
+A common-mistakes table pairs each frequent error directly with its fix — `outline: none` removed without a verified replacement, a placeholder used as the only label, `maximum-scale=1` used to fight iOS input zoom instead of the actual 16px-font fix — and the review format enforces real rigor: every finding gets a severity (HIGH blocks a task or hides content from assistive tech; MEDIUM meaningfully harder; LOW is polish), a `file:line` location, and a Before/After code pair in one markdown table row, with repeated systemic issues consolidated into a single row listing every location rather than repeated line by line. The review ends in a hard verdict — Block if any HIGH finding remains, Needs Changes for MEDIUM/LOW only, Approve only when nothing actionable remains — so a review can't quietly hedge its way to "looks fine."
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir accessibility-review && cd accessibility-review
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Review or Build a Component
+
+```bash
+claude
+```
+
+Ask Claude to build an accessible component (a modal, a menu, a form) or to review an existing one for accessibility issues. For a review, it will walk the interface as a keyboard user first, then a screen-reader user, and produce a severity-rated findings table with a final Block/Needs-Changes/Approve verdict.
+
+---
+
+## Tips & Best Practices
+
+- Always do the keyboard-only walkthrough before the screen-reader pass — a flow that can't be completed without a mouse is usually the more severe, more common failure, and it's faster to catch first.
+- Prefer removing ARIA over adding it whenever a native element could do the job — "no ARIA is better than bad ARIA" catches a real, common failure mode of adding `role`/`aria-*` attributes to fix a problem that choosing `<button>` instead of `<div onClick>` would have avoided entirely.
+- Treat the Block/Needs-Changes/Approve verdict as binding, not advisory — a review that lists HIGH findings but still says "looks good overall" undermines the entire point of having a severity-rated format.
+
+## Limitations
+
+- Explicitly scoped to focus, keyboard, ARIA, forms, and screen-reader engineering — color-contrast measurement, text sizing/zoom mechanics, and RTL/logical-layout concerns are treated as separate, complementary skills rather than covered here.
+- The review format assumes a codebase with inspectable source (for `file:line` citations); a no-code or low-code tool without accessible source locations needs the "cite the exact screen and component" fallback instead.
+- Principles reflect current WCAG 2.x guidance and common ARIA Authoring Practices patterns — always double-check against the latest WCAG version and platform-specific screen reader behavior for anything genuinely novel or safety-critical.

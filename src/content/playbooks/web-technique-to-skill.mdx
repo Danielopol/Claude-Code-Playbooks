@@ -1,0 +1,59 @@
+---
+title: "Web Technique to Skill Extractor"
+description: "Turn a one-off web visual or interaction technique into a reusable, well-scoped skill — the one-sentence mechanism test that separates a real technique from mere styling, a mechanism-vs-staging sort for what belongs in the skill versus the demo, rules anchored to named failures instead of adjectives, and a demo craft bar that treats the acceptance reference as a target, not inspiration."
+seoHook: "A skill that says 'vary the particle rotation for a natural feel' teaches nothing testable — a skill that says 'drive rotation from the tumble angle, 90 degrees out of phase, or it reads as a wobble' teaches something a reader can actually verify they got right, and that difference is the entire discipline of turning a good demo into a reusable skill."
+targetAudience: "creative developers who built an effect that turned out well and want to make it reusable across projects, teams building an internal library of web-design skills or component patterns, anyone extracting a reusable technique from a client project without leaking the client's brand or licensed assets, developers writing skill documentation that keeps failing to actually help future readers apply it correctly"
+exampleUseCase: "\"Turn this leaf-fall canvas animation into a reusable skill\" → The one-sentence mechanism identified (the tumble crosses edge-on, and that near-disappearance instant is what reads as a leaf) separating it from staging (the sprite art, palette, night scene), the verified stack disclosed plainly in the demo title (Vanilla JavaScript · Canvas 2D — no WebGL), rules stated with their named failure mode instead of vague adjectives, and a demo that reproduces the original reference's craft bar as an acceptance target rather than a bare code sample"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "MengTo (Skills)"
+sourceUrl: "https://github.com/MengTo/Skills/blob/main/agent-skills/codex/web-technique-to-skill/SKILL.md"
+tags: ["skill-creation", "web-design", "documentation", "creative-development", "meta-skill"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A disciplined methodology for turning a one-off web visual or interaction technique that turned out well into a genuinely reusable skill — starting from a single diagnostic test: write the one sentence naming the mechanism that, if removed, makes the effect stop working. If you can't write it, you have a look, not a mechanism, and there's no skill there yet. That sentence then drives a hard sort of the source code into three piles — mechanism (goes in the skill body), staging (palette, copy, brand, stays only in the demo), and incidental (selector names, asset paths, goes nowhere) — so the extracted skill teaches the actual reusable idea instead of accidentally encoding one project's specific styling choices as if they were load-bearing.
+
+The rest of the methodology is about making the extracted skill actually usable months later by someone who wasn't there: every rule gets anchored to the specific failure it prevents ("drive rotation from the tumble angle, 90° out of phase — an independent sine reads as a wobble") rather than stated as a vague adjective, numeric constants get shipped instead of words like "subtle," and the expensive gotchas that cost hours and can't be re-derived from reading the code (color-space mismatches, layout-timing races, stacking-context surprises) get written as their own named rules. It closes with an unusually demanding standard for the accompanying demo: treat the original approved reference as an acceptance target to reproduce exactly, not as loose inspiration, disclose the verified tech stack plainly in the title, show the mechanism on the first screen with no interaction required, and never let anything not owned (a client's brand, licensed fonts, purchased imagery) cross into the reusable version.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir web-technique-skill && cd web-technique-skill
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Extract a Skill
+
+```bash
+claude
+```
+
+Point Claude at a working page, component, or effect you built and want to turn into a reusable skill. It will first identify the one-sentence mechanism, sort the source into mechanism/staging/incidental, write rules anchored to their specific failure modes with real numeric constants, and build a demo that reproduces the original's craft bar as an acceptance target.
+
+---
+
+## Tips & Best Practices
+
+- If the one-sentence mechanism test fails — you can't state the one thing that breaks the effect if removed — stop and reconsider whether there's actually a reusable technique here, rather than forcing an extraction anyway.
+- Audit every rule for a named failure before finalizing the skill: if you can't say what goes wrong without it, you probably never tested the alternative, and the rule may not be real.
+- When porting reference assets into the demo, port the *code that generates them* rather than hand-approximating the visual result — a hand-rolled CSS approximation of a procedurally generated texture is visibly flatter than the real thing side by side.
+
+## Limitations
+
+- A methodology for extracting *design and interaction* techniques specifically — it's not intended for extracting general-purpose utility code or business logic, which don't have the same mechanism-vs-staging distinction.
+- Demands a genuinely high craft bar for the accompanying demo (matching the original reference's composition, palette, and motion hierarchy exactly); a quick internal proof-of-concept extraction may reasonably skip some of that rigor.
+- Assumes there's an "approved reference" worth reproducing faithfully — a technique extracted from scratch without a strong source design will need its own demo design process first.

@@ -1,0 +1,59 @@
+---
+title: "AI Agent Red Team Methodology"
+description: "A first-principles methodology for authorized red-team exercises against AI products, agents, MCP servers, skills, and repositories — capability and trust-boundary modeling, AI-specific attack hypothesis families (prompt injection, tool misuse, data leakage, SSRF), harmless-proof testing with canaries, one-variable-at-a-time adaptive iteration, and business-language evidence-based reporting."
+seoHook: "Running a fixed prompt-injection payload library against an AI agent tells you which payloads it happens to block, not whether the agent is actually safe — real AI red-teaming starts from modeling what the target can access and what an attacker can control, then proving each specific risk with the smallest harmless test that can confirm it."
+targetAudience: "AI security researchers running authorized red-team engagements, teams pentesting their own AI agents, MCP servers, or Claude Code skills before shipping, security engineers who need AI-specific attack hypothesis families beyond generic web-app testing, anyone who needs a scoping contract and safety boundary defined before an AI security exercise starts rather than improvised mid-test"
+exampleUseCase: "\"Red-team this MCP server before we ship it\" → A scoping contract confirming authorization and safety boundaries first, a capability and trust-boundary table built from the server's tools/data/actions, hypotheses drawn from AI-specific families like indirect injection and tool misuse rather than a generic checklist, each one verified with a canary value instead of a real secret, and a business-language report stating exactly what was tried, what was confirmed, and what was disproven"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Tencent Zhuque Lab (AI-Infra-Guard)"
+sourceUrl: "https://github.com/Tencent/AI-Infra-Guard/blob/main/skills/aig-agent-redteam/SKILL.md"
+tags: ["security", "red-teaming", "ai-security", "prompt-injection", "mcp-security", "penetration-testing"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A structured methodology for running an authorized security exercise against an AI product, agent, MCP server, skill, code repository, or piece of AI infrastructure — built around first-principles reasoning instead of mechanically running a fixed payload library. It opens with a mandatory scoping contract: confirm the target, how a test payload actually reaches it, how you get back the full observed response, explicit authorization, the safety boundary, and a test budget — refusing to proceed against an external target until those are answered, while allowing a lighter default path when the user explicitly wants the exercise run against the current assistant itself (with that self-testing result labeled honestly as self-observed, never as independent verification of an external system).
+
+The core of the methodology is capability-and-trust-boundary modeling before any attack is proposed — what tools, data, and actions the target has, and what an attacker can actually control as input — followed by generating attack hypotheses from nine AI-specific families (prompt injection, indirect injection, system-prompt leakage, tool misuse, data leakage, privilege escalation, SSRF, supply-chain poisoning, infrastructure exposure) rather than starting from "everyone knows" assumptions. Every hypothesis gets the smallest harmless test that can prove it — a canary string standing in for a real secret, a temp directory standing in for the user's real one, a local mock endpoint standing in for unknown external infrastructure — and iteration changes exactly one variable per attempt based on the specific defense signal that fired, rather than trying every variation at once. It closes with a reporting format that states business impact and a concrete fix per finding, and — just as importantly — reports which hypotheses were tested and disproven, not only the ones that succeeded.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir ai-redteam && cd ai-redteam
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Run an Authorized Exercise
+
+```bash
+claude
+```
+
+State the AI system you're authorized to test and what you want checked. Claude will confirm the scoping contract (target, delivery, observation, authorization, boundary, budget) before doing anything, then work through capability modeling, hypothesis generation, and harmless verification, adapting one variable at a time and closing with a business-language, evidence-backed report.
+
+---
+
+## Tips & Best Practices
+
+- Never skip the Step 0 scoping contract, even when testing feels urgent — an agent that starts sending test payloads before authorization and boundaries are explicit is the fastest way to turn a legitimate security exercise into an incident.
+- Prefer a canary string or marker value over anything resembling a real secret for every verification test; if a marker can prove the boundary failed, there's no reason to risk a real credential or real data to make the same point.
+- Report disproven hypotheses alongside confirmed findings — a reader deciding where to invest remediation effort needs to know what was actually checked and ruled out, not just what went wrong.
+
+## Limitations
+
+- A methodology for reasoning through an engagement, not a payload library or exploit collection — it deliberately pushes toward first-principles hypothesis generation over running a fixed test suite, so it won't substitute for specialized tooling on a large-scale or highly automated assessment.
+- Self-testing the current assistant only ever authorizes testing that assistant, in that session, under the default harmless boundary — it is not a substitute for independently testing a production system or another user's deployment.
+- Best suited to an individual AI product, agent, or repository under clear authorization — not a scanner replacement for continuous, fleet-wide AI security monitoring.

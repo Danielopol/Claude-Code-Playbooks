@@ -1,0 +1,59 @@
+---
+title: "Better Web Typography"
+description: "Web typography engineering as a review discipline, not a style guide — CSS properties over raw variable-font tags, a semantic type scale with descending heading sizes, deliberate text-wrap usage (balance vs. pretty), tabular numbers for changing values, mobile input zoom fixes, and a severity-rated review report format with a concrete common-mistakes table."
+seoHook: "A heading two levels down that's the same size as its parent, a timer whose digits shift width every second, or a mobile input that triggers iOS Safari's page-zoom — none of these are edge cases, they're the specific, nameable typography mistakes that show up in nearly every unreviewed interface, and each one has a one-line CSS fix."
+targetAudience: "frontend developers who want typography rules that are specific and checkable instead of vague 'make it look better' feedback, designers and engineers debugging widows, orphans, or bad line-wrapping at real content lengths, teams setting up a semantic type scale for a design system, anyone reviewing a PR for typography issues and wanting a severity-rated report format instead of a scattered comment list"
+exampleUseCase: "\"Review this component for typography issues\" → The rendered page checked at real content lengths (not just the code) for wrapping, widows, and truncation, findings grouped by which principle they violate with severity ratings and file:line locations, a before/after CSS fix for each — a heading missing text-wrap: balance, a price display missing tabular-nums, a 14px input missing the mobile zoom fix — and a final Block/Approve verdict based on whether any HIGH-severity issue remains"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "jakubkrehel (skills)"
+sourceUrl: "https://github.com/jakubkrehel/skills/blob/main/skills/better-typography/SKILL.md"
+tags: ["typography", "css", "web-design", "frontend", "accessibility", "design-review"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A dense, checkable reference for web typography — not a style guide of opinions, but a set of specific rules each tied to a concrete CSS property and a nameable failure mode. It covers font loading correctly (real weights instead of browser-synthesized ones, `.woff2` over other formats, CSS properties like `font-weight: 650` preferred over raw `font-variation-settings` tags so a non-variable fallback still works), a semantic type scale with heading sizes that descend by level so a child heading can never visually overpower its parent, line-height and letter-spacing rules by content role, and the four `text-wrap`/`overflow-wrap`/`white-space` declarations each doing one specific job — `balance` for headings, `pretty` to stop an orphaned word on a description's last line, `nowrap` for labels that shouldn't break.
+
+It closes with two things that make it more than a reference: a table of twelve specific, common mistakes mapped directly to their fixes (a thin font weight on 14px UI text, `leading-none` on a three-line card description, justified text in application UI), and a structured review-report format with severity ratings (HIGH blocks, MEDIUM breaks the type system, LOW is polish), an explicit verification method for reviewing with or without a browser, and a rule against approving coverage that wasn't actually inspected. It also scopes itself honestly against neighboring concerns — word choice belongs to a writing skill, semantic heading structure to an accessibility skill, RTL layout to a layout skill, contrast measurement to a color skill — this one owns specifically how text renders, wraps, and behaves.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir better-typography && cd better-typography
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Review or Fix Typography
+
+```bash
+claude
+```
+
+Ask Claude to review a component or page for typography issues, or to fix a specific problem — bad wrapping, an inconsistent type scale, a mobile input zoom bug. For a review, it will check the rendered output at real content lengths and produce a severity-rated report with file:line locations and before/after fixes.
+
+---
+
+## Tips & Best Practices
+
+- Always review typography by looking at the rendered page, not just the code — widows, orphans, and truncation only become visible at real content lengths, and code alone won't reveal them.
+- Apply `-webkit-font-smoothing: antialiased` once on the root layout, never per-component — a per-component approach produces inconsistent text weight across the page on macOS.
+- When choosing between the two 16px-mobile-input fixes (sizing up the input vs. `transform: scale()`), ask which visual tradeoff the design actually wants rather than defaulting to one — they look meaningfully different on small screens.
+
+## Limitations
+
+- Deliberately scoped to typography rendering and behavior — word choice, semantic heading structure, RTL/logical-property layout, and contrast measurement are explicitly out of scope and belong to neighboring accessibility, writing, layout, and color skills.
+- The review-report format assumes a codebase where typography lives in inspectable CSS/Tailwind classes; a heavily inline-styled or CSS-in-JS-obfuscated codebase may need more manual tracing to locate each finding's file:line.
+- Recommendations assume a standard web rendering context — a canvas-rendered or WebGL text layer won't benefit from CSS-level fixes like `text-wrap` or `font-variant-numeric`.

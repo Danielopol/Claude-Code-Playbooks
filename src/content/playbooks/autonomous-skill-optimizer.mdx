@@ -1,0 +1,59 @@
+---
+title: "Autonomous Skill Optimizer"
+description: "Evaluate and iteratively improve SKILL.md files with a research-grounded 9-dimension rubric and a critical insight most self-improvement loops miss: absolute LLM-judge scores are too noisy (±8 points on unchanged text) for keep/revert decisions — only a same-judge, same-call paired comparison between two versions cancels that noise out reliably."
+seoHook: "Re-scoring the exact same unmodified skill with a fresh LLM judge can swing the total by 8 points out of 100 — which means a naive 'did the score go up' optimization loop will keep genuine regressions and revert genuine improvements roughly as often as chance, unless the comparison is paired within a single judge call instead of two separate absolute scores."
+targetAudience: "teams building or maintaining a library of Claude Code or agent skills, anyone running an LLM-as-judge evaluation loop who's noticed inconsistent scores between runs, skill authors who want a rubric that catches missing failure-mode coverage and vague hedging language specifically, teams shipping skills across multiple agent runtimes who need to catch runtime-locked phrasing before it causes another agent to reject the skill"
+exampleUseCase: "\"Audit and improve our skill library\" → Test prompts designed and confirmed per skill before any scoring happens, a baseline pass scoring all 9 dimensions (including a real with-skill-vs-without-skill comparison for the effectiveness dimension), then an optimization loop that diagnoses the weakest weighted dimension, proposes one specific edit, and decides keep-or-revert via majority vote from judges comparing both versions side by side in a single call — never by comparing two separately generated absolute scores"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "alchaincyf (darwin-skill)"
+sourceUrl: "https://github.com/alchaincyf/darwin-skill/blob/master/SKILL.md"
+tags: ["skill-creation", "llm-evaluation", "prompt-engineering", "self-improvement", "developer-tools"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A skill-quality evaluation and improvement loop built on a specific, cited empirical finding: LLM-as-judge assessment of skill quality is only about 46% accurate on its own — close to random — and improves to roughly 74% once three "meta-skill" dimensions get added to the rubric: whether failure modes are explicitly encoded ("if X fails → Y"), whether real user-confirmation checkpoints exist (visibly marked, not just softly worded), and whether the skill includes an explicit anti-pattern blacklist rather than only positive instructions. The resulting 9-dimension, 100-point rubric splits into structural dimensions gradeable by reading the skill (frontmatter quality, workflow clarity, failure-mode coverage, checkpoint design, actionable specificity) and effectiveness dimensions that require actually running 2–3 designed test prompts with and without the skill loaded and comparing the outputs — a real measurement most "review this skill" workflows skip entirely.
+
+The methodological core — and the reason this differs from a naive self-improvement loop — is how keep/revert decisions get made. Controlled testing found that re-scoring the exact same unmodified skill text with a fresh judge call could swing the absolute total by as much as 8 points, enough noise to hide or fabricate a real 3–8 point improvement from a conservative edit. The fix is a paired comparison: an odd number of independent judges each read *both* the previous and new version *within the same call* and vote `better`/`worse`/`tie` against the rubric as a head-to-head comparison, never as two separately generated absolute scores — because a single judge's calibration quirks apply equally to both versions it's comparing in one call, canceling out exactly the noise that corrupts a two-separate-scores comparison. A revert only happens on a genuine paired-majority `worse` verdict, never on a negative delta between two absolute re-scores. It also includes a standalone runtime-neutrality gate that catches phrasing like "for Claude Code" that would get an unrelated agent runtime to reject an otherwise-portable skill outright.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir skill-optimizer && cd skill-optimizer
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Optimize a Skill Library
+
+```bash
+claude
+```
+
+Point Claude at a directory of `SKILL.md` files (or a specific list) and ask it to evaluate and improve them. It will design and confirm test prompts first, run a baseline scoring pass across all 9 dimensions, then iterate on the weakest skills using paired same-judge comparisons to decide what to keep — pausing for your confirmation at each checkpoint.
+
+---
+
+## Tips & Best Practices
+
+- Never let the loop skip Phase 0.5 (test prompt design) — without real test prompts, dimension 8 (real-world performance, worth 23 of 100 points) can't be scored at all, and the whole optimization risks chasing structural polish that doesn't reflect actual output quality.
+- Treat the absolute baseline score strictly as a triage ranking, never as evidence a specific edit helped — the paired-comparison mechanism exists specifically because that instinct (compare two absolute numbers) is unreliable by roughly ±8 points on identical text.
+- Run the runtime-neutrality grep scan early, even outside a full optimization pass — a single "for Claude Code" phrase left in a general-purpose skill is a cheap, easy-to-miss reason another agent runtime silently refuses to install it.
+
+## Limitations
+
+- Even with the meta-skill dimensions added, the source material is explicit that fine-grained quality differences between similar-scoring skills remain unreliable to judge automatically — treat any close-call optimization decision as needing human review, not just the majority vote.
+- Requires the ability to spawn independent sub-agents (for both the with/without-skill effectiveness test and the paired judge comparisons); an environment that can't do this falls back to a lower-confidence dry-run mode that should be flagged as such in the final report.
+- Tuned for `SKILL.md`-style agent skill files specifically — the rubric's dimensions (frontmatter, checkpoints, failure-mode branches) assume that document shape and would need adaptation for a general prompt-engineering or documentation-quality review.

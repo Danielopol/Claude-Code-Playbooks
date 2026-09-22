@@ -1,0 +1,59 @@
+---
+title: "Three.js Scroll World Builder"
+description: "Build a scroll-controlled real-time Three.js experience as one persistent 3D world instead of stacked sections — a scene-ledger data model for authoring chapters, native-scroll-to-deterministic-state mapping with separate exact and smoothed progress, cinematic camera composition, a measurable per-device performance budget, and mandatory reduced-motion and WebGL-failure fallbacks."
+seoHook: "Most 'scroll-driven 3D experience' builds are actually a WebGL canvas re-instantiated per section, which is why they teleport between scenes and lag on mobile — the real technique is one persistent renderer and scene graph with native scroll converted into a single deterministic progress value that drives everything else."
+targetAudience: "creative developers building 3D scrollytelling, portfolio sites, or product-story microsites, WebGL/Three.js engineers who need a data model for authoring multi-chapter camera and lighting journeys, teams deciding whether a scroll experience should be real-time 3D versus pre-rendered video, anyone whose Three.js scroll site janks on mobile or breaks under prefers-reduced-motion"
+exampleUseCase: "\"Build a scroll-driven 3D product story with 6 chapters\" → A world bible defining one visual grammar (scale, palette, material families, light roles) written before any code, a scene ledger encoding each chapter's camera endpoint, lighting state, and story beat as data, native scrollY converted into exact and smoothed progress values that drive camera cinematography and interpolated world state, and a measured performance budget (draw calls, triangle count, DPR cap) checked on the actual target device rather than assumed"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "20 minutes"
+author: "MengTo (Skills)"
+sourceUrl: "https://github.com/MengTo/Skills/blob/main/agent-skills/web-design/build-threejs-scroll-worlds/SKILL.md"
+tags: ["threejs", "webgl", "scrollytelling", "3d-web", "web-performance", "creative-development"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A comprehensive methodology for building 3D scrollytelling experiences correctly — as one persistent Three.js world with one normalized, reversible scroll state driving it, rather than the far more common (and far more broken) pattern of a new renderer or scene per section that visibly teleports between chapters and can't survive a browser back-button or a fast scroll-skip. It starts before any code: writing a "world bible" that defines one reusable visual grammar (scale system, silhouette language, palette progression, material families, light roles, motion grammar) so every visible detail supports the same coherent world, then authoring a scene ledger that encodes each of 4–8 chapters — camera endpoint, lighting/fog state, story beat, interaction targets, asset dependencies — as structured data rather than scattering magic numbers through CSS and the render loop.
+
+The technical core is the scroll-to-state mapping: `scrollY` converts into a fractional chapter progress value kept in two forms — an exact value for navigation, URLs, and accessibility, and a separately smoothed value for camera and visual interpolation only — so the same scroll position always reproduces the same story state forward, backward, or after a reload. It covers cinematic camera authoring (composing every chapter endpoint at both desktop and mobile before interpolating between them with Catmull-Rom curves), a real PBR materials and lighting discipline, a concrete per-device performance budget (triangle counts, draw calls, DPR caps, frame-time targets), progressive loading with a real fallback poster, and a non-negotiable reduced-motion and WebGL-failure path that snaps to the nearest composed chapter and keeps the full DOM story readable regardless of whether the 3D layer works at all.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir threejs-scroll-world && cd threejs-scroll-world
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Build a Scroll World
+
+```bash
+claude
+```
+
+Describe the 3D scroll experience you want — a product story, portfolio, or spatial narrative — and how many chapters or story beats it needs. Claude will define the world bible and scene ledger first, then implement the persistent scene architecture, scroll-to-state mapping, and camera cinematography against the actual performance budget for your target devices.
+
+---
+
+## Tips & Best Practices
+
+- Write the world bible and scene ledger before touching Three.js code — retrofitting a coherent visual grammar onto a scene that's already grown ad hoc is far more expensive than defining it up front.
+- Treat the exact-vs-smoothed scroll progress split as non-negotiable — using only a smoothed value for navigation and accessibility is exactly what breaks reload-at-depth and browser back/forward.
+- Profile the performance budget table on an actual mid-range mobile device, not just a development machine — the mobile triangle/draw-call/DPR targets exist because desktop-tuned scenes routinely fail on real phones.
+
+## Limitations
+
+- A substantial commitment — the world bible, scene ledger, and full verification pass (camera endpoints across viewports, reduced motion, WebGL failure, hidden-tab resume) are appropriate for a flagship page, not a quick prototype.
+- Assumes real-time 3D is the right choice for the project; the source material explicitly notes to evaluate real-time-3D versus pre-rendered-video first for simpler needs, since a rendered video sequence is dramatically cheaper to build and run.
+- Performance budgets are starting envelopes tuned for typical scrollytelling scenes — a genuinely dense simulation or a VR-adjacent experience will need its own profiling pass rather than assuming these numbers hold.

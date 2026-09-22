@@ -1,0 +1,59 @@
+---
+title: "Excalidraw Diagram Generator"
+description: "Generate Excalidraw diagrams directly from text in three formats — Obsidian-ready .md, standalone .excalidraw for excalidraw.com, and an animated .excalidraw with per-element playback order — with the exact JSON element schema (including the undocumented fields that break excalidraw.com if included), a font-size floor, and a full color palette with contrast rules."
+seoHook: "An Excalidraw JSON file with a stray frameId, versionNonce, or rawText field, or boundElements set to [] instead of null, can silently fail to load correctly on excalidraw.com — the format has real gotchas that aren't obvious from just looking at an exported file, and getting them wrong is the difference between a diagram that opens and one that doesn't."
+targetAudience: "Obsidian users who want hand-drawn-style diagrams generated directly into their vault, developers or writers needing a quick flowchart, mind map, or comparison diagram without opening a drawing tool manually, anyone building an animated diagram for a presentation or video via excalidraw-animate, teams standardizing diagram colors and typography across a set of Excalidraw exports"
+exampleUseCase: "\"Turn this process description into an Excalidraw flowchart\" → The output mode detected from context (Obsidian .md by default), the content analyzed into steps and connections, a flowchart generated with the correct color-coded shapes (light blue for inputs, light green for completed steps) and the exact JSON schema needed for it to open correctly, saved directly into the current working directory with usage instructions"
+category: "creative-design"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "breferrari (obsidian-mind)"
+sourceUrl: "https://github.com/breferrari/obsidian-mind/blob/main/.claude/skills/excalidraw-diagram/SKILL.md"
+tags: ["excalidraw", "obsidian", "diagrams", "flowcharts", "note-taking"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A text-to-diagram generator for Excalidraw covering three distinct output modes selected by trigger words: an Obsidian-ready Markdown file (the default, wrapped in the exact frontmatter and delimiter structure the Obsidian Excalidraw plugin expects — including leaving the Text Elements section deliberately empty since the plugin auto-populates it from the JSON), a pure `.excalidraw` JSON file for excalidraw.com, and an animated variant that adds a `customData.animate` field with playback order and duration to each element for use with excalidraw-animate. It picks the right diagram shape for the content — flowchart, mind map, hierarchy, comparison matrix, timeline, or freeform — based on what the text actually describes, rather than defaulting to one layout regardless of content.
+
+The real value is in the JSON schema discipline: every element field is specified exactly, including several undocumented gotchas that can silently break a file on excalidraw.com if gotten wrong — `boundElements` must be `null` rather than an empty array, `updated` must be the literal value `1` rather than a real timestamp, and extra fields like `frameId`, `versionNonce`, or `rawText` should never be included. A full design system rounds it out: hard font-size minimums below which text becomes unreadable at normal zoom, a manual text-centering formula (since standalone text elements don't auto-center), and a complete semantic color palette — light blue for inputs, light green for completed states, light red for errors — with explicit contrast rules for text on both white and colored backgrounds.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir excalidraw-diagrams && cd excalidraw-diagrams
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Generate a Diagram
+
+```bash
+claude
+```
+
+Describe what you want diagrammed — a process, a concept map, a comparison — and mention "standard excalidraw" or "animate" if you don't want the Obsidian-format default. Claude will pick the right diagram type, generate schema-correct JSON with the semantic color palette applied, and save it with usage instructions.
+
+---
+
+## Tips & Best Practices
+
+- Stick to the exact undocumented-field rules (`boundElements: null`, `updated: 1`, no `frameId`/`versionNonce`/`rawText`) even when hand-editing a generated file afterward — these are the specific fields that cause silent load failures on excalidraw.com rather than obvious errors.
+- Respect the font-size floor (16px minimum for body text, 14px only for minor annotations used sparingly) — Excalidraw's hand-drawn font style already reads smaller than its point size suggests, so going below these minimums produces genuinely unreadable diagrams at normal zoom.
+- For a layered architecture diagram, use the region-background colors (frontend/logic/data layers) at `opacity: 30` behind the regular element palette — it's the pattern that keeps a multi-layer diagram readable instead of visually flat.
+
+## Limitations
+
+- The Obsidian output format is tightly coupled to the Obsidian Excalidraw plugin's exact expected structure — a different Obsidian drawing plugin, or a non-Obsidian Markdown renderer, won't render it correctly.
+- Animation support depends on the separate excalidraw-animate tool for actually generating playback (SVG/WebM export); the skill produces the correctly-annotated `.excalidraw` file but doesn't render the animation itself.
+- Best suited to diagrams expressible as flowcharts, hierarchies, mind maps, or similar structured layouts — a highly custom or illustrative drawing still benefits more from Excalidraw's manual drawing tools than from JSON generation.

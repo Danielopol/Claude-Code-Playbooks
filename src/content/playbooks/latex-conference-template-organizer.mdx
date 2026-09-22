@@ -1,0 +1,59 @@
+---
+title: "LaTeX Conference Template Organizer"
+description: "Turn a messy official conference LaTeX .zip into a clean, Overleaf-ready structure — main file cleanup that preserves the required document class and packages, section files split into text/, an anonymous-submission configuration example with a camera-ready restoration checklist, and an auto-generated README with page limits and compilation requirements pulled from the conference site."
+seoHook: "Official conference LaTeX templates ship as a tangle of example content, verbose instructional comments, and inconsistent file layout — and the actual submission requirements (page limits, anonymity mode, required compiler) are usually only findable by reading through all of it, which is exactly the kind of one-time extraction work an agent should do before you start writing."
+targetAudience: "researchers and graduate students preparing a paper for a specific conference's LaTeX template, academic authors who've downloaded a messy official .zip and need it Overleaf-ready, anyone setting up an anonymous-review submission who needs a clear before/after checklist for camera-ready restoration, teams standardizing a section-per-file LaTeX structure across a multi-author paper"
+exampleUseCase: "\"Clean up this conference template zip for our submission\" → The zip extracted and diagnosed for disorganization, example content, and missing dependencies, a cleanup plan presented for approval before anything is touched, then execution: a clean main.tex preserving the required document class, sections split into text/01-introduction.tex through text/05-conclusion.tex, and a README auto-filled with page limits and anonymity requirements fetched from the conference's actual submission page"
+category: "academic-research"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Galaxy-Dawn (claude-scholar)"
+sourceUrl: "https://github.com/Galaxy-Dawn/claude-scholar/blob/main/skills/latex-conference-template-organizer/SKILL.md"
+tags: ["latex", "academic-writing", "overleaf", "conference-submission", "academic-research"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A plan-first workflow for turning an official conference LaTeX template `.zip` — which almost always ships with excessive example content, verbose instructional comments, and an inconsistent file layout — into a clean, Overleaf-ready structure without losing any of the document class configuration or required packages that make the template actually compile correctly for that venue. It extracts the archive, identifies the main file (by name pattern or by searching for `\documentclass`), and diagnoses specific issues (disorganized nesting, sample/example content, missing dependency files) before presenting a concrete cleanup plan and waiting for approval — nothing gets touched until the user confirms.
+
+Execution splits the template into a clean `main.tex` (document class, packages, title/abstract/keywords preamble, and `\input{}` imports) plus one file per section under `text/`, separate `figures/`, `tables/`, and `styles/` directories, and copies the bibliography — including the Overleaf-specific gotcha of needing a placeholder table file, since Overleaf silently deletes empty directories on upload. For anonymous-review venues, it includes a worked example (ACM `acmart`-style) of the submission-vs-camera-ready configuration split, with the exact lines to restore later. It closes by generating a README that pulls actual page-limit, anonymity, and compilation requirements from the conference's submission page when a link is provided, rather than leaving generic placeholders.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir latex-organizer && cd latex-organizer
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Organize a Template
+
+```bash
+claude
+```
+
+Provide the downloaded conference template `.zip` (and the conference submission link, if you have it) and ask Claude to clean it up. It will diagnose the issues, present a cleanup plan for your approval, then produce a clean, Overleaf-ready `output/` directory with a filled-in README.
+
+---
+
+## Tips & Best Practices
+
+- Always provide the conference submission link when you have it — the README's page limits, anonymity requirements, and compiler recommendation come from the actual current submission page rather than guesswork, and these details change between conference years.
+- For anonymous-review venues, keep the camera-ready restoration lines as comments right next to the stripped submission-mode config — it's much easier to find them again months later than to reconstruct the correct conference metadata from scratch.
+- Don't skip the placeholder table file if your template genuinely has no tables yet — an empty `tables/` directory silently vanishes on the next Overleaf sync, which is a confusing failure mode to debug later.
+
+## Limitations
+
+- Reorganizes structure and strips boilerplate — it doesn't write your actual paper content, which is left as `% TODO` markers in each section file.
+- README accuracy for submission requirements depends on being given a working conference link; without one, it falls back to inferring from the template's own comments and `\documentclass` options, which may be incomplete or outdated.
+- The anonymous-submission example is specifically ACM `acmart`-style; a template using a different class (IEEEtran, a custom conference class) will need the equivalent anonymity-mode options identified separately.

@@ -1,0 +1,59 @@
+---
+title: "Web Animation Design Principles"
+description: "Design web animations that feel natural and purposeful — a decision-first easing blueprint (ease-out for entrances, ease-in-out for movement, ease for hover), duration and frequency rules, spring configuration, the GPU-only performance rule, and mandatory prefers-reduced-motion accessibility patterns with working CSS and Framer Motion code."
+seoHook: "Most 'janky' web animations aren't a performance problem — they're using ease-in-out on a modal that should use ease-out, or animating height and padding instead of transform and opacity, and the fix is a handful of decision rules that take longer to explain than to apply."
+targetAudience: "frontend developers implementing UI animations who want a decision rule instead of trial and error, designers and engineers debating which easing curve to use for a given interaction, teams auditing an interface for animations that feel janky, sluggish, or overused, anyone who needs a concrete prefers-reduced-motion implementation instead of a vague accessibility reminder"
+exampleUseCase: "\"This modal animation feels off\" → A markdown table diagnosis (before/after CSS) identifying the wrong easing curve or duration against the decision rules — ease-in-out swapped for ease-out since the modal is entering the screen, duration trimmed to the 200-300ms modal range, and a prefers-reduced-motion media query added since the original had none"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "Emil Kowalski (animations.dev)"
+sourceUrl: "https://github.com/vercel-labs/open-agents/blob/main/.agents/skills/web-animation-design/SKILL.md"
+tags: ["css-animation", "framer-motion", "web-performance", "accessibility", "frontend", "ui-design"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A decision-first reference for web animation, distilled from Emil Kowalski's "Animations on the Web" course, that replaces animation guesswork with four questions: is the element entering/exiting (use `ease-out`), moving on screen (use `ease-in-out`), a hover/color change (use `ease`), or something seen 100+ times a day (don't animate it at all). A full easing blueprint gives ready-to-use `cubic-bezier` values sorted weak-to-strong for each category, a duration table by element type (100–150ms for micro-interactions up to 200–300ms for modals), and the "paired elements" rule — anything that visually moves together (a modal and its overlay, a tooltip and its arrow) must share identical easing and duration or the pairing reads as broken.
+
+It covers spring animations (when they beat fixed-duration easing — drag interactions, interruptible gestures — and Apple's duration+bounce configuration over raw physics parameters), the hard performance rule of animating only `transform` and `opacity` since they skip layout and paint entirely, and a non-negotiable accessibility section: every animated element needs its own `prefers-reduced-motion` media query with real CSS and a Framer Motion `useReducedMotion` hook example, not a general reminder to "consider accessibility." A practical-tips table closes it out with nine specific fixes for common animation complaints — jittery motion, popovers scaling from the wrong origin, buttons that don't feel responsive on press.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir web-animation && cd web-animation
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Design or Review Animations
+
+```bash
+claude
+```
+
+Ask Claude to add an animation to a component, or to review an existing one that "feels off." It will apply the easing/duration decision rules, check for the accessibility media query, and — when reviewing — present before/after CSS in a markdown table showing exactly what changed and why.
+
+---
+
+## Tips & Best Practices
+
+- Apply the frequency rule aggressively — an animation on something a power user triggers dozens of times a session (like a command palette) should be minimal to nonexistent, however nice it looks in isolation.
+- Never ship an animation without its matching `prefers-reduced-motion` query; treat it as part of the animation, not an optional accessibility add-on done later.
+- When something still feels subtly wrong after fixing easing and duration, try the "add subtle blur under 20px" trick before reaching for a bigger rewrite — it masks a surprising number of minor timing mismatches.
+
+## Limitations
+
+- Principles and CSS/Framer Motion examples specifically — a team on GSAP, React Spring, or a native mobile animation system will need to translate the underlying rules (easing choice, duration, GPU-only properties) into that framework's API.
+- The duration and frequency guidance reflects product-UI conventions; a marketing page or brand experience intentionally has looser rules, as the guide itself notes.
+- Spring configuration examples assume Framer Motion's duration+bounce API; a different spring-physics library will need the raw mass/stiffness/damping values translated to its own parameter names.

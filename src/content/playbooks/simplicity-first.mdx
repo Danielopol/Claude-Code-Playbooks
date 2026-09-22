@@ -1,0 +1,59 @@
+---
+title: "Simplicity First Code Gate"
+description: "A hard correctness gate against over-complex or oversized code — one ordering principle (human readability first, agent traceability second), five enforceable rules, and a pre-finish checklist that treats unnecessary complexity as a bug, not a style opinion."
+seoHook: "A diff that's twice the size it needs to be, or a helper class built for one call site, isn't a style nitpick — it's a comprehension defect that costs the next reader (human or agent) real time, and most reviewers have no crisp rule to point at when they feel it."
+targetAudience: "engineering teams tired of over-engineered PRs, tech leads writing a house style for AI-assisted code review, solo developers who want a concrete self-check before finishing a change, anyone reviewing diffs where 'this could be simpler' needs to become an enforceable rule instead of a vibe"
+exampleUseCase: "\"Review this PR\" → A structural check against five concrete rules (one-pass readability, no redundant code, fewest concepts, no single-call-site helpers, no capability deletion) instead of a vague 'looks complex' comment, plus a finishing checklist the author can run before ever opening the PR"
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "2 minutes"
+author: "OpenRLHF"
+sourceUrl: "https://github.com/OpenRLHF/OpenRLHF/blob/main/.claude/skills/simplicity-first/SKILL.md"
+tags: ["code-review", "simplicity", "engineering-principles", "code-quality", "readability"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A simplicity gate applied before writing any code change and while reviewing any diff, built on one ordering principle: a human should understand the code in one pass, and an agent must at minimum be able to trace a feature from entry point to executed branch, data structure, and test without reconstructing hidden control flow. Everything else follows from that ordering — five rules that turn "this feels over-engineered" into something concrete and checkable, treating unnecessary complexity and unnecessary size as correctness bugs rather than taste.
+
+The five rules cover the ground that usually gets debated informally in review: illegible code counts against correctness even if it "works," redundant code is a bug with a rough size heuristic (~20 lines for a one-sentence problem is suspect), simplicity beats cleverness when two designs both work, helpers need three-plus real call sites to justify existing, and — critically — simplicity is never an excuse to delete a real feature, performance knob, or piece of observability. A short pre-finish checklist turns the rules into something you can actually run against a diff before opening the PR.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir simplicity-gate && cd simplicity-gate
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Use It
+
+```bash
+claude
+```
+
+Ask Claude to write or review a change with this file present. It will apply the one-pass-readability test, flag oversized or redundant diffs, resist premature abstraction, and run the finishing checklist before calling the change done.
+
+---
+
+## Tips & Best Practices
+
+- Apply it both directions: before writing code (design the smallest version first) and while reviewing (catch complexity that crept in during implementation).
+- The "three or more call sites" rule for helpers is deliberately strict — a helper with two call sites is usually cheaper inlined twice than maintained as an abstraction nobody else uses yet.
+- Simplicity is explicitly not an excuse to cut scope. If a rule ever seems to justify removing a real feature or a default-on safety knob, that's a misapplication — re-read rule five.
+
+## Limitations
+
+- A gate, not a design methodology — it tells you when a diff is too complex or too large, not how to architect the simpler alternative.
+- The size heuristics (roughly 20 lines, three-plus call sites) are starting points tuned for typical application code; a systems-level or highly parameterized codebase may need looser thresholds.
+- Works best as a shared, agreed-upon standard — applied inconsistently by only some reviewers, it becomes another subjective opinion instead of an enforceable gate.

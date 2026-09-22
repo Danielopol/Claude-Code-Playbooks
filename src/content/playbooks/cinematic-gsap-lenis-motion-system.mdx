@@ -1,0 +1,59 @@
+---
+title: "Cinematic GSAP + Lenis Motion System"
+description: "Build a connected, premium web motion language with GSAP, ScrollTrigger, and Lenis smooth scroll — a full token system for eases/durations/staggers, Lenis-driven-by-the-GSAP-ticker setup, a reusable data-attribute markup API for text reveals and parallax, and reduced-motion handling built in from the start, not bolted on after."
+seoHook: "Awwwards-style sites don't feel premium because of one flashy effect — they feel premium because every scroll reveal, hover, and cursor movement shares the same restrained eases and timings, which is exactly what falls apart when different animations get added ad hoc by different people over time."
+targetAudience: "frontend developers building luxury editorial, creative studio, or portfolio websites, teams wanting Awwwards-caliber scroll and hover motion without an inconsistent grab-bag of animation libraries, engineers setting up Lenis smooth scroll alongside GSAP ScrollTrigger for the first time, anyone who needs a reusable data-attribute API so designers can add scroll reveals without touching JavaScript"
+exampleUseCase: "\"Build a cinematic scroll experience for this studio portfolio site\" → Lenis initialized and synced through the GSAP ticker so smooth scroll and ScrollTrigger never drift apart, a masked staggered-word text reveal on the hero with correct aria-label handling for screen readers, image parallax and magnetic hover wired through simple data-reveal/data-magnetic attributes, and every animation gated behind prefers-reduced-motion from the first line of setup"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "MengTo (Skills)"
+sourceUrl: "https://github.com/MengTo/Skills/blob/main/agent-skills/web-design/cinematic-gsap-lenis-motion-system/SKILL.md"
+tags: ["gsap", "scrolltrigger", "lenis", "web-animation", "smooth-scroll", "frontend"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A complete, token-driven motion system for building the kind of restrained, cinematic scroll experience common to award-winning creative and editorial websites — GSAP for the animation engine, `ScrollTrigger` for scroll-driven timing, and Lenis for the smooth-scroll feel, wired together correctly so Lenis drives its render loop through the GSAP ticker instead of running its own competing `requestAnimationFrame` loop. A full set of design tokens (eases like `power3.out`/`power4.out`, scrub ranges, reveal/hover/cursor-lag durations, word and line stagger timings) keeps every effect on the site feeling like one motion language instead of a grab-bag of unrelated animations — with an explicit list of what to avoid entirely: bounce, elastic springiness, abrupt transitions, and anything reading as "flashy" rather than deliberate.
+
+The reusable part is a small, designer-friendly markup API — `data-motion-text="words"`, `data-reveal="fade-up"`, `data-parallax-image`, `data-magnetic` — so scroll reveals, staggered text, image parallax, and magnetic hover states can be added to new markup without writing new JavaScript each time, backed by working implementation code for the word-splitting text-reveal function (including the `aria-label` handling that keeps split-apart text announced correctly to screen readers). Accessibility is structural, not an afterthought: the CSS foundation hides motion-driven elements by default specifically so a reduced-motion visitor never sees a flash of unstyled content, and every effect checks `prefers-reduced-motion` before initializing at all.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir cinematic-motion && cd cinematic-motion
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Build the Motion System
+
+```bash
+claude
+```
+
+Ask Claude to set up cinematic scroll motion for your site, add a staggered text reveal, or wire up parallax and magnetic hover. It will install GSAP and Lenis, initialize them correctly synced, and use the design-token values and data-attribute API so every effect stays consistent with the rest of the site.
+
+---
+
+## Tips & Best Practices
+
+- Never initialize Lenis with its own separate RAF loop — driving it through `gsap.ticker.add()` as shown is what keeps `ScrollTrigger` and the smooth-scroll position from drifting apart on longer pages.
+- Stick to the token ranges rather than picking arbitrary duration values per effect; the entire point of the system is that a hover, a reveal, and a parallax scrub all feel like they belong to the same site.
+- Test with `prefers-reduced-motion: reduce` turned on before calling any animation done — the CSS foundation's default-hidden state means a broken reduced-motion path can leave content invisible, not just un-animated.
+
+## Limitations
+
+- A GSAP + Lenis-specific system — the token values and setup code don't transfer directly to a different animation stack (Framer Motion, native CSS-only approaches), though the underlying motion-taste principles (restraint, paired timing, avoid bounce) generalize.
+- Best suited to editorial, portfolio, and brand-forward sites where an elaborate motion language is the point; a dense data/utility product UI should reach for the simpler, faster timings in a general web-animation-design guide instead.
+- The magnetic-hover and custom-cursor patterns assume a pointer-driven desktop experience — both are explicitly disabled on coarse (touch) pointers and under reduced motion, so touch users get a plainer but fully functional experience by design.

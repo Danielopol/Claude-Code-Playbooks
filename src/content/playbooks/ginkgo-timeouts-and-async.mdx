@@ -1,0 +1,59 @@
+---
+title: "Ginkgo Timeouts and Async Testing"
+description: "Make Ginkgo specs interruptible and test asynchronous behavior correctly — SpecContext cancellation, NodeTimeout/SpecTimeout/GracePeriod, Eventually/Consistently with proper context propagation, and the two goroutine rules (GinkgoRecover, poll-don't-block) that prevent one failed assertion from crashing an entire Go test suite."
+seoHook: "A goroutine in a Ginkgo spec that calls Expect() without defer GinkgoRecover() doesn't just fail that one test — a panic Ginkgo can't recover crashes the entire suite, and the fix is one line most Go developers writing async tests have never heard of."
+targetAudience: "Go developers writing Ginkgo/Gomega tests that involve goroutines, channels, or network calls, engineers debugging a Ginkgo spec that hangs instead of failing, teams setting per-node or per-spec timeouts for flaky or slow integration tests, anyone whose Eventually() assertion isn't retrying the way they expect"
+exampleUseCase: "\"My Ginkgo spec hangs forever instead of timing out\" → The interruptible-node model explained (only setup/subject nodes accept a cancellable context; propagate ctx into every blocking call), the NodeTimeout vs SpecTimeout vs GracePeriod distinction, and the exact reason a bare <-done channel read blocks past a goroutine's failure instead of surfacing it"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "onsi (Ginkgo)"
+sourceUrl: "https://github.com/onsi/ginkgo/blob/master/plugins/ginkgo/skills/timeouts-and-async/SKILL.md"
+tags: ["ginkgo", "gomega", "golang", "testing", "async-testing", "goroutines", "go-testing"]
+createdAt: "2026-09-22"
+---
+
+## What This Does
+
+A focused reference for Ginkgo's interruptible-node model and asynchronous testing idioms, built on Ginkgo's actual failure mechanics: a failed assertion is a panic Ginkgo recovers, and a node becomes interruptible simply by accepting a `SpecContext` or `context.Context` that Ginkgo cancels on timeout or interrupt. Covers the three timeout decorators (`NodeTimeout` for one node, `SpecTimeout` for the whole `It` lifecycle, `GracePeriod` for how long Ginkgo waits before giving up on a non-cooperating node), suite-wide interruption via `--timeout`, `Abort`, and `SIGINT`/`SIGTERM` escalation, and the fact that cleanup still runs after a timeout fires — a timeout is a "mark failed" threshold, not a hard kill.
+
+The async-assertion half covers Gomega's `Eventually`/`Consistently` with correct context propagation (`.WithContext(ctx)` so a node timeout cancels the poll immediately instead of running its own clock) and the critical `g.Expect` pattern for assertions inside a polled function — using the global `Expect` there silently defeats retry. It closes with the two goroutine rules that cause the most confusing Ginkgo failures: missing `defer GinkgoRecover()` crashes the entire suite instead of failing one spec, and blocking on a channel fed by a failing goroutine hangs the node until timeout instead of reporting the real failure.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir ginkgo-async && cd ginkgo-async
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Write or Debug Async Specs
+
+```bash
+claude
+```
+
+Point Claude at a Ginkgo spec that hangs, times out unexpectedly, or crashes the whole suite from one goroutine failure. It will apply the interruptible-node model and the goroutine rules to diagnose and fix it correctly.
+
+---
+
+## Tips & Best Practices
+
+- Propagate `ctx` into every blocking call inside an interruptible node — a `NodeTimeout` only cancels the context; it's the code's job to actually stop when `ctx.Done()` fires.
+- Always use `.WithContext(ctx)` (or the positional `Eventually(ctx, ...)` form) so a spec-level timeout can cut short a stuck poll instead of letting `Eventually` run out its own independent clock.
+- Any goroutine that touches a Gomega assertion needs `defer GinkgoRecover()` as its first line — treat this as non-negotiable, since the failure mode without it (an entire suite crash) is far worse than a normal spec failure.
+
+## Limitations
+
+- Covers timeouts and asynchronous testing specifically — general Ginkgo authoring (container/subject/setup nodes, table specs) is a separate topic.
+- `ctx.Deadline()` does not report a node's actual Ginkgo-managed deadline — code relying on it directly for timing logic will get incorrect values; use `<-ctx.Done()`.
+- Concepts are Ginkgo/Gomega-specific; the underlying Go `context.Context` cancellation pattern transfers elsewhere, but the decorator names and grace-period mechanics do not.

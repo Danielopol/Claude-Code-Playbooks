@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { AffiliateLink } from '@/components/AffiliateLink';
 import { BlogPostLayout } from '@/components/BlogPostLayout';
 
 export const metadata: Metadata = {
@@ -96,6 +97,18 @@ export default function ClaudeSkillsEquityResearchPage() {
       <p className="text-sm text-muted-foreground">
         ⏱ Setup: 5 minutes. Works for sell-side earnings updates and buy-side post-earnings position reviews. Output is DOCX-formatted for immediate publication or internal distribution.
       </p>
+
+      <div className="bg-[#161b22] border border-[#30363d] rounded-lg p-4 my-6">
+        <p className="text-sm text-muted-foreground mb-0">
+          <span className="text-foreground font-medium">Where the numbers come from:</span> the prompt above has the actuals typed in by hand. To have Claude pull them itself (standardized financials, ratios, and the earnings call transcript), connect Claude Code to{' '}
+          <AffiliateLink partner="fiscal-ai">Fiscal.ai</AffiliateLink>&apos;s MCP server. Our{' '}
+          <Link href="/blog/fiscal-ai-mcp-earnings-note" className="text-[#22d3ee] hover:underline font-medium">10-minute earnings note walkthrough</Link>{' '}
+          covers the setup. For a free alternative, the <PlaybookLink href="/playbooks/financial-data-collector">Financial Data Collector</PlaybookLink> pulls from yfinance.
+        </p>
+        <p className="text-xs text-muted-foreground mt-2 mb-0">
+          The Fiscal.ai link is an affiliate link: we may earn a commission if you subscribe, at no extra cost to you.
+        </p>
+      </div>
 
       <h2 className="text-2xl font-semibold text-foreground mt-10 mb-4 border-b border-[#30363d] pb-2">
         Skill 2: Morning Note — Actionable Intelligence Before the Open

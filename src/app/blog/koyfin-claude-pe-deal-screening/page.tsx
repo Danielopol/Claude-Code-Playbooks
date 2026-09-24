@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { AffiliateDisclosure, AffiliateLink } from '@/components/AffiliateLink';
 import { BlogPostLayout } from '@/components/BlogPostLayout';
 
 export const metadata: Metadata = {
@@ -63,6 +64,7 @@ export default function KoyfinClaudePeDealScreeningPage() {
       author="Claude Code Playbooks"
       slug="koyfin-claude-pe-deal-screening"
     >
+      <AffiliateDisclosure className="mb-6" />
       <p>
         Screening public companies as take-private candidates usually goes like this: build a screen, eyeball forty results, copy the promising ones into a spreadsheet, pull financials for each by hand, score them against the fund&apos;s criteria in your head, and write up the three that survive. The screen takes ten minutes. Everything after it takes the rest of the week.
       </p>
@@ -145,7 +147,7 @@ export default function KoyfinClaudePeDealScreeningPage() {
       <p>
         If you already have an institutional data connection, that&apos;s the stronger enrichment layer. Our{' '}
         <Link href="/blog/fiscal-ai-mcp-earnings-note" className="text-[#22d3ee] hover:underline font-medium">Fiscal.ai MCP walkthrough</Link>{' '}
-        shows how to connect Claude Code to standardized financials, ownership data, and transcripts directly. Swap it in here, and the rest of the workflow stays the same.
+        shows how to connect Claude Code to standardized financials, ownership data, and transcripts directly. Swap it in here, and the rest of the workflow stays the same. If you don&apos;t have one yet, <AffiliateLink partner="fiscal-ai">Fiscal.ai</AffiliateLink> includes the MCP connection in its 7-day free trial.
       </p>
 
       <h2 className="text-2xl font-semibold text-foreground mt-10 mb-4 border-b border-[#30363d] pb-2">

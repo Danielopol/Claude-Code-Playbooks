@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { AffiliateDisclosure, AffiliateLink } from '@/components/AffiliateLink';
 import { BlogPostLayout } from '@/components/BlogPostLayout';
 
 export const metadata: Metadata = {
@@ -47,12 +48,13 @@ export default function FiscalAiMcpEarningsNotePage() {
       author="Claude Code Playbooks"
       slug="fiscal-ai-mcp-earnings-note"
     >
+      <AffiliateDisclosure className="mb-6" />
       <p>
         The Equity Research Skills we've covered before — <PlaybookLink href="/playbooks/er-earnings-analysis">earnings updates</PlaybookLink>,{' '}
         <PlaybookLink href="/playbooks/er-morning-note">morning notes</PlaybookLink>, <PlaybookLink href="/playbooks/er-model-update">model updates</PlaybookLink> — are genuinely good at structure: they know what a morning note is supposed to look like, how a model update should compare actuals to estimates, what an earnings summary needs to cover. What they don't have on their own is the data. Claude can write a flawless-looking note built on numbers you typed in from memory, and it will read exactly as confidently wrong as one built on numbers you got right.
       </p>
       <p>
-        That's the actual gap this post closes. Fiscal.ai runs a hosted MCP server — a live connection Claude Code can query directly for financial statements, ratios, filings, and transcripts, the same way it would call any other tool. Wire it in once, and every Skill above stops working from numbers you paste in and starts working from numbers it looked up itself.
+        That's the actual gap this post closes. <AffiliateLink partner="fiscal-ai">Fiscal.ai</AffiliateLink> runs a hosted MCP server — a live connection Claude Code can query directly for financial statements, ratios, filings, and transcripts, the same way it would call any other tool. Wire it in once, and every Skill above stops working from numbers you paste in and starts working from numbers it looked up itself.
       </p>
 
       <h2 className="text-2xl font-semibold text-foreground mt-10 mb-4 border-b border-[#30363d] pb-2">
@@ -69,6 +71,12 @@ export default function FiscalAiMcpEarningsNotePage() {
       <h2 className="text-2xl font-semibold text-foreground mt-10 mb-4 border-b border-[#30363d] pb-2">
         Connecting Claude Code to Fiscal.ai
       </h2>
+      <div className="bg-[#161b22] border border-[#30363d] rounded-lg p-4 my-4">
+        <p className="text-sm text-muted-foreground mb-0">
+          <span className="text-foreground font-medium">No Fiscal.ai account yet?</span> You need one before either command below will authenticate. Every plan starts with a 7-day free trial that includes the MCP connection, so you can run the whole workflow before paying anything.{' '}
+          <AffiliateLink partner="fiscal-ai">Create a Fiscal.ai account →</AffiliateLink>
+        </p>
+      </div>
       <p>
         There are two ways to authenticate, and they grant identical access to your Fiscal.ai account — pick whichever fits your setup.
       </p>
@@ -155,7 +163,7 @@ export default function FiscalAiMcpEarningsNotePage() {
       </ul>
       <p className="text-sm text-muted-foreground">
         Fiscal.ai's own MCP integration docs cover the full tool list and additional client setups (Claude Desktop, Cursor, VS Code, and others) beyond what's needed for the Claude Code walkthrough above, at{' '}
-        <a href="https://fiscal.ai" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline">fiscal.ai</a>.
+        <AffiliateLink partner="fiscal-ai" className="font-normal">fiscal.ai</AffiliateLink>.
       </p>
     </BlogPostLayout>
   );

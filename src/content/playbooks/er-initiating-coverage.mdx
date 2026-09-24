@@ -48,6 +48,22 @@ Execute tasks one at a time:
 "Do Task 5 for Tesla — Report Assembly"
 ```
 
+## Connect a Live Data Source (Optional)
+
+Tasks 1–3 (research, modeling, valuation) need several years of historical financials plus data on comparable companies.
+
+**Option A: live data through MCP.** Connect Claude Code to <a href="/go/fiscal-ai" target="_blank" rel="sponsored nofollow noopener" class="text-[#22d3ee] hover:underline">Fiscal.ai</a> and Claude pulls standardized financials, ratios, filings and earnings call transcripts itself. Every plan starts with a 7-day free trial that includes the MCP connection:
+
+```
+claude mcp add --transport http fiscal https://api.fiscal.ai/mcp
+```
+
+The <a href="/blog/fiscal-ai-mcp-earnings-note" class="text-[#22d3ee] hover:underline">Fiscal.ai MCP earnings note walkthrough</a> covers the setup and a full worked example.
+
+**Option B: free.** Pull US company data from yfinance with the <a href="/playbooks/financial-data-collector" class="text-[#22d3ee] hover:underline">Financial Data Collector</a> playbook, or paste the figures from the press release and filings yourself.
+
+*The Fiscal.ai link is an affiliate link: we may earn a commission if you subscribe, at no extra cost to you.*
+
 ## The 5-Task Workflow
 
 | Task | Name | Output | Dependencies |

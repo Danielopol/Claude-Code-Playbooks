@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /go/
 
 # /_next/ is intentionally crawlable — Googlebot needs the CSS and JS there to
 # render pages. Build assets are kept out of the index with an X-Robots-Tag

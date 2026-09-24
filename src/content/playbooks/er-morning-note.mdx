@@ -38,6 +38,22 @@ Click **Download** above, then move the file into your project folder as `CLAUDE
 "Write a trade idea for the morning meeting"
 ```
 
+## Connect a Live Data Source (Optional)
+
+The template gives the note its shape. The overnight numbers still have to come from somewhere.
+
+**Option A: live data through MCP.** Connect Claude Code to <a href="/go/fiscal-ai" target="_blank" rel="sponsored nofollow noopener" class="text-[#22d3ee] hover:underline">Fiscal.ai</a> and Claude pulls standardized financials, ratios, filings and earnings call transcripts itself. Every plan starts with a 7-day free trial that includes the MCP connection:
+
+```
+claude mcp add --transport http fiscal https://api.fiscal.ai/mcp
+```
+
+The <a href="/blog/fiscal-ai-mcp-earnings-note" class="text-[#22d3ee] hover:underline">Fiscal.ai MCP earnings note walkthrough</a> covers the setup and a full worked example.
+
+**Option B: free.** Pull US company data from yfinance with the <a href="/playbooks/financial-data-collector" class="text-[#22d3ee] hover:underline">Financial Data Collector</a> playbook, or paste the figures from the press release and filings yourself.
+
+*The Fiscal.ai link is an affiliate link: we may earn a commission if you subscribe, at no extra cost to you.*
+
 ## Best Practices
 
 - Be opinionated — morning notes that just summarize news without a view are useless

@@ -25,7 +25,7 @@ export default function TermsPage() {
   return (
     <div className="container mx-auto py-12 max-w-3xl">
       <h1 className="text-2xl font-bold mb-2">Terms of Use</h1>
-      <p className="text-sm text-muted-foreground mb-8">Last updated: February 25, 2026</p>
+      <p className="text-sm text-muted-foreground mb-8">Last updated: September 22, 2026</p>
 
       <div className="space-y-8 text-sm text-muted-foreground">
         <section>
@@ -62,6 +62,16 @@ export default function TermsPage() {
             <li>We are not responsible for any damages arising from the use of playbooks.</li>
             <li>AI-generated output may contain errors. Always review results before using in production.</li>
           </ul>
+        </section>
+
+        <section id="affiliate-links" className="scroll-mt-24">
+          <h2 className="text-base font-semibold text-foreground mb-3">Sponsors and Affiliate Links</h2>
+          <p className="mb-3">
+            Cards marked &quot;Sponsored&quot; are paid placements. Cards under &quot;Tools for this workflow&quot; are affiliate links: if you buy through one, we may earn a commission at no extra cost to you.
+          </p>
+          <p>
+            Neither affects which playbooks we publish or what they say. Every playbook works without the paid tools mentioned alongside it.
+          </p>
         </section>
 
         <section>

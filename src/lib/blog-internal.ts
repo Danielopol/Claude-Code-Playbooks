@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'koyfin-claude-pe-deal-screening',
+    slug: 'koyfin-claude-pe-deal-screening',
+    title: 'Koyfin + Claude: A PE Deal Screening Workflow That Runs Itself',
+    description: "Screen 100K+ public companies in Koyfin, export the list, and let Claude Code enrich, score, and rank every name against your fund criteria — then carry the winners through outreach and an IC memo. Includes the export restriction most tutorials miss and how to work around it.",
+    category: 'tutorial',
+    difficulty: 'intermediate',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'skill',
+    thumbnailTitle: 'Koyfin + Claude',
+    tags: ['koyfin screener workflow', 'ai deal screening', 'private equity ai tools', 'koyfin claude', 'take-private screening', 'pe deal sourcing ai', 'ic memo ai'],
+    createdAt: '2026-09-24',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'fiscal-ai-mcp-earnings-note',
     slug: 'fiscal-ai-mcp-earnings-note',
     title: 'Claude Code + Fiscal.ai MCP: Write an Earnings Note in 10 Minutes',

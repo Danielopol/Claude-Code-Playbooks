@@ -3,11 +3,11 @@ import Link from 'next/link';
 import { BlogPostLayout } from '@/components/BlogPostLayout';
 
 export const metadata: Metadata = {
-  title: 'How to View Claude Code Terminal Session History | Claude Code Playbooks Blog',
-  description: 'A complete guide to viewing Claude Code session history — where logs are stored, how to search past sessions by date or keyword, how to recover lost code, and four playbooks that make session management effortless.',
+  title: 'Claude Code: List & Resume Past Sessions (Commands + History Location) | Claude Code Playbooks Blog',
+  description: 'Run claude --resume to list and reopen past Claude Code sessions, or claude --continue to jump back into the last one. Plus where session history is stored (~/.claude/projects), how to search it, and how to recover lost code.',
   alternates: { canonical: '/blog/how-to-view-claude-code-session-history' },
   openGraph: {
-    title: 'How to View Claude Code Terminal Session History',
+    title: 'Claude Code: List & Resume Past Sessions (Commands + History Location)',
     description: 'Where Claude Code stores session history, how to search it, how to recover lost code, and the playbooks that automate the whole process.',
     url: 'https://www.claudecodehq.com/blog/how-to-view-claude-code-session-history',
     type: 'article',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'How to View Claude Code Terminal Session History',
+    title: 'Claude Code: List & Resume Past Sessions (Commands + History Location)',
     description: 'Find and recover anything Claude Code generated — where session logs live, how to search them, and the playbooks that make history navigation effortless.',
     images: ['https://www.claudecodehq.com/og-image.jpg'],
   },
@@ -48,13 +48,15 @@ function CodeBlock({ children, label }: { children: string; label?: string }) {
 export default function HowToViewClaudeCodeSessionHistoryPage() {
   return (
     <BlogPostLayout
-      title="How to View Claude Code Terminal Session History"
-      description="A complete guide to viewing Claude Code session history — where logs are stored, how to search past sessions by date or keyword, how to recover lost code, and four playbooks that make session management effortless."
+      title="Claude Code: List & Resume Past Sessions (Commands + History Location)"
+      description="Run claude --resume to list and reopen past Claude Code sessions, or claude --continue to jump back into the last one. Plus where session history is stored (~/.claude/projects), how to search it, and how to recover lost code."
       category="tutorial"
       difficulty="basic"
       readingTime="11 min read"
       createdAt="2026-05-10"
       tags={[
+        'claude list sessions',
+        'claude --resume',
         'view Claude Code session history',
         'Claude Code terminal history',
         'Claude Code session logs',
@@ -66,6 +68,22 @@ export default function HowToViewClaudeCodeSessionHistoryPage() {
       author="Claude Code Playbooks"
       slug="how-to-view-claude-code-session-history"
     >
+      <div className="bg-[#161b22] border border-[#30363d] rounded-lg p-4 my-4">
+        <p className="text-sm font-semibold text-foreground mb-2">Quick answer</p>
+        <CodeBlock label="terminal">{`# List recent sessions and pick one to reopen
+claude --resume
+
+# Reopen the most recent session in this folder
+claude --continue`}</CodeBlock>
+        <p className="text-sm">
+          Session files live in{' '}
+          <code className="text-[#22d3ee] text-sm bg-[#0d1117] px-1.5 py-0.5 rounded">
+            ~/.claude/projects/
+          </code>
+          , one <code className="text-[#22d3ee] text-sm bg-[#0d1117] px-1.5 py-0.5 rounded">.jsonl</code>{' '}
+          file per session. The rest of this guide covers searching them and recovering lost code.
+        </p>
+      </div>
       <p className="text-lg">
         Claude Code automatically saves the full history of every session — the code it wrote,
         files it changed, commands it ran, and every message exchanged. This history lives on
@@ -219,7 +237,7 @@ for line in sys.stdin:
       </h2>
 
       <h3 className="text-xl font-semibold text-foreground mt-8 mb-3">
-        1. View &amp; Recover Claude Code Session History — for finding lost code
+        1. Recover Lost Code from Claude Code Sessions — for finding lost code
       </h3>
       <p>
         The most common session history need: you closed a session and want something back.
@@ -234,7 +252,7 @@ for line in sys.stdin:
       <p>
         The{' '}
         <PlaybookLink href="/playbooks/session-history-recovery">
-          View &amp; Recover Claude Code Session History
+          Recover Lost Code from Claude Code Sessions
         </PlaybookLink>{' '}
         playbook turns the search into a structured workflow. Describe what you&apos;re
         looking for — the approximate date, a file name, a keyword from the conversation,
@@ -468,7 +486,7 @@ and solutions from each cluster."`}</CodeBlock>
           href="/playbooks/session-history-recovery"
           className="block p-4 bg-[#161b22] border border-[#30363d] rounded-lg hover:border-[#22d3ee] transition-colors"
         >
-          <p className="font-semibold text-foreground mb-1">View &amp; Recover Session History</p>
+          <p className="font-semibold text-foreground mb-1">Recover Lost Code from Sessions</p>
           <p className="text-sm text-muted-foreground">
             Find and extract lost code from past Claude Code sessions by keyword, date, or file.
           </p>

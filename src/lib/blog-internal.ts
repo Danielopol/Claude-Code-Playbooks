@@ -1242,8 +1242,8 @@ export const internalBlogPosts: BlogPost[] = [
   {
     id: 'how-to-view-claude-code-session-history',
     slug: 'how-to-view-claude-code-session-history',
-    title: 'How to View Claude Code Terminal Session History',
-    description: 'A complete guide to viewing Claude Code session history — where logs are stored, how to search past sessions by date or keyword, how to recover lost code, and four playbooks that make session management effortless.',
+    title: 'Claude Code: List & Resume Past Sessions (Commands + History Location)',
+    description: 'Run claude --resume to list and reopen past Claude Code sessions, or claude --continue to jump back into the last one. Plus where session history is stored (~/.claude/projects), how to search it, and how to recover lost code.',
     category: 'tutorial',
     difficulty: 'basic',
     readingTime: '11 min read',

@@ -12,6 +12,20 @@ const nextConfig: NextConfig = {
         destination: 'https://www.claudecodehq.com/:path*',
         permanent: true,
       },
+      /*
+       * Malformed URLs Search Console reported as indexed (Sept 2026 export):
+       * relative links that doubled the host into the path, and a typo'd slug.
+       */
+      {
+        source: '/blog/claudecodehq.com/blog/:slug',
+        destination: '/blog/:slug',
+        permanent: true,
+      },
+      {
+        source: '/blog/claudecode-skills-investors',
+        destination: '/blog/claude-skills-investors',
+        permanent: true,
+      },
     ];
   },
   async headers() {

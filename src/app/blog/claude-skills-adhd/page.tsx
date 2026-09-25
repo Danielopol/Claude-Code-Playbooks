@@ -82,6 +82,20 @@ export default function ClaudeSkillsAdhdPage() {
         <strong className="text-foreground">doing the honest audit</strong> that tells you
         where you actually are so goals can connect to reality.
       </p>
+      <div className="bg-[#161b22] border border-[#30363d] rounded-lg p-4 my-4">
+        <p className="text-sm font-semibold text-foreground mb-1">
+          Looking for the &quot;I Have ADHD&quot; skill?
+        </p>
+        <p className="text-sm">
+          The open-source <code className="text-[#22d3ee] bg-[#0d1117] px-1.5 py-0.5 rounded text-xs">i-have-adhd</code>{' '}
+          skill changes how Claude writes every reply: next action first, numbered steps,
+          no tangents, concrete time estimates. Setup and details are on the{' '}
+          <PlaybookLink href="/playbooks/adhd-shaped-output">
+            I Have ADHD skill for Claude
+          </PlaybookLink>{' '}
+          page.
+        </p>
+      </div>
 
       <h2 className="text-2xl font-semibold text-foreground mt-10 mb-4 border-b border-[#30363d] pb-2">
         Why &quot;Just Use a Better System&quot; Doesn&apos;t Work

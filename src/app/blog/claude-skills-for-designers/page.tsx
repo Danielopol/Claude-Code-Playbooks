@@ -3,11 +3,11 @@ import Link from 'next/link';
 import { BlogPostLayout } from '@/components/BlogPostLayout';
 
 export const metadata: Metadata = {
-  title: 'Claude Skills for Designers: From Brief to Mockup in Minutes | Claude Code Playbooks Blog',
+  title: 'Claude Design Skills: Canvas Design, Brand Guidelines, and Charts | Claude Code Playbooks Blog',
   description: 'Four Claude Skills that cover the full design workflow — visual art, design systems, brand guidelines, and data visualization — so founders and solopreneurs can produce professional output without a design team.',
   alternates: { canonical: '/blog/claude-skills-for-designers' },
   openGraph: {
-    title: 'Claude Skills for Designers: From Brief to Mockup in Minutes (No Design Team Required)',
+    title: 'Claude Design Skills: Canvas Design, Brand Guidelines, and Charts (No Design Team Required)',
     description: 'Four Claude Skills that cover the full design workflow — visual art, design systems, brand guidelines, and data visualization — for founders and solopreneurs who need professional visual output.',
     url: 'https://www.claudecodehq.com/blog/claude-skills-for-designers',
     type: 'article',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Claude Skills for Designers: From Brief to Mockup in Minutes',
+    title: 'Claude Design Skills: Canvas Design, Brand Guidelines, and Charts',
     description: 'Canvas design, AI design director, brand guidelines, and chart design — four Claude Skills for professional visual output without a design team.',
     images: ['https://www.claudecodehq.com/og-image.jpg'],
   },
@@ -33,7 +33,7 @@ function PlaybookLink({ href, children }: { href: string; children: React.ReactN
 export default function ClaudeSkillsForDesignersPage() {
   return (
     <BlogPostLayout
-      title="Claude Skills for Designers: From Brief to Mockup in Minutes (No Design Team Required)"
+      title="Claude Design Skills: Canvas Design, Brand Guidelines, and Charts (No Design Team Required)"
       description="Four Claude Skills that cover the full design workflow — visual art, design systems, brand guidelines, and data visualization — so founders and solopreneurs can produce professional output without a design team."
       category="guide"
       difficulty="basic"
@@ -477,6 +477,15 @@ export default function ClaudeSkillsForDesignersPage() {
             palette, typography, or voice rules to a design AI again.
           </p>
         </div>
+      </div>
+
+      <div className="bg-[#161b22] border border-[#30363d] rounded-lg p-4 my-6">
+        <p className="text-sm font-semibold text-foreground mb-2">Related guides</p>
+        <ul className="list-disc list-inside space-y-1 text-sm">
+          <li>
+            <Link href="/blog/claude-dataviz-skills" className="text-[#22d3ee] hover:underline font-medium">Claude dataviz skills: charts, dashboards, and infographics</Link>
+          </li>
+        </ul>
       </div>
 
       <h2 className="text-2xl font-semibold text-foreground mt-10 mb-4 border-b border-[#30363d] pb-2">

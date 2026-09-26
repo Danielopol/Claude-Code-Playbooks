@@ -3,11 +3,11 @@ import Link from 'next/link';
 import { BlogPostLayout } from '@/components/BlogPostLayout';
 
 export const metadata: Metadata = {
-  title: 'Claude Skills for Teachers: Build Courses, Quizzes, and Lesson Plans with AI | Claude Code Playbooks Blog',
+  title: 'Claude for Teachers: Skills to Build Courses, Quizzes, and Lesson Plans | Claude Code Playbooks Blog',
   description: "How educators use four Claude Skills to turn subject-matter expertise into structured learning — a full e-learning course from curriculum outline to LMS-ready quizzes, a personalized syllabus that bridges what a learner already knows to what they are about to study, a self-hosted AI tutoring platform with RAG knowledge bases and persistent quiz generation, and a vocabulary builder that creates targeted word lists with spaced repetition flashcards instead of generic lists.",
   alternates: { canonical: '/blog/claude-skills-teachers' },
   openGraph: {
-    title: 'Claude Skills for Teachers: Build Courses, Quizzes, and Lesson Plans with AI',
+    title: 'Claude for Teachers: Skills to Build Courses, Quizzes, and Lesson Plans',
     description: "How educators use four Claude Skills to turn subject-matter expertise into structured learning — a full e-learning course from curriculum outline to LMS-ready quizzes, a personalized syllabus that bridges what a learner already knows to what they are about to study, a self-hosted AI tutoring platform with RAG knowledge bases and persistent quiz generation, and a vocabulary builder that creates targeted word lists with spaced repetition flashcards instead of generic lists.",
     url: 'https://www.claudecodehq.com/blog/claude-skills-teachers',
     type: 'article',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Claude Skills for Teachers: Build Courses, Quizzes, and Lesson Plans with AI',
+    title: 'Claude for Teachers: Skills to Build Courses, Quizzes, and Lesson Plans',
     description: "Four Claude Skills for educators — full course creation, personalized syllabi, AI tutoring platforms, and vocabulary builders — so teachers spend less time building materials and more time teaching.",
     images: ['https://www.claudecodehq.com/og-image.png'],
   },
@@ -33,7 +33,7 @@ function PlaybookLink({ href, children }: { href: string; children: React.ReactN
 export default function ClaudeSkillsTeachersPage() {
   return (
     <BlogPostLayout
-      title="Claude Skills for Teachers: Build Courses, Quizzes, and Lesson Plans with AI"
+      title="Claude for Teachers: Skills to Build Courses, Quizzes, and Lesson Plans"
       description="How educators use four Claude Skills to turn subject-matter expertise into structured learning — a full e-learning course from curriculum outline to LMS-ready quizzes, a personalized syllabus that bridges what a learner already knows to what they are about to study, a self-hosted AI tutoring platform with RAG knowledge bases and persistent quiz generation, and a vocabulary builder that creates targeted word lists with spaced repetition flashcards instead of generic lists."
       category="guide"
       difficulty="intermediate"
@@ -200,6 +200,34 @@ export default function ClaudeSkillsTeachersPage() {
 
       <p className="text-sm text-muted-foreground">
         ⏱ Setup: 5 minutes. Works for any language and any use-case context. Language teachers use it to build differentiated vocabulary sets for different student groups; learners use it to build their own targeted lists.
+      </p>
+
+      <h2 className="text-2xl font-semibold text-foreground mt-10 mb-4 border-b border-[#30363d] pb-2">
+        Claude for Teachers Without Installing Anything
+      </h2>
+      <p>
+        Skills are the most repeatable option, but teachers can get value from plain Claude chat
+        on day one. The pattern that works: give Claude your context (grade level, subject, what
+        students already know, the standard or objective) and ask for one specific artifact.
+      </p>
+      <div className="bg-[#0d1117] border border-[#30363d] rounded-lg p-4 my-4">
+        <p className="text-sm font-mono text-[#f97316]">
+          I teach 9th-grade biology. Students just finished cell structure and struggle with the difference between diffusion and osmosis. Write a 45-minute lesson plan with a 5-minute hook, one hands-on activity using classroom materials, three exit-ticket questions, and a version of the activity for students reading below grade level.
+        </p>
+      </div>
+      <p className="mt-4">
+        The same approach works for rubrics (paste the assignment and ask for a four-level
+        rubric), quiz questions with an answer key, feedback on a student draft against your
+        rubric, and parent emails. Two habits keep the output trustworthy: check facts and answer
+        keys before they reach students, and don&apos;t paste identifying student information.
+      </p>
+      <p className="mt-4">
+        If you want structured training, Anthropic offers a free{' '}
+        <a href="https://anthropic.skilljar.com/ai-fluency-for-educators" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline font-medium">
+          AI Fluency for Educators
+        </a>{' '}
+        course (also on Coursera). Once you find yourself re-typing the same context every week,
+        that&apos;s the signal to move to the skills above.
       </p>
 
       <h2 className="text-2xl font-semibold text-foreground mt-10 mb-4 border-b border-[#30363d] pb-2">

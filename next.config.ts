@@ -26,6 +26,15 @@ const nextConfig: NextConfig = {
         destination: '/blog/claude-skills-investors',
         permanent: true,
       },
+      /*
+       * Two invoice-automation posts split the same queries (the older one
+       * sat at position ~42). Its FAQ moved into the step-by-step guide.
+       */
+      {
+        source: '/blog/automate-invoice-processing-ai',
+        destination: '/blog/automate-invoice-processing-ai-step-by-step',
+        permanent: true,
+      },
     ];
   },
   async headers() {

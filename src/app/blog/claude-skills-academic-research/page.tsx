@@ -304,6 +304,21 @@ export default function ClaudeSkillsAcademicResearchPage() {
         of on the search box and the citation manager.
       </p>
 
+      <div className="bg-[#161b22] border border-[#30363d] rounded-lg p-4 my-6">
+        <p className="text-sm font-semibold text-foreground mb-2">Related guides</p>
+        <ul className="list-disc list-inside space-y-1 text-sm">
+          <li>
+            <Link href="/blog/best-claude-skills-literature-review" className="text-[#22d3ee] hover:underline font-medium">Best Claude skills for literature review</Link>
+          </li>
+          <li>
+            <Link href="/blog/claude-skills-academic-writing" className="text-[#22d3ee] hover:underline font-medium">Claude skills for academic writing (thesis, papers, peer review)</Link>
+          </li>
+          <li>
+            <Link href="/playbooks/academic-research-skills" className="text-[#22d3ee] hover:underline font-medium">The Academic Research Skills plugin for Claude Code</Link>
+          </li>
+        </ul>
+      </div>
+
       <h2 className="text-2xl font-semibold text-foreground mt-10 mb-4 border-b border-[#30363d] pb-2">
         Get the Skills
       </h2>

@@ -3,11 +3,11 @@ import Link from 'next/link';
 import { BlogPostLayout } from '@/components/BlogPostLayout';
 
 export const metadata: Metadata = {
-  title: 'Claude Skills for Writers: Automate Research, Drafting, and Publishing | Claude Code Playbooks Blog',
+  title: 'Claude Writing Skills: Automate Research, Drafting, and Publishing | Claude Code Playbooks Blog',
   description: 'A practical guide to Claude writing skills — five playbooks that handle the parts of writing that eat your time without touching the parts that require your voice: ideation, drafting, distribution, cleanup, and fiction continuity.',
   alternates: { canonical: '/blog/claude-skills-for-writers' },
   openGraph: {
-    title: 'Claude Skills for Writers: Automate Research, Drafting, and Publishing',
+    title: 'Claude Writing Skills: Automate Research, Drafting, and Publishing',
     description: 'Five Claude Skills that handle ideation, drafting, distribution, AI cleanup, and fiction continuity — so you can spend your time on the writing only you can do.',
     url: 'https://www.claudecodehq.com/blog/claude-skills-for-writers',
     type: 'article',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Claude Skills for Writers: Automate Research, Drafting, and Publishing',
+    title: 'Claude Writing Skills: Automate Research, Drafting, and Publishing',
     description: 'Claude writing skills that handle the parts of writing that eat your time — ideation, drafting, distribution, AI cleanup, fiction continuity.',
     images: ['https://www.claudecodehq.com/og-image.jpg'],
   },
@@ -33,7 +33,7 @@ function PlaybookLink({ href, children }: { href: string; children: React.ReactN
 export default function ClaudeSkillsForWritersPage() {
   return (
     <BlogPostLayout
-      title="Claude Skills for Writers: Automate Research, Drafting, and Publishing"
+      title="Claude Writing Skills: Automate Research, Drafting, and Publishing"
       description="A practical guide to Claude writing skills — five playbooks that handle the parts of writing that eat your time without touching the parts that require your voice: ideation, drafting, distribution, cleanup, and fiction continuity."
       category="guide"
       difficulty="basic"

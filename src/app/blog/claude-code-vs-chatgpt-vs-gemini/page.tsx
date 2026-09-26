@@ -4,11 +4,11 @@ import { HelpCircle } from 'lucide-react';
 import { BlogPostLayout } from '@/components/BlogPostLayout';
 
 export const metadata: Metadata = {
-  title: 'Claude Code vs ChatGPT vs Gemini: Which AI Coding Tool Should You Use? | Claude Code Playbooks',
+  title: 'Claude Code vs ChatGPT vs Gemini CLI: Which AI Coding Tool Should You Use? | Claude Code Playbooks',
   description: 'Honest comparison of Claude Code, ChatGPT, and Gemini — code quality, AI agents, IDE support, and pricing. Find out which tool fits your workflow.',
   alternates: { canonical: '/blog/claude-code-vs-chatgpt-vs-gemini' },
   openGraph: {
-    title: 'Claude Code vs ChatGPT vs Gemini: Which AI Coding Tool Should You Use?',
+    title: 'Claude Code vs ChatGPT vs Gemini CLI: Which AI Coding Tool Should You Use?',
     description: 'Honest comparison of Claude Code, ChatGPT, and Gemini — code quality, AI agents, IDE support, and pricing. Find out which tool fits your workflow.',
     url: 'https://www.claudecodehq.com/blog/claude-code-vs-chatgpt-vs-gemini',
     type: 'article',
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Claude Code vs ChatGPT vs Gemini: Which AI Coding Tool Should You Use?',
+    title: 'Claude Code vs ChatGPT vs Gemini CLI: Which AI Coding Tool Should You Use?',
     description: 'Honest comparison of Claude Code, ChatGPT, and Gemini — code quality, AI agents, IDE support, and pricing.',
     images: ['https://www.claudecodehq.com/og-image.jpg'],
   },
@@ -86,7 +86,7 @@ export default function ClaudeVsChatGPTVsGeminiPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <BlogPostLayout
-        title="Claude Code vs ChatGPT vs Gemini: Which AI Coding Tool Should You Use?"
+        title="Claude Code vs ChatGPT vs Gemini CLI: Which AI Coding Tool Should You Use?"
         description="Honest comparison of Claude Code, ChatGPT, and Gemini — code quality, AI agents, IDE support, and pricing. Find out which tool fits your workflow."
         category="guide"
         difficulty="basic"

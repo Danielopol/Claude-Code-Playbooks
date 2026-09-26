@@ -3,11 +3,11 @@ import Link from 'next/link';
 import { BlogPostLayout } from '@/components/BlogPostLayout';
 
 export const metadata: Metadata = {
-  title: 'Claude Skills for Lawyers: Draft, Redline, and Research in a Fraction of the Time | Claude Code Playbooks Blog',
+  title: 'Claude Legal Skills for Lawyers: Draft, Redline, and Research Faster | Claude Code Playbooks Blog',
   description: "How attorneys and legal teams use four Claude Skills as a first-draft accelerator — contract analysis that surfaces risk before outside counsel sees it, systematic redlining against standard terms, severity-ranked risk memos for board reporting, and NDA generation in minutes instead of days. The attorney stays in control; the mechanical layer gets handled.",
   alternates: { canonical: '/blog/claude-skills-legal' },
   openGraph: {
-    title: 'Claude Skills for Lawyers: Draft, Redline, and Research in a Fraction of the Time',
+    title: 'Claude Legal Skills for Lawyers: Draft, Redline, and Research Faster',
     description: "Four Claude Skills that handle the mechanical legal layer — contract review, redlining, risk assessment, NDA drafting — while the attorney makes the judgment calls.",
     url: 'https://www.claudecodehq.com/blog/claude-skills-legal',
     type: 'article',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Claude Skills for Lawyers: Draft, Redline, and Research in a Fraction of the Time',
+    title: 'Claude Legal Skills for Lawyers: Draft, Redline, and Research Faster',
     description: "AI for lawyers that keeps the attorney in control — contract analysis, systematic redlining, risk memos, and NDA generation with four Claude Skills.",
     images: ['https://www.claudecodehq.com/og-image.jpg'],
   },
@@ -33,7 +33,7 @@ function PlaybookLink({ href, children }: { href: string; children: React.ReactN
 export default function ClaudeSkillsLegalPage() {
   return (
     <BlogPostLayout
-      title="Claude Skills for Lawyers: Draft, Redline, and Research in a Fraction of the Time"
+      title="Claude Legal Skills for Lawyers: Draft, Redline, and Research Faster"
       description="How attorneys and legal teams use four Claude Skills as a first-draft accelerator — contract analysis that surfaces risk before outside counsel sees it, systematic redlining against standard terms, severity-ranked risk memos for board reporting, and NDA generation in minutes instead of days. The attorney stays in control; the mechanical layer gets handled."
       category="guide"
       difficulty="intermediate"

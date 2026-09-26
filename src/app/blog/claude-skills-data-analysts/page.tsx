@@ -188,6 +188,15 @@ export default function ClaudeSkillsDataAnalystsPage() {
         ⏱ Setup takes about 10 minutes. Describe your data and the filters you need — the output is a single HTML file, ready to share.
       </p>
 
+      <div className="bg-[#161b22] border border-[#30363d] rounded-lg p-4 my-6">
+        <p className="text-sm font-semibold text-foreground mb-2">Related guides</p>
+        <ul className="list-disc list-inside space-y-1 text-sm">
+          <li>
+            <Link href="/blog/claude-dataviz-skills" className="text-[#22d3ee] hover:underline font-medium">Claude dataviz skills: which one for charts, figures, and dashboards</Link>
+          </li>
+        </ul>
+      </div>
+
       <h2 className="text-2xl font-semibold text-foreground mt-10 mb-4 border-b border-[#30363d] pb-2">
         The Full Workflow, End to End
       </h2>

@@ -1,0 +1,99 @@
+---
+title: "Academic Research Skills for Claude Code: Install & Workflow"
+description: "The academic-research-skills plugin (Imbad0202/academic-research-skills on GitHub): deep research, literature review, paper writing, citation checks, and peer review for Claude Code — with a project brief that keeps every /ars command on-topic."
+seoHook: "Most AI research help falls apart at the citations: a confident paragraph built on a paper that doesn't exist. Academic Research Skills runs research, writing, and review as one pipeline that stops for your confirmation at every stage and checks every reference before a draft leaves your hands."
+targetAudience: "graduate students writing a thesis or dissertation, PhD candidates preparing journal articles, researchers running literature reviews or systematic reviews, supervisors who want a repeatable review step, academics in any discipline using Claude Code"
+exampleUseCase: "\"/ars-plan — I'm studying how four-day school weeks affect student attendance in rural US districts\" → Socratic planning session that sharpens the research question, then /ars-lit-review builds a thematic review with verified citations in APA 7, and /ars-review returns a multi-perspective critique before submission"
+category: "academic-research"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Cheng-I Wu (Imbad0202)"
+sourceUrl: "https://github.com/Imbad0202/academic-research-skills"
+tags: ["academic-research-skills", "academic research", "literature review", "thesis", "citation check", "peer review", "claude code plugin"]
+createdAt: "2026-09-26"
+---
+
+## What This Does
+
+[Academic Research Skills](https://github.com/Imbad0202/academic-research-skills) is an open-source Claude Code plugin by Cheng-I Wu that covers the research-to-publication pipeline: planning, deep research, literature review, drafting, citation verification, peer review, and revision. It ships four skills (deep-research, academic-paper, academic-paper-reviewer, academic-pipeline) exposed as `/ars-*` slash commands.
+
+It's built human-in-the-loop: the pipeline pauses for your confirmation at each stage, and the author describes it as a copilot rather than an autopilot.
+
+This playbook's download is **not** a copy of the plugin. It's a project CLAUDE.md you fill in once (research question, discipline, citation style, scope, venue) so every `/ars-*` command in that folder starts from the same brief, plus a set of project rules around checkpoints and citations.
+
+---
+
+## Quick Start
+
+### Step 1: Install the Plugin
+
+Inside Claude Code:
+
+```
+/plugin marketplace add Imbad0202/academic-research-skills
+/plugin install academic-research-skills
+```
+
+The plugin method needs a recent Claude Code version. The repository's README lists the full requirements, including optional tools for DOCX and PDF export (Pandoc, tectonic).
+
+### Step 2: Create a Project Folder and Add the Brief
+
+```bash
+mkdir -p ~/Research/MyThesis
+mv ~/Downloads/CLAUDE.md ~/Research/MyThesis/
+```
+
+Open `CLAUDE.md` and fill in the **Project brief** section.
+
+### Step 3: Start with a Plan
+
+```bash
+cd ~/Research/MyThesis
+claude
+```
+
+Run `/ars-plan` and describe your topic. Once the plan is settled, move to `/ars-lit-review` or `/ars-research`.
+
+---
+
+## The Commands
+
+| Command | What it does |
+|---|---|
+| `/ars-plan` | Socratic dialogue to map the research structure |
+| `/ars-lit-review` | Literature review |
+| `/ars-research` | Full deep-research stage |
+| `/ars-outline` | Paper structure planning |
+| `/ars-write` | Draft sections or a full paper |
+| `/ars-citation-check` | Verify citations |
+| `/ars-review` | Multi-perspective peer review |
+| `/ars-revision` | Work through review comments |
+| `/ars-pipeline` | End-to-end orchestration with checkpoints |
+
+**Citation styles:** APA 7 (default), Chicago (notes and author-date), MLA, IEEE, Vancouver.
+
+---
+
+## Tips
+
+- **Fill in the scope limits.** Years, populations, and study types in and out of scope are what keep the literature search from sprawling.
+- **Run the citation check before every handoff**, not just before submission. A bad reference found in chapter two is cheaper than one found by your examiner.
+- **Use `/ars-review` as a pre-supervisor pass.** It catches structural and argument issues so meetings can focus on substance.
+- **Keep `decisions.md` honest.** Excluded sources and the reason for excluding them are what a methods section and a viva will ask about.
+
+---
+
+## Limitations
+
+- **It checks what you report, not what you did.** The plugin can't confirm a method was actually carried out or that data is authentic.
+- **Outputs aren't byte-for-byte reproducible**, so save the drafts you keep.
+- **License:** the plugin is CC BY-NC 4.0 (non-commercial use, attribution required). Check your use fits before building it into paid work.
+- **Institutional rules apply.** Many universities require disclosure of AI assistance in theses and papers.
+
+---
+
+## Related
+
+- [Best Claude Skills for Literature Review](/blog/best-claude-skills-literature-review)
+- [Claude Skills for Academic Writing: Thesis, Papers, and Peer Review](/blog/claude-skills-academic-writing)
+- [Claude Skills for Academic Research](/blog/claude-skills-academic-research)

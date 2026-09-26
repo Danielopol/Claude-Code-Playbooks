@@ -3,11 +3,11 @@ import Link from 'next/link';
 import { BlogPostLayout } from '@/components/BlogPostLayout';
 
 export const metadata: Metadata = {
-  title: 'Claude Skills for Executives: How to Build an AI Chief of Staff in 2026 | Claude Code Playbooks Blog',
+  title: 'Claude as Your AI Chief of Staff: Skills and a Copy-Paste Prompt for Executives | Claude Code Playbooks Blog',
   description: 'How executives use Claude Skills to build an AI chief of staff — daily briefings, priority management, decision frameworks, and strategic advisory. Your inbox is 6 apps. Your priorities live in your head. Claude Skills unify both.',
   alternates: { canonical: '/blog/claude-skills-executive-ai-chief-of-staff' },
   openGraph: {
-    title: 'Claude Skills for Executives: How to Build an AI Chief of Staff in 2026',
+    title: 'Claude as Your AI Chief of Staff: Skills and a Copy-Paste Prompt for Executives',
     description: 'How executives use Claude Skills to build an AI chief of staff — daily briefings, priority management, decision frameworks, and strategic advisory.',
     url: 'https://www.claudecodehq.com/blog/claude-skills-executive-ai-chief-of-staff',
     type: 'article',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Claude Skills for Executives: How to Build an AI Chief of Staff in 2026',
+    title: 'Claude as Your AI Chief of Staff: Skills and a Copy-Paste Prompt for Executives',
     description: 'Your inbox is 6 apps. Your priorities live in your head. These Claude Skills unify both — daily briefings, decision support, and a strategic sounding board.',
     images: ['https://www.claudecodehq.com/og-image.jpg'],
   },
@@ -33,7 +33,7 @@ function PlaybookLink({ href, children }: { href: string; children: React.ReactN
 export default function ClaudeSkillsExecutiveAiChiefOfStaffPage() {
   return (
     <BlogPostLayout
-      title="Claude Skills for Executives: How to Build an AI Chief of Staff in 2026"
+      title="Claude as Your AI Chief of Staff: Skills and a Copy-Paste Prompt for Executives"
       description="How executives use Claude Skills to build an AI chief of staff — daily briefings, priority management, decision frameworks, and strategic advisory. Your inbox is 6 apps. Your priorities live in your head. Claude Skills unify both."
       category="guide"
       difficulty="basic"
@@ -394,6 +394,42 @@ one line each on context that matters]
         when you&apos;re excited about strategy, encoding that gives your CEO Advisor skill
         the specific angles to challenge you on. A generic AI will give you generic pushback.
         One that knows your specific failure modes will ask the right questions.
+      </p>
+
+      {/* ── Copy-paste prompt ── */}
+      <h2 id="chief-of-staff-prompt" className="text-2xl font-semibold text-foreground mt-10 mb-4 border-b border-[#30363d] pb-2">
+        Copy-Paste AI Chief of Staff Prompt
+      </h2>
+      <p>
+        If you want to try the idea before setting up Claude Code, paste this into a new Claude
+        chat (or a Claude Project&apos;s custom instructions, so it persists). Fill in the
+        brackets first. It works as a lighter version of the CLAUDE.md above.
+      </p>
+      <div className="bg-[#0d1117] border border-[#30363d] rounded-lg p-4 my-4">
+        <p className="text-xs text-muted-foreground mb-2 font-mono uppercase tracking-wide">Chief of staff prompt</p>
+        <pre className="text-sm font-mono text-[#e6edf3] whitespace-pre-wrap leading-relaxed">{`Act as my chief of staff. Your job is to hold context across my work, keep me focused on what matters this quarter, and push back when my time or decisions drift from it.
+
+About me: [title, company, stage, team size]
+This quarter's top 3 priorities: [1] [2] [3]
+Decisions I'm currently weighing: [decision + which way I'm leaning]
+Key people: [name — role — what matters about them]
+
+How to work with me:
+- When I share my calendar, inbox or notes, give me a briefing: the 3 things that need me today, what can be delegated, and what can be ignored.
+- Tie every recommendation back to one of my 3 priorities. If something doesn't serve one, say so.
+- Before a meeting, give me: the goal, what the other person likely wants, and the one question I should ask.
+- When I make a decision, challenge it once with the strongest counter-argument, then help me execute.
+- Track commitments I make ("I'll follow up on X") and remind me of open ones when I ask for a review.
+- Be concise. Lead with the answer, then the reasoning.
+
+Start by asking me what's on my plate this week.`}</pre>
+      </div>
+      <p>
+        The limit of a chat prompt is memory: you&apos;ll re-paste your priorities and open
+        decisions as they change. The{' '}
+        <PlaybookLink href="/playbooks/executive-chief-of-staff">Executive Chief of Staff</PlaybookLink>{' '}
+        skill keeps that context in a file Claude reads every session, which is why it&apos;s the
+        better long-term setup.
       </p>
 
       {/* ── The daily routine ── */}

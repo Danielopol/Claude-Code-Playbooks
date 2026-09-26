@@ -468,6 +468,15 @@ export default function AiPrivateEquityInvestmentBankingPage() {
       </p>
 
       {/* ── CTA grid ── */}
+      <div className="bg-[#161b22] border border-[#30363d] rounded-lg p-4 my-6">
+        <p className="text-sm font-semibold text-foreground mb-2">Related guides</p>
+        <ul className="list-disc list-inside space-y-1 text-sm">
+          <li>
+            <Link href="/blog/what-is-an-ic-memo" className="text-[#22d3ee] hover:underline font-medium">What is an IC memo? Template, example, and how to draft one with Claude</Link>
+          </li>
+        </ul>
+      </div>
+
       <h2 className="text-2xl font-semibold text-foreground mt-10 mb-4 border-b border-[#30363d] pb-2">
         The Full PE / IB Toolkit
       </h2>

@@ -216,6 +216,39 @@ export default function ClaudeSkillsConsultantsPage() {
       </p>
 
       <h2 className="text-2xl font-semibold text-foreground mt-10 mb-4 border-b border-[#30363d] pb-2">
+        What Is &quot;The Consultant&apos;s Guide to Claude&quot;?
+      </h2>
+      <p>
+        If you searched for this, there are two free resources behind the name, both from Oria:
+      </p>
+      <ul className="list-disc list-inside space-y-2 my-4">
+        <li>
+          <a href="https://www.oria.one/resources/consultants-guide-to-claude" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline font-medium">
+            Claude for Consultants: The Complete Guide
+          </a>
+          , a web guide that walks through framing, research, analysis, synthesis, and
+          communication with example prompts. The page itself is the guide; there is no
+          separate PDF.
+        </li>
+        <li>
+          <a href="https://github.com/aapersh/strategy-skills-for-claude" target="_blank" rel="noopener noreferrer" className="text-[#22d3ee] hover:underline font-medium">
+            Strategy Skills for Claude
+          </a>
+          , 21 standalone skills on GitHub grouped into six areas: diagnosis, market and
+          competitive intelligence, strategic choice, operating model, risk and value governance,
+          and executive communication. Each is a single file you save as SKILL.md and upload
+          to Claude.
+        </li>
+      </ul>
+      <p>
+        You&apos;ll often see these described as &quot;McKinsey-style&quot; or &quot;BCG-style&quot;.
+        The repo itself says it is independent and unofficial; no consulting firm publishes or
+        endorses it. The four skills above cover the same ground from a different angle: they
+        focus on the deliverables (the storyline check, the macro scan, the framework pass, the
+        proposal) rather than the full strategy method.
+      </p>
+
+      <h2 className="text-2xl font-semibold text-foreground mt-10 mb-4 border-b border-[#30363d] pb-2">
         Get the Consulting Skills
       </h2>
       <p className="mb-6">

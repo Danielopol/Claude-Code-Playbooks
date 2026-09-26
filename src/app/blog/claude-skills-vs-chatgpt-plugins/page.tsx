@@ -3,11 +3,11 @@ import Link from 'next/link';
 import { BlogPostLayout } from '@/components/BlogPostLayout';
 
 export const metadata: Metadata = {
-  title: 'Claude Skills vs ChatGPT Plugins: Which AI Automation Actually Works in 2026? | Claude Code Playbooks Blog',
+  title: 'Claude Skills vs ChatGPT Plugins: Honest Comparison on Real Automation Tasks | Claude Code Playbooks Blog',
   description: 'An honest comparison of Claude Skills and ChatGPT Plugins across real automation use cases — agent building, browser tasks, and calendar workflows. Which platform actually delivers in 2026?',
   alternates: { canonical: '/blog/claude-skills-vs-chatgpt-plugins' },
   openGraph: {
-    title: 'Claude Skills vs ChatGPT Plugins: Which AI Automation Actually Works in 2026?',
+    title: 'Claude Skills vs ChatGPT Plugins: Honest Comparison on Real Automation Tasks',
     description: 'An honest comparison of Claude Skills and ChatGPT Plugins across real automation use cases — agent building, browser tasks, and calendar workflows. Which platform actually delivers in 2026?',
     url: 'https://www.claudecodehq.com/blog/claude-skills-vs-chatgpt-plugins',
     type: 'article',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Claude Skills vs ChatGPT Plugins: Which AI Automation Actually Works in 2026?',
+    title: 'Claude Skills vs ChatGPT Plugins: Honest Comparison on Real Automation Tasks',
     description: 'Claude Skills vs ChatGPT Plugins — compared on real automation tasks: agents, browser control, and calendar workflows. Here\'s what actually works.',
     images: ['https://www.claudecodehq.com/og-image.jpg'],
   },
@@ -92,7 +92,7 @@ function VerdictCard({
 export default function ClaudeSkillsVsChatGPTPluginsPage() {
   return (
     <BlogPostLayout
-      title="Claude Skills vs ChatGPT Plugins: Which AI Automation Actually Works in 2026?"
+      title="Claude Skills vs ChatGPT Plugins: Honest Comparison on Real Automation Tasks"
       description="An honest comparison of Claude Skills and ChatGPT Plugins across real automation use cases — agent building, browser tasks, and calendar workflows. Which platform actually delivers in 2026?"
       category="guide"
       difficulty="intermediate"

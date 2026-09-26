@@ -3,11 +3,11 @@ import Link from 'next/link';
 import { BlogPostLayout } from '@/components/BlogPostLayout';
 
 export const metadata: Metadata = {
-  title: "The Beginner's Guide to Claude Skills: What They Are and How to Get Started | Claude Code Playbooks Blog",
+  title: "How to Use Claude Skills: A Beginner's Guide to Getting Started | Claude Code Playbooks Blog",
   description: "A friendly introduction to Claude Skills — what they are, how they work, and how to use your first one in under five minutes. Includes three beginner-friendly examples for organizing files, writing blog posts, and analyzing your spending.",
   alternates: { canonical: '/blog/beginners-guide-to-claude-skills' },
   openGraph: {
-    title: "The Beginner's Guide to Claude Skills: What They Are and How to Get Started",
+    title: "How to Use Claude Skills: A Beginner's Guide to Getting Started",
     description: "A friendly introduction to Claude Skills — what they are, how they work, and how to use your first one in under five minutes.",
     url: 'https://www.claudecodehq.com/blog/beginners-guide-to-claude-skills',
     type: 'article',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "The Beginner's Guide to Claude Skills: What They Are and How to Get Started",
+    title: "How to Use Claude Skills: A Beginner's Guide to Getting Started",
     description: "What are Claude Skills? A clear, beginner-friendly explanation — plus three real examples you can try in under five minutes.",
     images: ['https://www.claudecodehq.com/og-image.jpg'],
   },
@@ -33,7 +33,7 @@ function PlaybookLink({ href, children }: { href: string; children: React.ReactN
 export default function BeginnersGuideCaudeSkillsPage() {
   return (
     <BlogPostLayout
-      title="The Beginner's Guide to Claude Skills: What They Are and How to Get Started"
+      title="How to Use Claude Skills: A Beginner's Guide to Getting Started"
       description="A friendly introduction to Claude Skills — what they are, how they work, and how to use your first one in under five minutes. Includes three beginner-friendly examples for organizing files, writing blog posts, and analyzing your spending."
       category="tutorial"
       difficulty="basic"
@@ -43,6 +43,27 @@ export default function BeginnersGuideCaudeSkillsPage() {
       author="Claude Code Playbooks"
       slug="beginners-guide-to-claude-skills"
     >
+      <div className="bg-[#161b22] border border-[#30363d] rounded-lg p-5 my-6">
+        <p className="text-sm font-semibold text-foreground mb-2">Quick answer: how to use Claude skills</p>
+        <ol className="list-decimal list-inside space-y-2 text-sm">
+          <li>
+            <strong className="text-foreground">In Claude Code:</strong> put the skill&apos;s folder
+            (containing a <code className="text-[#22d3ee] bg-[#0d1117] px-1.5 py-0.5 rounded text-xs">SKILL.md</code>)
+            in <code className="text-[#22d3ee] bg-[#0d1117] px-1.5 py-0.5 rounded text-xs">~/.claude/skills/</code>{' '}
+            for all projects, or <code className="text-[#22d3ee] bg-[#0d1117] px-1.5 py-0.5 rounded text-xs">.claude/skills/</code>{' '}
+            for one project. Claude loads it when a task matches.
+          </li>
+          <li>
+            <strong className="text-foreground">In the Claude app:</strong> zip the skill folder and
+            upload it in Settings under Capabilities.
+          </li>
+          <li>
+            <strong className="text-foreground">For a playbook from this site:</strong> download its
+            CLAUDE.md into a project folder, run <code className="text-[#22d3ee] bg-[#0d1117] px-1.5 py-0.5 rounded text-xs">claude</code>{' '}
+            from that folder, and start asking. The rest of this guide walks through it.
+          </li>
+        </ol>
+      </div>
       <p className="text-lg">
         If you&apos;ve heard the term &quot;Claude Skills&quot; and wondered what it actually means
         — you&apos;re not alone. It&apos;s one of those phrases that gets thrown around in AI

@@ -426,6 +426,15 @@ export default function ClaudeSkillsJobSeekersPage() {
       </div>
 
       {/* ── CTA grid ── */}
+      <div className="bg-[#161b22] border border-[#30363d] rounded-lg p-4 my-6">
+        <p className="text-sm font-semibold text-foreground mb-2">Related guides</p>
+        <ul className="list-disc list-inside space-y-1 text-sm">
+          <li>
+            <Link href="/blog/claude-skills-resume-cv" className="text-[#22d3ee] hover:underline font-medium">Claude skills for resume and CV writing, cover letters, and ATS checks</Link>
+          </li>
+        </ul>
+      </div>
+
       <h2 className="text-2xl font-semibold text-foreground mt-10 mb-4 border-b border-[#30363d] pb-2">
         The Six Skills
       </h2>

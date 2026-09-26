@@ -465,6 +465,57 @@ INVOICE_START_NUMBER: 1042   # picks up from your last invoice`}</pre>
         </div>
       </div>
 
+      {/* FAQ (merged from the retired automate-invoice-processing-ai post) */}
+      <h2 className="text-2xl font-semibold text-foreground mt-10 mb-4 border-b border-[#30363d] pb-2">
+        Common Questions About Invoice Automation
+      </h2>
+      <div className="space-y-4 my-4">
+        <div>
+          <p className="font-semibold text-foreground mb-1">
+            &quot;What if I already use QuickBooks / Xero / FreshBooks?&quot;
+          </p>
+          <p className="text-sm">
+            These playbooks work alongside existing accounting software — they don&apos;t replace
+            it. The Invoice Automation playbook syncs to whatever you use as the system of record.
+            What it replaces is the <em>manual work between</em> the accounting software and
+            everything else: generating the invoice, emailing it, chasing the payment, and
+            reconciling it.
+          </p>
+        </div>
+        <div>
+          <p className="font-semibold text-foreground mb-1">
+            &quot;Is AI reliable enough for money?&quot;
+          </p>
+          <p className="text-sm">
+            The calculations are deterministic — no &quot;the AI made up a number.&quot; Tax rates
+            come from tables you configure, amounts come from structured source data (time
+            entries, contracts, line items you provide), and totals are computed arithmetically.
+            The AI&apos;s job is orchestration, not arithmetic.
+          </p>
+        </div>
+        <div>
+          <p className="font-semibold text-foreground mb-1">
+            &quot;Can I customize the reminder emails?&quot;
+          </p>
+          <p className="text-sm">
+            Yes. You provide templates or tone guidance, and the playbook adapts. A polite
+            first-reminder tone at 30 days, firmer at 60, and an escalation path at 90 — each in
+            your voice, with your signature, not a robotic &quot;PAYMENT OVERDUE&quot; template.
+          </p>
+        </div>
+        <div>
+          <p className="font-semibold text-foreground mb-1">
+            &quot;Is my financial data safe?&quot;
+          </p>
+          <p className="text-sm">
+            Claude Code runs locally. Your invoice data, client details, and payment records stay
+            on your machine unless you explicitly connect them to external services (Stripe,
+            QuickBooks, Gmail — services you&apos;re already using). This is materially different
+            from SaaS invoicing tools that store all your client data on their servers.
+          </p>
+        </div>
+      </div>
+
       {/* Playbook links */}
       <h2 className="text-2xl font-semibold text-foreground mt-10 mb-4 border-b border-[#30363d] pb-2">
         The Playbooks Used in This Guide

@@ -3,11 +3,11 @@ import Link from 'next/link';
 import { BlogPostLayout } from '@/components/BlogPostLayout';
 
 export const metadata: Metadata = {
-  title: 'Claude Skills for Cybersecurity Teams: Map Controls and Pass Audits Faster | Claude Code Playbooks Blog',
+  title: 'Claude Cybersecurity Skills: Map ISO 27001, NIST, and CIS Controls Faster | Claude Code Playbooks Blog',
   description: "How security teams use four Claude Skills to accelerate framework mapping and audit readiness — CIS Controls v8 gap assessments with Implementation Group scoping, NIST CSF 2.0 current-to-target profile building, PCI DSS v4.0.1 CDE scoping with the right SAQ, and FedRAMP SSP/POA&M documentation for cloud providers pursuing federal ATO.",
   alternates: { canonical: '/blog/claude-skills-cybersecurity' },
   openGraph: {
-    title: 'Claude Skills for Cybersecurity Teams: Map Controls and Pass Audits Faster',
+    title: 'Claude Cybersecurity Skills: Map ISO 27001, NIST, and CIS Controls Faster',
     description: "How security teams use four Claude Skills to accelerate framework mapping and audit readiness — CIS Controls v8 gap assessments with Implementation Group scoping, NIST CSF 2.0 current-to-target profile building, PCI DSS v4.0.1 CDE scoping with the right SAQ, and FedRAMP SSP/POA&M documentation for cloud providers pursuing federal ATO.",
     url: 'https://www.claudecodehq.com/blog/claude-skills-cybersecurity',
     type: 'article',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Claude Skills for Cybersecurity Teams: Map Controls and Pass Audits Faster',
+    title: 'Claude Cybersecurity Skills: Map ISO 27001, NIST, and CIS Controls Faster',
     description: "Four Claude Skills for security framework mapping — CIS Controls, NIST CSF 2.0, PCI DSS v4, and FedRAMP — so security teams spend less time on documentation and more time on actual security.",
     images: ['https://www.claudecodehq.com/og-image.png'],
   },
@@ -33,7 +33,7 @@ function PlaybookLink({ href, children }: { href: string; children: React.ReactN
 export default function ClaudeSkillsCybersecurityPage() {
   return (
     <BlogPostLayout
-      title="Claude Skills for Cybersecurity Teams: Map Controls and Pass Audits Faster"
+      title="Claude Cybersecurity Skills: Map ISO 27001, NIST, and CIS Controls Faster"
       description="How security teams use four Claude Skills to accelerate framework mapping and audit readiness — CIS Controls v8 gap assessments with Implementation Group scoping, NIST CSF 2.0 current-to-target profile building, PCI DSS v4.0.1 CDE scoping with the right SAQ, and FedRAMP SSP/POA&M documentation for cloud providers pursuing federal ATO."
       category="guide"
       difficulty="intermediate"

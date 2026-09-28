@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'koyfin-vs-fiscal-ai',
+    slug: 'koyfin-vs-fiscal-ai',
+    title: 'Koyfin vs Fiscal.ai: Which Data Platform for AI-Assisted Research?',
+    description: "A head-to-head on price, coverage, data export, and MCP support — and which one fits a Claude-powered research workflow. Short answer: Koyfin screens, Fiscal.ai feeds Claude, and plenty of analysts end up using both.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '10 min read',
+    featured: true,
+    thumbnailType: 'default',
+    thumbnailTitle: 'Koyfin vs Fiscal.ai',
+    tags: ['koyfin vs fiscal.ai', 'koyfin alternative', 'fiscal.ai review', 'finchat vs koyfin', 'financial data mcp', 'ai equity research tools'],
+    createdAt: '2026-09-28',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'best-claude-skills-literature-review',
     slug: 'best-claude-skills-literature-review',
     title: 'Best Claude Skills for Literature Review: Find, Screen, and Synthesize Papers',

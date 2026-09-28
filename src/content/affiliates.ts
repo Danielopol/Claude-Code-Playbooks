@@ -54,12 +54,12 @@ export const affiliates: Affiliate[] = [
     pricing: '60-day free trial',
   },
   {
-    // 30% one-time on Prime, 60-day cookie, Trackdesk. Apply: paperpal.com/affiliate-program
+    // 30% one-time on Prime, 60-day cookie, Trackdesk. Approved 2026-09-28.
     slug: 'paperpal',
     name: 'Paperpal',
+    trackingUrl: 'https://paperpal.com/?linkId=lp_726731&sourceId=daniel-marin&tenantId=paperpal',
     tagline: 'Academic language and submission checks for drafts Claude helped structure.',
     topics: ['academic-research'],
-    pricing: 'Free plan available',
   },
   {
     // PartnerStack (terms shown after approval). Apply: gammaapp.partnerstack.com/?group=affiliates

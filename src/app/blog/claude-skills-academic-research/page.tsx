@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { AffiliateLink } from '@/components/AffiliateLink';
 import { BlogPostLayout } from '@/components/BlogPostLayout';
 
 export const metadata: Metadata = {
@@ -251,6 +252,16 @@ export default function ClaudeSkillsAcademicResearchPage() {
         you turn the same evidence into a stress test for your thesis. The published insight is
         still yours. The path to it is just dramatically shorter.
       </p>
+
+      <div className="bg-[#161b22] border border-[#30363d] rounded-lg p-4 my-6">
+        <p className="text-sm text-muted-foreground mb-0">
+          <span className="text-foreground font-medium">Before you submit:</span> once the argument is written, give it an academic language pass.{' '}
+          <AffiliateLink partner="paperpal">Paperpal</AffiliateLink> is built for this: it checks grammar and phrasing against academic conventions and runs reference, plagiarism and submission-readiness checks inside Word, Google Docs or Overleaf. For a free pass in Claude Code, use the <PlaybookLink href="/playbooks/proofread-review">Proofread Review Agent</PlaybookLink>.
+        </p>
+        <p className="text-xs text-muted-foreground mt-2 mb-0">
+          The Paperpal link is an affiliate link: we may earn a commission if you subscribe, at no extra cost to you.
+        </p>
+      </div>
 
       <h2 className="text-2xl font-semibold text-foreground mt-10 mb-4 border-b border-[#30363d] pb-2">
         The Full Workflow: How the Four Skills Fit Together

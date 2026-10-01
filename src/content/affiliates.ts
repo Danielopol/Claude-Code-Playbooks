@@ -38,6 +38,15 @@ export const affiliates: Affiliate[] = [
     topics: ['finance'],
   },
   {
+    // 40% recurring on eligible subscription payments, self-serve partner program. Approved 2026-10-01.
+    slug: 'valuedge',
+    name: 'ValuEdge',
+    trackingUrl: 'https://valuedge.app/ref?id=C5XFZ3LT',
+    tagline: 'Valuation-first screening, fair values and dividend safety before Claude writes the thesis.',
+    topics: ['finance'],
+    pricing: 'Free trial',
+  },
+  {
     // 40% recurring 12 months + $1/signup on work emails, 25% on personal, 90-day cookie. Apply: reclaim.ai/affiliate-program
     slug: 'reclaim',
     name: 'Reclaim.ai',

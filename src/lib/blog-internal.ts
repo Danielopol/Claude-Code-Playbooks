@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'ai-equity-research-stack-2026',
+    slug: 'ai-equity-research-stack-2026',
+    title: 'The AI Equity Research Stack for 2026: Data, Model, Note',
+    description: "The three-layer stack analysts are converging on — data platforms that feed Claude, Claude Code as the modeling layer, and Skills that turn the work into publishable notes. What each tool does, what it costs, and which layer you can skip.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '11 min read',
+    featured: true,
+    thumbnailType: 'default',
+    thumbnailTitle: 'ER Stack 2026',
+    tags: ['equity research ai tools', 'ai research stack', 'best tools equity research analyst', 'fiscal.ai', 'koyfin', 'seeking alpha', 'claude code finance'],
+    createdAt: '2026-10-01',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'koyfin-vs-fiscal-ai',
     slug: 'koyfin-vs-fiscal-ai',
     title: 'Koyfin vs Fiscal.ai: Which Data Platform for AI-Assisted Research?',

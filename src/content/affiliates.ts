@@ -47,6 +47,14 @@ export const affiliates: Affiliate[] = [
     pricing: 'Free trial',
   },
   {
+    // Tiered commissions, terms shown after approval; asks for "a significant following". Apply: site.financialmodelingprep.com/affiliates
+    slug: 'fmp',
+    name: 'Financial Modeling Prep',
+    tagline: 'Financial statements and DCF data by API, with a free plan for building models.',
+    topics: ['finance'],
+    pricing: 'Free plan · from $22/mo',
+  },
+  {
     // 40% recurring 12 months + $1/signup on work emails, 25% on personal, 90-day cookie. Apply: reclaim.ai/affiliate-program
     slug: 'reclaim',
     name: 'Reclaim.ai',

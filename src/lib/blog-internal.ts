@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'fmp-api-dcf-claude-code',
+    slug: 'fmp-api-dcf-claude-code',
+    title: 'Build a DCF from Live API Data with Claude Code (Financial Modeling Prep)',
+    description: "Pull financial statements from the Financial Modeling Prep API, let Claude Code build a DCF you can audit line by line, and cross-check it against FMP's own valuation. Includes the working DCF code and the free-tier call budget.",
+    category: 'tutorial',
+    difficulty: 'intermediate',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'default',
+    thumbnailTitle: 'FMP API DCF',
+    tags: ['fmp api dcf', 'financial modeling prep api tutorial', 'automate dcf model', 'python dcf claude', 'dcf valuation python', 'claude code finance', 'fmp api python'],
+    createdAt: '2026-10-04',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'ai-equity-research-stack-2026',
     slug: 'ai-equity-research-stack-2026',
     title: 'The AI Equity Research Stack for 2026: Data, Model, Note',

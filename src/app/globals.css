@@ -133,7 +133,7 @@
     font-family: var(--font-jetbrains-mono), 'JetBrains Mono', var(--font-geist-mono), monospace;
   }
   .container {
-    @apply mx-auto;
+    @apply mx-auto px-4;
   }
 }
 

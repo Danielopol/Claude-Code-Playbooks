@@ -65,15 +65,15 @@ export const metadata: Metadata = {
 function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center justify-between">
-        <Link href="/" className="flex items-center gap-1.5 text-muted-foreground hover:text-[#22d3ee] transition-colors">
+      <div className="container grid h-14 grid-cols-3 items-center">
+        <Link href="/" className="flex items-center gap-1.5 justify-self-start text-muted-foreground hover:text-[#22d3ee] transition-colors">
           <Home className="h-4 w-4" />
           <span>Home</span>
         </Link>
-        <nav className="flex items-center gap-6 text-sm">
+        <nav className="contents text-sm">
           <Link
             href="/playbooks"
-            className="flex items-center gap-1.5 text-muted-foreground hover:text-[#22d3ee] transition-colors"
+            className="flex items-center gap-1.5 justify-self-center text-muted-foreground hover:text-[#22d3ee] transition-colors"
           >
             <BookOpen className="h-4 w-4" />
             <span>Browse</span>
@@ -85,7 +85,7 @@ function Header() {
           */}
           <Link
             href="/categories"
-            className="flex items-center gap-1.5 text-muted-foreground hover:text-[#22d3ee] transition-colors"
+            className="flex items-center gap-1.5 justify-self-end text-muted-foreground hover:text-[#22d3ee] transition-colors"
           >
             <Layers className="h-4 w-4" />
             <span>Categories</span>

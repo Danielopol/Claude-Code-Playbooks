@@ -14,6 +14,7 @@ import {
   Sparkles,
   Users,
   Rss,
+  Megaphone,
 } from 'lucide-react';
 
 const ITEMS_PER_PAGE = 24; // 24 items per page
@@ -175,6 +176,17 @@ export default async function HomePage({ searchParams }: HomePageProps) {
             >
               <Sparkles className="h-4 w-4" />
               Latest
+            </Link>
+          </div>
+
+          {/* Advertise CTA */}
+          <div className="mt-4">
+            <Link
+              href="/advertise"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#22d3ee] text-sm font-bold text-[#0d1117] shadow-[0_0_20px_rgba(34,211,238,0.35)] hover:bg-[#67e8f9] hover:shadow-[0_0_28px_rgba(34,211,238,0.55)] transition-all"
+            >
+              <Megaphone className="h-4 w-4" />
+              Advertise with Us
             </Link>
           </div>
         </div>

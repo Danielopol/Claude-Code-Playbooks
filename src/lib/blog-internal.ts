@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'ai-tools-investment-banking-analysts-2026',
+    slug: 'ai-tools-investment-banking-analysts-2026',
+    title: 'AI Tools for Investment Banking Analysts (2026 Edition)',
+    description: "A buyer's guide to the AI tools investment banking analysts actually use in 2026: what the bank-bought platforms do, where Claude fits, when Koyfin, Gamma and CFI are worth paying for, and where each one falls short.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'default',
+    thumbnailTitle: 'AI Tools for IB',
+    tags: ['ai tools investment banking', 'ai for ib analysts', 'investment banking automation', 'ib analyst tools 2026', 'ai pitch book', 'ai cim', 'claude investment banking'],
+    createdAt: '2026-10-07',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'fmp-api-dcf-claude-code',
     slug: 'fmp-api-dcf-claude-code',
     title: 'Build a DCF from Live API Data with Claude Code (Financial Modeling Prep)',

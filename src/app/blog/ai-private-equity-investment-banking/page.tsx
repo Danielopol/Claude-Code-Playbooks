@@ -472,6 +472,9 @@ export default function AiPrivateEquityInvestmentBankingPage() {
         <p className="text-sm font-semibold text-foreground mb-2">Related guides</p>
         <ul className="list-disc list-inside space-y-1 text-sm">
           <li>
+            <Link href="/blog/ai-tools-investment-banking-analysts-2026" className="text-[#22d3ee] hover:underline font-medium">AI tools for investment banking analysts (2026): what to buy, what to skip</Link>
+          </li>
+          <li>
             <Link href="/blog/what-is-an-ic-memo" className="text-[#22d3ee] hover:underline font-medium">What is an IC memo? Template, example, and how to draft one with Claude</Link>
           </li>
         </ul>

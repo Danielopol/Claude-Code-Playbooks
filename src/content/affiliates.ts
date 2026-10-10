@@ -22,6 +22,22 @@ export const affiliates: Affiliate[] = [
     pricing: 'Free plan · from $39/mo',
   },
   {
+    // 25% of new and ongoing subscription payments, paid ~14 days after month end (per the 2024 Affiliate Guide; no duration cap stated). Apply: "Become an Affiliate" in the stockrover.com footer
+    slug: 'stock-rover',
+    name: 'Stock Rover',
+    tagline: 'Fundamental screening, fair-value ratings and portfolio analytics, with a 14-day trial.',
+    topics: ['finance'],
+    pricing: 'Free membership · from $348/yr',
+  },
+  {
+    // Application submitted, awaiting approval. Confirm terms in writing before building more pages around it.
+    slug: 'seeking-alpha',
+    name: 'Seeking Alpha',
+    tagline: 'Quant ratings and bull and bear cases to stress-test with Claude before you buy.',
+    topics: ['finance'],
+    pricing: 'Premium about $299/yr',
+  },
+  {
     // 25% of payments for the first 12 months (Rewardful, "Fiscal.ai Affiliate Campaign 3"). Approved 2026-09-24.
     slug: 'fiscal-ai',
     name: 'Fiscal.ai',

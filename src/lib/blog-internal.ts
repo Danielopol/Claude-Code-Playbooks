@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'stock-rover-vs-koyfin-vs-seeking-alpha',
+    slug: 'stock-rover-vs-koyfin-vs-seeking-alpha',
+    title: 'Stock Rover vs Koyfin vs Seeking Alpha for the Retail Investor',
+    description: "Three stock research tools at three price points, compared on what they actually do: Stock Rover for screening and portfolios, Koyfin for market data and charts, Seeking Alpha for ideas and quant ratings. Which one to pay for, and how each works with Claude.",
+    category: 'guide',
+    difficulty: 'basic',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'default',
+    thumbnailTitle: 'Stock Research Tools',
+    tags: ['stock rover vs koyfin', 'seeking alpha alternative', 'best stock research tool 2026', 'stock rover review', 'koyfin vs seeking alpha', 'stock screener for retail investors', 'claude stock analysis'],
+    createdAt: '2026-10-10',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'ai-tools-investment-banking-analysts-2026',
     slug: 'ai-tools-investment-banking-analysts-2026',
     title: 'AI Tools for Investment Banking Analysts (2026 Edition)',

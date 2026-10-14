@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'automate-morning-market-note-claude-code',
+    slug: 'automate-morning-market-note-claude-code',
+    title: 'Automate Your Morning Market Note with Claude Code',
+    description: "Set up an automated pre-market note: a weekly catalyst calendar, a daily Claude Code run that reads overnight news and pulls company data over MCP, and a schedule that has the draft waiting before the open. Includes the config, prompts and failure modes.",
+    category: 'tutorial',
+    difficulty: 'intermediate',
+    readingTime: '12 min read',
+    featured: true,
+    thumbnailType: 'default',
+    thumbnailTitle: 'Morning Market Note',
+    tags: ['ai morning note', 'automated market brief', 'pre-market ai summary', 'claude code scheduled task', 'morning meeting note', 'fiscal.ai mcp', 'claude code finance'],
+    createdAt: '2026-10-14',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'stock-rover-vs-koyfin-vs-seeking-alpha',
     slug: 'stock-rover-vs-koyfin-vs-seeking-alpha',
     title: 'Stock Rover vs Koyfin vs Seeking Alpha for the Retail Investor',

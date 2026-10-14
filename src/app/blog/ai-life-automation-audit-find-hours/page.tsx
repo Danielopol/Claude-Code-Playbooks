@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { AffiliateLink } from '@/components/AffiliateLink';
 import { BlogPostLayout } from '@/components/BlogPostLayout';
 
 export const metadata: Metadata = {
@@ -385,6 +386,16 @@ export default function AiLifeAutomationAuditFindHoursPage() {
           </p>
         </li>
       </ol>
+
+      <div className="bg-[#161b22] border border-[#30363d] rounded-lg p-4 my-6">
+        <p className="text-sm text-muted-foreground mb-0">
+          <span className="text-foreground font-medium">Want it to run without you?</span> Most audit findings (a weekly summary, a daily inbox sort, a report that lands on Monday) are recurring jobs. Claude Code runs them when you ask. To run them on a schedule or when something arrives, a no-code builder like{' '}
+          <AffiliateLink partner="make">Make</AffiliateLink> connects Claude to your email, calendar and spreadsheets and triggers the workflow for you. Start with the one automation from step 1, and build it by hand in Claude first so you know it works.
+        </p>
+        <p className="text-xs text-muted-foreground mt-2 mb-0">
+          The Make link is an affiliate link: we may earn a commission if you subscribe, at no extra cost to you.
+        </p>
+      </div>
 
       {/* ── CTA ── */}
       <h2 className="text-2xl font-semibold text-foreground mt-10 mb-4 border-b border-[#30363d] pb-2">

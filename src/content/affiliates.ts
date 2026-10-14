@@ -125,4 +125,12 @@ export const affiliates: Affiliate[] = [
     tagline: 'Listen to papers and Claude’s output instead of reading them.',
     topics: ['productivity', 'academic-research'],
   },
+  {
+    // 35% of subscription payments for 12 months from registration, Wise payouts ($100 + 3 paying users). Approved 2026-10-14.
+    slug: 'make',
+    name: 'Make',
+    trackingUrl: 'https://www.make.com/en/register?pc=claudecodehq',
+    tagline: 'Visual automation builder: run a Claude workflow on a schedule or trigger, no code.',
+    topics: ['developer-tools', 'productivity'],
+  },
 ];

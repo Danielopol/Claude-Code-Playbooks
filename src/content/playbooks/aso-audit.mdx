@@ -1,6 +1,6 @@
 ---
-title: "ASO Audit"
-description: "Audit App Store and Google Play listings against ASO best practices and produce a prioritized action plan."
+title: "ASO Audit for App Store & Google Play Listings"
+description: "Score an App Store or Google Play listing out of 100 across six weighted dimensions, find keyword gaps against competitors, and get character-counted rewrites for title, subtitle and keyword field."
 seoHook: "Your app is invisible in the store because the title is stuffed with brand name, the screenshots don't sell the value, and the keyword field is wasted on duplicates. An ASO audit shows you exactly which fields are leaking visibility and downloads — and what to fix first."
 targetAudience: "indie app developers, mobile growth marketers, app startup founders, ASO specialists, mobile product managers"
 exampleUseCase: "\"Audit my App Store listing\" → Live listing scrape, score across metadata/visuals/ratings, competitor keyword gap, and a prioritized action plan with character-perfect rewrites for title, subtitle, description, and keyword field"
@@ -11,6 +11,7 @@ author: "community"
 sourceUrl: "https://github.com/coreyhaines31/marketingskills/blob/main/skills/aso-audit/SKILL.md"
 tags: ["aso", "app-store", "google-play", "mobile-marketing"]
 createdAt: "2026-05-08"
+updatedAt: "2026-10-14"
 ---
 
 ## What This Does
@@ -68,3 +69,45 @@ Share an App Store or Google Play URL — Claude will fetch the live listing, sc
 - **Front-load your title** — the first 20 characters appear in search results
 - **Screenshots aren't indexed but drive conversion** — treat them as ad creative
 - **Update with major releases** — algorithm freshness signals matter
+
+---
+
+## Before You Run It: What the Audit Can and Can't See
+
+The audit works from the public store page, and that sets its limits. Knowing them up front saves you from acting on a guess.
+
+- **Your iOS keyword field is invisible to it.** That field is hidden from the public listing, so the audit can only *infer* wasted keywords from your title and subtitle. Paste the actual field from App Store Connect and the keyword recommendations become exact instead of approximate.
+- **Store pages render partly in JavaScript.** A plain fetch often misses screenshot captions, promotional text and in-app events. If Claude Code has browser tools it takes a screenshot of the listing; if not, take one yourself and drop it into the chat.
+- **No search volume, no rankings.** The template says so explicitly and won't invent numbers. If you have Apple Search Ads keyword popularity scores or a paid ASO tool export, paste them in and ask Claude to re-rank the keyword suggestions against them.
+
+## Reading Your Score
+
+The 100-point score is weighted, not averaged. Visual assets carry 25%, title/subtitle and ratings 20% each, description 15%, and metadata freshness and conversion signals 10% each. A listing with strong copy but three bare UI screenshots can still land in C territory, which is why the screenshot section is usually where the biggest jump comes from.
+
+The audit also sorts your app into a brand tier before scoring. Most apps are *challengers*, scored strictly against textbook ASO. Don't copy what Spotify or Uber do with brand-only titles: those choices are scored leniently for dominant apps because users already search for them by name. If you're under ~100K ratings, every character of your title still has to earn a keyword.
+
+## A Worked Example
+
+Take a hypothetical habit-tracking app with the iOS title **"Streakly"** (8 of 30 characters used) and the subtitle **"Build better habits daily"**.
+
+A typical audit flags three quick wins:
+
+| Field | Before | After | Why |
+|---|---|---|---|
+| Title | `Streakly` (8) | `Streakly: Habit Tracker` (23) | Puts the category's core keyword in the strongest-weighted field |
+| Subtitle | `Build better habits daily` (25) | `Daily routines & goal streaks` (29) | Stops repeating "habit" (Apple indexes each word once) and adds new terms |
+| Keyword field | not visible | `planner,reminder,mood,journal,productivity,checklist` (53 bytes) | No spaces, no words already in title or subtitle, 47 bytes left for competitor-gap terms |
+
+On Google Play the same app gets different advice: there's no keyword field, so those terms have to work naturally into the 80-character short description and the full description, which Google does index.
+
+## Getting the Most From It
+
+- **Run it on a competitor first.** Auditing the category leader before your own app shows you what a high-scoring listing looks like in your niche, and the keyword-gap table is far more useful with real competitor data behind it.
+- **Treat the action plan as a test queue.** Ship the quick wins, then run the bigger changes (icon, first three screenshots) through Apple's Product Page Optimization or Google Play Store Listing Experiments rather than swapping them blind.
+- **Re-run after each major release** so the freshness and ratings sections reflect the current listing.
+
+## Related Playbooks
+
+- [App Store Optimizer](/playbooks/app-store-optimizer) — ongoing keyword research and A/B testing strategy once the audit's fixes are in
+- [Ad Creative](/playbooks/ad-creative) — platform-specific ad copy for App Store and Google Play campaigns
+- [Analytics Tracking](/playbooks/analytics-tracking) — event tracking so you can measure whether listing changes moved installs

@@ -11,6 +11,7 @@ author: "anthropic"
 sourceUrl: "https://github.com/anthropics/financial-services-plugins/tree/main/equity-research/skills/initiating-coverage"
 tags: ["equity research", "initiation report", "financial modeling", "valuation", "DCF"]
 createdAt: "2026-03-31"
+updatedAt: "2026-10-14"
 ---
 
 ## What This Does
@@ -88,3 +89,31 @@ The <a href="/blog/fiscal-ai-mcp-earnings-note" class="text-[#22d3ee] hover:unde
 - Tasks 1 and 2 can run in either order; Tasks 3-5 have strict dependencies
 - Each task verifies prerequisites before starting
 - The final report should be indistinguishable from institutional research
+
+---
+
+## Running It Well: Task by Task
+
+**Task 1 (Company Research).** Give Claude the latest 10-K, the most recent two or three earnings call transcripts and the investor presentation as files in `Task1_Research/`. With primary documents in hand, the management bios, segment descriptions and risk section come from what the company actually said instead of general knowledge. Ask for a source list at the end and spot-check it.
+
+**Task 2 (Financial Modeling).** This is where errors creep in. Before moving on, ask Claude to tie the model back to the filings: historical revenue, net income and ending cash in the model should match the 10-K to the dollar. The template's rule that every number is "verified and cross-checked" only holds if you make that check an explicit step.
+
+**Task 3 (Valuation).** The price target is only as good as the WACC and terminal growth assumptions behind it. Ask Claude to list every assumption in a table with its source, then look at the DCF sensitivity grid before accepting the base case. If a 50 bp change in WACC moves the target 30%, the report should say so.
+
+**Task 4 (Charts).** Some of the 25–35 charts need data that isn't in your model, like share-price history, peer multiples and market share. Have that ready, or Claude will either skip those charts or ask for it. The four mandatory charts (revenue by product, revenue by geography, DCF sensitivity heatmap, valuation football field) are the ones readers look at first, so review them closely.
+
+**Task 5 (Report Assembly).** Expect a long run. A 10,000+ word DOCX with embedded charts is the heaviest task, and it's the one most worth reading end to end before it goes anywhere.
+
+## Practical Tips
+
+- **One task per session is fine.** Each task writes its output to its own folder, and the next task reads those files. You don't need one marathon session, and starting fresh keeps each task focused.
+- **The default font is Times New Roman.** Tell Claude at the start if your house style uses something else, so you don't have to reformat 40 pages later.
+- **Treat it as a first draft, not publishable research.** If you work at a firm that publishes research, the report still goes through your normal supervisory and compliance review. For a buy-side memo or a stock-pitch competition, it's a strong starting structure.
+- **Pick a company you can check.** For a first run, choose a company you already know well. Seeing where the output matches your own understanding (and where it doesn't) tells you how much to trust it on a new name.
+
+## Related Playbooks
+
+- [DCF Model Builder](/playbooks/fa-dcf-model) — a deeper standalone DCF if Task 3's valuation needs more work
+- [Equity Research Sector Overview](/playbooks/er-sector-overview) — industry context to feed into Task 1's competitive analysis
+- [Equity Research Earnings Update Report](/playbooks/er-earnings-analysis) — the follow-up once you're covering the name and results come in
+- [Equity Research Model Update](/playbooks/er-model-update) — roll the Task 2 model forward each quarter

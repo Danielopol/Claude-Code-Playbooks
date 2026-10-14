@@ -1,6 +1,6 @@
 ---
 title: "Visual Explainer HTML Pages"
-description: "Generate self-contained HTML explanations instead of walls of chat text or terminal ASCII — a design-judgment pass before any HTML is written (palette, type, layout concept, audited against genericness), Mermaid diagram invariants that force labeled mechanism over decoration, and a hard list of generic-default patterns to avoid (gradient heroes, violet accents, centered-everything layouts)."
+description: "Have Claude Code explain architectures, diffs and plans as self-contained HTML pages with labeled Mermaid diagrams and a deliberate design pass, instead of walls of chat text, terminal ASCII or generic AI-looking pages."
 seoHook: "A 4-row comparison table or a system diagram dumped as chat text or bare ASCII forces the reader to reconstruct the visual structure in their head — and the fix isn't more words, it's recognizing when content is inherently visual and rendering it as a real, self-contained HTML page instead, with the same design discipline you'd apply to a real deliverable."
 targetAudience: "developers who want architecture diagrams, diff reviews, or project recaps rendered as real pages instead of chat walls, teams that want explanatory HTML output to avoid generic AI-generated design clichés (gradient heroes, violet accents, centered layouts), anyone building a Mermaid-heavy explanation who wants labeled, mechanism-showing diagrams instead of decorative boxes-and-arrows, engineers who need a light/dark-mode-correct token system for one-off explanatory pages"
 exampleUseCase: "\"Explain this system architecture visually\" → A content-appropriate representation chosen first (a Mermaid diagram for a data-flow-heavy architecture, CSS grid cards for a text-heavy module breakdown), a written design plan (named hex values, type roles, one-sentence layout concept) audited against generic AI-page tells before any HTML is written, and a self-contained page with labeled diagram arrows, a real light/dark token system, and zero gradient-hero or violet-accent clichés"
@@ -11,6 +11,7 @@ author: "nicobailon"
 sourceUrl: "https://github.com/nicobailon/visual-explainer/blob/main/plugins/visual-explainer/SKILL.md"
 tags: ["html", "mermaid", "diagrams", "documentation", "web-design", "technical-writing"]
 createdAt: "2026-09-22"
+updatedAt: "2026-10-14"
 ---
 
 ## What This Does
@@ -46,6 +47,24 @@ Ask Claude to explain a system, review a diff or plan visually, or turn a compar
 
 ---
 
+## A Worked Example: Explaining a Cache Layer
+
+Say you ask: *"Explain how requests flow through our API's caching layer."* Without this template you'd typically get a few paragraphs and maybe an ASCII box diagram. With it, Claude works through three decisions before writing any HTML:
+
+1. **Representation.** Request flow is mechanism-heavy, so it picks a Mermaid sequence or flow diagram, not a grid of cards.
+2. **Design plan.** A short written plan: four to six named hex colors, which typeface does what, and one sentence on layout. For an infrastructure topic that might be a dark, terminal-flavored palette with one warm accent for the cache-hit path. Claude then asks itself whether it would write the same plan for any other page, and revises whatever's generic.
+3. **Diagram rules.** Every arrow gets a label saying what happens along it, such as `GET /users/42`, `cache miss`, `read-through (TTL 300s)` or `invalidate on write`, so the diagram shows *how* the system behaves, not just which boxes connect.
+
+The result is one `.html` file that you open in a browser, attach to a pull request, or drop into a design doc. Because it's self-contained, it renders the same on a reviewer's machine as on yours.
+
+## Good Prompts to Start With
+
+- *"Review this diff visually: what changed, what it affects, and what to test."*
+- *"Compare these four queue libraries as a page, not a chat table."*
+- *"Give me a one-page recap of what we built this week for the team."*
+
+If the answer is a sentence or two, the template should *not* produce a page. Its trigger is content that's inherently visual, so short answers stay in chat.
+
 ## Tips & Best Practices
 
 - Let the content's domain drive the aesthetic direction deliberately — a CLI/infra explanation calling for a terminal-inspired palette is a stronger choice than reaching for the same generic blue-and-slate treatment on every page regardless of subject.
@@ -57,3 +76,9 @@ Ask Claude to explain a system, review a diff or plan visually, or turn a compar
 - A design methodology and set of invariants, not a rendering engine itself — actually building the referenced templates (architecture cards, slide-deck layouts, themed pickers) requires writing the HTML/CSS/JS by hand each time rather than pulling from a bundled template library.
 - Best suited to a one-off or occasional explanatory page; a page meant to be maintained and updated repeatedly may be better served by a proper documentation site than a hand-composed self-contained HTML file.
 - The Mermaid invariants assume Mermaid.js is an acceptable dependency for the page; an environment that can't load it needs the CSS-grid-cards fallback representation instead.
+
+## Related Playbooks
+
+- [Diagram & Flowchart Creator](/playbooks/diagram-creator) — when you need the diagram alone (Mermaid, PlantUML) to embed in existing docs
+- [HTML Presentation Builder](/playbooks/presentation-builder) — when the explanation should be a slide deck with speaker notes
+- [Artifacts Builder](/playbooks/artifacts-builder) — for interactive, multi-component pages built with React and Tailwind

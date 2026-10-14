@@ -35,6 +35,24 @@ const nextConfig: NextConfig = {
         destination: '/blog/automate-invoice-processing-ai-step-by-step',
         permanent: true,
       },
+      /*
+       * Duplicate playbooks (same title or same job, harvested from two
+       * sources). The losing side of each pair was "crawled - currently not
+       * indexed" in the Oct 2026 export; the target is the one the blog links
+       * to or that Google hadn't flagged. Their MDX and templates were removed.
+       */
+      ...[
+        ['recipe-email-drafter', 'email-drafter'],
+        ['html-slides', 'presentation-builder'],
+        ['recipe-release-notes-generator', 'release-notes-generator'],
+        ['recipe-research-synthesizer', 'research-synthesizer'],
+        ['lead-research', 'lead-research-assistant'],
+        ['recipe-meeting-notes-actions', 'meeting-notes-to-actions'],
+      ].map(([from, to]) => ({
+        source: `/playbooks/${from}`,
+        destination: `/playbooks/${to}`,
+        permanent: true,
+      })),
     ];
   },
   async headers() {
@@ -52,6 +70,15 @@ const nextConfig: NextConfig = {
          * render the site at all.
          */
         source: '/_next/static/:path*',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+      },
+      {
+        /*
+         * Playbook pages now fetch their CLAUDE.md template from here on click
+         * instead of embedding it. Most templates are verbatim copies of public
+         * GitHub files, so the raw .md must not become an indexable duplicate.
+         */
+        source: '/templates/:path*',
         headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
       },
     ];

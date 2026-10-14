@@ -1,6 +1,6 @@
 ---
-title: "RevOps"
-description: "Design and optimize the systems that connect marketing, sales, and customer success into a unified revenue engine — lead scoring, routing, MQL/SQL handoff, and CRM hygiene."
+title: "RevOps Playbook: Lead Scoring, Routing & MQL-to-SQL Handoff"
+description: "Use Claude Code to design lifecycle stages, a fit-plus-engagement lead scoring model, routing rules with fallbacks, MQL/SQL handoff SLAs and CRM hygiene rules, built from your own closed-won data."
 seoHook: "Marketing generates leads, sales says they're bad, and nobody can agree on what 'qualified' means. RevOps fixes the plumbing — lead scoring grounded in real conversion data, clean routing rules, MQL/SQL definitions everyone signs off on, and CRM hygiene that keeps reports trustworthy."
 targetAudience: "RevOps managers, marketing operations leads, sales operations, demand gen leads, founders setting up GTM systems"
 exampleUseCase: "\"Audit our marketing-to-sales handoff\" → Lead lifecycle map, scoring model, routing rules, MQL/SQL definitions, SLA agreement template, CRM hygiene plan, and 90-day rollout plan"
@@ -11,6 +11,7 @@ author: "community"
 sourceUrl: "https://github.com/coreyhaines31/marketingskills/blob/main/skills/revops/SKILL.md"
 tags: ["revops", "lead-scoring", "lead-routing", "crm", "mql-sql"]
 createdAt: "2026-05-08"
+updatedAt: "2026-10-14"
 ---
 
 ## What This Does
@@ -61,3 +62,48 @@ Describe your GTM motion, ACV, current stack, and pain points.
 - MQL/SQL definitions with SLA template
 - CRM hygiene plan and automations
 - 90-day rollout plan
+
+---
+
+## Give It Real Data, Not Descriptions
+
+The template's scoring advice hinges on one step: test the model against deals you've already won and lost. Claude can't do that from a description of your funnel, so export the data before you start:
+
+1. **Closed-won and closed-lost opportunities from the last 12–18 months** as CSV: company size, industry, lead source, job title of the first contact, days in each stage, and the outcome.
+2. **Your current lead records** with lifecycle stage, owner and created date. This exposes unassigned and stale leads.
+3. **Your current MQL definition and SLA**, even if it's informal ("marketing sends over anyone who books a demo").
+
+Put the files in the project folder and ask: *"Compare the attributes of won vs. lost deals, propose fit and engagement weights, and show me which past deals the model would have scored as MQLs."* That backtest is the difference between a scoring model sales trusts and one they ignore.
+
+## What a First Scoring Model Looks Like
+
+For a sales-led B2B product with a mid-five-figure ACV, a first pass often looks like this (your weights should come from your own backtest):
+
+| Signal | Type | Points |
+|---|---|---|
+| Company size in ICP range | Fit | +20 |
+| Director-level or above in buying department | Fit | +15 |
+| Visited pricing page twice in 14 days | Engagement | +20 |
+| Requested a demo | Engagement | +30 |
+| Downloaded an ebook | Engagement | +5 |
+| Personal email domain | Negative | −20 |
+| Competitor domain | Negative | −100 |
+
+With an MQL threshold around 60, a demo request from an in-ICP director qualifies on its own, while someone collecting ebooks never does. That's the template's "fit **and** engagement" rule made concrete.
+
+## Missing Reference Files
+
+The template points to `references/lifecycle-definitions.md`, `references/scoring-models.md`, `references/routing-rules.md` and a tools registry. Those live in the source repository, not in the single CLAUDE.md you download here. The core frameworks work without them, but for the longer SLA templates and HubSpot/Salesforce workflow recipes, clone the [source repo](https://github.com/coreyhaines31/marketingskills) and keep its `skills/revops/references/` folder next to your CLAUDE.md.
+
+## Rollout Advice
+
+- **Get the definitions signed off before anyone builds a workflow.** The template's "define before automate" principle is the one most teams skip. Ask Claude for a one-page lifecycle document to circulate first.
+- **Start rejection reason codes on day one.** The feedback loop from rejected MQLs is what lets you recalibrate the model each quarter.
+- **Watch speed-to-lead first.** It's the metric that responds fastest to routing changes, so it shows within weeks whether the new rules work.
+
+## Related Playbooks
+
+- [Lead Routing & Assignment](/playbooks/lead-routing) — goes deeper on territory mapping and round-robin workload balancing
+- [Lead Qualification Framework](/playbooks/lead-qualification) — qualification criteria for the SDR conversation after the MQL handoff
+- [CRM Pipeline Cleaner](/playbooks/crm-pipeline-cleaner) — dedupe and flag dead deals from a CRM export before you score anything
+- [Revenue Operations Analyst](/playbooks/revenue-operations-analyst) — pipeline conversion analysis and forecasting once the system is running

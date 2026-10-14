@@ -18,7 +18,8 @@ function getPlaybooks(): Playbook[] {
   return getAllPlaybooks().map((p) => ({
     slug: p.slug,
     category: p.category || 'uncategorized',
-    lastModified: p.createdAt ? new Date(p.createdAt) : new Date(),
+    // updatedAt marks substantive rewrites, so lastmod tells Google to recrawl.
+    lastModified: new Date(p.updatedAt || p.createdAt || Date.now()),
     noindex: p.noindex === true,
   }));
 }

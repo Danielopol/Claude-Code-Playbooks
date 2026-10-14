@@ -5,15 +5,16 @@ import { getPlaybookBySlug, getRelatedPlaybooks, getCategoryNeighbors } from '@/
 import { getCategoryById } from '@/lib/categories';
 import { DifficultyBadge } from '@/components/DifficultyBadge';
 import { CategoryBadge } from '@/components/CategoryBadge';
-import { CopyButton } from '@/components/CopyButton';
-import { DownloadButton } from '@/components/DownloadButton';
+import { TemplateViewer } from '@/components/TemplateViewer';
 import { SetupGuideBox } from '@/components/SetupGuideBox';
 import { PlaybookCard } from '@/components/PlaybookCard';
 import { Newsletter } from '@/components/Newsletter';
 import { SponsorStack } from '@/components/SponsorStack';
 import { getTopicsForCategory } from '@/lib/sponsors';
-import { Clock, ArrowLeft, ArrowRight, ExternalLink, Terminal, FileCode, HelpCircle } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Clock, ArrowLeft, ArrowRight, ExternalLink, Terminal, HelpCircle } from 'lucide-react';
+
+// Lines of the CLAUDE.md template rendered into the HTML; the rest loads on demand.
+const TEMPLATE_PREVIEW_LINES = 12;
 
 interface PlaybookPageProps {
   params: Promise<{ slug: string }>;
@@ -195,38 +196,7 @@ export default async function PlaybookPage({ params }: PlaybookPageProps) {
     keywords: playbook.tags.join(', '),
   };
 
-  const howToJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    name: `How to use ${playbook.title}`,
-    description: playbook.description,
-    step: [
-      {
-        '@type': 'HowToStep',
-        position: 1,
-        name: 'Browse and select the playbook',
-        text: `Find the ${playbook.title} playbook on Claude Code Playbooks and review the configuration.`,
-      },
-      {
-        '@type': 'HowToStep',
-        position: 2,
-        name: 'Copy the CLAUDE.md template',
-        text: 'Copy the CLAUDE.md template and place it in your project folder.',
-      },
-      {
-        '@type': 'HowToStep',
-        position: 3,
-        name: 'Start using with Claude Code',
-        text: 'Launch Claude Code in your project directory. It will automatically detect and use the CLAUDE.md configuration.',
-      },
-    ],
-    tool: {
-      '@type': 'SoftwareApplication',
-      name: 'Claude Code',
-      url: 'https://claude.ai/code',
-    },
-    totalTime: playbook.timeToSetup,
-  };
+  const templateLines = playbook.claudeMdTemplate?.split('\n') ?? [];
 
   const faqs = playbookFaqs[slug] || null;
 
@@ -254,10 +224,6 @@ export default async function PlaybookPage({ params }: PlaybookPageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
       />
       {faqJsonLd && (
         <script
@@ -350,33 +316,15 @@ export default async function PlaybookPage({ params }: PlaybookPageProps) {
 
         <SponsorStack topics={getTopicsForCategory(playbook.category)} className="mb-8" />
 
+        {/* Only the preview goes to the client; passing the full template as a
+            prop would serialize it into the page's RSC payload. */}
         {playbook.claudeMdTemplate && (
-          <Card className="mb-8 bg-[#161b22] border-[#30363d]">
-            <CardHeader className="pb-4 border-b border-[#30363d]">
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-base flex items-center gap-2">
-                  <FileCode className="h-4 w-4 text-[#f97316]" />
-                  CLAUDE.md Template
-                </CardTitle>
-                <div className="flex items-center gap-2">
-                  <CopyButton text={playbook.claudeMdTemplate} />
-                  <DownloadButton content={playbook.claudeMdTemplate} filename="CLAUDE.md" />
-                </div>
-              </div>
-              <p className="text-sm text-muted-foreground mt-2">
-                <a href="/getting-started" className="text-[#22d3ee] hover:underline font-medium">New here? 3-minute setup guide &rarr;</a>
-                {' '}<span className="text-muted-foreground/50">|</span>{' '}
-                Already set up? Copy the template below.
-              </p>
-            </CardHeader>
-            <CardContent className="pt-4">
-              <div className="bg-[#0d1117] rounded-lg border border-[#30363d] max-h-[400px] overflow-auto">
-                <pre className="p-4 text-sm">
-                  <code className="text-[#e6edf3] whitespace-pre-wrap">{playbook.claudeMdTemplate}</code>
-                </pre>
-              </div>
-            </CardContent>
-          </Card>
+          <TemplateViewer
+            slug={playbook.slug}
+            preview={templateLines.slice(0, TEMPLATE_PREVIEW_LINES).join('\n')}
+            truncated={templateLines.length > TEMPLATE_PREVIEW_LINES}
+            totalLines={templateLines.length}
+          />
         )}
 
         <Newsletter

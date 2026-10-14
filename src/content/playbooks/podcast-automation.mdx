@@ -1,21 +1,24 @@
 ---
-title: "Podcast Production Assistant"
-description: "Automate podcast production workflows including recording, editing, publishing, and distribution"
+title: "Podcast Production Assistant: Show Notes, Mastering and Distribution"
+description: "A Claude Code workflow for podcast post-production: master audio to -16 LUFS, generate chapters and timestamped show notes from a transcript, draft promo posts, and run a distribution checklist for every episode."
 seoHook: "After every episode, you spend 3 hours writing show notes, creating social clips, drafting the email blast, and uploading to 4 platforms. Recording the episode was the fun part — everything after is a production tax that makes you want to quit podcasting."
 targetAudience: "independent podcasters handling production solo, podcast networks managing multiple shows, content teams repurposing podcast episodes into written content, marketing teams running branded podcast series, podcast editors streamlining post-production workflows"
-exampleUseCase: "\"Automate our podcast post-production workflow\" → Automated pipeline: transcript generation, show notes with timestamps, social media clips with quotes, email newsletter draft, multi-platform publishing checklist, and SEO-optimized episode description"
+exampleUseCase: "\"Here's the transcript and audio for episode 45 — prep it for release\" → Loudness-normalized MP3, chapter markers, timestamped show notes, guest links section, three social posts with pull quotes, and a release checklist"
 category: "media-production"
 difficulty: "advanced"
 timeToSetup: "10 minutes"
 author: "community"
 sourceUrl: "https://github.com/claude-office-skills/skills-hub/tree/main/podcast-automation"
-tags: ["podcast", "audio", "content", "distribution", "marketing"]
+tags: ["podcast", "audio", "content", "distribution", "marketing", "show-notes"]
 createdAt: "2026-03-11"
+updatedAt: "2026-10-14"
 ---
 
 ## What This Does
 
-Comprehensive workflow for automating podcast production and distribution.
+Gives Claude Code a production checklist for a podcast episode, from raw recording to published and promoted. The template defines target specs (loudness, bitrate, artwork size, RSS fields) and fill-in structures for show notes, chapters, guest outreach and social posts. Claude uses those to do the post-production work you'd otherwise do by hand.
+
+It's a reference and a set of templates, not a hosted automation service. Claude produces the files and copy; you (or your podcast host) still publish them.
 
 ---
 
@@ -41,16 +44,38 @@ cd ~/Documents/PodcastAutomation
 claude
 ```
 
+Put each episode in its own subfolder (`ep045/`) with the raw audio and, if you have one, the transcript.
+
 ---
 
-## Best Practices
+## A Realistic Per-Episode Workflow
 
-1. **Consistent Schedule**: Same day/time each week
-2. **Quality Audio**: Invest in good equipment
-3. **Show Notes**: Detailed and SEO-optimized
-4. **Transcripts**: Accessibility and SEO
-5. **Promotion**: Multi-platform marketing
-6. **Engage Listeners**: Respond to feedback
-7. **Analytics**: Track and improve
-8. **Guest Prep**: Well-prepared interviews
+What Claude Code can do end to end, assuming `ffmpeg` is installed:
 
+1. **Master the audio.** Ask Claude to normalize to the template's targets of -16 LUFS integrated and -1 dBTP true peak. It runs ffmpeg's `loudnorm` filter and exports a 128 kbps MP3 named to the template's `{{show}}_E{{number}}.mp3` pattern. That puts you at the loudness level Apple Podcasts recommends, so listeners don't have to adjust volume between your show and the next.
+2. **Transcribe.** If you don't have a transcript, have Claude run a local speech-to-text model such as Whisper, or paste the one your recording platform produced.
+3. **Chapters and show notes.** From the transcript, Claude finds topic changes, writes chapter titles with timestamps, and fills in the show-notes template: summary, guest bio and links, key takeaways, resources mentioned.
+4. **Promo copy.** The template's social section becomes three posts per episode: an announcement, a pull-quote post, and a LinkedIn version built around the takeaways.
+5. **Release checklist.** Episode number, season, explicit flag, episode type (full, trailer, bonus) and artwork, checked against the RSS fields the template lists.
+
+The audio editing itself (cutting mistakes, removing long pauses) is still yours. Claude can suggest cut points from the transcript, but listen before you trust them.
+
+## Corrections to the Template's Platform List
+
+The distribution section was written before some platforms closed. Before acting on it:
+
+- **Google Podcasts shut down in 2024.** Listeners were moved to YouTube Music; submit your RSS feed to YouTube instead.
+- **Stitcher shut down in 2023.** Remove it from your checklist.
+- **Apple Podcasts and Spotify read your RSS feed.** In practice you publish once to your podcast host and both pick up the new episode. Neither needs a per-episode upload from Claude.
+
+## Getting Good Show Notes
+
+- **Give it the guest's real links.** Without them you'll get placeholders at best and plausible-looking wrong URLs at worst. Paste the guest's site and social handles and check the links before publishing.
+- **Ask for searchable episode titles.** "E45: Interview with CEO" (the template's own example) tells nobody what the episode covers. Ask Claude for three title options that name the topic.
+- **Keep the analytics block as a format only.** The download numbers in the template's dashboard are illustrative sample data, not benchmarks. Paste your host's real stats if you want a monthly report.
+
+## Related Playbooks
+
+- [Podcast Creator System](/playbooks/podcast-creator-system) — the pre-production side: episode ideation, guest research and SEO planning
+- [Audio Transcription Automation](/playbooks/transcription-automation) — batch transcription and subtitle generation
+- [Content Repurposer](/playbooks/content-repurposer) — turn each episode into a week of platform-native posts

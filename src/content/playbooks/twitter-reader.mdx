@@ -1,50 +1,79 @@
 ---
-title: "Twitter/X Reader"
-description: "Fetch Twitter/X post content including long-form Articles — full text, author info, engagement metrics, and all embedded images downloaded locally — as clean Markdown."
+title: "Twitter/X Reader: Save Posts and X Articles as Markdown"
+description: "Save X posts and long-form X Articles as clean Markdown with YAML frontmatter, engagement metrics and every embedded image downloaded locally, ready for Obsidian or any notes app."
 seoHook: "Quoting a tweet or X Article accurately means more than screenshotting it — you need the text, metrics, and images preserved. This playbook fetches it all into citable Markdown."
-targetAudience: "researchers, content curators, journalists, analysts"
+targetAudience: "researchers, content curators, journalists, analysts, Obsidian and PKM users"
 exampleUseCase: "\"Save this X Article with its images\" → Complete Markdown with the full text, engagement metrics, and all images downloaded and referenced"
 category: "market-research"
 difficulty: "beginner"
 timeToSetup: "5 minutes"
 author: "daymade"
 sourceUrl: "https://github.com/daymade/claude-code-skills/tree/main/twitter-reader"
-tags: ["twitter", "x", "content", "markdown", "research"]
+tags: ["twitter", "x", "content", "markdown", "research", "obsidian"]
 createdAt: "2026-06-19"
+updatedAt: "2026-10-14"
 ---
 
 ## What This Does
 
-Fetch Twitter/X post content including long-form Articles — full text, author info, engagement metrics, and all embedded images downloaded locally — as clean Markdown.
-
-
-## What's Inside
-
-The template covers:
-
-- **Quick Start (Recommended)**
-- **Alternative: Jina API (Text-only)**
-- **Features**
-- **Prerequisites**
-- **Output Structure**
-- **What Gets Returned**
+Turns an X post or long-form X Article into a Markdown file you can keep: full text, author, date, likes, retweets and bookmarks in YAML frontmatter, and every embedded image downloaded into a local folder so the note still works if the post is deleted or the images expire.
 
 ---
 
 ## Quick Start
 
-### Step 1: Create a Project Folder
+### Step 1: Get the Scripts, Not Just the Template
 
-Make a dedicated folder for this workflow and open it in Claude Code.
+The template tells Claude to run `scripts/fetch_article.py`, `scripts/fetch_tweet.py` and `scripts/fetch_tweets.sh`. **Those scripts aren't part of the CLAUDE.md file**; they live in the source repository. Clone or download the [twitter-reader folder](https://github.com/daymade/claude-code-skills/tree/main/twitter-reader) and use it as your project folder. Without the scripts, Claude can only fall back to the text-only Jina method.
 
-### Step 2: Download the Template
+### Step 2: Install uv
 
-Click **Download** above to save the template, then drop it into your project as `CLAUDE.md` (or paste it into your existing one).
+Full-article mode runs through [uv](https://docs.astral.sh/uv/), which installs the Python dependencies for each run, so there's no virtual environment to manage. Check it's on your PATH with `uv --version`.
 
-### Step 3: Start Working
+### Step 3: Ask for a Post
 
-Tell Claude what you need in plain language — it will follow the template's workflow automatically. For example:
+Open the folder in Claude Code and paste a link:
 
-> Save this X Article with its images
+> Save this X Article with its images to ./Clippings: https://x.com/USER/status/ID
 
-Claude reads the template and runs the steps for you.
+---
+
+## Which Mode to Use
+
+| | Full article mode | Simple mode (Jina) |
+|---|---|---|
+| Best for | X Articles, image-heavy threads, anything you'll cite later | Quick text grabs, batches of short posts |
+| Images | Downloaded locally, linked from the Markdown | Left as remote URLs (can break later) |
+| Engagement metrics | Likes, retweets, bookmarks in frontmatter | Not included |
+| Setup | `uv` | A `JINA_API_KEY` environment variable |
+| Batch | One URL per run | `fetch_tweets.sh url1 url2 url3` |
+
+If you're saving something to quote in a report or article, use full article mode. Remote image URLs from X don't reliably stay valid, and a citation with missing figures is hard to check later.
+
+## What You Get on Disk
+
+Each run produces one Markdown file plus an attachments folder named with the date, author and title:
+
+```
+Clippings/
+├── 2026-04-03-article-title.md
+└── attachments/
+    └── 2026-04-03-author-title/
+        ├── 01-image.jpg
+        └── 02-image.jpg
+```
+
+The frontmatter (source URL, author, date, engagement counts) maps directly onto Obsidian properties, so you can sort or query saved posts by author or by likes once you've collected a few dozen.
+
+## Practical Notes
+
+- **Point the output at your vault.** Pass your Obsidian vault's clippings folder as the output directory and saved posts appear as notes straight away.
+- **Metrics are a snapshot.** Likes and retweets are recorded at fetch time. Re-fetch if you need current numbers.
+- **Some posts won't come through.** Posts from protected accounts, or deleted or age-restricted posts, generally can't be fetched by either mode.
+- **Credit the author.** Saving a post doesn't give you rights to republish it. Quote and link to the original.
+
+## Related Playbooks
+
+- [Twitter/X Automation](/playbooks/twitter-automation) — the publishing side: posting, engagement and analytics workflows
+- [Obsidian Vault Assistant](/playbooks/obsidian-vault-assistant) — link and summarize saved posts once they're in your vault
+- [Research Synthesizer](/playbooks/research-synthesizer) — turn a folder of saved posts into themes, contradictions and takeaways

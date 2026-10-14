@@ -1,73 +1,72 @@
 ---
-title: "Integrations"
-description: "Show MCP integration status."
-seoHook: "Marketing teams lose hours to ad-hoc, inconsistent integrations work — Show MCP integration status. Use when: checking active connectors, available integrations, or skill unlocks. This playbook turns the process into a repeatable, brand-aware workflow."
-targetAudience: "digital marketers, marketing managers, growth marketers"
-exampleUseCase: "\"Run /integrations for our brand\" → Integrations workflow output with brand context, structured inputs captured, process steps executed, and a complete deliverable ready for review."
+title: "MCP Integration Status Dashboard for Marketing Connectors"
+description: "See which MCP connectors are active in your Claude Code marketing setup, which skills each one powers, and which three to connect next, grouped by CRM, SEO, ads, email and analytics."
+seoHook: "You installed a marketing plugin with dozens of skills, but half of them quietly fall back to guesswork because the CRM, analytics or ad-platform connector behind them was never connected. This dashboard shows exactly what's live, what's missing, and which connection unlocks the most."
+targetAudience: "digital marketers, marketing ops leads, growth marketers, agencies running Claude Code across several client stacks"
+exampleUseCase: "\"Show me which integrations are connected for SEO and advertising\" → Coverage summary (e.g. 4 of 19 connectors active), connected vs. available connectors by category with the skills each unlocks, the top 3 to add next, and the exact command to connect each"
 category: "productivity"
 difficulty: "intermediate"
 timeToSetup: "15 minutes"
 author: "community"
 sourceUrl: "https://github.com/indranilbanerjee/digital-marketing-pro/blob/main/skills/integrations/SKILL.md"
-tags: ["integrations"]
+tags: ["integrations", "mcp", "connectors", "marketing-ops"]
 createdAt: "2026-04-14"
+updatedAt: "2026-10-14"
 ---
 
 ## What This Does
 
-Show a complete integration status dashboard — which MCP connectors are currently connected, which are available but not yet configured, and which skills each connector unlocks. This is the first thing users should check after installing the plugin to understand what capabilities are active and what additional connections they can set up.
+Gives you a status dashboard of the MCP connectors behind a Claude Code marketing setup: which are connected, which are available but not set up, and which skills each one powers. It's the first thing to run after installing the plugin, and again whenever a skill gives you generic output where you expected real data.
 
 ---
 
-## Quick Start
+## Important: This Is a Plugin Command, Not a Standalone Template
 
-### Step 1: Create a Project Folder
+This playbook is the `/dm:integrations` command from the **Digital Marketing Pro** plugin. It works by running `scripts/connector-status.py`, a script that ships with the plugin, against the plugin's connector registry. Dropping the CLAUDE.md into an empty folder gives Claude the instructions but not the script, so the dashboard has nothing to read.
 
-Create a dedicated folder for this workflow (e.g. `~/marketing/integrations`).
+To use it as intended:
 
-### Step 2: Download the Template
+1. Install the full plugin from its [source repository](https://github.com/indranilbanerjee/digital-marketing-pro), following the setup steps in its README.
+2. Run `/dm:integrations` inside a project where the plugin is active.
 
-Click **Download** above and save the file as `CLAUDE.md` in that folder.
+If you only want to know what's connected in plain Claude Code, without the plugin, see the next section.
 
-### Step 3: Run the Workflow
+## Checking MCP Status Without the Plugin
 
-Open the folder in Claude Code and describe your goal. Claude will prompt you for any missing inputs, follow the structured process, and produce a complete deliverable.
+Claude Code has this built in, just without the marketing-specific grouping:
 
----
+- Run `/mcp` inside a Claude Code session to see every configured MCP server, whether it connected, and to sign in to servers that use OAuth.
+- Run `claude mcp list` in your terminal for the same list outside a session.
+- Look at `.mcp.json` in your project root for servers configured at project level, which is the file the plugin's script reads.
 
-## Inputs You'll Need
+What the plugin adds on top is the mapping from each connector to the plugin skills it powers, a per-category coverage count, and advice on what to connect next.
 
-The user may optionally provide:
+## Reading the Dashboard
 
-- **Filter** (optional): A specific category to focus on — e.g., "crm", "seo", "advertising", "email-marketing", "social-media". If omitted, shows all categories
-- **Show** (optional): `connected` (only active connectors), `available` (only not-yet-connected), or `all` (default)
+The plugin sorts connectors into two transport types, and the difference decides how much setup each one takes:
 
-## How It Works
+| Type | How it connects | Setup effort | Where it works |
+|---|---|---|---|
+| **HTTP** (remote) | Hosted server, you authorize with OAuth the first time a skill needs it | Low: a browser sign-in | Claude Code and other MCP clients |
+| **npx** (local) | Runs on your machine, reads an API key from an environment variable | Higher: create an API key, set the variable | Claude Code only |
 
-1. **Run connector status check**: Execute `python3 scripts/connector-status.py --action status` to get the full status dashboard. This reads the active `.mcp.json` configuration and checks environment variables for npx connectors to determine which are connected.
+That's why the "quick wins" list favors HTTP connectors: you get skill coverage for a sign-in instead of an API-key hunt.
 
-2. **Format the dashboard**: Present the results organized by category, with clear visual distinction between connected and available connectors:
+## Options
 
-   For each category (Chat, Design, CRM, SEO, Email Marketing, Advertising, Analytics, Social Media, etc.):
-   - Show connected connectors with a checkmark indicator and the skills they power
-   - Show available-but-not-connected connectors with what they would unlock
-   - For available connectors, indicate whether they are HTTP (works everywhere, easy OAuth setup) or npx (Claude Code only, requires API keys)
+- **Filter by category**: `crm`, `seo`, `advertising`, `email-marketing`, `social-media`, and others. Useful when you only care about one part of the stack.
+- **Show**: `connected`, `available`, or `all` (default).
 
-3. **Highlight quick wins**: Identify the top 3 connectors the user should consider connecting based on which would unlock the most additional skill capabilities. Prioritize HTTP connectors (easier to set up) over npx connectors.
+Example: *"Show available advertising integrations"* lists only ad-platform connectors you haven't set up yet, with what each would unlock.
 
-4. **Show coverage summary**: Display the overall integration coverage — X of Y connectors active, with a breakdown by category showing which areas have full coverage vs gaps.
+## When to Run It
 
-5. **Provide next steps**: For each available connector, briefly explain how to connect it:
-   - HTTP connectors: "Just use any skill that needs it — you'll be prompted to authorize via OAuth"
-   - npx connectors: "Run `/dm:connect <name>` for setup instructions, or `/dm:add-integration <name>` for guided configuration"
+- **Right after installing the plugin**, to see your starting coverage.
+- **When a skill returns generic advice** instead of numbers from your account. Usually its connector isn't active.
+- **Before onboarding a new client** (for agencies), to check the connectors match that client's stack.
 
-## What You Get
+## Related Playbooks
 
-A structured integration dashboard containing:
-
-- **Coverage summary**: Total connected vs total available, percentage coverage, and per-category breakdown
-- **Connected integrations**: List of all active connectors grouped by category, with the skills each one powers and its transport type (HTTP/npx)
-- **Available integrations**: List of all not-yet-connected connectors grouped by category, with what skills they would unlock, transport type, and setup complexity (HTTP = easy/OAuth, npx = requires API keys)
-- **Quick wins**: Top 3 recommended connectors to add next, based on skill coverage impact and setup ease
-- **Category gaps**: Categories with zero connected connectors highlighted, with the most impactful connector to add in each gap category
-- **Next steps**: Clear guidance — "Run `/dm:connect <name>` to set up any connector" and "Run `/dm:add-integration` for custom MCP servers not in the registry"
+- [Connect](/playbooks/connect) — the same plugin's `/dm:connect` command, for setting up one connector the dashboard flagged
+- [MCP Server Hub Manager](/playbooks/mcp-hub) — browse and manage a large catalog of MCP tools
+- [MCP Server Builder](/playbooks/mcp-server-builder) — build your own MCP server when a tool you need has no connector

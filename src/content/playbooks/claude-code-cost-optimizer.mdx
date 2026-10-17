@@ -1,0 +1,59 @@
+---
+title: "Claude Code Cost Optimizer"
+description: "A static audit of a project's Claude Code setup for the handful of well-known token-cost leaks — oversized CLAUDE.md prepended every turn, bloated memory files, never-invoked skills loaded into the index, unscoped subagent fan-out, and the cache-killing hook that silently ~10x's cost — each with a PASS/WARN/FAIL check and a concrete fix, ranked by biggest win per effort."
+seoHook: "The fastest way to quietly double your Claude Code bill is a settings hook that echoes a timestamp into every message — it invalidates the prompt cache on every single turn, which can roughly 10x cost, and it never shows up as an obvious problem because everything still works, just far more expensively."
+targetAudience: "Claude Code users whose token spend jumped and want to know why, teams auditing a project for context bloat before it gets worse, developers who suspect their CLAUDE.md or memory files have grown too large, anyone doing a post-mortem after a runaway agent run burned through tokens"
+exampleUseCase: "\"My Claude Code bill doubled this month — audit this project for waste\" → A static scan running seven concrete checks (CLAUDE.md line count, memory-file size, unused large skills, subagent fan-out, prompt-cache-killing hooks, over-pinned expensive models, uncompacted sessions), each scored PASS/WARN/FAIL, returned as a priority-ranked fix list with the single biggest win — usually an oversized CLAUDE.md or a cache-invalidating hook — at the top"
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "mergisi (awesome-openclaw-agents)"
+sourceUrl: "https://github.com/mergisi/awesome-openclaw-agents/blob/main/skills/claude/cost-optimizer/SKILL.md"
+tags: ["claude-code", "cost-optimization", "token-usage", "prompt-caching", "developer-tools", "audit"]
+createdAt: "2026-10-17"
+---
+
+## What This Does
+
+A static, no-guesswork audit of the structural things that quietly inflate Claude Code token cost on every turn — it doesn't call a pricing API or try to reconstruct past spend, it inspects the setup for the handful of well-known leaks and returns a fix list ranked by biggest win per unit of effort. The headline culprits it catches are the ones that compound silently: an oversized CLAUDE.md (which is prepended to literally every message, so every excess line costs tokens forever), bloated memory files that should be a linked index rather than a dump, large skills that are never invoked yet still load into the skill index each turn, and — the sneakiest one — a settings hook that injects a timestamp or random value into every turn, breaking the prompt cache in a way that can roughly 10x cost while nothing visibly fails.
+
+Each of seven checks produces a PASS/WARN/FAIL with a concrete bash command to run and a specific remediation, and the output is a priority-ranked list so the most impactful fix surfaces first. It's deliberately honest about its own limits: it estimates *relative* impact ("~30% smaller context") and explicitly refuses to invent dollar figures unless you supply your actual bill, pointing you to a before/after cost check to validate.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir cost-optimizer && cd cost-optimizer
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Audit a Project
+
+```bash
+claude
+```
+
+Point Claude at the project whose costs you want to understand and ask it to audit for token waste. It will run the seven checks, score each PASS/WARN/FAIL, and return a priority-ranked fix list with the biggest win first — without inventing dollar savings.
+
+---
+
+## Tips & Best Practices
+
+- Fix the cache-hygiene finding first if it appears — a hook that injects changing content every turn is the single highest-leverage cost leak, since prompt caching is doing most of the work of keeping a long session affordable.
+- Treat CLAUDE.md as a thin pointer, not a knowledge base — anything a given task doesn't always need (runbooks, verbose examples, reference tables) belongs in a skill file or `docs/` that's loaded on demand rather than prepended to every message.
+- Re-run the audit after making changes and compare with an actual before/after cost check — the tool deliberately won't fabricate savings numbers, so the real validation is measuring your own per-turn overhead drop.
+
+## Limitations
+
+- A static structural inspection only — it finds setup-level leaks (context size, cache hygiene, model pinning) but can't see into the actual content of a runaway conversation or diagnose a genuinely token-heavy task that legitimately needs the context it uses.
+- It estimates relative impact, never absolute dollar savings, unless you provide your current bill — anyone wanting a hard currency figure has to supply the baseline themselves.
+- The specific thresholds (100/300 lines for CLAUDE.md, 500/1500 for memory) and file paths assume a conventional Claude Code project layout; adapt them if your setup stores these files elsewhere.

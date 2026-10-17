@@ -1,0 +1,59 @@
+---
+title: "Multi-Stage Prompt Pipeline"
+description: "A methodology for building Claude-to-Claude prompt pipelines where one stage's output feeds the next — a four-purpose taxonomy (Research/Plan/Do/Refine), per-prompt provenance folders, XML-structured outputs with required metadata tags, a fixed human-scannable SUMMARY.md, dependency-aware layered execution, and per-stage validation before anything chains forward."
+seoHook: "A single mega-prompt that researches, plans, and implements all at once produces a muddle you can't iterate on — splitting the work into staged prompts, each with one job and a durable output the next stage can parse, is what makes a multi-step AI workflow reviewable and re-runnable instead of a black box."
+targetAudience: "developers and prompt engineers building multi-step AI workflows, anyone chaining research → plan → implement across separate Claude runs, teams who want provenance and re-runnability in their agent pipelines instead of one unauditable mega-prompt, people designing prompts whose outputs other prompts (or agents) consume programmatically"
+exampleUseCase: "\"Set up a research-then-plan-then-build pipeline for our auth feature\" → A Research prompt generated first (no dependencies, parallelizable), then a Plan prompt that references the research output via an @.prompts path, then a Do prompt depending on the plan — each saved to its own .prompts/ provenance folder, each emitting an XML-structured artifact for the next stage plus a four-section SUMMARY.md for humans, with each stage validated before the next one runs"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "glittercowboy (taches-cc-resources)"
+sourceUrl: "https://github.com/glittercowboy/taches-cc-resources/blob/main/skills/create-meta-prompts/SKILL.md"
+tags: ["prompt-engineering", "ai-workflows", "multi-agent", "pipelines", "developer-tools", "meta-prompting"]
+createdAt: "2026-10-17"
+---
+
+## What This Does
+
+A methodology for designing prompts that feed other prompts — the Claude-to-Claude pipeline pattern where research hands off to planning, planning hands off to implementation, and each stage's output is structured for the next stage to parse rather than re-interpret. The organizing insight is that one prompt should do one job: a mega-prompt attempting research, planning, and execution at once produces a muddled result that's impossible to iterate on, whereas staged prompts — each with a single purpose, a durable output artifact, and its own provenance folder under `.prompts/` — are individually reviewable, re-runnable, and composable. Every prompt is classified by one of four purposes (Research, Plan, Do, Refine), inferred from the request's keywords or asked outright, which also determines its default dependencies.
+
+The pipeline mechanics are what make it robust: outputs that later stages consume carry XML metadata (confidence, dependencies, open questions, assumptions) so the next Claude parses facts rather than prose; every run also emits a four-section `SUMMARY.md` (Key Findings, Decisions Needed, Blockers, Next Step) with a substantive one-line headline so a human can scan progress in seconds; prompts reference each other by `@.prompts/` paths, which build a dependency graph that runs independent stages in parallel and dependent ones in layers; and each stage is validated (artifact exists, non-empty, required metadata present, summary complete) before its output is allowed to chain forward — a hard failure stops the chain rather than feeding a broken artifact downstream. Refine prompts version the prior output into an archive rather than overwriting it, keeping the reasoning chain intact.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir prompt-pipeline && cd prompt-pipeline
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Build a Pipeline
+
+```bash
+claude
+```
+
+Describe a multi-step task (e.g. "research, plan, then implement authentication"). Claude will classify each stage by purpose, generate the staged prompts into their own provenance folders with XML-structured outputs and human summaries, wire up dependencies, and validate each stage before chaining to the next.
+
+---
+
+## Tips & Best Practices
+
+- Let the purpose taxonomy drive the split — if you can't say whether a prompt is Research, Plan, Do, or Refine, it's probably trying to do more than one of them and should be split further.
+- Insist on a substantive one-line headline in every `SUMMARY.md` — a generic "research completed" defeats the entire point of the summary, which is letting a human (or the next prompt) grasp the outcome without opening the full artifact.
+- Validate each stage before chaining, especially the metadata tags on research/plan outputs — a missing `<open_questions>` or `<assumptions>` block is exactly the kind of silent gap that makes the downstream plan or implementation quietly wrong.
+
+## Limitations
+
+- The methodology assumes a filesystem convention (`.prompts/` folders, `@`-path references) for provenance and dependency tracking — adapting it to an environment without persistent local files means re-implementing that bookkeeping some other way.
+- It's built for genuinely multi-stage work; a single well-scoped task doesn't need the pipeline overhead and is better served by one direct prompt.
+- The source's full purpose-specific prompt patterns live in separate reference files not reproduced here — this playbook captures the portable pipeline architecture (taxonomy, provenance, output structure, dependency execution, validation), and the exact wording of each purpose's prompt template is left to your own templates.

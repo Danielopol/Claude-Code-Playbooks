@@ -1,0 +1,59 @@
+---
+title: "Auth & Authorization Patterns"
+description: "A battle-tested checklist for implementing authentication and authorization correctly — password hashing, short-lived JWTs with refresh tokens, OAuth2 Authorization Code + PKCE, the four token claims to always validate, RBAC/ABAC at the service layer, and session-fixation and cookie-flag defenses, each with the why behind it."
+seoHook: "Most auth bugs aren't exotic — they're a password hashed with SHA-1, an access token parked in localStorage where any XSS can grab it, or a permission checked once at login and never again, and each one has a one-line fix that teams keep missing because nobody wrote the rules down in one place."
+targetAudience: "backend and full-stack developers implementing login, tokens, or access control, engineers adding OAuth2/OIDC to a user-facing app, teams reviewing an auth PR who want a concrete checklist instead of 'looks fine', anyone who needs the reasoning behind each auth rule so they can apply it to their own stack rather than copy a snippet blindly"
+exampleUseCase: "\"Review our new login and permissions code\" → Each pattern checked in turn — passwords confirmed on bcrypt/argon2 not a fast hash, refresh tokens kept out of JavaScript's reach, every protected endpoint verified to check authorization server-side rather than just hiding a UI button, OAuth flows confirmed to use Authorization Code + PKCE, and tokens validated on iss/aud/exp/nonce — each finding backed by the specific attack it prevents"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "aiming-lab (MetaClaw)"
+sourceUrl: "https://github.com/aiming-lab/MetaClaw/blob/main/memory_data/skills/auth-and-authorization-patterns/SKILL.md"
+tags: ["authentication", "authorization", "jwt", "oauth2", "security", "rbac"]
+createdAt: "2026-10-17"
+---
+
+## What This Does
+
+A compact, high-signal checklist of the auth patterns that matter most, split cleanly along the distinction that trips up the most implementations: authentication (proving *who* a user is) versus authorization (deciding *what* they may do). It states each rule with the specific attack or failure it prevents, so the guidance transfers to any stack rather than being a copy-paste snippet — why password hashes must be deliberately slow (brute-forcing leaked dumps), why access tokens stay short-lived and refresh tokens stay out of `localStorage` (XSS theft), why authorization gets re-checked on every request rather than trusted from a one-time login, and why OAuth2 user flows need Authorization Code with PKCE (code interception on public clients).
+
+It covers the full surface a typical login system touches: password hashing (bcrypt/argon2, never MD5/SHA-1), short-lived JWTs paired with securely-stored refresh tokens, MFA for sensitive operations, RBAC/ABAC enforced at the service layer rather than hidden in the UI, least privilege for every role and token, the four JWT/OIDC claims to always validate (`iss`, `aud`, `exp`, `nonce`), and session hygiene (regenerate the session ID on login to block fixation; set `HttpOnly` and `Secure` on cookies). A final quick-review checklist makes it usable as a pre-ship or PR-review gate.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir auth-patterns && cd auth-patterns
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Implement or Review Auth
+
+```bash
+claude
+```
+
+Ask Claude to implement a login flow, token scheme, or access-control layer — or to review existing auth code. It will apply these patterns by default and flag gaps against the quick-review checklist, naming the specific attack each missing control would otherwise allow.
+
+---
+
+## Tips & Best Practices
+
+- Treat "check authorization on every request" as non-negotiable — the most common real-world authorization bug is a system that authenticates correctly at login and then assumes that token is a blanket permission for every subsequent action.
+- Keep access tokens genuinely short-lived (15–60 minutes) and lean on refresh tokens for longevity — a long-lived access token is the single change that most widens the blast radius of any token leak.
+- Never store a token your frontend JavaScript can read if you can avoid it — an `HttpOnly` cookie survives an XSS incident that would hand `localStorage` contents straight to the attacker.
+
+## Limitations
+
+- A patterns checklist, not a drop-in implementation — the correct library and exact configuration depend on your language and framework, and the whole point of rule one is to use a vetted library rather than code these primitives yourself.
+- Covers the common web/app auth surface (passwords, JWT, OAuth2/OIDC, sessions, RBAC/ABAC); specialized needs like passwordless/WebAuthn, mTLS, or hardware-backed keys have their own additional considerations beyond this list.
+- Security guidance evolves — treat this as a strong default baseline and still check current OWASP and your identity provider's own recommendations for anything high-stakes.

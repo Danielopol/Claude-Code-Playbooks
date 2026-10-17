@@ -1,0 +1,59 @@
+---
+title: "活人感写作 · Human-Feel Chinese Writing"
+description: "A generative method for writing Chinese long-form prose that reads as a real person talking — a material-first gate (hold at least five concrete pieces of material that chain into an actual process before writing long, else research/ask/shorten rather than pad), a five-question speaking-position frame, first-draft craft principles, and a revision pass that bans the rhetorical moves of AI Chinese, not just their literal wording."
+seoHook: "The thing that makes AI-written Chinese feel lifeless isn't vocabulary — it's padding three thin ideas into a thousand words and leaning on moves like 不是…而是 reversals and abstract-noun lyricism; writing that feels human starts one step earlier, by refusing to write long until you actually hold enough concrete material to say something."
+targetAudience: "Chinese-language writers drafting 知乎 answers, 公众号 articles, blog posts, 人物 and industry pieces, or fiction, content creators told their writing 'AI 味太重' who want a generative method rather than a cleanup checklist, bilingual teams needing a Chinese long-form writing discipline, anyone writing Chinese prose that should read as a specific person with real material behind them"
+exampleUseCase: "\"帮我写一篇一千五百字的行业解读\" → A material gate first: if only three abstract ideas are on hand and no concrete process, Claude researches or asks at most three questions rather than padding to length — and if it still can't reach five chainable pieces of material, it delivers an honestly shorter, denser piece instead; then it drafts from a specific speaker and real material, and strips AI-Chinese rhetorical moves (不是…而是 setups, signpost colons, abstract-noun lyricism) at revision"
+category: "creative-writing"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "KKKKhazix (human-writing)"
+sourceUrl: "https://github.com/KKKKhazix/human-writing/blob/main/human-writing/SKILL.md"
+tags: ["chinese-writing", "creative-writing", "long-form", "editing", "anti-ai-slop", "style-guide"]
+createdAt: "2026-10-17"
+---
+
+## What This Does
+
+A generative method for writing Chinese long-form prose (知乎 answers, 论坛 long posts, 公众号 articles, blogs, 人物 and industry pieces, 科普, tutorials, personal narrative, and fiction) so that it reads as a specific, real person talking rather than a model generating. Its organizing claim is an order of operations most "sound more human" advice skips: the human feel comes first from *material*, second from the *speaking position*, and only last from *tone* — so it refuses to treat the problem as a surface-polish task. The load-bearing move is a material-first gate: before writing anything long, you must hold at least five concrete pieces of material that chain into an actual process, each traceable to something the user said or a verifiable source. If you can't, the method forces a real choice — research it, ask at most three pointed questions, or write something honestly shorter — rather than the default failure mode of padding three thin ideas out to the requested word count with invented examples and the same point explained five ways.
+
+Once material is in hand, it supplies a five-question speaking-position frame (who's talking and what they actually know versus guess; what prompted them; what concrete material backs the piece; what they judge and on what basis; what the reader will ask next) and a set of first-draft craft principles (hit the subject fast, advance every paragraph with something genuinely new, let detail carry emotion instead of explaining it). Only at revision does it apply its anti-AI-slop list — and the key subtlety is that it bans the rhetorical *move*, not the literal phrase: the 不是…而是 reversal setup, four-part parallel restraint, abstract-noun-plus-concrete-verb lyricism, nominalized verbs, em-dashes, signpost colons, and metaphor-wrapped abstractions are all prohibited however they're reworded, because swapping the words while keeping the move leaves the same tell. This makes it a generative companion to a pure after-the-fact style audit, not a duplicate of one.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir human-writing && cd human-writing
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Write
+
+```bash
+claude
+```
+
+Describe what you want written in Chinese and roughly how long. Claude will first check whether it actually holds enough concrete material — researching, asking up to three questions, or proposing a shorter piece if not — then draft from a specific speaker, and strip the AI-Chinese rhetorical moves at revision rather than padding to length.
+
+---
+
+## Tips & Best Practices
+
+- Expect, and allow, the material gate to push back on length — when the honest answer is "there are only three real things to say here," a tight 600-character piece is the method working correctly, not failing to follow instructions.
+- Feed it your actual material up front (your experience, the specific numbers, the real quotes) — the method is explicit that a realistic, lived piece comes from material it can trace, and withholding it just triggers the three-question round.
+- Use it as the generative front half and a dedicated AI-tell audit as the back half if you want belt-and-suspenders — this method bans the rhetorical moves while drafting, and a separate line-by-line audit catches anything that slips through.
+
+## Limitations
+
+- Chinese-language-specific by design — the banned constructions (翻案腔, signpost colons, the four-part parallel) and the韵律 it's tuning for are features of Chinese internet long-form prose and don't map onto English AI-writing cleanup.
+- It's a writing-craft and editorial discipline, not a fact-checker — for non-fiction it insists every real claim be traceable to user-supplied or verifiable material, but it can't itself verify that a source is accurate; that still needs a real check.
+- The method deliberately favors substance over hitting a word count, so it will sometimes deliver less than you asked for when the material doesn't support more — that's a design choice, and a request that genuinely needs length still needs you to supply or allow the research that backs it.

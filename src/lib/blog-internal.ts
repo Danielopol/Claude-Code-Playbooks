@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'ai-comps-analysis-data-sources',
+    slug: 'ai-comps-analysis-data-sources',
+    title: 'How to Run Comps Analysis with AI (and Where the Data Actually Comes From)',
+    description: "Every AI comps demo starts with the numbers already in the sheet. Here is where trading comps data really comes from, what each source costs and misses, and a Claude Code workflow that builds the table with a clean EV bridge and honest gaps.",
+    category: 'tutorial',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'default',
+    thumbnailTitle: 'AI Comps Analysis',
+    tags: ['ai comps analysis', 'comparable company analysis automation', 'trading comps ai', 'comps data sources', 'enterprise value bridge', 'claude code finance', 'fmp api comps'],
+    createdAt: '2026-10-17',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'automate-morning-market-note-claude-code',
     slug: 'automate-morning-market-note-claude-code',
     title: 'Automate Your Morning Market Note with Claude Code',

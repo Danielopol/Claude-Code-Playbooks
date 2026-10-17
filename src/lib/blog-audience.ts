@@ -19,7 +19,7 @@ const RULES: [RegExp, string, TopicId][] = [
   [/teachers/, 'teachers', 'academic-research'],
   [/stock-rover|seeking-alpha/, 'investors', 'finance'],
   [/equity-research|fiscal-ai|earnings-note|morning-market-note/, 'equity research analysts', 'finance'],
-  [/private-equity|financial-modeling|koyfin|deal-screening|fmp-api|dcf|investment-banking/, 'finance professionals', 'finance'],
+  [/private-equity|financial-modeling|koyfin|deal-screening|fmp-api|dcf|investment-banking|comps-analysis/, 'finance professionals', 'finance'],
   [/investors/, 'investors', 'finance'],
   [/accountants|tax-season|invoice-processing/, 'accountants', 'finance'],
   [/personal-finance/, 'your personal finances', 'finance'],

@@ -95,12 +95,12 @@ export const affiliates: Affiliate[] = [
     topics: ['academic-research'],
   },
   {
-    // PartnerStack (terms shown after approval). Apply: gammaapp.partnerstack.com/?group=affiliates
+    // PartnerStack (terms shown in the partner dashboard). Approved 2026-10-20.
     slug: 'gamma',
     name: 'Gamma',
+    trackingUrl: 'https://try.gamma.app/1fthcc0o7awq',
     tagline: 'Turn a Claude-written storyline into a finished slide deck.',
     topics: ['consulting-strategy'],
-    pricing: 'Free plan available',
   },
   {
     // Up to 30% recurring for 12 months, 90-day window. Apply: fireflies.ai/affiliate

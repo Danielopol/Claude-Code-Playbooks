@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { AffiliateLink } from '@/components/AffiliateLink';
 import { BlogPostLayout } from '@/components/BlogPostLayout';
 
 export const metadata: Metadata = {
@@ -214,6 +215,15 @@ export default function ClaudeSkillsConsultantsPage() {
       <p className="mt-4">
         Consultants who use these Skills report the same effect: they spend less time building the framework and more time filling it with insight. The PESTEL cells get populated faster, so more time goes to sourcing the specific intelligence that makes each cell useful. The Minto diagnosis catches structural problems in draft, so the revision is a targeted fix rather than a full restructure at 11pm before the client meeting. The proposal reflects the discovery conversation, so the first draft requires fewer rounds of "make it more specific to them." The analytical work — the judgment about what the macro forces mean, which strategic levers are real, what the client's actual problem is — that stays with the consultant. The scaffolding gets handled.
       </p>
+
+      <div className="bg-[#161b22] border border-[#30363d] rounded-lg p-4 my-6">
+        <p className="text-sm text-muted-foreground mb-0">
+          <span className="text-foreground font-medium">From storyline to deck:</span> once the Minto pyramid is sound, the last step is the slides. Paste the answer, the arguments and the evidence into <AffiliateLink partner="gamma">Gamma</AffiliateLink> to get a designed first draft, then edit it the way you would any junior's deck. The structure is yours; the layout work is what you skip.
+        </p>
+        <p className="text-xs text-muted-foreground mt-2 mb-0">
+          The Gamma link is an affiliate link: we may earn a commission if you subscribe, at no extra cost to you.
+        </p>
+      </div>
 
       <h2 className="text-2xl font-semibold text-foreground mt-10 mb-4 border-b border-[#30363d] pb-2">
         What Is &quot;The Consultant&apos;s Guide to Claude&quot;?

@@ -95,6 +95,14 @@ export const affiliates: Affiliate[] = [
     topics: ['academic-research'],
   },
   {
+    // Up to 30% commission (Rewardful campaign). Approved 2026-10-21.
+    slug: 'jenni-ai',
+    name: 'Jenni AI',
+    trackingUrl: 'https://jenni.ai/?via=daniel-marin',
+    tagline: 'AI writing assistant for academic papers, with in-editor citations.',
+    topics: ['academic-research'],
+  },
+  {
     // PartnerStack (terms shown in the partner dashboard). Approved 2026-10-20.
     slug: 'gamma',
     name: 'Gamma',

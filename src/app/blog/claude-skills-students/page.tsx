@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { AffiliateLink } from '@/components/AffiliateLink';
 import { BlogPostLayout } from '@/components/BlogPostLayout';
 
 export const metadata: Metadata = {
@@ -217,6 +218,16 @@ export default function ClaudeSkillsStudentsPage() {
       <p className="mt-4">
         What the Skills replace is the improvised system — the scattered notes, the unstructured Zotero library, the blank synthesis document, the reading that evaporates. The throughput problem does not go away, but the structural layer that converts throughput into knowledge is no longer something each student has to invent from scratch.
       </p>
+
+      <div className="bg-[#161b22] border border-[#30363d] rounded-lg p-4 my-6">
+        <p className="text-sm text-muted-foreground mb-0">
+          <span className="text-foreground font-medium">Writing the paper itself?</span> These Skills handle finding, screening and understanding sources. For drafting, an editor built for academic writing such as{' '}
+          <AffiliateLink partner="jenni-ai">Jenni AI</AffiliateLink> adds in-editor suggestions and citations. Check your course&apos;s AI policy first, and verify every citation yourself.
+        </p>
+        <p className="text-xs text-muted-foreground mt-2 mb-0">
+          The Jenni AI link is an affiliate link: we may earn a commission if you subscribe, at no extra cost to you.
+        </p>
+      </div>
 
       <h2 className="text-2xl font-semibold text-foreground mt-10 mb-4 border-b border-[#30363d] pb-2">
         Get the Student Skills

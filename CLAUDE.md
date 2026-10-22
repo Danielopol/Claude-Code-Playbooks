@@ -32,6 +32,13 @@ npm run lint    # Run ESLint
 - `/playbooks/[slug]` - Individual playbook page (static generation via `generateStaticParams`)
 - `/categories/[category]` - Filtered playbooks by category
 - `/api/subscribe` - Newsletter subscription endpoint
+- `/api/v1/*` - Public read-only JSON API for the CLI and other tools (shared helpers in `src/lib/api.ts`):
+  - `/api/v1` - Discovery document listing the endpoints
+  - `/api/v1/playbooks?q=&category=&difficulty=&tag=&limit=&offset=` - Search/list (the only dynamic route; CDN-cached per query)
+  - `/api/v1/playbooks/[slug]` - One playbook with its template inline (ISR like `/playbooks/[slug]`: rendered on first request, cached a day; unknown slugs 404)
+  - No `OPTIONS` exports on these routes: they make Next treat the route as non-static and the ISR route 500s
+  - `/api/v1/categories` - Categories with playbook counts (static)
+  - Treat response shapes as a public contract: add fields freely, but rename or remove only in a new `/api/v2`
 
 ### UI Components
 - Uses shadcn/ui (new-york style) with components in `src/components/ui/`

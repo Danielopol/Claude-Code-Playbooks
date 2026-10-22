@@ -90,6 +90,19 @@ export function getPlaybookSlugs(): string[] {
 }
 
 export async function getPlaybookBySlug(slug: string): Promise<Playbook | null> {
+  const playbook = getPlaybookSource(slug);
+  if (!playbook) return null;
+
+  // Convert markdown content to HTML
+  return { ...playbook, content: await markdownToHtml(playbook.content) };
+}
+
+/**
+ * Full frontmatter plus the CLAUDE.md template, with `content` left as raw
+ * markdown. The page renders it to HTML via getPlaybookBySlug(); the API
+ * (/api/v1/playbooks/[slug]) never needs the HTML, so it skips the remark pass.
+ */
+export function getPlaybookSource(slug: string): Playbook | null {
   const fullPath = path.join(playbooksDirectory, `${slug}.mdx`);
 
   if (!fs.existsSync(fullPath)) {
@@ -112,9 +125,6 @@ export async function getPlaybookBySlug(slug: string): Promise<Playbook | null> 
     claudeMdTemplate = templateMatch ? templateMatch[1].trim() : undefined;
   }
 
-  // Convert markdown content to HTML
-  const htmlContent = await markdownToHtml(content);
-
   return {
     slug,
     title: frontmatter.title,
@@ -131,7 +141,7 @@ export async function getPlaybookBySlug(slug: string): Promise<Playbook | null> 
     createdAt: frontmatter.createdAt,
     updatedAt: frontmatter.updatedAt,
     noindex: frontmatter.noindex === true,
-    content: htmlContent,
+    content,
     claudeMdTemplate,
   };
 }

@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 import { Check, ChevronDown, ChevronUp, Copy, Download, FileCode, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { InstallCommand } from '@/components/InstallCommand';
 import { cn } from '@/lib/utils';
 
 interface TemplateViewerProps {
@@ -148,6 +149,7 @@ export function TemplateViewer({ slug, preview, truncated, totalLines }: Templat
           {' '}<span className="text-muted-foreground/50">|</span>{' '}
           Already set up? Copy the template below.
         </p>
+        <InstallCommand slug={slug} />
       </div>
       <div className="p-4">
         <div className="bg-[#0d1117] rounded-lg border border-[#30363d] max-h-[400px] overflow-auto">

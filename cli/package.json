@@ -1,0 +1,35 @@
+{
+  "name": "ccplaybooks",
+  "version": "0.1.0",
+  "description": "Search and install Claude Code Playbooks (CLAUDE.md templates and Skills) from the command line",
+  "type": "module",
+  "bin": {
+    "ccplaybooks": "bin/ccplaybooks.mjs"
+  },
+  "files": [
+    "bin",
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18.17"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "claude-md",
+    "skills",
+    "playbooks",
+    "cli"
+  ],
+  "homepage": "https://www.claudecodehq.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Danielopol/Claude-Code-Playbooks.git",
+    "directory": "cli"
+  },
+  "license": "MIT"
+}

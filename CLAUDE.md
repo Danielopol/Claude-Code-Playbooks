@@ -37,6 +37,11 @@ npm run lint    # Run ESLint
   - `/api/v1/playbooks?q=&category=&difficulty=&tag=&limit=&offset=` - Search/list (the only dynamic route; CDN-cached per query)
   - `/api/v1/playbooks/[slug]` - One playbook with its template inline (ISR like `/playbooks/[slug]`: rendered on first request, cached a day; unknown slugs 404)
   - No `OPTIONS` exports on these routes: they make Next treat the route as non-static and the ISR route 500s
+
+### CLI (`cli/`)
+- Standalone zero-dependency npm package `ccplaybooks` (plain ESM `.mjs`, Node 18.17+), not part of the Next build. It only talks to `/api/v1`, so API response changes must stay backward compatible.
+- `cd cli && npm test` runs the `node:test` suite (fake fetch, temp dirs, no network)
+- Point it at a local server: `CCPLAYBOOKS_API_URL=http://localhost:3000/api/v1 node cli/bin/ccplaybooks.mjs search excel`
   - `/api/v1/categories` - Categories with playbook counts (static)
   - Treat response shapes as a public contract: add fields freely, but rename or remove only in a new `/api/v2`
 

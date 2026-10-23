@@ -38,6 +38,13 @@ export const affiliates: Affiliate[] = [
     pricing: 'Premium about $299/yr',
   },
   {
+    // Via CJ. Pending approval; terms shown after approval.
+    slug: 'quickbooks',
+    name: 'QuickBooks',
+    tagline: 'Accounting software with an official Claude connector for live P&L and cash flow.',
+    topics: ['finance'],
+  },
+  {
     // 25% of payments for the first 12 months (Rewardful, "Fiscal.ai Affiliate Campaign 3"). Approved 2026-09-24.
     slug: 'fiscal-ai',
     name: 'Fiscal.ai',

@@ -10,6 +10,21 @@ import { BlogPost } from '@/types/blog';
  */
 export const internalBlogPosts: BlogPost[] = [
   {
+    id: 'claude-accountants-month-end-close-stack',
+    slug: 'claude-accountants-month-end-close-stack',
+    title: 'Claude for Accountants: The Month-End Close Stack',
+    description: "How to wire Claude into a month-end close without giving it the keys to the ledger: QuickBooks exports in, drafts out, a tested reconciliation script, the controls to check, and an honest look at what Intuit's Claude connector can and can't do.",
+    category: 'guide',
+    difficulty: 'intermediate',
+    readingTime: '13 min read',
+    featured: true,
+    thumbnailType: 'default',
+    thumbnailTitle: 'Month-End Close Stack',
+    tags: ['month end close automation', 'ai accounting tools', 'accountant ai stack', 'quickbooks claude', 'claude bank reconciliation', 'ai bookkeeping workflow', 'month-end close checklist ai'],
+    createdAt: '2026-10-23',
+    author: 'Claude Code Playbooks',
+  },
+  {
     id: 'ai-comps-analysis-data-sources',
     slug: 'ai-comps-analysis-data-sources',
     title: 'How to Run Comps Analysis with AI (and Where the Data Actually Comes From)',

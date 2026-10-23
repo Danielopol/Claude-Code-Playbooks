@@ -400,6 +400,16 @@ export default function ClaudeSkillsAccountantsPage() {
         accounting patience. The mechanical layer belongs in the system. The judgment layer
         belongs with the accountant. These skills put both where they belong.
       </p>
+      <div className="bg-[#161b22] border border-[#30363d] rounded-lg p-4 my-6">
+        <p className="text-sm font-semibold text-foreground mb-2">Next: wire it into your ledger</p>
+        <p className="text-sm text-muted-foreground mb-0">
+          Once the skills are in place, the open question is how the data reaches Claude and what it is allowed to touch.{' '}
+          <Link href="/blog/claude-accountants-month-end-close-stack" className="text-[#22d3ee] hover:underline font-medium">
+            The month-end close stack
+          </Link>{' '}
+          covers QuickBooks exports, what Intuit&apos;s Claude connector does and doesn&apos;t do, a tested reconciliation script, and the controls to keep.
+        </p>
+      </div>
     </BlogPostLayout>
   );
 }

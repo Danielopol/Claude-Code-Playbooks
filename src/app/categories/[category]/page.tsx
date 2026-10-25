@@ -13,8 +13,9 @@ interface CategoryPageProps {
   params: Promise<{ category: string }>;
 }
 
-// Regenerate daily so sponsor and tool-listing dates apply without a deploy.
-export const revalidate = 86400;
+/* Rendered once per deployment. Sponsor and tool-listing dates are checked at
+ * render time, so a listing starting or ending takes effect on the next deploy. */
+export const revalidate = false;
 
 export async function generateStaticParams() {
   return categories.map((c) => ({ category: c.id }));

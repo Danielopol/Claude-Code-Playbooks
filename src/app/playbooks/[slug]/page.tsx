@@ -99,8 +99,11 @@ const playbookFaqs: Record<string, FaqItem[]> = {
   ],
 };
 
+/* Content only changes on deploy, and each deploy starts a fresh ISR cache,
+ * so a page renders once per deployment (on its first request) and is never
+ * regenerated on a timer. */
 export const dynamicParams = true;
-export const revalidate = 86400;
+export const revalidate = false;
 
 export async function generateStaticParams() {
   return [];

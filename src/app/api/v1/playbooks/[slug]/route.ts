@@ -7,11 +7,11 @@ import { apiError, apiJson, toDetail } from '@/lib/api';
  *
  * Same rendering strategy as /playbooks/[slug]: nothing is prerendered at
  * build time (1.2k+ extra renders for little gain); each slug renders on its
- * first request and is then cached for a day (ISR). The MDX and
+ * first request and is then cached until the next deploy (ISR). The MDX and
  * public/templates files are included in the function's trace, so reading
  * them at request time works on Vercel.
  */
-export const revalidate = 86400;
+export const revalidate = false;
 
 export async function generateStaticParams() {
   return [];

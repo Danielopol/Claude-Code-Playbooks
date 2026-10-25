@@ -5,8 +5,9 @@ import { ToolsDirectory } from '@/components/ToolsDirectory';
 import { SponsorLogo } from '@/components/SponsorStack';
 import { getDirectoryTools, TOPICS, withUtm } from '@/lib/sponsors';
 
-// Regenerate daily so listings appear and expire on their dates without a deploy.
-export const revalidate = 86400;
+/* Rendered once per deployment. Sponsor and tool-listing dates are checked at
+ * render time, so a listing starting or ending takes effect on the next deploy. */
+export const revalidate = false;
 
 export function generateMetadata(): Metadata {
   // An empty directory is a thin page — keep it out of the index until the

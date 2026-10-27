@@ -1,0 +1,94 @@
+---
+title: "Firecrawl Job Posting Finder"
+description: "Find current job openings by role, location, or remote eligibility, and verify each one is still open on the employer's own page before it makes the shortlist"
+seoHook: "Job boards are full of ghost listings: roles that closed weeks ago but still show up in search. This playbook has Claude search for openings, then check each one on the employer's or applicant-tracking page for closing dates and expired notices, so your shortlist contains only roles you can actually apply to."
+targetAudience: "job seekers, career changers, recruiters sourcing role benchmarks, career coaches, anyone building a shortlist of current openings"
+exampleUseCase: "\"Find remote data engineer roles in Europe paying over 80k that match my Python and dbt experience\" → a deduplicated shortlist with exact title, employer, location and remote limits, advertised pay with currency and period, required vs. preferred qualifications, fit and gaps against your experience, deadline, direct application link, and when it was checked, with unverified postings kept out"
+category: "career-development"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "Firecrawl"
+sourceUrl: "https://github.com/firecrawl/firecrawl-claude-plugin/blob/main/skills/job-postings/SKILL.md"
+tags: ["firecrawl", "job-search", "careers", "remote-work", "hiring", "shortlist"]
+createdAt: "2026-10-27"
+---
+
+## What This Does
+
+Finds current job openings and **verifies** each one before including it.
+
+The process:
+
+1. **Search** with `firecrawl_search` using your role, location or remote eligibility, and required constraints. If you supply posting URLs, it goes straight to verification.
+2. **Verify on the employer's page.** For each role, Claude fetches the employer posting or linked official applicant-tracking page (a fresh capture when supported) and inspects application status, closing dates, redirects, and expired notices. A search snippet, a job-board entry, or a successful fetch alone doesn't prove applications are open.
+3. **Exclude closed roles.** Inaccessible or ambiguous postings are labelled unverified and kept out of the verified shortlist.
+4. **Return a deduplicated shortlist** with exact title, employer, location and remote restrictions, advertised compensation (with currency and period), required qualifications, fit or gaps against the experience you supplied, deadline if stated, a direct application link, and when it was checked.
+
+Required and preferred qualifications are distinguished, as are internships and regular employment, and work-authorization or clearance conditions are preserved.
+
+---
+
+## Before You Start
+
+This workflow runs on Firecrawl's hosted MCP server, which gives Claude tools to search the live web and read pages. You need a Firecrawl account and a connected MCP server.
+
+**Easiest route: the Firecrawl plugin.** In Claude Code:
+
+```
+/plugin marketplace add firecrawl/firecrawl-claude-plugin
+/plugin install firecrawl@firecrawl
+```
+
+Then run `/reload-plugins` (or start a new session) and `/mcp` to connect your Firecrawl account. Installing the plugin and connecting the account are separate steps. The plugin bundles all thirteen Firecrawl skills, so this playbook is mainly for people who want just this one workflow as a standalone CLAUDE.md. Choose one installation of Firecrawl so the skills don't duplicate.
+
+**Cost and privacy.** Web, developer, and paper searches are billed per request, page retrieval is billed per URL, and provider data uses each capability's listed price. Government search and provider discovery are free. Check your Firecrawl plan. Requests send search queries, page URLs, and any provider inputs to Firecrawl, so include only what the task needs.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/JobSearch
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/JobSearch/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/JobSearch
+claude
+```
+
+Then ask in plain language:
+
+```
+"Find current [role] openings in [city or remote], and check that each is still open"
+"Who is hiring [role] with salary above [amount]? Compare them to my background: [skills]"
+"Check whether these postings are still open: [URL 1], [URL 2]"
+```
+
+---
+
+## Tips & Best Practices
+
+- **Share your relevant experience.** Fit and gaps are judged against what you supply, and nothing is inferred about you.
+- **State hard constraints.** Location, remote eligibility, pay floor, visa or clearance needs.
+- **Check the date.** Each result shows when it was checked. Postings can close the same day.
+- **Expect a short list.** If few roles are verified, Claude reports the shortfall instead of padding with closed or unverified ones.
+
+---
+
+## Limitations
+
+- **Pay is only what's advertised.** Claude doesn't estimate unstated compensation, and unstated fields are marked unknown.
+- **No actions.** It doesn't apply, contact employers, or create job alerts.
+- **A fetch isn't a guarantee.** Even a verified posting can fill or close later. Check before you invest in an application.
+- **Not recruiting advice.** It doesn't infer qualifications from personal traits.

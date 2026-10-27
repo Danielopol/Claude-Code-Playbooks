@@ -1,0 +1,104 @@
+---
+title: "Slop-Free Check: 8 Questions Before You Ship"
+description: "A pre-publish review that walks you through eight yes/no questions on your process and your draft, without rewriting a word of it"
+seoHook: "Scrubbing em dashes doesn't make a draft yours. Slop is what you get when AI does the thinking your readers expected you to do. This playbook makes Claude a skeptical reviewer that quizzes you, counts your tells, and checks whose ideas ended up on the page before your name goes on it."
+targetAudience: "consultants shipping client deliverables, founders writing essays and investor updates, analysts publishing research notes, newsletter authors, team leads reviewing AI-assisted docs, anyone whose name goes on AI-assisted writing"
+exampleUseCase: "\"Slop check this memo before I send it\" → Claude quizzes you on the main claim without the draft in front of you, lists every factual claim to verify, quotes 6 instances of 'not X, but Y' contrasts, marks cuttable recap sentences (~20% shorter), splits contributions into Author vs. AI columns, and ends with an 8-row scorecard: Ready to ship, or Not yet with the top 3 fixes"
+category: "research-writing"
+difficulty: "beginner"
+timeToSetup: "5 minutes"
+author: "Tenex"
+sourceUrl: "https://www.tenex.co/playbooks/stay-slop-free-say-yes-to-these-8-questions"
+tags: ["writing", "editing", "ai-detection", "review", "voice", "content"]
+createdAt: "2026-10-27"
+---
+
+## What This Does
+
+Turns Claude into a pre-publish reviewer that runs your draft through Tenex's "Stay Slop-Free" field guide. The guide's premise is that AI-assisted writing becomes slop when it substitutes for work the audience reasonably expects the author to have done. So the check covers two sides: four **process** questions (did you do the thinking?) and four **artifact** questions (did that thinking make it onto the page?). The goal is an honest yes on all eight.
+
+Most anti-slop playbooks rewrite your text for you. This one does the opposite: Claude never edits the draft during the run. It quizzes, counts, quotes, and asks, and you decide each verdict. A revision pass is offered only after the scorecard, and only if you want it.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/SlopFreeCheck
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/SlopFreeCheck/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/SlopFreeCheck
+claude
+```
+
+Drop your draft into the folder (or paste it) and say "slop check this" or "run the 8 questions." Claude will ask what else you can share, then take you through one question at a time.
+
+---
+
+## What to Bring
+
+All of these are optional. Claude skips the related steps when something is missing.
+
+- **The draft** you're about to ship
+- **The first AI output**, so Claude can compare it against the final (Question 4). If you wrote the first draft yourself, that question is an automatic yes.
+- **2–3 samples of your own writing done without AI**, so Claude can judge whether the draft sounds like you (Question 7)
+- **Your sources and notes**, if the drafting happened outside this conversation (Question 8)
+- **Who the audience is** and whether your name goes on the piece
+
+You can run all eight questions (the default) or jump straight to specific ones.
+
+---
+
+## The 8 Questions
+
+**Process: did I do the work?** Nobody else can see your process, so these only work if you answer honestly.
+
+1. **Understanding.** Do I understand what I'm claiming and why? Claude plays the skeptic and quizzes you, without the draft in front of you, on the main claim, why it holds, where it's weakest, and the strongest objection.
+2. **Accuracy.** Did I check the facts myself? Claude lists every factual claim (numbers, dates, quotes, study findings) and names the kind of source that would confirm each one. It doesn't rule on whether they're true. You check them.
+3. **Judgment.** Did I decide what matters, what it means, and how to frame it? Claude identifies your main framings, flags the ones that read as borrowed talking points, and offers alternatives without saying which is better.
+4. **Improvement.** Can I show how I improved the initial outputs? Claude compares the first AI output to your final and calls out changes that are only cosmetic.
+
+**Artifact: can a reader tell?** Imagine a reader smarter than you.
+
+5. **Authenticity.** Is it free of obvious AI tells? Claude flags repeated rhythms, stock transitions, "not X, but Y" contrasts, and inflated claims, with a count and a quote for every instance.
+6. **Necessity.** Is every part doing work for the reader? Claude marks sentences that repeat, announce, or recap, and estimates how much shorter the piece could be.
+7. **Authorship.** Would a reader recognize me as the author without my name on it? Using your writing samples, Claude points to the passages where the draft stops sounding like you. Marked N/A for writing where the author should stay invisible.
+8. **Contribution.** Is there something here only because I was involved? Claude builds an **Author's contributions | AI's contributions** table, quoting where each one came from, then asks whether the piece would lose something essential without your column.
+
+---
+
+## The Scorecard
+
+After the last question, Claude outputs a table with each question, your verdict (Yes / Not yet / N/A), and the fix you named. Then comes a one-line call: **Ready to ship** (8/8, with N/A only where it's legitimate) or **Not yet**, with the top 1–3 fixes ranked by impact. From there you can ask for help with the fixes (you direct, Claude assists) or re-run specific questions on a revised draft.
+
+---
+
+## Tips & Best Practices
+
+- **Answer Question 1 from memory.** The quiz only tells you something if you close the draft first. Hesitations are the signal.
+- **Do the fact-checking yourself.** An LLM citation isn't verification, and neither is seeing a claim repeated in many places. The more important the claim, the closer to the original evidence you should get.
+- **Count, don't vibe.** For AI tells, frequency matters more than any single em dash. One "it's not X, it's Y" is fine; six is a pattern.
+- **Length isn't effort.** Excess length is a tell in its own right, so treat the "could be X% shorter" estimate seriously.
+- **Accepting a framing is fine if you meant to.** Question 3 isn't asking you to be contrarian, only to show you chose the framing rather than inherited it.
+- **Check Claude's credit assignments.** Models lean toward flattering the author and often credit the user with ideas the model suggested. The template tells Claude to correct for this, but verify the contribution table against its quotes.
+
+---
+
+## Limitations
+
+- **The process questions depend on your honesty.** Claude can surface evidence, but only you know whether you actually checked a source or understood a claim.
+- **Claude doesn't verify facts.** Question 2 produces a checklist of claims to check, not a verdict on whether they're true.
+- **Contribution is clearest when the work happened in the same conversation.** If you drafted elsewhere, paste your sources, notes, and final piece. The Author/AI split will still be rough, since Claude can't see other chats.
+- **Eight yeses don't guarantee good writing.** They mean the work is yours, which is the standard the guide sets: if your name is on it, it should be undeniable.

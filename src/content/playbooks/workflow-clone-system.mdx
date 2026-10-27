@@ -1,0 +1,105 @@
+---
+title: "Workflow Clone System: Automate Your Work With Claude"
+description: "Audit your recurring work, turn each process into a reusable skill, map it visually, and deploy it, so your processes live in specs instead of in your head"
+seoHook: "Second-brain tools only work while you keep feeding them: stop adding notes and your Obsidian vault goes stale, stop updating the CRM and Notion goes stale. This playbook takes the other route. Claude interviews you about how you actually work, turns each process into a step-by-step skill, and maps them so you can see what's automated and what still needs you."
+targetAudience: "founders, creators, solopreneurs, consultants, operators, busy professionals, anyone with recurring work stuck in their head"
+exampleUseCase: "\"Interview me about my recurring work and tell me what to automate first\" → Claude interviews you one question at a time, builds a table of every recurring workflow scored on repeatability and judgement, ranks them by time spent and repeatability, splits something like a sponsorship pipeline into its separate processes, then helps you write a skill and a clickable HTML map for each"
+category: "productivity"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "Miles Deutscher"
+sourceUrl: "https://x.com/milesdeutscher/status/2085736739973533708"
+tags: ["automation", "workflow-audit", "skills", "sops", "productivity", "agents", "mind-map"]
+createdAt: "2026-10-27"
+---
+
+## What This Does
+
+Walks you through the five-stage system Miles Deutscher describes in his article "How to Automate Your Life With Claude (Full System)." The core idea: instead of storing notes about your processes, store the processes themselves as specs and skills an agent can run, and keep a visual map so you can oversee them.
+
+The five stages:
+
+1. **Workflow Audit.** Claude interviews you about every recurring task, then ranks them by what's worth automating first.
+2. **Specs & Skills.** Each priority workflow becomes a spec or skill, built by talking it through or by recording yourself.
+3. **Folder Design.** A business-brain folder for context and a specs folder for the processes.
+4. **Visual Map.** Each spec becomes a single interactive HTML file with color-coded nodes.
+5. **Deploy.** Run the workflows with Claude agents, a Hermes agent, or `/loop` in Claude Code.
+
+It includes the author's three prompts for the audit, the spec interview, and the map generator.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/WorkflowClone
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/WorkflowClone/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/WorkflowClone
+claude
+```
+
+Then pick a stage:
+
+```
+"Start the workflow audit"
+"I already know what to automate: walk me through turning my weekly client report into a skill"
+"Build a visual map of specs/sponsor-outreach.md"
+"What are my options for deploying these workflows?"
+```
+
+---
+
+## The Five Stages
+
+**1. Workflow Audit.** Claude interviews you one question at a time. For each workflow it records the trigger, the steps and tools, how often you do it, and how many hours a month it takes. It scores each one from 1–5 on repeatability and 1–5 on how much human judgement it needs, and pushes back on vague answers. The output is a table you can export.
+
+**2. Specs & Skills.** Two routes. *Talk it through:* explain a process out loud and Claude asks about anything vague or skipped, capturing the trigger, tools, a good output, and whether it needs your judgement. *Record a skill:* in Claude desktop, hit "Record a skill" and perform the workflow while narrating it. Claude hears you and builds a reusable skill from the recording.
+
+**3. Folder Design.** Two parts: a **business brain** (meetings, finances, anything the agents should know) and **specs** (the skills and SOPs from stage 2).
+
+**4. Visual Map.** Claude turns a spec into one self-contained HTML file. Purple nodes are steps AI executes, yellow nodes need manual human input, and green nodes are external tools. Hover to highlight connections, click a node for its trigger, tools, expected output, and approval needs.
+
+**5. Deploy.** Run the workflows with Claude agents, with a Hermes agent fed your spec folders, or with `/loop` in Claude Code. You can combine them.
+
+---
+
+## Example: Breaking Down a Sponsorship Pipeline
+
+The author's own example is landing sponsor deals. On the surface it feels like one task. In practice it's seven separate processes, and only some can be automated: researching sponsors and finding contact info can run without you, but final negotiation and content delivery can't.
+
+That split is the point of the audit. You're not just finding which tasks to automate, you're finding which steps inside them.
+
+---
+
+## Tips & Best Practices
+
+- **Start with a few workflows.** Pick the highest-leverage daily tasks first and add more over time.
+- **Don't aim for completeness in one session.** You won't identify every task at once. The audit is a base to build on.
+- **Speak instead of typing.** The author dictates his spec walkthroughs with Whispr Flow because people explain things more naturally out loud.
+- **Let the questions do the work.** Steps you do automatically feel like non-steps, so you'll skip them. The interview exists to probe those gaps.
+- **Make the map.** It may seem unnecessary, but it forces you to think about where you're really using AI, to write each SOP step by step, and to see layers you can add later.
+- **Choose where the maps live.** Keep the HTML files local, or host them on something like Vercel.
+- **Keep approval points.** When a workflow acts on your behalf, mark where a human reviews it, and keep those points when you deploy.
+
+---
+
+## Limitations
+
+- **A workflow is only as good as your description.** Claude can only capture what you tell it, so vague or skipped steps produce shaky skills.
+- **"Record a skill" is a Claude desktop feature.** It isn't available from the terminal, so this playbook points you to it rather than doing it for you.
+- **Hermes agent and Claude Cowork are separate tools.** The deploy stage mentions a Hermes agent and the article builds maps in Claude Cowork. Neither is required, since the template generates maps and specs in Claude Code.
+- **The results are the author's claims.** The article says the system automates 80%+ of his work. Your results depend on how repetitive your work is and how much judgement it needs.
+- **Some steps shouldn't be automated.** Negotiation, final decisions, and anything needing your judgement stay with you, and the audit's judgement score is there to surface them.

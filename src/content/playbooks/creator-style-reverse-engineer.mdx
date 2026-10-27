@@ -1,0 +1,118 @@
+---
+title: "Creator Style Reverse-Engineer: One Video In, Style Guide Out"
+description: "Feed Claude a video from a creator you admire and get a breakdown of their style, a transcript, and a step-by-step replication plan, then blend several creators into your own style"
+seoHook: "You can feel why a creator's videos work, but you can't name it: the lighting, the cut rhythm, the title cards, the way the hook lands in ten seconds. This playbook has Claude study one video and return the style breakdown, the script structure, and a six-step plan for making your own, then helps you mix what you like from ten creators into a style that's yours."
+targetAudience: "YouTubers, short-form video creators, founders making product videos, social media managers, marketers, indie makers who build in public, anyone developing an on-camera or video style"
+exampleUseCase: "\"Break down the style, transcribe the script, and give me a replication plan. Here's the video: [file]\" → a timestamped style breakdown (lighting, B-roll, graphics, typography, pacing, arc), a cleaned transcript with the script's structure, and a six-step replication plan from concept hook to a five-act edit, with what Claude couldn't assess marked clearly"
+category: "media-production"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "The Startup Ideas Podcast (@startupideaspod)"
+sourceUrl: "https://x.com/startupideaspod/status/2033232665823113471"
+tags: ["video", "content-creation", "style-guide", "youtube", "short-form", "editing", "creative-research"]
+createdAt: "2026-10-27"
+---
+
+## What This Does
+
+Based on a workflow from The Startup Ideas Podcast: feed an AI agent a short video with one prompt, and get a full creative playbook back.
+
+> Break down the style, transcribe the script, and give me a replication plan.
+
+In the original example, a 65-second video came back as a six-step plan covering the concept hook, talking-head setup, three types of B-roll, VFX explainers, a typography system, and a five-act edit. The post says the agent captured the typography, lighting, music tempo, and emotional arc. Then the real exercise: **do this for 10 creators you admire, mix what you like from each, and that's how you build your own style.**
+
+This playbook turns that into a repeatable workflow in Claude Code:
+
+1. **Break down the style.** Concept, on-camera look, B-roll, graphics, typography, pacing, and emotional arc, with timestamps.
+2. **Transcribe the script** and summarize its structure.
+3. **Write a replication plan** in the same six-step shape, adapted to your subject.
+4. **Save it** to a `styles/` folder.
+5. **Blend** several creators' breakdowns into your own style guide.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/CreatorStyles
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/CreatorStyles/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/CreatorStyles
+claude
+```
+
+Give Claude the video and the prompt:
+
+```
+"Break down the style, transcribe the script, and give me a replication plan. Video: ~/Videos/creator-clip.mp4"
+"Analyze this one and save it to styles/: https://youtube.com/watch?v=..."
+"I've analyzed 6 creators. Compare the files in styles/ and help me build my own style guide"
+```
+
+---
+
+## Getting Claude Something It Can Analyze
+
+Claude has no direct video or audio input, so the workflow depends on getting it the right evidence:
+
+- **Transcript.** Supply one, or let Claude use a tool that makes one from the video.
+- **Frames.** Claude looks at still images pulled from the video at scene changes and regular intervals. The site's **Claude Video** playbook sets up a script that does exactly this (frames plus a timestamped transcript). If you have `ffmpeg` installed, Claude can also extract frames itself. Claude asks before installing anything.
+- **Music and sound.** Claude can't hear. It estimates tempo only from a tool's output or from your description, and otherwise marks music as **not assessed**.
+
+The template makes Claude label each observation as **observed** (with a timestamp), **inferred**, or **not assessed**, so you know what's solid. This matters for claims like "music tempo," which the original post attributes to the agent but which depend on how the video's audio actually reaches it.
+
+---
+
+## The Replication Plan
+
+The six-step skeleton from the original example, adapted to each video:
+
+| Step | What it covers |
+| --- | --- |
+| 1. Concept hook | One sentence, explainable in under 10 seconds, with a visual payoff you can show immediately |
+| 2. Talking head | Setting, lighting, orientation, and what to hold or show on camera |
+| 3. B-roll | The specific shot types to capture and how to light them |
+| 4. Explainer graphics | The look, the tools, and a speed-versus-control tradeoff |
+| 5. Typography system | Title card, section headers, and captions, defined before editing |
+| 6. Edit structure | Hook → Conflict → Build → Resolution → CTA, with timings |
+
+The details in the original (dark room, RGB lighting, vertical shooting, line art with glow on black) were specific to that one video. Claude uses the steps as a frame and fills them with what your chosen video actually does. Each step comes with the reason it works, so you learn the technique.
+
+---
+
+## Building Your Own Style
+
+After a few videos, ask Claude to compare your `styles/` folder. It builds a table of techniques across creators, asks which ones you like from each (the choice is yours), and writes a `my-style-guide.md` that resolves conflicts, such as two incompatible lighting looks, and explains each decision. It then suggests a small first test video.
+
+---
+
+## Tips & Best Practices
+
+- **Start with one tight video.** Under a couple of minutes gives clean, specific results. A long video blurs the breakdown.
+- **Pick creators for different strengths.** One for hooks, one for graphics, one for pacing. Mixing works best when each contributes something specific.
+- **Give Claude your subject.** The replication plan is far more useful when it's written for your actual topic, gear, and budget.
+- **Check the frames yourself.** For anything you plan to copy, such as a lighting setup or a transition, look at the frame Claude cites.
+- **Test small.** Shoot a short test following the plan before committing to a full video.
+- **Use timestamps.** Ask Claude to cite them, so you can verify any claim.
+
+---
+
+## Limitations
+
+- **Claude can't watch or hear the video directly.** It works from frames, a transcript, and tool output. Music, sound design, and voice delivery are marked not assessed unless you supply evidence.
+- **Equipment and software are guesses.** Claude can say a look resembles a certain lighting setup or effects style, but it can't know what camera, light, or app was actually used.
+- **A breakdown isn't a recipe for success.** It describes what the video did, not why it performed. Creators succeed for reasons a single video can't show.
+- **Copy techniques, not content.** The template tells Claude not to reproduce a creator's script, footage, music, or branding, and to suggest ways to make signature elements your own. Respect each platform's terms when downloading videos, and make sure you have the right to analyze the content.
+- **The original example is one video.** The six steps, and details like dark rooms and glow effects, came from one hardware-focused creator. Your breakdowns will differ.

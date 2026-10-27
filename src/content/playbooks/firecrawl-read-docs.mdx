@@ -1,0 +1,94 @@
+---
+title: "Firecrawl Docs Reader: Answers From Official Documentation"
+description: "Answer library, SDK, and API questions from current official docs, with version-matched code and citations instead of remembered guesses"
+seoHook: "Claude's memory of an API is frozen at its training cutoff, so you get deprecated methods and wrong defaults with total confidence. This playbook has Claude look the answer up in the current official documentation, match your version, and cite the passage it used."
+targetAudience: "developers, data engineers, DevOps engineers, technical writers, students learning a framework, anyone integrating a library or API"
+exampleUseCase: "\"How do I configure retries in the Stripe Node SDK v14? Show an example\" → Claude searches the developer index with library, language, and version, reads the matched passages, checks defaults and deprecations, and answers with code and links to the official pages, noting anything unverified"
+category: "developer-tools"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "Firecrawl"
+sourceUrl: "https://github.com/firecrawl/firecrawl-claude-plugin/blob/main/skills/read-docs/SKILL.md"
+tags: ["firecrawl", "documentation", "api", "sdk", "developer-tools", "citations"]
+createdAt: "2026-10-27"
+---
+
+## What This Does
+
+For documentation-dependent questions (setup, usage, code examples, migrations, compatibility, and documented errors), Claude retrieves the current official docs before answering instead of relying on memory.
+
+How it works:
+
+1. **Search the developer index** with `firecrawl_developer_search`, using the library or product, language, version, and the specific API, behavior, or error. It uses the version you or your project establish.
+2. **Read the passages and source URLs.** It matches the exact project and version, prefers official references, guides, and release notes, and queries unrelated concepts separately.
+3. **Scrape only when needed.** If a passage lacks the signature, example, or version context, it fetches that page. For a supplied official page, it scrapes directly.
+4. **Fall back.** If developer search is unavailable or insufficient, it uses `firecrawl_search` with the developer category, then a search restricted to the official site.
+5. **Answer.** A concise explanation with code and direct citations. It checks documented inputs, defaults, and relevant deprecations.
+
+---
+
+## Before You Start
+
+This workflow runs on Firecrawl's hosted MCP server, which gives Claude tools to search the live web and read pages. You need a Firecrawl account and a connected MCP server.
+
+**Easiest route: the Firecrawl plugin.** In Claude Code:
+
+```
+/plugin marketplace add firecrawl/firecrawl-claude-plugin
+/plugin install firecrawl@firecrawl
+```
+
+Then run `/reload-plugins` (or start a new session) and `/mcp` to connect your Firecrawl account. Installing the plugin and connecting the account are separate steps. The plugin bundles all thirteen Firecrawl skills, so this playbook is mainly for people who want just this one workflow as a standalone CLAUDE.md. Choose one installation of Firecrawl so the skills don't duplicate.
+
+**Cost and privacy.** Web, developer, and paper searches are billed per request, page retrieval is billed per URL, and provider data uses each capability's listed price. Government search and provider discovery are free. Check your Firecrawl plan. Requests send search queries, page URLs, and any provider inputs to Firecrawl, so include only what the task needs.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/DocsReader
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/DocsReader/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/DocsReader
+claude
+```
+
+Then ask in plain language:
+
+```
+"How do I set up [library] with [framework]? We are on version [X]"
+"What changed between v2 and v3 of [SDK], and how do I migrate this call?"
+"What does this documented error mean: [sanitized error message]?"
+"Read https://docs.example.com/guide/auth and show me the example"
+```
+
+---
+
+## Tips & Best Practices
+
+- **Give the version.** Version ambiguity changes answers, so tell Claude your package and version, or let it read them from your project.
+- **Never paste secrets or proprietary code into the question.** The template tells Claude not to send them in search queries, and the queries are sent to Firecrawl.
+- **Keep unrelated questions separate.** Claude queries unrelated concepts separately and keeps interacting features together.
+- **Docs vs. code.** For bugs, version discrepancies, or implementation details beyond the documentation, use the Firecrawl developer research playbook, which reads repository code, issues, and pull requests.
+
+---
+
+## Limitations
+
+- **"Documented" is not "tested."** The template tells Claude never to call an example tested unless it was run.
+- **Official behavior only.** It distinguishes official docs from issue reports and proposals. A merged fix doesn't prove it shipped in your version.
+- **Coverage depends on the index.** If the library isn't indexed, Claude falls back to ordinary search on the official site.
+- **Version limits are stated.** If the right version can't be established, Claude says so.

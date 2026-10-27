@@ -1,0 +1,104 @@
+---
+title: "Firecrawl Lead Enrichment"
+description: "Enrich one professional or a supplied lead list or CSV with role, employer, profile, and history, with per-field sources and per-row match status"
+seoHook: "A lead list with names and companies isn't useful until the roles, employers, and profiles are right, and the usual tools quietly guess when a name is ambiguous. This playbook has Claude resolve each person's identity first, enrich only confirmed matches, keep every row (including failures), and show where each field came from."
+targetAudience: "sales ops, recruiters, account executives, event organizers, partnership teams, researchers qualifying a supplied list of professionals"
+exampleUseCase: "\"Enrich this CSV of 200 leads with current title, employer, and LinkedIn URL\" → an enriched CSV with the same row order, supplied values preserved, field-level source attribution, freshness status where provided, and a per-row match, no-match, ambiguity, or error status, with ambiguous rows left unresolved instead of guessed"
+category: "sales-revenue"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Firecrawl"
+sourceUrl: "https://github.com/firecrawl/firecrawl-claude-plugin/blob/main/skills/enrich-lead/SKILL.md"
+tags: ["firecrawl", "lead-enrichment", "csv", "sales-ops", "contact-data", "data-quality"]
+createdAt: "2026-10-27"
+---
+
+## What This Does
+
+Enriches **people you already have**: one named professional, or everyone in a list or CSV. It fills requested fields and never adds new prospects. To discover new people, use the Firecrawl lead-finding playbook.
+
+How it works:
+
+1. **Look up the professional** through Firecrawl's people data providers, starting from your identifiers and requested fields. Claude chooses the cheapest read-only path that answers the question, reading each provider's input, output, and billing contract first.
+2. **Resolve identity before enriching.** It uses the strongest identifier a provider accepts (provider person ID, profile URL, or email). For a name, it includes the employer and location context, and resolves a company domain rather than guessing one. It checks match-confidence metadata against your context, because a successful response alone doesn't establish a match. For a single lead whose identity stays uncertain, it shows up to three candidates and asks you to choose. It never enriches a list of guesses or merges conflicting profiles.
+3. **Execute the selected enrichment** and inspect each result. Personal-email and phone-reveal options stay disabled. A work email is shown only if requested and returned as an actual address (masked values, unlock placeholders, and availability flags aren't addresses).
+4. **Return a contact card** (one lead) or an enriched table or CSV (many), with requested fields, relevant employment history, field-level source or provider attribution, profile links, and when checked. Supplied values are preserved unless you asked for corrections, conflicts are shown separately, and stale roles are flagged.
+
+---
+
+## Before You Start
+
+This workflow runs on Firecrawl's hosted MCP server, which gives Claude tools to search the live web and read pages. You need a Firecrawl account and a connected MCP server.
+
+**Easiest route: the Firecrawl plugin.** In Claude Code:
+
+```
+/plugin marketplace add firecrawl/firecrawl-claude-plugin
+/plugin install firecrawl@firecrawl
+```
+
+Then run `/reload-plugins` (or start a new session) and `/mcp` to connect your Firecrawl account. Installing the plugin and connecting the account are separate steps. The plugin bundles all thirteen Firecrawl skills, so this playbook is mainly for people who want just this one workflow as a standalone CLAUDE.md. Choose one installation of Firecrawl so the skills don't duplicate.
+
+**Cost and privacy.** Web, developer, and paper searches are billed per request, page retrieval is billed per URL, and provider data uses each capability's listed price. Government search and provider discovery are free. Check your Firecrawl plan. Requests send search queries, page URLs, and any provider inputs to Firecrawl, so include only what the task needs.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/LeadEnrichment
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/LeadEnrichment/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/LeadEnrichment
+claude
+```
+
+Then ask in plain language:
+
+```
+"Enrich [Name], [Role] at [Company]: current title, employer, and profile link"
+"Enrich leads.csv with current title and company size. Keep my columns and add a match status per row"
+"Who is the VP of Marketing at [Company]? Give me a contact card with source"
+```
+
+---
+
+## Handling Lists and CSVs
+
+- **Column mapping.** Claude maps your columns to supported identifiers and requested fields, asking only if an ambiguous mapping blocks the work.
+- **Nothing gets dropped.** Row IDs, order, duplicates, and every unmatched or failed row are preserved. Duplicates aren't collapsed, and row-specific supplied values aren't overwritten.
+- **Ambiguous rows stay unresolved.** Claude continues with independent matches without pausing to ask about each ambiguous row, and doesn't replay successful lookups to recover failures.
+- **Status per row.** Match, no match, ambiguity, or error.
+- **Safe batching.** Batches are used only as the provider's contract supports and within your limits. Responses are mapped by identifier or documented correspondence, never assumed response order.
+- **CSV done properly.** Output uses a CSV writer so quoting and embedded newlines survive.
+
+---
+
+## Tips & Best Practices
+
+- **Include the strongest identifier you have.** A profile URL or email resolves identity better than a bare name.
+- **State your limits.** Row counts, credit budgets, and fields needed. Claude stays within them.
+- **Ask for freshness.** Record-update dates are shown when the provider supplies them, and are kept distinct from lookup time. Unavailable freshness is "unknown."
+- **Review conflicts.** Where two sources disagree, both appear with their sources.
+
+---
+
+## Limitations
+
+- **Professional context only.** Home addresses and sensitive personal information are excluded.
+- **No CRM writes or outreach.** Claude doesn't create CRM records, enroll contacts in sequences, or send messages.
+- **No claims of verification.** Provider verification labels are preserved, but Claude doesn't claim independent verification or guaranteed deliverability.
+- **Provider access varies.** If a provider is unavailable or incomplete, Claude falls back to public professional sources within your allowed scope, or reports the gaps.
+- **Check privacy law.** Handling personal data about people has legal requirements in many places. Make sure your use is allowed.

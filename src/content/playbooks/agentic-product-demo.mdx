@@ -1,0 +1,160 @@
+---
+title: "Agentic Product Demo Videos"
+description: "Have Claude read your product and build a polished demo video in code with Remotion, so the UI is animated rather than screen-recorded"
+seoHook: "A screen recording of your app shows every state as a teleport: numbers jump, rows pop in, the cursor lands wherever. Viewers read it as a screenshot slideshow. This playbook has Claude rebuild your real screens as animated React, using a motion vocabulary and a render check that stops the usual flicker and dead-frame mistakes."
+targetAudience: "founders, product marketers, growth teams, indie hackers, designers who code, developer-relations teams, anyone who needs a landing-page loop or launch video without a video editor"
+exampleUseCase: "\"Make a demo video of my app for the landing page\" → Claude reads your repo and site, asks only whether it's the whole product or one feature, where the clip will live, and whether you already know the flow, shows a frame-by-frame shot list for you to correct, then builds the clip in your real colours and copy, previews every beat, renders a 1536×960 mp4 and poster, and runs a frame check before it passes"
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "Alex Ibragimov"
+sourceUrl: "https://github.com/Alexwtlf/agentic-product-demo"
+tags: ["video", "remotion", "product-demo", "motion-design", "marketing", "react"]
+createdAt: "2026-10-27"
+---
+
+## What This Does
+
+Gives Claude a workflow for making product demo videos where the interface is **code, not a recording**. A composition is a pure function of the frame number, so nothing snaps between frames: counters count, rows stagger in, the pointer stops before it presses.
+
+The workflow comes from the [agentic-product-demo](https://github.com/Alexwtlf/agentic-product-demo) kit. It combines three things:
+
+- **A skill file** that tells Claude how to plan a clip, what to read in your codebase, and what it must refuse to invent.
+- **A motion vocabulary** (`src/motion.ts`) with nine rules, such as "a boolean in a style is a bug" and "counters count."
+- **A render pipeline with a frame gate** that checks every render for corrupted frames and luminance jumps, including the loop seam.
+
+This playbook installs the skill as a CLAUDE.md, but the files it refers to live in the kit, so you clone that first (see Quick Start).
+
+---
+
+## Before You Start
+
+- **Node 20 or newer.** The first render downloads a headless Chromium of about 100 MB.
+- **ffmpeg**, used for stitching and sound. The kit gets its binaries from `ffmpeg-static`, which carries its own terms.
+- **Remotion licence.** The kit is MIT, but Remotion is source-available under its own licence. It's free for individuals, non-profits, and for-profit companies with up to 3 employees. Larger companies need a paid Company License from [remotion.pro](https://www.remotion.pro/license). This applies as soon as you `npm install`, so check where you land before shipping something commercial.
+
+---
+
+## Quick Start
+
+### Step 1: Clone the Kit
+
+```bash
+git clone https://github.com/Alexwtlf/agentic-product-demo.git ~/Documents/ProductDemo
+cd ~/Documents/ProductDemo
+npm install
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move it into the kit as `CLAUDE.md`:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/ProductDemo/CLAUDE.md
+```
+
+The kit ships its own short `CLAUDE.md` that points at `AGENTS.md`. Back it up first if you'd rather keep it, or merge the two. Claude still reads the skill in `.claude/skills/product-demo/` either way.
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/ProductDemo
+claude
+```
+
+Then tell Claude about your product:
+
+```
+"Make a demo video of my product for the landing page. The repo is at ../my-app and the site is https://example.com"
+"Make a 15-second clip of just the report-publishing flow, as a muted loop"
+"This clip feels dead and looks like a screen recording. Fix the motion"
+"Add sound to the finished clip for social"
+```
+
+---
+
+## How the Planning Works
+
+Claude doesn't interview you for what it could have looked up. It reads your repo, your running app, and your marketing site, drafts the whole plan, and asks for corrections. You answer three questions in one block, each with its recommended answer already selected:
+
+| Question | Choices | Why it matters |
+| --- | --- | --- |
+| **Scope** | Whole product, or one feature? | A whole-product demo strings 3–5 features into movements on a through-line. A feature clip walks one flow start to finish. |
+| **Where it lives** | A muted loop in a page section, or a standalone clip? | Sets the loop seam, whether sound is available, and the length ceiling. |
+| **Flow** | Do you already know the steps you want? | Reading your code gives a plausible flow, not necessarily the right one. Only you know which path converts. |
+
+Length is deliberately **not** a question. Claude works it out from your flow and shows the arithmetic, for example "66 for the title + 4 steps at 100 + 30 to fold out." You can answer "punchy" or "cinematic" instead of counting frames.
+
+---
+
+## The Shot List Checkpoint
+
+Before writing any code, Claude puts a beat sheet in the chat and waits: one line per phase, with the frame it starts on and what happens.
+
+```
+t0    title     "Acme Studio" · "Ask a question, publish the answer"
+0     query     types "Revenue by channel, last quarter", hits Run
+96    results   five channel rows stagger in, the counter lands on 1,940
+184   filter    "Paid only" lights, three rows dim, the total recounts
+274   publish   press, the confirmation springs into its slot
+380   out       folds back to the dark ground
+```
+
+Correcting a line here costs a sentence. Correcting it after the composition is built costs a rebuild.
+
+---
+
+## Nothing on Screen Is Invented
+
+The skill makes Claude read the screen it's about to rebuild before it draws anything:
+
+1. **Adopt your palette.** `npm run adopt ../src/app/globals.css` rewrites the kit's `theme.css` with your real tokens, and reports anything it couldn't match.
+2. **Find the screen's real source** and what it actually renders.
+3. **Grep every visible list back to its data.** Real names, real order, the whole list, not five of eight.
+4. **Check the theme and accent** the surface actually uses. It's often not `--primary`.
+5. **Read the layout from the markup:** column count, grouping, density, the anatomy of a card.
+
+It won't ask you for screenshots, because everything a screenshot would show is in the code. It also never fabricates a stand-in for a generated-media payoff. If the clip ends on something your product generates, it needs a real file.
+
+---
+
+## Preview, Render, Gate
+
+```bash
+npm run studio                  # live preview at localhost:3000
+sh scripts/preview.sh myclip    # stills on every beat + a contact sheet, in seconds
+sh scripts/render.sh myclip 366 # render, stitch to mp4 + poster, run the frame gate
+bash scripts/add-sfx.sh myclip  # optional sound pass, written to a new file
+```
+
+- **Preview first.** The frame gate measures two numbers per frame and can't tell whether the picture is right. A panel over the header, a pointer pressing the wrong element, or an empty phase all pass it. Looking at the contact sheet is what catches them.
+- **The gate** checks for corrupted frames and luminance jumps, including the seam where the last frame cuts back to the first. `render.sh` fails if it does, and keeps the frames so you can open the flagged one.
+- **Watch the mp4.** Stills can't show rhythm.
+
+---
+
+## Tips & Best Practices
+
+- **Describe the flow if you know it.** "Dashboard, they filter it, end on the published report" is enough. Fragments are fine.
+- **Say where the clip will live.** A page loop must be muted and seamless. A launch video can have sound and end on a card. Claude states which one it assumed.
+- **Sound depends on destination.** A clip that autoplays on a page has to stay muted, so the silent mp4 is the deliverable and the scored one is an extra. For a standalone launch video, the scored file is the one to ship.
+- **Use `STANDALONE=1` for clips that play once.** Without it the gate fails a launch video for ending brighter than it started.
+- **Reshoots skip the interview.** Fixing flicker, changing a zoom, or recutting an outro goes straight to work.
+- **The placeholder sounds are placeholders.** They're synthesised by ffmpeg. Drop real `.wav` files into `out/sfx/` under the same names and the timing still holds.
+
+---
+
+## Troubleshooting
+
+- **"Timed out while trying to connect to the browser."** Usually Remotion's bundled Chromium won't launch on an older system. Point it at an installed Chrome with `CHROME_PATH`, and **quit Chrome first**, because a second instance hands off to the running one and exits silently.
+- **The clip flickers.** Run `scripts/check-frames.mjs` on the mp4 before touching encoder settings. The render guide in the kit has the full debugging order.
+
+---
+
+## Limitations
+
+- **Needs the kit.** The template describes the workflow but depends on the kit's scripts and motion file being present.
+- **Remotion licensing applies to you.** Companies above 3 employees need a paid licence.
+- **The frame gate checks two numbers.** It can miss dead space, wrong pointer targets, and bad rhythm, so preview and watching the render are required steps.
+- **Tuned for product UI.** The tile detector gives false positives on grid backgrounds, stripes, and symmetric layouts. On graphic-heavy content, read every flag before believing it. On pale, low-contrast UIs it can miss corruption.
+- **Palette adoption is a snapshot.** It copies your tokens rather than linking them, so rerun it after changing them in the app. Fonts must still be wired up by hand.
+- **Themes defined in JavaScript need manual work.** If your tokens live in `tailwind.config.ts` or a `tokens.ts` rather than CSS, the adopt script finds nothing and Claude has to write `theme.css` from the values.

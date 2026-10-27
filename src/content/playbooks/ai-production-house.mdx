@@ -1,0 +1,125 @@
+---
+title: "AI Production House: Script to Storyboard"
+description: "Run a five-role film pipeline in Claude Code: diagnose the script, plan every shot with master techniques, specify the cinematography, write generation prompts, and check continuity"
+seoHook: "Every filmmaker knows what a scene should feel like and stalls on turning that feeling into a lens, a light temperature, and a shot count. Bad shot planning is where projects quietly die, in the gap between knowing what you want and knowing how to get it. This playbook makes Claude work as a Storyteller, Director, Cinematographer, Prompter, and continuity reviewer, and explains every choice so you learn the grammar of cinema as you go."
+targetAudience: "independent filmmakers, commercial directors, short-film creators, content studios, creative agencies, YouTubers making narrative pieces, writers who want to see a script visualized before committing resources"
+exampleUseCase: "\"Here's my 90-second spot script. Diagnose it, plan the shots, and write the image prompts\" → structural diagnosis ('stakes plateau after scene 4, 9 beats compressed into 3'), a scene-by-scene visual plan with technique blends and derived shot counts, per-shot lens, light, and color choices with the reasoning, generation-ready prompts marked reference-locked where a character recurs, and a five-gate continuity review"
+category: "media-production"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Amir D (@starks_arq)"
+sourceUrl: "https://x.com/starks_arq/status/2032856637048860983"
+tags: ["film", "storyboard", "cinematography", "ai-video", "prompting", "pre-production", "multi-agent"]
+createdAt: "2026-10-27"
+---
+
+## What This Does
+
+Adapts the multi-agent film pipeline from Amir D's article "How to Build a Million-Dollar Production House with AI Agents" into a Claude Code workflow. The original system used several models in sequence, each with a different job. This playbook has Claude play all five roles in order, and show its work after each one.
+
+| Role | What it does |
+| --- | --- |
+| **Storyteller** | Diagnoses the script's structure with specific problems and causes, such as a third act where "the stakes plateau after scene 12," and explains how the masters handled the same problem. |
+| **Director** | Builds a scene-by-scene visual plan, mapping what the audience sees against what they hear. It assigns technique blends by emotional function and derives shot counts from dialogue density, beat count, and environment changes. |
+| **Cinematographer** | Turns intent into lens, aperture, light, fill ratio, and color temperature, with the reason behind each choice. |
+| **Prompter** | Converts those decisions into generation-ready prompts with a consistent formula, film-stock cues, and fixes for the usual "synthetic footage" problems. |
+| **Dynamic Agent** | Reviews every shot against a continuity bible through five gates: character consistency, wardrobe continuity, coverage gaps, motion complexity, and lighting continuity. |
+
+The article's central idea is that **the storyboard isn't the product, it's the iteration surface.** You use it to explore angles you wouldn't have considered, see the script visualized before spending resources, and build a shared visual language with your team. The system should make you need it less over time, because every technical decision comes with the reasoning behind it.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/ProductionHouse
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/ProductionHouse/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/ProductionHouse
+claude
+```
+
+Drop your script into the folder (or paste it) and ask:
+
+```
+"Here's my script. Diagnose the structure first"
+"Plan the shots for scene 3. I want the confrontation to feel like Tarantino's tension with Nolan's intimacy"
+"I want this scene to feel isolating. What lens and lighting would you use, and why?"
+"Write image prompts for the whole storyboard, and mark which shots need locked character references"
+"Run the continuity review on shots 40 to 80"
+```
+
+Claude asks first for the script, the format (a spot, a short, a narrative piece), your cast and look, and which image and video tools the prompts are for.
+
+---
+
+## The Reference Library
+
+The original system was built on a knowledge base of 33 reference files: film theory, screenwriting manuals, cinematography textbooks, and frame-by-frame breakdowns of 50+ commercials, short films, and award-winning sequences, covering techniques by filmmakers from Nolan's temporal manipulation to Deakins' light. That library isn't published, and this playbook doesn't include it.
+
+What this means in practice:
+
+- Claude works from its general knowledge of documented technique, and is told to say so, to avoid inventing quotes or techniques, and to say when it's unsure whether a filmmaker really did something.
+- If you create a `references/` folder and add your own notes, breakdowns, or book excerpts, Claude reads the relevant ones first and cites them. This is the best way to make the output more specific to your style.
+
+---
+
+## What You Get
+
+A storyboard file (`storyboard/shots.md`, or CSV if you prefer) with one row per shot:
+
+| Column | Contents |
+| --- | --- |
+| Shot # and scene | Where it sits in the script |
+| Technique blend | Which masters' techniques, and why they fit the scene's emotional function |
+| Lens, light, color | The technical spec with the reasoning |
+| Prompt | Generation-ready, self-contained |
+| Reference-locked? | Whether it uses a locked character reference |
+| Gate review | Pass, fix, or fail for each of the five gates |
+
+Every shot traces back to a specific technique and a reason. A continuity bible (`storyboard/continuity.md`) tracks each character's look and wardrobe, and each location's lighting and palette, by scene.
+
+---
+
+## Prompting Notes From the Article
+
+The Prompter applies several rules the article calls out:
+
+- **Warm foreground against cool background.** It prevents the flat lighting that makes AI footage look synthetic.
+- **Catchlight and skin texture on close-ups.** It avoids the "plastic face" problem.
+- **Name the film stock.** A Kodak Vision3 5219 look and a Super 16mm 7219 look are different, and saying which sets the image.
+- **Lock character references.** In the author's pipeline, 95% of shots used edit-style generation with locked character references so faces stay consistent. The rest were environment-only or abstract shots. The template marks which of your shots should be reference-locked.
+
+---
+
+## Tips & Best Practices
+
+- **Start with the Storyteller.** Fix the structure before you plan shots. A beautiful storyboard of a broken third act is still a broken third act.
+- **Tell it the format.** The feedback you need on a 30-second commercial is different from a 12-minute narrative short.
+- **Ask "why."** The Cinematographer explains every choice. Use that to build your own instinct for lenses, light, and color.
+- **Describe feelings, not specs.** "Isolating" or "claustrophobic" is a fine input. Claude translates it into lens and lighting choices.
+- **Run the continuity review twice.** Once before you generate, to catch problems in the plan, and once after, with notes on what the tool actually produced.
+- **Revise only what changed.** Ask for specific scenes or roles to be re-run instead of starting over.
+
+---
+
+## Limitations
+
+- **Claude doesn't generate images or video.** It writes prompts. You run them in your own tools, such as the author's stack of Nano Banana Pro for images and Kling 3 Pro for video, or whatever you use. Check any model-specific syntax against that tool.
+- **No reference library is included.** The original knowledge base was built from thousands of pages and 50+ analysed videos, and isn't available. Claude relies on general knowledge unless you add your own files to `references/`.
+- **One model plays every role.** The original used different models for different roles (a long-context model for the story and visual roles, Claude for prompts and quality review). Here Claude does all of it, so roles share one model's blind spots. You can ask for alternate approaches to one decision.
+- **Shot-count rules are Claude's own.** The article says counts come from dialogue density, beat count, and environment changes, but doesn't give a formula. The template has Claude state its rule so you can adjust it.
+- **The fifth gate is an addition.** The article names a five-gate review and lists character consistency, wardrobe continuity, coverage gaps, and motion complexity. The template adds lighting continuity as the fifth, since the article names lighting mismatch as a common break.
+- **Speed claims aren't a promise.** The article says the original system produces 300+ shots in under five minutes. How long this takes depends on your script and how many rounds you do. The author's team also offers a hosted version of the system, described in the source post.

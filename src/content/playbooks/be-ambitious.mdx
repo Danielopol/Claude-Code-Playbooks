@@ -1,0 +1,95 @@
+---
+title: "Be Ambitious: Make Any Prompt Deeper, Not Bigger"
+description: "Rewrites your prompt the way a top professional in the field would ask it: raw sources, named methods, and an outside check that the result is right"
+seoHook: "Most prompts ask for a summary of a summary, and you get the same back. A professional starts from the primary source, uses specific methods, and has something other than their own opinion to prove the work is right. This playbook makes Claude rewrite your prompt that way, without making the task any bigger."
+targetAudience: "founders, analysts, researchers, consultants, engineers, writers, anyone who suspects their prompts are asking for less than the task deserves"
+exampleUseCase: "\"Be ambitious: summarize why our churn went up last quarter\" → Claude names the field (retention analytics), what an expert would do that you didn't ask for, the raw data to start from (event logs and billing exports, not the dashboard), the methods to use (cohort analysis, survival curves), what would confirm the result (a holdout cohort or a reproduced number), then hands back a rewritten prompt you can copy and run"
+category: "productivity"
+difficulty: "beginner"
+timeToSetup: "2 minutes"
+author: "DannyMac180"
+sourceUrl: "https://github.com/DannyMac180/skills/blob/main/be-ambitious/SKILL.md"
+tags: ["prompts", "prompt-engineering", "quality", "verification", "research", "workflow"]
+createdAt: "2026-10-27"
+---
+
+## What This Does
+
+Takes a task or prompt and rewrites it into a deeper version of itself. Before rewriting, Claude works out what a top professional in your field would do, then asks for exactly that. The rewrite keeps your goal and scope. It raises the standard for the same outcome.
+
+The method comes from a prompt shared by Felix Rieseberg of Anthropic, adapted into a skill by DannyMac180. Claude answers four questions first:
+
+1. **What would a top professional do that you didn't ask for?** The two or three moves that separate expert work from competent work, such as stating the decision the work serves, checking base rates, reproducing a bug before fixing it, or writing the counter-argument.
+2. **What raw material would they start from?** The dataset, not the chart. The filing, not the article. The logs and code, not the bug report.
+3. **What specific methods and tools would they use?** Named techniques, libraries, commands, or frameworks, with a reason each one fits.
+4. **What, other than you or Claude, would show the result is right?** An external check, such as a test suite, a reproduction, ground-truth data, or a reviewer, with a stated pass and fail result.
+
+Then it writes one copy-ready prompt that starts from the raw material, uses the named methods, and ends with the external check.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/BeAmbitious
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/BeAmbitious/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/BeAmbitious
+claude
+```
+
+Type "be ambitious" followed by your task, or just "be ambitious" to use your most recent request. Claude stops after the rewrite and offers to run it. It won't start the task unless you say so.
+
+---
+
+## Deeper, Not Bigger
+
+The template has one firm rule: depth is a higher standard for the same outcome, not more outcome. If a suggestion would make the job larger rather than better (a new deliverable, an extra feature, a side quest), Claude drops it.
+
+Compare two ways of improving "write a market sizing for our product":
+
+- **Bigger:** add competitor profiles, a pricing study, and a go-to-market plan.
+- **Deeper:** build the estimate bottom-up from primary data (census or industry filings, not an analyst-report headline), cross-check it against a top-down figure, and have it checked against a known public company's reported revenue.
+
+Only the second one is what this playbook produces.
+
+---
+
+## Examples
+
+These prompts work well with the template:
+
+- "Be ambitious: review this pull request"
+- "Be ambitious: summarize this paper for our team"
+- "Be ambitious: draft a competitive analysis of two vendors"
+- "Make this prompt deeper: clean up this CSV and find the outliers"
+- "What would an expert do here?" (uses your most recent request)
+
+---
+
+## Tips & Best Practices
+
+- **Give it the real task.** The more specific the prompt, the more concrete the field, sources, and methods will be. A vague prompt gets a vaguer rewrite.
+- **Check the external check.** The fourth answer is the most useful one. If Claude names a pass criterion you can't actually run, ask for a different check.
+- **Run the rewrite in a fresh session.** The rewritten prompt is self-contained, so you can paste it into a new conversation or hand it to a teammate.
+- **Say what you can access.** If the raw data or primary source isn't available to you, say so before the rewrite, so it asks for a realistic starting point.
+
+---
+
+## Limitations
+
+- **Claude can only name sources and tools it knows.** The template tells it to say so when it doesn't know a field well enough, rather than inventing a source. Verify any named dataset, filing, or library exists before relying on it.
+- **It rewrites prompts, not results.** The playbook stops at the rewrite. Whether the deeper version works still depends on running it and applying the external check.
+- **Not for tone or length edits.** It won't shorten, soften, or polish a prompt. Use a prompt-formatting playbook for that.

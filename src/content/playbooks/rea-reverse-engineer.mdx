@@ -1,0 +1,141 @@
+---
+title: "REA: Reverse Engineer Anything"
+description: "Investigate how a shipped app, binary, or website works, with evidence for every conclusion, using the REA MCP server and a Claude workflow for it"
+seoHook: "You can see a feature in someone's app but not the code behind it. Reverse engineering usually means weeks of disassembler work. This playbook gives Claude a structured way to investigate binaries, Electron apps, APKs, and websites with REA, and to separate what it observed from what it guesses."
+targetAudience: "security researchers, malware analysts, CTF players, developers studying interoperability, QA and release engineers comparing builds, software preservationists, engineers auditing software they own"
+exampleUseCase: "\"Understand how search works in the Notes app, show me the evidence, and build a similar feature for my project\" → Claude routes the target to the right REA tool, traces the feature from entry point to result, lists each finding with its Evidence ID, marks what was observed, inferred, or unknown, then writes and tests an implementation"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "morluto"
+sourceUrl: "https://github.com/morluto/rea"
+tags: ["reverse-engineering", "mcp", "security", "binaries", "electron", "android", "decompilation"]
+createdAt: "2026-10-27"
+---
+
+## What This Does
+
+Gives Claude a workflow for reverse engineering with [REA](https://github.com/morluto/rea), an MIT-licensed MCP server that connects an agent to analysis tools for native binaries, JavaScript and Electron apps, .NET assemblies, Android APKs, firmware, and websites. Analysis runs locally.
+
+The template does three things:
+
+- **Routes the target.** It tells Claude which REA tool to start with for each kind of target, so it doesn't guess.
+- **Keeps the evidence honest.** Every conclusion must separate observations, inferences, and unknowns, cite Evidence IDs, and never imply that static analysis observed execution.
+- **Plans bigger investigations.** For requests that span several features, Claude builds a checklist, reuses prior evidence, and keeps a finding ledger. At the end it marks each question answered, partially answered, or unresolved.
+
+This playbook is a workflow, not the tool. The REA MCP server has to be installed first (see Prerequisites).
+
+---
+
+## Prerequisites
+
+- **Node.js and npm.** REA requires Node.js 22.x (>=22.23.4), 24.x (>=24.22.1), or 26.12.1+.
+- **The REA MCP server**, registered with Claude Code:
+
+```bash
+npx rea-agents setup
+```
+
+  Choose your agents, review the proposed changes, and approve them. Setup adds the MCP server and matching instructions, with backups of your existing configuration. Restart Claude Code afterward.
+- **A native analysis engine, only for native binaries.** Hopper, Ghidra, or IDA. Static JavaScript, .NET, and many artifact inspections need none. REA doesn't install Java, Ghidra, IDA, JADX, or other prerequisites for you (setup can optionally install Hopper with your approval).
+- **A Chrome-family browser** for website analysis.
+- **Other optional tools**, depending on the target: JADX and a JDK for APKs, `adb` for Android devices, Binwalk or Unblob for firmware, TShark for packet captures.
+
+REA's [website](https://rea.tools/) has illustrated setup guides and case studies.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/ReverseEngineering
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/ReverseEngineering/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/ReverseEngineering
+claude
+```
+
+Name a target you own or are authorized to examine, and ask a specific question:
+
+```
+"Understand how search works in the Notes app, show me the evidence, and build a similar feature for my project"
+"Compare these two builds of my Electron app and tell me what changed in the IPC layer"
+"Decompile the function that validates this license file in my own binary"
+"Inspect this APK's manifest and list its exported components"
+```
+
+If you say only "my app," Claude should ask which app before searching for files.
+
+---
+
+## What You Can Analyze
+
+| Target | What REA returns |
+| --- | --- |
+| Native binaries | Pseudocode, assembly, strings, symbols, calls, and references |
+| JavaScript / Electron apps | Modules, imports, source maps, routes, IPC, and native add-on relationships |
+| .NET assemblies | Metadata, CIL instructions, native dependencies, and build comparisons |
+| Android APKs | Manifest declarations, classes, decompiled methods, signatures, and references |
+| Websites | Page structure, scripts, network observations, and screenshots |
+| Saved network captures | Requests, responses, and payloads from HAR or Fiddler SAZ files |
+| Firmware | Regions, extraction results, and native-analysis handoffs |
+| Packaged and model files | PyInstaller archives, Go and Rust build metadata, GGUF and safetensors headers, SQLite databases, and more |
+
+The full list is in the [REA README](https://github.com/morluto/rea#what-you-can-analyze).
+
+---
+
+## Build an Agent Environment From a Web App
+
+REA can record a session with a web app, turn its API into tools, and export a runnable environment an AI agent can practice in, for RL training or evaluation. The template covers this as the "environments" route. A sample prompt from the REA README:
+
+```
+Use REA to build an RL environment from my test web app at http://127.0.0.1:3000.
+Cover listing, creating, renaming, and deleting folders. You may create and
+remove test folders. Leave existing data unchanged.
+Save it in a folder named my-env. Check which operations work and tell me
+how to run it.
+```
+
+Running the result also needs AgentEnv and Docker.
+
+---
+
+## Tips & Best Practices
+
+- **Ask a specific question.** "How does this app sync notes?" gets a traceable answer. "Reverse engineer this app" doesn't.
+- **Read the unknowns.** The template makes Claude list what it could not establish. Static analysis shows what code exists, not what ran.
+- **Start with summaries.** For large apps, Claude pulls a summary first and drills into retained Evidence, which keeps results small and avoids repeating the same analysis.
+- **Keep REA up to date.** REA changes quickly. Run `rea update` for a global install, or `npx rea-agents@latest setup` to refresh your agent registration. The template is based on the current repository main branch, which can describe features newer than the latest npm release, so Claude is told to rely on the tools the connected server actually offers.
+- **Use the CLI as a fallback.** With no MCP connection, `npx -y rea-agents@latest analyze-javascript-application /absolute/path/to/app --json` inspects a JavaScript or Electron tree directly.
+- **Use a separate environment for untrusted targets.** Some workflows run or attach to programs, capture traffic, or operate on connected devices.
+
+---
+
+## Responsible Use
+
+REA is for lawful analysis: security research, malware and incident analysis, CTFs and education, interoperability, software preservation, and debugging or auditing software you own or are authorized to examine. The REA project does not support circumventing DRM or license checks, building game cheats, bypassing authentication or access controls on systems you aren't authorized to test, or copying proprietary software and its protected code. The template includes these limits so Claude declines out-of-scope requests and asks when your authorization is unclear.
+
+You're responsible for the legal authority and scope of anything you direct an agent to do. Reverse engineering can be restricted by law or by a software license in your jurisdiction. Commercial tools such as IDA, Hopper, and JEB must be legally obtained and licensed. See REA's [full disclaimer](https://github.com/morluto/rea/blob/main/DISCLAIMER.md).
+
+---
+
+## Limitations
+
+- **Requires the REA MCP server.** The template only tells Claude how to use the tools. Without them, it can fall back to the CLI for JavaScript and Electron targets only.
+- **Native analysis needs a licensed engine.** Hopper, Ghidra, or IDA must be installed separately. Large binaries may need a longer startup deadline.
+- **Many tools are host-specific.** Several inspections require Linux, specific tool versions, or caller-supplied utilities. Check REA's tool catalog for your platform.
+- **Pseudocode is not original source.** Decompiled and decoded output is a reconstruction. The template tells Claude to label inferences as inferences.
+- **Not for ordinary source code.** If you have the complete repository, normal Claude Code tools are better, and the template says to skip REA.

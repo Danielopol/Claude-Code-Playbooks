@@ -1,0 +1,122 @@
+---
+title: "Free Backlink Opportunity Finder"
+description: "Give Claude a website URL and get a verified list of relevant backlink opportunities you can pursue for free, with the exact page to link to and how to ask"
+seoHook: "Most backlink advice is a list of directory types and a reminder to 'reach out.' What a small site owner needs is the actual pages: the resource list that would add your guide, the association with a free member directory, the outdated link you could replace. This playbook has Claude research those, check that they're real and free, and tell you exactly how to get the link."
+targetAudience: "small business owners, solo founders, bloggers, SEO freelancers, content marketers, local service businesses, anyone doing link building without a budget"
+exampleUseCase: "\"Find free backlink opportunities for https://example-garage-storage.com\" → Claude analyzes the site, picks linkable angles, searches for resource pages, directories, associations, and broken-link targets, verifies each one, and returns a table of 30+ opportunities with exact URLs, the best page on your site to link to, how to get the link, free status, and difficulty, plus a top-10 list, easy wins, and tailored outreach angles"
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "Grant O"
+tags: ["seo", "backlinks", "link-building", "outreach", "research", "marketing"]
+createdAt: "2026-10-27"
+---
+
+## What This Does
+
+Turns Claude into a link-building researcher. You give it a single URL. It reads your site to work out your niche, audience, and linkable assets, then searches the web for real places that could link to you without payment, and checks each one before it makes the list.
+
+It works in eight steps:
+
+1. **Understands your site** and picks 5–10 "linkable angles," such as a guide, a calculator, original data, or a local resource.
+2. **Chooses backlink categories that fit.** Resource pages, niche directories, associations, podcasts, expert quotes, broken links, and more. It doesn't force categories that don't make sense for your site.
+3. **Searches for real opportunities** using niche, topic, location, and competitor-based search patterns.
+4. **Verifies each opportunity.** Is the site live, is the page still active, is the link free, is it relevant, is it not a link-selling site? Anything it can't confirm is marked "Free status needs verification."
+5. **Picks the best target page** on your site for each link, rather than defaulting to the homepage.
+6. **Explains how to get the link** with a specific angle, not "reach out and ask."
+7. **Scores each opportunity** for relevance, difficulty, and link type.
+8. **Returns the results** as a table, plus a top-10 list, an easy-wins list, and outreach angles written for each site.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/BacklinkResearch
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/BacklinkResearch/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/BacklinkResearch
+claude
+```
+
+Then give Claude your URL:
+
+```
+"Find free backlink opportunities for https://yoursite.com"
+"Run the backlink finder on https://yoursite.com and focus on local directories"
+"Find resource pages that could link to our calculator at https://yoursite.com/tools/calculator"
+```
+
+The research involves a lot of web searching and page checking, so expect it to take a while.
+
+---
+
+## What You Get
+
+**A table of 30+ opportunities** (fewer if not enough qualify), with these columns:
+
+| Column | What it tells you |
+| --- | --- |
+| Website | Who runs the page |
+| Opportunity Page | The exact URL of the resource page, directory, or submission page |
+| Link Type | Resource page, directory, association, guest contribution, expert quote, podcast, broken link, partner page, local citation, and so on |
+| Why It's Relevant | The match between that site and yours |
+| Suggested Target Page | The exact page on your site that should get the link |
+| How to Get the Link | The specific acquisition angle |
+| Free Status | Confirmed free, or "Free status needs verification" |
+| Difficulty | Easy, Moderate, or Hard |
+
+**Then three more sections:**
+
+- **Top Opportunities:** the 10 worth doing first. Picked for relevance, realistic odds, free acquisition, editorial legitimacy, referral traffic, and search value, not for site size.
+- **Easy Backlinks to Get First:** free profiles, directory listings, and submissions you can finish quickly.
+- **Outreach-Based Opportunities:** for each, who to contact (if findable), the pitch angle, and the page you want linked.
+
+---
+
+## What It Won't Recommend
+
+The template rules out the usual shortcuts, so the list contains only things you can legitimately do:
+
+- Buying links, paid guest posts, paid directory listings, or sponsorships
+- Link exchanges done only for SEO, and PBNs
+- Generic article directories and spammy web directories
+- Blog comments and forum-profile spam
+- Automated backlink services and Fiverr-style link packages
+- Sites whose main purpose is selling links
+
+It also won't invent Domain Authority or Domain Rating numbers, and it won't make up submission pages, email addresses, contacts, or URLs.
+
+---
+
+## Tips & Best Practices
+
+- **Spot-check before you act.** Claude verifies what it can, but pages move and forms change. Open the opportunity page and confirm it before spending time on outreach.
+- **Trust the "needs verification" flag.** If a listing might cost money, Claude is told to say so instead of guessing. Check those yourself.
+- **Point it at a specific page if you have a star asset.** If one guide, tool, or data piece is your best link magnet, say so and ask Claude to build the research around it.
+- **Narrow the scope for a faster run.** Ask for "local directories only" or "resource pages and broken links only" if you don't need every category.
+- **Work the easy wins first.** Free profiles and directories take little effort. Save the outreach list for when you have time to write each pitch properly.
+- **Rewrite the pitches in your own voice.** The outreach angles are specific starting points, not finished emails.
+- **Re-run it quarterly.** New resource pages appear and old ones go stale, so a fresh pass finds new targets.
+
+---
+
+## Limitations
+
+- **Needs web access.** Claude searches and reads pages as it works. Without web search and fetch available, the results will be thin.
+- **No SEO metrics.** The template deliberately leaves out Domain Authority and Domain Rating unless reliable data is available, so you won't get authority scores to sort by.
+- **Verification has limits.** Claude can check that a page loads and reads as relevant, but it can't see an editor's inbox or guarantee a link will be accepted.
+- **Fewer than 30 is possible.** The template prefers quality over the quota, so a narrow niche may return fewer opportunities.
+- **Free doesn't mean effortless.** Free links still take time, and some will need a pitch and follow-up.

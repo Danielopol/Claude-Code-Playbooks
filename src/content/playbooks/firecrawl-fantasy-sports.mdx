@@ -1,0 +1,93 @@
+---
+title: "Firecrawl Fantasy Sports Advisor"
+description: "Research start/sit, waiver, trade, draft, and keeper decisions with current player news, usage, matchups, and your league's scoring, with a clear recommendation and cited reasons"
+seoHook: "Fantasy advice is stale the moment a player gets ruled out an hour before lineup lock. This playbook has Claude check current injury and lineup status, recent usage, and matchups against your league's actual scoring, then lead with a recommendation, cite the evidence, and name the one assumption most likely to change it."
+targetAudience: "fantasy football, basketball, baseball, and hockey managers, league commissioners, keeper and dynasty players, draft-prep enthusiasts"
+exampleUseCase: "\"Start A or B this week? 0.5 PPR, I have a flex spot open\" → a recommendation with cited reasons on role, opponent, injury and lineup status with report timestamps, a note of the status most likely to change the choice, and a usable alternative before lineup lock"
+category: "personal-development"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "Firecrawl"
+sourceUrl: "https://github.com/firecrawl/firecrawl-claude-plugin/blob/main/skills/fantasy-sports/SKILL.md"
+tags: ["firecrawl", "fantasy-sports", "sports", "decision-making", "research", "fantasy-football"]
+createdAt: "2026-10-27"
+---
+
+## What This Does
+
+Researches a fantasy decision (start/sit, waiver pickup, trade, draft pick, or keeper) from current public sources, then gives a clear recommendation.
+
+The steps:
+
+1. **Establish the decision.** Sport, scoring period, and the rules that could change the answer: your scoring settings, roster limits, available options, who you'd drop, league format, and costs or picks in a trade or keeper. Firecrawl supplies public research, not private roster access, so Claude doesn't assume a player is on your roster or available on your waiver wire. It asks only for missing context that matters.
+2. **Check current evidence.** Team, opponent, schedule, injury or lineup status, and recent playing time or usage. It uses a fresh scrape for volatile status pages, and checks report timestamps against game time, because a successful fetch or undated page doesn't prove current status.
+3. **Compare the options** under your scoring and roster constraints. Observed performance, sourced projections, and Claude's judgment are separated. Expert rankings for the right scoring format and period are a baseline with source dates, and consensus is established only from independent sources.
+4. **Recommend.** The answer leads with a clear recommendation and concise cited reasons, names the assumption or unresolved status most likely to change the choice, and gives a usable alternative before lineup lock.
+
+---
+
+## Before You Start
+
+This workflow runs on Firecrawl's hosted MCP server, which gives Claude tools to search the live web and read pages. You need a Firecrawl account and a connected MCP server.
+
+**Easiest route: the Firecrawl plugin.** In Claude Code:
+
+```
+/plugin marketplace add firecrawl/firecrawl-claude-plugin
+/plugin install firecrawl@firecrawl
+```
+
+Then run `/reload-plugins` (or start a new session) and `/mcp` to connect your Firecrawl account. Installing the plugin and connecting the account are separate steps. The plugin bundles all thirteen Firecrawl skills, so this playbook is mainly for people who want just this one workflow as a standalone CLAUDE.md. Choose one installation of Firecrawl so the skills don't duplicate.
+
+**Cost and privacy.** Web, developer, and paper searches are billed per request, page retrieval is billed per URL, and provider data uses each capability's listed price. Government search and provider discovery are free. Check your Firecrawl plan. Requests send search queries, page URLs, and any provider inputs to Firecrawl, so include only what the task needs.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/FantasyAdvisor
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/FantasyAdvisor/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/FantasyAdvisor
+claude
+```
+
+Then ask in plain language:
+
+```
+"Start or sit: [Player A] or [Player B]? League is [scoring format]"
+"Best waiver pickup this week for a [position] need? I would drop [player]"
+"Should I trade [player] for [player]? Keeper league, [format]"
+```
+
+---
+
+## Tips & Best Practices
+
+- **Share your scoring and roster rules.** Format changes the answer, such as PPR vs. standard or superflex vs. single QB.
+- **Say what's available.** Claude can't see your waiver wire, so list the options and who you'd drop.
+- **Ask before lineup lock.** Injury and inactive news moves fast, and each source is dated.
+- **Use the stated alternative.** The recommendation includes a fallback if the key status changes.
+- **FAAB bids.** Claude gives a bid range only if your budget and league context support one, and labels it as judgment.
+
+---
+
+## Limitations
+
+- **Read-only research.** It doesn't change rosters, submit claims, trades or lineups, place bets, or set up monitoring. It never claims a future recheck it won't make.
+- **No private league access.** Unless you supply league details, recommendations are conditional on any facts it can't verify.
+- **No invented numbers.** It won't make up point projections, win probabilities, or FAAB budgets.
+- **Sports outcomes are uncertain.** This is research to inform a decision, not a prediction or betting advice.

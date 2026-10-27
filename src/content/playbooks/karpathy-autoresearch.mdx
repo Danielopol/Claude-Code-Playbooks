@@ -1,0 +1,132 @@
+---
+title: "Karpathy's Autoresearch: Let an Agent Run ML Experiments Overnight"
+description: "Point Claude at a small real LLM training setup and let it modify the code, train for 5 minutes, keep what improves, and repeat while you sleep"
+seoHook: "Research progress is bottlenecked by the human in the loop: you try an idea, wait for a run, read the result, try the next one. Andrej Karpathy's autoresearch removes you from the loop. The agent edits the training code, runs a fixed 5-minute experiment, keeps the change if the metric improves, and goes again, which is about 100 experiments while you sleep."
+targetAudience: "ML researchers, ML engineers, AI hobbyists with a GPU, students learning how LLM training works, researchers exploring autonomous agent workflows, anyone curious what an agent does with a real research loop"
+exampleUseCase: "\"Have a look at program.md and let's kick off a new experiment! Let's do the setup first.\" → Claude agrees a run tag with you, creates an autoresearch branch, reads the code, runs a baseline, then loops: edits train.py, trains for 5 minutes, logs val_bpb to results.tsv, keeps improvements and reverts the rest, producing a log of experiments by morning"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "20 minutes"
+author: "Andrej Karpathy"
+sourceUrl: "https://github.com/karpathy/autoresearch"
+tags: ["autoresearch", "machine-learning", "llm-training", "experiments", "autonomous-agents", "nanochat"]
+createdAt: "2026-10-27"
+---
+
+## What This Does
+
+Gives Claude the instructions for Karpathy's [autoresearch](https://github.com/karpathy/autoresearch): a small, real LLM training setup that an AI agent improves on its own. The training code is a simplified single-GPU version of [nanochat](https://github.com/karpathy/nanochat).
+
+Each experiment follows the same loop:
+
+1. Claude edits `train.py` with an idea (architecture, optimizer, hyperparameters, batch size, anything).
+2. It commits the change and trains for a **fixed 5-minute budget**.
+3. It reads the result: **val_bpb** (validation bits per byte). Lower is better, and it doesn't depend on vocabulary size, so architecture changes compare fairly.
+4. If val_bpb improved, the commit stays and the branch advances. If it's equal or worse, Claude resets to where it started.
+5. Every run is logged to `results.tsv` as keep, discard, or crash, and the loop repeats.
+
+That's roughly 12 experiments an hour, or about 100 overnight. The idea, in Karpathy's framing, is that you no longer edit the Python files. You program `program.md`, the instructions that set up your autonomous research org. This playbook is that file.
+
+---
+
+## Before You Start
+
+- **A single NVIDIA GPU.** The repo was tested on an H100. Other platforms aren't supported by the main repo (see Limitations).
+- **Python 3.10+** and the [uv](https://docs.astral.sh/uv/) project manager.
+- **A dedicated, disposable setup.** The agent edits code, commits, resets, and runs training autonomously. Use a clone you don't mind it changing.
+
+---
+
+## Quick Start
+
+### Step 1: Clone and Set Up the Repo
+
+```bash
+git clone https://github.com/karpathy/autoresearch.git ~/Projects/autoresearch
+cd ~/Projects/autoresearch
+curl -LsSf https://astral.sh/uv/install.sh | sh   # skip if you already have uv
+uv sync
+uv run prepare.py   # one-time: downloads training data and trains a tokenizer, about 2 minutes
+uv run train.py     # one manual 5-minute run to confirm everything works
+```
+
+If those all work, you're ready for autonomous mode.
+
+### Step 2: Download the Template
+
+Click **Download** above. It's the repo's own `program.md` with a short prerequisite note on top. Save it into the repo as `CLAUDE.md` so Claude loads it on start:
+
+```bash
+mv ~/Downloads/CLAUDE.md ~/Projects/autoresearch/CLAUDE.md
+```
+
+(Or keep the repo's `program.md` as it is and point Claude at it in your first message. It's the same instructions.)
+
+### Step 3: Start Working
+
+```bash
+cd ~/Projects/autoresearch
+claude
+```
+
+Then kick things off with the prompt from the repo's README:
+
+```
+Hi have a look at program.md and let's kick off a new experiment! let's do the setup first.
+```
+
+Claude proposes a run tag based on the date (for example `mar5`), creates the branch `autoresearch/<tag>`, reads `README.md`, `prepare.py` and `train.py`, checks that data exists in `~/.cache/autoresearch/`, creates an empty `results.tsv`, and asks you to confirm. Once you do, the loop starts.
+
+---
+
+## The Ground Rules
+
+The instructions draw a hard line between what Claude can and can't touch:
+
+| Claude can | Claude cannot |
+| --- | --- |
+| Edit `train.py`: model, optimizer, hyperparameters, batch size, training loop | Edit `prepare.py` (fixed data, tokenizer, constants, evaluation) |
+| Run `uv run train.py` | Install packages or add dependencies beyond `pyproject.toml` |
+| Commit, and reset failed experiments | Change the evaluation harness. `evaluate_bpb` is the ground truth |
+
+Two more rules shape the results:
+
+- **Simplicity criterion.** All else equal, simpler wins. A 0.001 improvement that adds 20 lines of hacky code usually isn't worth keeping. The same improvement from deleting code is. An equal result with simpler code is also a keep.
+- **Never stop.** Once the loop starts, Claude doesn't pause to ask whether to continue. It runs until you interrupt it, and if it runs out of ideas, it re-reads the code, tries combining near-misses, and makes bolder changes.
+
+---
+
+## The Results Log
+
+Each experiment adds a row to `results.tsv` (tab-separated, not comma-separated, because commas break in descriptions). The file stays untracked by git.
+
+```
+commit	val_bpb	memory_gb	status	description
+a1b2c3d	0.997900	44.0	keep	baseline
+b2c3d4e	0.993200	44.2	keep	increase LR to 0.04
+c3d4e5f	1.005000	44.0	discard	switch to GeLU activation
+d4e5f6g	0.000000	0.0	crash	double model width (OOM)
+```
+
+The first run is always the unmodified baseline. A run that takes over 10 minutes is killed and counted as a failure. If a run crashes, Claude fixes obvious bugs like typos and missing imports and retries, but skips ideas that are fundamentally broken.
+
+---
+
+## Tips & Best Practices
+
+- **Edit `program.md`, not the Python.** The repo ships a deliberately bare-bones baseline. Improving the instructions, and eventually adding more agents, is where Karpathy expects the gains to be.
+- **Results are specific to your hardware.** The fixed time budget means autoresearch finds the best model for your platform in 5 minutes, but your numbers can't be compared with other people's on different GPUs.
+- **Read the log in the morning.** `results.tsv` plus the git history on your autoresearch branch is the record of what was tried and what worked.
+- **Watch the first few experiments.** Confirm the baseline matches what you got manually and that Claude is logging correctly before you walk away.
+- **New to neural networks?** The README links a "Dummy's Guide" for background.
+
+---
+
+## Limitations
+
+- **Single NVIDIA GPU only.** The main repo doesn't support CPU, MPS, or other platforms. The README lists forks for macOS, Windows (RTX), and AMD.
+- **Smaller machines need retuning.** The README suggests a narrower dataset such as TinyStories, a smaller vocab, a shorter `MAX_SEQ_LEN`, a lower `DEPTH`, and a smaller `TOTAL_BATCH_SIZE`.
+- **The agent can't change the metric.** `val_bpb` through the fixed `evaluate_bpb` is all it optimizes, so it only improves what that metric measures.
+- **The README says to disable permissions.** It suggests running the agent with all permissions off so it doesn't stop to ask. That lets it run commands and change files unattended, so only do it on a machine and clone you're comfortable with.
+- **It runs until you stop it.** An unattended loop uses your GPU and your Claude usage the whole time.
+- **Related, but different.** The site's *Skill Autoresearch Optimizer* playbook applies the same loop idea to tuning Claude Code skills. This one is the original ML-training version.

@@ -1,0 +1,157 @@
+---
+title: "Get Physics Done: An Agentic Workflow for Physics Research"
+description: "Install physics-research commands into Claude Code that scope a problem, plan the work, derive and verify results, and write up the paper"
+seoHook: "A one-off chat can't carry a physics project: conventions drift, derivations go unchecked, and by week three nobody remembers which sign choice you locked in. Get Physics Done wraps Claude Code in a structured research workflow with phases, locked conventions, and verification gates for limiting cases, symmetries, and conservation laws."
+targetAudience: "theoretical physicists, computational physicists, physics graduate students, postdocs, research groups, mathematical-physics researchers, anyone running long-horizon analytical or numerical physics projects"
+exampleUseCase: "\"new-project: Use crossing symmetry and the numerical conformal bootstrap to bound low-lying operator dimensions in the 3D Ising CFT\" → GPD asks about the correlator sector, conventions, target observables, and numerical precision, then creates PROJECT.md, REQUIREMENTS.md, ROADMAP.md, and STATE.md with a phased plan, ready for plan-phase, execute-phase, and verify-work"
+category: "academic-research"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "Physical Superintelligence PBC (PSI)"
+sourceUrl: "https://github.com/psi-oss/get-physics-done"
+tags: ["physics", "research", "derivations", "verification", "numerical-methods", "paper-writing", "arxiv"]
+createdAt: "2026-10-27"
+---
+
+## What This Does
+
+[Get Physics Done](https://github.com/psi-oss/get-physics-done) (GPD) is an open-source agentic system for physics research from Physical Superintelligence PBC. It isn't a standalone app: it installs physics-research commands into Claude Code (it also supports Codex, Gemini CLI, GitHub Copilot CLI, and OpenCode) and turns a research question into a structured workflow.
+
+GPD guides research in four stages:
+
+1. **Formulate.** Targeted questions pin down scope, assumptions, notation, and verification targets.
+2. **Plan.** A phased roadmap with concrete tasks, dependencies, and success criteria.
+3. **Execute.** Specialist agents handle derivations, numerical checks, literature work, and writing.
+4. **Verify.** Checks for dimensional consistency, limiting cases, symmetry constraints, conservation laws, and numerical stability.
+
+Each phase leaves real artifacts: `PROJECT.md`, `REQUIREMENTS.md`, `ROADMAP.md`, `STATE.md`, `.tex` derivations, `.py` verification scripts, and figures. GPD also locks conventions for up to 18 physics fields across a project, so notation and sign choices stay consistent as phases pile up.
+
+The project's own framing: **a scalpel, not an autopilot.** Treat each agent turn like a graduate student's work. Trust the execution, but stay in the loop to verify and redirect.
+
+This playbook is the operating guide that goes with it. The template tells Claude how to work alongside the GPD commands once they're installed.
+
+---
+
+## Before You Start
+
+- **Node.js 20+** with `npm` and `npx`.
+- **Python 3.11+** with the standard `venv` module.
+- **Claude Code** installed and launchable from your terminal, with its model access set up. GPD doesn't provide model access, billing, or API credits.
+- **Network access** to npm and PyPI for the install.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder and Install GPD
+
+Run this from inside the folder where your project should live, in your normal system terminal:
+
+```bash
+mkdir -p ~/Documents/PhysicsProject
+cd ~/Documents/PhysicsProject
+npx -y get-physics-done --claude --local
+```
+
+`--claude --local` installs for Claude Code and this folder only. Leave the flags off for an interactive installer, and review the changes it proposes before approving. Verify the install:
+
+```bash
+gpd --help
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/PhysicsProject/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/PhysicsProject
+claude
+```
+
+Inside Claude Code, run the help command first:
+
+```
+/gpd:help
+```
+
+Then pick the path that matches where you are:
+
+| Starting point | Command |
+| --- | --- |
+| Not sure what fits this folder | `/gpd:start` |
+| Want a read-only walkthrough | `/gpd:tour` |
+| New research project | `/gpd:new-project --minimal` |
+| Existing research folder or code | `/gpd:map-research` |
+| Returning later | `/gpd:resume-work` |
+
+---
+
+## The Research Loop
+
+```
+new-project → discuss-phase 1 → plan-phase 1 → execute-phase 1 → verify-work → repeat → complete-milestone
+```
+
+Work is organised as **Project → Milestone → Phase → Plan → Task**. A milestone is a major checkpoint, such as a paper submission or a revision cycle. A phase is one coherent chunk of work. Plans inside a phase run in waves: plans with no unmet dependencies go first, and later waves depend on earlier outputs. Integer phases are planned work, and decimal phases like `2.1` are inserted when urgent work appears.
+
+When the results are verified, the publication loop takes over:
+
+```
+write-paper → peer-review → respond-to-referees → arxiv-submission
+```
+
+---
+
+## Example: Conformal Bootstrap
+
+The README's worked example: you want to use crossing symmetry and the numerical conformal bootstrap to bound low-lying operator dimensions in the 3D Ising CFT.
+
+```
+/gpd:new-project
+> Use crossing symmetry and the numerical conformal bootstrap to bound low-lying operator dimensions in the 3D Ising CFT.
+```
+
+GPD asks about the correlator sector, conventions, target observables, numerical precision, and verification strategy. It creates the four `GPD/` project files and sketches the milestone: crossing-equation setup, derivative-basis construction, semidefinite-program formulation, convergence checks, and interpretation of the bounds. Phase 1 is ready to execute, and later phases stay as stubs you flesh out with `plan-phase N`.
+
+---
+
+## Useful Commands
+
+| Need | Commands |
+| --- | --- |
+| Technical analysis | `derive-equation`, `dimensional-analysis`, `limiting-cases`, `numerical-convergence`, `sensitivity-analysis`, `parameter-sweep` |
+| Literature and knowledge | `literature-review`, `discover`, `digest-knowledge`, `explain` |
+| Compare results | `compare-results`, `compare-experiment` |
+| Side paths | `tangent`, `branch-hypothesis`, `compare-branches` |
+| Pause and return | `pause-work`, `resume-work`, `suggest-next`, plus `gpd resume` in your normal terminal |
+| Configure | `settings`, `set-profile`, `set-tier-models` |
+
+The full in-runtime reference is `/gpd:help --all`.
+
+---
+
+## Tips & Best Practices
+
+- **Start in Supervised mode.** It gives you frequent checkpoints, like an advisor reviewing a student's work. Move to Balanced once you trust GPD's boundary on your specific research.
+- **Use `pause-work` before you step away.** It leaves an explicit handoff, so `resume-work` can restore it later.
+- **Watch a long run from a second terminal.** `gpd progress --watch` gives a live heartbeat, and `gpd observe execution` gives a read-only status. When it's uncertain, GPD says "possibly stalled" rather than guessing.
+- **Check readiness before overnight runs.** `gpd validate unattended-readiness --runtime claude --autonomy supervised` returns a verdict.
+- **Keep an eye on cost.** `gpd cost` shows recorded local usage and an advisory budget view. It isn't provider billing, and it stays partial if telemetry is missing.
+- **Choose a profile for the task.** `deep-theory`, `numerical`, `exploratory`, `review`, and `paper-writing`. A cost-conscious start is `review` with runtime defaults.
+- **Check paper readiness early.** If you plan to write a manuscript, run `gpd doctor --runtime claude --local` first. Warnings about the LaTeX toolchain only degrade `write-paper`, and `gpd paper-build` is the real test of whether the manuscript builds.
+
+---
+
+## Limitations
+
+- **It's a workflow, not a physicist.** GPD favors rigor and keeps missing evidence explicit, but its output is still model-generated. Verify derivations and numbers yourself.
+- **Needs Node.js, Python, and a runtime.** Bootstrap fails without all three, and model access is separate.
+- **Provider detail is limited.** GPD records the workflow, session, and trace events it can emit locally, and doesn't fabricate opaque internals of the runtime or provider.
+- **The publication commands are bounded.** `write-paper` works on current-project manuscripts plus one lane that starts from an explicit intake manifest. `arxiv-submission` only packages a GPD-owned manuscript root or `.tex` entrypoint.
+- **`--upgrade` installs unreleased code.** Use it only if you want the latest GitHub `main`, not the pinned release.
+- **Cite it if it helps your paper.** The repo asks for citations using its `CITATION.cff`, and provides a suggested acknowledgement line.

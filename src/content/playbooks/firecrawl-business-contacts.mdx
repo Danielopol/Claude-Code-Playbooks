@@ -1,0 +1,94 @@
+---
+title: "Firecrawl Business Contact Finder"
+description: "Find published organizational emails, phone numbers, and official contact forms for named businesses or local services, each cited to its source"
+seoHook: "Directory contact lists are full of stale emails and guessed addresses. This playbook has Claude check each business's own contact page first, return only what's actually published, cite the page, and leave the field blank when nothing was found instead of inventing a plausible address."
+targetAudience: "local-business researchers, procurement teams, event and booking coordinators, PR and partnerships teams, journalists, sales ops building lists of organizations"
+exampleUseCase: "\"Find general contact emails and phone numbers for five independent bookstores in Portland\" → a table with each business's published general or sales inbox, shared phone number, or official contact form, a source link per value, directory-sourced contacts labelled as such, and blanks where nothing was published"
+category: "sales-revenue"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "Firecrawl"
+sourceUrl: "https://github.com/firecrawl/firecrawl-claude-plugin/blob/main/skills/business-contact-research/SKILL.md"
+tags: ["firecrawl", "contacts", "local-business", "research", "lead-lists", "sourcing"]
+createdAt: "2026-10-27"
+---
+
+## What This Does
+
+Finds **organizational** contact channels for named businesses or local services: general, sales, press, booking, or support inboxes, shared business phone numbers, and official contact forms. It deliberately excludes named employees' direct addresses and private or personal details, even if a directory publishes them.
+
+The workflow:
+
+1. **Find the businesses and their official contact pages** with `firecrawl_search` within your allowed sources.
+2. **Check the business's own site first** (contact, about, or footer page) before relying on a directory listing. If source restrictions block that check, Claude says official-page verification wasn't performed.
+3. **Return the requested fields.** An email appears only if the cited page's retrieved content shows it. Contacts from directories or other third-party pages are labelled as such. A public business email and a contact form are kept distinct.
+4. **Leave gaps empty.** If no published value was found, the field stays empty. No "Pending verification" or "Not found" placeholders, and no addresses constructed from a name or domain pattern.
+
+Claude doesn't send any outreach.
+
+---
+
+## Before You Start
+
+This workflow runs on Firecrawl's hosted MCP server, which gives Claude tools to search the live web and read pages. You need a Firecrawl account and a connected MCP server.
+
+**Easiest route: the Firecrawl plugin.** In Claude Code:
+
+```
+/plugin marketplace add firecrawl/firecrawl-claude-plugin
+/plugin install firecrawl@firecrawl
+```
+
+Then run `/reload-plugins` (or start a new session) and `/mcp` to connect your Firecrawl account. Installing the plugin and connecting the account are separate steps. The plugin bundles all thirteen Firecrawl skills, so this playbook is mainly for people who want just this one workflow as a standalone CLAUDE.md. Choose one installation of Firecrawl so the skills don't duplicate.
+
+**Cost and privacy.** Web, developer, and paper searches are billed per request, page retrieval is billed per URL, and provider data uses each capability's listed price. Government search and provider discovery are free. Check your Firecrawl plan. Requests send search queries, page URLs, and any provider inputs to Firecrawl, so include only what the task needs.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/BusinessContacts
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/BusinessContacts/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/BusinessContacts
+claude
+```
+
+Then ask in plain language:
+
+```
+"Find published contact emails and phone numbers for [10 type of business] in [city]"
+"Get the official press and sales contact for [Company A], [Company B], and [Company C]"
+"Does [business] publish an email, or only a contact form?"
+```
+
+---
+
+## Tips & Best Practices
+
+- **Specify location, count, and source preferences.** Claude respects them, including a request not to browse.
+- **Ask for the fields you need.** General email, phone, contact form, or all three.
+- **Treat directory-sourced contacts as lower confidence.** They're labelled, so you can prioritize official-site values.
+- **For individual professionals, use the leads playbooks.** This one is about organizations. The enrichment and prospecting playbooks cover people.
+
+---
+
+## Limitations
+
+- **Published channels only.** If a business publishes nothing, you get a blank, not a guess.
+- **No employee direct details.** Named employees' emails and private contact details are excluded.
+- **No outreach.** Claude doesn't send messages.
+- **Stale pages happen.** A cited page shows what was published when Claude read it. Check before a mass mailing, and follow applicable marketing and privacy rules.

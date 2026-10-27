@@ -1,0 +1,106 @@
+---
+title: "Firecrawl SEO Audit: Evidence-Backed Fixes"
+description: "Audit pages for SEO metadata, headings, canonicals, schema, and link issues using the actual page HTML, with prioritized fixes and unverified checks kept separate"
+seoHook: "Most automated SEO audits report \"issues\" from cleaned-up page text and invent a score. This playbook has Claude fetch the raw HTML, check the real head markup, headings, canonicals, and links, and report only what it observed, with the affected URLs, the likely impact, a concrete fix, and how to verify it."
+targetAudience: "SEO specialists, marketers, small-business owners, web developers, agencies auditing client sites, content teams reviewing their own pages"
+exampleUseCase: "\"Audit these five pages for SEO issues\" → a prioritized audit with, for each finding, the affected URLs, observed evidence, likely impact, a concrete fix, and how to verify it, grouped by shared template issues, with confirmed defects separate from opportunities and unverified concerns, plus the inspected scope and check date"
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Firecrawl"
+sourceUrl: "https://github.com/firecrawl/firecrawl-claude-plugin/blob/main/skills/seo-audit/SKILL.md"
+tags: ["firecrawl", "seo", "technical-seo", "metadata", "canonicals", "structured-data"]
+createdAt: "2026-10-27"
+---
+
+## What This Does
+
+Inspects a website's pages and produces an **evidence-backed** SEO audit.
+
+The process:
+
+1. **Set the scope.** The target site or pages, plus any business goals, keywords, and geography you give. Claude picks pages covering the relevant templates and your priorities, and records the inspected scope, because a sample doesn't establish complete site coverage.
+2. **Fetch the real page.** Starting with your URLs (or site-restricted search for a wider audit), it retrieves markdown, raw HTML, and links with `onlyMainContent: false`, using a fresh capture for current checks. It inspects the returned status and content, and checks the actual head markup before declaring metadata absent. If raw HTML isn't available, dependent checks are marked unverified.
+3. **Check** titles and descriptions, heading structure, content relevance, image alt text, internal links, canonical declarations, robots directives, and structured data where relevant. Findings are related to each page's purpose, and robots.txt and sitemaps are read when needed.
+4. **Compare keywords if asked.** It searches and inspects relevant comparison pages, keeping the query, location, and observation date. For missing ranking, keyword, or backlink measurements, it looks for fitting data providers and runs one only if its source, domain, and period fit.
+5. **Report.** Highest-priority fixes first. Each finding has affected URLs, observed evidence, likely impact, a concrete fix, and a way to verify it. Shared template issues are grouped with example URLs.
+
+---
+
+## Before You Start
+
+This workflow runs on Firecrawl's hosted MCP server, which gives Claude tools to search the live web and read pages. You need a Firecrawl account and a connected MCP server.
+
+**Easiest route: the Firecrawl plugin.** In Claude Code:
+
+```
+/plugin marketplace add firecrawl/firecrawl-claude-plugin
+/plugin install firecrawl@firecrawl
+```
+
+Then run `/reload-plugins` (or start a new session) and `/mcp` to connect your Firecrawl account. Installing the plugin and connecting the account are separate steps. The plugin bundles all thirteen Firecrawl skills, so this playbook is mainly for people who want just this one workflow as a standalone CLAUDE.md. Choose one installation of Firecrawl so the skills don't duplicate.
+
+**Cost and privacy.** Web, developer, and paper searches are billed per request, page retrieval is billed per URL, and provider data uses each capability's listed price. Government search and provider discovery are free. Check your Firecrawl plan. Requests send search queries, page URLs, and any provider inputs to Firecrawl, so include only what the task needs.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/SEOAudit
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/SEOAudit/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/SEOAudit
+claude
+```
+
+Then ask in plain language:
+
+```
+"Audit https://example.com/pricing and https://example.com/blog for SEO issues"
+"Audit my site for [keyword] in [country]. Start with the homepage and top 5 pages"
+"Check canonicals and structured data on these product pages: [URLs]"
+```
+
+---
+
+## What It Won't Claim
+
+The template guards against the usual overreach:
+
+- **Crawl vs. index.** It distinguishes crawl restrictions from indexing directives, and declared canonicals from search-engine-selected ones.
+- **Broken links need corroboration.** A scrape access error isn't proof a destination is broken.
+- **Absence isn't a diagnosis.** Missing search results or discovered links don't prove a page is orphaned or deindexed. A deliberately excluded page isn't automatically defective.
+- **Unmeasured stays unmeasured.** It doesn't infer search volume, traffic, indexing status, Core Web Vitals, or ranking causes from scrape output or result order, and it identifies what remains unmeasured.
+- **No made-up score** and no traffic forecasts.
+
+---
+
+## Tips & Best Practices
+
+- **Give goals and keywords.** Findings are tied to each page's purpose.
+- **Pick representative pages.** One page per template covers more ground than many near-duplicates.
+- **Fix shared templates first.** One template change can resolve the same issue on many URLs.
+- **Verify fixes.** Each finding includes how to check it afterwards.
+- **Pair with a rank tracker or Search Console** for real performance data, which this audit doesn't measure.
+
+---
+
+## Limitations
+
+- **Sample, not a full crawl.** The audit covers the inspected scope, and Claude doesn't broaden it into an unrequested crawl.
+- **Read-only.** It doesn't edit your website.
+- **Page-level evidence only.** Search performance, traffic, and indexing status need other tools.
+- **Raw HTML dependency.** Without it, metadata and markup checks are marked unverified.

@@ -1,0 +1,104 @@
+---
+title: "Firecrawl Lead Finder"
+description: "Find professionals matching role, company, location, or expertise criteria, with evidence of fit, profile links, and partial matches kept separate from verified ones"
+seoHook: "Most prospect lists are padded: the count is hit by quietly loosening the criteria. This playbook has Claude qualify companies first, search for people inside them, rank by evidence of fit, and show partial matches separately and any shortfall plainly, so a list of 30 means 30 verified, not 30 guesses."
+targetAudience: "sales and business-development teams, recruiters, event organizers booking speakers, journalists finding experts, partnership managers, founders building a first prospect list"
+exampleUseCase: "\"Find 25 heads of data at Series B fintechs in the UK\" → a ranked table with name, current title, company, company size, location, profile link, evidence of fit, and unmet criteria, with verified and partial matches separate, a stated shortfall if fewer than 25 qualify, and work emails only if requested and actually returned"
+category: "sales-revenue"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Firecrawl"
+sourceUrl: "https://github.com/firecrawl/firecrawl-claude-plugin/blob/main/skills/find-leads/SKILL.md"
+tags: ["firecrawl", "prospecting", "lead-generation", "expert-finding", "sales", "speakers"]
+createdAt: "2026-10-27"
+---
+
+## What This Does
+
+Discovers **new** professionals matching your criteria: prospects, experts, speakers, or candidates for outreach. For people you already have, use the Firecrawl lead enrichment playbook.
+
+The workflow:
+
+1. **Pin down the criteria.** Roles, company criteria, geography, and count. Claude separates required filters from preferences and distinguishes a person's location from company headquarters. It asks only for missing criteria that prevent a useful shortlist.
+2. **Qualify companies first** when company criteria matter, then search for people within matching company domains. Named target companies are resolved directly.
+3. **Search, preview, deduplicate, and rank** by evidence of fit. Claude enriches only shortlisted people whose requested fields are incomplete, resolves masked names before presenting identities, and follows provider pagination within your count and credit budget. It stops at sufficient verified results, exhausted cursors, or a stated coverage limit.
+4. **Return a ranked table** with name, current title, company, company size when relevant, location, profile link, evidence of fit, and unmet or unknown criteria. Provider data is attributed, supporting pages are cited, and checked dates and freshness are shown.
+
+For **experts and speakers**, Claude also uses publications, institutional bios, and past talks. A sales database alone doesn't establish expertise or speaking availability.
+
+---
+
+## Before You Start
+
+This workflow runs on Firecrawl's hosted MCP server, which gives Claude tools to search the live web and read pages. You need a Firecrawl account and a connected MCP server.
+
+**Easiest route: the Firecrawl plugin.** In Claude Code:
+
+```
+/plugin marketplace add firecrawl/firecrawl-claude-plugin
+/plugin install firecrawl@firecrawl
+```
+
+Then run `/reload-plugins` (or start a new session) and `/mcp` to connect your Firecrawl account. Installing the plugin and connecting the account are separate steps. The plugin bundles all thirteen Firecrawl skills, so this playbook is mainly for people who want just this one workflow as a standalone CLAUDE.md. Choose one installation of Firecrawl so the skills don't duplicate.
+
+**Cost and privacy.** Web, developer, and paper searches are billed per request, page retrieval is billed per URL, and provider data uses each capability's listed price. Government search and provider discovery are free. Check your Firecrawl plan. Requests send search queries, page URLs, and any provider inputs to Firecrawl, so include only what the task needs.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/LeadFinder
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/LeadFinder/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/LeadFinder
+claude
+```
+
+Then ask in plain language:
+
+```
+"Find 20 [role] at [company type] in [region]"
+"Find experts on [topic] who have spoken at industry events"
+"Find the head of [function] at each of these companies: [list]"
+```
+
+---
+
+## Honest Lists
+
+- **No silent relaxing.** Partial matches stay separate from verified matches. Claude never loosens a requirement to fill the count.
+- **Shortfall stated.** The table is followed by how many distinct people and companies were returned and any gap against your target.
+- **Conflicts shown.** Conflicting values appear separately with their sources.
+- **Work email only on request.** And only when returned as an actual address, never an availability flag, unlock placeholder, or guess. Personal-email and phone-reveal options stay disabled.
+- **An expert isn't a confirmed speaker.** Claude doesn't treat suitability as availability.
+
+---
+
+## Tips & Best Practices
+
+- **Give hard criteria and nice-to-haves separately.** It makes ranking and shortfalls clearer.
+- **Set a count and a credit budget.** Pagination stays inside them.
+- **Qualify the company side first** for criteria like size, funding, or industry.
+- **Verify before outreach.** Treat the list as research, and check anything critical.
+
+---
+
+## Limitations
+
+- **Professional information only.** No sensitive traits, private personal details, CRM records, or outreach.
+- **Provider coverage varies.** If provider access fails, Claude uses public professional sources within your allowed scope, or discloses the gaps.
+- **Not exhaustive.** A ranked shortlist isn't every matching person.
+- **Mind the rules.** Use of personal data and outreach are regulated in many places. Make sure your use complies.

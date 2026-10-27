@@ -1,0 +1,94 @@
+---
+title: "Firecrawl Developer Research: Code, Issues & PRs"
+description: "Investigate library and API bugs, behavior, and version discrepancies using public repository code, issues, and pull requests when the docs aren't enough"
+seoHook: "The docs say one thing, the library does another, and the answer is buried in a GitHub issue from eight months ago. This playbook has Claude search indexed repositories, issues, and pull requests, read the matched passages, and tell you what's official, what's proposed, and what's merged but may not have shipped in your version."
+targetAudience: "software engineers, open-source maintainers, DevOps and platform engineers, developers debugging third-party libraries, tech leads evaluating dependencies"
+exampleUseCase: "\"Why does [library] v4.2 drop the connection after idle timeout? Here's the error: [sanitized]\" → Claude searches repository code, issues, and PRs for the symbol and error, separates official docs from proposals and merged fixes, and states whether the fix has shipped in v4.2, citing each source"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Firecrawl"
+sourceUrl: "https://github.com/firecrawl/firecrawl-claude-plugin/blob/main/skills/firecrawl-developer-index/SKILL.md"
+tags: ["firecrawl", "debugging", "github", "issues", "dependencies", "developer-tools"]
+createdAt: "2026-10-27"
+---
+
+## What This Does
+
+Use this when a question needs repository code, issue discussions, or pull requests rather than an answer from official docs alone. A supplied issue or repository can be investigated directly, and a documentation search isn't a prerequisite.
+
+The workflow:
+
+1. **Search** with `firecrawl_developer_search`, including the library, version, and the exact error or symbol when known.
+2. **Read** the matched passages and source URLs.
+3. **Separate the evidence.** Official documentation, issues, proposals, and merged pull requests are different kinds of evidence, and Claude labels them. A merged fix doesn't establish that it shipped in your version.
+4. **Fill gaps.** It scrapes a source URL when a passage lacks context, and uses `firecrawl_search` when the relevant source is outside the index.
+5. **Answer** from the retrieved evidence with citations, stating any unverified version or release boundary.
+
+---
+
+## Before You Start
+
+This workflow runs on Firecrawl's hosted MCP server, which gives Claude tools to search the live web and read pages. You need a Firecrawl account and a connected MCP server.
+
+**Easiest route: the Firecrawl plugin.** In Claude Code:
+
+```
+/plugin marketplace add firecrawl/firecrawl-claude-plugin
+/plugin install firecrawl@firecrawl
+```
+
+Then run `/reload-plugins` (or start a new session) and `/mcp` to connect your Firecrawl account. Installing the plugin and connecting the account are separate steps. The plugin bundles all thirteen Firecrawl skills, so this playbook is mainly for people who want just this one workflow as a standalone CLAUDE.md. Choose one installation of Firecrawl so the skills don't duplicate.
+
+**Cost and privacy.** Web, developer, and paper searches are billed per request, page retrieval is billed per URL, and provider data uses each capability's listed price. Government search and provider discovery are free. Check your Firecrawl plan. Requests send search queries, page URLs, and any provider inputs to Firecrawl, so include only what the task needs.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/DeveloperResearch
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/DeveloperResearch/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/DeveloperResearch
+claude
+```
+
+Then ask in plain language:
+
+```
+"Why does [library] v[X] throw [error]? Find the cause in the repo issues and PRs"
+"Was the fix for [issue URL] released, and in which version?"
+"How does [library] actually implement [feature]? The docs are vague"
+"Is [behavior] a known bug or intended? Check issues and discussions"
+```
+
+---
+
+## Tips & Best Practices
+
+- **Include the version and the exact symbol or error.** That's what the search keys on. Sanitize errors first.
+- **Don't paste secrets or private code** into queries. Queries go to Firecrawl.
+- **Check release boundaries yourself.** Ask which release a fix landed in and compare it to the version you run.
+- **Start with the docs for documented behavior.** The Firecrawl docs reader playbook is the better fit for setup, usage, and migrations.
+
+---
+
+## Limitations
+
+- **Public repositories only.** It doesn't see private code or issues.
+- **Index coverage varies.** If a repository isn't indexed, Claude uses ordinary search and says the index didn't resolve the question.
+- **Issues aren't facts.** A discussion thread may describe a bug that was later fixed, or never confirmed. Claude is told to report what each source actually establishes.
+- **Per-request billing.** Developer searches are billed per request.

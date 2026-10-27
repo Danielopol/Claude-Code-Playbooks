@@ -1,0 +1,97 @@
+---
+title: "Firecrawl Paper Research: Find, Follow & Verify"
+description: "Find scientific papers, follow citations and references, and verify claims against actual paper passages instead of abstracts"
+seoHook: "A literature search that stops at abstracts is how misquoted findings end up in your draft. This playbook has Claude search a scientific paper index, expand through citing papers and references, and read the passages that answer your question, then cite the paper and say whether it read full text or only the abstract."
+targetAudience: "graduate students, researchers, systematic reviewers, biomedical and ML scientists, science journalists, R&D teams, analysts checking evidence behind a claim"
+exampleUseCase: "\"Find papers on sparse autoencoders for interpretability, then check what the most-cited one says about feature splitting\" → Claude searches the paper index, inspects metadata, reads the methods and results passages on feature splitting, expands to citing papers, and cites each paper while separating its claims from Claude's synthesis"
+category: "academic-research"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "Firecrawl"
+sourceUrl: "https://github.com/firecrawl/firecrawl-claude-plugin/blob/main/skills/firecrawl-research-index/SKILL.md"
+tags: ["firecrawl", "papers", "literature-review", "citations", "arxiv", "biomedical"]
+createdAt: "2026-10-27"
+---
+
+## What This Does
+
+Uses Firecrawl's paper-index tools for scientific literature, including biomedical and arXiv papers. Claude chooses the operations the question needs, and a known paper doesn't require another discovery search.
+
+| Tool | Use |
+| --- | --- |
+| `firecrawl_research_search_papers` | Find papers from a natural-language query, with optional author, category, and date filters |
+| `firecrawl_research_inspect_paper` | Retrieve canonical metadata for a known `paperId` |
+| `firecrawl_research_related_papers` | Expand from seed papers to similar work, citing papers, or references, with an `intent` stating what the related work should address |
+| `firecrawl_research_read_paper` | Retrieve full-text passages relevant to a `question` about one paper |
+
+Ordinary `firecrawl_search` with the research category filters web sources. It doesn't query the same paper index.
+
+Claude verifies substantive claims with relevant passages when available. If full text isn't available, it labels conclusions that rest on the abstract or metadata, and may scrape an accessible source URL.
+
+---
+
+## Before You Start
+
+This workflow runs on Firecrawl's hosted MCP server, which gives Claude tools to search the live web and read pages. You need a Firecrawl account and a connected MCP server.
+
+**Easiest route: the Firecrawl plugin.** In Claude Code:
+
+```
+/plugin marketplace add firecrawl/firecrawl-claude-plugin
+/plugin install firecrawl@firecrawl
+```
+
+Then run `/reload-plugins` (or start a new session) and `/mcp` to connect your Firecrawl account. Installing the plugin and connecting the account are separate steps. The plugin bundles all thirteen Firecrawl skills, so this playbook is mainly for people who want just this one workflow as a standalone CLAUDE.md. Choose one installation of Firecrawl so the skills don't duplicate.
+
+**Cost and privacy.** Web, developer, and paper searches are billed per request, page retrieval is billed per URL, and provider data uses each capability's listed price. Government search and provider discovery are free. Check your Firecrawl plan. Requests send search queries, page URLs, and any provider inputs to Firecrawl, so include only what the task needs.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/PaperResearch
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/PaperResearch/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/PaperResearch
+claude
+```
+
+Then ask in plain language:
+
+```
+"Find recent papers on [topic] from 2024 onward"
+"What papers cite [paper title or ID], and what do they say about [aspect]?"
+"Read [paper] and tell me what it reports about [specific question]"
+"Find related work to this paper and group it by approach"
+```
+
+---
+
+## Tips & Best Practices
+
+- **Reuse paper IDs.** Search results and your own references give identifiers that later calls reuse.
+- **Ask a specific question about a paper.** Passage retrieval answers a `question`, so "What sample size did they use?" works better than "Summarize it."
+- **Use filters when they matter.** Author, category, and date.
+- **Say what the related work should address.** The `intent` focuses citation expansion.
+
+---
+
+## Limitations
+
+- **Not an exhaustive review.** Claude is told not to describe a partial search as exhaustive.
+- **Abstract-only conclusions are labelled.** Where full text can't be retrieved, say so in your write-up.
+- **Claims versus synthesis.** A paper's claims and Claude's synthesis are distinguished. Check the passages for anything you rely on.
+- **Index coverage varies.** Not every paper is in the index.

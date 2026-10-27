@@ -1,0 +1,108 @@
+---
+title: "Firecrawl Deep Research"
+description: "Investigate questions that need multi-source synthesis, from deep dives and comparisons to find-all lists, with every claim tied to a source"
+seoHook: "A quick search answers a quick question. A real investigation needs primary sources, contradictions run down, numbers aligned before they're compared, and a record of what supports each claim. This playbook gives Claude a research method on top of Firecrawl: start small, expand only where a gap could change the answer, and stop when the answer is supported."
+targetAudience: "analysts, consultants, journalists, policy researchers, investors, strategy teams, students writing serious reports, anyone who needs a cited, cross-source answer"
+exampleUseCase: "\"Compare how three countries reformed grid interconnection, with primary sources and competing views\" → Claude frames the questions, searches the web and government sources, reads the primary documents, investigates contradictions, aligns units and periods, and returns a cited answer that marks each part answered, incomplete, or blocked"
+category: "research-writing"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Firecrawl"
+sourceUrl: "https://github.com/firecrawl/firecrawl-claude-plugin/blob/main/skills/firecrawl-deep-research/SKILL.md"
+tags: ["firecrawl", "deep-research", "synthesis", "citations", "verification", "investigation"]
+createdAt: "2026-10-27"
+---
+
+## What This Does
+
+Gives Claude a method for investigations that need more than a lookup. It uses Firecrawl's search tools but isn't a fixed pipeline: the investigation adapts to the question and the evidence available.
+
+The method:
+
+1. **Frame it.** Infer scope, dates, geography, audience, and output. Ask only about decisions that materially change the investigation. Convert relative dates to explicit bounds. For substantial work, state the main questions and evidence routes before starting.
+2. **Start small, expand on gaps.** It begins with the smallest useful retrieval and expands only for gaps that could change the answer. There are no default budgets, source quotas, or minimum call counts.
+3. **Choose the evidence route.** Web search, page reads, structured provider records, code and API evidence, scientific papers, US laws and regulations, or site-restricted search.
+4. **Resolve gaps.** Investigate contradictions and alternatives during collection, check dates for freshness-sensitive facts, and align entity, period, unit, currency, and denominator before any calculation.
+5. **Verify and deliver.** Keep a compact record linking each claim to its source and the supporting passage. Check quotations and calculations, narrow unsupported conclusions, and label inference.
+
+---
+
+## Before You Start
+
+This workflow runs on Firecrawl's hosted MCP server, which gives Claude tools to search the live web and read pages. You need a Firecrawl account and a connected MCP server.
+
+**Easiest route: the Firecrawl plugin.** In Claude Code:
+
+```
+/plugin marketplace add firecrawl/firecrawl-claude-plugin
+/plugin install firecrawl@firecrawl
+```
+
+Then run `/reload-plugins` (or start a new session) and `/mcp` to connect your Firecrawl account. Installing the plugin and connecting the account are separate steps. The plugin bundles all thirteen Firecrawl skills, so this playbook is mainly for people who want just this one workflow as a standalone CLAUDE.md. Choose one installation of Firecrawl so the skills don't duplicate.
+
+**Cost and privacy.** Web, developer, and paper searches are billed per request, page retrieval is billed per URL, and provider data uses each capability's listed price. Government search and provider discovery are free. Check your Firecrawl plan. Requests send search queries, page URLs, and any provider inputs to Firecrawl, so include only what the task needs.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/DeepResearch
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/DeepResearch/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/DeepResearch
+claude
+```
+
+Then ask in plain language:
+
+```
+"Do a deep dive on [topic]: key actors, competing explanations, and primary sources"
+"Compare [A] and [B] on cost, adoption, and regulation, with sources"
+"Find every [type of organization] in [region] that meets [criteria], as a table with sources"
+"Read this PDF report and check its main claims against other sources: https://example.com/report.pdf"
+```
+
+---
+
+## What Makes It Rigorous
+
+- **Primary sources first.** It distinguishes a source's own claims from independent verification. Syndicated reports and repeated press releases don't count as corroboration.
+- **Provider records, carefully.** For comparable fields across many entities, it prefers fitting structured records, but checks entity type, geography, and date coverage. A catalogue suggestion isn't retrieved data, and missing entity IDs are discovered, not guessed.
+- **Papers.** It reads methods, results, tables, or figures before relying on empirical claims, discloses abstract-only support, and doesn't treat versions of the same study as independent corroboration.
+- **PDFs.** It reads them with page limits matched to the evidence needed, and treats truncated documents as partial coverage.
+- **History.** For historical comparisons, it reads distinct captures around the requested dates and checks their actual timestamps instead of assuming stability between two matching endpoints.
+- **Credit caps.** If you set one, it tracks returned usage across calls, counts each receipt once, treats missing usage as unknown, and stops paid collection if it can't respect the budget.
+- **Lists.** Define count, criteria, exclusions, and fields first. It keeps every input row, reports actual row counts and gaps, and doesn't treat a directory total as proof of exhaustive coverage.
+
+The answer leads with the conclusion, cites at the claim, and marks each requested part as answered, incomplete, or blocked.
+
+---
+
+## Tips & Best Practices
+
+- **Set limits if you have them.** Time, credit, page, and result limits are respected, so say so up front.
+- **Use a focused workflow when one fits.** Supplied people or lead CSVs, new prospects, published business contacts, and official documentation each have a more efficient Firecrawl playbook.
+- **Ask for a format.** A table, CSV, JSON, or report. Claude matches it.
+- **Keep simple questions simple.** Invoking this doesn't require an exhaustive investigation. It stops once the central questions are supported.
+
+---
+
+## Limitations
+
+- **Costs scale with depth.** Searches, page reads, and provider runs are billed. Use a credit cap for open-ended work.
+- **Coverage can be partial.** If paging stops early or documents are truncated, Claude reports the gap instead of implying completeness.
+- **Inference stays labelled.** It won't infer causation from co-movement or completeness from missing evidence.
+- **Licence note.** This skill carries its own ISC notice, which is kept in the template. The rest of the Firecrawl plugin is MIT.

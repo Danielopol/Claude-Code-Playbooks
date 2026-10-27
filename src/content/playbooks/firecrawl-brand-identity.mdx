@@ -1,0 +1,98 @@
+---
+title: "Firecrawl Brand Asset Collector"
+description: "Collect a named organization's existing logo, colors, fonts, and homepage messaging from its website for a deck or document, with sources and no invented assets"
+seoHook: "Building a pitch deck or report about another company usually starts with guessing their brand colors from a screenshot. This playbook has Claude read the company's own homepage, return the logo links, observed hex colors, fonts, and exact headline with source URLs, and mark anything it couldn't find as unknown."
+targetAudience: "consultants, sales teams, designers, analysts building decks about other companies, agencies preparing client presentations, anyone who needs a company's real brand assets for a document"
+exampleUseCase: "\"Gather Notion's brand assets for a slide deck\" → a compact reference with logo asset URLs and variants, observed primary, background, text, and accent colors with hex values, heading and body fonts with weights, the exact homepage headline and tagline, and source URLs, with unavailable fields marked unknown"
+category: "marketing-content"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "Firecrawl"
+sourceUrl: "https://github.com/firecrawl/firecrawl-claude-plugin/blob/main/skills/brand-identity/SKILL.md"
+tags: ["firecrawl", "branding", "logos", "colors", "fonts", "presentations"]
+createdAt: "2026-10-27"
+---
+
+## What This Does
+
+Collects an organization's **existing** website identity so you can use it in a deck or document. It reports what the site actually shows, and it doesn't create a strategy or manufacture missing assets.
+
+How it works:
+
+1. **Scrape the homepage first** (with a supplied domain), requesting branding and markdown formats when supported. That gives palette, typography, and logo candidates alongside the exact homepage messaging. It searches only if the official domain is missing or unresolved.
+2. **Assemble a compact asset reference:**
+   - logo asset URLs and available variants
+   - observed primary, background, text, and accent colors with hex values
+   - heading and body fonts with available weights
+   - the exact homepage headline and any explicit tagline
+   - image asset URLs and their observed uses, if you asked for imagery
+   - source URLs for everything
+3. **Follow a brand-assets link** if a needed logo variant or official download isn't on the homepage.
+4. **Stay honest.** Linked logo assets are distinguished from downloaded files, and Claude never says a file was downloaded unless it was.
+
+---
+
+## Before You Start
+
+This workflow runs on Firecrawl's hosted MCP server, which gives Claude tools to search the live web and read pages. You need a Firecrawl account and a connected MCP server.
+
+**Easiest route: the Firecrawl plugin.** In Claude Code:
+
+```
+/plugin marketplace add firecrawl/firecrawl-claude-plugin
+/plugin install firecrawl@firecrawl
+```
+
+Then run `/reload-plugins` (or start a new session) and `/mcp` to connect your Firecrawl account. Installing the plugin and connecting the account are separate steps. The plugin bundles all thirteen Firecrawl skills, so this playbook is mainly for people who want just this one workflow as a standalone CLAUDE.md. Choose one installation of Firecrawl so the skills don't duplicate.
+
+**Cost and privacy.** Web, developer, and paper searches are billed per request, page retrieval is billed per URL, and provider data uses each capability's listed price. Government search and provider discovery are free. Check your Firecrawl plan. Requests send search queries, page URLs, and any provider inputs to Firecrawl, so include only what the task needs.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/BrandAssets
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/BrandAssets/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/BrandAssets
+claude
+```
+
+Then ask in plain language:
+
+```
+"Gather [Company]'s brand assets for a slide deck: logo, colors, fonts, and headline"
+"Get the official logo variants and homepage tagline for https://example.com"
+"I need hero imagery from [Company]'s homepage for a report. List the image URLs and where each is used"
+```
+
+---
+
+## Tips & Best Practices
+
+- **Give the domain.** It skips the search step and goes straight to the official site.
+- **Say what the document needs.** Ask for imagery only if you need it.
+- **Use supplied assets when you have them.** Claude respects supplied assets and no-browse requests.
+- **Check usage rights.** Collecting a logo link doesn't grant permission to use it. For partner or press use, follow the organization's published brand guidelines.
+
+---
+
+## Limitations
+
+- **Observed styling is not a brand standard.** Colors and fonts come from the homepage, not a published style guide, and Claude says so.
+- **Links, not files.** Claude returns asset URLs. It doesn't download the logo unless the download actually happened.
+- **Unknown means unknown.** Missing fields are marked unknown, not filled in.
+- **No strategy or sentiment.** It reports the existing identity only.

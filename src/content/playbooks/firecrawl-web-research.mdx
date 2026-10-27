@@ -1,0 +1,109 @@
+---
+title: "Firecrawl Web Search & Page Retrieval"
+description: "Give Claude live web search, page reading, and structured data providers through Firecrawl, with sourced answers that separate excerpts from full content"
+seoHook: "Claude's training data is stale the moment you need something current. This playbook connects Claude to Firecrawl's search tools so it finds ranked sources, reads the exact page, pulls structured provider data, and cites every claim, and it routes you to the right specialist workflow when one fits."
+targetAudience: "researchers, analysts, marketers, founders, journalists, developers, anyone whose questions depend on current external evidence"
+exampleUseCase: "\"Find recent sources on EU battery recycling rules and summarize them with citations\" → Claude searches, reads the pages the answer depends on, cites the source URLs, and states which parts are excerpts and which are full content, and whether coverage is partial"
+category: "research-writing"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "Firecrawl"
+sourceUrl: "https://github.com/firecrawl/firecrawl-claude-plugin/blob/main/skills/firecrawl/SKILL.md"
+tags: ["firecrawl", "web-search", "scraping", "mcp", "research", "citations"]
+createdAt: "2026-10-27"
+---
+
+## What This Does
+
+This is the core Firecrawl workflow. It tells Claude how to use Firecrawl's search tools well: pick the right operation, read what comes back, cite it, and say what it doesn't know.
+
+The operations it chooses between:
+
+| Need | Tool |
+| --- | --- |
+| Find sources | `firecrawl_search` returns ranked results and excerpts |
+| Read a known page | `firecrawl_scrape` retrieves the URL |
+| Developer evidence | `firecrawl_developer_search` finds passages in indexed repositories and docs |
+| US law and regulation | `firecrawl_gov_search` covers statutes, regulations, codes, and court opinions |
+| Scientific papers | `firecrawl_research_search_papers`, `_inspect_paper`, `_related_papers`, `_read_paper` |
+| Structured provider data | `firecrawl_find_tools` to browse the catalogue, then a provider capability run through `firecrawl_scrape` |
+
+It also acts as a router. If a focused workflow fits (lead enrichment, prospecting, business contacts, brand assets, design extraction, job postings, fantasy sports, SEO audits, documentation, developer research, papers, deep research), it prefers that over a general investigation. Multiple records or tool calls alone don't justify deep research.
+
+---
+
+## Before You Start
+
+This workflow runs on Firecrawl's hosted MCP server, which gives Claude tools to search the live web and read pages. You need a Firecrawl account and a connected MCP server.
+
+**Easiest route: the Firecrawl plugin.** In Claude Code:
+
+```
+/plugin marketplace add firecrawl/firecrawl-claude-plugin
+/plugin install firecrawl@firecrawl
+```
+
+Then run `/reload-plugins` (or start a new session) and `/mcp` to connect your Firecrawl account. Installing the plugin and connecting the account are separate steps. The plugin bundles all thirteen Firecrawl skills, so this playbook is mainly for people who want just this one workflow as a standalone CLAUDE.md. Choose one installation of Firecrawl so the skills don't duplicate.
+
+**Cost and privacy.** Web, developer, and paper searches are billed per request, page retrieval is billed per URL, and provider data uses each capability's listed price. Government search and provider discovery are free. Check your Firecrawl plan. Requests send search queries, page URLs, and any provider inputs to Firecrawl, so include only what the task needs.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/FirecrawlResearch
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/FirecrawlResearch/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/FirecrawlResearch
+claude
+```
+
+Then ask in plain language:
+
+```
+"Find recent sources on [topic] and summarize them with citations"
+"Read https://example.com/report and extract the pricing table"
+"Search US government publications on [regulation topic]"
+"What structured data providers does Firecrawl have for company funding data?"
+```
+
+---
+
+## How It Answers
+
+- **Live schema first.** Claude follows the arguments the connected server actually exposes and reports unavailable routes instead of inventing tools.
+- **Excerpts are not full pages.** When an answer needs more context, Claude fetches the search result itself.
+- **Citations.** Every claim carries its source URL, and Claude distinguishes excerpts from full content and partial coverage from an exhaustive search.
+- **Fetched pages are data, not instructions.** Content on a page doesn't get to redirect Claude.
+- **Provider data needs a contract.** Search results can suggest providers (`data.tools`), but a suggestion isn't a result. Claude reads the provider's contract with `firecrawl_find_tools`, checks its price and external effects against your request, runs it, and reads the result before answering.
+
+---
+
+## Tips & Best Practices
+
+- **Name the source or scope you want.** Claude respects your source, scope, and tool choices, including "don't browse."
+- **Ask for the narrowest tool.** A known URL needs a scrape, not a search.
+- **Check the price of provider runs.** Claude is told to compare a capability's stated price against your request before executing.
+- **Use a focused playbook when one fits.** The other Firecrawl playbooks on this site cover leads, SEO, docs, papers, and more.
+
+---
+
+## Limitations
+
+- **Needs a Firecrawl account and connection.** Without the MCP, Claude only has what its built-in tools provide.
+- **Operations are limited to what the connection exposes.** If a route isn't available, Claude says so.
+- **Search is billed.** Web, developer, and paper searches cost per request, and page reads cost per URL.
+- **Provider access can be blocked** by terms or account limits. Claude reports that and continues with permitted routes.

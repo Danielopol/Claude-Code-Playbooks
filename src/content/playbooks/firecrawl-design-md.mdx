@@ -1,0 +1,105 @@
+---
+title: "Firecrawl Design System Extractor (DESIGN.md)"
+description: "Extract a reference website's design system into a DESIGN.md with tokens, layout, components, and imagery, with source evidence for each value"
+seoHook: "\"Make it look like that site\" is a terrible brief, because the details live in a hundred CSS values nobody wrote down. This playbook has Claude capture a reference page's branding, HTML, and screenshot, look at the actual pixels, and write a DESIGN.md of colors, type, spacing, components, and image treatment that separates extracted values from visual estimates."
+targetAudience: "front-end developers, product designers, founders recreating a visual style, agencies documenting a client's site, design-system teams auditing existing UI"
+exampleUseCase: "\"Extract the design system from https://linear.app into DESIGN.md for a Tailwind project\" → DESIGN.md with source URLs and capture context, an inspected screenshot, semantic color roles, typography, spacing, containers, shadows, component patterns, section order, image treatment, and implementation guidance for Tailwind, with unresolved details listed"
+category: "creative-design"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Firecrawl"
+sourceUrl: "https://github.com/firecrawl/firecrawl-claude-plugin/blob/main/skills/design/SKILL.md"
+tags: ["firecrawl", "design-system", "css", "ui", "design-tokens", "frontend"]
+createdAt: "2026-10-27"
+---
+
+## What This Does
+
+Documents a reference website's visual system so you can recreate its style or capture its UI patterns. The output is a `DESIGN.md`.
+
+The process:
+
+1. **Find the site.** It starts with your URL and requested pages. If you only name an organization, it resolves the official site first, and asks if the reference is ambiguous.
+2. **Capture a representative page** with `firecrawl_scrape`, requesting branding, HTML, markdown, and screenshot formats (with a full-page screenshot when supported, and `onlyMainContent: false`). It adds images only when that format is exposed, and fetches extra pages only for your requested scope or a material missing pattern.
+3. **Look at the screenshot pixels** before describing the layout. A screenshot URL alone isn't inspected evidence. HTML and stylesheet evidence fill gaps in fonts, tokens, and components.
+4. **Extract** semantic color roles, typography, spacing, containers, borders, shadows, component patterns, section order, and imagery treatment, with source evidence attached to material values.
+5. **Write `DESIGN.md`** with source URLs and capture context, the reference screenshot, design tokens, layout and components, image references, implementation guidance for your stack, and unresolved details.
+
+---
+
+## Before You Start
+
+This workflow runs on Firecrawl's hosted MCP server, which gives Claude tools to search the live web and read pages. You need a Firecrawl account and a connected MCP server.
+
+**Easiest route: the Firecrawl plugin.** In Claude Code:
+
+```
+/plugin marketplace add firecrawl/firecrawl-claude-plugin
+/plugin install firecrawl@firecrawl
+```
+
+Then run `/reload-plugins` (or start a new session) and `/mcp` to connect your Firecrawl account. Installing the plugin and connecting the account are separate steps. The plugin bundles all thirteen Firecrawl skills, so this playbook is mainly for people who want just this one workflow as a standalone CLAUDE.md. Choose one installation of Firecrawl so the skills don't duplicate.
+
+**Cost and privacy.** Web, developer, and paper searches are billed per request, page retrieval is billed per URL, and provider data uses each capability's listed price. Government search and provider discovery are free. Check your Firecrawl plan. Requests send search queries, page URLs, and any provider inputs to Firecrawl, so include only what the task needs.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/DesignExtractor
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/DesignExtractor/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/DesignExtractor
+claude
+```
+
+Then ask in plain language:
+
+```
+"Extract the design system from https://example.com into DESIGN.md"
+"Document the buttons, cards, and navigation patterns on [URL], with guidance for React and Tailwind"
+"Capture the visual style of [Company]'s pricing page and recreate its section order"
+```
+
+---
+
+## Observed vs. Estimated
+
+The template makes Claude label how sure it is:
+
+- **Extracted values** come straight from branding data, HTML, or CSS.
+- **Visual estimates** come from looking at the screenshot. Estimated spacing isn't presented as exact CSS.
+- **Proposed implementation choices** are adaptations for your stack.
+
+Differences between components, pages, and themes stay explicit. A desktop screenshot doesn't establish mobile layout, hover behavior, or animation, so Claude inspects extra viewports or states only when you need them. When it needs a fresh capture, it uses `maxAge: 0` and records the capture context.
+
+---
+
+## Tips & Best Practices
+
+- **Say your target stack.** Implementation guidance is adapted to it.
+- **Name the pages that matter.** One page rarely shows the whole system, but extra pages cost extra reads.
+- **Supply your own assets.** Claude respects supplied assets and scope limits.
+- **Use it for reference, not copying.** Recreating a visual style is different from copying a site's protected assets or content. Respect the source's terms and branding rights.
+
+---
+
+## Limitations
+
+- **Not pixel-perfect.** Claude is told not to promise a pixel-perfect reconstruction or a complete asset capture.
+- **Image inventories are partial.** Curated branding assets aren't a complete list of page images, and asset URLs aren't downloaded files.
+- **One snapshot.** The result reflects the capture date. Record it and recapture if the site changes.
+- **Hidden states aren't captured** unless inspected: hover, mobile, animation.

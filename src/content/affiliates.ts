@@ -70,6 +70,14 @@ export const affiliates: Affiliate[] = [
     pricing: 'Free trial',
   },
   {
+    // 25% of payments for the first 12 months, $30 payout threshold. Audience code CLAUDECODEHQ20 (20% off paid plans). Approved 2026-10-26.
+    slug: 'intrinsiqq',
+    name: 'Intrinsiqq',
+    trackingUrl: 'https://intrinsiqq.com/r/claudecodehq',
+    tagline: 'Quality scores, DCF and ten-year financials to pair with Claude’s filing analysis.',
+    topics: ['finance'],
+  },
+  {
     // Tiered commissions, terms shown after approval; asks for "a significant following". Apply: site.financialmodelingprep.com/affiliates
     slug: 'fmp',
     name: 'Financial Modeling Prep',

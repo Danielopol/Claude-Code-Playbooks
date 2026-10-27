@@ -38,6 +38,12 @@ npm run lint    # Run ESLint
   - `/api/v1/playbooks/[slug]` - One playbook with its template inline (ISR like `/playbooks/[slug]`: rendered on first request, cached a day; unknown slugs 404)
   - No `OPTIONS` exports on these routes: they make Next treat the route as non-static and the ISR route 500s
 
+### MCP server (`/api/mcp`)
+- Remote MCP server (Streamable HTTP) built on `@modelcontextprotocol/server` v2: route in `src/app/api/mcp/route.ts`, tools in `src/lib/mcp.ts`
+- Tools: `search_playbooks`, `get_playbook` (returns the template plus where to save it; the client writes the file), `list_categories`. Same data and ranking as `/api/v1`
+- Stateless per request; serves both 2026-07-28 clients and 2025-era clients (stateless `initialize` fallback; GET/DELETE answer 405)
+- Users add it with `claude mcp add --transport http claude-code-playbooks https://www.claudecodehq.com/api/mcp`
+
 ### CLI (`cli/`)
 - Standalone zero-dependency npm package `ccplaybooks` (plain ESM `.mjs`, Node 18.17+), not part of the Next build. It only talks to `/api/v1`, so API response changes must stay backward compatible.
 - `cd cli && npm test` runs the `node:test` suite (fake fetch, temp dirs, no network)

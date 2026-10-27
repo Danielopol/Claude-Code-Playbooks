@@ -19,6 +19,7 @@ export async function GET() {
       categories: `${api}/categories`,
       rawTemplate: `${BASE_URL}/templates/{slug}.md`,
     },
+    mcp: `${BASE_URL}/api/mcp`,
     terms: `${BASE_URL}/licensing`,
   });
 }

@@ -1,0 +1,119 @@
+# Tier 1: Claude Code / AI-coding-agent directory advertising pricing (access date 2026-10-29)
+
+**Method caveat (read first):** In this research session, direct fetches of every target site were blocked by the session's network allowlist (WebFetch/curl returned "ENOTFOUND" / proxy 403 for cursor.directory, claudelog.com, claudemarketplaces.com, skillsmp.com, aitmpl.com and web.archive.org; GitHub API access to the repos was also denied). All findings below come from **search-engine result content for the official pages** (WebSearch, extended mode), not from me reading the pages myself. The evidence URL listed is the official page the search result pointed to. Because of this, confidence is capped at **medium** for prices that appeared consistently, and set to **low** wherever copies conflict. Before publishing, re-check each URL in a browser. Wayback Machine checks could not be run (web.archive.org blocked).
+
+## Which Claude Code / AI-coding-agent directories sell paid placements, and on what terms?
+
+### Takeaway
+Only a handful of Claude Code-specific directories publish rate cards. They cluster at **flat monthly site-wide sponsor slots of $899–$1,499/mo with 5–8 rotating slots and "1–2 slots left" scarcity messaging** (claudemarket.ai $899, claudemarketplace.net $1,299, claudemarketplaces.com $1,499). The large content/guide sites (ClaudeLog, cursor.directory, aitmpl.com) sell sponsorships but keep prices behind "contact us". The cheapest paid listing found is a one-time $29 fast-track listing on mcpmarket.com (adjacent MCP/skills directory).
+
+### Product table (one row per product)
+
+| # | Site | Product | Price / currency | Billing | Min commitment | Placement | Exclusivity / slots | Reporting | Link labeling | Extra benefits | Published traffic | Evidence URL | Confidence |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | Claude Code Marketplaces (claudemarketplaces.com) | Sponsor slot | $1,499 USD | Monthly (recurring) | Not publicly disclosed (search results did not mention a lock-in) | Site-wide rotating sponsor placement ("featured" units); deterministic rotation, no auction | Max 8 sponsors; ~13% share of voice each; page showed "1 of 8 slots" remaining | "Server-measured clicks, public analytics"; ~1,700 est. clicks/sponsor/mo; ~$0.88 effective CPC; 1.2M ad impressions and 0.36% featured CTR in last 30 days; impressions counted only when ad is 50%+ visible for 1 second | Not publicly disclosed (rel/nofollow status not found) | Self-serve checkout on /advertise plus a 15-min Cal.com call for custom deals | 300,000+ monthly visitors (homepage copy); "380,000+ developers" (advertise page); founder separately claims 220k+ monthly Google visitors | https://claudemarketplaces.com/advertise ; https://cal.com/claudemarketplaces/advertise | Medium (price consistent across results; click/visitor figures vary) |
+| 2 | Claude Code Marketplaces (claudemarketplace.net, separate domain using the same name) | Sponsor slot (pinned card + sponsored row) | $1,299 USD | Monthly, "cancel anytime" | None ("monthly, cancel anytime") | Pinned card at top of every listing page plus a sponsored row inside every skill, marketplace and MCP listing | Max 5 sponsors; pinned card auto-rotates in groups of 3; page showed "Only 2 of 5 sponsor slots left" | ~2,000+ clicks/mo est.; ~12% share of voice; stated effective CPC $0.40–$0.75 | Not publicly disclosed | Same-day go-live; billing via Lemon Squeezy (self-serve) | 150,000+ (as reported in search results) | https://www.claudemarketplace.net/advertise | Low-medium (conflicts with claudemarketplaces.com; relationship between the two domains unclear, possibly a clone or mirror) |
+| 3 | claudemarket.ai (AI Agent Skills Directory; operator email info@aidevelopers.tech) | Sponsor slot (all placements) | $899 USD ("from $899/mo") | Monthly, no lock-in | None ("no lock-in", cancel anytime) | One ad running across every placement (skills hub, MCP directory, plugins pages, guides) | 8 slots; page showed "1 of 8 sponsor slots left" | "Fully public analytics" | Not publicly disclosed | Swap creative anytime; same-day go-live | "55,000+ developers" (advertise page); "50,000+ AI builders" (homepage); 27,000+ (MCP page), 26,000+ (plugins page) | https://claudemarket.ai/advertise | Medium |
+| 4 | claudemarket.ai | Link placement in an existing guide | Not publicly disclosed (quote by email) | Not disclosed (likely one-time) | Not disclosed | Link added to one of 880+ indexed guides | Approval required ("confirm fit, timing, and a rate") | Not disclosed | Not disclosed | Live within 24 hours | as row 3 | https://claudemarket.ai/advertise | Medium |
+| 5 | claudemarket.ai | Sponsored post (full article) | Not publicly disclosed | Not disclosed (one-time article) | Not disclosed | Blog article about your product; you supply it or they write it | Not disclosed | Not disclosed | Not disclosed | Optional writing service | as row 3 | https://claudemarket.ai/advertise | Medium |
+| 6 | ClaudeLog (claudelog.com) | Sponsorship package (tiered) | Not publicly disclosed ("contact us to receive our comprehensive sponsor package") | Not disclosed | Not disclosed | Not disclosed; current "official sponsor" is Nimbalyst (claudelog.com/nimbalyst/) | Tiers exist but are not published | "Detailed audience insights" provided on request | Not disclosed | "Partnership benefits" (unspecified) | Not publicly disclosed in results | https://claudelog.com/sponsor/ | Medium (existence); price unknown |
+| 7 | ClaudeLog | CPC / CPM display advertising | Not publicly disclosed ("contact us for rates, placement options") | CPC or CPM (performance-based) | Not disclosed | Not disclosed | Not disclosed | Not disclosed | Not disclosed | Audience insights on request | Not disclosed | https://claudelog.com/advertise/ | Medium (existence); price unknown |
+| 8 | ClaudeLog | "Your Link" tier (appeared in one search snippet of the Nimbalyst sponsor page) | $100 (currency presumably USD) | Not disclosed | Not disclosed | Not disclosed | Not disclosed | Not disclosed | Not disclosed | Not disclosed | Not disclosed | https://claudelog.com/nimbalyst/ | Low (single unverified snippet; may be a Buy Me a Coffee tier, not an ad product) |
+| 9 | Claude Code Templates (aitmpl.com, open source davila7/claude-code-templates) | Sponsored component slot | Not publicly disclosed | Not disclosed | Not disclosed | Top of search results plus first card in the component grid | Not disclosed; sponsored components go through the same review as others; payment "doesn't change the order of other results, categories, or install recommendations" | Not disclosed | Labeled "Sponsored" | Revenue said to fund hosting, security tooling and maintainer time | Not disclosed in results; >400 components (older DEV guide) | https://www.aitmpl.com/about/ | Medium |
+| 10 | Claude Code Templates (GitHub README / npm) | Repo/README sponsor banner | Not publicly disclosed | Not disclosed | Not disclosed | README and npm page banner (Bright Data shown as sponsor); site lists Z.AI, Vercel, Neon, Claude as sponsors/program supporters | Not disclosed | Not disclosed | Not disclosed | Not disclosed | GitHub stars not retrieved (API blocked) | https://github.com/davila7/claude-code-templates ; https://www.npmjs.com/package/claude-code-templates | Medium (existence) |
+| 11 | cursor.directory (adjacent AI-coding directory; operator Pontus Abrahamsson) | Featured directory listings, sponsored content and tutorials, newsletter sponsorships, custom partnerships; also paid job listings and featured MCPs | Not publicly disclosed (contact @pontusab on X) | Not disclosed | Not disclosed | Not disclosed; "Sponsored by" slots seen on profile pages | Not disclosed | Not disclosed | Not disclosed | Not disclosed | ~120,000 unique visitors/mo (advertise page); 295k unique visitors/mo (founder X post); 250,000+ visits/mo (G2, third-party) | https://cursor.directory/advertise ; https://x.com/pontusab/status/1966470564601835963 | Medium (offer existence); price unknown |
+| 12 | MCP Market (mcpmarket.com, adjacent MCP + agent skills directory) | Fast-track paid listing | $29 USD | One-time | n/a | Listed within 24 hours with an "official badge" (vs. free queue with 4–6 week wait) | n/a | Not disclosed | Not disclosed | Separate "Sell your agent skills" paid-listing marketplace (sellers set prices) | Not disclosed | https://mcpmarket.com/submit ; https://mcpmarket.com/sell | Medium |
+| 13 | Claude Code Ads (claudecodeads.com; ad network inside Claude Code's terminal spinner, not a directory) | Spinner ad blocks (auction) | Bids from $1.00 USD CPM; sold in blocks of 1,000 ten-second views; sample block $5.00 | Prepaid per block (pay-as-you-go) | $1.00 minimum per block | Text in the Claude Code "thinking" spinner of participating devs | Open live auction; highest bid takes top placement | Impression-based | Not disclosed | 75% of revenue paid to the host developer | Not disclosed | https://www.claudecodeads.com/ ; https://x.com/anujcodes_21/status/2067684085934489764 | Medium (vendor's own marketing copy) |
+
+### Cited Findings
+- claudemarketplaces.com sells a sponsorship at $1,499/mo with "limited sponsor slots, server-measured clicks, public analytics", ~1,700 clicks per sponsor per month, ~13% share of voice, max 8 sponsors, "1 of 8 slots" remaining — [claudemarketplaces.com/advertise](https://claudemarketplaces.com/advertise)
+- The same page reports ~$0.88 effective CPC, 1.2M ad impressions and 0.36% featured CTR over the last 30 days, deterministic rotation (no auction); impressions counted only when ≥50% visible for 1 second — [claudemarketplaces.com/advertise](https://claudemarketplaces.com/advertise)
+- A Cal.com booking page offers a 15-minute call for custom deals and says self-serve checkout is at claudemarketplaces.com/advertise — [cal.com/claudemarketplaces/advertise](https://cal.com/claudemarketplaces/advertise)
+- claudemarketplace.net (different domain, same "Claude Code Marketplaces" name) lists $1,299/mo, monthly, cancel anytime, pinned card plus sponsored row on every skill/marketplace/MCP listing, pinned card rotates in groups of 3, max 5 sponsors, "Only 2 of 5 sponsor slots left", ~2,000+ clicks/mo, ~12% share of voice, $0.40–$0.75 effective CPC, billing via Lemon Squeezy — [claudemarketplace.net/advertise](https://www.claudemarketplace.net/advertise)
+- crossaitools.com carries a near-identical advertise page ($1,499/mo, 2,000+ clicks, 12% share, 8 sponsors), suggesting a shared template/operator; it is a general AI tools site, not Tier 1 — [crossaitools.com/advertise](https://crossaitools.com/advertise)
+- claudemarket.ai sells one flat $899/mo sponsor slot covering every placement, no lock-in, swap creative anytime, "1 of 8 sponsor slots left", "fully public analytics", plus a link placement in one of 880+ guides (rate by email to info@aidevelopers.tech, live within 24h) and a sponsored post (price not listed) — [claudemarket.ai/advertise](https://claudemarket.ai/advertise)
+- ClaudeLog's sponsor page targets developer tools, LLM providers and CI/CD/DevOps vendors and says to contact them "to receive our comprehensive sponsor package with detailed audience insights, sponsorship tiers, and partnership benefits" — [claudelog.com/sponsor](https://claudelog.com/sponsor/)
+- ClaudeLog's advertise page: "We offer cost-effective CPC and CPM advertising to our qualified audience. Contact us for rates, placement options, and detailed audience insights." — [claudelog.com/advertise](https://claudelog.com/advertise/)
+- Nimbalyst is listed as ClaudeLog's official sponsor — [claudelog.com/nimbalyst](https://claudelog.com/nimbalyst/); ClaudeLog also takes donations via Buy Me a Coffee monthly tiers — [buymeacoffee.com/claudelog](https://buymeacoffee.com/claudelog)
+- aitmpl.com: component authors and companies can pay for a sponsored slot at the top of search results and as the first card in the grid, labeled "Sponsored", reviewed like any other component; payment doesn't change other ordering; revenue covers hosting, security tooling and maintainer time — [aitmpl.com/about](https://www.aitmpl.com/about/)
+- Claude Code Templates' GitHub README and npm page show a Bright Data sponsor banner — [GitHub](https://github.com/davila7/claude-code-templates); [npm](https://www.npmjs.com/package/claude-code-templates)
+- cursor.directory's advertise page lists featured directory listings, sponsored content and tutorials, newsletter sponsorships and custom partnerships, with no prices; contact Pontus at @pontusab — [cursor.directory/advertise](https://cursor.directory/advertise)
+- mcpmarket.com offers a $29 one-time listing (listed within 24 hours, official badge) vs. a free queue with 4–6 week wait — [mcpmarket.com/submit](https://mcpmarket.com/submit)
+- Claude Code Ads: bids start at $1.00 CPM, inventory sold in blocks of 1,000 ten-second views, $1.00 minimum per block, open live auction, 75% of revenue to the host developer — [claudecodeads.com](https://www.claudecodeads.com/); repeated in a promotional X post — [x.com/anujcodes_21](https://x.com/anujcodes_21/status/2067684085934489764)
+
+### Inferences
+- The Claude Code directory niche has a de facto rate card of **~$900–$1,500/mo for a rotating, site-wide sponsor slot shared among 5–8 sponsors**, with self-reported effective CPCs of ~$0.40–$0.88. Sites claiming 50k–300k+ monthly visitors (all self-reported) charge this range. ClaudeCodeHQ (~26.8k visitors / 49.1k page views) is below all of them on claimed reach.
+- Implied price per claimed visitor: claudemarket.ai ~$899 / 55k ≈ $16 per 1k "developers"; claudemarketplaces.com ~$1,499 / 300k ≈ $5 per 1k visitors. These are rough inferences from inconsistent, self-reported numbers.
+- The three rate-card sites share one playbook (8 or 5 capped slots, "1 of 8 left", share of voice, public analytics, same-day go-live, cancel anytime), and crossaitools.com carries a near-identical copy. This suggests a templated or copied monetization page. The scarcity indicators should be treated as marketing, not as proof of demand.
+- Recurring sponsorships dominate. One-time products found: mcpmarket.com $29 fast-track listing, and probably claudemarket.ai's guide link placement and sponsored post (pricing undisclosed).
+
+### Gaps
+- None of the pages could be fetched directly. Link attributes (dofollow / nofollow / rel="sponsored") were not reported by any search result for any site.
+- No prices found for ClaudeLog, aitmpl.com, cursor.directory or the claudemarket.ai link/post products.
+- skillsmp.com, claude-plugins.dev, buildwithclaude.com, subagents.cc and skills.sh: no advertise/sponsor/featured page surfaced in any search (see next section).
+- Wayback Machine history could not be checked (web.archive.org blocked in this session).
+
+## What traffic/audience figures do they publish, and with what geography?
+
+### Takeaway
+Published audience figures are self-reported, inconsistent even within a single site, and give no geography. claudemarketplaces.com claims the most (300k+ monthly visitors). cursor.directory's operator claims 295k unique visitors/mo. claudemarket.ai claims 26k–55k depending on the page.
+
+### Cited Findings
+- claudemarketplaces.com: homepage copy says 300,000+ monthly visitors; advertise page says 380,000+ developers — [Google Translate copy of homepage](https://translate.google.com/translate?client=srp&hl=es&sl=en&tl=es&u=https%3A%2F%2Fclaudemarketplaces.com%2F); [claudemarketplaces.com/advertise](https://claudemarketplaces.com/advertise)
+- The engineer behind claudemarketplaces.com says the site grew to 220k+ monthly Google visitors (up ~50% last month), on a page promoting their separate SEO-agent product — [seorobotai.com](https://seorobotai.com/)
+- claudemarketplace.net cites 150,000+ — [claudemarketplace.net/advertise](https://www.claudemarketplace.net/advertise)
+- claudemarket.ai: 55,000+ developers (advertise page), 50,000+ AI builders (homepage), 27,000+ (MCP directory page), 26,000+ (plugins page) — [claudemarket.ai/advertise](https://claudemarket.ai/advertise); [claudemarket.ai/mcp](https://www.claudemarket.ai/mcp); [claudemarket.ai/plugins](https://www.claudemarket.ai/plugins)
+- cursor.directory: about 120,000 unique visitors/month on the advertise page — [cursor.directory/advertise](https://cursor.directory/advertise); 295k unique visitors/month in the founder's X post — [x.com/pontusab](https://x.com/pontusab/status/1966470564601835963); "over 250,000 visits per month" on an unclaimed G2 profile (third-party) — [G2](https://www.g2.com/products/cursor-directory/pricing)
+- awesome-claude-code (hesreallyhim): star counts by snapshot were 1,156 (June 2025, ecosyste.ms), 1,855 (July 2025, ClaudeLog), 21.6k (Jan 2026, ClaudeLog), and ~43k–47k in 2026 per aggregators/DEV.to. No GitHub Sponsors or paid placement found — [ecosyste.ms](https://awesome.ecosyste.ms/api/v1/projects/github.com%2Fhesreallyhim%2Fawesome-claude-code); [claudelog.com/addons/awesome-claude-code](https://claudelog.com/addons/awesome-claude-code); [DEV.to](https://dev.to/tienbku/the-github-repository-every-claude-code-user-needs-to-bookmark-2b6f)
+- claude-plugins.dev: the repo claims 11,989 plugins and 63,065 agent skills indexed; the site shows 40,206+ skills. No visitor figures and no sponsorship found — [GitHub Kamalnrf/claude-plugins](https://github.com/Kamalnrf/claude-plugins); [claude-plugins.dev/skills](https://claude-plugins.dev/skills)
+
+### Inferences
+- On self-reported numbers, ClaudeCodeHQ's ~26.8k monthly visitors is roughly comparable to claudemarket.ai's per-section claims (26k–27k) and well below claudemarketplaces.com and cursor.directory. claudemarket.ai's $899/mo is therefore the closest price comparable.
+
+### Gaps
+- No site published geography breakdowns.
+- No Similarweb/Semrush figures were retrieved (those sites were not fetchable). All traffic numbers above are operator claims.
+- ClaudeLog's traffic is not published (only "available on request").
+
+## Which have free submissions only or undisclosed ("contact us") pricing?
+
+### Takeaway
+Most Claude Code skills/plugins registries (skillsmp.com, claude-plugins.dev, buildwithclaude.com, skills.sh, awesome-claude-code) show no paid placement in any search result and present as free, community or auto-indexed. ClaudeLog, aitmpl.com and cursor.directory sell sponsorships with undisclosed, contact-only pricing.
+
+### Cited Findings
+- skillsmp.com: no sponsor/advertising/pricing page surfaced; third-party listings describe it as free — [everydev.ai](https://www.everydev.ai/tools/skills-marketplace-skillsmp); [vibecoding.app](https://vibecoding.app/tools/skillsmp)
+- skills.sh (Vercel): free, no sign-in to install, community-driven, no ads mentioned — [vibecoding.app review](https://vibecoding.app/blog/skills-sh-review); [agensi.io comparison](https://www.agensi.io/learn/best-ai-agent-skills-marketplaces-2026)
+- claude-plugins.dev: open-source, auto-indexed, community-maintained registry; no sponsor info found — [GitHub Kamalnrf/claude-plugins](https://github.com/Kamalnrf/claude-plugins)
+- buildwithclaude.com (davepoon/buildwithclaude): described as a hub for skills, agents, commands, hooks and plugins; no sponsorship info found — [opentools.ai](https://opentools.ai/resources/buildwithclaude); [buildwithclaude.com](https://buildwithclaude.com/)
+- claudemarketplaces.com states the directory is "completely free and open" to browse and install, with editor review and spam removal (listing is free; sponsorship is the paid product) — [claudemarketplaces.com/about](https://claudemarketplaces.com/about)
+- Contact-only: ClaudeLog (sponsor and CPC/CPM ads) — [claudelog.com/sponsor](https://claudelog.com/sponsor/), [claudelog.com/advertise](https://claudelog.com/advertise/); cursor.directory — [cursor.directory/advertise](https://cursor.directory/advertise); aitmpl.com sponsored slot — [aitmpl.com/about](https://www.aitmpl.com/about/)
+- claudefa.st (Claude Fast) monetizes by selling a "Code Kit" at a limited-time $149 (down from $198), not advertising — [claudefa.st](https://claudefa.st/); TrustMRR lists Claude Fast! at $2,025 in the last 30 days — [trustmrr.com/startup/claude-fast](https://trustmrr.com/startup/claude-fast)
+
+### Inferences
+- The pure registries (auto-indexed from GitHub) don't monetize via ads. The sites that do are SEO-driven content/marketplace sites. ClaudeCodeHQ belongs to the second group.
+
+### Gaps
+- subagents.cc: no results at all; existence not verified.
+- "ccplugins", "agent-skills.md" and "claudecode.directory": not surfaced by searches; not verified.
+- awesome-claude-code: could not read FUNDING.yml (GitHub API blocked); no sponsorship found in search.
+- No Claude Code-specific newsletter with a published sponsor rate card was found.
+
+## Public disclosures of prices paid or sponsorship revenue; launch discounts, scarcity, checkout type
+
+### Takeaway
+The only revenue disclosure in this niche is cursor.directory's founder claiming $35k+/month from ads and listings. claudemarketplaces.com's builder claims $8k+ MRR across their indie work. Scarcity messaging ("1 of 8", "2 of 5") is universal on the rate-card sites. Checkout is self-serve (Lemon Squeezy at claudemarketplace.net; self-serve on claudemarketplaces.com) or email/contact. No founding or launch discounts were found.
+
+### Cited Findings
+- Pontus Abrahamsson: cursor.directory, "a 3-hour hack that now makes $35k/month", $35k+ MRR "from ads & listings", 295k unique visitors/month; features include job listings, featured MCPs and company profiles — [x.com/pontusab](https://x.com/pontusab/status/1966470564601835963); also reported (self-reported) by [Tiny Startups](https://www.tinystartups.com/revenue/cursor-directory) and [Starter Story summary](https://bulletpointpodcast.com/starterstory/my-website-makes-35k-month-built-in-3-hours/)
+- cursor.directory featured MCPs announced — [x.com/pontusab](https://x.com/pontusab/status/1890784531403452911)
+- The claudemarketplaces.com builder claims they went full-time indie at over $8k MRR (not broken out by sponsorship) — [seorobotai.com](https://seorobotai.com/)
+- Scarcity indicators: "1 of 8 slots" on claudemarketplaces.com — [link](https://claudemarketplaces.com/advertise); "Only 2 of 5 sponsor slots left" on claudemarketplace.net — [link](https://www.claudemarketplace.net/advertise); "1 of 8 sponsor slots left" on claudemarket.ai — [link](https://claudemarket.ai/advertise)
+- Checkout: Lemon Squeezy billing on claudemarketplace.net — [link](https://www.claudemarketplace.net/advertise); self-serve checkout plus Cal.com call on claudemarketplaces.com — [cal.com](https://cal.com/claudemarketplaces/advertise); claudemarket.ai uses email for non-slot products — [claudemarket.ai/advertise](https://claudemarket.ai/advertise); ClaudeLog and cursor.directory are contact-only — [ClaudeLog](https://claudelog.com/sponsor/), [cursor.directory](https://cursor.directory/advertise)
+
+### Inferences
+- cursor.directory shows that a well-trafficked AI-coding directory can earn high five figures per month from a mix of sponsors, featured listings and job posts. Its prices are negotiated, not published.
+
+### Gaps
+- No Reddit, Indie Hackers or HN posts disclosing specific prices paid for Claude Code directory sponsorships were found.
+- No evidence on whether the advertised scarcity is real (the slot counts were not observed changing over time).
+- Out of Tier 1 scope but surfaced (MCP directories, likely covered elsewhere): mcpservers.org Featured Sponsor $2,500/mo and category sponsorship from $600/mo — [mcpservers.org/advertise](https://mcpservers.org/advertise); MCPBundles Featured Listing $99/month — [mcpbundles.com/sponsorship](https://www.mcpbundles.com/sponsorship). These were not verified beyond search snippets.

@@ -9,7 +9,8 @@ import type { Sponsor } from '@/types/sponsor';
  * blog posts. Redeploy to apply a change everywhere immediately.
  *
  * Several sponsors can run at once — cards stack in this order: site-wide,
- * then category, then tool listings. One entry can hold several placements.
+ * then category, then tool listings. Site-wide sponsors rotate on each page
+ * view so each leads equally often. One entry can hold several placements.
  *
  * Put logos in public/sponsors/.
  *

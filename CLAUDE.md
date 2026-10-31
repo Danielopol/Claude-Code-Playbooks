@@ -44,6 +44,11 @@ npm run lint    # Run ESLint
 - Stateless per request; serves both 2026-07-28 clients and 2025-era clients (stateless `initialize` fallback; GET/DELETE answer 405)
 - Users add it with `claude mcp add --transport http claude-code-playbooks https://www.claudecodehq.com/api/mcp`
 
+### ChatGPT plugin (`chatgpt-plugin/`)
+- Packages the MCP server for the ChatGPT and Codex plugin directory. `npm run plugin:build` checks the manifest against OpenAI's limits and writes the zip to `chatgpt-plugin/dist/`. Submission steps are in `chatgpt-plugin/README.md`
+- OpenAI requires `readOnlyHint`, `destructiveHint` and `openWorldHint` to be explicit on every tool, and plugins must not serve ads: never add sponsor or affiliate content to MCP tool responses
+- `/.well-known/openai-apps-challenge` serves the domain verification token from the `OPENAI_APPS_CHALLENGE_TOKEN` env var and returns 404 when it is unset
+
 ### CLI (`cli/`)
 - Standalone zero-dependency npm package `ccplaybooks` (plain ESM `.mjs`, Node 18.17+), not part of the Next build. It only talks to `/api/v1`, so API response changes must stay backward compatible.
 - `cd cli && npm test` runs the `node:test` suite (fake fetch, temp dirs, no network)

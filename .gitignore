@@ -48,3 +48,6 @@ nul
 /demo-video/
 # Harvest pipeline working data (regenerable, can be very large)
 scripts/pipeline/data/
+
+# Built ChatGPT plugin zip (npm run plugin:build)
+/chatgpt-plugin/dist/

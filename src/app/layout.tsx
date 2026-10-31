@@ -135,6 +135,9 @@ function Footer() {
               <Link href="/licensing" className="hover:text-muted-foreground transition-colors">
                 Licensing
               </Link>
+              <Link href="/support" className="hover:text-muted-foreground transition-colors">
+                Support
+              </Link>
             </div>
           </div>
           <div className="md:max-w-xs w-full">

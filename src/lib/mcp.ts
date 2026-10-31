@@ -13,13 +13,19 @@ import { BASE_URL, rankPlaybooks, toDetail, toSummary } from '@/lib/api';
  * where it belongs, and the client's own file tools do the writing.
  *
  * Everything is read-only and public: no auth, no state between requests.
+ *
+ * Also the backend of the ChatGPT plugin (chatgpt-plugin/). OpenAI's plugin
+ * review requires all three annotation hints to be explicit booleans and bars
+ * ads in plugin output, so keep sponsor and affiliate content out of these tools.
  */
 
-const SERVER_INSTRUCTIONS = `Claude Code Playbooks (${BASE_URL}) is a free library of ready-made CLAUDE.md templates and Skills for tasks like research, finance, marketing, legal review and file organization.
+const SERVER_INSTRUCTIONS = `Claude Code Playbooks (${BASE_URL}) is a library of ready-made instruction templates (CLAUDE.md files and Skills) that AI agents follow for tasks like research, finance, marketing, legal review and file organization.
 
-Typical flow: search_playbooks to find candidates, get_playbook for the chosen one, then save its template where get_playbook says (CLAUDE.md in the project folder, or .claude/skills/<name>/SKILL.md for Skills). If CLAUDE.md already exists, ask the user before replacing it; appending is usually the safer choice. Keep the attribution comment get_playbook includes at the top of the saved file.`;
+Typical flow: search_playbooks with one to three keywords, then get_playbook for the chosen one. If you can't write files in the user's project, show the template in a code block, say where it belongs, and link the playbook page and its source.
 
-const READ_ONLY = { readOnlyHint: true, idempotentHint: true, openWorldHint: false } as const;
+If you can write files, save the template where get_playbook says (CLAUDE.md in the project folder, or .claude/skills/<name>/SKILL.md for Skills). If CLAUDE.md already exists, ask the user before replacing it; appending is usually the safer choice. Keep the attribution comment get_playbook includes at the top of the saved file.`;
+
+const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false } as const;
 
 const categoryIds = categories.map((c) => c.id) as [string, ...string[]];
 
@@ -61,7 +67,7 @@ export function createPlaybooksServer(): McpServer {
     {
       title: 'Search playbooks',
       description:
-        'Search the Claude Code Playbooks library. Every word in the query must match a playbook title, tag or description; results are ranked by relevance. Omit the query to list the newest playbooks.',
+        'Search the Claude Code Playbooks library. Use one to three keywords, not a full sentence: every word in the query must match a playbook title, tag or description. Results are ranked by relevance. Omit the query to list the newest playbooks.',
       inputSchema: z.object({
         query: z.string().max(200).optional().describe('Words describing the task, e.g. "invoice automation" or "literature review"'),
         category: z.enum(categoryIds).optional().describe('Only this category (see list_categories)'),
@@ -88,7 +94,8 @@ export function createPlaybooksServer(): McpServer {
           page: s.links.page,
         };
       });
-      return { content: [json({ total: matches.length, returned: results.length, results })] };
+      const hint = matches.length === 0 ? { hint: 'No matches. Try fewer or broader words, or browse with list_categories.' } : {};
+      return { content: [json({ total: matches.length, returned: results.length, results, ...hint })] };
     }
   );
 

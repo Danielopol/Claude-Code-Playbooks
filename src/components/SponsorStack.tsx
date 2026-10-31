@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { SponsorLink } from '@/components/SponsorLink';
+import { SponsorRotation } from '@/components/SponsorRotation';
 import { affiliateHref, getAffiliateStack } from '@/lib/affiliates';
 import { getSponsorStack, withUtm } from '@/lib/sponsors';
 import { cn } from '@/lib/utils';
@@ -60,14 +61,29 @@ function CardBody({ name, logo, tagline }: { name: string; logo?: string; taglin
 }
 
 /**
- * Stacked sponsor cards. Every sponsor that qualifies for the page is shown —
- * no rotation, no exclusivity. Affiliate cards follow the paid ones to fill
- * the slot. Renders nothing when there is neither.
+ * Stacked sponsor cards. Every sponsor that qualifies for the page is shown,
+ * with no exclusivity. Site-wide sponsors come first and rotate among
+ * themselves on each page view; category sponsors and tool listings follow in
+ * a fixed order. Affiliate cards follow the paid ones to fill the slot.
+ * Renders nothing when there is neither.
  */
 export function SponsorStack({ topics, withListings, className }: SponsorStackProps) {
   const stack = getSponsorStack({ topics, withListings });
   const affiliateStack = getAffiliateStack({ topics, sponsorSlugs: stack.map((s) => s.slug) });
   if (stack.length === 0 && affiliateStack.length === 0) return null;
+
+  const row = (sponsor: (typeof stack)[number]) => (
+    <SponsorLink
+      href={withUtm(sponsor.url, sponsor.placement)}
+      sponsor={sponsor.slug}
+      placement={sponsor.placement}
+      className={rowClass}
+    >
+      <CardBody name={sponsor.name} logo={sponsor.logo} tagline={sponsor.tagline} />
+    </SponsorLink>
+  );
+  const siteWide = stack.filter((s) => s.placement === 'site-wide');
+  const rest = stack.filter((s) => s.placement !== 'site-wide');
 
   return (
     <aside
@@ -83,17 +99,9 @@ export function SponsorStack({ topics, withListings, className }: SponsorStackPr
             </Link>
           </div>
           <ul className="divide-y divide-[#30363d]">
-            {stack.map((sponsor) => (
-              <li key={sponsor.slug}>
-                <SponsorLink
-                  href={withUtm(sponsor.url, sponsor.placement)}
-                  sponsor={sponsor.slug}
-                  placement={sponsor.placement}
-                  className={rowClass}
-                >
-                  <CardBody name={sponsor.name} logo={sponsor.logo} tagline={sponsor.tagline} />
-                </SponsorLink>
-              </li>
+            <SponsorRotation items={siteWide.map((s) => ({ key: s.slug, node: row(s) }))} />
+            {rest.map((sponsor) => (
+              <li key={sponsor.slug}>{row(sponsor)}</li>
             ))}
           </ul>
         </>

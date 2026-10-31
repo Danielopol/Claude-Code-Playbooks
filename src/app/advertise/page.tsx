@@ -36,19 +36,19 @@ export const metadata: Metadata = {
 /*
  * Shown when the Vercel Analytics API is unreachable or VERCEL_ANALYTICS_TOKEN
  * is not set (see src/lib/vercel-analytics.ts). Last hand-checked against the
- * dashboard on 2026-09-08; refresh if it is ever load-bearing for long.
+ * dashboard on 2026-10-29; refresh if it is ever load-bearing for long.
  *
  * The tier-1 figure stays next to the total on purpose — roughly a fifth of raw
  * visitors (Singapore, China) are low-engagement datacenter traffic, and
  * advertisers who check will notice.
  */
 const FALLBACK_AUDIENCE = {
-  period: 'Aug 9 – Sep 8, 2026',
-  growth: '+29% on the previous 30 days',
-  visitors: '18.4K',
-  pageviews: '37.2K',
-  tier1Share: '46%',
-  googleShare: '55%',
+  period: 'Sep 29 – Oct 29, 2026',
+  growth: '+36% on the previous 30 days',
+  visitors: '26.8K',
+  pageviews: '49.1K',
+  tier1Share: '48%',
+  googleShare: '59%',
 };
 
 // Approximate share of page views by topic. Vercel has no notion of our topics
@@ -67,7 +67,13 @@ const AUDIENCE = {
 
 const linkClass = 'text-[#22d3ee] hover:underline';
 
-const PLACEMENTS: {
+// Bookings made by this date get the founding prices below.
+const FOUNDING_DEADLINE = 'Dec 31, 2026';
+
+// The site-wide figure is the live page-view total; cards only render on
+// playbook, guide and category pages, which are an estimated 55–75% of it until
+// a path-filtered Vercel export replaces the estimate.
+function getPlacements(pageviews: string): {
   name: string;
   price: string;
   term: string;
@@ -75,46 +81,52 @@ const PLACEMENTS: {
   blurb: string;
   includes: React.ReactNode[];
   featured?: boolean;
-}[] = [
-  {
-    name: 'Tool Listing',
-    price: '$199',
-    term: 'one-time · 12 months',
-    blurb: 'For tools our readers can use alongside Claude.',
-    includes: [
-      <>
-        Listed in our <Link href="/tools" className={linkClass}>tools directory</Link> with your
-        logo, description and link
-      </>,
-      'Featured on the category page that matches your tool',
-      'Labeled Sponsored, reviewed for fit before you pay',
-    ],
-  },
-  {
-    name: 'Category Sponsor',
-    price: 'from $350',
-    term: 'per month · 3-month minimum',
-    blurb: 'Reach the readers of one topic.',
-    includes: [
-      'Your card on every playbook and guide in one topic',
-      'Finance & investing: $500/mo',
-      'Monthly click report',
-    ],
-  },
-  {
-    name: 'Site-wide Sponsor',
-    price: '$900',
-    term: 'per month · 3-month minimum',
-    offer: 'Founding rate: $600/mo for your first 3 months',
-    blurb: 'Reach readers across the whole site.',
-    includes: [
-      'Your card on every playbook and guide, about 37K page views a month',
-      'Every topic, including Finance & investing',
-      'Monthly click report',
-    ],
-    featured: true,
-  },
-];
+}[] {
+  return [
+    {
+      name: 'Tool Listing',
+      price: '$199',
+      term: 'one-time · 12 months',
+      offer: 'Founding price: $149 for the first 10 listings',
+      blurb: 'For tools our readers can use alongside Claude.',
+      includes: [
+        <>
+          Listed in our <Link href="/tools" className={linkClass}>tools directory</Link> with your
+          logo, description and link
+        </>,
+        'Featured on every category page in your tool’s topic',
+        'Labeled Sponsored, reviewed for fit before you pay',
+      ],
+    },
+    {
+      name: 'Category Sponsor',
+      price: '$150',
+      term: 'per month · billed monthly, cancel anytime',
+      blurb: 'Reach the readers of one topic.',
+      includes: [
+        'Your card on every playbook, guide and category page in one topic',
+        'One sponsor per topic',
+        'Finance & investing: $250/mo',
+        '3 months prepaid: $405 ($675 for Finance & investing), 10% off',
+        'Monthly click report',
+      ],
+    },
+    {
+      name: 'Site-wide Sponsor',
+      price: '$600',
+      term: 'per month · billed monthly, cancel anytime',
+      offer: 'Founding rate: $450/mo for months 1–3, first sponsor only',
+      blurb: 'Reach readers across the whole site.',
+      includes: [
+        `Your card first on every playbook, guide and category page: an estimated 55–75% of our ${pageviews} monthly page views`,
+        'One sponsor at a time, every topic including Finance & investing',
+        '3 months prepaid: $1,620, 10% off',
+        'Monthly click report',
+      ],
+      featured: true,
+    },
+  ];
+}
 
 const STEPS = [
   { title: 'Apply', body: 'Tell us about your tool. Takes two minutes.' },
@@ -164,6 +176,8 @@ export default async function AdvertisePage() {
       label: 'arrive from Google search',
     },
   ];
+
+  const placements = getPlacements(stats[1].value);
 
   const period = live ? formatRange(live.since, live.until) : FALLBACK_AUDIENCE.period;
   const growth = live
@@ -244,7 +258,7 @@ export default async function AdvertisePage() {
           </Link>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
-          {PLACEMENTS.map((p) => (
+          {placements.map((p) => (
             <div
               key={p.name}
               className={`flex flex-col p-5 rounded-lg border bg-[#161b22] ${
@@ -281,6 +295,11 @@ export default async function AdvertisePage() {
             </div>
           ))}
         </div>
+        <p className="text-xs text-muted-foreground/70 mt-3">
+          Founding prices apply to bookings made by {FOUNDING_DEADLINE}. Earlier versions of this
+          page quoted about 37K page views for the Site-wide Sponsor; that was total site page views
+          for Aug 9 – Sep 8, 2026, not views of the pages that carry the card.
+        </p>
       </section>
 
       {/* How it works */}

@@ -16,7 +16,7 @@
       "interface": {
         "displayName": "Claude Code Playbooks",
         "shortDescription": "Find ready-made AI workflows",
-        "longDescription": "Search a library of more than 1,200 ready-made instruction templates for AI agents, covering research, finance, marketing, legal review, file organization and more. Describe a task to get matching playbooks with what each one does, who it is for, its full template, and a link to its original source where known. Templates are written as CLAUDE.md files and Skills, and you can adapt them for other AI tools. The plugin is read-only and does not access your files or accounts. This is an independent project, not affiliated with or endorsed by OpenAI or Anthropic.",
+        "longDescription": "Search a library of more than 600 ready-made instruction templates for AI agents, covering research, finance, marketing, legal review, file organization and more. Describe a task to get matching playbooks with what each one does, who it is for, its full template, a link to its original source, and its license notice. Templates are written as CLAUDE.md files and Skills, and you can adapt them for other AI tools. The plugin is read-only and does not access your files or accounts. This is an independent project, not affiliated with or endorsed by OpenAI or Anthropic.",
         "developerName": "Claude Code Playbooks",
         "category": "Productivity",
         "capabilities": ["Search playbooks", "Read playbook templates", "Browse categories"],
@@ -47,7 +47,7 @@
               "description": "Search, then read a template",
               "prompt": "Find a literature review playbook and show me its template.",
               "tools_triggered": "search_playbooks, get_playbook",
-              "expected_behavior": "Finds a literature review playbook, then shows its full template with a link to the playbook page and its source where one is known."
+              "expected_behavior": "Finds a literature review playbook, then shows its full template with its license notice and links to the playbook page and its source."
             },
             {
               "description": "Browse categories",
@@ -57,9 +57,9 @@
             },
             {
               "description": "Filter by difficulty",
-              "prompt": "Find a beginner playbook for organizing files.",
+              "prompt": "Find a beginner playbook for extracting text from PDF files.",
               "tools_triggered": "search_playbooks",
-              "expected_behavior": "Returns only beginner-level file organization playbooks, with links to their pages."
+              "expected_behavior": "Returns only beginner-level playbooks that work with PDFs, including PDF Text & Table Extractor, with links to their pages."
             },
             {
               "description": "Handle no matches",

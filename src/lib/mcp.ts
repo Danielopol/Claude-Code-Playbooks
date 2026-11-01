@@ -1,8 +1,9 @@
 import { McpServer } from '@modelcontextprotocol/server';
 import { z } from 'zod';
-import { getAllPlaybooks, getPlaybookSource, getPlaybooksByCategory } from '@/lib/playbooks';
+import { getAllPlaybooks, getPlaybookSource } from '@/lib/playbooks';
 import { categories } from '@/lib/categories';
 import { BASE_URL, rankPlaybooks, toDetail, toSummary } from '@/lib/api';
+import { getPlaybookLicense, PlaybookLicense } from '@/lib/plugin-catalog';
 
 /**
  * The remote MCP server at /api/mcp (see src/app/api/mcp/route.ts).
@@ -14,16 +15,19 @@ import { BASE_URL, rankPlaybooks, toDetail, toSummary } from '@/lib/api';
  *
  * Everything is read-only and public: no auth, no state between requests.
  *
- * Also the backend of the ChatGPT plugin (chatgpt-plugin/). OpenAI's plugin
- * review requires all three annotation hints to be explicit booleans and bars
- * ads in plugin output, so keep sponsor and affiliate content out of these tools.
+ * Also the backend of the ChatGPT plugin (chatgpt-plugin/), through
+ * /api/plugin/mcp, which only serves the plugin catalog. OpenAI's plugin review
+ * requires all three annotation hints to be explicit booleans and bars ads in
+ * plugin output, so keep sponsor and affiliate content out of these tools.
  */
 
 const SERVER_INSTRUCTIONS = `Claude Code Playbooks (${BASE_URL}) is a library of ready-made instruction templates (CLAUDE.md files and Skills) that AI agents follow for tasks like research, finance, marketing, legal review and file organization.
 
-Typical flow: search_playbooks with one to three keywords, then get_playbook for the chosen one. If you can't write files in the user's project, show the template in a code block, say where it belongs, and link the playbook page and its source.
+Typical flow: search_playbooks with one to three keywords, then get_playbook for the chosen one. If you can't write files in the user's project, show the template in a code block with the attribution comment get_playbook includes, say where it belongs, and link the playbook page and its source.
 
-If you can write files, save the template where get_playbook says (CLAUDE.md in the project folder, or .claude/skills/<name>/SKILL.md for Skills). If CLAUDE.md already exists, ask the user before replacing it; appending is usually the safer choice. Keep the attribution comment get_playbook includes at the top of the saved file.`;
+If you can write files, save the template where get_playbook says (CLAUDE.md in the project folder, or .claude/skills/<name>/SKILL.md for Skills). If CLAUDE.md already exists, ask the user before replacing it; appending is usually the safer choice. Keep the attribution comment at the top of the saved file.
+
+The attribution comment can carry a license notice that has to stay with every copy of the template, so don't remove or shorten it.`;
 
 const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false } as const;
 
@@ -45,18 +49,25 @@ function skillName(template: string): string | null {
 }
 
 /** Mirrors the header `ccplaybooks add` writes, so both install paths are detected the same way. */
-function attributionComment(p: ReturnType<typeof toDetail>): string {
+function attributionComment(p: ReturnType<typeof toDetail>, license: PlaybookLicense | null): string {
   const lines = ['<!--', `  ccplaybooks:${p.slug}`, `  Installed from ${p.links.page}`];
   if (p.attribution.sourceUrl) {
     lines.push(`  Source: ${p.attribution.sourceUrl}${p.attribution.author ? ` (${p.attribution.author})` : ''}`);
   } else if (p.attribution.author) {
     lines.push(`  Author: ${p.attribution.author}`);
   }
+  if (license) {
+    lines.push('  Edited by Claude Code Playbooks, so this copy may differ from the source.');
+    lines.push(`  License: ${license.name} (${license.url})`, '', license.notice);
+  }
   lines.push('-->');
   return lines.join('\n');
 }
 
-export function createPlaybooksServer(): McpServer {
+export function createPlaybooksServer({ pluginCatalogOnly = false } = {}): McpServer {
+  const inScope = (slug: string) => !pluginCatalogOnly || getPlaybookLicense(slug) !== null;
+  const library = () => getAllPlaybooks().filter((p) => inScope(p.slug));
+
   const server = new McpServer(
     { name: 'claude-code-playbooks', title: 'Claude Code Playbooks', version: '1.0.0', websiteUrl: BASE_URL },
     { instructions: SERVER_INSTRUCTIONS }
@@ -77,7 +88,7 @@ export function createPlaybooksServer(): McpServer {
       annotations: READ_ONLY,
     },
     async ({ query, category, difficulty, limit }) => {
-      let matches = getAllPlaybooks().filter(
+      let matches = library().filter(
         (p) => (!category || p.category === category) && (!difficulty || p.difficulty === difficulty)
       );
       if (query?.trim()) matches = rankPlaybooks(matches, query);
@@ -111,9 +122,9 @@ export function createPlaybooksServer(): McpServer {
       annotations: READ_ONLY,
     },
     async ({ slug }) => {
-      const playbook = /^[a-z0-9][a-z0-9-]*$/.test(slug) ? getPlaybookSource(slug) : null;
+      const playbook = /^[a-z0-9][a-z0-9-]*$/.test(slug) && inScope(slug) ? getPlaybookSource(slug) : null;
       if (!playbook) {
-        const suggestions = rankPlaybooks(getAllPlaybooks(), slug.replace(/[-_]+/g, ' '))
+        const suggestions = rankPlaybooks(library(), slug.replace(/[-_]+/g, ' '))
           .slice(0, 3)
           .map((p) => p.slug);
         return errorResult(
@@ -138,9 +149,11 @@ export function createPlaybooksServer(): McpServer {
             note: 'Save in the root of the project folder. If CLAUDE.md already exists, ask the user whether to append (usually best) or replace.',
           };
 
+      const license = getPlaybookLicense(slug);
+
       return {
         content: [
-          json({ ...meta, install, attributionComment: attributionComment(detail) }),
+          json({ ...meta, ...(license && { license }), install, attributionComment: attributionComment(detail, license) }),
           { type: 'text' as const, text: template },
         ],
       };
@@ -157,7 +170,7 @@ export function createPlaybooksServer(): McpServer {
     },
     async () => {
       const results = categories
-        .map((c) => ({ id: c.id, name: c.name, description: c.description, count: getPlaybooksByCategory(c.id).length }))
+        .map((c) => ({ id: c.id, name: c.name, description: c.description, count: library().filter((p) => p.category === c.id).length }))
         .filter((c) => c.count > 0);
       return { content: [json({ total: results.length, results })] };
     }

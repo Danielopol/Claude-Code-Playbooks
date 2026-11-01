@@ -51,7 +51,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-base font-semibold text-foreground mb-3">MCP Server and ChatGPT Plugin</h2>
           <p className="mb-3">
-            AI apps such as ChatGPT and Claude Code can search and retrieve playbooks through our MCP server at /api/mcp. It requires no account and reads only our public playbook library. It cannot see your files, your account, or your conversation, only what the AI app sends with each request:
+            AI apps such as ChatGPT and Claude Code can search and retrieve playbooks through our MCP server at /api/mcp, or at /api/plugin/mcp for the ChatGPT plugin. It requires no account and reads only our public playbook library. It cannot see your files, your account, or your conversation, only what the AI app sends with each request:
           </p>
           <ul className="list-disc list-inside space-y-2 ml-2">
             <li><strong className="text-foreground">What it receives:</strong> the search words, category, difficulty level, or playbook name the AI app chooses to send, plus standard request details such as IP address and time.</li>

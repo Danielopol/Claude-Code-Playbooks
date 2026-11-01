@@ -3,7 +3,7 @@
   "mcpServers": {
     "playbooks": {
       "type": "streamable-http",
-      "url": "https://www.claudecodehq.com/api/mcp"
+      "url": "https://www.claudecodehq.com/api/plugin/mcp"
     }
   }
 }

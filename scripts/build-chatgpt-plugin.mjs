@@ -18,6 +18,8 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'chatgpt-plugin');
 const OUT = path.join(ROOT, 'dist', 'claude-code-playbooks.zip');
 const MCP_SOURCE = path.join(ROOT, '..', 'src', 'lib', 'mcp.ts');
+const CATALOG = path.join(ROOT, '..', 'src', 'content', 'plugin-catalog.json');
+const TEMPLATES = path.join(ROOT, '..', 'public', 'templates');
 // Only these go in the zip; README.md and dist/ stay out.
 const PACKAGE_ENTRIES = ['plugin.json', 'mcp.json', 'skills', 'assets'];
 
@@ -95,6 +97,17 @@ function check(plugin, mcp) {
   const servers = Object.values(mcp.mcpServers);
   expect(servers.length === 1, 'mcp.json: only one MCP server per plugin');
   expect(servers.every((s) => s.type === 'streamable-http' && s.url.startsWith('https://') && !s.headers), 'mcp.json: needs a public HTTPS streamable-http server with no headers');
+  expect(servers.every((s) => new URL(s.url).pathname === '/api/plugin/mcp'), 'mcp.json: must use /api/plugin/mcp; /api/mcp serves playbooks outside the plugin catalog');
+
+  const catalog = JSON.parse(fs.readFileSync(CATALOG, 'utf8'));
+  const slugs = Object.keys(catalog.playbooks);
+  const claimed = Number(ui.longDescription.match(/more than ([\d,]+)/)?.[1].replace(/,/g, ''));
+  expect(slugs.length > claimed, `longDescription: claims more than ${claimed} playbooks, but the catalog has ${slugs.length}`);
+  for (const slug of slugs) {
+    expect(fs.existsSync(path.join(TEMPLATES, `${slug}.md`)), `plugin catalog: ${slug} has no template`);
+  }
+  // The notice goes inside an HTML comment, which this would end early.
+  expect(Object.values(catalog.licenses).every((l) => l.notice && !l.notice.includes('-->')), 'plugin catalog: every notice must be non-empty and free of "-->"');
 
   for (const skill of fs.readdirSync(path.join(ROOT, 'skills'))) {
     const front = fs.readFileSync(path.join(ROOT, 'skills', skill, 'SKILL.md'), 'utf8').match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';

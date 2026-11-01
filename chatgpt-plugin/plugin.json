@@ -1,0 +1,94 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "claude-code-playbooks",
+  "version": "1.0.0",
+  "description": "Search a library of ready-made instruction templates for AI agents and retrieve the one that fits your task.",
+  "author": {
+    "name": "Claude Code Playbooks",
+    "email": "valentin.marin83@gmail.com",
+    "url": "https://www.claudecodehq.com"
+  },
+  "homepage": "https://www.claudecodehq.com",
+  "repository": "https://github.com/Danielopol/Claude-Code-Playbooks",
+  "keywords": ["workflows", "templates", "prompts", "productivity", "research"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Claude Code Playbooks",
+        "shortDescription": "Find ready-made AI workflows",
+        "longDescription": "Search a library of more than 600 ready-made instruction templates for AI agents, covering research, finance, marketing, legal review, file organization and more. Describe a task to get matching playbooks with what each one does, who it is for, its full template, a link to its original source, and its license notice. Templates are written as CLAUDE.md files and Skills, and you can adapt them for other AI tools. The plugin is read-only and does not access your files or accounts. This is an independent project, not affiliated with or endorsed by OpenAI or Anthropic.",
+        "developerName": "Claude Code Playbooks",
+        "category": "Productivity",
+        "capabilities": ["Search playbooks", "Read playbook templates", "Browse categories"],
+        "websiteURL": "https://www.claudecodehq.com",
+        "supportURL": "https://www.claudecodehq.com/support",
+        "privacyPolicyURL": "https://www.claudecodehq.com/privacy",
+        "termsOfServiceURL": "https://www.claudecodehq.com/terms",
+        "defaultPrompt": [
+          "Find a playbook for invoice automation.",
+          "Find a literature review playbook and show me its template.",
+          "What categories of playbooks are available?"
+        ],
+        "brandColor": "#0E7490",
+        "brandColorDark": "#22D3EE",
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/logo.png"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Search by task",
+              "prompt": "Find a playbook for invoice automation.",
+              "tools_triggered": "search_playbooks",
+              "expected_behavior": "Lists matching playbooks, including Invoice Automation, with a short description and a link to each playbook page."
+            },
+            {
+              "description": "Search, then read a template",
+              "prompt": "Find a literature review playbook and show me its template.",
+              "tools_triggered": "search_playbooks, get_playbook",
+              "expected_behavior": "Finds a literature review playbook, then shows its full template with its license notice and links to the playbook page and its source."
+            },
+            {
+              "description": "Browse categories",
+              "prompt": "What categories of playbooks are available?",
+              "tools_triggered": "list_categories",
+              "expected_behavior": "Lists the playbook categories with how many playbooks each one has."
+            },
+            {
+              "description": "Filter by difficulty",
+              "prompt": "Find a beginner playbook for extracting text from PDF files.",
+              "tools_triggered": "search_playbooks",
+              "expected_behavior": "Returns only beginner-level playbooks that work with PDFs, including PDF Text & Table Extractor, with links to their pages."
+            },
+            {
+              "description": "Handle no matches",
+              "prompt": "Find a playbook for underwater basket weaving.",
+              "tools_triggered": "search_playbooks",
+              "expected_behavior": "Reports that no matching playbook was found, without inventing one, and may suggest a broader search or browsing categories."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Unsupported write: the library is read-only",
+              "prompt": "Delete the invoice-automation playbook from the library."
+            },
+            {
+              "description": "Unsupported purchase: the plugin sells nothing",
+              "prompt": "Buy me a subscription to a stock research service."
+            },
+            {
+              "description": "Unrelated request: should not call the plugin",
+              "prompt": "What is the weather in Paris today?"
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "This plugin does not sell products or process payments, and its tool responses contain no ads or affiliate offers."
+      },
+      "publication": {
+        "release_notes": "Initial release with playbook search, template retrieval and category browsing."
+      }
+    }
+  }
+}

@@ -28,7 +28,7 @@ export default function PrivacyPage() {
   return (
     <div className="container mx-auto py-12 max-w-3xl">
       <h1 className="text-2xl font-bold mb-2">Privacy Policy</h1>
-      <p className="text-sm text-muted-foreground mb-8">Last updated: August 24, 2026</p>
+      <p className="text-sm text-muted-foreground mb-8">Last updated: October 31, 2026</p>
 
       <div className="space-y-8 text-sm text-muted-foreground">
         <section>
@@ -45,6 +45,19 @@ export default function PrivacyPage() {
             <li><strong className="text-foreground">Newsletter subscriptions:</strong> If you subscribe to our newsletter, we collect your email address and the page you subscribed from. You can unsubscribe at any time using the link in any email we send.</li>
             <li><strong className="text-foreground">Playbook submissions:</strong> If you submit a playbook, we collect the content you provide and, optionally, your email address so we can follow up about the submission.</li>
             <li><strong className="text-foreground">Advertising data:</strong> Our advertising partners collect data through cookies and similar technologies, as described in the Advertising section below.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 className="text-base font-semibold text-foreground mb-3">MCP Server and ChatGPT Plugin</h2>
+          <p className="mb-3">
+            AI apps such as ChatGPT and Claude Code can search and retrieve playbooks through our MCP server at /api/mcp, or at /api/plugin/mcp for the ChatGPT plugin. It requires no account and reads only our public playbook library. It cannot see your files, your account, or your conversation, only what the AI app sends with each request:
+          </p>
+          <ul className="list-disc list-inside space-y-2 ml-2">
+            <li><strong className="text-foreground">What it receives:</strong> the search words, category, difficulty level, or playbook name the AI app chooses to send, plus standard request details such as IP address and time.</li>
+            <li><strong className="text-foreground">How it is used:</strong> only to answer that request. We do not save search terms, build profiles from them, or use them for advertising. Tool responses contain no ads or affiliate offers.</li>
+            <li><strong className="text-foreground">Who receives it:</strong> Vercel, our host, processes these requests and keeps its standard request logs. Error details may be written to the same logs so we can fix problems. We do not share this data with anyone else.</li>
+            <li><strong className="text-foreground">Your choices:</strong> you can remove the plugin or MCP server from your AI app at any time. The AI app handles your conversations under its own privacy policy.</li>
           </ul>
         </section>
 
@@ -105,7 +118,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-base font-semibold text-foreground mb-3">Data Retention</h2>
           <p>
-            Newsletter email addresses are retained until you unsubscribe or ask us to delete them. Playbook submissions are retained for as long as the playbook remains listed. Aggregate analytics are retained according to Vercel&apos;s standard retention period.
+            Newsletter email addresses are retained until you unsubscribe or ask us to delete them. Playbook submissions are retained for as long as the playbook remains listed. Aggregate analytics and MCP server request logs are retained according to Vercel&apos;s standard retention period.
           </p>
         </section>
 

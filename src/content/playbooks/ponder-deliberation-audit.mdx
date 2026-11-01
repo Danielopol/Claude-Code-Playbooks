@@ -1,0 +1,84 @@
+---
+title: "Ponder Deliberation Audit"
+description: "Convergent multi-pass review loop with coverage gates, append-only ledger reconciliation, and epistemic stopping criteria for coding agents."
+seoHook: "Coding agents suffer from early stopping on pass 1 and forced-speech nitpick spirals on pass 4. Ponder enforces complete unit coverage and epistemic silence when deltas drop to zero."
+targetAudience: "software engineers, open-source maintainers, AI agent developers, teams using Claude Code and Codex"
+exampleUseCase: "\"Audit this repo with Ponder\" -> Seeds units, enforces 4-voice deliberation (skeptic, builder, dreamer, empath), tracks deltas across passes, and stops only when 1.00 coverage and 0.00 churn are verified."
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "5 minutes"
+author: "Quinn O'Donnell"
+sourceUrl: "https://github.com/Quinnod345/ponder"
+tags: ["code-review", "deliberation", "agent-skills", "multi-pass", "coverage-gate", "ledger"]
+createdAt: "2026-11-01"
+---
+
+## What This Does
+
+Ponder runs structured, convergent review and deliberation loops over codebases and specifications. Unlike single-pass agent reviewers that skim partial files or multi-pass agents that hallucinate trivial nitpicks when forced to keep talking, Ponder enforces two mathematical invariants:
+
+1. Coverage gate: The agent cannot stop until every inventory unit has been explicitly graded (coverage = 1.00).
+2. Epistemic silence: The agent must stop once all four deliberation perspectives (skeptic, builder, dreamer, empath) produce zero new findings or retractions across two consecutive passes (churn = 0.00).
+
+Every finding, delta, and verdict is recorded in an append-only JSONL ledger with replayable verification.
+
+---
+
+## Quick Start
+
+### Step 1: Install Ponder
+
+Install via git checkout or the skills registry:
+
+```bash
+git clone https://github.com/Quinnod345/ponder.git
+cd ponder && ./install.sh
+```
+
+Or via npx:
+
+```bash
+npx skills add quinnod345/ponder
+```
+
+### Step 2: Run a Session
+
+Start a session on your target subject using the appropriate lens:
+
+```bash
+ponder start "Audit authentication and token refresh" --lens architecture
+```
+
+### Step 3: Run the Multi-Pass Loop
+
+1. Seed inventory:
+```bash
+ponder units --scan ./src --strict-scope
+```
+
+2. Seed initial findings:
+```bash
+ponder grade --file findings-pass1.json
+```
+
+3. Record the four perspectives:
+```bash
+ponder deliberate --file deliberation.json
+```
+
+4. Apply revisions and verify convergence:
+```bash
+ponder delta --file deltas.jsonl
+ponder judge
+```
+
+When coverage reaches 1.00 and churn reaches 0.00, Ponder permits `ponder decide stop --why "converged"`.
+
+---
+
+## Core Principles
+
+- Four perspectives: Every pass balances skeptical falsification, builder implementation realism, dreamer boundary stress-testing, and empath human maintainer context.
+- Falsification before addition: Pass 2 actively seeks to retract pass 1 false positives using `op: "delete"` before inventing new findings.
+- Zero npm dependencies: Pure Node.js 18+ runtime with an enforceable test and conformance suite.
+- Replayable ledger: The `.ponder/ledger.jsonl` audit trail allows deterministic replay of every state transition.

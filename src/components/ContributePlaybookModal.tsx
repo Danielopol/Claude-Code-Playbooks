@@ -30,6 +30,24 @@ interface UploadedFile {
   content: string;
 }
 
+// New tab so following the link doesn't close the dialog and lose the form
+function SubmissionTermsNotice() {
+  return (
+    <p className="text-xs text-muted-foreground">
+      By submitting, you agree to our{' '}
+      <a
+        href="/terms#community-contributions"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-[#22d3ee] hover:underline"
+      >
+        Terms of Use
+      </a>
+      , including the license you give us to publish and distribute your submission. Only submit content you wrote or have permission to share.
+    </p>
+  );
+}
+
 export function ContributePlaybookModal() {
   const [step, setStep] = useState<Step>('instructions');
   const [claudeFile, setClaudeFile] = useState<UploadedFile | null>(null);
@@ -450,6 +468,8 @@ export function ContributePlaybookModal() {
               </div>
             )}
 
+            <SubmissionTermsNotice />
+
             <Button
               onClick={handleSubmitFiles}
               disabled={!claudeFile || !readmeFile || isSubmitting}
@@ -522,6 +542,8 @@ export function ContributePlaybookModal() {
                 {error}
               </div>
             )}
+
+            <SubmissionTermsNotice />
 
             <Button
               onClick={handleSubmitDescription}

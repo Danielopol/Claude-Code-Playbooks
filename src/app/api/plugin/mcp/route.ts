@@ -16,20 +16,25 @@ const handler = createMcpHandler(() => createPlaybooksServer({ pluginCatalogOnly
 
 /**
  * The SDK answers 406 unless Accept lists both application/json and
- * text/event-stream. Plain HTTP clients, which may include OpenAI's portal
- * scanner, send `*\/*`, JSON only or nothing, so fill in the missing types
- * before the SDK checks. This server never keeps a stream open, so the
- * answer is the same either way.
+ * text/event-stream, and 415 unless Content-Type is application/json. Plain
+ * HTTP clients send `*\/*`, JSON only or no Accept, and OpenAI's portal
+ * scanner got a 415 on 2026-11-03, so fill in both headers before the SDK
+ * checks. This server never keeps a stream open, and the SDK still rejects a
+ * body that isn't JSON, so the answer is the same either way.
  */
-async function withStreamableAccept(request: Request): Promise<Request> {
+async function withLenientHeaders(request: Request): Promise<Request> {
   if (request.method !== 'POST') return request;
   const accept = request.headers.get('accept') ?? '';
-  if (/application\/json/i.test(accept) && /text\/event-stream/i.test(accept)) return request;
+  const contentType = request.headers.get('content-type') ?? '';
+  const acceptOk = /application\/json/i.test(accept) && /text\/event-stream/i.test(accept);
+  const contentTypeOk = /^application\/json\s*(;|$)/i.test(contentType);
+  if (acceptOk && contentTypeOk) return request;
   const headers = new Headers(request.headers);
-  headers.set('accept', 'application/json, text/event-stream');
+  if (!acceptOk) headers.set('accept', 'application/json, text/event-stream');
+  if (!contentTypeOk) headers.set('content-type', 'application/json');
   return new Request(request.url, { method: request.method, headers, body: await request.text() });
 }
 
-const serve = async (request: Request) => handler.fetch(await withStreamableAccept(request));
+const serve = async (request: Request) => handler.fetch(await withLenientHeaders(request));
 
 export { serve as GET, serve as POST, serve as DELETE };

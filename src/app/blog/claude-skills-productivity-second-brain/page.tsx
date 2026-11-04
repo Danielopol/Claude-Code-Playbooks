@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { AffiliateLink } from '@/components/AffiliateLink';
 import { BlogPostLayout } from '@/components/BlogPostLayout';
 
 export const metadata: Metadata = {
@@ -415,6 +416,17 @@ Focus Areas — 3 concrete commitments for the year ahead`}</pre>
         setup beyond that. Pick the one that fits your problem right now — add the others when
         you see the gap they fill.
       </p>
+
+      <div className="bg-[#161b22] border border-[#30363d] rounded-lg p-4 my-6">
+        <p className="text-sm text-muted-foreground mb-0">
+          <span className="text-foreground font-medium">Feeding the second brain:</span> a synthesis layer is only as good as what goes into it. If most of your input is books and articles, a highlights tool such as{' '}
+          <AffiliateLink partner="readwise">Readwise</AffiliateLink> (books and Kindle) or{' '}
+          <AffiliateLink partner="readwise-reader">Readwise Reader</AffiliateLink> (articles, PDFs and newsletters) collects what you mark as important in one place, and exports it for Claude to work from.
+        </p>
+        <p className="text-xs text-muted-foreground mt-2 mb-0">
+          The Readwise links are affiliate links: we may earn a commission if you subscribe, at no extra cost to you.
+        </p>
+      </div>
 
       <h2 className="text-2xl font-semibold text-foreground mt-10 mb-4 border-b border-[#30363d] pb-2">
         The Five Skills

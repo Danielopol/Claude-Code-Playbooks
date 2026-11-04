@@ -94,12 +94,21 @@ export const affiliates: Affiliate[] = [
     pricing: 'Free plan available',
   },
   {
-    // 33%, "$22–40 per paid signup", referrals get 60 days free. Apply: docs.readwise.io/affiliates
+    // 33%, "$22–40 per paid signup", referrals get 60 days free. Approved 2026-10-31 (custom partner links).
     slug: 'readwise',
     name: 'Readwise',
+    trackingUrl: 'https://readwise.io/claudecodehq/',
     tagline: 'Collect your book and article highlights to turn into Claude skills.',
     topics: ['productivity'],
     pricing: '60-day free trial',
+  },
+  {
+    // Reader-specific partner link (same program). In-content only, so no topics.
+    slug: 'readwise-reader',
+    name: 'Readwise Reader',
+    trackingUrl: 'https://readwise.io/claudecodehqreader/',
+    tagline: 'Save articles, PDFs and newsletters in one place and highlight as you read.',
+    topics: [],
   },
   {
     // 30% one-time on Prime, 60-day cookie, Trackdesk. Approved 2026-09-28.
@@ -155,5 +164,22 @@ export const affiliates: Affiliate[] = [
     trackingUrl: 'https://www.make.com/en/register?pc=claudecodehq',
     tagline: 'Visual automation builder: run a Claude workflow on a schedule or trigger, no code.',
     topics: ['developer-tools', 'productivity'],
+  },
+  {
+    // 22% of payments for the first 12 months on paid plans (PartnerStack). Approved 2026-10-31.
+    // topics is empty on purpose: weak fit for most writing-content pages, so it is linked in-content only.
+    slug: 'elevenlabs',
+    name: 'ElevenLabs',
+    trackingUrl: 'https://try.elevenlabs.io/x4dlahxl4ucp',
+    tagline: 'Natural-sounding AI voice-over for scripts Claude wrote.',
+    topics: [],
+  },
+  {
+    // Approved 2026-11-02. Terms shown in the partner dashboard. In-content only: linked from the 13 Firecrawl playbooks, which need an account, so no topics.
+    slug: 'firecrawl',
+    name: 'Firecrawl',
+    trackingUrl: 'https://firecrawl.link/daniel-marin',
+    tagline: 'Web search and page retrieval for Claude, through a hosted MCP server.',
+    topics: [],
   },
 ];

@@ -165,7 +165,7 @@ A TCP is an internal policy document demonstrating how a company controls access
 ## Embargoed and Restricted Countries
 
 **Comprehensive arms embargoes** (22 CFR § 126.1) — no ITAR exports without presidential waiver:
-- Belarus, Cuba, Iran, North Korea, Russia, Syria, Venezuela (restricted)
+- Belarus, Cuba, Iran, North Korea, Russia, Venezuela (restricted)
 
 Always check the current 22 CFR § 126.1 list and OFAC sanctions before any transaction.
 

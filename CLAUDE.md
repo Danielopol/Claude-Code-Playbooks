@@ -43,6 +43,7 @@ npm run lint    # Run ESLint
 - Tools: `search_playbooks`, `get_playbook` (returns the template plus where to save it; the client writes the file), `list_categories`. Same data and ranking as `/api/v1`
 - Stateless per request; serves both 2026-07-28 clients and 2025-era clients (stateless `initialize` fallback; GET/DELETE answer 405)
 - Users add it with `claude mcp add --transport http claude-code-playbooks https://www.claudecodehq.com/api/mcp`
+- Public docs at `/mcp` (`src/app/mcp/page.tsx`), used as the documentation URL for directory listings. Keep its tool list and parameters in step with `src/lib/mcp.ts`
 
 ### ChatGPT plugin (`chatgpt-plugin/`)
 - Packages the MCP server for the ChatGPT and Codex plugin directory. `npm run plugin:build` checks the manifest against OpenAI's limits and writes the zip to `chatgpt-plugin/dist/`. Submission steps are in `chatgpt-plugin/README.md`

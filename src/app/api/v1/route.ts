@@ -20,6 +20,7 @@ export async function GET() {
       rawTemplate: `${BASE_URL}/templates/{slug}.md`,
     },
     mcp: `${BASE_URL}/api/mcp`,
+    mcpDocs: `${BASE_URL}/mcp`,
     terms: `${BASE_URL}/licensing`,
   });
 }

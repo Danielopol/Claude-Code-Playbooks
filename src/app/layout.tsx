@@ -121,6 +121,9 @@ function Footer() {
                   Tools
                 </Link>
               )}
+              <Link href="/mcp" className="hover:text-[#22d3ee] transition-colors">
+                MCP Server
+              </Link>
               <Link href="/advertise" className="hover:text-[#22d3ee] transition-colors">
                 Advertise
               </Link>

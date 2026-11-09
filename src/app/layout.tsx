@@ -185,6 +185,9 @@ function Footer() {
           <a href="https://www.foundrlist.com/product/claudecodeplaybooks?utm_source=badge&utm_medium=embed" target="_blank" rel="noopener">
             <Image src="https://www.foundrlist.com/api/badge/claudecodeplaybooks" alt="Featured on FoundrList" width={150} height={48} unoptimized />
           </a>
+          <a href="https://www.claudeai.directory/launches/claude-code-playbooks" target="_blank" rel="noopener">
+            <Image src="https://www.claudeai.directory/badge/claude-code-playbooks?theme=dark" alt="Claude Code Playbooks - Listed on Claude AI Directory" width={220} height={54} className="h-12 w-auto" unoptimized />
+          </a>
         </div>
       </div>
     </footer>

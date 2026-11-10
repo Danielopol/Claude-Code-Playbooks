@@ -51,6 +51,9 @@ npm run lint    # Run ESLint
 - OpenAI requires `readOnlyHint`, `destructiveHint` and `openWorldHint` to be explicit on every tool, and plugins must not serve ads: never add sponsor or affiliate content to MCP tool responses
 - `/.well-known/openai-apps-challenge` serves the domain verification token from the `OPENAI_APPS_CHALLENGE_TOKEN` env var and returns 404 when it is unset
 
+### Claude Connectors Directory (`claude-connector/`)
+- `claude-connector/README.md` holds the draft listing for `/api/mcp`, field by field in portal order, plus the open decisions (name, permanent slug, endpoint). Keep its tool list, counts and example prompts in step with `src/lib/mcp.ts` and `/mcp`
+
 ### CLI (`cli/`)
 - Standalone zero-dependency npm package `ccplaybooks` (plain ESM `.mjs`, Node 18.17+), not part of the Next build. It only talks to `/api/v1`, so API response changes must stay backward compatible.
 - `cd cli && npm test` runs the `node:test` suite (fake fetch, temp dirs, no network)

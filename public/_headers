@@ -1,0 +1,15 @@
+# Cloudflare static-asset headers. next.config.ts headers() does not reach
+# files served straight from static assets (/_next/static/*, public/), so the
+# rules that matter for those paths are repeated here.
+
+# Build assets: cache forever, and keep them out of Google's index (they showed
+# up as "crawled - currently not indexed"). noindex, not a robots.txt Disallow,
+# so Googlebot can still fetch the CSS/JS it needs to render pages.
+/_next/static/*
+  Cache-Control: public,max-age=31536000,immutable
+  X-Robots-Tag: noindex
+
+# Raw CLAUDE.md templates, fetched by playbook pages on click. Mostly verbatim
+# copies of public GitHub files, so they must not become indexable duplicates.
+/templates/*
+  X-Robots-Tag: noindex

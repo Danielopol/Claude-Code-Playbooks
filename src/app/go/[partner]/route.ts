@@ -1,4 +1,4 @@
-import { track } from '@vercel/analytics/server';
+import { trackServer } from '@/lib/analytics-server';
 import { NextResponse } from 'next/server';
 import { getAffiliate } from '@/lib/affiliates';
 
@@ -22,7 +22,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ part
   } catch {}
 
   try {
-    await track('Affiliate Click', { partner: affiliate.slug, page }, { request });
+    await trackServer('Affiliate Click', { partner: affiliate.slug, page });
   } catch {}
 
   return NextResponse.redirect(affiliate.trackingUrl, {

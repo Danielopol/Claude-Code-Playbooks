@@ -1,0 +1,58 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"main": ".open-next/worker.js",
+	"name": "claude-code-playbooks",
+	"compatibility_date": "2026-11-01",
+	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+	"assets": {
+		"directory": ".open-next/assets",
+		"binding": "ASSETS",
+		// Raw playbook MDX is copied to /_content/ so the Worker can read it through
+		// the ASSETS binding (src/lib/playbooks.ts). Sending public requests for that
+		// path to the Worker first means Next answers them with a 404, so the files
+		// are never served directly.
+		"run_worker_first": ["/_content/*"],
+		// Required by OpenNext whenever run_worker_first is set.
+		"html_handling": "none",
+		"not_found_handling": "none"
+	},
+	"services": [
+		{
+			// Self-reference, required by the OpenNext caches. Must match "name".
+			"binding": "WORKER_SELF_REFERENCE",
+			"service": "claude-code-playbooks"
+		}
+	],
+	"r2_buckets": [
+		{
+			// ISR cache: playbook pages and /api/v1/playbooks/[slug] render once per
+			// deploy and are stored here. Create once with:
+			//   npx wrangler r2 bucket create claude-code-playbooks-opennext-cache
+			"binding": "NEXT_INC_CACHE_R2_BUCKET",
+			"bucket_name": "claude-code-playbooks-opennext-cache"
+		}
+	],
+	"durable_objects": {
+		"bindings": [
+			{
+				// Time-based revalidation queue (/advertise revalidates every 30 min).
+				"name": "NEXT_CACHE_DO_QUEUE",
+				"class_name": "DOQueueHandler"
+			}
+		]
+	},
+	"migrations": [
+		{
+			"tag": "v1",
+			"new_sqlite_classes": ["DOQueueHandler"]
+		}
+	],
+	"images": {
+		// next/image optimization (the logo). Uses Cloudflare Images; a handful of
+		// variants stays well inside the free monthly allowance.
+		"binding": "IMAGES"
+	},
+	"observability": {
+		"enabled": true
+	}
+}

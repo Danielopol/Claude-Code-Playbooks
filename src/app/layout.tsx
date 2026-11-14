@@ -3,7 +3,7 @@ import { JetBrains_Mono, Press_Start_2P } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Home, BookOpen, Phone, Mail, Layers } from 'lucide-react';
-import { Analytics } from '@vercel/analytics/react';
+import { PostHogInit } from '@/components/PostHogInit';
 import { Newsletter } from '@/components/Newsletter';
 import { getDirectoryTools } from '@/lib/sponsors';
 import './globals.css';
@@ -263,7 +263,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
-        <Analytics />
+        <PostHogInit />
       </body>
     </html>
   );

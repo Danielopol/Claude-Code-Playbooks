@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { getCloudflareContext } from '@opennextjs/cloudflare';
 import { remark } from 'remark';
 import html from 'remark-html';
 import gfm from 'remark-gfm';
@@ -8,7 +9,6 @@ import { Playbook, PlaybookFrontmatter, Category, Difficulty } from '@/types/pla
 import playbooksIndex from './playbooks-index.json';
 
 const playbooksDirectory = path.join(process.cwd(), 'src/content/playbooks');
-const templatesDirectory = path.join(process.cwd(), 'public/templates');
 
 /**
  * Listing metadata comes from a precomputed index (see scripts/build-index.mjs,
@@ -89,8 +89,43 @@ export function getPlaybookSlugs(): string[] {
   return getAllPlaybooks().map((p) => p.slug);
 }
 
+/**
+ * Reads a content file by its repo-relative path.
+ *
+ * In Node (next dev, next build, Vercel) the file is on disk. A Cloudflare
+ * Worker has no project filesystem, so there the same file is fetched from the
+ * Worker's static assets: MDX from /_content/ (copied there by
+ * scripts/cloudflare-assets.mjs, and kept private by `run_worker_first` in
+ * wrangler.jsonc) and templates from /templates/, where they are already public.
+ */
+const ASSET_PATHS: [prefix: string, assetPrefix: string][] = [
+  ['src/content/playbooks/', '/_content/playbooks/'],
+  ['public/templates/', '/templates/'],
+];
+
+async function readContentFile(relativePath: string): Promise<string | null> {
+  try {
+    const local = path.join(process.cwd(), relativePath);
+    if (fs.existsSync(local)) return fs.readFileSync(local, 'utf8');
+  } catch {
+    // No usable filesystem (Workers runtime) — fall through to assets.
+  }
+
+  const mapping = ASSET_PATHS.find(([prefix]) => relativePath.startsWith(prefix));
+  if (!mapping) return null;
+  try {
+    const { env } = await getCloudflareContext({ async: true });
+    const assets = (env as { ASSETS?: { fetch: (url: string) => Promise<Response> } }).ASSETS;
+    if (!assets) return null;
+    const res = await assets.fetch(`https://assets.local${mapping[1]}${relativePath.slice(mapping[0].length)}`);
+    return res.ok ? await res.text() : null;
+  } catch {
+    return null;
+  }
+}
+
 export async function getPlaybookBySlug(slug: string): Promise<Playbook | null> {
-  const playbook = getPlaybookSource(slug);
+  const playbook = await getPlaybookSource(slug);
   if (!playbook) return null;
 
   // Convert markdown content to HTML
@@ -102,24 +137,21 @@ export async function getPlaybookBySlug(slug: string): Promise<Playbook | null> 
  * markdown. The page renders it to HTML via getPlaybookBySlug(); the API
  * (/api/v1/playbooks/[slug]) never needs the HTML, so it skips the remark pass.
  */
-export function getPlaybookSource(slug: string): Playbook | null {
-  const fullPath = path.join(playbooksDirectory, `${slug}.mdx`);
+export async function getPlaybookSource(slug: string): Promise<Playbook | null> {
+  if (!/^[a-z0-9][a-z0-9-]*$/i.test(slug)) return null;
 
-  if (!fs.existsSync(fullPath)) {
+  const fileContents = await readContentFile(`src/content/playbooks/${slug}.mdx`);
+  if (fileContents === null) {
     return null;
   }
 
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { data, content } = matter(fileContents);
   const frontmatter = data as PlaybookFrontmatter;
 
   // Try to load template from public/templates/ folder first
-  const templatePath = path.join(templatesDirectory, `${slug}.md`);
-  let claudeMdTemplate: string | undefined;
+  let claudeMdTemplate = (await readContentFile(`public/templates/${slug}.md`)) ?? undefined;
 
-  if (fs.existsSync(templatePath)) {
-    claudeMdTemplate = fs.readFileSync(templatePath, 'utf8');
-  } else {
+  if (claudeMdTemplate === undefined) {
     // Fall back to extracting from content
     const templateMatch = content.match(/```(?:markdown|md)?\s*\n([\s\S]*?)```/);
     claudeMdTemplate = templateMatch ? templateMatch[1].trim() : undefined;

@@ -90,3 +90,7 @@ const withMDX = createMDX({
 });
 
 export default withMDX(nextConfig);
+
+// Gives `next dev` the Cloudflare bindings (getCloudflareContext) from wrangler.jsonc.
+import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare';
+initOpenNextCloudflareForDev();

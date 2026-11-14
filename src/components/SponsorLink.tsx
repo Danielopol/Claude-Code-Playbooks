@@ -1,6 +1,6 @@
 'use client';
 
-import { track } from '@vercel/analytics';
+import { track } from '@/lib/analytics';
 
 interface SponsorLinkProps {
   href: string;
@@ -12,7 +12,7 @@ interface SponsorLinkProps {
 
 /**
  * Outbound sponsor link. rel="sponsored" keeps paid links out of Google's link
- * graph, and each click is logged as a Vercel event — the source for the
+ * graph, and each click is logged as a PostHog event — the source for the
  * monthly click report sponsors are promised.
  */
 export function SponsorLink({ href, sponsor, placement, className, children }: SponsorLinkProps) {

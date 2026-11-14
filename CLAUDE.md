@@ -14,7 +14,7 @@ npm run build   # Production build
 npm run lint    # Run ESLint
 npm run cf:build   # Cloudflare build (OpenNext) into .open-next/
 npm run cf:preview # Serve that build locally as a Worker on :8787
-npm run deploy     # cf:build + deploy to Cloudflare (needs `npx wrangler login`)
+npm run deploy     # Manual cf:build + deploy (needs `npx wrangler login`); normally GitHub Actions deploys
 ```
 
 ### Hosting (Cloudflare Workers via OpenNext)
@@ -22,7 +22,10 @@ npm run deploy     # cf:build + deploy to Cloudflare (needs `npx wrangler login`
 - A Worker has no project filesystem. `src/lib/playbooks.ts` reads MDX/templates from disk when it can, else through the ASSETS binding: templates from `/templates/`, MDX from `/_content/` (copied by `scripts/cloudflare-assets.mjs`, 404'd for the public by `src/middleware.ts`). Don't add new runtime `fs` reads elsewhere
 - `next.config.ts` `headers()` don't reach static assets; static-path headers live in `public/_headers`
 - Analytics: PostHog (`src/components/PostHogInit.tsx`, `track` from `src/lib/analytics.ts`, `trackServer` for server events). Needs `NEXT_PUBLIC_POSTHOG_KEY` at build time
-- OpenNext doesn't fully support Windows builds; prefer WSL or Cloudflare's Git builds
+- Deploys: `.github/workflows/deploy-cloudflare.yml` builds on Linux and deploys on every push to `master` / `cloudflare-migration` (repo secrets `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`). Vercel no longer serves the site
+- Routes for `www.claudecodehq.com/*` and `claudecodehq.com/*` are declared in `wrangler.jsonc`; both DNS records must stay proxied (orange cloud). Rollback to Vercel = grey-cloud them
+- Server secrets (`RESEND_API_KEY`, `RESEND_AUDIENCE_ID`, `OPENAI_APPS_CHALLENGE_TOKEN`) are Worker secrets. Never put private values in `.env.local` before a local `cf:build`: OpenNext bundles `.env*` files into the Worker
+- OpenNext doesn't fully support Windows builds; prefer the GitHub Actions deploy
 
 ## Architecture
 

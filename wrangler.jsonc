@@ -4,6 +4,14 @@
 	"name": "claude-code-playbooks",
 	"compatibility_date": "2026-11-01",
 	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+	// The live site. Declared here so every deploy keeps them attached; the
+	// DNS records for both hostnames must stay proxied (orange cloud).
+	"routes": [
+		{ "pattern": "www.claudecodehq.com/*", "zone_name": "claudecodehq.com" },
+		{ "pattern": "claudecodehq.com/*", "zone_name": "claudecodehq.com" }
+	],
+	// Keep the claude-code-playbooks.<subdomain>.workers.dev test address.
+	"workers_dev": true,
 	"assets": {
 		"directory": ".open-next/assets",
 		"binding": "ASSETS",

@@ -1,0 +1,23 @@
+# Copy to .dev.vars for `npm run preview` (local Worker). Never commit .dev.vars.
+# In production these are set in Cloudflare: Workers & Pages → claude-code-playbooks
+# → Settings → Variables and Secrets (secrets for keys/tokens).
+#
+# NEXT_PUBLIC_* values are inlined into the browser bundle at BUILD time, so they
+# must also be present when `npm run cf:build` runs (e.g. in .env.local or as
+# build variables in Cloudflare's Git build settings).
+
+NEXT_PUBLIC_SITE_URL=https://www.claudecodehq.com
+NEXT_PUBLIC_POSTHOG_KEY=
+NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com
+
+RESEND_API_KEY=
+RESEND_AUDIENCE_ID=
+SUBSCRIBE_NOTIFY_EMAIL=
+SUBSCRIBE_NOTIFY_FROM=
+ADVERTISE_NOTIFY_EMAIL=
+NEWSLETTER_REPLY_TO=
+OPENAI_APPS_CHALLENGE_TOKEN=
+
+# Leave unset on Cloudflare: Vercel's numbers shrink once traffic moves, and
+# /advertise falls back to its hand-checked figures without it.
+# VERCEL_ANALYTICS_TOKEN=

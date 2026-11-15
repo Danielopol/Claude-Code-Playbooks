@@ -51,3 +51,9 @@ scripts/pipeline/data/
 
 # Built ChatGPT plugin zip (npm run plugin:build)
 /chatgpt-plugin/dist/
+
+# Cloudflare (OpenNext / wrangler)
+.open-next/
+.wrangler/
+.dev.vars*
+!.dev.vars.example

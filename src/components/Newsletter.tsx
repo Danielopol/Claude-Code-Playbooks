@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { track } from '@vercel/analytics';
+import { track } from '@/lib/analytics';
 import { Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';

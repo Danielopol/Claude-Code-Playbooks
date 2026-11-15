@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { track } from '@vercel/analytics';
+import { track } from '@/lib/analytics';
 import { Check, Copy, Terminal } from 'lucide-react';
 import { cn } from '@/lib/utils';
 

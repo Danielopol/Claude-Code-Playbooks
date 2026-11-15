@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Created per request, not at import: on Cloudflare the key is only in process.env
+// once a request is being handled, and a missing key must not fail the build.
+const getResend = () => new Resend(process.env.RESEND_API_KEY);
 
 const NOTIFY_EMAIL = process.env.ADVERTISE_NOTIFY_EMAIL || 'valentin.marin83@gmail.com';
 
@@ -61,7 +63,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { error } = await resend.emails.send({
+    const { error } = await getResend().emails.send({
       from: NOTIFY_FROM,
       to: [NOTIFY_EMAIL],
       // Hitting reply goes straight to the applicant.

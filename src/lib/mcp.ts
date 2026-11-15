@@ -122,7 +122,7 @@ export function createPlaybooksServer({ pluginCatalogOnly = false } = {}): McpSe
       annotations: READ_ONLY,
     },
     async ({ slug }) => {
-      const playbook = /^[a-z0-9][a-z0-9-]*$/.test(slug) && inScope(slug) ? getPlaybookSource(slug) : null;
+      const playbook = /^[a-z0-9][a-z0-9-]*$/.test(slug) && inScope(slug) ? await getPlaybookSource(slug) : null;
       if (!playbook) {
         const suggestions = rankPlaybooks(library(), slug.replace(/[-_]+/g, ' '))
           .slice(0, 3)

@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Created per request, not at import: on Cloudflare the key is only in process.env
+// once a request is being handled, and a missing key must not fail the build.
+const getResend = () => new Resend(process.env.RESEND_API_KEY);
 
 const AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID;
 const NOTIFY_EMAIL = process.env.SUBSCRIBE_NOTIFY_EMAIL || 'valentin.marin83@gmail.com';
@@ -39,7 +41,7 @@ export async function POST(request: NextRequest) {
 
     // Primary path: add to the Resend audience, which is the actual list.
     if (AUDIENCE_ID) {
-      const { error } = await resend.contacts.create({
+      const { error } = await getResend().contacts.create({
         email: normalized,
         unsubscribed: false,
         audienceId: AUDIENCE_ID,
@@ -68,7 +70,7 @@ export async function POST(request: NextRequest) {
     // Fallback path: if the audience write did not happen, mail the address to
     // the owner so a subscriber is never lost to a misconfiguration.
     if (!stored) {
-      const { error } = await resend.emails.send({
+      const { error } = await getResend().emails.send({
         from: 'Claude Code Playbooks <onboarding@resend.dev>',
         to: [NOTIFY_EMAIL],
         subject: `New subscriber: ${normalized}`,

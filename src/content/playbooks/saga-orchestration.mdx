@@ -1,0 +1,59 @@
+---
+title: "Saga Orchestration for Distributed Transactions"
+description: "Implement the saga pattern for multi-step workflows that span services and can't use a single ACID transaction — choreography vs. orchestration, a step/compensation model with explicit saga states, reverse-order compensation on failure, persisted saga state that survives an orchestrator restart, timeouts, and the idempotency and compensation-testing discipline that makes rollback actually work."
+seoHook: "In a distributed workflow there's no ROLLBACK — when the payment step fails after inventory was already reserved, something has to explicitly release that inventory, and the saga pattern is how you make that compensation reliable instead of leaving the system stuck in a half-completed state nobody cleans up."
+targetAudience: "backend engineers coordinating workflows across microservices, architects designing distributed transactions without a two-phase commit, developers implementing order-fulfillment or booking flows that touch multiple services, teams debugging half-completed distributed state and needing a principled compensation model"
+exampleUseCase: "\"Coordinate reserve-inventory → charge-payment → ship across our services reliably\" → An orchestrator that runs each step with its compensation defined up front, flips to COMPENSATING and undoes completed steps in reverse order when payment fails (releasing inventory, refunding), persists saga state so a crashed orchestrator resumes, enforces per-step timeouts, and keeps every step idempotent so retries are safe"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "rmyndharis"
+sourceUrl: "https://github.com/rmyndharis/antigravity-skills/blob/main/skills/saga-orchestration/SKILL.md"
+tags: ["saga-pattern", "distributed-transactions", "microservices", "architecture", "workflow", "distributed-systems"]
+createdAt: "2026-11-16"
+---
+
+## What This Does
+
+A guide to implementing the saga pattern — the standard way to run a multi-step business process across services when a single ACID transaction isn't possible. It lays out the two coordination styles and when each fits (choreography, where services react to each other's events, for short flows; orchestration, where a central coordinator explicitly drives every step and its undo, once a saga grows past a few steps), with an explicit state model (Started → Pending → Compensating → Completed/Failed). The core is a step-plus-compensation model: every step that has a side effect defines the compensating action that reverses it, and on failure the orchestrator runs the completed steps' compensations in reverse order rather than leaving the system in a half-done state.
+
+It covers the mechanics that make a saga production-grade: persisting saga state after each transition so a crashed orchestrator resumes where it stopped (sagas are long-running and must survive restarts), per-step timeouts so a stuck step compensates instead of hanging forever, a worked order-fulfillment example (reserve inventory → charge payment → ship, each with its compensation), and the choreography variant with correlation IDs for tracing a flow that has no central coordinator. The do's and don'ts target the parts teams get wrong: non-idempotent steps that break on retry, compensations that don't actually undo, synchronous service coupling, and — most of all — shipping the rollback path untested, since it's the most critical and least-exercised code in the whole saga.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir saga-orchestration && cd saga-orchestration
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Design Your Saga
+
+```bash
+claude
+```
+
+Describe the cross-service workflow you need to coordinate. Claude will choose choreography or orchestration, define each step with its compensation, wire up reverse-order rollback, state persistence, and timeouts, and keep every step idempotent for safe retries.
+
+---
+
+## Tips & Best Practices
+
+- Write and test every compensation as carefully as its forward action — the rollback path is the entire point of a saga and the part that's almost never exercised in normal operation, so it's where latent bugs hide until the worst moment.
+- Make each step idempotent from the start; the orchestrator retries on transient failures, and a step that double-charges or double-ships on a retry is a far worse failure than the one it was recovering from.
+- Persist saga state on every transition — treating the saga as in-memory state that a restart can lose turns a recoverable partial failure into an orphaned, half-completed workflow.
+
+## Limitations
+
+- Sagas provide eventual consistency and atomicity-via-compensation, not true isolation — intermediate states are visible to other readers, so a flow that genuinely needs isolation needs a different approach.
+- The patterns are framework-agnostic Python illustrations; wiring them to your actual message bus, saga store, and service APIs is real implementation work the playbook guides but doesn't do for you.
+- Choreography can become hard to reason about as steps multiply; the playbook recommends orchestration past a few steps, but that tradeoff still depends on your team's tolerance for a central coordinator vs. distributed event flow.

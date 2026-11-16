@@ -1,0 +1,59 @@
+---
+title: "Event Store Design"
+description: "Design and implement an event store for an event-sourced system — the append-only, per-stream-ordered, globally-positioned model; a technology comparison (EventStoreDB, PostgreSQL, Kafka, DynamoDB, Marten); a complete PostgreSQL schema with the UNIQUE(stream_id, version) constraint that enforces optimistic concurrency; and the snapshot, subscription, and idempotency patterns that keep it correct."
+seoHook: "The difference between an event store and a table you append rows to is one UNIQUE(stream_id, version) constraint — without it, two concurrent writers silently corrupt an aggregate's history, and with it, a conflicting write fails loudly and forces a re-read, which is the entire correctness guarantee event sourcing depends on."
+targetAudience: "backend engineers building event-sourced or CQRS systems, architects choosing an event store technology, developers implementing event persistence on PostgreSQL or DynamoDB, teams adding audit-grade immutable event logs who need the concurrency and snapshotting patterns done right"
+exampleUseCase: "\"We want to add event sourcing on our existing Postgres stack\" → A complete events/snapshots/subscription_checkpoints schema with per-stream and global ordering, the UNIQUE(stream_id, version) optimistic-concurrency constraint explained, an immutable Event record and the append/read-stream/read-all/subscribe operations, plus snapshotting so aggregate replay doesn't start from event 1 every time"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "rmyndharis"
+sourceUrl: "https://github.com/rmyndharis/antigravity-skills/blob/main/skills/event-store-design/SKILL.md"
+tags: ["event-sourcing", "cqrs", "postgresql", "architecture", "distributed-systems", "database-design"]
+createdAt: "2026-11-16"
+---
+
+## What This Does
+
+A design-and-implementation guide for the event store at the heart of an event-sourced system. It starts from the model that makes event sourcing work — one append-only, immutable, per-aggregate stream with both per-stream and global ordering — and the five requirements any real event store has to meet (append-only, ordered, versioned, subscribable, idempotent). A technology comparison table lays out when EventStoreDB, PostgreSQL, Kafka, DynamoDB, or Marten is the right backend and what each gives up.
+
+The core of the playbook is a complete, correct PostgreSQL implementation: an `events` table with a `global_position` sequence and the `UNIQUE(stream_id, version)` constraint that enforces optimistic concurrency (a conflicting concurrent write fails and forces a re-read rather than corrupting the stream), plus `snapshots` and `subscription_checkpoints` tables and the indexes each query pattern needs. It pairs that with an immutable `Event` record, the four core operations (append with expected-version, read-stream for replay, read-all for projections, subscribe for live consumers), snapshotting to bound replay cost, and the DynamoDB conditional-write equivalent — then closes with the do's and don'ts that keep an event log trustworthy (never mutate events, keep payloads small, never skip optimistic concurrency, include correlation/causation IDs for tracing).
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir event-store && cd event-store
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Design Your Event Store
+
+```bash
+claude
+```
+
+Tell Claude your stack and aggregate model. It will pick a backend, generate the schema (with the optimistic-concurrency constraint wired in), and implement the append/read/subscribe operations plus snapshotting for your aggregates.
+
+---
+
+## Tips & Best Practices
+
+- Treat the `UNIQUE(stream_id, version)` constraint as non-negotiable — it is the entire optimistic-concurrency mechanism; dropping it to "simplify" the schema reintroduces the silent stream-corruption bug event sourcing exists to prevent.
+- Version your events from day one and keep correlation/causation IDs in metadata — both are nearly impossible to retrofit cleanly once you have production history, and both are what make schema evolution and cross-service tracing tractable later.
+- Snapshot long streams so aggregate reconstruction doesn't replay from event 1 on every load — but keep snapshots as a derived optimization, never the source of truth.
+
+## Limitations
+
+- This is the persistence layer only — projections/read models, command handling, and schema/upcasting strategies for evolving event shapes are adjacent concerns the playbook points at but doesn't fully implement.
+- The PostgreSQL schema is a solid general-purpose starting point, not a tuned high-throughput configuration; very high write volumes may need partitioning, archival tiers, or a purpose-built store like EventStoreDB or Kafka.
+- Event sourcing is a significant architectural commitment with real operational cost — this playbook assumes that decision is already made and doesn't argue whether a given system should be event-sourced at all.

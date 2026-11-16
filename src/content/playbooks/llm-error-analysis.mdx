@@ -1,0 +1,59 @@
+---
+title: "LLM Error Analysis"
+description: "Build evaluators grounded in how your LLM system actually fails, by reading ~100 traces and letting failure categories emerge instead of borrowing generic ones — a 7-step process (collect, read/note, group, label, rate, decide, iterate) that notes the first thing that went wrong, fixes obvious prompt/tool/code gaps before building any evaluator, and prioritizes by real failure frequency."
+seoHook: "Most LLM eval projects start by scoring 'helpfulness' and 'coherence' — borrowed research metrics that look rigorous and measure nothing your product actually gets wrong. Error analysis flips it: read your real traces first, let the failure categories emerge from what you see, and most of the top failures turn out to have a one-line fix that needs no evaluator at all."
+targetAudience: "AI engineers starting an eval project and unsure where to begin, teams whose LLM product fails in ways their metrics don't capture, developers who want failure categories grounded in real traces instead of generic scores, anyone re-establishing evals after a model switch, prompt rewrite, or production incident"
+exampleUseCase: "\"Help me figure out how our LLM agent actually fails\" → ~100 full traces collected and read one at a time, each judged pass/fail with a note on the first thing that went wrong, similar notes grouped into 5-10 grounded, actionable categories (Missing Query Constraints, Wrong Tone, Fabricated Facts), failure rates computed to rank them, and the top categories triaged — obvious prompt/tool/code gaps fixed directly, evaluators reserved only for failures worth iterating on"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "Hamel Husain (hamelsmu)"
+sourceUrl: "https://github.com/hamelsmu/evals-skills/blob/main/skills/error-analysis/SKILL.md"
+tags: ["llm-evals", "ai-engineering", "error-analysis", "testing", "machine-learning", "observability"]
+createdAt: "2026-11-16"
+---
+
+## What This Does
+
+The foundational error-analysis methodology from Hamel Husain's eval work — the step that should come before any evaluator, judge, or dashboard gets built. Rather than borrowing generic quality metrics ("helpfulness", "hallucination", "coherence") that look rigorous and miss what a product actually gets wrong, it has you read ~100 real (or synthetic) traces, judge each pass/fail, and note the **first** thing that went wrong (errors cascade, so fixing the root cause makes the downstream symptoms disappear). Failure categories are allowed to emerge from what you observe instead of being imposed from a pre-defined list, which is the difference between evaluators that catch real problems and ones that score well on paper.
+
+The seven steps run from trace collection (full traces, with diversity via embedding clustering) through reading-and-noting, grouping into 5–10 distinct and actionable categories (with explicit split-vs-group heuristics and cautious LLM-assisted clustering only after a human has reviewed the first batch), binary labeling, and failure-rate computation to prioritize. The step that saves the most wasted effort is the triage: before building any evaluator, check whether a failure just needs an obvious fix — a missing prompt instruction, an unexposed tool, a plain code bug — and do that first, reserving evaluators for failures you'll actually iterate on repeatedly and preferring code-based checks over LLM judges for anything objective. It includes a trace-sampling strategy table and an anti-patterns list, and pairs directly with the companion eval-audit playbook.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir error-analysis && cd error-analysis
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Analyze Your Failures
+
+```bash
+claude
+```
+
+Bring a sample of your LLM pipeline's traces (or ask Claude to help generate synthetic ones if you have no production data). It will walk the seven steps with you — reading traces, surfacing grounded failure categories, labeling, and triaging what to fix directly vs. what warrants an evaluator.
+
+---
+
+## Tips & Best Practices
+
+- Resist the urge to pre-define failure categories — reading traces first and letting categories emerge is the whole method, and starting from a fixed list bakes in confirmation bias that hides your real failures.
+- Note only the first thing that went wrong in each trace; chasing every downstream symptom wastes effort on issues that vanish once the root cause is fixed.
+- Expect many top failures to need no evaluator at all — a missing prompt instruction or an unexposed tool is a direct fix, and building a judge for it instead is exactly the wasted work this method is designed to prevent.
+
+## Limitations
+
+- It needs a human (ideally a domain expert) in the loop for the first 30–50 traces — this is deliberate, since grounding categories in domain knowledge is the point, but it means the method isn't fully automatable.
+- The ~100-trace saturation target scales with system complexity; a simple pipeline saturates sooner and a complex multi-agent one may need more, so treat the number as a heuristic, not a quota.
+- It produces grounded failure categories and a fix/evaluator triage — actually writing and validating the evaluators for the failures that warrant them is the next step, covered by the companion eval-audit playbook and judge-writing methodology.

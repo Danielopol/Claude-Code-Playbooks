@@ -1,0 +1,59 @@
+---
+title: "LLM Eval Audit"
+description: "Audit an existing LLM evaluation pipeline against six diagnostic areas — error analysis, evaluator design, judge validation, human review, labeled data, and pipeline hygiene — surfacing unvalidated judges, Likert-scale noise, vanity similarity metrics, and the accuracy-under-class-imbalance trap, as an impact-ordered findings report where every problem links to a concrete fix."
+seoHook: "A production LLM judge that was never validated against human labels can report 90% accuracy while catching zero real failures — because when 90% of traces pass, a judge that blindly says 'Pass' scores 90% too, and raw accuracy will never reveal that the judge is useless."
+targetAudience: "ML and AI engineers who inherited an eval system and don't trust it, teams whose LLM product metrics look fine but quality complaints keep coming, anyone running LLM-as-judge evaluators without having validated them, engineers unsure whether their evals measure real failure modes or borrowed research metrics"
+exampleUseCase: "\"We have evals but I don't trust them — audit the pipeline\" → The eval artifacts inspected across six areas, surfacing the real problems (judges validated with raw accuracy instead of TPR/TNR, Likert scales no one can calibrate, ROUGE used as the primary quality metric, failure categories brainstormed rather than observed from traces), delivered as an impact-ordered report where each finding names the specific issue in THIS pipeline and links to its fix"
+category: "developer-tools"
+difficulty: "advanced"
+timeToSetup: "10 minutes"
+author: "Hamel Husain (hamelsmu)"
+sourceUrl: "https://github.com/hamelsmu/evals-skills/blob/main/skills/eval-audit/SKILL.md"
+tags: ["llm-evals", "ai-engineering", "llm-as-judge", "testing", "error-analysis", "machine-learning"]
+createdAt: "2026-11-16"
+---
+
+## What This Does
+
+A diagnostic audit for an existing LLM eval pipeline, drawn from Hamel Husain's widely-cited eval methodology. It inspects the actual artifacts (traces, evaluator configs, judge prompts, labeled data, dashboards) across six areas and produces an impact-ordered findings report where each problem is tied to a specific fix — not a generic checklist, but a read of what *this* pipeline actually does wrong. The six areas are error analysis (were failure categories observed from real traces, or brainstormed from research vocabulary?), evaluator design (binary pass/fail vs. uncalibratable Likert scales; one-failure-mode judges vs. holistic "is this good?" prompts; code checks reserved for objective criteria; similarity metrics like ROUGE/BERTScore not masquerading as quality measures), judge validation (validated against human labels at all; measured with TPR/TNR rather than accuracy; a real train/dev/test split with no few-shot leakage), human review (domain experts not general annotators; full traces not just outputs), labeled-data sufficiency with smart sampling strategies, and pipeline hygiene (error analysis and judges refreshed after significant changes).
+
+The single highest-value check is judge validation: the audit specifically catches the class-imbalance accuracy trap, where an unvalidated judge reports high accuracy while catching none of the failures that matter, and insists on TPR/TNR instead. It also handles the from-scratch case — if there's no eval infrastructure at all, it refuses to recommend building judges or dashboards before error analysis on real traces is done, because evaluators built without grounding in observed failures measure the wrong things. It pairs naturally with the companion error-analysis playbook, which is the first step it keeps pointing to.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir eval-audit && cd eval-audit
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ./
+```
+
+### Step 3: Audit Your Eval Pipeline
+
+```bash
+claude
+```
+
+Point Claude at your eval artifacts (or an observability platform, or just your eval scripts and CSVs) and ask it to audit the pipeline. It will work through the six areas against what you actually have and return an impact-ordered findings report with a concrete fix per problem.
+
+---
+
+## Tips & Best Practices
+
+- Prioritize fixing judge validation if the audit flags it — an unvalidated judge isn't a minor gap, it means every metric downstream of that judge is unreliable, and the TPR/TNR fix is cheap relative to the false confidence it removes.
+- Take the "fix obvious problems before building evaluators" ordering seriously — many failures turn out to be a missing prompt instruction, an unexposed tool, or a plain code bug, and building a judge for those instead of fixing them is wasted effort.
+- Re-run the audit after any significant pipeline change (model switch, prompt rewrite, new feature); eval trustworthiness decays as the system evolves, and a one-time audit gives false comfort.
+
+## Limitations
+
+- An audit of an existing pipeline, not a build guide — when the finding is "no error analysis has been done," the actual work shifts to the companion error-analysis methodology, which this playbook defers to rather than reproducing.
+- Its value depends on being given real artifacts to inspect; run as a checklist against nothing, it degrades into the generic advice it explicitly warns against.
+- Judge-validation targets (~50 Pass / ~50 Fail, ~100 traces for saturation) are rules of thumb that scale with system complexity, not hard thresholds — treat them as starting points, not guarantees.

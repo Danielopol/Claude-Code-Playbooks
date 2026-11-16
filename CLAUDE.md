@@ -84,6 +84,27 @@ npm run deploy     # Manual cf:build + deploy (needs `npx wrangler login`); norm
 
 ## Adding a New Playbook
 
+### Security scan (GitHub skills): do this before step 1 and again after step 2
+
+Every playbook converted from a GitHub skill or repo is scanned with NVIDIA SkillSpector. The tool is installed outside this project at `D:/DIRECTORY/Claude Code/tools/` and is run through a wrapper, never directly:
+
+```bash
+python "D:/DIRECTORY/Claude Code/tools/scan-skill.py" <github-url-or-path> [--recursive]
+```
+
+1. **Before writing anything**, scan the upstream repo or skill folder. This catches bundled scripts, lockfiles and installers that the template alone doesn't show. The wrapper accepts repo, `/tree/` and `/blob/` URLs. Use `--recursive` for a folder of skills (32 max; the wrapper warns if any were omitted).
+2. **After the template and MDX exist**, scan `public/templates/{slug}.md`, and the `.mdx` too if it contains install commands.
+
+How to handle the result:
+
+- The wrapper is static-only (`--no-llm`). Don't enable semantic analysis, because it needs a provider API key and sends text to a third party; that is the owner's decision.
+- Look at the scanner's verdict first (SAFE, CAUTION, DO_NOT_INSTALL), not just finding counts. Most HIGH findings are keyword false positives (`.env`, "credentials", `rm -rf` in docs), so read each HIGH in context.
+- **Stop and ask the owner** on any CRITICAL finding, any DO_NOT_INSTALL verdict, or any HIGH that survives that read.
+- A "PARTIAL COVERAGE" result is not a clean pass, and a clean scan is never proof of safety. Say both in your summary.
+- Report findings. Don't edit, noindex or delete a playbook because of one unless the owner says so.
+- Tweet- and article-sourced playbooks aren't covered by this rule; offer the scan on the generated template instead of assuming.
+- Raw reports and clones go to `D:/DIRECTORY/Claude Code/security-scans/`, outside the project so they are never published. The full 2026-11-16 baseline scan of all playbooks is `security-scans/REPORT.md`.
+
 ### 1. Create the template file
 
 Create `public/templates/{slug}.md` with the raw CLAUDE.md template content — no frontmatter, no wrapper, just the template text that users will download.

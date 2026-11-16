@@ -48,3 +48,15 @@ Tell Claude what you need in plain language — it will follow the template's wo
 > Tailscale ping works but git push hangs for a minute
 
 Claude reads the template and runs the steps for you.
+
+---
+
+## Safety Notes
+
+An automated security scan flagged this playbook because it tells Claude to run powerful commands. That's expected for this kind of work and the playbook isn't malicious, but review each command before you approve it.
+
+- **Steps that need administrator rights.** Several fixes run with elevated privileges: reading system logs, capturing network traffic, removing and re-enabling Tailscale, and flushing the DNS cache. Read each one before approving it, especially the ones that remove software or change SSH access.
+- **One step runs a downloaded script.** The Tailscale reinstall step feeds the vendor's install script straight into a shell. Prefer Tailscale's documented install steps, or download the script and read it first.
+- **One Docker fix shares the host's network with build containers**, which weakens build isolation. The template notes the trade-off itself: it's fine for local development, but for CI/CD fix the proxy configuration instead.
+- **It reads your SSH config.** Diagnostics look at your SSH settings. Don't paste private keys or secrets into the chat.
+- **Network changes can lock you out.** Changing SSH or VPN settings on a remote machine can cut your own connection. Have a way back in first.

@@ -46,3 +46,14 @@ Tell Claude what you need in plain language — it will follow the template's wo
 > My container is unhealthy after terraform apply
 
 Claude reads the template and runs the steps for you.
+
+---
+
+## Safety Notes
+
+An automated security scan flagged this playbook because it tells Claude to run powerful commands. That's expected for this kind of work and the playbook isn't malicious, but review each command before you approve it.
+
+- **Terraform changes real infrastructure.** Read the plan before anything is applied, and use a test environment first when you can.
+- **It deletes a file on the server.** The tarball pattern removes the uploaded archive over SSH after extracting it. Check the path matches your setup.
+- **It edits and reads `.env`.** Fixes append settings to `.env`, and one check reads `CLOUDFLARE_API_TOKEN` from it. Keep `.env` out of git and don't paste its contents into the chat.
+- **Use a scoped API token.** The Cloudflare example shows creating a token through the API. Give it only the permissions DNS validation needs, and never use a Global API Key.

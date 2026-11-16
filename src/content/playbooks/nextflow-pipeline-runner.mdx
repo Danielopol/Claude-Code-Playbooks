@@ -69,6 +69,17 @@ The playbook follows a structured 7-step checklist:
 
 ---
 
+## Safety Notes
+
+An automated security scan flagged this playbook because it tells Claude to run powerful commands. That's expected for this kind of work and the playbook isn't malicious, but review each command before you approve it.
+
+- **The install step runs a downloaded script.** The troubleshooting table's install line feeds Nextflow's script straight into a shell. If you'd rather check it first, download it and read it, or follow the install steps in Nextflow's own documentation.
+- **Docker group access.** The fix for Docker permission errors adds your user to the `docker` group, which is effectively root-level access on that machine. Only do it on a machine you control.
+- **Other fixes need administrator rights.** They start the Docker service and install a Java package.
+- **Confirm before big runs.** The template has decision points where Claude should confirm the pipeline and genome with you. Keep that step, and run the test profile before real data.
+
+---
+
 ## Tips
 
 - Always run the test profile before processing real data to catch environment issues early

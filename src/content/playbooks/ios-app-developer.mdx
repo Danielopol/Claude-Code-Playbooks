@@ -48,3 +48,14 @@ Tell Claude what you need in plain language — it will follow the template's wo
 > My Xcode build fails with code signing error -25294
 
 Claude reads the template and runs the steps for you.
+
+---
+
+## Safety Notes
+
+An automated security scan flagged this playbook because it tells Claude to run powerful commands. That's expected for this kind of work and the playbook isn't malicious, but review each command before you approve it.
+
+- **Deletes by name pattern.** The Xcode cache cleanup removes folders that match a pattern containing a `PROJECT` placeholder. Make sure it has been replaced with your real project name before you approve it, because a vague pattern deletes more than you meant to.
+- **Force-quitting Xcode loses unsaved work.** Save first.
+- **Signing certificates and their private keys are secrets.** The signing steps involve exporting certificates and encoding them for CI. Never paste a certificate password or the encoded certificate into the chat. Store them in your CI provider's secrets instead.
+- **Install certificates where the template says.** It names the login certificate store, and using a different one causes Error -25294.

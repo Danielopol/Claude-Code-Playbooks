@@ -102,6 +102,18 @@ After the briefing, Claude stays in "expert mode" and can answer follow-up quest
 
 ---
 
+## Safety Notes
+
+An automated security scan flagged this playbook because it tells Claude to run powerful commands. That's expected for this kind of work and the playbook isn't malicious, but review each command before you approve it.
+
+- **Browser cookies (optional).** The "auto setup" option reads your x.com login cookies from your browser to search X. The template asks for your consent first, says cookies are read live and not saved to disk, and on macOS Chrome will prompt for Keychain access. You can decline: choose "Skip X", or use an `XAI_API_KEY` or manually pasted `AUTH_TOKEN` and `CT0` values instead.
+- **Third-party signup.** One setup option registers you with ScrapeCreators using your GitHub login, through the `gh` CLI or a one-time device code. Only choose it if you're happy to create that account.
+- **Keys and settings are stored locally.** API keys and flags (for example `BROWSER_CONSENT=true`) are written to `~/.config/last30days/.env`. Keep that file out of git and don't share it.
+- **Installs software.** Setup can install `yt-dlp` with `pip` or `brew`.
+- **You can say no to any step.** Setup is a wizard that asks before its main actions, and the options have lighter alternatives.
+
+---
+
 ## Tips
 
 - Add context to your query for better results: "best CRM for solo founders" beats "best CRM"

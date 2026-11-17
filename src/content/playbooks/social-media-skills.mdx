@@ -1,0 +1,133 @@
+---
+title: "Social Media Skills: Your Voice, Reel Scripts and LinkedIn Posts"
+description: "Teach Claude how you write from an interview and a few samples, then use that voice to script Reels from a reference video, generate hooks, write LinkedIn posts and score drafts"
+seoHook: "Ask an AI for a post and you get something that sounds like everyone and no one. This playbook starts by building two files that capture who you are and how you write, then makes every script, hook and post read from them, so the output sounds like you and the model has nothing to invent."
+targetAudience: "founders and consultants writing their own content, newsletter writers repurposing into short video, marketing leads building a personal brand, LinkedIn creators, anyone whose Reels and posts keep sounding generic"
+exampleUseCase: "\"Script a reel from this reference Reel on the topic of my newsletter issue about pricing\" → a reference analysis (hook word count, structure, language patterns), a 30-45 second script in your voice with a mirrored caption, scored out of 100 against a QA rubric with a 95 gate"
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "Charlie Hills"
+sourceUrl: "https://github.com/charlie947/social-media-skills"
+tags: ["social-media", "linkedin", "instagram-reels", "voice", "personal-brand", "hooks", "content-creation", "newsletter"]
+createdAt: "2026-11-17"
+---
+
+## What This Does
+
+The original repo is a public toolkit of 17 standalone skills for Codex and Claude, by Charlie Hills (MIT licensed). **Most of it is about LinkedIn.** Only one skill, Reels scripting, is about Instagram. The common thread is a voice foundation: two files that every other skill reads before it writes anything personal.
+
+This playbook condenses the core into one template:
+
+- **Voice builder:** a short interview plus 3 to 5 writing samples produces `about-me.md` and `voice.md`
+- **Reels scripting:** analyse a reference Reel, then write your own 30 to 45 second script and caption on your topic
+- **Hook generator:** six two-line hooks for any topic
+- **Post formatter:** a ready-to-publish LinkedIn post from a topic, using PAS, AIDA, BAB, STAR or SLAY
+- **Post writer:** a fuller draft in your voice
+- **Content matrix:** 24 to 40 specific post ideas from your pillars across 8 formats
+- **Post scorer:** a scorecard for a draft, against your own post history if you supply it
+
+The repo's other skills aren't in the template: LinkedIn profile rebuild, graphic design, newsletter voice, niche research, Gemini image prompts for infographics, carousels, quotes and thumbnails, pinned comments, and an analytics dashboard. Install those from the repo (below) if you want them.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/MySocialContent
+```
+
+Keep your voice files in this content project, not inside an installed skill folder.
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/MySocialContent/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/MySocialContent
+claude
+```
+
+Say "build my voice". Claude goes straight into the interview, then asks for three to five pieces of your writing. After that, try "write me hooks about [topic]" or "script a reel".
+
+---
+
+## Want All 17 Skills? Install From the Repo
+
+In Claude Code:
+
+```
+/plugin marketplace add charlie947/social-media-skills
+/plugin install social-media-skills
+```
+
+In Claude Desktop, zip a whole skill folder (including its `references/` folder if it has one) and upload it through Customise skills:
+
+```bash
+zip -r voice-builder.skill voice-builder
+```
+
+Codex users can ask the existing skill installer to install a skill by path, for example `skills/voice-builder`. Copied or uploaded skills don't update themselves. Pull the source and compare before replacing a customised copy.
+
+---
+
+## What the Voice Builder Produces
+
+- **`about-me.md`** (under 300 words): your name and role, audience, 3 to 5 topic pillars, your point of view, your brand promise, and what's off limits
+- **`voice.md`** (under 500 words): who you sound like, tone, sentence rhythm, hook patterns, how you open and close, signature phrases, and what the voice never does
+
+The "never does" part is built from **absence signals**: things missing from every sample, such as em dashes in 0 of 5 posts. Claude is told to separate your explicit rules from patterns that are merely absent in a small sample, and to label the latter provisional with sample counts. If your samples contradict each other, it says so instead of smoothing it over.
+
+No samples yet? You can borrow a starter set, but those describe someone else's voice and experience. Swap them for your own writing before you rely on the output.
+
+---
+
+## How the Reels Workflow Runs
+
+1. You give a reference Reel (the outlier you want to learn the format from) and the topic you want to repurpose, such as a section of your newsletter.
+2. Claude analyses the reference: full transcript with timestamps, the exact hook and its word count, language patterns (sentence length, "you" vs "I" ratio, transitions), structure and timings, the CTA, and one key technique.
+3. It writes your script using the reference's patterns on your topic: a hook that never opens with "I", two key points rather than three, 30 to 45 seconds, and a caption that mirrors the script.
+4. It scores the draft out of 100 (source accuracy 30, your voice 25, hook and structure 20, spoken duration 15, caption and CTA consistency 10) and fixes violations for up to three passes. The gate is 95. If it can't get there, you get the draft with the specific blockers, not an inflated score.
+
+**One Reel is a reference, not a proven outlier.** Claude is told to call it an outlier only when you've supplied comparison data from the same creator's recent posts.
+
+---
+
+## Setup Needs for the Reels Route
+
+The full URL-to-analysis route is the only part that needs outside services, and they cost money:
+
+| Stage | What it needs |
+| --- | --- |
+| Fetch the Reel from its URL | Your own `APIFY_API_TOKEN` and Node.js 18+ with the `apify-client` package |
+| Analyse the video | Your own `GOOGLE_AI_API_KEY` (Gemini 2.5 Flash) and the `@google/generative-ai` package |
+
+You can skip stages by supplying material: upload the video to skip the scraper, or paste a transcript to skip the analysis (the script that follows is labelled transcript-based). Claude asks before any paid run, checks a key exists without printing it, and only collects the single video and aggregate metadata, never comments or replies.
+
+Pasting the transcript or uploading the video yourself is also the lowest-risk route. Automated collection from Instagram through a third-party scraper can breach Instagram's Terms of Use.
+
+---
+
+## Tips & Best Practices
+
+- **Run the voice builder first.** Posts, hooks and scripts that read `voice.md` need it to exist. Without it Claude is told to stop rather than guess.
+- **Use real samples.** Three is the minimum for pattern detection. More samples of the same kind of writing give a sharper profile.
+- **Edit the files by hand.** Both are plain Markdown. If a rule is wrong for you, change it.
+- **Pick the comment trigger carefully.** The "Comment WORD and I'll send you..." call to action is only included when you have a real deliverable and a working automation to deliver it. Otherwise the script ends on a next step that promises nothing.
+- **Count the characters.** Hooks are two lines of 40 characters or fewer, and posts are capped at 20 non-blank lines. Claude is told to count the exact final copy rather than estimate.
+
+---
+
+## Limitations
+
+- **Mostly LinkedIn.** If you came for Instagram, the Reels workflow is the relevant part. For a full Instagram toolkit (captions, carousels, stories, DMs, profile), see the Instagram Agent Skill playbook.
+- **Nothing is published.** Drafting, scoring and saving never post or message for you.
+- **Scores aren't predictions.** A post score is an editorial judgement plus, if you supplied your history, a comparison to it. It doesn't predict performance, and it's marked unavailable when there's no data.
+- **British English by default.** The skills default to British spelling and no em dashes unless your `voice.md` says otherwise.

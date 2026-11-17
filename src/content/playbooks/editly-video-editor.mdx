@@ -1,0 +1,113 @@
+---
+title: "Editly: Make Videos From Code With Node.js and ffmpeg"
+description: "Describe a video in a JSON5 spec (clips, images, titles, transitions, music) and let Claude write it and render it with Editly, for slideshows, promos, GIFs and batch resizing"
+seoHook: "You don't need a timeline editor to put clips, titles and music together. Editly turns a short spec file into a finished video, which means Claude can write it, you can preview it in seconds, and the same spec can rebuild a hundred variations."
+targetAudience: "marketers making promo clips and slideshows, developers automating video, social media managers resizing one video for several platforms, podcasters mixing tracks, educators producing tutorial videos"
+exampleUseCase: "\"Make a 1:1 Instagram post video from these five photos with a title and the music track, 4 seconds each with a crossfade\" → a JSON5 edit spec Claude writes, a --fast preview render, then the full-quality MP4"
+category: "media-production"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "mifi"
+sourceUrl: "https://github.com/mifi/editly"
+tags: ["video-editing", "ffmpeg", "nodejs", "slideshow", "gif", "transitions", "automation", "cli"]
+createdAt: "2026-11-17"
+---
+
+## What This Does
+
+Editly is a command-line tool and JavaScript library for declarative, non-linear video editing. You describe the whole edit as data (a list of clips, each with layers, plus transitions and audio) and Editly renders it with ffmpeg by streaming, so it's fast and uses little disk space. This playbook has Claude write and run the spec for you.
+
+What it can build:
+
+- A slideshow from pictures with text overlay
+- A fast-paced trailer or promo from clips
+- A tutorial video with help text
+- A news-style video with lower thirds
+- An animated GIF
+- A podcast with several mixed audio tracks
+- A resized or re-framed copy of an existing video (for example when a site insists on exact dimensions or a frame rate), with automatic letterboxing or cropping
+
+It also overlays transparent images and alpha-channel video, does picture-in-picture, B-roll sub-clips, vignettes, automatic audio crossfades, and ducking and normalisation.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/EditlyVideos/media
+```
+
+Put your clips, images and music in the `media` folder.
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/EditlyVideos/
+```
+
+### Step 3: Install Editly
+
+You need Node.js (latest LTS) and `ffmpeg` with `ffprobe` on your PATH, then:
+
+```bash
+npm i -g editly
+editly --help
+```
+
+On Linux you may also need the system libraries for `headless-gl`. Editly is ESM-only.
+
+### Step 4: Start Working
+
+```bash
+cd ~/Documents/EditlyVideos
+claude
+```
+
+Try: "Make a 9:16 video from the clips in media/ with a title card at the start, 'THE END' at the close, and the music file as a backing track. Preview it with --fast first."
+
+---
+
+## Examples of What to Ask
+
+| You say | Claude produces |
+| --- | --- |
+| "Slideshow from these 12 photos, 3 seconds each, slow zoom in, one caption each" | A spec with `image` layers using Ken Burns zoom and `subtitle` layers |
+| "Make this clip a 1080x1080 post" | A single-clip spec with `width`, `height` and `resizeMode: contain-blur` |
+| "Picture-in-picture: my screen recording with my webcam in the corner" | A `video` layer plus a second smaller `video` layer using `width`, `height`, `left` and `top` |
+| "Voice-over with background music that ducks while I talk" | `audioTracks` plus `audioNorm` enabled |
+| "Turn this into a GIF" | The same spec with an `outPath` ending in `.gif` |
+
+---
+
+## Tips & Best Practices
+
+- **Preview with `--fast` first.** It renders at low resolution and frame rate so you can check pacing and transitions before a full render.
+- **Set size and frame rate explicitly when mixing sources.** By default everything is converted to the first video's dimensions and frame rate.
+- **Keep titles short.** Title layers are meant for a few words.
+- **Use `resizeMode: contain-blur`** (the default) for a polished letterbox. Use `cover` when cropping is acceptable.
+- **Let transitions crossfade audio.** It happens automatically. Set `defaults.transition` to `null` to turn transitions off.
+- **Pair it with a cutter.** The author suggests using LosslessCut to trim clips before assembling.
+- **Batch it.** Because a spec is just text, Claude can generate many variations by changing a title, a clip or the music.
+
+---
+
+## Limitations
+
+- **It isn't a timeline GUI.** You iterate by editing the spec and re-rendering.
+- **Installation can be fiddly on Linux** because of the `headless-gl` system dependencies. A Docker route is described in the repo README.
+- **Maintenance pace.** The repository's last update was in May 2025. Check the project's open issues before relying on it for a long-lived pipeline.
+- **You provide the media rights.** Editly doesn't license music or footage. Check licences before publishing.
+
+---
+
+## Safety Notes
+
+An automated security scan flagged this project, but the findings were in its build and test automation (for example `sudo` steps in its CI workflows), not in anything you run to make a video. The points below are the ones that matter when you use it. A static scan isn't proof of safety, and the scan only partially covered this repository.
+
+- **Global install.** `npm i -g editly` installs software system-wide. A local install in your project folder avoids that.
+- **Specs can execute code.** The `canvas`, `fabric` and `gl` layer types run custom JavaScript or shader files that a spec points to. Only run specs you wrote or have read, and ask Claude to show you any custom code before it runs.
+- **Remote requests are off by default.** Leave `allowRemoteRequests` off unless you trust the source of the URLs.
+- **Respect media licences.** The README itself reminds users to respect licences when taking music from a video platform.

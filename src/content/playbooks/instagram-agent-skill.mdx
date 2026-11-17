@@ -1,0 +1,134 @@
+---
+title: "Instagram Agent Skill: 13 Modes for Reels, Captions and DMs"
+description: "A pack of 13 Claude skills that write your Reels, captions, carousels, stories, comments and DMs in your own voice, score your hooks, and never post anything without your yes"
+seoHook: "Most Instagram advice is a guess dressed up as a rule. This pack makes Claude work from your own voice file and your own numbers: it scores your hook before you shoot, shows you the 125 characters the feed actually displays before the \"... more\", and ranks competitor reels by how far each beat its own account instead of by raw views."
+targetAudience: "solo creators, freelancers and consultants building an audience, small-business owners running their own Instagram, social media managers, coaches, agency founders"
+exampleUseCase: "\"Write a reel: we cut proposal time from 5 hours to 20 minutes with one template\" → three hooks drawn from 26 formulas and scored, a spoken script in your voice, a separate on-screen text list inside the safe zone, a timed beat sheet with fixes, and a REEL READY receipt. You shoot it and post it yourself"
+category: "marketing-content"
+difficulty: "beginner"
+timeToSetup: "10 minutes"
+author: "Jake Schincariol"
+sourceUrl: "https://github.com/Jakeschincariol/instagram-agent-skill"
+tags: ["instagram", "reels", "social-media", "content-creation", "hooks", "captions", "carousel", "dm", "personal-brand"]
+createdAt: "2026-11-17"
+---
+
+## What This Does
+
+Turns Claude into a working partner for an Instagram account. There are 13 modes, each one a separate skill in the original repo (MIT licensed, by Jake Schincariol):
+
+| Mode | What it does |
+| --- | --- |
+| **Reel** | One idea into a Reel: three scored hooks from 26 formulas, the spoken script, on-screen text, a timed beat sheet |
+| **Viral research** | Ranks reels in your niche by how far each beat its own account's median, names the hook formula, writes a swipe file |
+| **Caption** | Writes the caption and shows what the feed displays before "... more" |
+| **Carousel** | Cover, slide-by-slide copy, 1080x1350 files |
+| **Stories** | The daily sequence, which sticker does which job, the DM funnel |
+| **Profile** | Scores your profile out of 100 against a 12-part rubric, then rewrites it in fix-first order |
+| **Weekly plan** | What to post, which format, when, plus 10 accounts to engage with |
+| **Humanizer** | Strips em dashes, stock AI vocabulary and invisible characters, then scores the result |
+| **Comment** | Nine comment types, picked by what the post actually is |
+| **Reply** | Sorts the comments under your post into six buckets, then writes replies in value order |
+| **DM** | Keyword delivery, first message, collab pitch, two follow-ups |
+| **Repurpose** | One video, podcast or newsletter into a week of posts |
+| **Audit** | Post-mortem on what you already posted: what worked, why, what to stop |
+
+**Nothing gets posted until you say yes.** These modes write. You post. That's the design, not a setting.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/Instagram
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Instagram/
+```
+
+This single file contains all 13 modes. It's the lightweight route: Claude does the hook scoring, timing and linting by hand from the rules in the file.
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/Instagram
+claude
+```
+
+Say "write my voice.md from these" and paste three of your own reels or captions. Then try "make a reel about [your idea]" or "plan my week".
+
+---
+
+## Want the Real Scoring Scripts? Install the Repo Instead
+
+The original repo ships five small Python tools that the template can only imitate: a hook scorer, a beat timer, a caption linter, a humanizer plus detector, and a swipe-file ranker. They need no dependencies, make no network calls and upload nothing. To get them, install the skills themselves:
+
+```bash
+git clone https://github.com/Jakeschincariol/instagram-agent-skill.git
+cp -r instagram-agent-skill/skills/ig-* ~/.claude/skills/
+```
+
+Or as a plugin inside Claude Code:
+
+```
+/plugin marketplace add Jakeschincariol/instagram-agent-skill
+/plugin install instagram-agent
+```
+
+Then use the slash commands: `/ig-reel`, `/ig-viral`, `/ig-caption`, `/ig-carousel`, `/ig-story`, `/ig-profile`, `/ig-plan`, `/ig-human`, `/ig-comment`, `/ig-reply`, `/ig-dm`, `/ig-repurpose`, `/ig-audit`.
+
+No Claude Code? Paste any single `SKILL.md` at the top of a chat and it runs as a mode, minus the Python tools.
+
+---
+
+## Do This First: Your Voice File
+
+Every mode reads `~/.claude/instagram/voice.md`. Ten minutes here is the difference between scripts you shoot and scripts you rewrite, because on Instagram you have to say the words out loud. Cover:
+
+- who you are and exactly who you're talking to ("photographers charging under $2,000", not "creatives")
+- how you sound on camera, words you use and words you'd never say, whether you swear, whether you use emoji
+- three to five positions you hold that part of your audience doesn't
+- topics, names and claims that are off limits
+- real numbers and stories you're happy to put your name on (the modes never invent one, so an empty section means `{{your number}}` placeholders in every draft)
+- your keyword call to action, if you use one
+
+Or skip the form: give Claude three of your own reels and say "write my voice.md from these".
+
+---
+
+## How the Reel Mode Works
+
+1. **Three hooks, not one.** Different formulas from the set of 26 (Cost Confession, Nobody Tells You, Time Collapse, The Steal, The Receipt and so on), each with a spoken line and an on-screen line.
+2. **Score them.** Five checks: length, specificity, stakes, front-loading, address. If the best hook is weak, no amount of editing fixes it.
+3. **Write the script** on the winner, in plain spoken language.
+4. **Time it** at about 165 words per minute and fix every flag: a hook past 3 seconds, a beat over 4 seconds, a run of lines with nothing concrete, no loop back to the first line.
+5. **Humanize it**, then print the script, the timed on-screen list and a receipt.
+
+Rules that make the difference: one idea per Reel, numbers over adjectives, no greeting or "in this video", the frame changes every beat, one ask at the end, and on-screen text of six words or fewer kept inside the safe zone.
+
+---
+
+## Tips & Best Practices
+
+- **Run viral research monthly, not daily.** Formulas last a season. After it runs once, the Reel and plan modes work from your own evidence instead of the defaults.
+- **Rank by outlier multiple, not views.** A 2M-follower account getting 400k views had a quiet Tuesday. A 4k-follower account getting 400k found something copyable. Above 3x is a signal. Below 1.5x is that account's normal day.
+- **Hashtags are labels, not a reach lever.** Instagram capped them at five per post in December 2025. Put the phrase you want to be found for in the caption text, in a normal sentence.
+- **Say the keyword out loud.** A keyword call to action needs one word people can type, no spaces and no emoji, and it works best when you say it in the video as well.
+- **Run the humanizer on everything short.** Captions, comments, replies and DMs are short, so one stock phrase or em dash is proportionally louder there than in an essay.
+- **Don't write three posts from one source in one sitting.** Repurpose mode drafts one at a time on purpose, because batch drafts all sound the same.
+
+---
+
+## Limitations
+
+- **It doesn't post, schedule or connect to Instagram.** Instagram's Content Publishing API needs a Meta developer app, a linked Page, a long-lived token and app review. Other automation tools that post, comment, follow or DM break Instagram's Terms of Use and get accounts action-blocked, so every mode ends with copy-ready text and you post it. The one supported exception is keyword auto-replies in DMs, through Instagram's own tools or approved partners, and only after someone comments first.
+- **Viral research reads, it doesn't scrape.** Ten accounts, about a dozen reels each, at human speed, with you driving your own browser. It never asks for your password and never logs in as you.
+- **The hook scorer catches bad hooks, not winners.** The author tested it on 74 real short-form hooks (YouTube Shorts, since Instagram view counts can't be collected without logging in). It separated deliberately bad hooks from real ones well (AUC 0.83) but barely separated a creator's hits from their misses (AUC 0.56, where 0.50 is a coin flip). Only the specificity check separated them meaningfully. Use it to kill weak hooks before you shoot, then trust your retention graph.
+- **The "human score" is a local heuristic.** It isn't GPTZero, Originality, Copyleaks, Winston or Turnitin, it doesn't call them, and it can't promise their verdicts. The invisible-character pass removes zero-width and format characters that survive copy-paste. It isn't a claim about defeating watermarking.
+- **Platform numbers go stale.** If anything here contradicts what Instagram is doing today, Instagram is right.

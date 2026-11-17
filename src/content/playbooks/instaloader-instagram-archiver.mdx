@@ -1,0 +1,110 @@
+---
+title: "Instaloader: Download and Archive Instagram Content"
+description: "Use the open-source Instaloader tool to back up your own Instagram account or save public posts, stories, highlights, captions and metadata to a local folder, with Claude choosing the options"
+seoHook: "Instagram has no \"export everything\" button that gets you your posts, stories, captions and comments in one tidy folder. Instaloader does, and with Claude writing the command you can filter by date, likes or hashtag and keep the archive up to date without remembering the flags."
+targetAudience: "creators backing up their own account, social media managers archiving client content, researchers saving public posts for study, brand teams reviewing their own tagged content, journalists documenting public posts"
+exampleUseCase: "\"Back up my own account, posts and stories, and only keep the photos\" → a command that downloads your profile with stories and highlights, skips videos, saves captions as text files and a JSON file per post, and can be re-run with --fast-update to pick up only new posts"
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "Instaloader contributors"
+sourceUrl: "https://github.com/instaloader/instaloader"
+tags: ["instagram", "backup", "archive", "download", "metadata", "python", "cli", "social-media"]
+createdAt: "2026-11-17"
+---
+
+## What This Does
+
+Instaloader is a free, open-source command-line tool and Python module that downloads, from Instagram:
+
+- **Public and private profiles** (private only for accounts that follow them), plus the profile picture
+- **Hashtags and locations** (login required)
+- **Stories, highlights, tagged posts, Reels and IGTV** videos
+- **Your own feed and saved posts** (login required)
+- **Captions, comments and geotags** of each post, with the metadata saved as files
+
+It resumes interrupted downloads, detects profile name changes and renames the folder to match, and lets you filter by date, likes, hashtags and more. Claude helps by choosing the options, writing the commands, and organising the results.
+
+**Important:** Instaloader is not affiliated with or endorsed by Instagram, and its README says to use it at your own risk. Read the Safety Notes below before you start.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/InstagramArchive
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/InstagramArchive/
+```
+
+### Step 3: Install Instaloader
+
+```bash
+pip3 install instaloader
+instaloader --help
+```
+
+### Step 4: Start Working
+
+```bash
+cd ~/Documents/InstagramArchive
+claude
+```
+
+Try: "Download the public posts of this profile, only photos, and save the captions." Claude will propose the command and explain its options before running it.
+
+---
+
+## Examples of What to Ask
+
+| You say | What Claude builds |
+| --- | --- |
+| "Update my local copy of this profile" | `--fast-update` (stops at the first already-downloaded post) or `--latest-stamps` |
+| "Only posts before June 2018" | A `--post-filter` on `date_utc` |
+| "Skip videos" | `--post-filter="not is_video"`, or `--no-videos` |
+| "Organise by year" | `--dirname-pattern` and `--filename-pattern` with a `{date_utc:%Y}/{shortcode}` layout |
+| "Save how many likes each post had" | `--post-metadata-txt="{likes} likes."` |
+| "Download this one post" | `instaloader -- -SHORTCODE` |
+| "Run a weekly backup of my own account" | A scheduled job using a saved session and `--quiet` |
+
+---
+
+## Tips & Best Practices
+
+- **Start small.** Try one public profile before anything larger, so you can see how the tool behaves.
+- **Run one instance at a time.** Instaloader tracks its request budget on the assumption that it's the only thing talking to Instagram. Restarting it often is prone to cause a 429 Too Many Requests error.
+- **Keep it updated.** The rate-control logic changes between versions, so update before troubleshooting repeated 429s.
+- **Use `--fast-update` for repeat runs** so each update only fetches what's new.
+- **Re-read metadata offline.** Each post's metadata is saved as JSON, so you can extract extra fields later without downloading again.
+- **Check the exit code.** 0 is success, 1 means some items failed (listed at the end of the log), 3 is a login error and 4 is a fatal download error.
+
+---
+
+## Limitations
+
+- **It's unofficial and can break.** Instagram changes its site often, and Instaloader isn't maintained by or affiliated with Instagram.
+- **Hashtags, locations, feed, stories and saved posts need a login.** Logging in raises the risk to that account (see below).
+- **Private profiles need an account that follows them.** There's no way around that.
+- **Cloud, VPN and proxy IPs face stricter anonymous limits.**
+- **Large-scale collection isn't the use case.** The tool is built for personal archives and small, careful downloads.
+
+---
+
+## Safety Notes
+
+An automated security scan flagged this project, and the flags are worth understanding. Most are about build and documentation files, but a few apply to how you use it. A static scan isn't proof of safety, and this scan only partially covered the repository.
+
+- **It may breach Instagram's terms and can get an account restricted.** Automated downloading is the kind of activity Instagram limits, and it's most likely to matter when you're logged in. Don't log in with an account you can't afford to lose, and keep volumes low.
+- **Be careful whose content you collect.** Posts, comments and stories belong to their creators and can contain personal data. Stick to your own content or to public material you have a lawful reason to keep, store it securely, and don't republish it.
+- **The session file is a credential.** After `--login`, Instaloader saves your session cookies to a file in your home directory (`~/.config/instaloader/session-USERNAME`). Anyone with that file can act as your account. Keep it out of git and delete it when you're done.
+- **Never paste your password into the chat.** Instaloader prompts for it in your own terminal.
+- **Filter strings are evaluated as Python.** `--post-filter` and `--storyitem-filter` take Python boolean expressions, which is why a scan flags an `eval()` call. Only use filters you or Claude wrote and you've read, never one copied from an unknown source.
+- **The Firefox session-import snippet reads your browser cookies.** The troubleshooting docs include a script that imports Instagram session cookies from Firefox to work around login problems. A scan flags it as credential access, which is accurate. Don't run it unless you've read it and want that.
+- **The tool and its dependencies run on your machine.** Install it in a virtual environment if you prefer, and install only from the official `instaloader` package.

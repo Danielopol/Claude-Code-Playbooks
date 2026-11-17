@@ -167,6 +167,8 @@ A TCP is an internal policy document demonstrating how a company controls access
 **Comprehensive arms embargoes** (22 CFR § 126.1) — no ITAR exports without presidential waiver:
 - Belarus, Cuba, Iran, North Korea, Russia, Venezuela (restricted)
 
+**Syria** was removed from the § 126.1 list effective October 1, 2026 (State Department "Syria Country Policy Revision"). Requests to transfer defense articles and defense services to Syria are now reviewed case by case. This is not a blanket authorization: a license or other approval is still required.
+
 Always check the current 22 CFR § 126.1 list and OFAC sanctions before any transaction.
 
 

@@ -1,0 +1,98 @@
+---
+title: "Socratic Tutor: Learn Any Topic to Mastery"
+description: "A tutoring mode that diagnoses what you already know, then teaches by asking one question at a time, tracks a 0-5 skill map, and only finishes after a final assessment"
+seoHook: "Asking an AI to explain something feels like learning until you try to use it a week later. This playbook flips the roles: Claude asks, you reason, and a strict skill map shows what you've earned instead of what you've read."
+targetAudience: "self-taught developers, students preparing for exams, career changers picking up a new field, engineers learning a new language or system, anyone who has read the tutorial and still can't do the thing"
+exampleUseCase: "\"Tutor me on SQL window functions\" → Claude breaks the topic into subskills, asks 3-5 diagnostic questions one at a time, shows a skill map with your starting level for each, then drills you with predict-the-output and find-the-flaw questions until every subskill reaches 4/5 and you pass a final mixed assessment"
+category: "education"
+difficulty: "beginner"
+timeToSetup: "2 minutes"
+author: "Jane Street"
+sourceUrl: "https://github.com/janestreet/agent_skills/tree/master/socratic-tutor"
+tags: ["tutoring", "socratic-method", "learning", "quizzing", "mastery", "spaced-review", "education"]
+createdAt: "2026-11-17"
+---
+
+## What This Does
+
+Turns Claude into a personal tutor that uses the Socratic (maieutic) method. Instead of lecturing, it asks questions that make you predict, explain, and defend your reasoning. Each topic is split into 4-10 subskills, and each subskill is scored on a strict 0-5 scale that you earn through demonstrated performance, not by agreeing with an explanation.
+
+It only starts when you ask to be taught: "teach me", "tutor me", "quiz me", "drill me", or "help me master". A one-off "what is X?" gets a normal answer. If it's unclear which you want, Claude asks one short question first.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/Tutoring
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Tutoring/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/Tutoring
+claude
+```
+
+Then say something like "Tutor me on Rust ownership" or "Quiz me until I've mastered TCP congestion control." Claude will ask a few diagnostic questions before it teaches anything.
+
+---
+
+## How a Session Runs
+
+1. **Diagnostic.** Claude splits the topic into subskills and asks 3-5 questions, one at a time, from easy to hard. It teaches nothing until this is done.
+2. **Skill map.** You see a progress bar per subskill (levels 0-5) and a proposed starting point. You can override it.
+3. **Teaching loop.** For each subskill Claude asks one question and stops. If you're wrong, it asks a narrower question that exposes the contradiction rather than giving the answer. It explains directly only after 2-3 failed attempts, then re-tests the same idea from a different angle.
+4. **Devil's advocate.** When you're right, Claude sometimes pushes back ("are you sure? what about X?") to check you can defend the answer.
+5. **Spaced review.** Earlier subskills are re-tested without warning. Fail one and its level drops.
+6. **Final assessment.** The course ends only when every subskill hits the target (4/5 by default, 5/5 if you ask for full mastery). A mixed assessment with at least one question per subskill and one integrative problem decides it.
+
+---
+
+## The Skill Map
+
+```
+0 unaware . 1 heard of it . 2 can follow along . 3 can do with help
+4 can do independently . 5 can teach it / handle edge cases
+```
+
+Claude redraws the map after every level change, and whenever you ask for progress. Levels are strict: a level goes up only after 2+ independent checks, at least one of them unprompted recall. Level 5 also needs you to handle an edge case and explain the concept well enough that Claude would trust you to teach it.
+
+---
+
+## Commands You Can Use Anytime
+
+| Say this | What happens |
+| --- | --- |
+| "show progress" | Renders the skill map |
+| "harder" / "easier" | Adjusts question difficulty |
+| "just tell me" | Skips Socratic mode for the current question only |
+| "save state" | Outputs a compact block (topic, levels, misconceptions, what's covered) you can paste into a new session |
+| "resume from:" + a saved block | Restores the map and continues where you left off |
+
+---
+
+## Tips & Best Practices
+
+- **Answer in your own words.** Claude is told not to credit insight you didn't express, so vague answers get probed, not accepted.
+- **Expect no flattery.** Feedback like "Not quite. Why would X happen if Y were true?" is the design, not rudeness.
+- **Use real exercises for technical topics.** Where tools are available, Claude can ask you to write a query or predict what code prints, then check your actual output rather than your description of it.
+- **Pick a narrow topic, or accept a branch.** For broad subjects Claude builds a two-level tree and works one branch at a time.
+- **Save state before you stop.** Long courses span sessions. Paste the saved block into a new session to pick up where you left off.
+
+---
+
+## Limitations
+
+- It's a drill, not a reference. If you only want an answer, ask a plain question or say "just tell me".
+- A mastery session takes real time. A broad topic can run for many sessions, which is why save and resume exist.
+- The skill levels are Claude's judgment from your answers. They're a useful guide, not a certification.

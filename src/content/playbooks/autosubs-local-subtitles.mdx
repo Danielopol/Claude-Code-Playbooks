@@ -1,0 +1,132 @@
+---
+title: "AutoSubs: Local AI Subtitles and Transcripts With Speaker Labels"
+description: "Transcribe audio and video on your own machine with AutoSubs, and let Claude run its command line to produce SRT, VTT, readable transcripts and word-timed JSON, with optional speaker labels and translation"
+seoHook: "Cloud transcription tools charge by the minute and want your recordings on their servers. AutoSubs runs Whisper and other speech models on your own machine, and its command-line mode means Claude can transcribe a folder of interviews, label who's speaking, and hand you subtitle files without you opening an app."
+targetAudience: "video editors and YouTubers adding captions, journalists and researchers transcribing interviews, podcasters, course creators, teams handling recordings that shouldn't leave their machines"
+exampleUseCase: "\"Transcribe interview.mp4 with speaker labels, two speakers, English, and give me an SRT\" → autosubs interview.mp4 --diarize --max-speakers 2 --lang en -o interview.srt, a model chosen to fit your RAM, and a spot-check of names and jargon"
+category: "media-production"
+difficulty: "beginner"
+timeToSetup: "15 minutes"
+author: "tmoroney"
+sourceUrl: "https://github.com/tmoroney/auto-subs"
+tags: ["subtitles", "transcription", "whisper", "captions", "speaker-diarization", "srt", "davinci-resolve", "local-ai"]
+createdAt: "2026-11-17"
+---
+
+## What This Does
+
+AutoSubs is a free, open-source desktop app for AI subtitles that the project says runs entirely on your own device, with no cloud and no subscription. It also has a **headless command-line mode**, so Claude can run it for you. It can:
+
+- Turn audio or video into timestamped subtitles and transcripts
+- Label speakers (diarization) so each person can be styled or quoted separately
+- Transcribe or translate across a large range of languages (the project lists 1,000+)
+- Export SRT, VTT, readable text, or JSON with word-level timestamps
+- Work as a standalone app, or connect to DaVinci Resolve, Adobe Premiere Pro and After Effects
+
+It supports Whisper (several sizes), Moonshine, Parakeet, SenseVoice, Canary, Cohere Transcribe, GigaAM and Omni-ASR models, downloaded on demand. This playbook covers the command line.
+
+---
+
+## Quick Start
+
+### Step 1: Install AutoSubs
+
+Download the installer for your system from the project's official releases page (https://github.com/tmoroney/auto-subs/releases/latest), or on macOS use Homebrew:
+
+```bash
+brew install --cask auto-subs
+```
+
+On Debian or Ubuntu:
+
+```bash
+wget https://github.com/tmoroney/auto-subs/releases/latest/download/AutoSubs-linux-x86_64.deb
+sudo apt install ./AutoSubs-linux-x86_64.deb
+```
+
+To use the `autosubs` command on macOS or Windows, open the app, go to **Settings, then Command line**, and click **Install**. On Linux it's already on the PATH.
+
+### Step 2: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/Transcripts
+```
+
+### Step 3: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/Transcripts/
+```
+
+### Step 4: Start Working
+
+```bash
+cd ~/Documents/Transcripts
+claude
+```
+
+Try: "Transcribe interview.mp4 with the small model and give me an SRT." Claude will tell you the model's size before the first download.
+
+---
+
+## Examples of What to Ask
+
+| You say | Command Claude runs |
+| --- | --- |
+| "Give me a readable transcript" | `autosubs file.mp4 --model small` |
+| "Who said what? Two speakers" | `autosubs file.mp4 --diarize --max-speakers 2 --lang en` |
+| "Make subtitles with at most two short lines" | `autosubs file.mp4 -f srt --max-lines 2 --density less` |
+| "I need word-level timestamps" | `autosubs file.mp4 -f json` |
+| "Translate to English" | `autosubs file.mp4 --translate` |
+| "All caps, no punctuation" | `--text-case uppercase --remove-punctuation` |
+| "What models are available?" | `autosubs --list-models` |
+
+---
+
+## Which Model?
+
+| Need | Model | Approx. size |
+| --- | --- | --- |
+| Quick drafts, English | `moonshine-tiny`, Whisper `tiny.en` | 60 to 80 MB |
+| Everyday balance | Whisper `small` | 480 MB |
+| Better accuracy | Whisper `medium`, `large-v3-turbo` | 1.5 to 1.6 GB |
+| Best Whisper accuracy | Whisper `large-v3` | 3.1 GB (about 10 GB RAM) |
+| Fast and accurate European languages | `parakeet` | 700 MB |
+| Translation to English | `canary` | 1 GB |
+| Rare languages | `omni-asr-1b-ctc` | 3.7 GB |
+
+Sizes are approximate and the first run downloads the model, so pick one that fits your RAM.
+
+---
+
+## Tips & Best Practices
+
+- **Test on a short clip first.** Check the language, model and subtitle formatting before a two-hour file.
+- **Give it your vocabulary.** The `--prompt` option guides transcription, so list names, products and jargon that are often misheard.
+- **Spot-check the output.** Check the start, the middle and every name. Speech recognition makes mistakes, especially with accents, noise and overlapping speakers.
+- **Let the extension choose the format.** `-o subs.srt` or `-o transcript.json` is enough.
+- **Pipe-safe output.** The transcript goes to stdout and progress to stderr, so `autosubs file.mp4 -f srt > out.srt` stays clean.
+- **Use a GPU if you have one.** It's auto-detected, and `--gpu` or `--no-gpu` forces it.
+
+---
+
+## Limitations
+
+- **Big downloads and big RAM.** The best models are several gigabytes and need up to about 10 GB of RAM.
+- **Accuracy varies by language.** The project's ratings are relative and approximate. Rare languages and noisy audio need checking.
+- **Word-level alignment for some languages is degraded.** It relies on romanising the text, so very low-resource scripts may get weak or missing word timestamps.
+- **Mac App Store DaVinci Resolve isn't supported** for the Resolve integration.
+
+---
+
+## Safety Notes
+
+An automated security scan of the whole repository returned thousands of findings. Nearly all are in the project's installers, build and CI files, test files and dependency lock files, which are what you'd expect for a cross-platform desktop app. The points below are the ones that matter when you use it. A static scan isn't proof of safety, and this one only partially covered the repository.
+
+- **Installers run with elevated privileges.** The Windows, macOS and Linux installers run scripts at install time, and the Linux route uses `sudo`. Download only from the official releases page or the Homebrew cask, and read a command before approving it.
+- **The macOS command-line install asks for your password.** Clicking Install in Settings creates a link in `/usr/local/bin`. Do it yourself, and use Remove to undo it.
+- **Resolve and Adobe integrations add scripts or extensions to other applications,** and the Adobe extension loads automatically. Set those up only if you want them.
+- **Check licences for commercial use.** The code is MIT, but the optional MMS word-alignment model is CC BY-NC 4.0 (non-commercial), and every other model has its own licence.
+- **Recordings of other people.** Transcribing interviews and calls can carry privacy and consent obligations, even when processing stays on your machine.
+- **The "nothing leaves your machine" claim is the project's own.** Models are downloaded from the internet on first use. If it matters for sensitive audio, check the app's network behaviour yourself.

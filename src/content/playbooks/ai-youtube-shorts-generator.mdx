@@ -1,0 +1,108 @@
+---
+title: "AI YouTube Shorts Generator: Turn Long Videos Into Vertical Clips"
+description: "Feed in a long video and get ranked, scored 9:16 clips with titles, hooks and reasons, using an open-source pipeline that can run fully local except for one LLM call"
+seoHook: "One hour-long podcast hides a dozen clips worth posting, and finding them means watching the whole thing again. This pipeline transcribes the video, has an LLM rank the moments most likely to hold attention, and crops each one to vertical, so you review five clips instead of scrubbing sixty minutes."
+targetAudience: "podcasters, YouTubers repurposing long videos, agencies producing clips for clients, course creators, founders with recorded talks and webinars"
+exampleUseCase: "\"Make 5 shorts from my latest podcast episode, locally if you can\" → local mode transcribes with faster-whisper, an LLM ranks candidates 0-100 on hooks and emotional peaks, and five 9:16 clips land in output/ with a title, hook line and one-line reason each, plus a result.json"
+category: "media-production"
+difficulty: "intermediate"
+timeToSetup: "20 minutes"
+author: "Anil-matcha"
+sourceUrl: "https://github.com/Anil-matcha/AI-Youtube-Shorts-Generator"
+tags: ["youtube-shorts", "video-clipping", "whisper", "reels", "tiktok", "repurposing", "ffmpeg", "python"]
+createdAt: "2026-11-17"
+---
+
+## What This Does
+
+An open-source alternative to paid clipping tools. Give it a long-form video and it returns the best moments as vertical clips:
+
+1. Downloads the video (or reads a local file)
+2. Transcribes it with Whisper
+3. Classifies the content (podcast, interview, tutorial and so on)
+4. Has an LLM rank highlights on a virality framework: hook moments, emotional peaks, opinion bombs, revelations, conflict, quotable lines, story peaks and practical value
+5. Removes near-duplicate candidates
+6. Crops the top clips to 9:16 (or any aspect ratio you choose)
+
+Each clip comes with a **score from 0 to 100, a hook sentence, and a one-line reason** it should work. Long videos (over 30 minutes) are processed in overlapping chunks so nothing falls in a gap. Claude helps you pick the mode, set up the environment, run the job and review the results.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir -p ~/Documents/ShortsGenerator
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then:
+```bash
+mv ~/Downloads/CLAUDE.md ~/Documents/ShortsGenerator/
+```
+
+### Step 3: Start Working
+
+```bash
+cd ~/Documents/ShortsGenerator
+claude
+```
+
+Say: "Set up the Shorts generator, I want to run it in local mode." Claude clones the repo, creates a virtual environment, installs the dependencies, and has you add your own keys to a `.env` file.
+
+---
+
+## Pick a Mode First
+
+| | API mode (default) | Local mode |
+| --- | --- | --- |
+| Download, transcribe, rank, crop | All through MuAPI, a third-party service | On your machine, except the LLM ranking |
+| What leaves your machine | The video URL, audio, transcript and clips | Only the transcript text, to OpenAI or Gemini |
+| Keys you need | `MUAPI_API_KEY` | `OPENAI_API_KEY` or `GEMINI_API_KEY`, plus ffmpeg |
+| Setup effort | Minimal | More (ffmpeg, faster-whisper, OpenCV) |
+
+If your footage is private or unreleased, or contains other people's information, use local mode. Both modes use your own accounts and credits.
+
+---
+
+## Examples of What to Ask
+
+- "Make 5 clips from this YouTube video in local mode, 9:16, 1080p source" → `python main.py URL --mode local --num-clips 5 --format 1080`
+- "Clip my recording at ~/Videos/webinar.mp4 into square videos" → local mode with `--aspect-ratio 1:1`
+- "Give me the candidates in a file so I can pick myself" → `--output-json result.json`
+- "Force English transcription" → `--language en`
+- "Why was this clip ranked 92?" → Claude reads the hook and reason from the JSON and explains it
+
+---
+
+## Tips & Best Practices
+
+- **Review every clip with the sound on.** Check the speaker stays in frame, the clip doesn't start or end mid-sentence, and it doesn't change what the speaker meant.
+- **Scores are an LLM's opinion of a transcript.** Treat them as a way to shortlist, not as a forecast of views.
+- **Tune the framework.** The ranking criteria and prompt live in `shorts_generator/highlights.py`, so you can steer it toward your kind of content.
+- **Use a smaller Whisper model to go faster** (`tiny` or `base`) or a GPU (`LOCAL_WHISPER_DEVICE=cuda`).
+- **Re-runs are cheaper locally.** Local mode caches the transcript and the downloaded source, and reuses them.
+- **Cost-check batches.** A batch run multiplies API usage by the number of videos.
+
+---
+
+## Limitations
+
+- **Only for videos you can reuse.** Clipping other people's videos can breach YouTube's terms and copyright.
+- **Quality depends on the transcript and model.** Videos with no clear speech, or in a language Whisper struggles with, can fail or give weak results. The repo's own README suggests a hosted, improved algorithm for better clips, which is the vendor's paid product.
+- **API mode is a dependency on one vendor.** If MuAPI changes or goes away, API mode stops working. Local mode doesn't have that dependency (except the LLM call).
+- **Vertical cropping is automatic.** Face tracking can miss on complex scenes, so check the framing.
+
+---
+
+## Safety Notes
+
+An automated security scan flagged this project for handling API keys in a `.env` file, running ffmpeg as a subprocess, and sending data to a third-party API. That's what the tool is designed to do, but you should know what it means. A static scan isn't proof of safety, and this one only partially covered the repository.
+
+- **API mode sends your video to MuAPI.** The default mode downloads, transcribes, ranks and crops through a third-party commercial service, using your key and credits. Use local mode, or ask Claude to confirm which mode a command will run in, before you process anything private.
+- **Local mode still sends the transcript to an LLM provider.** The transcript text goes to OpenAI or Gemini (your choice) for ranking. Don't process a transcript you wouldn't send to that provider.
+- **Your keys sit in a `.env` file.** Keep it out of git, don't paste keys into the chat, and use keys with spending limits where the provider offers them.
+- **It runs system tools.** It calls `ffmpeg` and, in local mode, `yt-dlp`. Install them from official sources and read any command before approving it.
+- **Respect copyright.** Only clip videos you own or have permission to reuse, and credit sources where required.

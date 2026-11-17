@@ -1,0 +1,135 @@
+---
+title: "Herk Edit Kit: AI Video Editing for Talking-Head Footage"
+description: "Clone a video-editing kit and let Claude Code cut your silences, review your mistakes, plan the story and build motion graphics, with you approving every cut"
+seoHook: "Editing a talking-head video means hours of scrubbing for dead air and retakes before the creative work even starts. This kit turns the mechanical half into scripts Claude runs for you, and keeps the judgement calls (is that repeat a stutter or emphasis?) with you."
+targetAudience: "YouTubers and short-form creators, founders recording their own videos, course creators, marketers who film talking-head content, anyone who edits more than they'd like to"
+exampleUseCase: "\"Use edit-video to edit my recording at ~/Videos/raw.mp4. Tighten dead air, show me the proposed mistake cuts, and use the dark graph-paper style\" → a silence-trimmed cut, a reviewed list of stutters and retakes for your approval, a beat sheet, HyperFrames motion graphics, a draft render and a VERIFY.md of what was checked"
+category: "media-production"
+difficulty: "advanced"
+timeToSetup: "30 minutes"
+author: "Nate Herk"
+sourceUrl: "https://github.com/nateherkai/herk-edit-kit"
+tags: ["video-editing", "hyperframes", "reels", "youtube-shorts", "ffmpeg", "motion-graphics", "captions", "talking-head"]
+createdAt: "2026-11-17"
+---
+
+## What This Does
+
+Nate Herk's editing kit for Claude Code (and Codex), built on HyperFrames (HTML and GSAP motion graphics rendered to video). You bring your own footage. The kit's skills handle:
+
+- **Silence cutting:** removes dead air and long pauses from a word-level transcript, keeping a natural breath
+- **Mistake review:** finds stutters, repeated words, false starts and retakes, then **waits for your approval** before cutting
+- **Story planning:** a beat sheet with one visual idea per beat
+- **Motion graphics:** 406 draft cards in two styles, plus two scene templates
+- **Short-form editing:** reels and YouTube Shorts with hooks, captions, B-roll, music and sound effects
+- **Verification:** preflight, lint, caption-timing and audio/video sync checks, and a `VERIFY.md` for every finished edit
+
+This playbook is a guide for driving the kit. It doesn't include the kit's `motion-showreel` skill.
+
+---
+
+## Quick Start
+
+### Step 1: Install the Prerequisites
+
+You need Node.js 22 or newer, Git, FFmpeg (including ffprobe) and Chrome or Chromium, all reachable from your terminal.
+
+### Step 2: Clone the Kit
+
+```bash
+git clone https://github.com/nateherkai/herk-edit-kit.git
+cd herk-edit-kit
+npm ci
+npm run setup
+npm test
+```
+
+Setup checks your tools and creates a `.env` file only if one doesn't exist. Add keys only for services you choose.
+
+### Step 3: Add the Template
+
+Click **Download** above and save it as `CLAUDE.md` in a convenient place, or paste it into your session. The kit already has its own `AGENTS.md` and `CLAUDE.md`, so don't overwrite those. Use this file as an additional guide.
+
+### Step 4: Render the Demo First
+
+```bash
+npm run demo
+cd video-projects/demo
+npx hyperframes lint
+npx hyperframes preview
+```
+
+Scrub the eight-second animation in Studio, stop the preview with Ctrl+C, then render a draft:
+
+```bash
+npx hyperframes render --quality draft --output renders/demo.mp4
+```
+
+### Step 5: Edit Your Footage
+
+Open the kit folder in Claude Code and say:
+
+```
+Use edit-video to edit my recording at [local path]. Keep my examples and core
+lessons. Tighten dead air, show me the proposed mistake cuts, and use the dark
+graph-paper style with occasional glass cards. Produce a reviewed draft.
+```
+
+For a single operation, use `/cut-silences`, `/cut-mistakes`, `/video-storytelling` or `/style-library`. For a reel or Short, use `/short-form-edit`.
+
+---
+
+## The Pipeline
+
+1. **Transcribe** to a word-level transcript (or reuse one you already have)
+2. **Cut silences:** an edit list and a retimed transcript, rendered with local FFmpeg
+3. **Cut mistakes:** candidates, your review, then only the approved cuts are applied
+4. **Plan the story:** a beat sheet anchored to the transcript
+5. **Build motion graphics** with HyperFrames and GSAP from the style library
+6. **Validate and review** in HyperFrames Studio
+7. **Render a draft**, check frames, transitions and audio sync, then render the final
+
+---
+
+## Services, Keys and Costs
+
+The local starter needs **no paid API and no key**. Optional services are your own accounts and credits:
+
+| Service | Used for | Alternative |
+| --- | --- | --- |
+| ElevenLabs Scribe | Transcription (the included helper) | OpenAI Whisper, local Whisper, or a word-level transcript you already have |
+| Kie.ai | Generated video and image assets | Use your own footage, which the kit prefers anyway |
+
+Transcription and generation upload your media or text to those providers. The template tells Claude to explain uploads and costs before any service call and to check that a key exists without printing it. Keep `.env` out of git.
+
+---
+
+## Tips & Best Practices
+
+- **Review the mistake candidates yourself.** The detector can't tell emphatic repetition ("never, never") from a stutter. Zero real cuts is a valid result for a clean take.
+- **Tune the silence gap to your style.** The default 0.55 seconds removes roughly 15 to 20% of a typical raw take. Lower it for a punchier cut, raise it for more breathing room.
+- **Win the first three seconds.** For short-form, the kit's first gate is whether a viewer is convinced they need to watch to the end. Build three different rough openings and compare them before polishing anything.
+- **Read the editing playbook.** `docs/EDITING-PLAYBOOK.md` holds the author's measured reel style: pacing, layouts, captions, B-roll order, sound palette. Your brief overrides it.
+- **Turn notes into rules.** When you give feedback on a draft, ask Claude to write it into the relevant skill so the next edit starts from it.
+- **Keep each video in its own folder** under `video-projects/<slug>/` and never overwrite the original recording.
+
+---
+
+## Limitations
+
+- **Setup is heavy.** Node 22, FFmpeg, Chrome and a cloned repo with `npm ci`. It's a toolkit, not a one-click app.
+- **Library cards are drafts.** Test the cards you choose with your own text and footage. Some load GSAP and Google Fonts from public CDNs, so localise them before a final render.
+- **No guarantees.** Editing can't guarantee a video performs. Review the real motion and audio before publishing.
+- **Repo size.** The repo is about 450 MB because it includes example videos. A shallow clone (`git clone --depth 1`) is faster if you only need the tooling.
+
+---
+
+## Safety Notes
+
+An automated security scan of the kit's skills flagged some of them for handling API keys, calling third-party services and running local scripts. That's expected for a video toolkit, but review each command before you approve it.
+
+- **Unpinned `npx` commands.** Most skills run `npx hyperframes`, which downloads and runs the latest published version. Check the package before you first run it, or pin a version you've reviewed.
+- **Your keys, your costs.** The transcription helper and the optional generation helpers send media or text to ElevenLabs or Kie.ai using your own credentials. Put keys only in `.env`, and don't paste them into the chat.
+- **Local scripts run on your machine.** The cut tools call FFmpeg and local Node scripts. Read what Claude proposes to run, especially anything with `--apply`.
+- **Third-party licences.** The kit is MIT with a permission to produce personal or commercial videos, and HyperFrames is Apache 2.0. The example AI Automation Society brand assets aren't licensed for reuse, so replace them with your own.
+- **Some skills weren't fully scanned.** The scanner returned partial coverage for `cut-mistakes`, `cut-silences` and `short-form-edit`. A scan like this is not proof of safety.

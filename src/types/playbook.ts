@@ -76,4 +76,11 @@ export interface PlaybookFrontmatter {
    * currently not indexed") whose main content is republished from elsewhere.
    */
   noindex?: boolean;
+  /**
+   * The site owner wrote this playbook, so the ChatGPT plugin may serve it under
+   * the site's own terms. Only `npm run license:audit` reads it, and it ignores
+   * the marker when the playbook has a sourceUrl or an author other than
+   * "Claude Code Playbooks".
+   */
+  ownWork?: boolean;
 }

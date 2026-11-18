@@ -57,7 +57,8 @@ function attributionComment(p: ReturnType<typeof toDetail>, license: PlaybookLic
     lines.push(`  Author: ${p.attribution.author}`);
   }
   if (license) {
-    lines.push('  Edited by Claude Code Playbooks, so this copy may differ from the source.');
+    // Playbooks marked ownWork have no source to differ from.
+    if (p.attribution.sourceUrl) lines.push('  Edited by Claude Code Playbooks, so this copy may differ from the source.');
     lines.push(`  License: ${license.name} (${license.url})`, '', license.notice);
   }
   lines.push('-->');

@@ -26,6 +26,8 @@ The tools themselves live in `src/lib/mcp.ts`. OpenAI rescans the server daily, 
 - no conflict between that license file and the source file's own `license:` line
 - no Apache `NOTICE` file in the repo, since those carry extra requirements
 
+Playbooks the site owner wrote get in another way: set `ownWork: true` in the MDX frontmatter. They are served under the site's own terms from `/licensing`, and the CSV marks them `yes: own work`. The marker is ignored if the playbook has a `sourceUrl`, an `author` other than "Claude Code Playbooks", or a `license:` line in its template.
+
 The build fails if the listing claims more playbooks than the catalog has.
 
 ## Submitting

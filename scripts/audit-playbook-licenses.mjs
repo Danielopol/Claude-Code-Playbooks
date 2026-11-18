@@ -13,6 +13,7 @@
  *
  * Writes research/license-audit/playbook-licenses.csv, and src/content/plugin-catalog.json:
  * the playbooks the plugin's MCP endpoint may serve, with each one's license notice.
+ * Playbooks the site owner wrote get in with `ownWork: true` in their frontmatter.
  * This reports what sources declare. It can't tell whether a repo had the right to
  * license what it copied, and it isn't legal advice.
  */
@@ -89,6 +90,29 @@ const REVIEWED_PLAYBOOKS = {
   'scientific-docx': ANTHROPIC_DOC_SKILLS,
   'scientific-xlsx': ANTHROPIC_DOC_SKILLS,
 };
+
+/**
+ * Playbooks the site owner wrote, marked `ownWork: true` in their MDX frontmatter.
+ * The marker is the owner's word, not something the audit can check, so it only
+ * counts when nothing points elsewhere: no source link, no `author` other than
+ * "Claude Code Playbooks", no `license:` line in the template. The terms are the ones /licensing gives for
+ * text written by us.
+ */
+const OWN_WORK_LICENSE = {
+  name: 'Claude Code Playbooks',
+  copyright: 'Copyright (c) Claude Code Playbooks',
+  url: 'https://www.claudecodehq.com/licensing',
+  notice: 'Written by Claude Code Playbooks. It may be quoted with attribution and a link back to https://www.claudecodehq.com. Full terms: https://www.claudecodehq.com/licensing',
+};
+
+/** Why an `ownWork` marker can't be taken at its word, or null if it can. */
+function ownWorkConflict(r) {
+  if (r.sourceUrl) return 'it has a source link';
+  if (r.gh) return 'its author names a repo';
+  if (r.author && !/^claude code playbooks$/i.test(r.author.trim())) return `its author is ${r.author}`;
+  if (r.frontmatter) return 'its template declares a license';
+  return null;
+}
 
 const bucketOf = (license) => Object.keys(BUCKETS).find((b) => BUCKETS[b].has(license)) ?? 'unrecognized';
 const RANK = ['permissive', 'unrecognized', 'conditional', 'restricted'];
@@ -174,7 +198,7 @@ async function firstLicense(base, names) {
 const rows = fs.readdirSync(PLAYBOOKS).filter((f) => f.endsWith('.mdx')).map((f) => {
   const { data } = matter(fs.readFileSync(path.join(PLAYBOOKS, f), 'utf8'));
   const slug = f.replace(/\.mdx$/, '');
-  const row = { slug, author: data.author ?? '', sourceUrl: data.sourceUrl ?? '', frontmatter: frontmatterLicense(slug) };
+  const row = { slug, author: data.author ?? '', sourceUrl: data.sourceUrl ?? '', ownWork: data.ownWork === true, frontmatter: frontmatterLicense(slug) };
   const host = data.sourceUrl ? new URL(data.sourceUrl).hostname.replace(/^www\./, '') : '';
   row.host = host;
   if (host === 'github.com') row.gh = parseGithub(data.sourceUrl);
@@ -259,6 +283,7 @@ fs.writeFileSync(CACHE, JSON.stringify(cache));
 
 function classify(r) {
   if (REVIEWED_PLAYBOOKS[r.slug]) return REVIEWED_PLAYBOOKS[r.slug];
+  if (r.ownWork && !ownWorkConflict(r)) return { bucket: 'own-work', license: OWN_WORK_LICENSE.name, evidence: 'ownWork: true in frontmatter, no source' };
   if (!r.gh) {
     if (r.frontmatter) return { bucket: bucketOf(r.frontmatter.license), license: r.frontmatter.license, evidence: `template frontmatter: ${r.frontmatter.raw}` };
     if (r.sourceUrl) return { bucket: 'no-license-offsite', license: '', evidence: `no license information checked on ${r.host}` };
@@ -297,6 +322,8 @@ function classify(r) {
 
 /** Why the plugin can't serve a playbook, or null if it can. */
 function pluginExclusion(r, c, link) {
+  if (c.bucket === 'own-work') return null;
+  if (r.ownWork) return `marked ownWork, but ${ownWorkConflict(r) ?? 'it was reviewed as third-party'}`;
   if (c.bucket !== 'permissive') return c.bucket;
   if (!r.sourceUrl) return 'no source link';
   if (link) return 'dead source link';
@@ -336,11 +363,15 @@ for (const r of rows) {
   const excluded = pluginExclusion(r, c, link);
   if (excluded) {
     exclusions[excluded] = (exclusions[excluded] ?? 0) + 1;
+  } else if (c.bucket === 'own-work') {
+    catalog.licenses[OWN_WORK_LICENSE.url] ??= OWN_WORK_LICENSE;
+    catalog.playbooks[r.slug] = OWN_WORK_LICENSE.url;
   } else {
     catalog.licenses[c.licenseFile] ??= pluginLicense(c);
     catalog.playbooks[r.slug] = c.licenseFile;
   }
-  lines.push([r.slug, c.bucket, c.license, c.copyright, r.gh?.repo, r.author, r.sourceUrl, link, c.evidence, excluded ? `no: ${excluded}` : 'yes'].map(csv).join(','));
+  const plugin = excluded ? `no: ${excluded}` : c.bucket === 'own-work' ? 'yes: own work' : 'yes';
+  lines.push([r.slug, c.bucket, c.license, c.copyright, r.gh?.repo, r.author, r.sourceUrl, link, c.evidence, plugin].map(csv).join(','));
   if (r.gh) {
     const key = `${r.gh.repo} | ${c.bucket} | ${c.license}`;
     byRepo[key] = (byRepo[key] ?? 0) + 1;
@@ -353,7 +384,8 @@ if (!rateLimited) fs.writeFileSync(PLUGIN_CATALOG, JSON.stringify(catalog, null,
 
 console.log(`${rows.length} playbooks, ${repos.length} repos, ${folderJobs.size} folders, ${requests} requests${rateLimited ? ', RATE LIMITED: results are incomplete and the plugin catalog was not written, rerun later' : ''}`);
 console.log(counts);
-console.log(`\nPlugin catalog: ${Object.keys(catalog.playbooks).length} playbooks, ${Object.keys(catalog.licenses).length} license files. Left out:`, exclusions);
+const ownWork = Object.values(catalog.playbooks).filter((key) => key === OWN_WORK_LICENSE.url).length;
+console.log(`\nPlugin catalog: ${Object.keys(catalog.playbooks).length} playbooks (${ownWork} marked ownWork), ${Object.keys(catalog.licenses).length} license files. Left out:`, exclusions);
 console.log('\nBy repo:');
 for (const [key, n] of Object.entries(byRepo).sort((a, b) => b[1] - a[1])) console.log(`  ${n}  ${key}`);
 console.log('\nRoot licenses:');

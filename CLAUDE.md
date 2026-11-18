@@ -185,6 +185,10 @@ Every category used by playbooks should appear in at least one persona's `catego
 
 Setting `noindex: true` in the frontmatter keeps the playbook live but emits `robots: noindex, follow`, drops it from `sitemap.xml`, and keeps it out of the `/for/[persona]` previews. It is set on playbooks Google reported as "Crawled - currently not indexed" whose main content is republished from a source Google consistently declines to index (September 2026 Search Console audit). Don't set it on new playbooks by default.
 
+### Optional: `ownWork: true`
+
+Set `ownWork: true` only on playbooks the site owner wrote, with no `sourceUrl`. It lets the ChatGPT plugin serve them under the site's own terms (quoting with attribution and a link back, per `/licensing`). Never set it on a playbook copied or adapted from someone else's work, and never guess: ask the owner. Leave `author` empty or set it to "Claude Code Playbooks": the audit ignores the marker if the playbook has a `sourceUrl`, any other `author`, or a `license:` line in its template. Run `npm run license:audit` afterwards to add it to the plugin catalog.
+
 ### Important rules for MDX content
 
 - **Source URL is required when a URL is provided.** If the user provides a URL as the source for a playbook (a gist, repo, blog post, etc.), you MUST add `sourceUrl: "the-url"` to the MDX frontmatter. This renders a "Source" button on the playbook page linking to the original content. Never omit it when the origin URL is known.

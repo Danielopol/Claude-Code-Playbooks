@@ -127,6 +127,15 @@ export const affiliates: Affiliate[] = [
     topics: ['academic-research'],
   },
   {
+    // 25% of the first payment within the first month (Rewardful). Approved 2026-11-19.
+    // topics is empty on purpose: low payout, so it is linked in-content only (chat-with-pdf, academic-search) and never competes with Paperpal/Jenni for the card slots.
+    slug: 'scispace',
+    name: 'SciSpace',
+    trackingUrl: 'https://scispace.com/?via=valentin-daniel',
+    tagline: 'AI tools for reading and searching research papers.',
+    topics: [],
+  },
+  {
     // PartnerStack (terms shown in the partner dashboard). Approved 2026-10-20.
     slug: 'gamma',
     name: 'Gamma',

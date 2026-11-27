@@ -1,0 +1,97 @@
+---
+title: "SKU.io Inventory Actions"
+description: "Let Claude look up products, draft purchase orders, correct stock counts and apply supplier price changes in a real SKU.io inventory system, with a plan shown and approved before every write."
+seoHook: "Demand planning tells you what to reorder, but the work stops there: someone still has to find the products, build the purchase order, fix the counts and key in the new supplier prices by hand. This playbook lets Claude do that step, and keeps a person in charge of every change."
+targetAudience: "ecommerce operators using SKU.io, inventory and purchasing managers, wholesale distributors, small retailers managing stock across warehouses, operations teams that want an agent to prepare orders and price updates for review"
+exampleUseCase: "\"Here's the supplier's new price file effective Monday\" → A diff of every matched product with old and new cost, the big movers flagged, discontinued rows and possible successor parts listed for your decision, and nothing written until you approve"
+category: "operations-compliance"
+difficulty: "intermediate"
+timeToSetup: "15 minutes"
+author: "SKU.io"
+sourceUrl: "https://github.com/skuio/sku-skills"
+tags: ["inventory-management", "purchase-orders", "ecommerce", "sku-io", "supplier-pricing", "stock-adjustment"]
+createdAt: "2026-11-27"
+---
+
+## What This Does
+
+Condenses five of SKU.io's open-source agent skills into one CLAUDE.md template: connect and verify a token, find a product, draft a purchase order, adjust on-hand stock at a warehouse, and update supplier prices from a price file. It works against the SKU.io API, so Claude acts on your real account instead of stopping at a recommendation.
+
+The template adds safety rules on top of the original skills: a plan is shown and approved before any write, purchase orders are created as drafts only, and nothing is ever sent to a supplier. It sits naturally after the [Inventory Demand Planning](/playbooks/inventory-demand-planning) playbook, which works out what to reorder.
+
+---
+
+## Disclosure
+
+**This requires a paid SKU.io account.** There is no free tier or public demo key. The skills are open source (MIT licensed) and were written by SKU.io, whose product they connect to. The author of this playbook was given a demo account to review them, and SKU.io submitted them to Claude Code Playbooks for inclusion.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project Folder
+
+```bash
+mkdir sku-actions && cd sku-actions
+```
+
+### Step 2: Download the Template
+
+Click **Download** above, then move the file into the folder as `CLAUDE.md`:
+```bash
+mv ~/Downloads/sku-io-inventory-actions.md ./CLAUDE.md
+```
+
+### Step 3: Create a Token With Read Scopes Only
+
+In SKU.io, open `https://<your-tenant>.sku.io/v2/settings/developer/personal-access-tokens` and create a Personal Access Token. Start with read scopes only (`products:read`, `suppliers:read`, `warehouses:read`, `settings:read`). The API enforces scopes itself, so a read-only token cannot change anything even if Claude is told to.
+
+### Step 4: Connect and Test
+
+Store the token in an environment variable rather than pasting it into the chat:
+```bash
+export SKU_PAT="123|your-token-here"
+claude
+```
+
+Then tell Claude your login URL and ask it to connect and look up a product by SKU.
+
+### Step 5: Add Write Scopes Only When You Need Them
+
+When you are ready to draft a purchase order, adjust stock or update prices, create a second token with just the write scope that task needs (`purchase-orders:write`, `inventory:write` or `products:write`).
+
+---
+
+## Tips & Best Practices
+
+- **Copy the tenant prefix exactly.** If your login URL is `beta.acme.sku.io`, the tenant is `beta.acme`. A shortened prefix still resolves and returns the same `401` as a bad token, so it looks like a token problem when it isn't.
+- **Quote the token.** A token looks like `123|secret`, and the `|` is a shell pipe. Unquoted, the variable ends up empty.
+- **Use `set` for stock counts.** When you have a physical count, a `set` adjustment states the new on-hand total directly and avoids computing a difference.
+- **Check which cost column is yours.** A distributor's price file usually has several price columns. Your cost is the customer-specific net column, not list or retail.
+- **Try it on a test account first.** Run every write flow once somewhere you can't hurt real stock before pointing it at production.
+
+---
+
+## Limitations
+
+- **The confirmation step is an instruction, not a guard.** Claude shows a plan and waits because the template tells it to. The API only enforces token scopes, so for real protection give each token only the scopes it needs, and use read-only tokens by default.
+- **Stock adjustments take effect immediately** once confirmed and post cost. They are not idempotent, so check current stock before retrying after a timeout.
+- **Purchase orders are created as drafts and are never submitted.** This template deliberately leaves out the submit step, which emails the supplier. Submit from SKU.io after you have reviewed the draft.
+- **Five skills only.** The upstream repository has many more (listings, bundles, vendor credits, templates). They are not included here.
+- **Pricing updates change supplier cost, not sell prices,** and they do not rewrite average cost on existing stock.
+
+---
+
+## Examples
+
+- "Connect to my account, my login URL is acme.sku.io, and tell me what the token can do."
+- "Find the blue widget, I don't have the SKU."
+- "Draft a purchase order for 200 of WIDGET-BLUE-01 and 50 of WIDGET-RED-01 from Acme into the main warehouse."
+- "I counted 240 of WIDGET-BLUE-01 on shelf A2. Set the on-hand quantity."
+- "Here is the supplier's new price file. Show me what would change before anything is written."
+
+---
+
+## Security Note
+
+The upstream repository was scanned with NVIDIA SkillSpector (static analysis only) before this playbook was written. The scanner returned its most severe verdict, driven by roughly 500 keyword matches on the phrase "Access Token" in a repository about API tokens, plus a vulnerable `js-yaml` version in the repo's own build tooling and an unpinned `npx` call in its build script. The reviewed skill files contain no credential harvesting or hidden instructions. A static scan is not proof of safety: read the template before you use it, and keep tokens scoped.

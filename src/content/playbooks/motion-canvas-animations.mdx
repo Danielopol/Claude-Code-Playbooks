@@ -1,0 +1,122 @@
+---
+title: "Motion Canvas: Code Explainer Animations Synced to Your Voiceover"
+description: "Have Claude write Motion Canvas scenes in TypeScript (diagrams, code walkthroughs, algorithm and maths visualisations) with signals, flow helpers and named time events you drag to your narration in the editor"
+seoHook: "Animating a diagram in a video editor means nudging keyframes for hours, then redoing it when the narration changes. Motion Canvas describes the animation as code, and its time events let you drag each beat onto the spoken word in the editor's timeline, so Claude writes the animation once and you retime it in seconds."
+targetAudience: "YouTube educators and science communicators, developer advocates explaining code, teachers making maths and algorithm visualisations, technical course creators, developers who prefer code to keyframes"
+exampleUseCase: "\"Animate how binary search narrows a sorted array, synced to voice.mp3\" → a scene with a row of numbered boxes built from a ref array, signals for the low and high pointers, highlighted midpoints, a named waitUntil event for each spoken step, the audio wired into project.ts, and instructions to render the MP4 from Video Settings"
+category: "media-production"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "motion-canvas"
+sourceUrl: "https://github.com/motion-canvas/motion-canvas"
+tags: ["motion-canvas", "animation", "typescript", "explainer", "voiceover", "education", "motion-graphics", "visualization"]
+createdAt: "2026-11-28"
+---
+
+## What This Does
+
+[Motion Canvas](https://motion-canvas.github.io) is an open-source TypeScript library (MIT) for informative vector animations, plus a browser editor with a live preview, a timeline and an audio track. It was built for one job: animations that explain something and stay in sync with a voiceover.
+
+With the template, Claude knows how to:
+
+- **Set up a project** and wire scenes and audio into `project.ts`
+- **Write scenes as generators**: property tweens, custom tweens, references and ref arrays
+- **Keep elements in sync with signals**, so one value drives several nodes
+- **Coordinate motion** with `all`, `chain`, `sequence`, `delay` and `loop`
+- **Sync to narration with named time events** that you drag onto the spoken word in the editor
+- **Add scene transitions** (slide, zoom, fade)
+
+There's no official AI skill for Motion Canvas. This playbook is a guide to the library, written from its documentation.
+
+---
+
+## Quick Start
+
+### Step 1: Create a Project
+
+You need Node.js. Then:
+
+```bash
+npm init @motion-canvas@latest
+```
+
+Choose TypeScript, and pick the **Video (FFmpeg)** exporter if you want MP4 output. Then:
+
+```bash
+cd my-animation
+npm install
+npm start
+```
+
+The editor opens at http://localhost:9000/.
+
+### Step 2: Download the Template
+
+Click **Download** above and save it as `CLAUDE.md` in the project folder.
+
+### Step 3: Start Working
+
+In a second terminal in the same folder:
+
+```bash
+claude
+```
+
+Try: "Make a scene that draws a flowchart of our signup process, one box at a time." The editor reloads on every save, so you watch it change.
+
+### Step 4: Render
+
+In the editor, open **Video Settings**, choose the exporter, set the resolution and click **Render**. The video goes to the project's `output/` folder.
+
+---
+
+## Examples of What to Ask
+
+- "Animate how a hash map handles a collision."
+- "Show this TypeScript function and highlight each line as I talk about it."
+- "Sync the scene to audio/voice.mp3 with an event for each step."
+- "Split this into three scenes with a slide transition between them."
+- "Make the circles follow the slider value with a signal."
+
+---
+
+## Syncing to Your Voiceover
+
+The key feature is **time events**. Instead of guessing pauses, Claude writes:
+
+```ts
+yield* drawArray();
+yield* waitUntil('pick-middle');
+yield* highlightMiddle();
+```
+
+Each `waitUntil` appears as a marker on the editor's timeline. Drag it to the moment you say "middle", and the animation moves with it. When you re-record the narration, you drag markers instead of editing code.
+
+---
+
+## Tips & Best Practices
+
+- **Fix the resolution first.** Animations don't rescale with resolution, so set it in Video Settings before building.
+- **Keep scenes short.** Several short scenes with transitions are easier to edit than one long one.
+- **Name events after the words.** `waitUntil('collision')` is easy to find on the timeline.
+- **Use signals for anything linked.** A pointer and its label driven by one signal can't drift apart.
+- **Render a range** while you iterate, and the full video at the end.
+
+---
+
+## Limitations
+
+- **You render in the editor.** Motion Canvas has no built-in command-line render, so Claude writes the code and you click Render.
+- **Vector animation, not video editing.** For editing footage, look at [HyperFrames](/playbooks/hyperframes-html-to-video) or a video editor.
+- **The project moves slowly.** The latest release is 3.17 and the repository was last updated in July 2026, so expect fewer new features and check that answers match your installed version.
+- **Requires TypeScript or JavaScript comfort** to go beyond simple scenes.
+
+---
+
+## Safety Notes
+
+An automated security scan of the whole Motion Canvas repository returned thousands of findings and a high-risk (DO_NOT_INSTALL) verdict. They come from what a large library monorepo contains: documentation, editor UI code, tests and dependency lockfiles. The repository has no AI skill, and this playbook's template is written from the documentation. A static scan isn't proof of safety, so:
+
+- **Install from npm with the official scaffolder** (`npm init @motion-canvas@latest`) and review the dependencies it adds, as with any project.
+- **The editor is a local development server.** Keep it on your own machine; don't expose port 9000 to a network.
+- **Audio and images you import end up in the video.** Check the rights to music and other people's material before you publish.

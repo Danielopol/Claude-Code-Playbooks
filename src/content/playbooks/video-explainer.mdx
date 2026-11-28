@@ -1,0 +1,112 @@
+---
+title: "Video Explainer: One-Minute Animated Videos From Any Topic"
+description: "Turn a topic, document, codebase or URL into a 60-second explainer video with kinetic graphics, hand-drawn or 3D visuals, real web media, voiceover, captions and a frame-by-frame review page"
+seoHook: "Ask an AI to explain something in a video and you usually get a slide deck with a voice over it. This skill makes Claude write a tight one-minute script, verify every fact, animate a moving hero visual that changes every few seconds, and run ten automated checks plus a fresh-eyes review before you ever see a draft."
+targetAudience: "educators and course creators, product managers explaining features, developer advocates, newsletter writers and YouTubers, founders making launch explainers, students summarising a topic"
+exampleUseCase: "\"/video-explainer how HTTPS works, motion style, with captions\" → a verified 70-second script tracing one login across public Wi-Fi, local voiceover aligned word by word, a continuous animated scene with a whip-pan to the handshake, synced sound effects, a QA report at 10/10, and a review page where you pin notes to frames"
+category: "media-production"
+difficulty: "intermediate"
+timeToSetup: "20 minutes"
+author: "Peter Yang"
+sourceUrl: "https://github.com/petergyang/video-explainer"
+tags: ["video", "explainer", "animation", "hyperframes", "voiceover", "captions", "three-js", "education"]
+createdAt: "2026-11-28"
+---
+
+## What This Does
+
+Peter Yang's open-source skill (MIT) makes short explainer videos in three styles:
+
+| Style | What it looks like | Token cost |
+| --- | --- | --- |
+| **Motion** (default) | High-energy 2D kinetic graphics, live charts, CSS 3D cards | Lowest |
+| **Illustrated** | Hand-drawn picture-book animation with paper grain | About 6x Motion |
+| **3D** | A single continuous Three.js camera flythrough with studio lighting | About 7x Motion |
+
+Claude researches and verifies the facts, writes the script, generates voiceover (free and local, or with Gemini), builds the visuals, adds captions, music and sound effects, and renders a 1080p MP4 with [HyperFrames](https://github.com/heygen-com/hyperframes). Before you see a draft, it runs 10 automated checks, and a second agent rejects anything that looks like a slide deck.
+
+The template carries the workflow and the craft rules. The rendering engines and pipeline scripts come from installing the skill.
+
+---
+
+## Quick Start
+
+### Step 1: Install the Prerequisites
+
+You need **ffmpeg**, **Python 3.10+** and **Node.js 22+**. Optional: `yt-dlp` for web clips and Blender for custom 3D meshes. On macOS: `brew install ffmpeg python node`.
+
+### Step 2: Install the Skill
+
+```bash
+npx skills add petergyang/video-explainer --skill video-explainer --global
+```
+
+### Step 3: Download the Template
+
+Click **Download** above and save it as `CLAUDE.md` in a folder for your videos (for example `~/Videos/explainers/`).
+
+### Step 4: Make a Video
+
+```bash
+cd ~/Videos/explainers
+claude
+```
+
+Then: `/video-explainer explain how black holes form`. On first use, Claude runs the setup check and lists anything missing before installing it.
+
+### Optional: Gemini Voices and Music
+
+For Gemini TTS voices and Lyria music, create a key at [Google AI Studio](https://aistudio.google.com/) with billing enabled, and add `GEMINI_API_KEY=...` to `~/.config/video-explainer/.env` yourself. Without it, voiceover runs free on your computer.
+
+---
+
+## Examples of What to Ask
+
+- "/video-explainer how HTTPS works, use defaults."
+- "Explain this README as a 45-second ELI5 video, illustrated style."
+- "Turn this article into a vertical 9:16 explainer with no voiceover, just music."
+- "Make a technical 90-second video on how our caching layer works, from this codebase."
+- "Same video, but captions off and the paper style."
+
+---
+
+## What You Get
+
+- **A 60 to 75 second video** (two minutes at most) with a hook in the first 3 seconds and one example followed from start to finish
+- **Voiceover** with a local Kokoro voice, a Gemini voice, your own recording, or none
+- **Captions** that match the voiceover word for word
+- **Web media with credits**: photos, clips and page captures that ground the story
+- **Music and sound effects** synced to key words
+- **A review page** in your browser where you play the draft and pin notes to frames
+- **Themes**: `default`, `paper` or `blueprint`, plus your own fonts and colours in `~/.config/video-explainer/style.json`
+
+---
+
+## Tips & Best Practices
+
+- **Start with Motion.** It's the fastest and cheapest. Try Illustrated or 3D once you like the script.
+- **Give it your sources.** A doc, a repo or a URL makes the facts verifiable and the video specific.
+- **Ask to approve the script first** if the topic is sensitive or technical. By default Claude goes straight from script to render.
+- **Review on the frame.** Pinning a note to a frame is more precise than describing a moment.
+- **Listen before you publish.** QA checks loudness and sync, but voice pacing and music balance need your ears.
+
+---
+
+## Limitations
+
+- **macOS and Linux.** The setup and runner scripts are bash and expect a Unix-style Python venv. On Windows, use WSL.
+- **Big first-time downloads:** about 390 MB for headless Chrome, and about 1 GB more for local voice and word alignment.
+- **Illustrated and 3D use many more tokens** than Motion.
+- **The template alone has no engines.** Install the skill for the rendering, QA and review scripts.
+
+---
+
+## Safety Notes
+
+An automated security scan flagged the upstream repository as high risk (DO_NOT_INSTALL), with only partial coverage. We read the high-severity findings in context. They come from the skill reading its own Gemini key from its config file, passing environment variables to the subprocesses it launches, and fetching images from Wikimedia, which is how the pipeline is meant to work. A static scan isn't proof of safety either way. What matters when you use it:
+
+- **The setup script installs software.** It downloads headless Chrome through HyperFrames (pinned to version 0.9.79), creates a Python environment in `~/.cache/video-explainer`, and with `--voice` installs local speech models. It lists what's missing and asks first, so read the list before saying yes.
+- **Install without `--yes`.** The project's own command adds `--global --yes`, which skips the confirmation. The command above leaves it out so you see what gets installed.
+- **HyperFrames, which does the rendering, has its own usage telemetry**, and the skill doesn't switch it off. Current HyperFrames versions turn it off with `HYPERFRAMES_NO_TELEMETRY=1`; check the docs for the version the skill pins.
+- **Gemini costs money.** Gemini voices and Lyria music need a key with billing enabled. Keep the key in the `.env` file, never in chat.
+- **Web media has owners.** Downloaded photos and clips, especially through `yt-dlp`, may be copyrighted. Prefer openly licensed sources and your own material, keep the credits, and check the rights before you publish.

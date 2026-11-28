@@ -1,0 +1,122 @@
+---
+title: "HyperFrames: Make Videos With HTML and Claude Code"
+description: "Have Claude build launch videos, explainers, captions, chart animations and social clips as HTML compositions, check them for layout and contrast problems, preview them in the browser and render deterministic MP4s locally"
+seoHook: "Motion graphics usually mean After Effects, a timeline you edit by hand, and starting over for every revision. HyperFrames lets Claude write the video as HTML and GSAP, lint and snapshot it like code, and render the same MP4 every time, so \"make the title bigger and the cut faster\" becomes a two-line change instead of an afternoon."
+targetAudience: "developers making product and launch videos, marketers producing social clips, developer advocates making changelog and PR videos, YouTubers making faceless explainers, designers who prototype motion in code, teams automating video content"
+exampleUseCase: "\"Make a 20-second launch video for our new dashboard from our website\" → three storyline options to pick from, a captured copy of the site's real screens and brand colours, scenes built from registry blocks, a lint and contrast check, snapshot frames to review, a browser preview to approve, and a delivery-quality MP4"
+category: "media-production"
+difficulty: "intermediate"
+timeToSetup: "10 minutes"
+author: "HeyGen"
+sourceUrl: "https://github.com/heygen-com/hyperframes"
+tags: ["video", "motion-graphics", "html", "gsap", "captions", "rendering", "launch-video", "hyperframes"]
+createdAt: "2026-11-28"
+---
+
+## What This Does
+
+HyperFrames is HeyGen's open-source framework (Apache 2.0) for turning HTML, CSS, JavaScript and media into MP4 videos. A video is a folder of HTML compositions with a paused animation timeline. HyperFrames steps through it frame by frame, so every render comes out identical and every change is a code edit.
+
+With this playbook Claude can:
+
+- Build **launch and product videos**, **explainers**, **vertical social clips**, **chart and map animations**, **kinetic type**, **captions and overlays** on your footage
+- **Capture a website** to use its real screens, colours and fonts
+- Reuse **about 450 ready-made blocks** (transitions, lower thirds, caption styles, charts, camera moves) from the registry
+- **Lint, check and snapshot** the video before you see it, then hand you a **browser preview** to approve
+- **Render locally** to a draft or delivery-quality MP4
+
+The template carries the render contract and the work loop, and keeps everything local and free unless you ask for a paid feature.
+
+---
+
+## Quick Start
+
+### Step 1: Install the Requirements
+
+You need **Node.js 22+** and **FFmpeg**. On macOS: `brew install node ffmpeg`.
+
+### Step 2: Create a Project
+
+```bash
+npx hyperframes init my-video --skip-skills
+cd my-video
+```
+
+### Step 3: Download the Template
+
+Click **Download** above and save it as `CLAUDE.md` in the `my-video` folder.
+
+### Step 4: Start Working
+
+```bash
+claude
+```
+
+Try: "Make a 10-second product intro with a fade-in title, a background video and subtle music."
+
+### Optional: Install the Official Skills
+
+For the full references and the registry skill, install HyperFrames' own skills:
+
+```bash
+claude plugin marketplace add heygen-com/hyperframes
+claude plugin install hyperframes@hyperframes
+```
+
+Or with `npx skills add heygen-com/hyperframes` and choose **Core Skills** in the picker.
+
+---
+
+## Examples of What to Ask
+
+- "Make a 20-second launch video from https://our-site.com."
+- "Add word-by-word captions to interview.mp4."
+- "Animate this CSV as a bar chart race, 15 seconds, vertical."
+- "Turn this pull request into a 30-second changelog video with an animated code diff."
+- "Make the title bigger and the second cut faster." (in an existing project)
+- "Render the final version."
+
+---
+
+## The Commands Claude Runs
+
+| Job | Command |
+| --- | --- |
+| Start | `npx hyperframes init <dir>`, `capture <url>` |
+| Find a ready-made effect | `npx hyperframes catalog --query "..."`, then `add <name>` |
+| Check | `npx hyperframes lint`, `check --json` |
+| Look at frames | `npx hyperframes snapshot --at 2,5,9` |
+| Preview | `npx hyperframes preview --background` |
+| Edit timing | `npx hyperframes timeline move ...`, `trim`, `split` (with undo) |
+| Render | `npx hyperframes render --quality draft` or `--quality delivery -o out.mp4` |
+
+---
+
+## Tips & Best Practices
+
+- **Pick a storyline first.** For anything longer than about 15 seconds, Claude proposes three storylines in words before building. It's much cheaper to change direction there.
+- **Approve the preview before rendering.** Passing checks doesn't mean it looks right.
+- **Search the registry before custom effects.** An installed block is ordinary source you can restyle.
+- **Use real material.** Your real product screens and logo beat drawn stand-ins.
+- **Keep copy and colours as variables** so later changes, and batch renders of variants, stay simple.
+
+---
+
+## Limitations
+
+- **Rendering needs headless Chrome and FFmpeg**, and long or 3D-heavy videos take time locally.
+- **Generated media isn't free.** Music, images, avatars and cloud voices from HeyGen need sign-in and, beyond the free allowance, credits on a paid plan. The HyperFrames Studio Pro plan is $25 a month.
+- **It's a code workflow.** For no-code editing, HeyGen offers the HyperFrames Studio desktop app, which edits the same projects.
+
+---
+
+## Safety Notes
+
+An automated security scan flagged several of the upstream skills as high risk (DO_NOT_INSTALL), and many files were only partially analysed (bundled fonts, minified libraries). Most findings are documentation of how the CLI looks for credentials. A few points matter when you use it:
+
+- **Telemetry is on by default.** The CLI sends usage counters, linked to your HeyGen account (email and username) once you sign in. The official skills also tell the agent to send a "usage note" when a skill starts and a feedback report after renders. Turn it all off with `npx hyperframes telemetry disable` or `HYPERFRAMES_NO_TELEMETRY=1`. This playbook's template tells Claude not to send those reports.
+- **The CLI looks for credentials in several places.** In order: an injected access token, your `auth login` session in `~/.hyperframes/credentials`, `HEYGEN_API_KEY` or `HYPERFRAMES_API_KEY` in your shell, a saved key, and finally a key set in the project's `.env` file. Don't keep keys in a project you share.
+- **Cloud rendering uses your cloud account.** `lambda render` and `cloudrun render` use your own AWS or Google Cloud credentials and bill that account. Use them only on purpose.
+- **The official media skill leans towards paid HeyGen services.** It says to use local tools only when asked and not to mention prices. This playbook's template reverses that: local and free first, and costs stated before any paid call.
+- **`npx` runs the latest published CLI.** Pin a version you've checked (`npx hyperframes@<version>`) for repeatable or unattended renders.
+- **Captured websites and other people's footage have owners.** Capture your own sites, and check the rights to footage and music before you publish.

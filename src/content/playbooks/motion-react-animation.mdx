@@ -1,0 +1,112 @@
+---
+title: "Motion (Framer Motion): Animation Rules for React, JS and Vue"
+description: "Give Claude the Motion team's own animation guidance: when to use CSS instead of Motion, AnimatePresence and layout animations done right, springs, performance rules, reduced motion and the framer-motion to motion migration"
+seoHook: "AI agents still write Framer Motion code from 2022: the wrong imports, motion values read during render, a layout shift animated with height, and no reduced-motion support. These rules come from the team behind Motion, so Claude picks CSS when CSS is enough and writes current Motion code when it isn't."
+targetAudience: "React and Next.js developers, Vue developers, frontend engineers adding micro-interactions, design engineers, teams migrating from framer-motion"
+exampleUseCase: "\"Animate the tab indicator and make the panel content fade when tabs change\" → a shared layoutId indicator that's unique per instance, AnimatePresence with mode=\"wait\" and stable keys for the content, spring settings matched to the product, MotionConfig reducedMotion=\"user\" at the root, and imports from motion/react"
+category: "developer-tools"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "motiondivision"
+sourceUrl: "https://github.com/motiondivision/ai-kit"
+tags: ["motion", "framer-motion", "react", "animation", "vue", "css-animation", "nextjs", "frontend"]
+createdAt: "2026-11-28"
+---
+
+## What This Does
+
+[Motion](https://motion.dev) (formerly Framer Motion) is the open-source animation library for React, JavaScript and Vue (MIT). Its makers publish an AI kit with their best-practice guidance for agents. This playbook condenses the free part into a template, so Claude:
+
+- **Chooses CSS or Motion** per effect, using a decision table (exit animations and layout changes need Motion; a colour change doesn't)
+- **Writes current Motion code**: `motion/react` imports, server component rules, the right `useTransform` form
+- **Gets `AnimatePresence` and layout animations right**: stable keys, `wait` vs `popLayout`, unique `layoutId`s, height to `auto`
+- **Keeps animations fast**: hardware-accelerated properties, no allocation in per-frame callbacks, `will-change` only when needed
+- **Respects reduced motion** with one `MotionConfig` at the app root
+- **Migrates** from `framer-motion` and between versions
+
+For the general design side (whether to animate, easing and timing), see [Web Animation Design](/playbooks/web-animation-design) and [Design Engineering Skills](/playbooks/emil-design-engineering-skills).
+
+---
+
+## Quick Start
+
+### Step 1: Install Motion in Your Project
+
+```bash
+npm install motion        # React and JavaScript
+npm install motion-v      # Vue
+```
+
+### Step 2: Download the Template
+
+Click **Download** above and save it as `CLAUDE.md` in your project root, or merge it into your existing one.
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Try: "Animate the list so items slide out when deleted and the rest close the gap."
+
+### Optional: Live Docs With the Motion AI Kit
+
+```bash
+npx motion-ai
+```
+
+This installs Motion's `/motion` skill and connects Claude Code to Motion's free hosted MCP server, which serves the current docs and a CSS spring generator. No API key is needed.
+
+---
+
+## Examples of What to Ask
+
+- "Add exit animations to these toasts."
+- "This accordion animates height and stutters. Fix it."
+- "Make a shared-element transition from the card to the modal."
+- "Add a scroll progress bar and a subtle parallax on the hero."
+- "Migrate us from framer-motion to motion."
+- "Should this hover effect use CSS or Motion?"
+
+---
+
+## Quick Reference
+
+| You want | Use |
+| --- | --- |
+| Colour or opacity on hover | CSS `transition` |
+| An element animating out of the DOM | `AnimatePresence` + `exit` |
+| A list reorder or card expanding | `layout` |
+| A tab indicator that moves | `layoutId` |
+| Height to `auto` | `animate={{ height: "auto" }}` with `overflow: hidden` |
+| Drag or drag to reorder | `drag`, `Reorder` |
+| Reduced motion everywhere | `<MotionConfig reducedMotion="user">` |
+
+---
+
+## Tips & Best Practices
+
+- **Let Claude use CSS.** Motion is for interruptible, layout, exit and gesture animations. A simple fade doesn't need a library.
+- **Keep `AnimatePresence` mounted** and put the condition inside it. This one rule fixes most broken exit animations.
+- **Give `layoutId` a per-instance id** when a component appears more than once, or every instance shares one indicator.
+- **Match the springs to the product.** No overshoot in a finance app; softer and slower is fine for a celebratory page.
+- **Give drag-to-reorder a keyboard alternative.**
+
+---
+
+## Limitations
+
+- **Web only.** For React Native, see [Expo React Native Animation](/playbooks/expo-react-native-animation).
+- **The template condenses the free guidance.** Motion+ (paid) adds performance audits, extra docs and source for Motion's example components through its own MCP server. It isn't covered here.
+- **Library rules, not taste.** It tells Claude how to write good Motion code, not whether your design needs the animation.
+
+---
+
+## Safety Notes
+
+An automated security scan rated the two maintainer skills in the Motion library's repository SAFE. It flagged the AI kit as high risk (DO_NOT_INSTALL), and we read those findings in context: an "access token" mention in its changelog, and a `js-yaml` development dependency that the scanner flagged. Neither runs when you use the guidance in this playbook, and a static scan isn't proof of safety. If you install the AI kit:
+
+- **`npx motion-ai` changes your agent configuration.** It writes the `/motion` skill into your skills folder and adds Motion's MCP server to your agent's settings. Check what it added afterwards.
+- **The skills are served live.** Motion's skills come from its MCP server, so the instructions can change without you reinstalling anything.
+- **Licence file.** The AI kit has no LICENSE file at the root. Its `motion-ai` package and the Motion library's README state MIT. The Motion library itself is MIT.
+- **Motion+ is optional and paid.** Signing in is only needed for audits and premium docs.

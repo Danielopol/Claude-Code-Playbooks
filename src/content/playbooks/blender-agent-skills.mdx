@@ -1,0 +1,120 @@
+---
+title: "Blender Agent Skills: Model, Rig, Render and Export With Claude"
+description: "Let Claude drive Blender 5.x across the full 3D pipeline (modeling, UVs, texturing, baking, rigging, animation, lighting, rendering and export) with a QA gate that checks every asset before it ships"
+seoHook: "Ask an AI to write Blender Python and you get code for a version that no longer exists, a mesh with flipped normals, and a confident \"done\". These 28 tested skills route each task to the right technique, enforce the Blender 5.x API, and refuse to call an asset finished until it passes a numeric QA check and a visual one."
+targetAudience: "indie game developers, 3D artists automating repetitive work, technical artists, Roblox and Unity creators, product designers making renders, developers writing Blender add-ons"
+exampleUseCase: "\"Make a game-ready crate for Unreal with baked normals and LODs\" → a blockout-to-detail model, clean UVs, high-to-low normal bake, a LOD chain within budget, a QA report with zero z-fighting or floating parts, contact-sheet renders, and an FBX exported with the Unreal preset"
+category: "creative-design"
+difficulty: "advanced"
+timeToSetup: "15 minutes"
+author: "EL4CTEO"
+sourceUrl: "https://github.com/EL4CTEO/blender-skills"
+tags: ["blender", "3d", "game-development", "rigging", "rendering", "python", "bpy", "export"]
+createdAt: "2026-11-28"
+---
+
+## What This Does
+
+Turns Claude into a Blender technical artist. The original project is a set of **28 skills, each with scripts tested in a real Blender**, covering the whole pipeline: scene setup, hard-surface and sculpted modeling, retopology and UVs, PBR materials, texturing, baking, Geometry Nodes, rigging, facial shape keys, animation and mocap retargeting, clothing, hair, game optimization, export, rendering, lighting, toon shading, environments, video editing, time of day, weather, simulation, add-on development and batch automation.
+
+Two things make it reliable:
+
+- **A Blender 5.x rulebook.** Blender 5 changed many APIs that tutorials (and AI models) still use. The skills route around them.
+- **A mandatory QA gate.** Every asset is checked for z-fighting, floating parts, flipped normals, open holes, bad UVs, wrong colour spaces and more, then looked at from several angles, before Claude says it's done.
+
+This playbook's template carries the routing, the rules and the QA checklist. For the tested scripts, install the skills themselves (below).
+
+---
+
+## Quick Start
+
+### Step 1: Install Blender
+
+You need **Blender 5.2 LTS or newer** (the skills are verified on 5.3), with the `blender` command reachable from your terminal.
+
+### Step 2: Install the Skills (Recommended)
+
+In Claude Code:
+
+```
+/plugin marketplace add EL4CTEO/blender-skills
+/plugin install blender-agent-skills@blender-agent-skills
+```
+
+Or clone the repo and run its installer, which copies the skills into `~/.claude/skills` and `~/.agents/skills`:
+
+```bash
+git clone https://github.com/EL4CTEO/blender-skills
+./blender-skills/install/install.sh        # macOS / Linux
+```
+
+On Windows use `.\blender-skills\install\install.ps1`. Options include `--agent`, `--project DIR`, `--skills a,b` and `--uninstall`.
+
+### Step 3: Add the Template
+
+Click **Download** above and save it as `CLAUDE.md` in your project folder (for example `~/Documents/BlenderWork/`). It works on its own too: without the installed skills, Claude follows the same rules and writes the `bpy` code directly.
+
+### Step 4: Start Working
+
+```bash
+cd ~/Documents/BlenderWork
+claude
+```
+
+A Blender MCP server is optional. With one, Claude works in the Blender window you have open. Without one, it runs Blender in the background and shows you rendered contact sheets.
+
+---
+
+## Examples of What to Ask
+
+- "Make a game-ready crate for Unreal with baked normals and LODs."
+- "Rig this character with Rigify and export it to Unity with a walk cycle."
+- "Make this street a rainy night with puddles and lightning."
+- "Set up a product turntable with studio lighting and render it in Cycles."
+- "Batch-convert every .fbx in this folder to .glb with Draco compression."
+- "Check this model for problems before I send it to the client."
+
+---
+
+## What the QA Gate Catches
+
+| Problem | What Claude does |
+| --- | --- |
+| Z-fighting surfaces | Deletes the hidden duplicate or offsets it a few millimetres |
+| Floating or detached parts | Snaps them into contact or merges them |
+| Inside-out normals, non-manifold edges, open holes | Recalculates, cleans and caps the geometry |
+| Unapplied or negative scale | Applies transforms before export |
+| Missing or overlapping UVs | Unwraps properly |
+| Normal or roughness maps tagged as colour | Sets them to Non-Color |
+| Too many bone influences, floating props | Cleans weights, puts the origin on the floor |
+
+Profiles adjust the strictness: `game`, `render` (lenient), `print` (watertight required) and `roblox` (20k triangles per mesh, watertight, no n-gons).
+
+---
+
+## Tips & Best Practices
+
+- **Say what the asset is for.** "Game-ready for Unreal", "Roblox accessory" and "print" each mean different budgets and checks.
+- **Ask for numbers.** The skills report triangles, dimensions, materials and output files. A bare "done" isn't a result.
+- **Save before batch edits.** Claude is told to make a backup copy before anything destructive, and never to delete data it didn't create in your open file.
+- **Use the recipes for whole jobs.** End-to-end recipes chain the skills with QA gates for game props, characters, Roblox assets and product shots.
+- **Expect 5.x API changes.** If old code fails with an AttributeError, it's usually an API that Blender 5 renamed, and the skills know the replacements.
+
+---
+
+## Limitations
+
+- **Blender 5.2 or newer only.** Older versions use APIs the skills deliberately avoid.
+- **Artistic judgement is still yours.** QA catches technical faults. Proportions, style and whether it looks right need your eye.
+- **Headless mode is slower to review** because you see rendered contact sheets rather than the live viewport.
+- **The template alone has no scripts.** For the tested QA, review-shot and export scripts, install the skills.
+
+---
+
+## Safety Notes
+
+The upstream skills passed an automated security scan without a high-risk verdict. A static scan isn't proof of safety, so the usual care applies.
+
+- **Scripts run Blender on your machine.** Read what Claude proposes to run, especially batch jobs over folders of files.
+- **Your open file is your work.** Keep your own backups for important scenes.
+- **The installer writes into your agent skill folders.** Use `--project DIR` to keep it inside one project if you prefer.

@@ -1,0 +1,102 @@
+---
+title: "Design Engineering Skills: Motion, Gestures and UI Polish From Emil Kowalski"
+description: "Emil Kowalski's skills for building interfaces that feel right: whether to animate at all, choreographing groups, drag and sheet gestures, removing needless motion, fixing jank, native-feeling mobile web, worst-case data tests, variant prototypes and turning your corrections into rules"
+seoHook: "Agents don't have taste. They put ease-in on a dropdown, stagger every menu item, animate keyboard shortcuts and hand-roll a toast component. These skills from the designer behind Sonner and Vaul give Claude the judgement to make, cut and coordinate motion the way a senior design engineer would, and to say no when an animation shouldn't exist."
+targetAudience: "frontend engineers, design engineers, product designers who code, React and Next.js developers, indie hackers polishing a product, teams reviewing UI pull requests"
+exampleUseCase: "\"The app feels slow, tone down the motion\" → every animation run through a frequency and purpose gate, keyboard-triggered and high-frequency transitions deleted, hover effects reduced, dependent styles and orphaned keyframes cleaned up, and a report of what was removed, reduced and deliberately kept"
+category: "creative-design"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "emilkowalski"
+sourceUrl: "https://github.com/emilkowalski/skills"
+tags: ["animation", "ui-design", "design-engineering", "gestures", "mobile-web", "react", "motion", "frontend"]
+createdAt: "2026-11-28"
+---
+
+## What This Does
+
+Emil Kowalski (who made Sonner and Vaul, and has worked at Vercel and Linear) published 20 skills for designers and engineers (MIT). This playbook condenses the workflows into one template. The easing and duration basics are already on the site as [Web Animation Design](/playbooks/web-animation-design), so this one is about the jobs around them:
+
+| Workflow | What Claude does |
+| --- | --- |
+| **The gate** | Decides whether something should animate at all, by frequency and purpose |
+| **Find / review / improve / remove** | Suggests motion, reviews it strictly, writes audit plans, or deletes what isn't needed |
+| **Choreograph** | Casts lead, support and decoration, then times a group so it reads as one motion |
+| **Gestures** | Drag, swipe and sheets that track the finger 1:1 and can be caught mid-animation |
+| **Performance** | Names the cause of dropped frames before changing code |
+| **Mobile-native** | The CSS and meta-tag fixes that make a web app feel installed |
+| **Break the UI** | Worst-case data behind a dev-only toggle, with a fix for every break |
+| **Prototype** | Several genuinely different variants with a switcher |
+| **Pick a library** | One recommendation from a curated list |
+| **Learn taste** | Turns your design corrections into rules in `DESIGN.md` |
+
+Two of the skills already have their own pages here: [Apple Fluid Interface Design](/playbooks/apple-fluid-interface-design) and [Expo React Native Animation](/playbooks/expo-react-native-animation). The repo also has a modern Swift skill and a Sonner guide, which aren't condensed here.
+
+---
+
+## Quick Start
+
+### Step 1: Open Your Project
+
+Work in the repo of the app you want to polish, so Claude can read the components and your existing design tokens.
+
+### Step 2: Download the Template
+
+Click **Download** above and save it as `CLAUDE.md` in the project root, or merge it into your existing one.
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Try: "Review the animations in the settings drawer" or "What could be animated on the onboarding screens?"
+
+### Optional: Install the Original Skills
+
+```bash
+npx skills add emilkowalski/skills
+```
+
+The full skills include recipes, a worst-case data catalogue, review standards and a variant picker. Each one is explained with examples at [aiforui.dev/skills](https://aiforui.dev/skills).
+
+---
+
+## Examples of What to Ask
+
+- "Find places in this app that would genuinely benefit from motion. Tell me what not to animate too."
+- "The hero entrance feels mechanical. Choreograph it."
+- "Build a swipe-to-dismiss card that I can catch mid-animation."
+- "This drag gets laggier as the list grows. Why?"
+- "Make this web app feel native on an iPhone."
+- "Break the member list with worst-case data."
+- "Prototype three versions of the pricing card."
+- "We're done for today. Turn my design corrections into rules."
+
+---
+
+## Tips & Best Practices
+
+- **Let it say no.** A finding of "this shouldn't animate" is a success. Keyboard shortcuts and things you see 100 times a day feel faster with no motion.
+- **Ask for a review before polish.** Review mode flags by default and gives a Before / After / Why table you can act on.
+- **Use the read-only modes on big codebases.** Find and Improve never touch source code. Improve writes plans you can hand to any agent.
+- **Test gestures and mobile fixes on a real phone.** Device emulation hides sticky hover, tap delay, safe areas and the keyboard.
+- **Run "learn taste" at the end of a session** so the next agent doesn't repeat the mistakes you corrected.
+
+---
+
+## Limitations
+
+- **Web first.** Most rules target CSS and React with Motion. For React Native, use the Expo playbook.
+- **Condensed.** The template carries the rules and workflows, not the full recipes or reference files.
+- **Taste is opinionated.** These are one designer's deliberate picks (libraries included). Override them where your product's personality calls for it.
+
+---
+
+## Safety Notes
+
+An automated security scan of the 20 upstream skills flagged two of them, `choreograph` and `improve-animations`, as high risk (DO_NOT_INSTALL), and coverage was partial. We read those findings in context. The prompt-injection hits are the skills' own defensive rules telling the agent to *ignore* instructions found in repository files. The hidden-character hits are zero-width spaces used to show nested code blocks in the documentation. Neither is malicious, and this playbook's template contains neither. A static scan isn't proof of safety, so the usual care applies:
+
+- **The install command pulls the latest version.** `npx skills add` fetches whatever is published now. Read the skills before installing, especially if you install them globally.
+- **Some workflows edit code.** Remove, Break and Prototype change files. Find and Improve are read-only on your source. Commit before letting Claude remove animations.
+- **Dependencies are yours to approve.** The template tells Claude to ask before adding or removing a library.

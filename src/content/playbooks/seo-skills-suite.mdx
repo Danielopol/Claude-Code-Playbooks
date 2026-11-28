@@ -1,0 +1,101 @@
+---
+title: "SEO Skills: 30 Workflows That End in a Merged PR"
+description: "Have Claude do SEO inside your repo (titles, post refreshes, internal links, comparison pages, domain migrations, grounded copy and a daily routine) and ship it as diffs you can review"
+seoHook: "Most SEO tools hand you a score and a 40-page audit nobody acts on. These workflows make Claude do the work in your codebase: rewritten titles in a before/after table, a refreshed post after you approve the outline, verified redirect maps, honest comparison pages, as changes you can review and merge."
+targetAudience: "SaaS founders doing their own SEO, developer-marketers, content leads at startups, indie hackers, agencies working in client repos, technical writers"
+exampleUseCase: "\"Our blog gets traffic but nobody clicks through to pricing. Fix it\" → an internal link graph of the site, 2-4 new contextual links per high-traffic post pointing at pricing and use-case pages (one in the top 40% of each post, varied 3-7 word anchors), and a report of every edit for review"
+category: "marketing-content"
+difficulty: "intermediate"
+timeToSetup: "5 minutes"
+author: "Ilias Ism"
+sourceUrl: "https://github.com/Illyism/seo-skills"
+tags: ["seo", "content-marketing", "internal-linking", "comparison-pages", "domain-migration", "ai-search", "geo", "blogging"]
+createdAt: "2026-11-28"
+---
+
+## What This Does
+
+The original is a set of 30 open-source skills (MIT) built around one idea: SEO work should **end in something you can ship**, like a diff, a redirect map, a new page or a file in `seo/`, not a checklist. This playbook condenses the core workflows into one template:
+
+| Workflow | What you get |
+| --- | --- |
+| **Titles** | Rewritten titles matched to search intent, in a before/after table |
+| **Post refresh** | A competitor gap analysis and new outline, then the rewrite once you approve |
+| **Internal linking** | Contextual links from high-traffic posts to your money pages |
+| **Comparison pages** | Fair `/vs/` and alternative pages built on sourced, current facts |
+| **Domain migration** | A full URL inventory, a 1-to-1 redirect map with a verification script, and a cutover checklist |
+| **Grounded copy** | Vague claims replaced with mechanisms and facts, and answer-first structure for AI search |
+| **Proof knowledge base** | A `seo/kb/` folder of real benchmarks and results that every page can draw on |
+| **One-page sprint** | A 30-day focus plan to push one revenue page up |
+| **Ongoing routine** | Daily, weekly and monthly tasks with state kept in `seo/` |
+| **Honest outreach** | Vetted prospects and varied email drafts in a file for you to send |
+
+---
+
+## Quick Start
+
+### Step 1: Open Your Site's Repository
+
+Work in the repo that builds your site (Next.js, Astro, Hugo, MDX and so on), so Claude can edit pages directly.
+
+### Step 2: Download the Template
+
+Click **Download** above and save it as `CLAUDE.md` in the repo root (or merge it into your existing one).
+
+### Step 3: Start Working
+
+```bash
+claude
+```
+
+Try: "Audit and rewrite the titles on our 20 most important pages" or "Refresh our post on [topic], it dropped to page 2."
+
+### Optional: Install All 30 Original Skills
+
+```bash
+npx skills add Illyism/seo-skills
+```
+
+Or a single skill: `npx skills add Illyism/seo-skills --skill seo-autopilot`.
+
+---
+
+## Examples of What to Ask
+
+- "Fix our title tags. Show me a before/after table first."
+- "This post fell from #4 to #14. Refresh it." (Claude stops for approval after the outline.)
+- "We're renaming from BillBox to InvoiceKit. Plan the domain migration."
+- "Make a fair comparison page against [competitor]."
+- "Our homepage copy sounds like everyone else's. Ground it in facts."
+- "Set up a weekly SEO routine for this repo."
+
+---
+
+## Tips & Best Practices
+
+- **Approve before rewrites.** The refresh workflow stops after the plan. Read the gap table before saying yes.
+- **Feed it real proof.** A `seo/kb/` folder with your actual benchmarks, prices and customer results makes every page stronger, and the skills never invent proof.
+- **Keep comparison pages fair.** Every claim about a competitor needs a current source, and the page must say where the competitor wins.
+- **Keep old domains alive.** After a migration, the old domain needs valid HTTPS and its redirects permanently, or backlinks stop passing value.
+- **Draft, don't send.** Outreach emails and directory submissions are written to files for you to review and send yourself.
+
+---
+
+## Limitations
+
+- **Some skills need paid data.** Ahrefs and DataForSEO skills need your own accounts. Without them, Claude works from the live site, your repo and Search Console exports you provide.
+- **Results take time.** Even a focused sprint usually needs weeks, and rankings depend on more than on-page work.
+- **The template is condensed.** It covers the core workflows. Install the original skills for the specialised ones (YouTube SEO, blog images, Reddit results, scraper blocking, press releases).
+
+---
+
+## Safety Notes
+
+An automated security scan of all 30 upstream skills found no high-risk verdict. The flagged items were documentation examples and calls to SEO data APIs. A static scan isn't proof of safety, and a few skills had partial coverage. The points below matter more than the scan:
+
+- **Sponsor products are built in.** The repo says it's supported by LinkDR, AI SEO Tracker, Scribiz, Awesome Tools and SEO Roast, and several skills route work to them. The `linkdr` skill plans paid backlink orders with a coupon code. **This playbook leaves that skill out**, and the template tells Claude never to start a checkout or recommend a paid service unless you ask.
+- **Buying links is against Google's spam policies.** Paid links that pass ranking credit, link exchanges and large-scale link building can get pages demoted. The template sticks to earned links and honest outreach.
+- **The one-page sprint's daily backlink target needs care.** The original suggests 3 to 5 new backlinks a day and resubmitting the page in Search Console daily. Resubmitting doesn't help rankings, and a sudden stream of acquired links can look like a scheme. The template keeps the focus and drops those two habits.
+- **Syndication and "parasite SEO" are a grey area.** The `parasite-and-pr` skill (not condensed here) publishes articles on high-authority platforms to rank alongside your own site. Republishing your own work with a canonical link is normal. Publishing mainly to exploit another site's ranking can run into Google's site reputation abuse policy.
+- **Directory submissions and outreach act in public under your name.** Review every submission and email yourself, and don't pay listing fees without deciding to.
+- **API keys stay out of chat.** Skills that call Ahrefs, DataForSEO or other services use your credentials. Keep them in environment variables.
